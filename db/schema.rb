@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110714073628) do
+ActiveRecord::Schema.define(:version => 20110714082551) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -59,6 +59,18 @@ ActiveRecord::Schema.define(:version => 20110714073628) do
     t.integer  "candidate_number"
     t.text     "notes"
     t.integer  "sign_up_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "electoral_alliances", :force => true do |t|
+    t.string   "name"
+    t.integer  "delivered_candidate_form_amount"
+    t.integer  "primary_advocate_id"
+    t.integer  "secondary_advocate_id"
+    t.boolean  "secretarial_freeze"
+    t.integer  "electoral_circle_id"
+    t.integer  "signing_order"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
