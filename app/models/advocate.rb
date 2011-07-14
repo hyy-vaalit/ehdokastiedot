@@ -7,4 +7,8 @@ class Advocate < ActiveRecord::Base
     self.primary_nominated or self.secondary_nominated
   end
 
+  def name
+    "#{self.lastname} #{self.firstname}"
+  end
+
 end
