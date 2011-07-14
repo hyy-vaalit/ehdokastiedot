@@ -6,5 +6,12 @@
 #   cities = City.create([{ :name => 'Chicago' }, { :name => 'Copenhagen' }])
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
+# Clean database
+DatabaseCleaner.strategy = :truncation
+DatabaseCleaner.clean
+
 # Create a default user
 AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password')
+
+# Create test faculties
+Faculty.create!(:name => 'Kaisaniemi post-hautomo', :code => 'KPH')
