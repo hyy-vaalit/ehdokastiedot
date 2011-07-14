@@ -3,7 +3,7 @@ class ElectoralAlliance < ActiveRecord::Base
 
   has_many :candidates
 
-  belongs_to :electoral_circle
+  belongs_to :electoral_coalition
   ranks :signing_order, :with_same => :electoral_circle_id
 
   # Advocates
