@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110714082551) do
+ActiveRecord::Schema.define(:version => 20110714085449) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -71,6 +71,12 @@ ActiveRecord::Schema.define(:version => 20110714082551) do
     t.boolean  "secretarial_freeze"
     t.integer  "electoral_circle_id"
     t.integer  "signing_order"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "electoral_circles", :force => true do |t|
+    t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
