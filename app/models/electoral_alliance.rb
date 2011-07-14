@@ -1,6 +1,8 @@
 class ElectoralAlliance < ActiveRecord::Base
   include RankedModel
 
+  has_many :candidates
+
   belongs_to :electoral_circle
   ranks :signing_order, :with_same => :electoral_circle_id
 
