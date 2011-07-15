@@ -14,6 +14,7 @@ ActiveAdmin.register ElectoralCoalition do
       f.input :name
     end
     f.inputs 'Alliances' do
+      f.input :electoral_alliances
     end
     f.buttons
   end
