@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110714123918) do
+ActiveRecord::Schema.define(:version => 20110715102853) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -45,18 +45,6 @@ ActiveRecord::Schema.define(:version => 20110714123918) do
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
   add_index "admin_users", ["reset_password_token"], :name => "index_admin_users_on_reset_password_token", :unique => true
 
-  create_table "advocates", :force => true do |t|
-    t.string   "lastname"
-    t.string   "firstname"
-    t.string   "social_security_number"
-    t.string   "address"
-    t.string   "postal_information"
-    t.string   "email"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.string   "phone"
-  end
-
   create_table "candidates", :force => true do |t|
     t.string   "firstname"
     t.string   "lastname"
@@ -78,13 +66,25 @@ ActiveRecord::Schema.define(:version => 20110714123918) do
   create_table "electoral_alliances", :force => true do |t|
     t.string   "name"
     t.integer  "delivered_candidate_form_amount"
-    t.integer  "primary_advocate_id"
-    t.integer  "secondary_advocate_id"
     t.boolean  "secretarial_freeze"
     t.integer  "electoral_coalition_id"
     t.integer  "signing_order"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "primary_advocate_lastname"
+    t.string   "primary_advocate_firstname"
+    t.string   "primary_advocate_social_security_number"
+    t.string   "primary_advocate_address"
+    t.string   "primary_advocate_postal_information"
+    t.string   "primary_advocate_phone"
+    t.string   "primary_advocate_email"
+    t.string   "secondary_advocate_lastname"
+    t.string   "secondary_advocate_firstname"
+    t.string   "secondary_advocate_social_security_number"
+    t.string   "secondary_advocate_address"
+    t.string   "secondary_advocate_postal_information"
+    t.string   "secondary_advocate_phone"
+    t.string   "secondary_advocate_email"
   end
 
   create_table "electoral_coalitions", :force => true do |t|
