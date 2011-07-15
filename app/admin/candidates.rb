@@ -4,7 +4,6 @@ ActiveAdmin.register Candidate do
     column :candidate_number
     column :lastname
     column :firstname
-    column :nickname
     column :candidate_name
     column :social_security_number
     column :address
@@ -19,7 +18,6 @@ ActiveAdmin.register Candidate do
 
   filter :lastname
   filter :firstname
-  filter :nickname
   filter :candidate_name
   filter :social_security_number
   filter :address
@@ -33,7 +31,6 @@ ActiveAdmin.register Candidate do
     f.inputs 'Personal' do
       f.input :lastname
       f.input :firstname
-      f.input :nickname
       f.input :candidate_name
       f.input :social_security_number
     end
