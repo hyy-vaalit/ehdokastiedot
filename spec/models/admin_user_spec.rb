@@ -1,5 +1,12 @@
 require 'spec_helper'
 
 describe AdminUser do
-  pending "add some examples to (or delete) #{__FILE__}"
+
+  it "should have generated password after creation" do
+    user = AdminUser.new
+    user.encrypted_password.should == ""
+    user.save :validation => false
+    user.encrypted_password.should_not == ""
+  end
+
 end
