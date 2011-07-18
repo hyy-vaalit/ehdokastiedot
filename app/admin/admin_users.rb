@@ -1,8 +1,21 @@
 ActiveAdmin.register AdminUser do
 
+  before_filter :authorize_this
+
+  controller do
+
+    def authorize_this
+      authorize! :manage, AdminUser
+    end
+
+  end
+
+  menu :label => "User management", :if => proc { can? :manage, AdminUser }
+
   index do
     column :email
     column :role
+    default_actions
   end
 
   filter :email
