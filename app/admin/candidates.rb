@@ -1,5 +1,15 @@
 ActiveAdmin.register Candidate do
 
+  controller do
+    def create
+      create! do
+        flash[:notice] = "Candidate created!"
+        redirect_to new_admin_candidate_path
+        return
+      end
+    end
+  end
+
   index do
     column :candidate_number
     column :lastname
