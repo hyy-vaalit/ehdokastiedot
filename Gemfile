@@ -4,6 +4,8 @@ gem 'rails', '3.0.9'
 
 gem 'activeadmin'
 gem 'ranked-model'
+gem 'cancan'
+gem 'passgen'
 
 gem 'sqlite3'
 

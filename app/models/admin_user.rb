@@ -1,4 +1,7 @@
 class AdminUser < ActiveRecord::Base
+
+  ROLES = %w[admin secretary advocate]
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable,
@@ -6,4 +9,13 @@ class AdminUser < ActiveRecord::Base
 
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
+
+  before_validation_on_create :generate_password
+
+  private
+
+  def generate_password
+    self.password = Passgen::generate
+  end
+
 end
