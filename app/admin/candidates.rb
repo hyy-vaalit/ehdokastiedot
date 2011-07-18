@@ -1,6 +1,10 @@
 ActiveAdmin.register Candidate do
 
+
   controller do
+
+    load_and_authorize_resource :except => [:index]
+
     def create
       create! do
         flash[:notice] = "Candidate created!"
@@ -8,6 +12,7 @@ ActiveAdmin.register Candidate do
         return
       end
     end
+
   end
 
   index do
