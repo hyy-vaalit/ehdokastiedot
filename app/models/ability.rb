@@ -5,17 +5,24 @@ class Ability
     can :access, :admin
 
     user ||= AdminUser.new # guest user (not logged in)
-    send user.role if user.role
+    send user.role, user if user.role
   end
 
-  def admin
+  def admin user
     can :manage, :all
   end
 
-  def secretary
+  def secretary user
+    unless user.electoral_alliance.nil? or user.electoral_alliance.secretarial_freeze
+      can [:read, :update], Candidate, :electoral_alliance_id => user.electoral_alliance_id
+      can :create, Candidate
+    end
   end
 
-  def advocate
+  def advocate user
+    unless user.electoral_alliance.nil? or user.electoral_alliance.secretarial_freeze
+      can [:read, :update], Candidate, :electoral_alliance_id => user.electoral_alliance_id
+    end
   end
 
 end

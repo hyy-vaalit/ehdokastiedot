@@ -12,10 +12,12 @@ class AdminUser < ActiveRecord::Base
 
   before_validation :generate_password, :on => :create
 
+  belongs_to :electoral_alliance
+
   private
 
   def generate_password
-    self.password = Passgen::generate
+    self.password = Passgen::generate unless self.password
   end
 
 end
