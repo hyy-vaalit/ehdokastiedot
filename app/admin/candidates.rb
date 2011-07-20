@@ -1,6 +1,5 @@
 ActiveAdmin.register Candidate do
 
-
   controller do
 
     load_and_authorize_resource :except => [:index]
@@ -11,6 +10,11 @@ ActiveAdmin.register Candidate do
         redirect_to new_admin_candidate_path
         return
       end
+    end
+
+    def show
+      super
+      authorize! :report_fixes, @candidate if current_admin_user.role == 'advocate'
     end
 
   end
@@ -29,6 +33,10 @@ ActiveAdmin.register Candidate do
     column :notes
 
     default_actions
+  end
+
+  show do
+    render 'show'
   end
 
   filter :lastname

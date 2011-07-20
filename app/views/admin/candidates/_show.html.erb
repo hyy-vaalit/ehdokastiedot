@@ -1,0 +1,62 @@
+<div class="panel">
+  <h3>Candidate Details</h3>
+
+  <div class="panel_contents">
+    <div id="attributes_candidates_<%= candidate.id %>" class="attributes_table candidate">
+      <table cellspacing="0" cellpadding="0" border="0">
+        <tbody>
+          <tr>
+            <th><%= t 'candidate.lastname' %></th>
+            <td><%= candidate.lastname %></td>
+            <%= edit_link(candidate) %>
+          </tr>
+          <tr>
+            <th><%= t 'candidate.firstname' %></th>
+            <td><%= candidate.firstname %></td>
+            <%= edit_link(candidate) %>
+          </tr>
+          <tr>
+            <th><%= t 'candidate.candidate_name' %></th>
+            <td><%= candidate.candidate_name %></td>
+            <%= edit_link(candidate) %>
+          </tr>
+          <tr>
+            <th><%= t 'candidate.social_security_number' %></th>
+            <td><%= candidate.social_security_number %></td>
+            <%= edit_link(candidate) %>
+          </tr>
+          <tr>
+            <th><%= t 'candidate.address' %></th>
+            <td><%= candidate.address %></td>
+            <%= edit_link(candidate) %>
+          </tr>
+          <tr>
+            <th><%= t 'candidate.postal_information' %></th>
+            <td><%= candidate.postal_information %></td>
+            <%= edit_link(candidate) %>
+          </tr>
+          <tr>
+            <th><%= t 'candidate.email' %></th>
+            <td><%= candidate.email %></td>
+            <%= edit_link(candidate) %>
+          </tr>
+          <tr>
+            <th><%= t 'candidate.faculty' %></th>
+            <td><%= candidate.faculty %></td>
+            <%= edit_link(candidate) %>
+          </tr>
+          <tr>
+            <th><%= t 'candidate.electoral_alliance' %></th>
+            <td><%= link_to(candidate.electoral_alliance.name, admin_electoral_alliance_path(candidate.electoral_alliance)) %></td>
+            <%= edit_link(candidate) %>
+          </tr>
+          <tr>
+            <th><%= t 'candidate.notes' %></th>
+            <td><%= candidate.notes %></td>
+            <%= edit_link(candidate) %>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
