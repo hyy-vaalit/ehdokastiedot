@@ -1,5 +1,11 @@
 ActiveAdmin.register ElectoralAlliance do
 
+  controller do
+
+    load_and_authorize_resource :except => [:index]
+
+  end
+
   index do
     column :name
     column :electoral_coalition
@@ -41,6 +47,16 @@ ActiveAdmin.register ElectoralAlliance do
       f.input :secondary_advocate_email
     end
     f.buttons
+  end
+
+  action_item :only => :show do
+    link_to 'Done', done_admin_electoral_alliance_path if can? :update, electoral_alliance
+  end
+
+  member_action :done do
+    ea = ElectoralAlliance.find_by_id(params[:id])
+    ea.freeze!
+    redirect_to admin_electoral_alliances_path
   end
 
 end
