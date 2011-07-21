@@ -78,4 +78,10 @@ ActiveAdmin.register Candidate do
     render :json => df
   end
 
+  member_action :apply_fix, :method => :get do
+    df = DataFix.find_by_id(params[:fix])
+    df.apply!
+    redirect_to :action => :show
+  end
+
 end

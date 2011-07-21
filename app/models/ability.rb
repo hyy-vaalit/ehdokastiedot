@@ -10,6 +10,7 @@ class Ability
 
   def admin user
     can :manage, :all
+    cannot :report_fixes, Candidate
   end
 
   def secretary user
