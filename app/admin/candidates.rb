@@ -91,7 +91,7 @@ ActiveAdmin.register Candidate do
   end
 
   action_item :only => :index do
-    link_to 'Notify', notify_admin_candidates_path
+    link_to 'Notify', notify_admin_candidates_path if can? :notify, Candidate
   end
 
   collection_action :notify do
