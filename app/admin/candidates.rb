@@ -71,7 +71,9 @@ ActiveAdmin.register Candidate do
   end
 
   member_action :report_fixes, :method => :post do
-    render :json => params.to_json
+    candidate = Candidate.find_by_id(params[:id])
+    df = DataFix.create! :candidate_id => candidate, :field_name => params[:field], :old_value => candidate.send(params[:field]), :new_value => params[:new_value]
+    render :json => df
   end
 
 end
