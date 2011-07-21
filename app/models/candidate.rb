@@ -6,4 +6,6 @@ class Candidate < ActiveRecord::Base
 
   belongs_to :faculty
 
+  has_many :data_fixes
+
 end

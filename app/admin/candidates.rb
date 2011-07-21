@@ -70,6 +70,8 @@ ActiveAdmin.register Candidate do
     f.buttons
   end
 
+  sidebar :fixes, :only => :show
+
   member_action :report_fixes, :method => :post do
     candidate = Candidate.find_by_id(params[:id])
     df = DataFix.create! :candidate_id => candidate, :field_name => params[:field], :old_value => candidate.send(params[:field]), :new_value => params[:new_value]
