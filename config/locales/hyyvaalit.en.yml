@@ -22,3 +22,8 @@ en:
         secondary_advocate_postal_information: "Postal code and post office"
         secondary_advocate_phone: "Phone"
         secondary_advocate_email: "Email"
+
+  mailer:
+    candidate_notifier:
+      welcome_as_candidate:
+        subject: "Welcome as candidate"
