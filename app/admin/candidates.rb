@@ -70,4 +70,8 @@ ActiveAdmin.register Candidate do
     f.buttons
   end
 
+  member_action :report_fixes, :method => :post do
+    render :json => params.to_json
+  end
+
 end
