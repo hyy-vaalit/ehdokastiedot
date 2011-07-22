@@ -8,4 +8,8 @@ class Candidate < ActiveRecord::Base
 
   has_many :data_fixes
 
+  def cancel!
+    self.update_attribute :cancelled, true
+  end
+
 end

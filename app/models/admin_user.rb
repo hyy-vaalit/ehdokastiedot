@@ -14,6 +14,14 @@ class AdminUser < ActiveRecord::Base
 
   belongs_to :electoral_alliance
 
+  #def candidates
+  #  if role == 'admin'
+  #    Candidate.all
+  #  else
+  #    self.electoral_alliance.candidates
+  #  end
+  #end
+
   private
 
   def generate_password

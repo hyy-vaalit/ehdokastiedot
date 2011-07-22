@@ -74,13 +74,24 @@ ActiveAdmin.register Candidate do
 
   member_action :report_fixes, :method => :post do
     candidate = Candidate.find_by_id(params[:id])
-    df = DataFix.create! :candidate_id => candidate, :field_name => params[:field], :old_value => candidate.send(params[:field]), :new_value => params[:new_value]
+    df = candidate.data_fixes.create! :field_name => params[:field], :old_value => candidate.send(params[:field]), :new_value => params[:new_value]
     render :json => df
   end
 
   member_action :apply_fix, :method => :get do
     df = DataFix.find_by_id(params[:fix])
     df.apply!
+    redirect_to :action => :show
+  end
+
+  action_item :only => :show do
+    candidate = Candidate.find_by_id(params[:id])
+    link_to 'Cancel Candidacy', cancel_admin_candidate_path, :confirm => 'Are you sure' unless candidate.cancelled
+  end
+
+  member_action :cancel, :method => :get do
+    candidate = Candidate.find_by_id(params[:id])
+    candidate.cancel!
     redirect_to :action => :show
   end
 
