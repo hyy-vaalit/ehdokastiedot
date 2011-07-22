@@ -50,13 +50,18 @@ ActiveAdmin.register ElectoralAlliance do
   end
 
   action_item :only => :show do
-    link_to 'Done', done_admin_electoral_alliance_path if can? :update, electoral_alliance
+    ea = ElectoralAlliance.find_by_id(params[:id])
+    link_to 'Done', done_admin_electoral_alliance_path if can? :update, electoral_alliance and !ea.secretarial_freeze
   end
 
   member_action :done do
     ea = ElectoralAlliance.find_by_id(params[:id])
-    ea.freeze!
-    redirect_to admin_electoral_alliances_path
+    if ea.candidates.count == ea.delivered_candidate_form_amount
+      ea.freeze!
+      redirect_to admin_electoral_alliances_path
+    else
+      redirect_to admin_electoral_alliance_path, :notice => "Candidate amounts doesn't match"
+    end
   end
 
 end
