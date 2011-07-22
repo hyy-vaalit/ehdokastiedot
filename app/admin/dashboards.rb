@@ -1,8 +1,13 @@
 ActiveAdmin::Dashboards.build do
 
-  # Define your dashboard sections here. Each block will be
-  # rendered on the dashboard in the context of the view. So just
-  # return the content which you would like to display.
+  section "Exports" do
+    ul do
+      li link_to "Candidates (csv)", admin_candidates_path(:format=>:csv)
+      li link_to "Cancelled Candidates (csv)", cancelled_emails_admin_candidates_path
+      li link_to "Electoral Alliances (csv)", admin_electoral_alliances_path(:format=>:csv)
+      li link_to "Electoral Coalitions(csv)", admin_electoral_coalitions_path(:format=>:csv)
+    end
+  end
 
   # == Simple Dashboard Section
   # Here is an example of a simple dashboard section
