@@ -50,6 +50,7 @@ ActiveAdmin.register Candidate do
   filter :email
   filter :notes
   filter :cancelled, :as => :select
+  filter :marked_invalid, :as => :select
 
   form do |f|
     f.inputs 'Personal' do

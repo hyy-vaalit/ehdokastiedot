@@ -10,6 +10,10 @@ class Candidate < ActiveRecord::Base
 
   scope :cancelled, where(:cancelled => true)
 
+  def invalid!
+    self.update_attribute :marked_invalid, true
+  end
+
   def cancel!
     self.update_attribute :cancelled, true
   end
