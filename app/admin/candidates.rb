@@ -1,7 +1,5 @@
 ActiveAdmin.register Candidate do
 
-  before_filter :add_notice
-
   controller do
 
     load_and_authorize_resource :except => [:index]
@@ -17,10 +15,6 @@ ActiveAdmin.register Candidate do
     def show
       super
       authorize! :report_fixes, @candidate if current_admin_user.role == 'advocate'
-    end
-
-    def add_notice
-      flash[:notice] = params[:notice] if params[:notice]
     end
 
   end
@@ -88,18 +82,6 @@ ActiveAdmin.register Candidate do
     df = DataFix.find_by_id(params[:fix])
     df.apply!
     redirect_to :action => :show
-  end
-
-  action_item :only => :index do
-    link_to 'Notify', notify_admin_candidates_path if can? :notify, Candidate
-  end
-
-  collection_action :notify do
-    candidates = Candidate.all
-    candidates.each do |candidate|
-      CandidateNotifier.welcome_as_candidate(candidate).deliver
-    end
-    redirect_to :action => :index, :notice => 'emails sent'
   end
 
 end
