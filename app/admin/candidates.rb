@@ -49,6 +49,7 @@ ActiveAdmin.register Candidate do
   filter :electoral_alliance
   filter :email
   filter :notes
+  filter :cancelled, :as => :select
 
   form do |f|
     f.inputs 'Personal' do
@@ -93,6 +94,24 @@ ActiveAdmin.register Candidate do
     candidate = Candidate.find_by_id(params[:id])
     candidate.cancel!
     redirect_to :action => :show
+  end
+
+  action_item :only => :index do
+    link_to 'Cancelled Candidates', cancelled_emails_admin_candidates_path
+  end
+
+  collection_action :cancelled_emails do
+    require 'csv'
+    csv_output = CSV.generate do |csv|
+      collection.cancelled.find_each do |candidate|
+        csv << [candidate.email]
+      end
+    end
+
+    filename = 'cancelled_candidacy_emails.csv'
+    headers['Content-Type'] = "text/csv"
+    headers['Content-Disposition'] = "attachment; filename=#{filename}"
+    render :text => csv_output
   end
 
 end
