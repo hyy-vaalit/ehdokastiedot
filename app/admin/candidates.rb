@@ -91,14 +91,18 @@ ActiveAdmin.register Candidate do
     link_to 'Cancel Candidacy', cancel_admin_candidate_path, :confirm => 'Are you sure' unless candidate.cancelled
   end
 
-  member_action :cancel, :method => :get do
-    candidate = Candidate.find_by_id(params[:id])
-    candidate.cancel!
-    redirect_to :action => :show
+  action_item :only => :index do
+    link_to 'Give numbers', give_numbers_admin_candidates_path
   end
 
   action_item :only => :index do
     link_to 'Cancelled Candidates', cancelled_emails_admin_candidates_path
+  end
+
+  member_action :cancel, :method => :get do
+    candidate = Candidate.find_by_id(params[:id])
+    candidate.cancel!
+    redirect_to :action => :show
   end
 
   collection_action :cancelled_emails do
@@ -113,6 +117,11 @@ ActiveAdmin.register Candidate do
     headers['Content-Type'] = "text/csv"
     headers['Content-Disposition'] = "attachment; filename=#{filename}"
     render :text => csv_output
+  end
+
+  collection_action :give_numbers do
+    Candidate.give_numbers!
+    redirect_to :action => :index
   end
 
 end
