@@ -22,7 +22,7 @@ class Candidate < ActiveRecord::Base
 
   def self.give_numbers!
     ordered_candidates = []
-    all_valid_candidates = Candidate.valid.rank(:sign_up_order).all
+    all_valid_candidates = Candidate.valid.order(:candidate_name).all
     coalitions = ElectoralCoalition.order(:number_order).all
     coalitions.each do |coalition|
       coalition.electoral_alliances.rank(:signing_order).each do |alliance|

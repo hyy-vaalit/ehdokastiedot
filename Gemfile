@@ -18,4 +18,5 @@ group :development, :test do
   gem 'rspec'
   gem 'rspec-rails'
   gem 'cover_me'
+  gem 'factory_girl_rails'
 end
