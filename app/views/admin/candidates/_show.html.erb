@@ -47,7 +47,11 @@
           </tr>
           <tr>
             <th><%= t 'candidate.electoral_alliance' %></th>
+            <% if candidate.electoral_alliance -%>
             <td><%= link_to(candidate.electoral_alliance.name, admin_electoral_alliance_path(candidate.electoral_alliance)) %></td>
+            <% else -%>
+            <td>(missing)</td>
+            <% end -%>
           </tr>
           <tr>
             <th><%= t 'candidate.notes' %></th>
