@@ -28,8 +28,8 @@ ActiveAdmin.register Candidate do
     column :address
     column :postal_information
     column :email
-    column :faculty
-    column :electoral_alliance
+    column :faculty, :sortable => false
+    column :electoral_alliance, :sortable => false
     column :notes
 
     default_actions
