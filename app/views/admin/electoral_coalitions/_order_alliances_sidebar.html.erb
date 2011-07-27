@@ -1,4 +1,4 @@
-<%= form_tag order_alliances_admin_electoral_coalition_path, :method => :post, :id => "alliance_ordering" do -%>
+<%= form_tag order_alliances_admin_electoral_coalition_path, :method => :post, :class => "ordering" do -%>
   <% electoral_coalition.electoral_alliances.rank(:signing_order).each_with_index do |alliance, i| -%>
     <p>
       <input type="text" name="alliances[<%= alliance.id %>]" id="alliance_<%= alliance.id %>" value="<%= i+1 %>" />

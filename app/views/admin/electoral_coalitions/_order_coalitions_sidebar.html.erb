@@ -1,0 +1,9 @@
+<%= form_tag order_coalitions_admin_electoral_coalitions_path, :method => :post, :class => "ordering" do -%>
+  <% electoral_coalitions.each do |coalition| -%>
+    <p>
+      <input type="text" name="coalitions[<%= coalition.id %>]" id="coalition_<%= coalition.id %>" value="<%= coalition.number_order %>" />
+      <label for="coalition_<%= coalition.id %>"><%= coalition.name %></label>
+    </p>
+  <% end -%>
+  <p><input type="submit" value="Change order" /></p>
+<% end -%>

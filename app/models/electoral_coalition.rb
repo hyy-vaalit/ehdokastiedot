@@ -11,4 +11,10 @@ class ElectoralCoalition < ActiveRecord::Base
     end
   end
 
+  def self.give_orders coalition_data
+    coalition_data.to_a.each do |array|
+      self.find_by_id(array.first).update_attribute :number_order, array.last
+    end
+  end
+
 end
