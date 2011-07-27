@@ -8,7 +8,7 @@ ActiveAdmin.register ElectoralAlliance do
 
   index do
     column :name
-    column :electoral_coalition
+    column :electoral_coalition, :sortable => false
     column :primary_advocate do |alliance|
       "#{alliance.primary_advocate_lastname}, #{alliance.primary_advocate_firstname}"
     end
