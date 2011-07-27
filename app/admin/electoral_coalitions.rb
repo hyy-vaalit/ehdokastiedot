@@ -5,6 +5,8 @@ ActiveAdmin.register ElectoralCoalition do
     column :alliances do |coalition|
       coalition.electoral_alliances.map(&:name).join(', ')
     end
+
+    default_actions
   end
 
   filter :name
