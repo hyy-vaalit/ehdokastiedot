@@ -24,4 +24,11 @@ ActiveAdmin.register ElectoralCoalition do
     f.buttons
   end
 
+  sidebar :order_alliances, :only => :show
+
+  member_action :order_alliances, :method => :post do
+    ElectoralCoalition.find_by_id(params[:id]).order_alliances(params[:alliances])
+    redirect_to :action => :show
+  end
+
 end
