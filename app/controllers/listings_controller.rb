@@ -3,6 +3,7 @@ class ListingsController < ApplicationController
   skip_authorization_check
 
   def same_ssn
+    @ssn_and_candidates = Candidate.all.group_by{|g| g.social_security_number}.to_a.select{|x| x.last.count > 1}
   end
 
   def simple

@@ -1,2 +1,8 @@
-<h1>Listings#same_ssn</h1>
-<p>Find me in app/views/listings/same_ssn.html.erb</p>
+<h1>Social security number listing</h1>
+<% @ssn_and_candidates.each do |pair| -%>
+  <h2>'<%= pair.first %>'</h2>
+  <% pair.last.each do |candidate| -%>
+    <p><%= candidate.candidate_name %></p>
+  <% end -%>
+  <hr />
+<% end -%>
