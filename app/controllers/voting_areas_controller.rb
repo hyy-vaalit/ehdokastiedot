@@ -2,10 +2,20 @@ class VotingAreasController < ApplicationController
 
   skip_authorization_check
 
-  before_filter :authenticate
-  skip_before_filter :authenticate, :only => [:login, :login_post]
+  before_filter :authenticate, :except => [:login, :login_post]
+
+  before_filter :assign_voting_area, :except => [:login, :login_post]
 
   def show
+  end
+
+  def create
+    begin
+      @voting_area.give_votes! params[:votes]
+    rescue => e
+      flash[:errors] = e.message
+    end
+    redirect_to voting_area_path
   end
 
   def login
@@ -26,6 +36,10 @@ class VotingAreasController < ApplicationController
 
   def authenticate
     redirect_to login_voting_area_path unless session[:voting_area_id]
+  end
+
+  def assign_voting_area
+    @voting_area = VotingArea.find_by_id session[:voting_area_id]
   end
 
 end

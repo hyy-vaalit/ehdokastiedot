@@ -1,0 +1,33 @@
+<h1><%= @voting_area.name %></h1>
+<% if @voting_area.votes.count > 0 -%>
+<table>
+  <% @voting_area.votes.each do |vote| -%>
+    <tr>
+      <td><%= vote.candidate.candidate_number %></td>
+      <td><%= vote.vote_count %></td>
+    </tr>
+  <% end -%>
+</table>
+<% end -%>
+
+<%= raw "<p>#{flash[:errors]}</p>" if flash[:errors] -%>
+
+<%= form_tag voting_area_path, :method => :post do -%>
+  <table>
+    <tr>
+      <th>Candidate number</th>
+      <th>Vote count</th>
+    </tr>
+  <% 10.times do |i| -%>
+    <tr>
+      <td>
+        <input type="text" id="candidate_numbers_<%= i %>" name="votes[<%= i %>]candidate_number" />
+      </td>
+      <td>
+        <input type="text" id="vote_counts_<%= i %>" name="votes[<%= i %>]vote_count" />
+      </td>
+    </tr>
+  <% end -%>
+  </table>
+  <p><input type="submit" value="Add" /></p>
+<% end -%>

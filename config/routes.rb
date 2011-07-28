@@ -11,7 +11,7 @@ Vaalit::Application.routes.draw do
     end
   end
 
-  resource :voting_area, :only => [:show] do
+  resource :voting_area, :only => [:show, :create] do
     member do
       get :login
       post :login, :action => :login_post
