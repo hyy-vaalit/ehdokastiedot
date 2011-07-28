@@ -8,6 +8,8 @@ class Candidate < ActiveRecord::Base
 
   has_many :data_fixes
 
+  has_many :votes
+
   scope :cancelled, where(:cancelled => true)
 
   scope :valid, where(:cancelled => false, :marked_invalid => false)
