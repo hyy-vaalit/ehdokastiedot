@@ -20,7 +20,12 @@ class VotingArea < ActiveRecord::Base
       next if vote[:candidate_number].empty?
       begin
         candidate = Candidate.find_by_candidate_number vote[:candidate_number]
-        self.votes.create! :candidate => candidate, :vote_count => vote[:vote_count]
+        old_vote = self.votes.find_by_candidate_id candidate.id
+        if old_vote
+          old_vote.update_attribute :vote_count, vote[:vote_count]
+        else
+          self.votes.create! :candidate => candidate, :vote_count => vote[:vote_count]
+        end
       rescue
         invalid << vote[:candidate_number]
       end
