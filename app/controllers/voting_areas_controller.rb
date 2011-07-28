@@ -27,6 +27,11 @@ class VotingAreasController < ApplicationController
     redirect_to voting_area_path
   end
 
+  def mark_ready
+    @voting_area.ready!
+    redirect_to voting_area_path
+  end
+
   def logout
     session[:voting_area_id] = nil
     redirect_to voting_area_path

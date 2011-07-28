@@ -16,6 +16,7 @@ Vaalit::Application.routes.draw do
       get :login
       post :login, :action => :login_post
       get :logout
+      get :mark_ready
     end
   end
 

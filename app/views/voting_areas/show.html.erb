@@ -1,6 +1,13 @@
+<p><%= link_to 'logout', login_voting_area_path %></p>
+
 <h1><%= @voting_area.name %></h1>
+
 <% if @voting_area.votes.count > 0 -%>
 <table>
+  <tr>
+    <th>Candidate number</th>
+    <th>Vote count</th>
+  </tr>
   <% @voting_area.votes.each do |vote| -%>
     <tr>
       <td><%= vote.candidate.candidate_number %></td>
@@ -9,6 +16,8 @@
   <% end -%>
 </table>
 <% end -%>
+
+<% unless @voting_area.ready -%>
 
 <%= raw "<p>#{flash[:errors]}</p>" if flash[:errors] -%>
 
@@ -30,4 +39,12 @@
   <% end -%>
   </table>
   <p><input type="submit" value="Add" /></p>
+<% end -%>
+
+<p><%= link_to "Mark vote inserting ready", mark_ready_voting_area_path, :confirm => 'Are you sure, that all votes are inserted' %></p>
+
+<% else -%>
+
+  <p>Marked as ready</p>
+
 <% end -%>

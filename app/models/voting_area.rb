@@ -6,7 +6,7 @@ class VotingArea < ActiveRecord::Base
 
   validates_presence_of :password
 
-  before_save :encrypt_password
+  before_create :encrypt_password
 
   def self.authenticate code, password
     area = self.find_by_code code
@@ -35,6 +35,10 @@ class VotingArea < ActiveRecord::Base
 
   def has_password? password
     self.encrypted_password == encrypt(password)
+  end
+
+  def ready!
+    update_attribute :ready, true
   end
 
   private
