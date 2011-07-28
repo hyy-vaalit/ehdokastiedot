@@ -42,7 +42,6 @@ ActiveRecord::Schema.define(:version => 20110728071938) do
     t.datetime "updated_at"
     t.string   "role"
     t.integer  "electoral_alliance_id"
-    t.string   "ssn"
   end
 
   add_index "admin_users", ["email"], :name => "index_admin_users_on_email", :unique => true
