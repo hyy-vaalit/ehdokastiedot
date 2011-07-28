@@ -1,7 +1,4 @@
 Vaalit::Application.routes.draw do
-  get "listings/same_ssn"
-
-  get "listings/simple"
 
   ActiveAdmin.routes(self)
 
@@ -10,6 +7,15 @@ Vaalit::Application.routes.draw do
   resources :listings, :only => [] do
     collection do
       get :simple
+      get :same_ssn
     end
   end
+
+  resource :voting_area, :only => [:show] do
+    member do
+      get :login
+      post :login, :action => :login_post
+    end
+  end
+
 end

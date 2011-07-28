@@ -1,0 +1,2 @@
+module VotingAreasHelper
+end
