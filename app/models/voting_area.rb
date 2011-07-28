@@ -6,10 +6,20 @@ class VotingArea < ActiveRecord::Base
 
   before_save :encrypt_password
 
+  def self.authenticate code, password
+    area = self.find_by_code code
+    return nil if area.nil?
+    return area if area.has_password? password
+  end
+
+  def has_password? password
+    self.encrypted_password == encrypt(password)
+  end
+
   private
 
   def encrypt_password
-    self.encrypted_password = encrypt(password)
+    self.encrypted_password = encrypt password
   end
 
   def encrypt(string)

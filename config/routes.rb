@@ -15,6 +15,7 @@ Vaalit::Application.routes.draw do
     member do
       get :login
       post :login, :action => :login_post
+      get :logout
     end
   end
 
