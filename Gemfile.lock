@@ -62,6 +62,11 @@ GEM
       actionpack (>= 2.3.7)
       activesupport (>= 2.3.7)
       i18n (~> 0.4)
+    growl (1.0.3)
+    guard (0.5.1)
+      thor (~> 0.14.6)
+    guard-rspec (0.4.0)
+      guard (>= 0.4.0)
     has_scope (0.5.0)
     hashie (1.0.0)
     heroku (2.3.6)
@@ -153,6 +158,8 @@ DEPENDENCIES
   cover_me
   database_cleaner
   factory_girl_rails
+  growl
+  guard-rspec
   heroku
   passgen
   rails (= 3.0.9)

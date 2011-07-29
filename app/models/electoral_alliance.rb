@@ -10,4 +10,8 @@ class ElectoralAlliance < ActiveRecord::Base
     self.update_attribute :secretarial_freeze, true
   end
 
+  def total_votes
+    self.candidates.map(&:total_votes).sum
+  end
+
 end

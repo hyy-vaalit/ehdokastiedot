@@ -22,6 +22,10 @@ class Candidate < ActiveRecord::Base
     self.update_attribute :cancelled, true
   end
 
+  def total_votes
+    self.votes.map(&:vote_count).sum
+  end
+
   def self.give_numbers!
     ordered_candidates = []
     all_valid_candidates = Candidate.valid.order(:candidate_name).all

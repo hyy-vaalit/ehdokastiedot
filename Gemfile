@@ -19,4 +19,6 @@ group :development, :test do
   gem 'rspec-rails'
   gem 'cover_me'
   gem 'factory_girl_rails'
+  gem 'guard-rspec'
+  gem 'growl'
 end

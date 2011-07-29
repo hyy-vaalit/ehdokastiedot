@@ -11,6 +11,10 @@ class ElectoralCoalition < ActiveRecord::Base
     end
   end
 
+  def total_votes
+    self.electoral_alliances.map(&:total_votes).sum
+  end
+
   def self.give_orders coalition_data
     coalition_data.to_a.each do |array|
       self.find_by_id(array.first).update_attribute :number_order, array.last
