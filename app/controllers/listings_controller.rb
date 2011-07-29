@@ -10,4 +10,8 @@ class ListingsController < ApplicationController
     @candidates = Candidate.all
   end
 
+  def proportional_order
+    @candidates = Candidate.order(:coalition_proportional).all
+  end
+
 end

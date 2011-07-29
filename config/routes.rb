@@ -8,6 +8,7 @@ Vaalit::Application.routes.draw do
     collection do
       get :simple
       get :same_ssn
+      get :proportional_order
     end
   end
 
