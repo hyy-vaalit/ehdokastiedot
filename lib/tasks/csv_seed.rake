@@ -10,8 +10,13 @@ namespace :csv_seed do
     csv_contents.each do |row|
 
       faculty = Faculty.find_or_create_by_code row[4]
-      electoral_coalition = ElectoralCoalition.find_or_create_by_name row[9]
-      electoral_alliance = ElectoralAlliance.find_or_create_by_name_and_electoral_coalition_id (row[11] || row[8]), electoral_coalition.id
+      electoral_coalition = ElectoralCoalition.find_or_create_by_name row[9] if row[9]
+      alliance_name = (row[11] || row[8])
+      if electoral_coalition
+        electoral_alliance = electoral_coalition.electoral_alliances.find_or_create_by_name alliance_name
+      else
+        electoral_alliance = ElectoralAlliance.find_or_create_by_name alliance_name
+      end
       electoral_alliance.update_attribute :signing_order_position, row[10]
 
       def generate_ssn
