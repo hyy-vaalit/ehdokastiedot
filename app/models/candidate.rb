@@ -40,7 +40,7 @@ class Candidate < ActiveRecord::Base
     end
     ordered_candidates.concat(all_valid_candidates)
     ordered_candidates.each_with_index do |candidate, i|
-      candidate.update_attribute :candidate_number, i+1
+      candidate.update_attribute :candidate_number, i+2
     end
   end
 

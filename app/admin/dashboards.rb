@@ -9,6 +9,14 @@ ActiveAdmin::Dashboards.build do
     end
   end
 
+  section 'Listings' do
+    ul do
+      li link_to 'Simple list', simple_listings_path
+      li link_to 'Same social security number list', same_ssn_listings_path
+      li link_to 'Proportional order list', proportional_order_listings_path
+    end
+  end
+
   # == Simple Dashboard Section
   # Here is an example of a simple dashboard section
   #
