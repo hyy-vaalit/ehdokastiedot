@@ -1,9 +1,10 @@
 # coding: UTF-8
+require 'csv'
+
 namespace :csv_seed do
 
   desc 'Create candidate data from seed.csv'
   task :candidates => :environment do
-    require 'csv'
     csv_contents = CSV.read('doc/vaalit_2009_ehdokkaat.csv')
     csv_contents.shift
     csv_contents.each do |row|
@@ -42,6 +43,20 @@ namespace :csv_seed do
                                     :electoral_alliance     => electoral_alliance,
                                     :sign_up_order_position => row[12],
                                     :notes                  => row[13]
+    end
+  end
+
+  desc 'Create early voting data'
+  task :early_voting => :environment do
+    (1..5).to_a.each do |i|
+
+      voting_area = VotingArea.create! :code => "E#{i}", :name => "Ennakkoäänetyspaikka #{1}", :password => 'foobar123'
+
+      csv_contents = CSV.read("doc/votes/E#{i}")
+      csv_contents.shift
+      csv_contents.each do |row|
+        Candidate.find_by_candidate_number(row[0]).votes.create! :voting_area => voting_area, :vote_count => row[3]
+      end
     end
   end
 
