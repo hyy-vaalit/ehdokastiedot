@@ -99,6 +99,10 @@ ActiveAdmin.register Candidate do
     link_to 'Cancelled Candidates', cancelled_emails_admin_candidates_path
   end
 
+  action_item :only => :index do
+    link_to 'Toggle filter visibility', '#toggle_filter'
+  end
+
   member_action :cancel, :method => :get do
     candidate = Candidate.find_by_id(params[:id])
     candidate.cancel!

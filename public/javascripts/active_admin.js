@@ -7,7 +7,7 @@ $(function(){
       window.location.search = "";
       return false;
     });
-    
+
     // AJAX Comments
     $('form#admin_note_new').submit(function() {
 
@@ -21,19 +21,19 @@ $(function(){
             data: $(this).serialize(),
             success: function(data, textStatus, xhr) {
               $('.loading_indicator').fadeOut('slow', function(){
-                
+
                 // Hide the empty message
                 $('.admin_notes_list li.empty').fadeOut().remove();
-                
+
                 // Add the note
                 $('.admin_notes_list').append(data['note']);
-                
+
                 // Update the number of notes
                 $('.admin_notes h3 span.admin_notes_count').html("(" + data['number_of_notes'] + ")");
-                
+
                 // Reset the form
                 $('form#new_active_admin_admin_note').find('#active_admin_admin_note_body').val("");
-                
+
                 // Show the form
                 $('form#new_active_admin_admin_note').fadeIn('slow');
               })
@@ -43,9 +43,14 @@ $(function(){
             }
           });
         });
-        
+
       };
 
       return false;
+    });
+
+    $('a[href="#toggle_filter"]').click(function(event) {
+      event.preventDefault();
+      $('#sidebar').toggle();
     });
 });
