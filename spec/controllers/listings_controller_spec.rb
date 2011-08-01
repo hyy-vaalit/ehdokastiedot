@@ -1,6 +1,12 @@
 require 'spec_helper'
 
 describe ListingsController do
+  include Devise::TestHelpers
+
+  before :each do
+    @user = FactoryGirl.create(:admin_user, :role => 'admin')
+    sign_in @user
+  end
 
   describe "GET 'same_ssn'" do
     it "should be successful" do

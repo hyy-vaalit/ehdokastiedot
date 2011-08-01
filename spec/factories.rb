@@ -1,5 +1,9 @@
 FactoryGirl.define do
 
+  factory :admin_user do
+    email 'user@example.com'
+  end
+
   factory :faculty do
     sequence(:name) {|n| "Faculty #{n}"}
     sequence(:code) {|n| "F#{n}"}

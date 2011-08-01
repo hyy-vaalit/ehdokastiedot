@@ -68,7 +68,7 @@ ActiveAdmin.register ElectoralAlliance do
       ea.freeze!
       redirect_to admin_electoral_alliances_path
     else
-      redirect_to admin_electoral_alliance_path, :notice => "Candidate amounts doesn't match"
+      redirect_to admin_electoral_alliance_path, :alert => "Candidate amounts doesn't match"
     end
   end
 
