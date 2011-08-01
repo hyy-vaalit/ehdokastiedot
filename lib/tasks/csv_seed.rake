@@ -69,3 +69,9 @@ namespace :csv_seed do
   end
 
 end
+
+task :csv_seed do
+  Rake::Task['csv_seed:candidates'].invoke
+  Rake::Task['csv_seed:early_voting'].invoke
+  Rake::Task['csv_seed:main_voting'].invoke
+end

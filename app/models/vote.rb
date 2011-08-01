@@ -5,6 +5,8 @@ class Vote < ActiveRecord::Base
 
   validates_presence_of :voting_area, :candidate
 
+  scope :ready, joins(:voting_area).where('voting_areas.ready = ?', true)
+
   default_scope :include => :candidate, :order => 'candidates.candidate_number'
 
 end
