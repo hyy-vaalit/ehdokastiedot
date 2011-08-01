@@ -4,6 +4,7 @@
   <tr>
     <th>Candidate number</th>
     <th>Candidate name</th>
+    <th>Social security number</th>
     <th>Electoral alliance</th>
     <th>Electoral coalition</th>
     <th>Notes</th>
@@ -12,6 +13,7 @@
   <tr>
     <td><%= candidate.candidate_number %></td>
     <td><%= link_to candidate.candidate_name, admin_candidate_path(candidate.id) %></td>
+    <td><%= candidate.social_security_number %></td>
     <td><%= candidate.electoral_alliance.name %></td>
     <td><%= candidate.electoral_alliance.electoral_coalition ? candidate.electoral_alliance.electoral_coalition.name : '' %></td>
     <td><%= candidate.notes %></td>

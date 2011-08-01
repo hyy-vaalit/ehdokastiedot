@@ -1,0 +1,909 @@
+NRO,sukunimi,etunimet,henkilötunnus,tdk (random),osoite,postitoimipaikka,sähköposti,ehdokasnimi,rengas,vaaliliiton järjestys,liitto,ehdokasjärjestys
+2,Apajalahti,Ahto Aleksis,,H,Testiosoite 1,10000 Helsinki,etunimi.sukunimi.0@example.com,"Apajalahti, Ahto",Akateemiset piraatit,1,Akateemiset piraatit,1
+3,Hanski,Joni Petteri,,ML,Testiosoite 2,10001 Helsinki,etunimi.sukunimi.1@example.com,"Hanski, Joni",Akateemiset piraatit,1,Akateemiset piraatit,2
+4,Mäkinen,Joonas Mikael,,V,Testiosoite 3,10002 Helsinki,etunimi.sukunimi.2@example.com,"Mäkinen, Joonas",Akateemiset piraatit,1,Akateemiset piraatit,3
+5,Söderholm,Charlotta Mari,,O,Testiosoite 4,10003 Helsinki,etunimi.sukunimi.3@example.com,"Söderholm, Lotta",Akateemiset piraatit,1,Akateemiset piraatit,4
+6,Toivanen,Anni Julia,,B,Testiosoite 5,10004 Helsinki,etunimi.sukunimi.4@example.com,"Toivanen, Julia",Tsemppi Group,1,Tsemppi Group,1
+7,Liu,Tianyan,,T,Testiosoite 6,10005 Helsinki,etunimi.sukunimi.5@example.com,"Liu, Tianyan",Tsemppi Group,1,Tsemppi Group,2
+8,Long,Feiran,,L,Testiosoite 7,10006 Helsinki,etunimi.sukunimi.6@example.com,"Long, Feiran",Tsemppi Group,1,Tsemppi Group,3
+9,Bessonova,Anna,,MM,Testiosoite 8,10007 Helsinki,etunimi.sukunimi.7@example.com,"Bessonova, Anna",Tsemppi Group,1,Tsemppi Group,4
+10,Rasmussen,Søren Berg,,K,Testiosoite 9,10008 Helsinki,etunimi.sukunimi.8@example.com,"Rasmussen, Søren",Tsemppi Group,1,Tsemppi Group,5
+11,Leinius,Johanna,,E,Testiosoite 10,10009 Helsinki,etunimi.sukunimi.9@example.com,"Leinius, Johanna",Tsemppi Group,1,Tsemppi Group,6
+12,Gagné,Stéphanie,,H,Testiosoite 11,10010 Helsinki,etunimi.sukunimi.10@example.com,"Gagné, Stéphanie",Tsemppi Group,1,Tsemppi Group,7
+13,Franchin,Alessandro,,ML,Testiosoite 12,10011 Helsinki,etunimi.sukunimi.11@example.com,"Franchin, Alessandro",Tsemppi Group,1,Tsemppi Group,8
+14,Helenius,Marja-Liisa,,V,Testiosoite 13,10012 Helsinki,etunimi.sukunimi.12@example.com,"Helenius, Marja-Liisa",Tsemppi Group,1,Tsemppi Group,9
+15,Chenna,Naveen Kumay,,O,Testiosoite 14,10013 Helsinki,etunimi.sukunimi.13@example.com,"Chenna, Naveen",Tsemppi Group,1,Tsemppi Group,10
+16,Arohi,Anupam,,B,Testiosoite 15,10014 Helsinki,etunimi.sukunimi.14@example.com,"Arohi, Anupam",Tsemppi Group,1,Tsemppi Group,11
+17,Laster,Zachary Howell,,T,Testiosoite 16,10015 Helsinki,etunimi.sukunimi.15@example.com,"Laster, Zach",Tsemppi Group,1,Tsemppi Group,12
+18,Diatlova,Anastasia,,L,Testiosoite 17,10016 Helsinki,etunimi.sukunimi.16@example.com,"Diatlova, Nastia",Tsemppi Group,1,Tsemppi Group,13
+19,Hossain,Shakhawat,,MM,Testiosoite 18,10017 Helsinki,etunimi.sukunimi.17@example.com,"Hossain, Shakhawat",Tsemppi Group,1,Tsemppi Group,14
+20,Strickman,Rachel Jean,,K,Testiosoite 19,10018 Helsinki,etunimi.sukunimi.18@example.com,"Strickman, Rachel",Tsemppi Group,1,Tsemppi Group,15
+21,Boldt,Hildur Merja Johanna,,E,Testiosoite 20,10019 Helsinki,etunimi.sukunimi.19@example.com,"Boldt, Hildur",Opiskelijademarit,1,Opiskelijademarit,1
+22,Eriksson-Bique,Sylvester Daniel,,H,Testiosoite 21,10020 Helsinki,etunimi.sukunimi.20@example.com,"Eriksson-Bique, Sylvester",Opiskelijademarit,1,Opiskelijademarit,2
+23,Erra,Martti Kaipia Johannes,,ML,Testiosoite 22,10021 Helsinki,etunimi.sukunimi.21@example.com,"Erra, Johannes",Opiskelijademarit,1,Opiskelijademarit,3
+24,Iso-Lotila,Joona Risti Mikael,,V,Testiosoite 23,10022 Helsinki,etunimi.sukunimi.22@example.com,"Iso-Lotila, Joona",Opiskelijademarit,1,Opiskelijademarit,4
+25,Heinäluoma,Ida Anniina,,O,Testiosoite 24,10023 Helsinki,etunimi.sukunimi.23@example.com,"Heinäluoma, Ida",Opiskelijademarit,1,Opiskelijademarit,5
+26,Häkkinen,Anssi Ilari,,B,Testiosoite 25,10024 Helsinki,etunimi.sukunimi.24@example.com,"Häkkinen, Anssi",Opiskelijademarit,1,Opiskelijademarit,6
+27,Häkkinen,Juha Petteri,,T,Testiosoite 26,10025 Helsinki,etunimi.sukunimi.25@example.com,"Häkkinen, Juha",Opiskelijademarit,1,Opiskelijademarit,7
+28,Häkkinen,Satu-Maria,,L,Testiosoite 27,10026 Helsinki,etunimi.sukunimi.26@example.com,"Häkkinen, Satu-Maria",Opiskelijademarit,1,Opiskelijademarit,8
+29,Hytti,Simo Antti Juhani,,MM,Testiosoite 28,10027 Helsinki,etunimi.sukunimi.27@example.com,"Hytti, Antti",Opiskelijademarit,1,Opiskelijademarit,9
+30,Jalava,Tuomas Joonatan,,K,Testiosoite 29,10028 Helsinki,etunimi.sukunimi.28@example.com,"Jalava, Tuomas",Opiskelijademarit,1,Opiskelijademarit,10
+31,Juntumaa,Inari Julia,,E,Testiosoite 30,10029 Helsinki,etunimi.sukunimi.29@example.com,"Juntumaa, Inari",Opiskelijademarit,1,Opiskelijademarit,11
+32,Kammonen,Veli Viljami Matias,,H,Testiosoite 31,10030 Helsinki,etunimi.sukunimi.30@example.com,"Kammonen, Viljami",Opiskelijademarit,1,Opiskelijademarit,12
+33,Korkeela,Tiina Tytti Unelma,,ML,Testiosoite 32,10031 Helsinki,etunimi.sukunimi.31@example.com,"Korkeela, Tiina",Opiskelijademarit,1,Opiskelijademarit,13
+34,Kuisma,Jukka Kusti,,V,Testiosoite 33,10032 Helsinki,etunimi.sukunimi.32@example.com,"Kuisma, Jukka",Opiskelijademarit,1,Opiskelijademarit,14
+35,Laukia,Joonas Patrik Antero,,O,Testiosoite 34,10033 Helsinki,etunimi.sukunimi.33@example.com,"Laukia, Joonas",Opiskelijademarit,1,Opiskelijademarit,15
+36,Lehmijoki,Anna Marja,,B,Testiosoite 35,10034 Helsinki,etunimi.sukunimi.34@example.com,"Lehmijoki, Marja",Opiskelijademarit,1,Opiskelijademarit,16
+37,Lipponen,Päivi Elisa,,T,Testiosoite 36,10035 Helsinki,etunimi.sukunimi.35@example.com,"Lipponen, Elisa",Opiskelijademarit,1,Opiskelijademarit,17
+38,Lähdesmäki,Sini Pauliina,,L,Testiosoite 37,10036 Helsinki,etunimi.sukunimi.36@example.com,"Lähdesmäki, Sini",Opiskelijademarit,1,Opiskelijademarit,18
+39,Meltti,Sonia Margot,,MM,Testiosoite 38,10037 Helsinki,etunimi.sukunimi.37@example.com,"Meltti, Sonia",Opiskelijademarit,1,Opiskelijademarit,19
+40,Muona,Marianne Kristiina,,K,Testiosoite 39,10038 Helsinki,etunimi.sukunimi.38@example.com,"Muona, Marianne",Opiskelijademarit,1,Opiskelijademarit,20
+41,Niemi,Matti Nestori,,E,Testiosoite 40,10039 Helsinki,etunimi.sukunimi.39@example.com,"Niemi, Matti",Opiskelijademarit,1,Opiskelijademarit,21
+42,Ortiz-Nieminen,Oscar Antonio,,H,Testiosoite 41,10040 Helsinki,etunimi.sukunimi.40@example.com,"Ortiz-Nieminen, Oscar",Opiskelijademarit,1,Opiskelijademarit,22
+43,Papunen,Erkki Tapani,,ML,Testiosoite 42,10041 Helsinki,etunimi.sukunimi.41@example.com,"Papunen, Erkki",Opiskelijademarit,1,Opiskelijademarit,23
+44,Penny,Kaisa Emilia,,V,Testiosoite 43,10042 Helsinki,etunimi.sukunimi.42@example.com,"Penny, Kaisa",Opiskelijademarit,1,Opiskelijademarit,24
+45,Sauli,Mikko Juhani,,O,Testiosoite 44,10043 Helsinki,etunimi.sukunimi.43@example.com,"Sauli, Mikko",Opiskelijademarit,1,Opiskelijademarit,25
+46,Selinummi,Elisa Josefiina,,B,Testiosoite 45,10044 Helsinki,etunimi.sukunimi.44@example.com,"Selinummi, Elisa",Opiskelijademarit,1,Opiskelijademarit,26
+47,Sihto,Ville Matti Hjalmat,,T,Testiosoite 46,10045 Helsinki,etunimi.sukunimi.45@example.com,"Sihto, Ville",Opiskelijademarit,1,Opiskelijademarit,27
+48,Tuominen,Pekka Kalervo Johannes,,L,Testiosoite 47,10046 Helsinki,etunimi.sukunimi.46@example.com,"Tuominen, Pekka",Opiskelijademarit,1,Opiskelijademarit,28
+49,Vaara,Piia Liisa Marianne,,MM,Testiosoite 48,10047 Helsinki,etunimi.sukunimi.47@example.com,"Vaara, Piia",Opiskelijademarit,1,Opiskelijademarit,29
+50,Välimäki,Heta Misteli,,K,Testiosoite 49,10048 Helsinki,etunimi.sukunimi.48@example.com,"Välimäki, Heta",Opiskelijademarit,1,Opiskelijademarit,30
+51,Wäänänen,Matti Lauri Oskari,,E,Testiosoite 50,10049 Helsinki,etunimi.sukunimi.49@example.com,"Wäänänen, Oskari",Opiskelijademarit,1,Opiskelijademarit,31
+52,Ylianttila,Anu Pauliina,,H,Testiosoite 51,10050 Helsinki,etunimi.sukunimi.50@example.com,"Ylianttila, Anu",Opiskelijademarit,1,Opiskelijademarit,32
+53,Aalto,Maria Josefina,,ML,Testiosoite 52,10051 Helsinki,etunimi.sukunimi.51@example.com,"Aalto, Maria",Pelastusrengas,1,Kokoomusopiskelijat 1,1
+54,Ahlman,Lotta Emilia,,V,Testiosoite 53,10052 Helsinki,etunimi.sukunimi.52@example.com,"Ahlman, Lotta",Pelastusrengas,1,Kokoomusopiskelijat 1,2
+55,Ahonen,Antti Juhani,,O,Testiosoite 54,10053 Helsinki,etunimi.sukunimi.53@example.com,"Ahonen, Antti Juhani",Pelastusrengas,1,Kokoomusopiskelijat 1,3
+56,Artjoki,Kaarlo Emil Artturi,,B,Testiosoite 55,10054 Helsinki,etunimi.sukunimi.54@example.com,"Artjoki, Emil ",Pelastusrengas,1,Kokoomusopiskelijat 1,4
+57,Auvinen,Tuomas Aleksanteri Villenpoika,,T,Testiosoite 56,10055 Helsinki,etunimi.sukunimi.55@example.com,"Auvinen, Tuomas",Pelastusrengas,1,Kokoomusopiskelijat 1,5
+58,Brand,Thomas Leo,,L,Testiosoite 57,10056 Helsinki,etunimi.sukunimi.56@example.com,"Brand, Thomas",Pelastusrengas,1,Kokoomusopiskelijat 1,6
+59,Erämaja,Kari Markku Elias,,MM,Testiosoite 58,10057 Helsinki,etunimi.sukunimi.57@example.com,"Erämaja, Elias",Pelastusrengas,1,Kokoomusopiskelijat 1,7
+60,Fils,Helen Henrika,,K,Testiosoite 59,10058 Helsinki,etunimi.sukunimi.58@example.com,"Fils, Helen",Pelastusrengas,1,Kokoomusopiskelijat 1,8
+61,Freyberg,Carl Henrik Ferdinand,,E,Testiosoite 60,10059 Helsinki,etunimi.sukunimi.59@example.com,"Freyberg, Carl",Pelastusrengas,1,Kokoomusopiskelijat 1,9
+62,Haapala,Johanna Elisa,,H,Testiosoite 61,10060 Helsinki,etunimi.sukunimi.60@example.com,"Haapala, Johanna",Pelastusrengas,1,Kokoomusopiskelijat 1,10
+63,Haapalehto,Eero Samuli,,ML,Testiosoite 62,10061 Helsinki,etunimi.sukunimi.61@example.com,"Haapalehto, Eero",Pelastusrengas,1,Kokoomusopiskelijat 1,11
+64,Hietanen,Ville Ilmari,,V,Testiosoite 63,10062 Helsinki,etunimi.sukunimi.62@example.com,"Hietanen, Ville I.",Pelastusrengas,1,Kokoomusopiskelijat 1,12
+65,Holopainen,Lasse,,O,Testiosoite 64,10063 Helsinki,etunimi.sukunimi.63@example.com,"Holopainen, Lasse",Pelastusrengas,1,Kokoomusopiskelijat 1,13
+66,Häkkänen,Antti Edvard,,B,Testiosoite 65,10064 Helsinki,etunimi.sukunimi.64@example.com,"Häkkänen, Antti",Pelastusrengas,1,Kokoomusopiskelijat 1,14
+67,Hämäläinen,Harri Veikko Tapani,,T,Testiosoite 66,10065 Helsinki,etunimi.sukunimi.65@example.com,"Hämäläinen, Harri",Pelastusrengas,1,Kokoomusopiskelijat 1,15
+68,Hämäläinen,Jani Antero,,L,Testiosoite 67,10066 Helsinki,etunimi.sukunimi.66@example.com,"Hämäläinen, Jani",Pelastusrengas,1,Kokoomusopiskelijat 1,16
+69,Hämäläinen,Maisa-Leena Maria,,MM,Testiosoite 68,10067 Helsinki,etunimi.sukunimi.67@example.com,"Hämäläinen, Maisa",Pelastusrengas,1,Kokoomusopiskelijat 1,17
+70,Hämäläinen,Tuukka Santeri,,K,Testiosoite 69,10068 Helsinki,etunimi.sukunimi.68@example.com,"Hämäläinen, Tuukka",Pelastusrengas,1,Kokoomusopiskelijat 1,18
+71,Härkönen,Miika Juhani,,E,Testiosoite 70,10069 Helsinki,etunimi.sukunimi.69@example.com,"Härkönen, Miika 'Härkönen'",Pelastusrengas,1,Kokoomusopiskelijat 1,19
+72,Josefsson,Kim Henrik,,H,Testiosoite 71,10070 Helsinki,etunimi.sukunimi.70@example.com,"Josefsson, Kim",Pelastusrengas,1,Kokoomusopiskelijat 1,20
+73,Juurinen,Paula-Maria Päivikki,,ML,Testiosoite 72,10071 Helsinki,etunimi.sukunimi.71@example.com,"Juurinen, Paula",Pelastusrengas,1,Kokoomusopiskelijat 1,21
+74,Jäntti,Maija Elina,,V,Testiosoite 73,10072 Helsinki,etunimi.sukunimi.72@example.com,"Jäntti, Maija",Pelastusrengas,1,Kokoomusopiskelijat 1,22
+75,Kainulainen,Toni Juhani,,O,Testiosoite 74,10073 Helsinki,etunimi.sukunimi.73@example.com,"Kainulainen, Toni",Pelastusrengas,1,Kokoomusopiskelijat 1,23
+76,Kaksonen,Kai-Verneri,,B,Testiosoite 75,10074 Helsinki,etunimi.sukunimi.74@example.com,"Kaksonen, Kai",Pelastusrengas,1,Kokoomusopiskelijat 1,24
+77,Kangas,Tanja Marita,,T,Testiosoite 76,10075 Helsinki,etunimi.sukunimi.75@example.com,"Kangas, Tanja",Pelastusrengas,1,Kokoomusopiskelijat 1,25
+78,Karppinen,Henriikka Vilhelmiina,,L,Testiosoite 77,10076 Helsinki,etunimi.sukunimi.76@example.com,"Karppinen, Henriikka",Pelastusrengas,1,Kokoomusopiskelijat 1,26
+79,Keriö,Annika Emilia,,MM,Testiosoite 78,10077 Helsinki,etunimi.sukunimi.77@example.com,"Keriö, Annika",Pelastusrengas,1,Kokoomusopiskelijat 1,27
+80,Koivunen,Anna Emilia,,K,Testiosoite 79,10078 Helsinki,etunimi.sukunimi.78@example.com,"Koivunen, Anna",Pelastusrengas,1,Kokoomusopiskelijat 1,28
+81,Kostamo,Lassi Juhani,,E,Testiosoite 80,10079 Helsinki,etunimi.sukunimi.79@example.com,"Kostamo, Lassi",Pelastusrengas,1,Kokoomusopiskelijat 1,29
+82,Kozlov,Margarita,,H,Testiosoite 81,10080 Helsinki,etunimi.sukunimi.80@example.com,"Kozlov, Margarita",Pelastusrengas,1,Kokoomusopiskelijat 1,30
+83,Kransman,Alex Peter,,ML,Testiosoite 82,10081 Helsinki,etunimi.sukunimi.81@example.com,"Kransman, Alex",Pelastusrengas,1,Kokoomusopiskelijat 1,31
+84,Kuitunen,Anita Birgitta,,V,Testiosoite 83,10082 Helsinki,etunimi.sukunimi.82@example.com,"Kuitunen, Anita",Pelastusrengas,1,Kokoomusopiskelijat 1,32
+85,Kuusivuori,Jenni Ilona,,O,Testiosoite 84,10083 Helsinki,etunimi.sukunimi.83@example.com,"Kuusivuori, Jenni",Pelastusrengas,1,Kokoomusopiskelijat 1,33
+86,Kymäläinen,Seppo Johannes,,B,Testiosoite 85,10084 Helsinki,etunimi.sukunimi.84@example.com,"Kymäläinen, Seppo",Pelastusrengas,1,Kokoomusopiskelijat 1,34
+87,Lahtinen,Marika Pauliina,,T,Testiosoite 86,10085 Helsinki,etunimi.sukunimi.85@example.com,"Lahtinen, Marika",Pelastusrengas,1,Kokoomusopiskelijat 1,35
+88,Lehtiniemi,Tero Juhani Henrik,,L,Testiosoite 87,10086 Helsinki,etunimi.sukunimi.86@example.com,"Lehtiniemi, Tero",Pelastusrengas,1,Kokoomusopiskelijat 1,36
+89,Lehtola,Jussi Samuli,,MM,Testiosoite 88,10087 Helsinki,etunimi.sukunimi.87@example.com,"Lehtola, Jussi",Pelastusrengas,1,Kokoomusopiskelijat 1,37
+90,Leinonen,Pekka Sakari,,K,Testiosoite 89,10088 Helsinki,etunimi.sukunimi.88@example.com,"Leinonen, Pekka",Pelastusrengas,1,Kokoomusopiskelijat 1,38
+91,Lindgren,Sampo Erkki Ilmari,,E,Testiosoite 90,10089 Helsinki,etunimi.sukunimi.89@example.com,"Lindgren, Sampo",Pelastusrengas,1,Kokoomusopiskelijat 1,40
+92,Linnanvirta,Reima Jysky Petteri,,H,Testiosoite 91,10090 Helsinki,etunimi.sukunimi.90@example.com,"Linnanvirta, Reima",Pelastusrengas,1,Kokoomusopiskelijat 1,41
+93,Lähdemäki,Irene Maria Eleonoora,,ML,Testiosoite 92,10091 Helsinki,etunimi.sukunimi.91@example.com,"Lähdemäki, Irene",Pelastusrengas,1,Kokoomusopiskelijat 1,42
+94,Majaniemi,Milla Maria,,V,Testiosoite 93,10092 Helsinki,etunimi.sukunimi.92@example.com,"Majaniemi, Milla",Pelastusrengas,1,Kokoomusopiskelijat 1,43
+95,Matilainen,Pirkko Helena,,O,Testiosoite 94,10093 Helsinki,etunimi.sukunimi.93@example.com,"Matilainen, Helena",Pelastusrengas,1,Kokoomusopiskelijat 1,44
+96,Mattila,Matti,,B,Testiosoite 95,10094 Helsinki,etunimi.sukunimi.94@example.com,"Mattila, Matti",Pelastusrengas,1,Kokoomusopiskelijat 1,45
+97,Meriläinen,Jaakko Pekka,,T,Testiosoite 96,10095 Helsinki,etunimi.sukunimi.95@example.com,"Meriläinen, Jaakko",Pelastusrengas,1,Kokoomusopiskelijat 1,46
+98,Merisaari,Lotta Karoliina,,L,Testiosoite 97,10096 Helsinki,etunimi.sukunimi.96@example.com,"Merisaari, Lotta",Pelastusrengas,1,Kokoomusopiskelijat 1,47
+99,Metelinen,Sami Petteri,,MM,Testiosoite 98,10097 Helsinki,etunimi.sukunimi.97@example.com,"Metelinen, Sami 'Johtaja'",Pelastusrengas,1,Kokoomusopiskelijat 1,48
+100,Mustonen,Niilo Hjalmar,,K,Testiosoite 99,10098 Helsinki,etunimi.sukunimi.98@example.com,"Mustonen, Niilo",Pelastusrengas,1,Kokoomusopiskelijat 1,49
+101,Mäkijärvi,Essi Marjaana,,E,Testiosoite 100,10099 Helsinki,etunimi.sukunimi.99@example.com,"Mäkijärvi, Essi",Pelastusrengas,1,Kokoomusopiskelijat 1,50
+102,Mäkisalo,Aino,,H,Testiosoite 101,10100 Helsinki,etunimi.sukunimi.100@example.com,"Mäkisalo, Aino",Pelastusrengas,2,Kokoomusopiskelijat 2,1
+103,Nisu,Timo Antti Juhani,,ML,Testiosoite 102,10101 Helsinki,etunimi.sukunimi.101@example.com,"Nisu, Timo",Pelastusrengas,2,Kokoomusopiskelijat 2,2
+104,Nurmela,Tuomas Lauri Johannes,,V,Testiosoite 103,10102 Helsinki,etunimi.sukunimi.102@example.com,"Nurmela, Tuomas",Pelastusrengas,2,Kokoomusopiskelijat 2,3
+105,Oldroyd,Daniel,,O,Testiosoite 104,10103 Helsinki,etunimi.sukunimi.103@example.com,"Oldroyd, Daniel",Pelastusrengas,2,Kokoomusopiskelijat 2,4
+106,Olenius,Lasse Erik Mikael,,B,Testiosoite 105,10104 Helsinki,etunimi.sukunimi.104@example.com,"Olenius, Mikael",Pelastusrengas,2,Kokoomusopiskelijat 2,5
+107,Pihlajamaa,Juhana Elia Gabriel,,T,Testiosoite 106,10105 Helsinki,etunimi.sukunimi.105@example.com,"Pihlajamaa, Juhana",Pelastusrengas,2,Kokoomusopiskelijat 2,6
+108,Pirhonen,Laura Anna Monika,,L,Testiosoite 107,10106 Helsinki,etunimi.sukunimi.106@example.com,"Pirhonen, Laura",Pelastusrengas,2,Kokoomusopiskelijat 2,7
+109,Pohjankoski,Pekka Sakari,,MM,Testiosoite 108,10107 Helsinki,etunimi.sukunimi.107@example.com,"Pohjankoski, Pekka",Pelastusrengas,2,Kokoomusopiskelijat 2,8
+110,Poikonen,Jaakko Ilmari,,K,Testiosoite 109,10108 Helsinki,etunimi.sukunimi.108@example.com,"Poikonen, Jaakko",Pelastusrengas,2,Kokoomusopiskelijat 2,9
+111,Poutiainen,Marika,,E,Testiosoite 110,10109 Helsinki,etunimi.sukunimi.109@example.com,"Poutiainen, Marika",Pelastusrengas,2,Kokoomusopiskelijat 2,10
+112,Pulsa,Päivi Elina,,H,Testiosoite 111,10110 Helsinki,etunimi.sukunimi.110@example.com,"Pulsa, Päivi",Pelastusrengas,2,Kokoomusopiskelijat 2,11
+113,Puukko,Sampo Sakari,,ML,Testiosoite 112,10111 Helsinki,etunimi.sukunimi.111@example.com,"Puukko, Sampo",Pelastusrengas,2,Kokoomusopiskelijat 2,12
+114,Puuska,Markus Juhani,,V,Testiosoite 113,10112 Helsinki,etunimi.sukunimi.112@example.com,"Puuska, Markus",Pelastusrengas,2,Kokoomusopiskelijat 2,13
+115,Rantakari,Pekka Osmo Kalevi,,O,Testiosoite 114,10113 Helsinki,etunimi.sukunimi.113@example.com,"Rantakari, Pekka",Pelastusrengas,2,Kokoomusopiskelijat 2,14
+116,Rautala,Heikki Jalmari,,B,Testiosoite 115,10114 Helsinki,etunimi.sukunimi.114@example.com,"Rautala, Heikki",Pelastusrengas,2,Kokoomusopiskelijat 2,15
+117,Rautiainen,Anni Aino Maria,,T,Testiosoite 116,10115 Helsinki,etunimi.sukunimi.115@example.com,"Rautiainen, Anni",Pelastusrengas,2,Kokoomusopiskelijat 2,16
+118,Rintala,Pekka,,L,Testiosoite 117,10116 Helsinki,etunimi.sukunimi.116@example.com,"Rintala, Pekka",Pelastusrengas,2,Kokoomusopiskelijat 2,17
+119,Rydman,Arno Risto Johannes,,MM,Testiosoite 118,10117 Helsinki,etunimi.sukunimi.117@example.com,"Rydman, Arno",Pelastusrengas,2,Kokoomusopiskelijat 2,18
+120,Ryösä,Markku Olavi,,K,Testiosoite 119,10118 Helsinki,etunimi.sukunimi.118@example.com,"Ryösä, Markku",Pelastusrengas,2,Kokoomusopiskelijat 2,19
+121,Sahamies,Laura Karoliina,,E,Testiosoite 120,10119 Helsinki,etunimi.sukunimi.119@example.com,"Sahamies, Laura",Pelastusrengas,2,Kokoomusopiskelijat 2,20
+122,Sahamies,Miika Petteri,,H,Testiosoite 121,10120 Helsinki,etunimi.sukunimi.120@example.com,"Sahamies, Miika",Pelastusrengas,2,Kokoomusopiskelijat 2,21
+123,Sahamies,Noora Eveliina,,ML,Testiosoite 122,10121 Helsinki,etunimi.sukunimi.121@example.com,"Sahamies, Noora",Pelastusrengas,2,Kokoomusopiskelijat 2,22
+124,Seikkula,Jani Artturi,,V,Testiosoite 123,10122 Helsinki,etunimi.sukunimi.122@example.com,"Seikkula, Jani",Pelastusrengas,2,Kokoomusopiskelijat 2,23
+125,Siekkinen,Elisa Irina,,O,Testiosoite 124,10123 Helsinki,etunimi.sukunimi.123@example.com,"Siekkinen, Elisa",Pelastusrengas,2,Kokoomusopiskelijat 2,24
+126,Siltanen,Aleksi Tapio,,B,Testiosoite 125,10124 Helsinki,etunimi.sukunimi.124@example.com,"Siltanen, Aleksi",Pelastusrengas,2,Kokoomusopiskelijat 2,25
+127,Silvonen,Anne Pauliina,,T,Testiosoite 126,10125 Helsinki,etunimi.sukunimi.125@example.com,"Silvonen, Pauliina ",Pelastusrengas,2,Kokoomusopiskelijat 2,26
+128,Suomela,Iida-Liina Timontytär,,L,Testiosoite 127,10126 Helsinki,etunimi.sukunimi.126@example.com,"Suomela, Iida ",Pelastusrengas,2,Kokoomusopiskelijat 2,27
+129,Suominen,Osmo Matti Ensio,,MM,Testiosoite 128,10127 Helsinki,etunimi.sukunimi.127@example.com,"Suominen, Osmo",Pelastusrengas,2,Kokoomusopiskelijat 2,28
+130,Tarkkanen,Minni Emilia,,K,Testiosoite 129,10128 Helsinki,etunimi.sukunimi.128@example.com,"Tarkkanen, Minni",Pelastusrengas,2,Kokoomusopiskelijat 2,29
+131,Tiainen,Jari Mikael,,E,Testiosoite 130,10129 Helsinki,etunimi.sukunimi.129@example.com,"Tiainen, Jari M. ",Pelastusrengas,2,Kokoomusopiskelijat 2,30
+132,Tiensuu,Tuomas Mikael,,H,Testiosoite 131,10130 Helsinki,etunimi.sukunimi.130@example.com,"Tiensuu, Tuomas",Pelastusrengas,2,Kokoomusopiskelijat 2,31
+133,Tirronen,Anna Elisa,,ML,Testiosoite 132,10131 Helsinki,etunimi.sukunimi.131@example.com,"Tirronen, Anna",Pelastusrengas,2,Kokoomusopiskelijat 2,32
+134,Toepfer,Johannes Lauri Tuomaanpoika,,V,Testiosoite 133,10132 Helsinki,etunimi.sukunimi.132@example.com,"Toepfer, Johannes",Pelastusrengas,2,Kokoomusopiskelijat 2,33
+135,Tulenheimo,Pauliina Aija Elisa,,O,Testiosoite 134,10133 Helsinki,etunimi.sukunimi.133@example.com,"Tulenheimo, Pauliina",Pelastusrengas,2,Kokoomusopiskelijat 2,34
+136,Tuohiniemi,Jussi Tapaninpoika,,B,Testiosoite 135,10134 Helsinki,etunimi.sukunimi.134@example.com,"Tuohiniemi, Jussi",Pelastusrengas,2,Kokoomusopiskelijat 2,35
+137,Tähtinen,Mikko Ilmari,,T,Testiosoite 136,10135 Helsinki,etunimi.sukunimi.135@example.com,"Tähtinen, Mikko",Pelastusrengas,2,Kokoomusopiskelijat 2,36
+138,Utti-Lankinen,Katja Kristiina,,L,Testiosoite 137,10136 Helsinki,etunimi.sukunimi.136@example.com,"Utti-Lankinen, Katja",Pelastusrengas,2,Kokoomusopiskelijat 2,37
+139,Uuspelto,Vesa Pekka Sakari,,MM,Testiosoite 138,10137 Helsinki,etunimi.sukunimi.137@example.com,"Uuspelto, Vesa",Pelastusrengas,2,Kokoomusopiskelijat 2,38
+140,Vainio,Oona-Karita,,K,Testiosoite 139,10138 Helsinki,etunimi.sukunimi.138@example.com,"Vainio, Oona ",Pelastusrengas,2,Kokoomusopiskelijat 2,39
+141,Vasaramäki,Ville Sakari,,E,Testiosoite 140,10139 Helsinki,etunimi.sukunimi.139@example.com,"Vasaramäki, Ville",Pelastusrengas,2,Kokoomusopiskelijat 2,40
+142,Vedenpää,Ruut Heljä Marita,,H,Testiosoite 141,10140 Helsinki,etunimi.sukunimi.140@example.com,"Vedenpää, Ruut",Pelastusrengas,2,Kokoomusopiskelijat 2,41
+143,Viholainen,Antti Timo Tapani,,ML,Testiosoite 142,10141 Helsinki,etunimi.sukunimi.141@example.com,"Viholainen, Antti",Pelastusrengas,2,Kokoomusopiskelijat 2,42
+144,Viitamäki,Pertti Mikael,,V,Testiosoite 143,10142 Helsinki,etunimi.sukunimi.142@example.com,"Viitamäki, Pertti",Pelastusrengas,2,Kokoomusopiskelijat 2,43
+145,Viljamaa,Maija Matilda,,O,Testiosoite 144,10143 Helsinki,etunimi.sukunimi.143@example.com,"Viljamaa, Maija",Pelastusrengas,2,Kokoomusopiskelijat 2,44
+146,Virén,Hanna Pauliina,,B,Testiosoite 145,10144 Helsinki,etunimi.sukunimi.144@example.com,"Virén, Hanna",Pelastusrengas,2,Kokoomusopiskelijat 2,45
+147,Vuori,Timo Tapani,,T,Testiosoite 146,10145 Helsinki,etunimi.sukunimi.145@example.com,"Vuori, Timo",Pelastusrengas,2,Kokoomusopiskelijat 2,46
+148,Vähäkuopus,Niko Mikael,,L,Testiosoite 147,10146 Helsinki,etunimi.sukunimi.146@example.com,"Vähäkuopus, Niko",Pelastusrengas,2,Kokoomusopiskelijat 2,47
+149,Välisalmi,Satu Maria,,MM,Testiosoite 148,10147 Helsinki,etunimi.sukunimi.147@example.com,"Välisalmi, Satu",Pelastusrengas,2,Kokoomusopiskelijat 2,48
+150,Wilskman,Juho-Erik,,K,Testiosoite 149,10148 Helsinki,etunimi.sukunimi.148@example.com,"Wilskman, Juho",Pelastusrengas,2,Kokoomusopiskelijat 2,49
+151,Acar,Ömer,,E,Testiosoite 150,10149 Helsinki,etunimi.sukunimi.149@example.com,"Acar, Ömer",Pelastusrengas,3,Keskeiset,1
+152,Autelo,Asko Juhani,,H,Testiosoite 151,10150 Helsinki,etunimi.sukunimi.150@example.com,"Autelo, Asko",Pelastusrengas,3,Keskeiset,2
+153,Eskelinen,Aleksi Eerikki,,ML,Testiosoite 152,10151 Helsinki,etunimi.sukunimi.151@example.com,"Eskelinen, Aleksi",Pelastusrengas,3,Keskeiset,3
+154,Eskelinen,Juha Markus,,V,Testiosoite 153,10152 Helsinki,etunimi.sukunimi.152@example.com,"Eskelinen, Juha",Pelastusrengas,3,Keskeiset,4
+155,Hämäläinen,Jouko Asser,,O,Testiosoite 154,10153 Helsinki,etunimi.sukunimi.153@example.com,"Hämäläinen, Jouko",Pelastusrengas,3,Keskeiset,5
+156,Kallio,Jaakko Johan Anttoni,,B,Testiosoite 155,10154 Helsinki,etunimi.sukunimi.154@example.com,"Kallio, Jaakko",Pelastusrengas,3,Keskeiset,6
+157,Kallio,Laura Maria,,T,Testiosoite 156,10155 Helsinki,etunimi.sukunimi.155@example.com,"Kallio, Laura",Pelastusrengas,3,Keskeiset,7
+158,Karhunen,Heli Maria,,L,Testiosoite 157,10156 Helsinki,etunimi.sukunimi.156@example.com,"Karhunen, Heli",Pelastusrengas,3,Keskeiset,8
+159,Kinnunen,Teemu Matias,,MM,Testiosoite 158,10157 Helsinki,etunimi.sukunimi.157@example.com,"Kinnunen, Teemu",Pelastusrengas,3,Keskeiset,9
+160,Lahtinen,Anu Tuulia,,K,Testiosoite 159,10158 Helsinki,etunimi.sukunimi.158@example.com,"Lahtinen, Anu",Pelastusrengas,3,Keskeiset,10
+161,Paukkeri,Susanna Elina,,E,Testiosoite 160,10159 Helsinki,etunimi.sukunimi.159@example.com,"Paukkeri, Susanna",Pelastusrengas,3,Keskeiset,11
+162,Peltokangas,Kalle Matias,,H,Testiosoite 161,10160 Helsinki,etunimi.sukunimi.160@example.com,"Peltokangas, Kalle",Pelastusrengas,3,Keskeiset,12
+163,Pihlaja,Kaisa Heleena,,ML,Testiosoite 162,10161 Helsinki,etunimi.sukunimi.161@example.com,"Pihlaja, Kaisa",Pelastusrengas,3,Keskeiset,13
+164,Ranki,Anna Elina,,V,Testiosoite 163,10162 Helsinki,etunimi.sukunimi.162@example.com,"Ranki, Anna",Pelastusrengas,3,Keskeiset,14
+165,Saaristo,Olli Juhani,,O,Testiosoite 164,10163 Helsinki,etunimi.sukunimi.163@example.com,"Saaristo, Olli",Pelastusrengas,3,Keskeiset,15
+166,Sivula,Mika Johannes,,B,Testiosoite 165,10164 Helsinki,etunimi.sukunimi.164@example.com,"Sivula, Mika",Pelastusrengas,3,Keskeiset,16
+167,Vuorinen,Simo Antero,,T,Testiosoite 166,10165 Helsinki,etunimi.sukunimi.165@example.com,"Vuorinen, Simo",Pelastusrengas,3,Keskeiset,17
+168,Ylimaa,Markus Matti Juhani,,L,Testiosoite 167,10166 Helsinki,etunimi.sukunimi.166@example.com,"Ylimaa, Markus",Pelastusrengas,3,Keskeiset,18
+169,Forsberg,Andreas David,,MM,Testiosoite 168,10167 Helsinki,etunimi.sukunimi.167@example.com,"Forsberg, Andreas 'Andy' ",Pelastusrengas,4,KD Helsingin opiskelijat,1
+170,Furu,Niklas Joakim,,K,Testiosoite 169,10168 Helsinki,etunimi.sukunimi.168@example.com,"Furu, Niklas",Pelastusrengas,4,KD Helsingin opiskelijat,2
+171,Garaisi,Tomas Fozi Johannes,,E,Testiosoite 170,10169 Helsinki,etunimi.sukunimi.169@example.com,"Garaisi, Tomas",Pelastusrengas,4,KD Helsingin opiskelijat,3
+172,Kaksonen,Marika Julie,,H,Testiosoite 171,10170 Helsinki,etunimi.sukunimi.170@example.com,"Kaksonen, Marika",Pelastusrengas,4,KD Helsingin opiskelijat,4
+173,Kyyhkynen,Suvianna,,ML,Testiosoite 172,10171 Helsinki,etunimi.sukunimi.171@example.com,"Kyyhkynen, Suvianna",Pelastusrengas,4,KD Helsingin opiskelijat,5
+174,Kärmeranta,Hanna Riikka,,V,Testiosoite 173,10172 Helsinki,etunimi.sukunimi.172@example.com,"Kärmeranta, Hanna",Pelastusrengas,4,KD Helsingin opiskelijat,6
+175,Mikkonen,Tero Hannu Taneli,,O,Testiosoite 174,10173 Helsinki,etunimi.sukunimi.173@example.com,"Mikkonen, Tero",Pelastusrengas,4,KD Helsingin opiskelijat,7
+176,Pynnönen,Eerika Katariina,,B,Testiosoite 175,10174 Helsinki,etunimi.sukunimi.174@example.com,"Pynnönen, Eerika",Pelastusrengas,4,KD Helsingin opiskelijat,8
+177,Riihimäki,Ilkka Hannu Tapani,,T,Testiosoite 176,10175 Helsinki,etunimi.sukunimi.175@example.com,"Riihimäki, Ilkka",Pelastusrengas,4,KD Helsingin opiskelijat,9
+178,Salo,Tuomas Tapio,,L,Testiosoite 177,10176 Helsinki,etunimi.sukunimi.176@example.com,"Salo, Tuomas",Pelastusrengas,4,KD Helsingin opiskelijat,10
+179,Simonen,Iiris Isabella,,MM,Testiosoite 178,10177 Helsinki,etunimi.sukunimi.177@example.com,"Simonen, Iiris",Pelastusrengas,4,KD Helsingin opiskelijat,11
+180,Starck,Leo Veli Mikael,,K,Testiosoite 179,10178 Helsinki,etunimi.sukunimi.178@example.com,"Starck, Leo",Pelastusrengas,4,KD Helsingin opiskelijat,12
+181,Tompuri,Pamela Teresa,,E,Testiosoite 180,10179 Helsinki,etunimi.sukunimi.179@example.com,"Tompuri, Pamela",Pelastusrengas,4,KD Helsingin opiskelijat,13
+182,Ventin,Sonja Maria,,H,Testiosoite 181,10180 Helsinki,etunimi.sukunimi.180@example.com,"Ventin, Sonja",Pelastusrengas,4,KD Helsingin opiskelijat,14
+183,Holmström,Jenny-Li Alexandra,,ML,Testiosoite 182,10181 Helsinki,etunimi.sukunimi.181@example.com,"Holmström, Jenny-Li",SNÄf,1,Codex-Thorax,1
+184,Huldén,Rainer Alexis,,V,Testiosoite 183,10182 Helsinki,etunimi.sukunimi.182@example.com,"Huldén, Alexis",SNÄf,1,Codex-Thorax,2
+185,Kuhlefelt,Max Jasper,,O,Testiosoite 184,10183 Helsinki,etunimi.sukunimi.183@example.com,"Kuhlefelt, Jasper",SNÄf,1,Codex-Thorax,3
+186,Rantanen,Johanna Valdine,,B,Testiosoite 185,10184 Helsinki,etunimi.sukunimi.184@example.com,"Rantanen, Johanna",SNÄf,1,Codex-Thorax,4
+187,Tanskanen,Tuulia Kaijaliina,,T,Testiosoite 186,10185 Helsinki,etunimi.sukunimi.185@example.com,"Tanskanen, Tuulia",SNÄf,1,Codex-Thorax,5
+188,Törnblom,Petra Vanessa Helena,,L,Testiosoite 187,10186 Helsinki,etunimi.sukunimi.186@example.com,"Törnblom, Vanessa",SNÄf,1,Codex-Thorax,6
+189,Hildén,Erik Oscar Johannes,,MM,Testiosoite 188,10187 Helsinki,etunimi.sukunimi.187@example.com,"Hildén, Oscar",SNÄf,1,Codex-Thorax,7
+190,Pipping,Hugo Adrian,,K,Testiosoite 189,10188 Helsinki,etunimi.sukunimi.188@example.com,"Pipping, Hugo",SNÄf,1,Codex-Thorax,8
+191,Finne,Jenny Ina,,E,Testiosoite 190,10189 Helsinki,etunimi.sukunimi.189@example.com,"Finne, Ina",SNÄf,2,Nationerna,1
+192,Finne,Marie Fredrika,,H,Testiosoite 191,10190 Helsinki,etunimi.sukunimi.190@example.com,"Finne, Marie 'Mojo'",SNÄf,2,Nationerna,2
+193,Forsskåhl,Kaj Oskar Petter,,ML,Testiosoite 192,10191 Helsinki,etunimi.sukunimi.191@example.com,"Forsskåhl, Oskar",SNÄf,2,Nationerna,3
+194,Husberg,Ida Regina Katarina,,V,Testiosoite 193,10192 Helsinki,etunimi.sukunimi.192@example.com,"Husberg, Ida",SNÄf,2,Nationerna,4
+195,Kilpelä,Eliel Johan Sakari,,O,Testiosoite 194,10193 Helsinki,etunimi.sukunimi.193@example.com,"Kilpelä, Eliel",SNÄf,2,Nationerna,5
+196,Murto,Armi Helena,,B,Testiosoite 195,10194 Helsinki,etunimi.sukunimi.194@example.com,"Murto, Armi",SNÄf,2,Nationerna,6
+197,Scheinin,Elias Theodor,,T,Testiosoite 196,10195 Helsinki,etunimi.sukunimi.195@example.com,"Scheinin, Elias",SNÄf,2,Nationerna,7
+198,Engblom,Carl Ronny,,L,Testiosoite 197,10196 Helsinki,etunimi.sukunimi.196@example.com,"Engbom, Ronny",SNÄf,2,Nationerna,8
+199,Finnäs,Jens Anders,,MM,Testiosoite 198,10197 Helsinki,etunimi.sukunimi.197@example.com,"Finnäs, Jens",SNÄf,2,Nationerna,9
+200,Knip,Sara Sofia Linnea,,K,Testiosoite 199,10198 Helsinki,etunimi.sukunimi.198@example.com,"Knip, Sara",SNÄf,2,Nationerna,10
+201,Smeds,Charlotta Anna Erika,,E,Testiosoite 200,10199 Helsinki,etunimi.sukunimi.199@example.com,"Smeds, Charlotta",SNÄf,2,Nationerna,11
+202,Sjölund,Carl Stefan Mikael,,H,Testiosoite 201,10200 Helsinki,etunimi.sukunimi.200@example.com,"Sjölund, Stefan",SNÄf,2,Nationerna,12
+203,Sundström,Kasper Nils Oskar,,ML,Testiosoite 202,10201 Helsinki,etunimi.sukunimi.201@example.com,"Sundström, Kasper",SNÄf,2,Nationerna,13
+204,French,Jenny Maria,,V,Testiosoite 203,10202 Helsinki,etunimi.sukunimi.202@example.com,"French, Jenny",SNÄf,2,Nationerna,14
+205,Nordling,Emilia Elisabeth,,O,Testiosoite 204,10203 Helsinki,etunimi.sukunimi.203@example.com,"Nordling, Emilia",SNÄf,2,Nationerna,15
+206,Palmén,Anna-Pia Margareta,,B,Testiosoite 205,10204 Helsinki,etunimi.sukunimi.204@example.com,"Palmén, Anna-Pia",SNÄf,2,Nationerna,16
+207,Pirinen,Jani Ruben Rickard,,T,Testiosoite 206,10205 Helsinki,etunimi.sukunimi.205@example.com,"Pirinen, Jani",SNÄf,2,Nationerna,17
+208,Tallberg,Annette Margaretha,,L,Testiosoite 207,10206 Helsinki,etunimi.sukunimi.206@example.com,"Tallberg, Annette",SNÄf,2,Nationerna,18
+209,Andersson,Elin Elisabeth,,MM,Testiosoite 208,10207 Helsinki,etunimi.sukunimi.207@example.com,"Andersson, Elin",SNÄf,3,StudOrg,1
+210,Haglund,Mia Maria Katrina,,K,Testiosoite 209,10208 Helsinki,etunimi.sukunimi.208@example.com,"Haglund, Mia",SNÄf,3,StudOrg,2
+211,Kyllönen,Rasmus Wilhelm,,E,Testiosoite 210,10209 Helsinki,etunimi.sukunimi.209@example.com,"Kyllönen, Rasmus",SNÄf,3,StudOrg,3
+212,Lindström,Anna Liselott,,H,Testiosoite 211,10210 Helsinki,etunimi.sukunimi.210@example.com,"Lindström, Liselott",SNÄf,3,StudOrg,4
+213,Metsämäki,Johanna Linnéa,,ML,Testiosoite 212,10211 Helsinki,etunimi.sukunimi.211@example.com,"Metsämäki, Johanna",SNÄf,3,StudOrg,5
+214,Ringbom,Karin Elisabeth,,V,Testiosoite 213,10212 Helsinki,etunimi.sukunimi.212@example.com,"Ringbom, Karin",SNÄf,3,StudOrg,6
+215,Riska,Johannes Alfred,,O,Testiosoite 214,10213 Helsinki,etunimi.sukunimi.213@example.com,"Riska, Johannes",SNÄf,3,StudOrg,7
+216,Sjöholm,Peter Christoffer,,B,Testiosoite 215,10214 Helsinki,etunimi.sukunimi.214@example.com,"Sjöholm, Peter 'Poppe'",SNÄf,3,StudOrg,8
+217,Sundberg,Maj Brita,,T,Testiosoite 216,10215 Helsinki,etunimi.sukunimi.215@example.com,"Sundberg, Maj",SNÄf,3,StudOrg,9
+218,Tallqvist,John Henrik,,L,Testiosoite 217,10216 Helsinki,etunimi.sukunimi.216@example.com,"Tallqvist, John",SNÄf,3,StudOrg,10
+219,Uusikylä,Ulf Erik Julius,,MM,Testiosoite 218,10217 Helsinki,etunimi.sukunimi.217@example.com,"Uusikylä, Julius",SNÄf,3,StudOrg,11
+220,Wikström,Joanna Daniela Henrika,,K,Testiosoite 219,10218 Helsinki,etunimi.sukunimi.218@example.com,"Wikström, Joanna",SNÄf,3,StudOrg,12
+221,Sandqvist,Oskar,,E,Testiosoite 220,10219 Helsinki,etunimi.sukunimi.219@example.com,"Sandqvist, Oskar",SNÄf,4,Ämnesföreningarna,1
+222,Granbohm,Henrika Laura Annina,,H,Testiosoite 221,10220 Helsinki,etunimi.sukunimi.220@example.com,"Granbohm, Henrika",SNÄf,4,Ämnesföreningarna,2
+223,Liesipohja,Susanna Birgitta,,ML,Testiosoite 222,10221 Helsinki,etunimi.sukunimi.221@example.com,"Liesipohja, Susanna",SNÄf,4,Ämnesföreningarna,3
+224,Venäläinen,Annika Elisa,,V,Testiosoite 223,10222 Helsinki,etunimi.sukunimi.222@example.com,"Venäläinen, Annika",SNÄf,4,Ämnesföreningarna,4
+225,Andersson,Timo Tapio,,O,Testiosoite 224,10223 Helsinki,etunimi.sukunimi.223@example.com,"Andersson, Timo",Liberaalit,1,Liberaalinen vaaliliitto - yksilönvapauden puolesta,1
+226,Sjöström,Kim,,B,Testiosoite 225,10224 Helsinki,etunimi.sukunimi.224@example.com,"Sjöström, Kim",Liberaalit,1,Liberaalinen vaaliliitto - yksilönvapauden puolesta,2
+227,Vainio,Janne Mikael,,T,Testiosoite 226,10225 Helsinki,etunimi.sukunimi.225@example.com,"Vainio, Janne",Liberaalit,1,Liberaalinen vaaliliitto - yksilönvapauden puolesta,3
+228,Apter,Ted Daniel,,L,Testiosoite 227,10226 Helsinki,etunimi.sukunimi.226@example.com,"Apter, Ted",HELP,1,Pykälä,1
+229,Autio,Ilari Alvar,,MM,Testiosoite 228,10227 Helsinki,etunimi.sukunimi.227@example.com,"Autio, Ilari",HELP,1,Pykälä,2
+230,Blåfield,Eero Antero,,K,Testiosoite 229,10228 Helsinki,etunimi.sukunimi.228@example.com,"Blåfield, Eero",HELP,1,Pykälä,3
+231,Giss,Heidi Maria Kristiina,,E,Testiosoite 230,10229 Helsinki,etunimi.sukunimi.229@example.com,"Giss, Heidi",HELP,1,Pykälä,4
+232,Granlund,Aarne Jouni,,H,Testiosoite 231,10230 Helsinki,etunimi.sukunimi.230@example.com,"Granlund, Aarne",HELP,1,Pykälä,5
+233,Hallikainen,Irene Mirjam,,ML,Testiosoite 232,10231 Helsinki,etunimi.sukunimi.231@example.com,"Hallikainen, Irene",HELP,1,Pykälä,6
+234,Hokkanen,Minna Marianne,,V,Testiosoite 233,10232 Helsinki,etunimi.sukunimi.232@example.com,"Hokkanen, Minna",HELP,1,Pykälä,7
+235,Hytönen,Satu Eeva-Johanna,,O,Testiosoite 234,10233 Helsinki,etunimi.sukunimi.233@example.com,"Hytönen, Satu",HELP,1,Pykälä,8
+236,Kaakkola,Antti Julius,,B,Testiosoite 235,10234 Helsinki,etunimi.sukunimi.234@example.com,"Kaakkola, Antti",HELP,1,Pykälä,9
+237,Karvinen,Kiti Marjukka,,T,Testiosoite 236,10235 Helsinki,etunimi.sukunimi.235@example.com,"Karvinen, Kiti",HELP,1,Pykälä,10
+238,Keino,Iiris Niina Katariina,,L,Testiosoite 237,10236 Helsinki,etunimi.sukunimi.236@example.com,"Keino, Iiris",HELP,1,Pykälä,11
+239,Kerppola,Antti Johan,,MM,Testiosoite 238,10237 Helsinki,etunimi.sukunimi.237@example.com,"Kerppola, Antti",HELP,1,Pykälä,12
+240,Komulainen,Elina Johanna,,K,Testiosoite 239,10238 Helsinki,etunimi.sukunimi.238@example.com,"Komulainen, Elina",HELP,1,Pykälä,13
+241,Kortesmaa,Kaisa Laura Irene,,E,Testiosoite 240,10239 Helsinki,etunimi.sukunimi.239@example.com,"Kortesmaa, Kaisa",HELP,1,Pykälä,14
+242,Koskentausta,Lauri Juhani,,H,Testiosoite 241,10240 Helsinki,etunimi.sukunimi.240@example.com,"Koskentausta, Lauri",HELP,1,Pykälä,15
+243,Kouhi,Markus Tapio,,ML,Testiosoite 242,10241 Helsinki,etunimi.sukunimi.241@example.com,"Kouhi, Markus",HELP,1,Pykälä,16
+244,Kylmäniemi,Hanna Linnea,,V,Testiosoite 243,10242 Helsinki,etunimi.sukunimi.242@example.com,"Kylmäniemi, Hanna",HELP,1,Pykälä,17
+245,Kärki,Eero Antero,,O,Testiosoite 244,10243 Helsinki,etunimi.sukunimi.243@example.com,"Kärki, Eero",HELP,1,Pykälä,18
+246,Lahtinen,Alpo Olavi,,B,Testiosoite 245,10244 Helsinki,etunimi.sukunimi.244@example.com,"Lahtinen, Alpo",HELP,1,Pykälä,19
+247,Lassila,Samu Petteri,,T,Testiosoite 246,10245 Helsinki,etunimi.sukunimi.245@example.com,"Lassila, Samu",HELP,1,Pykälä,20
+248,Lehti,Isabella Annina,,L,Testiosoite 247,10246 Helsinki,etunimi.sukunimi.246@example.com,"Lehti, Isabella",HELP,1,Pykälä,21
+249,Lindholm,Kristiina Annukka,,MM,Testiosoite 248,10247 Helsinki,etunimi.sukunimi.247@example.com,"Lindholm, Kristiina",HELP,1,Pykälä,22
+250,Linnankoski,Manuel Tähti,,K,Testiosoite 249,10248 Helsinki,etunimi.sukunimi.248@example.com,"Linnankoski, Manuel",HELP,1,Pykälä,23
+251,Markkanen,Otto,,E,Testiosoite 250,10249 Helsinki,etunimi.sukunimi.249@example.com,"Markkanen, Otto",HELP,1,Pykälä,24
+252,Mattila,Olli-Pekka Sakari,,H,Testiosoite 251,10250 Helsinki,etunimi.sukunimi.250@example.com,"Mattila, Olli-Pekka",HELP,1,Pykälä,25
+253,Merenmies,Matilda Aurora,,ML,Testiosoite 252,10251 Helsinki,etunimi.sukunimi.251@example.com,"Merenmies, Matilda",HELP,1,Pykälä,26
+254,Metsämäki,Joonas Akseli,,V,Testiosoite 253,10252 Helsinki,etunimi.sukunimi.252@example.com,"Metsämäki, Joonas",HELP,1,Pykälä,27
+255,Muinonen,Kaisa Tellervo,,O,Testiosoite 254,10253 Helsinki,etunimi.sukunimi.253@example.com,"Muinonen, Kaisa",HELP,1,Pykälä,28
+256,Männistö,Johanna Maria,,B,Testiosoite 255,10254 Helsinki,etunimi.sukunimi.254@example.com,"Männistö, Johanna",HELP,1,Pykälä,29
+257,Nieminen,Tero Seppo Ilari,,T,Testiosoite 256,10255 Helsinki,etunimi.sukunimi.255@example.com,"Nieminen, Tero",HELP,1,Pykälä,30
+258,Paajanen,Panu Juhana,,L,Testiosoite 257,10256 Helsinki,etunimi.sukunimi.256@example.com,"Paajanen, Panu",HELP,1,Pykälä,31
+259,Paajanen,Sini Helena,,MM,Testiosoite 258,10257 Helsinki,etunimi.sukunimi.257@example.com,"Paajanen, Sini",HELP,1,Pykälä,32
+260,Rehula,Tero Kalevi,,K,Testiosoite 259,10258 Helsinki,etunimi.sukunimi.258@example.com,"Rehula, Tero",HELP,1,Pykälä,33
+261,Rudanko,Mikko Jorma Johannes,,E,Testiosoite 260,10259 Helsinki,etunimi.sukunimi.259@example.com,"Rudanko, Mikko",HELP,1,Pykälä,34
+262,Rytkönen,Tuomas Erik Johannes,,H,Testiosoite 261,10260 Helsinki,etunimi.sukunimi.260@example.com,"Rytkönen, Tuomas",HELP,1,Pykälä,35
+263,Ryynänen,Kalle Elias Markunpoika,,ML,Testiosoite 262,10261 Helsinki,etunimi.sukunimi.261@example.com,"Ryynänen, Kalle",HELP,1,Pykälä,36
+264,Salli,Saku Pekka,,V,Testiosoite 263,10262 Helsinki,etunimi.sukunimi.262@example.com,"Salli, Saku",HELP,1,Pykälä,37
+265,Salo,Jussi Jaakko Sakari,,O,Testiosoite 264,10263 Helsinki,etunimi.sukunimi.263@example.com,"Salo, Jussi",HELP,1,Pykälä,38
+266,Supperi,Iina-Mari,,B,Testiosoite 265,10264 Helsinki,etunimi.sukunimi.264@example.com,"Supperi, Iina-Mari",HELP,1,Pykälä,39
+267,Säteri,Johanna Maria,,T,Testiosoite 266,10265 Helsinki,etunimi.sukunimi.265@example.com,"Säteri, Johanna",HELP,1,Pykälä,40
+268,Termonen,Jon Emil,,L,Testiosoite 267,10266 Helsinki,etunimi.sukunimi.266@example.com,"Termonen, Jon",HELP,1,Pykälä,41
+269,Tuohimaa,Kiira Sofia,,MM,Testiosoite 268,10267 Helsinki,etunimi.sukunimi.267@example.com,"Tuohimaa, Kiira",HELP,1,Pykälä,42
+270,Viljanen,Jesse Juhana,,K,Testiosoite 269,10268 Helsinki,etunimi.sukunimi.268@example.com,"Viljanen, Jesse",HELP,1,Pykälä,43
+271,Vilkko,Nelli Pauliina,,E,Testiosoite 270,10269 Helsinki,etunimi.sukunimi.269@example.com,"Vilkko, Nelli",HELP,1,Pykälä,44
+272,Ahmed,Haji Omar Abdirisak,,H,Testiosoite 271,10270 Helsinki,etunimi.sukunimi.270@example.com,"Ahmed, Abdirisak",HELP,2,LKS / HLKS,1
+273,Aspelund,Markus Aleksanteri,,ML,Testiosoite 272,10271 Helsinki,etunimi.sukunimi.271@example.com,"Aspelund, Aleksanteri",HELP,2,LKS / HLKS,2
+274,Gogulski,Juha Daniel,,V,Testiosoite 273,10272 Helsinki,etunimi.sukunimi.272@example.com,"Gogulski, Juha",HELP,2,LKS / HLKS,3
+275,Kaprio,Tuomas Juho Arthur,,O,Testiosoite 274,10273 Helsinki,etunimi.sukunimi.273@example.com,"Kaprio, Tuomas",HELP,2,LKS / HLKS,4
+276,Koivunen,Riku-Jaakko,,B,Testiosoite 275,10274 Helsinki,etunimi.sukunimi.274@example.com,"Koivunen, Riku",HELP,2,LKS / HLKS,5
+277,Lommi,Markus Juhani,,T,Testiosoite 276,10275 Helsinki,etunimi.sukunimi.275@example.com,"Lommi, Markus",HELP,2,LKS / HLKS,6
+278,Rautiola,Juhana Aarni Kaleva,,L,Testiosoite 277,10276 Helsinki,etunimi.sukunimi.276@example.com,"Rautiola, Juhana",HELP,2,LKS / HLKS,7
+279,Salminen,Ville Sameli,,MM,Testiosoite 278,10277 Helsinki,etunimi.sukunimi.277@example.com,"Salminen, Ville",HELP,2,LKS / HLKS,8
+280,Sipilä,Pyry Nestori,,K,Testiosoite 279,10278 Helsinki,etunimi.sukunimi.278@example.com,"Sipilä, Pyry",HELP,2,LKS / HLKS,9
+281,Suomalainen,Olli Pekka,,E,Testiosoite 280,10279 Helsinki,etunimi.sukunimi.279@example.com,"Suomalainen, Olli",HELP,2,LKS / HLKS,10
+282,Tamminen,Henni Tuulia,,H,Testiosoite 281,10280 Helsinki,etunimi.sukunimi.280@example.com,"Tamminen, Henni",HELP,2,LKS / HLKS,11
+283,Torkki,Matias Ilmari,,ML,Testiosoite 282,10281 Helsinki,etunimi.sukunimi.281@example.com,"Torkki, Matias",HELP,2,LKS / HLKS,12
+284,Valle,Jussi Tapani,,V,Testiosoite 283,10282 Helsinki,etunimi.sukunimi.282@example.com,"Valle, Jussi",HELP,2,LKS / HLKS,13
+285,Vangelova,Velina,,O,Testiosoite 284,10283 Helsinki,etunimi.sukunimi.283@example.com,"Vangelova, Velina",HELP,2,LKS / HLKS,14
+286,Yoder,Käthe Susanna,,B,Testiosoite 285,10284 Helsinki,etunimi.sukunimi.284@example.com,"Yoder, Käthe",HELP,2,LKS / HLKS,15
+287,Bruce,Anne Pauliina,,T,Testiosoite 286,10285 Helsinki,etunimi.sukunimi.285@example.com,"Bruce, Anne",HELP,3,EKY,1
+288,von Freymann,Sebastian,,L,Testiosoite 287,10286 Helsinki,etunimi.sukunimi.286@example.com,"von Freymann, Sebastian",HELP,3,EKY,2
+289,Hakanen,Anni Kaarina,,MM,Testiosoite 288,10287 Helsinki,etunimi.sukunimi.287@example.com,"Hakanen, Anni",HELP,3,EKY,3
+290,Helin,Henriikka,,K,Testiosoite 289,10288 Helsinki,etunimi.sukunimi.288@example.com,"Helin, Henriikka",HELP,3,EKY,4
+291,Hämäläinen,Karoliina Emilia,,E,Testiosoite 290,10289 Helsinki,etunimi.sukunimi.289@example.com,"Hämäläinen, Karoliina",HELP,3,EKY,5
+292,Immonen,Isa Anna Maria,,H,Testiosoite 291,10290 Helsinki,etunimi.sukunimi.290@example.com,"Immonen, Isa",HELP,3,EKY,6
+293,Jokinen,Olli Oskari,,ML,Testiosoite 292,10291 Helsinki,etunimi.sukunimi.291@example.com,"Jokinen, Olli",HELP,3,EKY,7
+294,Kallio-Kujala,Ira Janika,,V,Testiosoite 293,10292 Helsinki,etunimi.sukunimi.292@example.com,"Kallio-Kujala, Ira",HELP,3,EKY,8
+295,Kiimamaa,Raisa Johanna Tuulia,,O,Testiosoite 294,10293 Helsinki,etunimi.sukunimi.293@example.com,"Kiimamaa, Raisa",HELP,3,EKY,9
+296,Kilpeläinen,Miika Antti Johannes,,B,Testiosoite 295,10294 Helsinki,etunimi.sukunimi.294@example.com,"Kilpeläinen, Miika",HELP,3,EKY,10
+297,Mäkelä,Anna-Leena,,T,Testiosoite 296,10295 Helsinki,etunimi.sukunimi.295@example.com,"Mäkelä, Anna-Leena",HELP,3,EKY,11
+298,Niinimäki,Heini Maria,,L,Testiosoite 297,10296 Helsinki,etunimi.sukunimi.296@example.com,"Niinimäki, Heini",HELP,3,EKY,12
+299,Riihimäki,Aino Marja,,MM,Testiosoite 298,10297 Helsinki,etunimi.sukunimi.297@example.com,"Riihimäki, Aino",HELP,3,EKY,13
+300,Sivonen,Kaija Sofia,,K,Testiosoite 299,10298 Helsinki,etunimi.sukunimi.298@example.com,"Sivonen, Kaija",HELP,3,EKY,14
+301,Sukura,Okko Arttu Kalle,,E,Testiosoite 300,10299 Helsinki,etunimi.sukunimi.299@example.com,"Sukura, Okko",HELP,3,EKY,15
+302,Tuominen,Elli Orvokki,,H,Testiosoite 301,10300 Helsinki,etunimi.sukunimi.300@example.com,"Tuominen, Elli",HELP,3,EKY,16
+303,Grönroos,Simo Juhani,,ML,Testiosoite 302,10301 Helsinki,etunimi.sukunimi.301@example.com,"Grönroos, Simo",Perussuomalaiset,1,Perussuomalainen vaaliliitto,1
+304,Nieminen,Marko Johannes,,V,Testiosoite 303,10302 Helsinki,etunimi.sukunimi.302@example.com,"Nieminen, Johannes",Perussuomalaiset,1,Perussuomalainen vaaliliitto,2
+305,Lahtinen,Teemu Ilkka Antero,,O,Testiosoite 304,10303 Helsinki,etunimi.sukunimi.303@example.com,"Lahtinen, Teemu",Perussuomalaiset,1,Perussuomalainen vaaliliitto,3
+306,Ahola,Riku Jussi,,B,Testiosoite 305,10304 Helsinki,etunimi.sukunimi.304@example.com,"Ahola, Riku",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,1
+307,Alhojärvi,Lauri Väinö Johannes,,T,Testiosoite 306,10305 Helsinki,etunimi.sukunimi.305@example.com,"Alhojärvi, Lauri",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,2
+308,Alhojärvi,Tuomo Veli Juhana,,L,Testiosoite 307,10306 Helsinki,etunimi.sukunimi.306@example.com,"Alhojärvi, Tuomo",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,3
+309,Alvarez Gomez,Sebastian Joel,,MM,Testiosoite 308,10307 Helsinki,etunimi.sukunimi.307@example.com,"Alvarez, Sebastian",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,4
+310,Bennour,Nayer,,K,Testiosoite 309,10308 Helsinki,etunimi.sukunimi.308@example.com,"Bennour, Nayer",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,5
+311,Bruun,Otto Einar,,E,Testiosoite 310,10309 Helsinki,etunimi.sukunimi.309@example.com,"Bruun, Otto",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,6
+312,Eranti,Veikko Oskari,,H,Testiosoite 311,10310 Helsinki,etunimi.sukunimi.310@example.com,"Eranti, Veikko",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,7
+313,Friman,Tuula Irene,,ML,Testiosoite 312,10311 Helsinki,etunimi.sukunimi.311@example.com,"Friman, Tuula",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,8
+314,Guillén,Jan Edgardo,,V,Testiosoite 313,10312 Helsinki,etunimi.sukunimi.312@example.com,"Guillén, Jan",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,9
+315,Heinonen,Pijatta Maaria,,O,Testiosoite 314,10313 Helsinki,etunimi.sukunimi.313@example.com,"Heinonen, Pijatta",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,10
+316,Heinonen,Tatu Elias,,B,Testiosoite 315,10314 Helsinki,etunimi.sukunimi.314@example.com,"Heinonen, Tatu",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,11
+317,Häkkinen,Lari Valtteri,,T,Testiosoite 316,10315 Helsinki,etunimi.sukunimi.315@example.com,"Häkkinen, Lari",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,12
+318,Hämäläinen,Anssi-Petteri,,L,Testiosoite 317,10316 Helsinki,etunimi.sukunimi.316@example.com,"Hämäläinen, Anssi",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,13
+319,Immonen,Meri Katri Maria,,MM,Testiosoite 318,10317 Helsinki,etunimi.sukunimi.317@example.com,"Immonen, Katri",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,14
+320,Iso-Markku,Antti Juho,,K,Testiosoite 319,10318 Helsinki,etunimi.sukunimi.318@example.com,"Iso-Markku, Antti",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,15
+321,Iso-Markku,Outi Maarit,,E,Testiosoite 320,10319 Helsinki,etunimi.sukunimi.319@example.com,"Iso-Markku, Outi",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,16
+322,Järviö,Nina Anna Kristiina,,H,Testiosoite 321,10320 Helsinki,etunimi.sukunimi.320@example.com,"Järviö, Nina",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,17
+323,Kangas,Heidi Susanna,,ML,Testiosoite 322,10321 Helsinki,etunimi.sukunimi.321@example.com,"Kangas, Heidi",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,18
+324,Kiviluoto,Oona Marjut Onerva,,V,Testiosoite 323,10322 Helsinki,etunimi.sukunimi.322@example.com,"Kiviluoto, Oona",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,19
+325,Koivulaakso,Dan Mikael,,O,Testiosoite 324,10323 Helsinki,etunimi.sukunimi.323@example.com,"Koivulaakso, Dan",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,20
+326,Konttinen,Iiris Maria Alina,,B,Testiosoite 325,10324 Helsinki,etunimi.sukunimi.324@example.com,"Konttinen, Iiris",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,21
+327,Korhonen,Juho Topias,,T,Testiosoite 326,10325 Helsinki,etunimi.sukunimi.325@example.com,"Korhonen, Juho",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,22
+328,Korhonen,Mikko Petteri,,L,Testiosoite 327,10326 Helsinki,etunimi.sukunimi.326@example.com,"Korhonen, Mikko",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,23
+329,Korhonen,Sara Helen,,MM,Testiosoite 328,10327 Helsinki,etunimi.sukunimi.327@example.com,"Korhonen, Sara",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,24
+330,Korkkula,Vesa Kalervo,,K,Testiosoite 329,10328 Helsinki,etunimi.sukunimi.328@example.com,"Korkkula, Vesa",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,25
+331,Kuokkanen,Juho Sakari,,E,Testiosoite 330,10329 Helsinki,etunimi.sukunimi.329@example.com,"Kuokkanen, Juho",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,26
+332,Lehtimäki,Tomi Henrik,,H,Testiosoite 331,10330 Helsinki,etunimi.sukunimi.330@example.com,"Lehtimäki, Tomi",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,27
+333,Leppänen,Joonas,,ML,Testiosoite 332,10331 Helsinki,etunimi.sukunimi.331@example.com,"Leppänen, Joonas",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,28
+334,Lindgren,Eetu Kai Matias,,V,Testiosoite 333,10332 Helsinki,etunimi.sukunimi.332@example.com,"Lindgren, Eetu",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,29
+335,Loikkanen,Silva Elina,,O,Testiosoite 334,10333 Helsinki,etunimi.sukunimi.333@example.com,"Loikkanen, Silva",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,30
+336,Lundqvist,Agneta Maria Helena,,B,Testiosoite 335,10334 Helsinki,etunimi.sukunimi.334@example.com,"Lundqvist, Agneta",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,31
+337,Lyyra,Anna-Gerissa,,T,Testiosoite 336,10335 Helsinki,etunimi.sukunimi.335@example.com,"Lyyra, Gerissa",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,32
+338,Nevalainen,Laika Katriina,,L,Testiosoite 337,10336 Helsinki,etunimi.sukunimi.336@example.com,"Nevalainen, Laika",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,33
+339,Niiranen,Esko Paavo,,MM,Testiosoite 338,10337 Helsinki,etunimi.sukunimi.337@example.com,"Niiranen, Esko",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,34
+340,Norema,Anne Elina,,K,Testiosoite 339,10338 Helsinki,etunimi.sukunimi.338@example.com,"Norema, Anne",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,35
+341,Nuortimo,Jussi Elias,,E,Testiosoite 340,10339 Helsinki,etunimi.sukunimi.339@example.com,"Nuortimo, Jussi",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,36
+342,Oikkonen,Jaana Marjut,,H,Testiosoite 341,10340 Helsinki,etunimi.sukunimi.340@example.com,"Oikkonen, Jaana",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,37
+343,Pietinen,Otto Ville,,ML,Testiosoite 342,10341 Helsinki,etunimi.sukunimi.341@example.com,"Pietinen, Otto",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,38
+344,Pietinen,Saara Sylvia,,V,Testiosoite 343,10342 Helsinki,etunimi.sukunimi.342@example.com,"Pietinen, Saara",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,39
+345,Punamäki,Heta Tyyne Aurora,,O,Testiosoite 344,10343 Helsinki,etunimi.sukunimi.343@example.com,"Punamäki, Lauri",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,40
+346,Pörrö,Tanja Irina,,B,Testiosoite 345,10344 Helsinki,etunimi.sukunimi.344@example.com,"Pörrö, Tanja",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,41
+347,Rauhala,Paula Maria,,T,Testiosoite 346,10345 Helsinki,etunimi.sukunimi.345@example.com,"Rauhala, Paula",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,42
+348,Rosenström,Jan Erik,,L,Testiosoite 347,10346 Helsinki,etunimi.sukunimi.346@example.com,"Rosenström, Jan",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,43
+349,Ruuth,Saila Marjaana,,MM,Testiosoite 348,10347 Helsinki,etunimi.sukunimi.347@example.com,"Ruuth, Saila",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,44
+350,Saari,Juhani Eero,,K,Testiosoite 349,10348 Helsinki,etunimi.sukunimi.348@example.com,"Saari, Juhani",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,45
+351,Salonen,Kuisma Einari,,E,Testiosoite 350,10349 Helsinki,etunimi.sukunimi.349@example.com,"Salonen, Kuisma",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,46
+352,Sivonen,Hanna Maria,,H,Testiosoite 351,10350 Helsinki,etunimi.sukunimi.350@example.com,"Sivonen, Hanna",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,47
+353,Strömberg,Tomi Aapeli,,ML,Testiosoite 352,10351 Helsinki,etunimi.sukunimi.351@example.com,"Strömberg, Tomi",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,48
+354,Taavetti,Riikka Maria,,V,Testiosoite 353,10352 Helsinki,etunimi.sukunimi.352@example.com,"Taavetti, Riikka",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,49
+355,Tenkanen,Niilo Ville Johannes,,O,Testiosoite 354,10353 Helsinki,etunimi.sukunimi.353@example.com,"Tenkanen, Niilo",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,50
+356,Tolvanen,Pekka Matias,,B,Testiosoite 355,10354 Helsinki,etunimi.sukunimi.354@example.com,"Tolvanen, Pekka",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,51
+357,Tuomainen,Katri Ilmi Elina,,T,Testiosoite 356,10355 Helsinki,etunimi.sukunimi.355@example.com,"Tuomainen, Katri",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,52
+358,Tuomainen,Risto Olli Oskari,,L,Testiosoite 357,10356 Helsinki,etunimi.sukunimi.356@example.com,"Tuomainen, Risto",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,53
+359,Tuominen,Inka Maaria,,MM,Testiosoite 358,10357 Helsinki,etunimi.sukunimi.357@example.com,"Tuominen, Inka",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,54
+360,Tuusa,Elina Karoliina,,K,Testiosoite 359,10358 Helsinki,etunimi.sukunimi.358@example.com,"Tuusa, Elina",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,55
+361,Uusivuori,Ville Olavi,,E,Testiosoite 360,10359 Helsinki,etunimi.sukunimi.359@example.com,"Uusivuori, Ville",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,56
+362,Viljanen,Vuokko Valpuri,,H,Testiosoite 361,10360 Helsinki,etunimi.sukunimi.360@example.com,"Viljanen, Vuokko",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,57
+363,Virkkala,Niklas Elias,,ML,Testiosoite 362,10361 Helsinki,etunimi.sukunimi.361@example.com,"Virkkala, Niklas",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,58
+364,Vähäpassi,Emmi Tuuva Elina,,V,Testiosoite 363,10362 Helsinki,etunimi.sukunimi.362@example.com,"Vähäpassi, Emmi",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,59
+365,Ylä-Anttila,Tuukka Salu Santeri,,O,Testiosoite 364,10363 Helsinki,etunimi.sukunimi.363@example.com,"Ylä-Anttila, Tuukka",Maailmanpyörä,1,Sitoutumaton vasemmisto - Obunden vänster - Independent left,60
+366,Alanko,Vilja Laura Ilona,,B,Testiosoite 365,10364 Helsinki,etunimi.sukunimi.364@example.com,"Alanko, Vilja",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,1
+367,Ekqvist,Mikko Juhani,,T,Testiosoite 366,10365 Helsinki,etunimi.sukunimi.365@example.com,"Ekqvist, Mikko",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,2
+368,Forselius,Anni Riitta Emilia,,L,Testiosoite 367,10366 Helsinki,etunimi.sukunimi.366@example.com,"Forselius, Anni",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,3
+369,Hannula,Anssi Mikael,,MM,Testiosoite 368,10367 Helsinki,etunimi.sukunimi.367@example.com,"Hannula, Anssi",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,4
+370,Hausen,Maija Sylvia,,K,Testiosoite 369,10368 Helsinki,etunimi.sukunimi.368@example.com,"Hausen, Maija",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,5
+371,Henttonen,Riikka Maaria Elena,,E,Testiosoite 370,10369 Helsinki,etunimi.sukunimi.369@example.com,"Henttonen, Riikka",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,6
+372,Holst,Daniel Alexander,,H,Testiosoite 371,10370 Helsinki,etunimi.sukunimi.370@example.com,"Holst, Alexander",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,7
+373,Hulkkonen,Ville Herman,,ML,Testiosoite 372,10371 Helsinki,etunimi.sukunimi.371@example.com,"Hulkkonen, Ville",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,8
+374,Häkkinen,Aaro Markus Sakari,,V,Testiosoite 373,10372 Helsinki,etunimi.sukunimi.372@example.com,"Häkkinen, Aaro",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,9
+375,Härkönen,Jehki Joonatan,,O,Testiosoite 374,10373 Helsinki,etunimi.sukunimi.373@example.com,"Härkönen, Jehki",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,10
+376,Jahkola,Lauri Akseli,,B,Testiosoite 375,10374 Helsinki,etunimi.sukunimi.374@example.com,"Jahkola, Lauri",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,11
+377,Jauhiainen,Veikko Ilmari,,T,Testiosoite 376,10375 Helsinki,etunimi.sukunimi.375@example.com,"Jauhiainen, Ilmari",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,12
+378,Kaijalainen,Olga,,L,Testiosoite 377,10376 Helsinki,etunimi.sukunimi.376@example.com,"Kaijalainen, Olga",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,13
+379,Kantola,Annika,,MM,Testiosoite 378,10377 Helsinki,etunimi.sukunimi.377@example.com,"Kantola, Annika",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,14
+380,Kari,Emma Karoliina,,K,Testiosoite 379,10378 Helsinki,etunimi.sukunimi.378@example.com,"Kari, Emma",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,15
+381,Karhu,Riikka Maria,,E,Testiosoite 380,10379 Helsinki,etunimi.sukunimi.379@example.com,"Karhu, Riikka",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,16
+382,Keski-Hakuni,Laura Emelia,,H,Testiosoite 381,10380 Helsinki,etunimi.sukunimi.380@example.com,"Keski-Hakuni, Laura",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,17
+383,Kiesiläinen,Jaana Liisa Kaisa,,ML,Testiosoite 382,10381 Helsinki,etunimi.sukunimi.381@example.com,"Kiesiläinen, Jaana",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,18
+384,Kirjasniemi,Janne Matti,,V,Testiosoite 383,10382 Helsinki,etunimi.sukunimi.382@example.com,"Kirjasniemi, Janne",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,19
+385,Kiuru,Antti Tapio,,O,Testiosoite 384,10383 Helsinki,etunimi.sukunimi.383@example.com,"Kiuru, Antti",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,20
+386,Koljonen,Markus Sakari,,B,Testiosoite 385,10384 Helsinki,etunimi.sukunimi.384@example.com,"Koljonen, Markus",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,21
+387,Korhonen,Aino Kaarina,,T,Testiosoite 386,10385 Helsinki,etunimi.sukunimi.385@example.com,"Korhonen, Kaarina",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,22
+388,Kortteinen,Lotta Kaisa,,L,Testiosoite 387,10386 Helsinki,etunimi.sukunimi.386@example.com,"Kortteinen, Lotta",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,23
+389,Korvela,Tiina Maria,,MM,Testiosoite 388,10387 Helsinki,etunimi.sukunimi.387@example.com,"Korvela, Tiina",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,24
+390,Koskinen,Anna Maarit,,K,Testiosoite 389,10388 Helsinki,etunimi.sukunimi.388@example.com,"Koskinen, Anna",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,25
+391,Kulhia,Jaakko Sakarias,,E,Testiosoite 390,10389 Helsinki,etunimi.sukunimi.389@example.com,"Kulhia, Jaakko",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,26
+392,Laakso,Senja Susanna,,H,Testiosoite 391,10390 Helsinki,etunimi.sukunimi.390@example.com,"Laakso, Senja",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,27
+393,Lehtonen,Jenni Elina,,ML,Testiosoite 392,10391 Helsinki,etunimi.sukunimi.391@example.com,"Lehtonen, Jenni",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,28
+394,Lewis,Oliver,,V,Testiosoite 393,10392 Helsinki,etunimi.sukunimi.392@example.com,"Lewis, Oliver",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,29
+395,Lindfors,Jaakko Santeri,,O,Testiosoite 394,10393 Helsinki,etunimi.sukunimi.393@example.com,"Lindfors, Jaakko",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,30
+396,Lindström,Jon Michael,,B,Testiosoite 395,10394 Helsinki,etunimi.sukunimi.394@example.com,"Lindström, Jon",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,31
+397,Lindström,Mikko Jyrki Johannes,,T,Testiosoite 396,10395 Helsinki,etunimi.sukunimi.395@example.com,"Lindström, Mikko",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,32
+398,Mankki,Sarianna Karoliina,,L,Testiosoite 397,10396 Helsinki,etunimi.sukunimi.396@example.com,"Mankki, Sarianna",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,33
+399,Marttinen,Jukka Tapio,,MM,Testiosoite 398,10397 Helsinki,etunimi.sukunimi.397@example.com,"Marttinen, Jukka",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,34
+400,McKeough,Helena,,K,Testiosoite 399,10398 Helsinki,etunimi.sukunimi.398@example.com,"McKeough, Helena",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,35
+401,Muuttomaa,Ville Viljami,,E,Testiosoite 400,10399 Helsinki,etunimi.sukunimi.399@example.com,"Muuttomaa, Viljami",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,36
+402,Mynttinen,Laura Pauliina,,H,Testiosoite 401,10400 Helsinki,etunimi.sukunimi.400@example.com,"Mynttinen, Laura",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,37
+403,Mörtengren,Daniela Deborah,,ML,Testiosoite 402,10401 Helsinki,etunimi.sukunimi.401@example.com,"Mörtengren, Daniela",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,38
+404,Ohisalo,Maria Karoliina,,V,Testiosoite 403,10402 Helsinki,etunimi.sukunimi.402@example.com,"Ohisalo, Maria",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,39
+405,Perälä,Erkki Hermanni,,O,Testiosoite 404,10403 Helsinki,etunimi.sukunimi.403@example.com,"Perälä, Erkki",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,40
+406,Piiparinen,Niklas Henrik Juhana,,B,Testiosoite 405,10404 Helsinki,etunimi.sukunimi.404@example.com,"Piiparinen, Niklas",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,41
+407,Pusa,Satu Maria,,T,Testiosoite 406,10405 Helsinki,etunimi.sukunimi.405@example.com,"Pusa, Satu",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,42
+408,Raittila,Simo Ahti Aleksi,,L,Testiosoite 407,10406 Helsinki,etunimi.sukunimi.406@example.com,"Raittila, Simo",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,43
+409,Rentola,Joonas Ilmari,,MM,Testiosoite 408,10407 Helsinki,etunimi.sukunimi.407@example.com,"Rentola, Joonas",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,44
+410,R Farag,Jamila,,K,Testiosoite 409,10408 Helsinki,etunimi.sukunimi.408@example.com,"R Farag, Jamila",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,45
+411,Rinkineva,Suvi Maria,,E,Testiosoite 410,10409 Helsinki,etunimi.sukunimi.409@example.com,"Rinkineva, Suvi",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,46
+412,Räisänen,Hanna Marika,,H,Testiosoite 411,10410 Helsinki,etunimi.sukunimi.410@example.com,"Räisänen, Hanna",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,47
+413,Salovaara,Antti Samuli,,ML,Testiosoite 412,10411 Helsinki,etunimi.sukunimi.411@example.com,"Salovaara, Antti",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,48
+414,Saxen,Niklas Otto,,V,Testiosoite 413,10412 Helsinki,etunimi.sukunimi.412@example.com,"Saxen, Niklas",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,49
+415,Silkelä,Elina Talvikki,,O,Testiosoite 414,10413 Helsinki,etunimi.sukunimi.413@example.com,"Silkelä, Elina",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,50
+416,Sjövall,Anna-Leena,,B,Testiosoite 415,10414 Helsinki,etunimi.sukunimi.414@example.com,"Sjövall, Anna",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,51
+417,Sulander,Essi Inkeri,,T,Testiosoite 416,10415 Helsinki,etunimi.sukunimi.415@example.com,"Sulander, Essi",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,52
+418,Tulenheimo,Martti Olavi,,L,Testiosoite 417,10416 Helsinki,etunimi.sukunimi.416@example.com,"Tulenheimo, Martti",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,53
+419,Tuure,Tuomas Ville Mikael,,MM,Testiosoite 418,10417 Helsinki,etunimi.sukunimi.417@example.com,"Tuure, Tuomas",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,54
+420,Urhonen,Amu Anna-Maria,,K,Testiosoite 419,10418 Helsinki,etunimi.sukunimi.418@example.com,"Urhonen, Amu",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,55
+421,Valkama,Elina Cecilia,,E,Testiosoite 420,10419 Helsinki,etunimi.sukunimi.419@example.com,"Valkama, Elina",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,56
+422,Voutilainen,Erika Eveliina,,H,Testiosoite 421,10420 Helsinki,etunimi.sukunimi.420@example.com,"Voutilainen, Erika",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,57
+423,Väyrynen,Taru Anna Elina,,ML,Testiosoite 422,10421 Helsinki,etunimi.sukunimi.421@example.com,"Väyrynen, Taru",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,58
+424,Waltari,Pyry Petteri,,V,Testiosoite 423,10422 Helsinki,etunimi.sukunimi.422@example.com,"Waltari, Pyry",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,59
+425,Warius,Johanna Maria Larsdotter,,O,Testiosoite 424,10423 Helsinki,etunimi.sukunimi.423@example.com,"Warius, Johanna",Maailmanpyörä,2,HYYn Vihreät - De Gröna vid HUS,60
+426,Sinisalo,Aino Elisa,,B,Testiosoite 425,10424 Helsinki,etunimi.sukunimi.424@example.com,"Sinisalo, Aino",Osakunnat,1,ESO,1
+427,Salminen,Aleksi Kustaa,,T,Testiosoite 426,10425 Helsinki,etunimi.sukunimi.425@example.com,"Salminen, Aleksi",Osakunnat,1,ESO,2
+428,Laulajainen,Anette Katariina,,L,Testiosoite 427,10426 Helsinki,etunimi.sukunimi.426@example.com,"Laulajainen, Anette",Osakunnat,1,ESO,3
+429,Heikkilä,Anja Kaarina,,MM,Testiosoite 428,10427 Helsinki,etunimi.sukunimi.427@example.com,"Heikkilä, Anja",Osakunnat,1,ESO,4
+430,Björklund,Antti Gustav Rikhard,,K,Testiosoite 429,10428 Helsinki,etunimi.sukunimi.428@example.com,"Björklund, Antti",Osakunnat,1,ESO,5
+431,Kosonen,Antti Heikki Tapani,,E,Testiosoite 430,10429 Helsinki,etunimi.sukunimi.429@example.com,"Kosonen, Antti",Osakunnat,1,ESO,6
+432,Pelanteri,Antti Hermanni,,H,Testiosoite 431,10430 Helsinki,etunimi.sukunimi.430@example.com,"Pelanteri, Antti",Osakunnat,1,ESO,7
+433,Saarsalmi,Auli Merikki,,ML,Testiosoite 432,10431 Helsinki,etunimi.sukunimi.431@example.com,"Saarsalmi, Auli",Osakunnat,1,ESO,8
+434,Seitz,Deni Johan,,V,Testiosoite 433,10432 Helsinki,etunimi.sukunimi.432@example.com,"Seitz, Deni 'puf'",Osakunnat,1,ESO,9
+435,Huttunen,Elina,,O,Testiosoite 434,10433 Helsinki,etunimi.sukunimi.433@example.com,"Huttunen, Elina",Osakunnat,1,ESO,10
+436,Miettinen,Emma Karoliina,,B,Testiosoite 435,10434 Helsinki,etunimi.sukunimi.434@example.com,"Miettinen, Emma",Osakunnat,1,ESO,11
+437,Vuorio,Emma Kaisa Johanna,,T,Testiosoite 436,10435 Helsinki,etunimi.sukunimi.435@example.com,"Vuorio, Emma",Osakunnat,1,ESO,12
+438,Lehtonen,Esko Pekka,,L,Testiosoite 437,10436 Helsinki,etunimi.sukunimi.436@example.com,"Lehtonen, Esko",Osakunnat,1,ESO,13
+439,Slotte,Eva-Stina Merith,,MM,Testiosoite 438,10437 Helsinki,etunimi.sukunimi.437@example.com,"Slotte, Eva-Stina",Osakunnat,1,ESO,14
+440,Lämsä,Hanna Eveliina,,K,Testiosoite 439,10438 Helsinki,etunimi.sukunimi.438@example.com,"Lämsä, Hanna",Osakunnat,1,ESO,15
+441,Vanala,Hanna-Liina,,E,Testiosoite 440,10439 Helsinki,etunimi.sukunimi.439@example.com,"Vanala, Hanna",Osakunnat,1,ESO,16
+442,Hotti,Hannu Sakari,,H,Testiosoite 441,10440 Helsinki,etunimi.sukunimi.440@example.com,"Hotti, Hannu",Osakunnat,1,ESO,17
+443,Peiponen,Heidi Katriina,,ML,Testiosoite 442,10441 Helsinki,etunimi.sukunimi.441@example.com,"Peiponen, Heidi",Osakunnat,1,ESO,18
+444,Koivupalo,Heikki Tapani,,V,Testiosoite 443,10442 Helsinki,etunimi.sukunimi.442@example.com,"Koivupalo, Heikki",Osakunnat,1,ESO,19
+445,Hyvärinen,Heini Helinä,,O,Testiosoite 444,10443 Helsinki,etunimi.sukunimi.443@example.com,"Hyvärinen, Heini",Osakunnat,1,ESO,20
+446,Nurmikari,Maria Helena Elisabeth,,B,Testiosoite 445,10444 Helsinki,etunimi.sukunimi.444@example.com,"Nurmikari, Helena",Osakunnat,1,ESO,21
+447,Ora,Inka Elina,,T,Testiosoite 446,10445 Helsinki,etunimi.sukunimi.445@example.com,"Ora, Inka",Osakunnat,1,ESO,22
+448,Stolt,Jani Petteri,,L,Testiosoite 447,10446 Helsinki,etunimi.sukunimi.446@example.com,"Stolt, Jani",Osakunnat,1,ESO,23
+449,Nyman,Jere Fred Olavi,,MM,Testiosoite 448,10447 Helsinki,etunimi.sukunimi.447@example.com,"Nyman, Jere",Osakunnat,1,ESO,24
+450,Kangas,Jertta Maarit,,K,Testiosoite 449,10448 Helsinki,etunimi.sukunimi.448@example.com,"Kangas, Jertta",Osakunnat,1,ESO,25
+451,Riitakorpi,Johanna Maria Elisabeth,,E,Testiosoite 450,10449 Helsinki,etunimi.sukunimi.449@example.com,"Riitakorpi, Johanna",Osakunnat,1,ESO,26
+452,Sihvonen,Juha Erik Michael,,H,Testiosoite 451,10450 Helsinki,etunimi.sukunimi.450@example.com,"Sihvonen, Juha",Osakunnat,1,ESO,27
+453,Tiainen,Sanna Kaisa,,ML,Testiosoite 452,10451 Helsinki,etunimi.sukunimi.451@example.com,"Tiainen, Kaisa",Osakunnat,1,ESO,28
+454,Ignatius,Karoliina Ida Aleksandra,,V,Testiosoite 453,10452 Helsinki,etunimi.sukunimi.452@example.com,"Ignatius, Karoliina",Osakunnat,1,ESO,29
+455,Rapala,Katariina Sini-Tuulia,,O,Testiosoite 454,10453 Helsinki,etunimi.sukunimi.453@example.com,"Rapala, Katariina",Osakunnat,1,ESO,30
+456,Joensuu,Katri-Mari Sofia,,B,Testiosoite 455,10454 Helsinki,etunimi.sukunimi.454@example.com,"Joensuu, Katri",Osakunnat,1,ESO,31
+457,Tolkki,Katri Johanna,,T,Testiosoite 456,10455 Helsinki,etunimi.sukunimi.455@example.com,"Tolkki, Katri",Osakunnat,1,ESO,32
+458,Ruuska,Anna Kerttu,,L,Testiosoite 457,10456 Helsinki,etunimi.sukunimi.456@example.com,"Ruuska, Kerttu",Osakunnat,1,ESO,33
+459,Iltala,Laura Elina,,MM,Testiosoite 458,10457 Helsinki,etunimi.sukunimi.457@example.com,"Iltala, Laura",Osakunnat,1,ESO,34
+460,Penttilä,Pia Laura Anneli,,K,Testiosoite 459,10458 Helsinki,etunimi.sukunimi.458@example.com,"Penttilä, Laura",Osakunnat,1,ESO,35
+461,Hurme,Lauramaija Helena,,E,Testiosoite 460,10459 Helsinki,etunimi.sukunimi.459@example.com,"Hurme, Lauramaija 'Lauris'",Osakunnat,1,ESO,36
+462,Saviranta,Lauri Aleksi,,H,Testiosoite 461,10460 Helsinki,etunimi.sukunimi.460@example.com,"Saviranta, Lauri",Osakunnat,1,ESO,37
+463,Airosmaa,Maiju Annika,,ML,Testiosoite 462,10461 Helsinki,etunimi.sukunimi.461@example.com,"Airosmaa, Maiju",Osakunnat,1,ESO,38
+464,Laaksonen,Maiju Tuulia,,V,Testiosoite 463,10462 Helsinki,etunimi.sukunimi.462@example.com,"Laaksonen, Maiju",Osakunnat,1,ESO,39
+465,Myllymäki,Meri Jenny Emilia,,O,Testiosoite 464,10463 Helsinki,etunimi.sukunimi.463@example.com,"Myllymäki, Meri",Osakunnat,1,ESO,40
+466,Kosloff,Mikael Aleksanteri,,B,Testiosoite 465,10464 Helsinki,etunimi.sukunimi.464@example.com,"Kosloff, Mikael",Osakunnat,1,ESO,41
+467,Laakso,Mikko Johannes,,T,Testiosoite 466,10465 Helsinki,etunimi.sukunimi.465@example.com,"Laakso, Mikko",Osakunnat,1,ESO,42
+468,Komulainen,Mirja valpuri,,L,Testiosoite 467,10466 Helsinki,etunimi.sukunimi.466@example.com,"Komulainen, Mirja",Osakunnat,1,ESO,43
+469,Ojala,Pauliina Elina,,MM,Testiosoite 468,10467 Helsinki,etunimi.sukunimi.467@example.com,"Ojala, Pauliina",Osakunnat,1,ESO,44
+470,Heikkonen,Petri-Tapio,,K,Testiosoite 469,10468 Helsinki,etunimi.sukunimi.468@example.com,"Heikkonen, Petri-Tapio",Osakunnat,1,ESO,45
+471,Paalasmaa,Salla Aino,,E,Testiosoite 470,10469 Helsinki,etunimi.sukunimi.469@example.com,"Paalasmaa, Salla",Osakunnat,1,ESO,46
+472,Latva-Äijö,Salla-Maaria,,H,Testiosoite 471,10470 Helsinki,etunimi.sukunimi.470@example.com,"Latva-Äijö, Salla",Osakunnat,1,ESO,47
+473,Varjonen,Sampo Mikael,,ML,Testiosoite 472,10471 Helsinki,etunimi.sukunimi.471@example.com,"Varjonen, Sampo",Osakunnat,1,ESO,48
+474,Vainikka,Satu Elina,,V,Testiosoite 473,10472 Helsinki,etunimi.sukunimi.472@example.com,"Vainikka, Satu",Osakunnat,1,ESO,49
+475,Nousiainen,Silja Johanna,,O,Testiosoite 474,10473 Helsinki,etunimi.sukunimi.473@example.com,"Nousiainen, Silja",Osakunnat,1,ESO,50
+476,Mäkinen,Simo Valtteri,,B,Testiosoite 475,10474 Helsinki,etunimi.sukunimi.474@example.com,"Mäkinen, Simo",Osakunnat,1,ESO,51
+477,Kuuluvainen,Soila Maria,,T,Testiosoite 476,10475 Helsinki,etunimi.sukunimi.475@example.com,"Kuuluvainen, Soila",Osakunnat,1,ESO,52
+478,Paikkala,Terhi Rauna Maarit,,L,Testiosoite 477,10476 Helsinki,etunimi.sukunimi.476@example.com,"Paikkala, Terhi",Osakunnat,1,ESO,53
+479,Mörsky,Tiia-Tuulia Marianne,,MM,Testiosoite 478,10477 Helsinki,etunimi.sukunimi.477@example.com,"Mörsky, Tiia",Osakunnat,1,ESO,54
+480,Söderholm,Tiina Henriikka Aleksandra,,K,Testiosoite 479,10478 Helsinki,etunimi.sukunimi.478@example.com,"Söderholm, Tiina",Osakunnat,1,ESO,55
+481,Rask,Tobias Matias,,E,Testiosoite 480,10479 Helsinki,etunimi.sukunimi.479@example.com,"Rask, Tobias",Osakunnat,1,ESO,56
+482,Hänninen,Ulrika Anna Maria,,H,Testiosoite 481,10480 Helsinki,etunimi.sukunimi.480@example.com,"Hänninen, Ulrika",Osakunnat,1,ESO,57
+483,Ryynänen,Veera Vilhelmiina,,ML,Testiosoite 482,10481 Helsinki,etunimi.sukunimi.481@example.com,"Ryynänen, Veera",Osakunnat,1,ESO,58
+484,Jarmala,Veikko Johannes,,V,Testiosoite 483,10482 Helsinki,etunimi.sukunimi.482@example.com,"Jarmala, Veikko",Osakunnat,1,ESO,59
+485,Kajanti,Vilja Inga Wilhelmiina,,O,Testiosoite 484,10483 Helsinki,etunimi.sukunimi.483@example.com,"Kajanti, Vilja",Osakunnat,1,ESO,60
+486,Virtanen,Anna Martta Elina,,B,Testiosoite 485,10484 Helsinki,etunimi.sukunimi.484@example.com,"Virtanen, Anna",Osakunnat,2,SavO,1
+487,Oittinen,Annamari Johanna,,T,Testiosoite 486,10485 Helsinki,etunimi.sukunimi.485@example.com,"Oittinen, Annamari",Osakunnat,2,SavO,2
+488,Holopainen,Anne Dora,,L,Testiosoite 487,10486 Helsinki,etunimi.sukunimi.486@example.com,"Holopainen, Anne",Osakunnat,2,SavO,3
+489,Hirsaho,Anni Tuulikki,,MM,Testiosoite 488,10487 Helsinki,etunimi.sukunimi.487@example.com,"Hirsaho, Anni",Osakunnat,2,SavO,4
+490,Kirkkala,Antti Juhani,,K,Testiosoite 489,10488 Helsinki,etunimi.sukunimi.488@example.com,"Kirkkala, Antti",Osakunnat,2,SavO,5
+491,Vauhkonen,Antti Tapani,,E,Testiosoite 490,10489 Helsinki,etunimi.sukunimi.489@example.com,"Vauhkonen, Antti",Osakunnat,2,SavO,6
+492,Huttunen,Ari Jussi,,H,Testiosoite 491,10490 Helsinki,etunimi.sukunimi.490@example.com,"Huttunen, Ari 'Addu'",Osakunnat,2,SavO,7
+493,Sihvola,Emma Valpuri,,ML,Testiosoite 492,10491 Helsinki,etunimi.sukunimi.491@example.com,"Sihvola, Emma",Osakunnat,2,SavO,8
+494,Nevalainen,Emmi Noora,,V,Testiosoite 493,10492 Helsinki,etunimi.sukunimi.492@example.com,"Nevalainen, Emmi",Osakunnat,2,SavO,9
+495,Juutinen,Esko Heikki Johannes,,O,Testiosoite 494,10493 Helsinki,etunimi.sukunimi.493@example.com,"Juutinen, Esko",Osakunnat,2,SavO,10
+496,Remonen,Iina Tuulikki,,B,Testiosoite 495,10494 Helsinki,etunimi.sukunimi.494@example.com,"Remonen, Iina",Osakunnat,2,SavO,11
+497,Holopainen,Jani Hans,,T,Testiosoite 496,10495 Helsinki,etunimi.sukunimi.495@example.com,"Holopainen, Jani",Osakunnat,2,SavO,12
+498,Oinonen,Jukka Antero,,L,Testiosoite 497,10496 Helsinki,etunimi.sukunimi.496@example.com,"Oinonen, Jukka",Osakunnat,2,SavO,13
+499,Pakarinen,Jukka Antero,,MM,Testiosoite 498,10497 Helsinki,etunimi.sukunimi.497@example.com,"Pakarinen, Jukka 'Rasti'",Osakunnat,2,SavO,14
+500,Gustafsson,Jussi Petteri,,K,Testiosoite 499,10498 Helsinki,etunimi.sukunimi.498@example.com,"Gustafsson, Jussi",Osakunnat,2,SavO,15
+501,Kastarinen,Katja Pauliina,,E,Testiosoite 500,10499 Helsinki,etunimi.sukunimi.499@example.com,"Kastarinen, Katja",Osakunnat,2,SavO,16
+502,Kalliomäki,Katriina Elina,,H,Testiosoite 501,10500 Helsinki,etunimi.sukunimi.500@example.com,"Kalliomäki, Katriina",Osakunnat,2,SavO,17
+503,Kainulainen,Laura Alina,,ML,Testiosoite 502,10501 Helsinki,etunimi.sukunimi.501@example.com,"Kainulainen, Laura",Osakunnat,2,SavO,18
+504,Korhonen,Laura Maria,,V,Testiosoite 503,10502 Helsinki,etunimi.sukunimi.502@example.com,"Korhonen, Laura",Osakunnat,2,SavO,19
+505,Auvinen,Lauri Mika Petteri,,O,Testiosoite 504,10503 Helsinki,etunimi.sukunimi.503@example.com,"Auvinen, Lauri",Osakunnat,2,SavO,20
+506,Niva,Lotta Eveliina,,B,Testiosoite 505,10504 Helsinki,etunimi.sukunimi.504@example.com,"Niva, Lotta",Osakunnat,2,SavO,21
+507,Haka,Maija Erika,,T,Testiosoite 506,10505 Helsinki,etunimi.sukunimi.505@example.com,"Haka, Maija",Osakunnat,2,SavO,22
+508,Väre,Maija Tuuli,,L,Testiosoite 507,10506 Helsinki,etunimi.sukunimi.506@example.com,"Väre, Maija",Osakunnat,2,SavO,23
+509,Häkkinen,Margareeta Anna Emilia,,MM,Testiosoite 508,10507 Helsinki,etunimi.sukunimi.507@example.com,"Häkkinen, Margareeta",Osakunnat,2,SavO,24
+510,Miettinen,Markus Juhani,,K,Testiosoite 509,10508 Helsinki,etunimi.sukunimi.508@example.com,"Miettinen, Markus",Osakunnat,2,SavO,25
+511,Pitkänen,Mikko Riku Aleksi,,E,Testiosoite 510,10509 Helsinki,etunimi.sukunimi.509@example.com,"Pitkänen, Mikko",Osakunnat,2,SavO,26
+512,Lindfors,Minna Helena,,H,Testiosoite 511,10510 Helsinki,etunimi.sukunimi.510@example.com,"Lindfors, Minna",Osakunnat,2,SavO,27
+513,Virtanen,Otto Lauri Johannes,,ML,Testiosoite 512,10511 Helsinki,etunimi.sukunimi.511@example.com,"Virtanen, Otto",Osakunnat,2,SavO,28
+514,Temmes,Outi Kaarina,,V,Testiosoite 513,10512 Helsinki,etunimi.sukunimi.512@example.com,"Temmes, Outi",Osakunnat,2,SavO,29
+515,Alapeteri,Pia Pauliina,,O,Testiosoite 514,10513 Helsinki,etunimi.sukunimi.513@example.com,"Alapeteri, Pia",Osakunnat,2,SavO,30
+516,Kettunen,Pyry Juhani,,B,Testiosoite 515,10514 Helsinki,etunimi.sukunimi.514@example.com,"Kettunen, Pyry",Osakunnat,2,SavO,31
+517,Ruuth,Riikka Maaret,,T,Testiosoite 516,10515 Helsinki,etunimi.sukunimi.515@example.com,"Ruuth, Riikka",Osakunnat,2,SavO,32
+518,Arola,Saara Eliisa,,L,Testiosoite 517,10516 Helsinki,etunimi.sukunimi.516@example.com,"Arola, Saara",Osakunnat,2,SavO,33
+519,Pennanen,Saila Pauliina,,MM,Testiosoite 518,10517 Helsinki,etunimi.sukunimi.517@example.com,"Pennanen, Saila",Osakunnat,2,SavO,34
+520,Juutinen,Sara Henriikka,,K,Testiosoite 519,10518 Helsinki,etunimi.sukunimi.518@example.com,"Juutinen, Sara",Osakunnat,2,SavO,35
+521,Ulmanen,Sini Maarit,,E,Testiosoite 520,10519 Helsinki,etunimi.sukunimi.519@example.com,"Ulmanen, Sini",Osakunnat,2,SavO,36
+522,Jentze,Linnea Suvi Tuulia,,H,Testiosoite 521,10520 Helsinki,etunimi.sukunimi.520@example.com,"Jentze, Suvi",Osakunnat,2,SavO,37
+523,Laatikainen,Tanja Onerva,,ML,Testiosoite 522,10521 Helsinki,etunimi.sukunimi.521@example.com,"Laatikainen, Tanja",Osakunnat,2,SavO,38
+524,Valkonen,Tatu Petteri,,V,Testiosoite 523,10522 Helsinki,etunimi.sukunimi.522@example.com,"Valkonen, Tatu",Osakunnat,2,SavO,39
+525,Tuovinen,Veera Eveliina,,O,Testiosoite 524,10523 Helsinki,etunimi.sukunimi.523@example.com,"Tuovinen, Veera",Osakunnat,2,SavO,40
+526,Meriläinen,Ville Sakari,,B,Testiosoite 525,10524 Helsinki,etunimi.sukunimi.524@example.com,"Meriläinen, Ville 'Piispa'",Osakunnat,2,SavO,41
+527,Pulkkinen,Ville Petteri,,T,Testiosoite 526,10525 Helsinki,etunimi.sukunimi.525@example.com,"Pulkkinen, Ville",Osakunnat,2,SavO,42
+528,Peltonen,Aku Petteri,,L,Testiosoite 527,10526 Helsinki,etunimi.sukunimi.526@example.com,"Peltonen, Aku 'AQ'",Osakunnat,3,HO-Natura,1
+529,Valjakka,Anna Kristiina,,MM,Testiosoite 528,10527 Helsinki,etunimi.sukunimi.527@example.com,"Valjakka, Anna",Osakunnat,3,HO-Natura,2
+530,Zitting,Anna Maija,,K,Testiosoite 529,10528 Helsinki,etunimi.sukunimi.528@example.com,"Zitting, Anna",Osakunnat,3,HO-Natura,3
+531,Hämäläinen,Anu-Mari,,E,Testiosoite 530,10529 Helsinki,etunimi.sukunimi.529@example.com,"Hämäläinen, Anu-Mari",Osakunnat,3,HO-Natura,4
+532,Koivu,Arto Petteri,,H,Testiosoite 531,10530 Helsinki,etunimi.sukunimi.530@example.com,"Koivu, Arto",Osakunnat,3,HO-Natura,5
+533,Tuomela,Erkka Eevert,,ML,Testiosoite 532,10531 Helsinki,etunimi.sukunimi.531@example.com,"Tuomela, Erkka",Osakunnat,3,HO-Natura,6
+534,Kanerva,Heimo Sakari,,V,Testiosoite 533,10532 Helsinki,etunimi.sukunimi.532@example.com,"Kanerva, Heimo",Osakunnat,3,HO-Natura,8
+535,Mattila,Henriikka Johanna Kaarina,,O,Testiosoite 534,10533 Helsinki,etunimi.sukunimi.533@example.com,"Mattila, Henriikka",Osakunnat,3,HO-Natura,9
+536,Tynkkynen,Ilkka Santeri,,B,Testiosoite 535,10534 Helsinki,etunimi.sukunimi.534@example.com,"Tynkkynen, Ilkka",Osakunnat,3,HO-Natura,10
+537,Ollikainen,Jani Marko Tapani,,T,Testiosoite 536,10535 Helsinki,etunimi.sukunimi.535@example.com,"Ollikainen, Jani 'bestis'",Osakunnat,3,HO-Natura,11
+538,Hyytiäinen,Janne Sakari,,L,Testiosoite 537,10536 Helsinki,etunimi.sukunimi.536@example.com,"Hyytiäinen, Janne",Osakunnat,3,HO-Natura,12
+539,Hyvönen,Jarna Elena,,MM,Testiosoite 538,10537 Helsinki,etunimi.sukunimi.537@example.com,"Hyvönen, Jarna",Osakunnat,3,HO-Natura,13
+540,Mokka,Jenna Emilia,,K,Testiosoite 539,10538 Helsinki,etunimi.sukunimi.538@example.com,"Mokka, Jenna",Osakunnat,3,HO-Natura,14
+541,Luolaja,Jenni Pauliina,,E,Testiosoite 540,10539 Helsinki,etunimi.sukunimi.539@example.com,"Luolaja, Jenni",Osakunnat,3,HO-Natura,15
+542,Koponen,Juha Henrik,,H,Testiosoite 541,10540 Helsinki,etunimi.sukunimi.540@example.com,"Koponen, Juha",Osakunnat,3,HO-Natura,16
+543,Heliö,Jukka Tuomas,,ML,Testiosoite 542,10541 Helsinki,etunimi.sukunimi.541@example.com,"Heliö, Jukka",Osakunnat,3,HO-Natura,17
+544,Lehtinen,Juuso Jalmari,,V,Testiosoite 543,10542 Helsinki,etunimi.sukunimi.542@example.com,"Lehtinen, Juuso",Osakunnat,3,HO-Natura,18
+545,Eriksson,Jyrki Olavi,,O,Testiosoite 544,10543 Helsinki,etunimi.sukunimi.543@example.com,"Eriksson, Jyrki",Osakunnat,3,HO-Natura,19
+546,Holmström,Jenny Karoliina,,B,Testiosoite 545,10544 Helsinki,etunimi.sukunimi.544@example.com,"Holmström, Karoliina",Osakunnat,3,HO-Natura,20
+547,Ervasti,Kim Mikael,,T,Testiosoite 546,10545 Helsinki,etunimi.sukunimi.545@example.com,"Ervasti, Kim",Osakunnat,3,HO-Natura,21
+548,Lähteenmäki,Liisa Katriina,,L,Testiosoite 547,10546 Helsinki,etunimi.sukunimi.546@example.com,"Lähteenmäki, Liisa",Osakunnat,3,HO-Natura,22
+549,Kostamo,Maarit Hannele,,MM,Testiosoite 548,10547 Helsinki,etunimi.sukunimi.547@example.com,"Kostamo, Maarit",Osakunnat,3,HO-Natura,23
+550,Korpinen,Markus Nikolaus,,K,Testiosoite 549,10548 Helsinki,etunimi.sukunimi.548@example.com,"Korpinen, Markus",Osakunnat,3,HO-Natura,24
+551,Nieminen,Martti Johannes,,E,Testiosoite 550,10549 Helsinki,etunimi.sukunimi.549@example.com,"Nieminen, Martti",Osakunnat,3,HO-Natura,25
+552,Sergejeff,Mikko Petteri,,H,Testiosoite 551,10550 Helsinki,etunimi.sukunimi.550@example.com,"Sergejeff, Mikko",Osakunnat,3,HO-Natura,26
+553,Varje,Pekka Sakari,,ML,Testiosoite 552,10551 Helsinki,etunimi.sukunimi.551@example.com,"Varje, Pekka",Osakunnat,3,HO-Natura,27
+554,Lähteenkorva,Riku Petteri,,V,Testiosoite 553,10552 Helsinki,etunimi.sukunimi.552@example.com,"Lähteenkorva, Riku",Osakunnat,3,HO-Natura,28
+555,Lähteenmäki,Lauri Sakari,,O,Testiosoite 554,10553 Helsinki,etunimi.sukunimi.553@example.com,"Lähteenmäki, Sakari",Osakunnat,3,HO-Natura,29
+556,Vuorinen,Samu Henrik Aleksei,,B,Testiosoite 555,10554 Helsinki,etunimi.sukunimi.554@example.com,"Vuorinen, Samu",Osakunnat,3,HO-Natura,30
+557,Vekkeli,Santtu Esa Tapio,,T,Testiosoite 556,10555 Helsinki,etunimi.sukunimi.555@example.com,"Vekkeli, Santtu",Osakunnat,3,HO-Natura,31
+558,Hatakka,Risto Tapio,,L,Testiosoite 557,10556 Helsinki,etunimi.sukunimi.556@example.com,"Hatakka, Tapio",Osakunnat,3,HO-Natura,32
+559,Laakso,Teemu Oskari,,MM,Testiosoite 558,10557 Helsinki,etunimi.sukunimi.557@example.com,"Laakso, Teemu",Osakunnat,3,HO-Natura,33
+560,Gebhard,Teo Henrik,,K,Testiosoite 559,10558 Helsinki,etunimi.sukunimi.558@example.com,"Gebhard, Teo",Osakunnat,3,HO-Natura,34
+561,Saarela,Tuomas Jukka,,E,Testiosoite 560,10559 Helsinki,etunimi.sukunimi.559@example.com,"Saarela, Tuomas",Osakunnat,3,HO-Natura,35
+562,Lehto,Veera Elina,,H,Testiosoite 561,10560 Helsinki,etunimi.sukunimi.560@example.com,"Lehto, Veera",Osakunnat,3,HO-Natura,36
+563,Lähteenmäki,Veikko Juhani,,ML,Testiosoite 562,10561 Helsinki,etunimi.sukunimi.561@example.com,"Lähteenmäki, Veikko",Osakunnat,3,HO-Natura,37
+564,Lehtinen,Viljo Pietari,,V,Testiosoite 563,10562 Helsinki,etunimi.sukunimi.562@example.com,"Lehtinen, Viljo",Osakunnat,3,HO-Natura,38
+565,Lappalainen,Ville Sakari,,O,Testiosoite 564,10563 Helsinki,etunimi.sukunimi.563@example.com,"Lappalainen, Ville",Osakunnat,3,HO-Natura,39
+566,Punkari,Milla Maria,,B,Testiosoite 565,10564 Helsinki,etunimi.sukunimi.564@example.com,"Punkari, Milla",Osakunnat,3,HO-Natura,40
+567,Mäkelä,Albert Lauri Kristian,,T,Testiosoite 566,10565 Helsinki,etunimi.sukunimi.565@example.com,"Mäkelä, Albert",Osakunnat,4,KSO-VSO,1
+568,Huuskonen,Anna Katariina,,L,Testiosoite 567,10566 Helsinki,etunimi.sukunimi.566@example.com,"Huuskonen, Anna",Osakunnat,4,KSO-VSO,2
+569,Kosonen,Anna Emilia,,MM,Testiosoite 568,10567 Helsinki,etunimi.sukunimi.567@example.com,"Kosonen, Anna",Osakunnat,4,KSO-VSO,3
+570,Piesala,Ukko Väinö Eemeli,,K,Testiosoite 569,10568 Helsinki,etunimi.sukunimi.568@example.com,"Piesala, Eemeli",Osakunnat,4,KSO-VSO,4
+571,Pylsy,Elina Maria,,E,Testiosoite 570,10569 Helsinki,etunimi.sukunimi.569@example.com,"Pylsy, Elina",Osakunnat,4,KSO-VSO,5
+572,Rintala,Essi Kristiina,,H,Testiosoite 571,10570 Helsinki,etunimi.sukunimi.570@example.com,"Rintala, Essi",Osakunnat,4,KSO-VSO,6
+573,Mäkelä,Hanna-Maria Helena,,ML,Testiosoite 572,10571 Helsinki,etunimi.sukunimi.571@example.com,"Mäkelä, Hanna-Maria",Osakunnat,4,KSO-VSO,7
+574,Jurvanen,Juha-Pekka Olavi,,V,Testiosoite 573,10572 Helsinki,etunimi.sukunimi.572@example.com,"Jurvanen, Juha-Pekka",Osakunnat,4,KSO-VSO,8
+575,Leppänen,Maija Helena,,O,Testiosoite 574,10573 Helsinki,etunimi.sukunimi.573@example.com,"Leppänen, Maija",Osakunnat,4,KSO-VSO,9
+576,Eskelinen,Marja Eeva-Riitta,,B,Testiosoite 575,10574 Helsinki,etunimi.sukunimi.574@example.com,"Eskelinen, Marja",Osakunnat,4,KSO-VSO,10
+577,Kosonen,Suvi Matleena,,T,Testiosoite 576,10575 Helsinki,etunimi.sukunimi.575@example.com,"Kosonen, Matleena",Osakunnat,4,KSO-VSO,11
+578,Kaijaluoto,Otso Veikko,,L,Testiosoite 577,10576 Helsinki,etunimi.sukunimi.576@example.com,"Kaijaluoto, Otso",Osakunnat,4,KSO-VSO,12
+579,Vogt,Sara Tuuli Marjatta,,MM,Testiosoite 578,10577 Helsinki,etunimi.sukunimi.577@example.com,"Vogt, Sara",Osakunnat,4,KSO-VSO,13
+580,Oinas,Varpu Eliisa,,K,Testiosoite 579,10578 Helsinki,etunimi.sukunimi.578@example.com,"Oinas, Varpu",Osakunnat,4,KSO-VSO,14
+581,Kuusela,Heidi Marja,,E,Testiosoite 580,10579 Helsinki,etunimi.sukunimi.579@example.com,"Kuusela, Heidi",Osakunnat,4,KSO-VSO,15
+582,Korhonen,Henri Mikael,,H,Testiosoite 581,10580 Helsinki,etunimi.sukunimi.580@example.com,"Korhonen, Henri",Osakunnat,4,KSO-VSO,16
+583,Ahola,Ilari Tapani,,ML,Testiosoite 582,10581 Helsinki,etunimi.sukunimi.581@example.com,"Ahola, Ilari",Osakunnat,4,KSO-VSO,17
+584,Mäkinen,Jenna Henriikka,,V,Testiosoite 583,10582 Helsinki,etunimi.sukunimi.582@example.com,"Mäkinen, Jenna",Osakunnat,4,KSO-VSO,18
+585,Niittynen,Lauri Olavi,,O,Testiosoite 584,10583 Helsinki,etunimi.sukunimi.583@example.com,"Niittynen, Lauri",Osakunnat,4,KSO-VSO,19
+586,Lähteenaho,Liisa-Maija,,B,Testiosoite 585,10584 Helsinki,etunimi.sukunimi.584@example.com,"Lähteenaho, Liisa",Osakunnat,4,KSO-VSO,20
+587,Varjo,Hennariikka Mariaana,,T,Testiosoite 586,10585 Helsinki,etunimi.sukunimi.585@example.com,"Varjo, Hennariikka 'Masa'",Osakunnat,4,KSO-VSO,21
+588,Lehto,Matti Juha Henrik,,L,Testiosoite 587,10586 Helsinki,etunimi.sukunimi.586@example.com,"Lehto, Matti",Osakunnat,4,KSO-VSO,22
+589,Hirvonen,Mikko Sakari,,MM,Testiosoite 588,10587 Helsinki,etunimi.sukunimi.587@example.com,"Hirvonen, Mikko 'Apsu'",Osakunnat,4,KSO-VSO,23
+590,Tuominen,Niko Petteri,,K,Testiosoite 589,10588 Helsinki,etunimi.sukunimi.588@example.com,"Tuominen, Niko",Osakunnat,4,KSO-VSO,24
+591,Hamberg,Ninni Maria Katariina,,E,Testiosoite 590,10589 Helsinki,etunimi.sukunimi.589@example.com,"Hamberg, Ninni",Osakunnat,4,KSO-VSO,25
+592,Nokso-Koivisto,Eero Oskari,,H,Testiosoite 591,10590 Helsinki,etunimi.sukunimi.590@example.com,"Nokso-Koivisto, Oskari",Osakunnat,4,KSO-VSO,26
+593,Simelius,Satu Marianna,,ML,Testiosoite 592,10591 Helsinki,etunimi.sukunimi.591@example.com,"Simelius, Satu",Osakunnat,4,KSO-VSO,27
+594,Halme,Teemu Antero,,V,Testiosoite 593,10592 Helsinki,etunimi.sukunimi.592@example.com,"Halme, Teemu",Osakunnat,4,KSO-VSO,28
+595,Mäkinen,Tero Tapani,,O,Testiosoite 594,10593 Helsinki,etunimi.sukunimi.593@example.com,"Mäkinen, Tero",Osakunnat,4,KSO-VSO,29
+596,Torkki,Anna Katariina,,B,Testiosoite 595,10594 Helsinki,etunimi.sukunimi.594@example.com,"Torkki, Anna",Osakunnat,5,SatO-ESO2,1
+597,Ritala,Anni Maria,,T,Testiosoite 596,10595 Helsinki,etunimi.sukunimi.595@example.com,"Ritala, Anni",Osakunnat,5,SatO-ESO2,2
+598,Lehtikangas,Annukka Katariina Emilia,,L,Testiosoite 597,10596 Helsinki,etunimi.sukunimi.596@example.com,"Lehtikangas, Annukka",Osakunnat,5,SatO-ESO2,3
+599,Saarenmaa,Antto Sakari,,MM,Testiosoite 598,10597 Helsinki,etunimi.sukunimi.597@example.com,"Saarenmaa, Antto",Osakunnat,5,SatO-ESO2,4
+600,Välimäki,Anu Jutta Hannele,,K,Testiosoite 599,10598 Helsinki,etunimi.sukunimi.598@example.com,"Välimäki, Anu",Osakunnat,5,SatO-ESO2,5
+601,Lepistö,Emmi Loviisa,,E,Testiosoite 600,10599 Helsinki,etunimi.sukunimi.599@example.com,"Lepistö, Emmi",Osakunnat,5,SatO-ESO2,6
+602,Norri,Essi Erene Annika,,H,Testiosoite 601,10600 Helsinki,etunimi.sukunimi.600@example.com,"Norri, Essi",Osakunnat,5,SatO-ESO2,7
+603,Hannus,Hanna Sofia,,ML,Testiosoite 602,10601 Helsinki,etunimi.sukunimi.601@example.com,"Hannus, Hanna",Osakunnat,5,SatO-ESO2,8
+604,Lehti,Hanna-Kaisa Kristiina,,V,Testiosoite 603,10602 Helsinki,etunimi.sukunimi.602@example.com,"Lehti, Hanna-Kaisa",Osakunnat,5,SatO-ESO2,9
+605,Hyyti,Heikki Sakari,,O,Testiosoite 604,10603 Helsinki,etunimi.sukunimi.603@example.com,"Hyyti, Heikki",Osakunnat,5,SatO-ESO2,10
+606,Holopainen,Henri Iiro Eemeli,,B,Testiosoite 605,10604 Helsinki,etunimi.sukunimi.604@example.com,"Holopainen, Henri",Osakunnat,5,SatO-ESO2,11
+607,Kärrylä,Ilkka Aleksi,,T,Testiosoite 606,10605 Helsinki,etunimi.sukunimi.605@example.com,"Kärrylä, Ilkka",Osakunnat,5,SatO-ESO2,12
+608,Liinaharja,Eriika Inkeri,,L,Testiosoite 607,10606 Helsinki,etunimi.sukunimi.606@example.com,"Liinaharja, Inkeri",Osakunnat,5,SatO-ESO2,13
+609,Liinaharja,Johanna Elina,,MM,Testiosoite 608,10607 Helsinki,etunimi.sukunimi.607@example.com,"Liinaharja, Johanna",Osakunnat,5,SatO-ESO2,14
+610,Tuomi,Juho Valtteri,,K,Testiosoite 609,10608 Helsinki,etunimi.sukunimi.608@example.com,"Tuomi, Juho",Osakunnat,5,SatO-ESO2,15
+611,Ritala,Kaisa Marika,,E,Testiosoite 610,10609 Helsinki,etunimi.sukunimi.609@example.com,"Ritala, Kaisa",Osakunnat,5,SatO-ESO2,16
+612,Aalto-Setälä,Laura Katriina,,H,Testiosoite 611,10610 Helsinki,etunimi.sukunimi.610@example.com,"Aalto-Setälä, Laura",Osakunnat,5,SatO-ESO2,17
+613,Laurén,Marika,,ML,Testiosoite 612,10611 Helsinki,etunimi.sukunimi.611@example.com,"Laurén, Marika",Osakunnat,5,SatO-ESO2,18
+614,Alho,Markku Juhani,,V,Testiosoite 613,10612 Helsinki,etunimi.sukunimi.612@example.com,"Alho, Markku",Osakunnat,5,SatO-ESO2,19
+615,Ilomäki,Miika Valtteri,,O,Testiosoite 614,10613 Helsinki,etunimi.sukunimi.613@example.com,"Ilomäki, Miika",Osakunnat,5,SatO-ESO2,20
+616,Mäkipää,Mikko Tapani,,B,Testiosoite 615,10614 Helsinki,etunimi.sukunimi.614@example.com,"Mäkipää, Mikko",Osakunnat,5,SatO-ESO2,21
+617,Heikintalo,Noora Marjaana,,T,Testiosoite 616,10615 Helsinki,etunimi.sukunimi.615@example.com,"Heikintalo, Noora",Osakunnat,5,SatO-ESO2,22
+618,Sattilainen,Otso Ilmari,,L,Testiosoite 617,10616 Helsinki,etunimi.sukunimi.616@example.com,"Sattilainen, Otso",Osakunnat,5,SatO-ESO2,23
+619,Alitalo,Tero Johannes,,MM,Testiosoite 618,10617 Helsinki,etunimi.sukunimi.617@example.com,"Alitalo, Tero",Osakunnat,5,SatO-ESO2,24
+620,Häivälä,Timo Juhani,,K,Testiosoite 619,10618 Helsinki,etunimi.sukunimi.618@example.com,"Häivälä, Timo",Osakunnat,5,SatO-ESO2,25
+621,Tamminen,Tuulia Paulina,,E,Testiosoite 620,10619 Helsinki,etunimi.sukunimi.619@example.com,"Tamminen, Tuulia",Osakunnat,5,SatO-ESO2,26
+622,Rintanen,Tytti Inkeri,,H,Testiosoite 621,10620 Helsinki,etunimi.sukunimi.620@example.com,"Rintanen, Tytti",Osakunnat,5,SatO-ESO2,27
+623,Parisianos,Veera Nikoletta,,ML,Testiosoite 622,10621 Helsinki,etunimi.sukunimi.621@example.com,"Parisianos, Veera",Osakunnat,5,SatO-ESO2,28
+624,Ritala,Johanna Wilhelmiina,,V,Testiosoite 623,10622 Helsinki,etunimi.sukunimi.622@example.com,"Ritala, Wilhelmiina",Osakunnat,5,SatO-ESO2,29
+625,Ilkka,Emma Josefiina,,O,Testiosoite 624,10623 Helsinki,etunimi.sukunimi.623@example.com,"Ilkka, Emma",Osakunnat,5,SatO-ESO2,30
+626,Parkkari,Jussi-Pekka,,B,Testiosoite 625,10624 Helsinki,etunimi.sukunimi.624@example.com,"Parkkari, Jussi-Pekka",Osakunnat,5,SatO-ESO2,31
+627,Karulinna,Karoliina Jounintytär,,T,Testiosoite 626,10625 Helsinki,etunimi.sukunimi.625@example.com,"Karulinna, Karoliina",Osakunnat,5,SatO-ESO2,32
+628,Peltonen,Lauri Pekka,,L,Testiosoite 627,10626 Helsinki,etunimi.sukunimi.626@example.com,"Peltonen, Lauri 'Peltsi'",Osakunnat,5,SatO-ESO2,33
+629,Lassila,Maria Sisko Helena,,MM,Testiosoite 628,10627 Helsinki,etunimi.sukunimi.627@example.com,"Lassila, Maria",Osakunnat,5,SatO-ESO2,34
+630,Kauppinen,Mikael Uolevi Rikari,,K,Testiosoite 629,10628 Helsinki,etunimi.sukunimi.628@example.com,"Kauppinen, Mikael",Osakunnat,5,SatO-ESO2,35
+631,Tiusanen,Otto Veikko Verneri,,E,Testiosoite 630,10629 Helsinki,etunimi.sukunimi.629@example.com,"Tiusanen, Otto",Osakunnat,5,SatO-ESO2,36
+632,Lindfors,Pia Kristina,,H,Testiosoite 631,10630 Helsinki,etunimi.sukunimi.630@example.com,"Lindfors, Pia",Osakunnat,5,SatO-ESO2,37
+633,Hatakka,Antti Sampsa Johannes,,ML,Testiosoite 632,10631 Helsinki,etunimi.sukunimi.631@example.com,"Hatakka, Sampsa",Osakunnat,5,SatO-ESO2,38
+634,Sulkamo,Saramia Maria,,V,Testiosoite 633,10632 Helsinki,etunimi.sukunimi.632@example.com,"Sulkamo, Saramia",Osakunnat,5,SatO-ESO2,39
+635,Adler,Taru Sinikka,,O,Testiosoite 634,10633 Helsinki,etunimi.sukunimi.633@example.com,"Adler, Taru",Osakunnat,5,SatO-ESO2,40
+636,Hillukkala,Tuomas Juha Tapani,,B,Testiosoite 635,10634 Helsinki,etunimi.sukunimi.634@example.com,"Hillukkala, Tuomas 'Juomas'",Osakunnat,5,SatO-ESO2,41
+637,Wäre,Tuomas Risto,,T,Testiosoite 636,10635 Helsinki,etunimi.sukunimi.635@example.com,"Wäre, Tuomas",Osakunnat,5,SatO-ESO2,42
+638,Aitosalo,Veikko Olavi,,L,Testiosoite 637,10636 Helsinki,etunimi.sukunimi.636@example.com,"Aitosalo, Veikko",Osakunnat,5,SatO-ESO2,43
+639,Saarelainen,Antti Juhani,,MM,Testiosoite 638,10637 Helsinki,etunimi.sukunimi.637@example.com,"Saarelainen, Antti",Osakunnat,6,Domus Gaudiumin osakunnat,1
+640,Ahtonen,Hanna Riikka,,K,Testiosoite 639,10638 Helsinki,etunimi.sukunimi.638@example.com,"Ahtonen, Hanna",Osakunnat,6,Domus Gaudiumin osakunnat,2
+641,Eskelinen,Juho Pekka Aleksi,,E,Testiosoite 640,10639 Helsinki,etunimi.sukunimi.639@example.com,"Eskelinen, Juho",Osakunnat,6,Domus Gaudiumin osakunnat,3
+642,Tiainen,Nelli Eveliina,,H,Testiosoite 641,10640 Helsinki,etunimi.sukunimi.640@example.com,"Tiainen, Nelli",Osakunnat,6,Domus Gaudiumin osakunnat,4
+643,Tanskanen,Noora Anniina,,ML,Testiosoite 642,10641 Helsinki,etunimi.sukunimi.641@example.com,"Tanskanen, Noora",Osakunnat,6,Domus Gaudiumin osakunnat,5
+644,Torvinen,Pekka Juho Henrik,,V,Testiosoite 643,10642 Helsinki,etunimi.sukunimi.642@example.com,"Torvinen, Pekka",Osakunnat,6,Domus Gaudiumin osakunnat,6
+645,Rantala,Samuli Waldemar,,O,Testiosoite 644,10643 Helsinki,etunimi.sukunimi.643@example.com,"Rantala, Samuli",Osakunnat,6,Domus Gaudiumin osakunnat,7
+646,Nousiainen,Taru Susanna,,B,Testiosoite 645,10644 Helsinki,etunimi.sukunimi.644@example.com,"Nousiainen, Taru",Osakunnat,6,Domus Gaudiumin osakunnat,8
+647,Meriläinen,Teemu Samuel,,T,Testiosoite 646,10645 Helsinki,etunimi.sukunimi.645@example.com,"Meriläinen, Teemu",Osakunnat,6,Domus Gaudiumin osakunnat,9
+648,Kiviranta,Tuure Tapio,,L,Testiosoite 647,10646 Helsinki,etunimi.sukunimi.646@example.com,"Kiviranta, Tuure",Osakunnat,6,Domus Gaudiumin osakunnat,10
+649,Mänttäri,Antti Erik,,MM,Testiosoite 648,10647 Helsinki,etunimi.sukunimi.647@example.com,"Mänttäri, Antti",Osakunnat,6,Domus Gaudiumin osakunnat,11
+650,Kiiski,Essi Ida Anniina,,K,Testiosoite 649,10648 Helsinki,etunimi.sukunimi.648@example.com,"Kiiski, Essi",Osakunnat,6,Domus Gaudiumin osakunnat,12
+651,Kössi,Liisa Hanna-Maria,,E,Testiosoite 650,10649 Helsinki,etunimi.sukunimi.649@example.com,"Kössi, Hanna-Maria 'Hannis'",Osakunnat,6,Domus Gaudiumin osakunnat,13
+652,Luoto,Heikki Juhani,,H,Testiosoite 651,10650 Helsinki,etunimi.sukunimi.650@example.com,"Luoto, Heikki",Osakunnat,6,Domus Gaudiumin osakunnat,14
+653,Rainamaa,Jussi Petteri,,ML,Testiosoite 652,10651 Helsinki,etunimi.sukunimi.651@example.com,"Rainamaa, Jussi",Osakunnat,6,Domus Gaudiumin osakunnat,15
+654,Salonen,Marleena Meri-Tuulia,,V,Testiosoite 653,10652 Helsinki,etunimi.sukunimi.652@example.com,"Salonen, Marleena",Osakunnat,6,Domus Gaudiumin osakunnat,16
+655,Laaksonen,Mikko Olavi,,O,Testiosoite 654,10653 Helsinki,etunimi.sukunimi.653@example.com,"Laaksonen, Mikko",Osakunnat,6,Domus Gaudiumin osakunnat,17
+656,Ahtosalo,Milja Sinituulia,,B,Testiosoite 655,10654 Helsinki,etunimi.sukunimi.654@example.com,"Ahtosalo, Milja",Osakunnat,6,Domus Gaudiumin osakunnat,18
+657,Nöjd,Riku Santtu Rainer,,T,Testiosoite 656,10655 Helsinki,etunimi.sukunimi.655@example.com,"Nöjd, Riku",Osakunnat,6,Domus Gaudiumin osakunnat,19
+658,Mäkelä,Teemu Olavi,,L,Testiosoite 657,10656 Helsinki,etunimi.sukunimi.656@example.com,"Mäkelä, Teemu",Osakunnat,6,Domus Gaudiumin osakunnat,20
+659,Laine,Timo Johannes,,MM,Testiosoite 658,10657 Helsinki,etunimi.sukunimi.657@example.com,"Laine, Timo",Osakunnat,6,Domus Gaudiumin osakunnat,21
+660,Kähö,Anna Katriina,,K,Testiosoite 659,10658 Helsinki,etunimi.sukunimi.658@example.com,"Kähö, Anna",Osakunnat,6,Domus Gaudiumin osakunnat,22
+661,Hänninen,Annamaria Janita,,E,Testiosoite 660,10659 Helsinki,etunimi.sukunimi.659@example.com,"Hänninen, Annamaria",Osakunnat,6,Domus Gaudiumin osakunnat,23
+662,Mäkeläinen,Anni Katariina,,H,Testiosoite 661,10660 Helsinki,etunimi.sukunimi.660@example.com,"Mäkeläinen, Anni",Osakunnat,6,Domus Gaudiumin osakunnat,24
+663,Tuovinen,Anssi Tapani,,ML,Testiosoite 662,10661 Helsinki,etunimi.sukunimi.661@example.com,"Tuovinen, Anssi",Osakunnat,6,Domus Gaudiumin osakunnat,25
+664,Puolakka,Aura Iida Maria,,V,Testiosoite 663,10662 Helsinki,etunimi.sukunimi.662@example.com,"Puolakka, Aura",Osakunnat,6,Domus Gaudiumin osakunnat,26
+665,Mattero,Elina Riina Anniina,,O,Testiosoite 664,10663 Helsinki,etunimi.sukunimi.663@example.com,"Mattero, Elina",Osakunnat,6,Domus Gaudiumin osakunnat,27
+666,Ronkainen,Emma Saima Loviisa,,B,Testiosoite 665,10664 Helsinki,etunimi.sukunimi.664@example.com,"Ronkainen, Emma",Osakunnat,6,Domus Gaudiumin osakunnat,28
+667,Pilhjerta,Emmi Helena,,T,Testiosoite 666,10665 Helsinki,etunimi.sukunimi.665@example.com,"Pilhjerta, Emmi",Osakunnat,6,Domus Gaudiumin osakunnat,29
+668,Suonio,Jenna Suvi Elina,,L,Testiosoite 667,10666 Helsinki,etunimi.sukunimi.666@example.com,"Suonio, Jenna",Osakunnat,6,Domus Gaudiumin osakunnat,30
+669,Hämäläinen,Johanna Marjukka,,MM,Testiosoite 668,10667 Helsinki,etunimi.sukunimi.667@example.com,"Hämäläinen, Johanna",Osakunnat,6,Domus Gaudiumin osakunnat,31
+670,Louhiranta,Juha Aleksi,,K,Testiosoite 669,10668 Helsinki,etunimi.sukunimi.668@example.com,"Louhiranta, Juha",Osakunnat,6,Domus Gaudiumin osakunnat,32
+671,Lipponen,Katriina Hannele,,E,Testiosoite 670,10669 Helsinki,etunimi.sukunimi.669@example.com,"Lipponen, Katriina",Osakunnat,6,Domus Gaudiumin osakunnat,33
+672,Väisänen,Laura Maria,,H,Testiosoite 671,10670 Helsinki,etunimi.sukunimi.670@example.com,"Väisänen, Laura",Osakunnat,6,Domus Gaudiumin osakunnat,34
+673,Ahonen,Lauri Reino Antero,,ML,Testiosoite 672,10671 Helsinki,etunimi.sukunimi.671@example.com,"Ahonen, Lauri",Osakunnat,6,Domus Gaudiumin osakunnat,35
+674,Laamanen,Maiju Henriikka,,V,Testiosoite 673,10672 Helsinki,etunimi.sukunimi.672@example.com,"Laamanen, Maiju",Osakunnat,6,Domus Gaudiumin osakunnat,36
+675,Nauha,Matti Tapani,,O,Testiosoite 674,10673 Helsinki,etunimi.sukunimi.673@example.com,"Nauha, Matti",Osakunnat,6,Domus Gaudiumin osakunnat,37
+676,Mustonen,Melissa Anu Maria,,B,Testiosoite 675,10674 Helsinki,etunimi.sukunimi.674@example.com,"Mustonen, Melissa",Osakunnat,6,Domus Gaudiumin osakunnat,38
+677,Tikkanen,Olli-Pekka,,T,Testiosoite 676,10675 Helsinki,etunimi.sukunimi.675@example.com,"Tikkanen, Olli-Pekka",Osakunnat,6,Domus Gaudiumin osakunnat,39
+678,Sutinen,Pekka Tapio,,L,Testiosoite 677,10676 Helsinki,etunimi.sukunimi.676@example.com,"Sutinen, Pekka",Osakunnat,6,Domus Gaudiumin osakunnat,40
+679,Kosonen,Sanna Katriina,,MM,Testiosoite 678,10677 Helsinki,etunimi.sukunimi.677@example.com,"Kosonen, Sanna",Osakunnat,6,Domus Gaudiumin osakunnat,41
+680,Liiri,Tiina Anni Emilia,,K,Testiosoite 679,10678 Helsinki,etunimi.sukunimi.678@example.com,"Liiri, Tiina",Osakunnat,6,Domus Gaudiumin osakunnat,43
+681,Peuhkuri,Ulla Riina,,E,Testiosoite 680,10679 Helsinki,etunimi.sukunimi.679@example.com,"Peuhkuri, Ulla",Osakunnat,6,Domus Gaudiumin osakunnat,44
+682,Ranki,Vuokko Johanna,,H,Testiosoite 681,10680 Helsinki,etunimi.sukunimi.680@example.com,"Ranki, Vuokko",Osakunnat,6,Domus Gaudiumin osakunnat,45
+683,Appelberg,Allan,,ML,Testiosoite 682,10681 Helsinki,etunimi.sukunimi.681@example.com,"Appelberg, Allan",Osakunnat,7,EPO,1
+684,Perälä,Anna Vilhelmiina,,V,Testiosoite 683,10682 Helsinki,etunimi.sukunimi.682@example.com,"Perälä, Anna",Osakunnat,7,EPO,3
+685,Nummi,Anna-Riikka Maria,,O,Testiosoite 684,10683 Helsinki,etunimi.sukunimi.683@example.com,"Nummi, Anna-Riikka",Osakunnat,7,EPO,4
+686,Brandt,Annika Mariel,,B,Testiosoite 685,10684 Helsinki,etunimi.sukunimi.684@example.com,"Brandt, Annika",Osakunnat,7,EPO,5
+687,Kukkola,Emilia Karoliina,,T,Testiosoite 686,10685 Helsinki,etunimi.sukunimi.685@example.com,"Kukkola, Emilia",Osakunnat,7,EPO,6
+688,Savolainen,Hannu Pentti,,L,Testiosoite 687,10686 Helsinki,etunimi.sukunimi.686@example.com,"Savolainen, Hannu",Osakunnat,7,EPO,7
+689,Ala-Mikkula,Heidi Emilia,,MM,Testiosoite 688,10687 Helsinki,etunimi.sukunimi.687@example.com,"Ala-Mikkula, Heidi",Osakunnat,7,EPO,8
+690,Hemminki,Heidi Hilja Kristiina,,K,Testiosoite 689,10688 Helsinki,etunimi.sukunimi.688@example.com,"Hemminki, Heidi",Osakunnat,7,EPO,9
+691,Pirttinen,Heli Susanna,,E,Testiosoite 690,10689 Helsinki,etunimi.sukunimi.689@example.com,"Pirttinen, Heli",Osakunnat,7,EPO,10
+692,Ruotsalainen,Henri Tuomas,,H,Testiosoite 691,10690 Helsinki,etunimi.sukunimi.690@example.com,"Ruotsalainen, Henri",Osakunnat,7,EPO,11
+693,Virta,Henri Tuomas Leonard,,ML,Testiosoite 692,10691 Helsinki,etunimi.sukunimi.691@example.com,"Virta, Henri",Osakunnat,7,EPO,12
+694,Harmanen,Ilona Taru Talvikki,,V,Testiosoite 693,10692 Helsinki,etunimi.sukunimi.692@example.com,"Harmanen, Ilona",Osakunnat,7,EPO,13
+695,Kangas,Jaakko Hermanni Antinpoika,,O,Testiosoite 694,10693 Helsinki,etunimi.sukunimi.693@example.com,"Kangas, Jaakko",Osakunnat,7,EPO,14
+696,Latva-Nikkola,Jani Iisakki,,B,Testiosoite 695,10694 Helsinki,etunimi.sukunimi.694@example.com,"Latva-Nikkola, Jani",Osakunnat,7,EPO,15
+697,Kohtamäki,Janne Pentti Matias,,T,Testiosoite 696,10695 Helsinki,etunimi.sukunimi.695@example.com,"Kohtamäki, Janne",Osakunnat,7,EPO,16
+698,Mäntykoski,Jenni Elina,,L,Testiosoite 697,10696 Helsinki,etunimi.sukunimi.696@example.com,"Mäntykoski, Jenni",Osakunnat,7,EPO,17
+699,Haapamäki,Johanna Maria Helena,,MM,Testiosoite 698,10697 Helsinki,etunimi.sukunimi.697@example.com,"Haapamäki, Johanna",Osakunnat,7,EPO,18
+700,Harju,Juhana Henrikki,,K,Testiosoite 699,10698 Helsinki,etunimi.sukunimi.698@example.com,"Harju, Juhana",Osakunnat,7,EPO,19
+701,Haataja,Joni Onni Antero,,E,Testiosoite 700,10699 Helsinki,etunimi.sukunimi.699@example.com,"Haataja, Joni",Osakunnat,7,EPO,20
+702,Dahlman,Katarina,,H,Testiosoite 701,10700 Helsinki,etunimi.sukunimi.700@example.com,"Dahlman, Katarina",Osakunnat,7,EPO,21
+703,Meriläinen,Katja Kristiina,,ML,Testiosoite 702,10701 Helsinki,etunimi.sukunimi.701@example.com,"Meriläinen, Katja",Osakunnat,7,EPO,22
+704,Rantakokko,Kirsimarja,,V,Testiosoite 703,10702 Helsinki,etunimi.sukunimi.702@example.com,"Rantakokko, Kirsimarja",Osakunnat,7,EPO,23
+705,Anttila,Laura Matilda,,O,Testiosoite 704,10703 Helsinki,etunimi.sukunimi.703@example.com,"Anttila, Laura",Osakunnat,7,EPO,24
+706,Isoniemi,Laura Elisabeth,,B,Testiosoite 705,10704 Helsinki,etunimi.sukunimi.704@example.com,"Isoniemi, Laura",Osakunnat,7,EPO,25
+707,Leppilahti,Laura Katariina,,T,Testiosoite 706,10705 Helsinki,etunimi.sukunimi.705@example.com,"Leppilahti, Laura",Osakunnat,7,EPO,26
+708,Mursu,Laura Susanna,,L,Testiosoite 707,10706 Helsinki,etunimi.sukunimi.706@example.com,"Mursu, Laura",Osakunnat,7,EPO,27
+709,Furu,Leena Veronica,,MM,Testiosoite 708,10707 Helsinki,etunimi.sukunimi.707@example.com,"Furu, Leena",Osakunnat,7,EPO,28
+710,Kurjenluoma,Leena Alisa,,K,Testiosoite 709,10708 Helsinki,etunimi.sukunimi.708@example.com,"Kurjenluoma, Leena",Osakunnat,7,EPO,29
+711,Pihlajamäki,Leena Anneli,,E,Testiosoite 710,10709 Helsinki,etunimi.sukunimi.709@example.com,"Pihlajamäki, Leena",Osakunnat,7,EPO,30
+712,Kurkela,Maria Sofia,,H,Testiosoite 711,10710 Helsinki,etunimi.sukunimi.710@example.com,"Kurkela, Maria",Osakunnat,7,EPO,31
+713,Mäenpää,Marja Helena,,ML,Testiosoite 712,10711 Helsinki,etunimi.sukunimi.711@example.com,"Mäenpää, Marja",Osakunnat,7,EPO,32
+714,Hakola,Marjo Riikka,,V,Testiosoite 713,10712 Helsinki,etunimi.sukunimi.712@example.com,"Hakola, Marjo",Osakunnat,7,EPO,33
+715,Hietala,Miina Kaisa Hannele,,O,Testiosoite 714,10713 Helsinki,etunimi.sukunimi.713@example.com,"Hietala, Miina",Osakunnat,7,EPO,34
+716,Latva-Somppi,Minna Liisa Kaarina,,B,Testiosoite 715,10714 Helsinki,etunimi.sukunimi.714@example.com,"Latva-Somppi, Minna",Osakunnat,7,EPO,35
+717,Pitkäranta,Nina Pauliina,,T,Testiosoite 716,10715 Helsinki,etunimi.sukunimi.715@example.com,"Pitkäranta, Nina",Osakunnat,7,EPO,37
+718,Karppi,Noora Justiina,,L,Testiosoite 717,10716 Helsinki,etunimi.sukunimi.716@example.com,"Karppi, Noora",Osakunnat,7,EPO,38
+719,Ala-Fossi,Olli Juhani,,MM,Testiosoite 718,10717 Helsinki,etunimi.sukunimi.717@example.com,"Ala-Fossi, Olli",Osakunnat,7,EPO,39
+720,Hemminki,Olli Tapani,,K,Testiosoite 719,10718 Helsinki,etunimi.sukunimi.718@example.com,"Hemminki, Olli",Osakunnat,7,EPO,40
+721,Nokso-Koivisto,Olli Sakari,,E,Testiosoite 720,10719 Helsinki,etunimi.sukunimi.719@example.com,"Nokso-Koivisto, Olli",Osakunnat,7,EPO,41
+722,Raivio,Markku Antti Oskari,,H,Testiosoite 721,10720 Helsinki,etunimi.sukunimi.720@example.com,"Raivio, Oskari",Osakunnat,7,EPO,42
+723,Surma-aho,Outi Katariina,,ML,Testiosoite 722,10721 Helsinki,etunimi.sukunimi.721@example.com,"Surma-aho, Outi",Osakunnat,7,EPO,43
+724,Kahila,Paula Kaarina,,V,Testiosoite 723,10722 Helsinki,etunimi.sukunimi.722@example.com,"Kahila, Paula",Osakunnat,7,EPO,44
+725,Rokkila,Marja Pauliina,,O,Testiosoite 724,10723 Helsinki,etunimi.sukunimi.723@example.com,"Rokkila, Pauliina",Osakunnat,7,EPO,45
+726,Latvala,Reetta Loviisa,,B,Testiosoite 725,10724 Helsinki,etunimi.sukunimi.724@example.com,"Latvala, Reetta",Osakunnat,7,EPO,46
+727,Kaarto,Riikka Karoliina,,T,Testiosoite 726,10725 Helsinki,etunimi.sukunimi.725@example.com,"Kaarto, Riikka",Osakunnat,7,EPO,47
+728,Kaila,Riikka Eveliina,,L,Testiosoite 727,10726 Helsinki,etunimi.sukunimi.726@example.com,"Kaila, Riikka",Osakunnat,7,EPO,48
+729,Mäntykoski,Saara Maria,,MM,Testiosoite 728,10727 Helsinki,etunimi.sukunimi.727@example.com,"Mäntykoski, Saara",Osakunnat,7,EPO,49
+730,Kääriäinen,Sami Aarne,,K,Testiosoite 729,10728 Helsinki,etunimi.sukunimi.728@example.com,"Kääriäinen, Sami",Osakunnat,7,EPO,50
+731,Sjöblom,Sampo Jaakko Kalevi,,E,Testiosoite 730,10729 Helsinki,etunimi.sukunimi.729@example.com,"Sjöblom, Sampo",Osakunnat,7,EPO,51
+732,Haavisto,Suvi Maarit,,H,Testiosoite 731,10730 Helsinki,etunimi.sukunimi.730@example.com,"Haavisto, Suvi",Osakunnat,7,EPO,52
+733,Ojala,Suvi Annikki,,ML,Testiosoite 732,10731 Helsinki,etunimi.sukunimi.731@example.com,"Ojala, Suvi",Osakunnat,7,EPO,53
+734,Hietamäki,Tapio Henrik,,V,Testiosoite 733,10732 Helsinki,etunimi.sukunimi.732@example.com,"Hietamäki, Tapio",Osakunnat,7,EPO,54
+735,Kallio,Tapio Jaakko,,O,Testiosoite 734,10733 Helsinki,etunimi.sukunimi.733@example.com,"Kallio, Tapio",Osakunnat,7,EPO,55
+736,Koskiniemi,Teemu Jaakko,,B,Testiosoite 735,10734 Helsinki,etunimi.sukunimi.734@example.com,"Koskiniemi, Teemu",Osakunnat,7,EPO,56
+737,Tuurihalme,Timo Jaakko Martti,,T,Testiosoite 736,10735 Helsinki,etunimi.sukunimi.735@example.com,"Tuurihalme, Timo",Osakunnat,7,EPO,58
+738,Pennala,Tuomas Antti Ilmari,,L,Testiosoite 737,10736 Helsinki,etunimi.sukunimi.736@example.com,"Pennala, Tuomas",Osakunnat,7,EPO,59
+739,Raivio,Ville Mikael,,MM,Testiosoite 738,10737 Helsinki,etunimi.sukunimi.737@example.com,"Raivio, Ville",Osakunnat,7,EPO,60
+740,Kotisaari,Anna Maria,,K,Testiosoite 739,10738 Helsinki,etunimi.sukunimi.738@example.com,"Kotisaari, Anna",Osakunnat,8,PPO,1
+741,Ruotsala,Anni-Helena,,E,Testiosoite 740,10739 Helsinki,etunimi.sukunimi.739@example.com,"Ruotsala, Anni-Helena",Osakunnat,8,PPO,2
+742,Ervasti,Anri Maarit,,H,Testiosoite 741,10740 Helsinki,etunimi.sukunimi.740@example.com,"Ervasti, Anri",Osakunnat,8,PPO,3
+743,Ojala,Antti Heikki Johannes,,ML,Testiosoite 742,10741 Helsinki,etunimi.sukunimi.741@example.com,"Ojala, Antti",Osakunnat,8,PPO,4
+744,Viikinkoski,Arttu,,V,Testiosoite 743,10742 Helsinki,etunimi.sukunimi.742@example.com,"Viikinkoski, Arttu",Osakunnat,8,PPO,5
+745,Pape,Christopher David,,O,Testiosoite 744,10743 Helsinki,etunimi.sukunimi.743@example.com,"Pape, Chris",Osakunnat,8,PPO,6
+746,Lapinoja,Elina Kaarina,,B,Testiosoite 745,10744 Helsinki,etunimi.sukunimi.744@example.com,"Lapinoja, Elina",Osakunnat,8,PPO,7
+747,Viren,Hanna Elisa,,T,Testiosoite 746,10745 Helsinki,etunimi.sukunimi.745@example.com,"Viren, Hanna",Osakunnat,8,PPO,8
+748,Jokela,Ida-Reetta Johanna,,L,Testiosoite 747,10746 Helsinki,etunimi.sukunimi.746@example.com,"Jokela, Ida-Reetta",Osakunnat,8,PPO,9
+749,Kampman,Iiro Joonas,,MM,Testiosoite 748,10747 Helsinki,etunimi.sukunimi.747@example.com,"Kampman, Iiro",Osakunnat,8,PPO,10
+750,Kauma,Iiro Mikko Ilmari,,K,Testiosoite 749,10748 Helsinki,etunimi.sukunimi.748@example.com,"Kauma, Iiro",Osakunnat,8,PPO,11
+751,Kavén,Jenni Emilia,,E,Testiosoite 750,10749 Helsinki,etunimi.sukunimi.749@example.com,"Kavén, Jenni",Osakunnat,8,PPO,12
+752,Sepponen,Jenni Emilia,,H,Testiosoite 751,10750 Helsinki,etunimi.sukunimi.750@example.com,"Sepponen, Jenni",Osakunnat,8,PPO,13
+753,Hyry,Jonna Marika,,ML,Testiosoite 752,10751 Helsinki,etunimi.sukunimi.751@example.com,"Hyry, Jonna",Osakunnat,8,PPO,14
+754,Huotari,Joonas Kalle,,V,Testiosoite 753,10752 Helsinki,etunimi.sukunimi.752@example.com,"Huotari, Joonas",Osakunnat,8,PPO,15
+755,Seppänen,Katja Hannele,,O,Testiosoite 754,10753 Helsinki,etunimi.sukunimi.753@example.com,"Seppänen, Katja",Osakunnat,8,PPO,16
+756,Ansamaa,Laura Johanna,,B,Testiosoite 755,10754 Helsinki,etunimi.sukunimi.754@example.com,"Ansamaa, Laura",Osakunnat,8,PPO,17
+757,Haikola,Lauri Antero,,T,Testiosoite 756,10755 Helsinki,etunimi.sukunimi.755@example.com,"Haikola, Lauri",Osakunnat,8,PPO,18
+758,Heilala,Lauri Kullervo,,L,Testiosoite 757,10756 Helsinki,etunimi.sukunimi.756@example.com,"Heilala, Lauri 'Late'",Osakunnat,8,PPO,19
+759,Sivula,Lauri Eero Mikael,,MM,Testiosoite 758,10757 Helsinki,etunimi.sukunimi.757@example.com,"Sivula, Lauri",Osakunnat,8,PPO,20
+760,Huotari,Sanna Mari,,K,Testiosoite 759,10758 Helsinki,etunimi.sukunimi.758@example.com,"Huotari, Mari",Osakunnat,8,PPO,21
+761,Huhtaniemi,Lisa Marianna,,E,Testiosoite 760,10759 Helsinki,etunimi.sukunimi.759@example.com,"Huhtaniemi, Marianna",Osakunnat,8,PPO,22
+762,Sutinen,Marjo Johanna,,H,Testiosoite 761,10760 Helsinki,etunimi.sukunimi.760@example.com,"Sutinen, Marjo",Osakunnat,8,PPO,23
+763,Kähkönen,Mervi Helena,,ML,Testiosoite 762,10761 Helsinki,etunimi.sukunimi.761@example.com,"Kähkönen, Mervi",Osakunnat,8,PPO,24
+764,Kunnari,Mikko Olavi Johannes,,V,Testiosoite 763,10762 Helsinki,etunimi.sukunimi.762@example.com,"Kunnari, Mikko",Osakunnat,8,PPO,25
+765,Tervonen,Minna Johanna,,O,Testiosoite 764,10763 Helsinki,etunimi.sukunimi.763@example.com,"Tervonen, Minna",Osakunnat,8,PPO,26
+766,Rantakeisu,Mira Johanna,,B,Testiosoite 765,10764 Helsinki,etunimi.sukunimi.764@example.com,"Rantakeisu, Mira",Osakunnat,8,PPO,27
+767,Latvakoski,Niko Matias,,T,Testiosoite 766,10765 Helsinki,etunimi.sukunimi.765@example.com,"Latvakoski, Niko",Osakunnat,8,PPO,28
+768,Salin,Noora Heloisa,,L,Testiosoite 767,10766 Helsinki,etunimi.sukunimi.766@example.com,"Salin, Noora",Osakunnat,8,PPO,29
+769,Kronqvist,Otto Jaakko,,MM,Testiosoite 768,10767 Helsinki,etunimi.sukunimi.767@example.com,"Kronqvist, Otto",Osakunnat,8,PPO,30
+770,Ståhlberg,Panu Kaarlo,,K,Testiosoite 769,10768 Helsinki,etunimi.sukunimi.768@example.com,"Ståhlberg, Panu",Osakunnat,8,PPO,31
+771,Sipilä,Pekka Johannes,,E,Testiosoite 770,10769 Helsinki,etunimi.sukunimi.769@example.com,"Sipilä, Pekka",Osakunnat,8,PPO,32
+772,Salomaa,Riikka-Liisa Tellervo,,H,Testiosoite 771,10770 Helsinki,etunimi.sukunimi.770@example.com,"Salomaa, Riikka-Liisa",Osakunnat,8,PPO,34
+773,Huotari,Satu Elina,,ML,Testiosoite 772,10771 Helsinki,etunimi.sukunimi.771@example.com,"Huotari, Satu",Osakunnat,8,PPO,35
+774,Savonen,Sonia Mirka Paulina,,V,Testiosoite 773,10772 Helsinki,etunimi.sukunimi.772@example.com,"Savonen, Sonia",Osakunnat,8,PPO,36
+775,Madetoja,Sonja Maaria,,O,Testiosoite 774,10773 Helsinki,etunimi.sukunimi.773@example.com,"Madetoja, Sonja",Osakunnat,8,PPO,37
+776,Lohiniva,Suvi-Riikka Johanna,,B,Testiosoite 775,10774 Helsinki,etunimi.sukunimi.774@example.com,"Lohiniva, Suvi",Osakunnat,8,PPO,38
+777,Mustonen,Terhi Tuulikki,,T,Testiosoite 776,10775 Helsinki,etunimi.sukunimi.775@example.com,"Mustonen, Terhi",Osakunnat,8,PPO,39
+778,Tuulos,Tiina Tytti,,L,Testiosoite 777,10776 Helsinki,etunimi.sukunimi.776@example.com,"Tuulos, Tiina",Osakunnat,8,PPO,40
+779,Haaja,Tommi Petteri,,MM,Testiosoite 778,10777 Helsinki,etunimi.sukunimi.777@example.com,"Haaja, Tommi",Osakunnat,8,PPO,41
+780,Tuppurainen,Ville Oskari,,K,Testiosoite 779,10778 Helsinki,etunimi.sukunimi.778@example.com,"Tuppurainen, Ville",Osakunnat,8,PPO,42
+781,Viljamaa,Visa Veikko,,E,Testiosoite 780,10779 Helsinki,etunimi.sukunimi.779@example.com,"Viljamaa, Visa",Osakunnat,8,PPO,43
+782,Ahokas,Lari Pekka Jaakkima,,H,Testiosoite 781,10780 Helsinki,etunimi.sukunimi.780@example.com,"Ahokas, Lari",HYAL,1,Humanistit,1
+783,Björklund,Heta Kristiina,,ML,Testiosoite 782,10781 Helsinki,etunimi.sukunimi.781@example.com,"Björklund, Heta",HYAL,1,Humanistit,2
+784,Gylling,Elisa Annina,,V,Testiosoite 783,10782 Helsinki,etunimi.sukunimi.782@example.com,"Gylling, Elisa",HYAL,1,Humanistit,3
+785,Hakamies,Inkeri Eeva Helena,,O,Testiosoite 784,10783 Helsinki,etunimi.sukunimi.783@example.com,"Hakamies, Inkeri",HYAL,1,Humanistit,4
+786,Hario,Pasi Sakari,,B,Testiosoite 785,10784 Helsinki,etunimi.sukunimi.784@example.com,"Hario, Pasi",HYAL,1,Humanistit,5
+787,Heikkinen,Irina Saana Susanna,,T,Testiosoite 786,10785 Helsinki,etunimi.sukunimi.785@example.com,"Heikkinen, Irina",HYAL,1,Humanistit,6
+788,Heiskanen,Essi Johanna,,L,Testiosoite 787,10786 Helsinki,etunimi.sukunimi.786@example.com,"Heiskanen, Essi",HYAL,1,Humanistit,7
+789,Heiskari,Lari Tapio,,MM,Testiosoite 788,10787 Helsinki,etunimi.sukunimi.787@example.com,"Heiskari, Tapio",HYAL,1,Humanistit,8
+790,Kallio,Lauri Johannes,,K,Testiosoite 789,10788 Helsinki,etunimi.sukunimi.788@example.com,"Kallio, Lauri",HYAL,1,Humanistit,9
+791,Kankaanranta,Hennileena Sofia,,E,Testiosoite 790,10789 Helsinki,etunimi.sukunimi.789@example.com,"Kankaanranta, Hennileena",HYAL,1,Humanistit,10
+792,Karhumäki,Matti Johannes,,H,Testiosoite 791,10790 Helsinki,etunimi.sukunimi.790@example.com,"Karhumäki, Matti",HYAL,1,Humanistit,11
+793,Kinnunen,Jukka Juhani,,ML,Testiosoite 792,10791 Helsinki,etunimi.sukunimi.791@example.com,"Kinnunen, Jukka",HYAL,1,Humanistit,12
+794,Kiviharju,Anne Katariina,,V,Testiosoite 793,10792 Helsinki,etunimi.sukunimi.792@example.com,"Kiviharju, Anne",HYAL,1,Humanistit,13
+795,Korolainen-Virkajärvi,Katri Inkeri,,O,Testiosoite 794,10793 Helsinki,etunimi.sukunimi.793@example.com,"Korolainen-Virkajärvi, Katri",HYAL,1,Humanistit,14
+796,Koutonen,Tatu Iivari,,B,Testiosoite 795,10794 Helsinki,etunimi.sukunimi.794@example.com,"Koutonen, Iivari",HYAL,1,Humanistit,15
+797,Kölhi,Jaakko Aleksanteri,,T,Testiosoite 796,10795 Helsinki,etunimi.sukunimi.795@example.com,"Kölhi, Jaakko",HYAL,1,Humanistit,16
+798,Laakso,Suvi Tuuli,,L,Testiosoite 797,10796 Helsinki,etunimi.sukunimi.796@example.com,"Laakso, Suvi",HYAL,1,Humanistit,17
+799,Lavikainen,Jouni Ilari,,MM,Testiosoite 798,10797 Helsinki,etunimi.sukunimi.797@example.com,"Lavikainen, Jouni",HYAL,1,Humanistit,18
+800,Leinonen,Petri Juhani,,K,Testiosoite 799,10798 Helsinki,etunimi.sukunimi.798@example.com,"Leinonen, Petri",HYAL,1,Humanistit,19
+801,Leminen,Teemu Antti Valtteri,,E,Testiosoite 800,10799 Helsinki,etunimi.sukunimi.799@example.com,"Leminen, Teemu",HYAL,1,Humanistit,20
+802,Lindholm,Anni Emilia,,H,Testiosoite 801,10800 Helsinki,etunimi.sukunimi.800@example.com,"Lindholm, Anni",HYAL,1,Humanistit,21
+803,Lyytinen,Emilia Helena,,ML,Testiosoite 802,10801 Helsinki,etunimi.sukunimi.801@example.com,"Lyytinen, Emilia",HYAL,1,Humanistit,22
+804,Lätti,Niina Mirjami,,V,Testiosoite 803,10802 Helsinki,etunimi.sukunimi.802@example.com,"Lätti, Niina",HYAL,1,Humanistit,23
+805,Maeda,Emi Teresa,,O,Testiosoite 804,10803 Helsinki,etunimi.sukunimi.803@example.com,"Maeda, Emi",HYAL,1,Humanistit,24
+806,Miettunen,Sara Sisko Pilvikki,,B,Testiosoite 805,10804 Helsinki,etunimi.sukunimi.804@example.com,"Miettunen, Sara",HYAL,1,Humanistit,25
+807,Mikkonen,Maria Emilia,,T,Testiosoite 806,10805 Helsinki,etunimi.sukunimi.805@example.com,"Mikkonen, Maria",HYAL,1,Humanistit,26
+808,Peltonen,Elina Kristiina,,L,Testiosoite 807,10806 Helsinki,etunimi.sukunimi.806@example.com,"Peltonen, Elina",HYAL,1,Humanistit,27
+809,Pynttäri,Antti Tapani,,MM,Testiosoite 808,10807 Helsinki,etunimi.sukunimi.807@example.com,"Pynttäri, Antti",HYAL,1,Humanistit,28
+810,Rajamäki,Anni Talvikki,,K,Testiosoite 809,10808 Helsinki,etunimi.sukunimi.808@example.com,"Rajamäki, Anni",HYAL,1,Humanistit,29
+811,Rask,Magnus Edward,,E,Testiosoite 810,10809 Helsinki,etunimi.sukunimi.809@example.com,"Rask, Magnus",HYAL,1,Humanistit,30
+812,Renvall,Matti Tuomas,,H,Testiosoite 811,10810 Helsinki,etunimi.sukunimi.810@example.com,"Renvall, Tuomas",HYAL,1,Humanistit,31
+813,Soudunsaari,Jaakko Pekka Juhana,,ML,Testiosoite 812,10811 Helsinki,etunimi.sukunimi.811@example.com,"Soudunsaari, Jaakko",HYAL,1,Humanistit,32
+814,Thilman,Svante Fredrik Gustaf,,V,Testiosoite 813,10812 Helsinki,etunimi.sukunimi.812@example.com,"Thilman, Svante",HYAL,1,Humanistit,33
+815,Tiihonen,Risto Juhani,,O,Testiosoite 814,10813 Helsinki,etunimi.sukunimi.813@example.com,"Tiihonen, Risto",HYAL,1,Humanistit,34
+816,Tujula,Matti-Pekka Kalevi,,B,Testiosoite 815,10814 Helsinki,etunimi.sukunimi.814@example.com,"Tujula, Matti",HYAL,1,Humanistit,35
+817,Töyrylä,Juha Ensio,,T,Testiosoite 816,10815 Helsinki,etunimi.sukunimi.815@example.com,"Töyrylä, Juha",HYAL,1,Humanistit,36
+818,Virta,Sonja Aino Elina,,L,Testiosoite 817,10816 Helsinki,etunimi.sukunimi.816@example.com,"Virta, Sonja",HYAL,1,Humanistit,37
+819,Väänänen,Aino-Reetta Aleksandra,,MM,Testiosoite 818,10817 Helsinki,etunimi.sukunimi.817@example.com,"Väänänen, Aino",HYAL,1,Humanistit,38
+820,Ylitalo,Anna Katariina,,K,Testiosoite 819,10818 Helsinki,etunimi.sukunimi.818@example.com,"Ylitalo, Anna",HYAL,1,Humanistit,39
+821,Ylitalo,Turo Johannes,,E,Testiosoite 820,10819 Helsinki,etunimi.sukunimi.819@example.com,"Ylitalo, Turo",HYAL,1,Humanistit,40
+822,Aalto,Laura Jannica,,H,Testiosoite 821,10820 Helsinki,etunimi.sukunimi.820@example.com,"Aalto, Jannica",HYAL,2,Kumpula,1
+823,Alkio,Sini Maria,,ML,Testiosoite 822,10821 Helsinki,etunimi.sukunimi.821@example.com,"Alkio, Sini",HYAL,2,Kumpula,2
+824,Hynönen,Reko Heikki Pellervo,,V,Testiosoite 823,10822 Helsinki,etunimi.sukunimi.822@example.com,"Hynönen, Reko",HYAL,2,Kumpula,3
+825,Järvinen,Terhi Tuuli,,O,Testiosoite 824,10823 Helsinki,etunimi.sukunimi.823@example.com,"Järvinen, Terhi",HYAL,2,Kumpula,4
+826,Karinkanta,Risto Eemeli,,B,Testiosoite 825,10824 Helsinki,etunimi.sukunimi.824@example.com,"Karinkanta, Risto",HYAL,2,Kumpula,5
+827,Käkelä,Matias Paavali,,T,Testiosoite 826,10825 Helsinki,etunimi.sukunimi.825@example.com,"Käkelä, Matias",HYAL,2,Kumpula,6
+828,Lahtinen,Merli Karoliina,,L,Testiosoite 827,10826 Helsinki,etunimi.sukunimi.826@example.com,"Lahtinen, Merli",HYAL,2,Kumpula,7
+829,Lahtinen,Tiera Olavi,,MM,Testiosoite 828,10827 Helsinki,etunimi.sukunimi.827@example.com,"Lahtinen, Tilli",HYAL,2,Kumpula,8
+830,Lehtimäki,Marko Johannes,,K,Testiosoite 829,10828 Helsinki,etunimi.sukunimi.828@example.com,"Lehtimäki, Marko",HYAL,2,Kumpula,9
+831,McKee,Jason Robert,,E,Testiosoite 830,10829 Helsinki,etunimi.sukunimi.829@example.com,"McKee, Jason",HYAL,2,Kumpula,10
+832,Muhonen,Eija Maarit Sofia,,H,Testiosoite 831,10830 Helsinki,etunimi.sukunimi.830@example.com,"Muhonen, Eija",HYAL,2,Kumpula,11
+833,Penttilä,Markus Erkki Tapani,,ML,Testiosoite 832,10831 Helsinki,etunimi.sukunimi.831@example.com,"Penttilä, Markus",HYAL,2,Kumpula,12
+834,Rantala,Pekka Antti Ilmari,,V,Testiosoite 833,10832 Helsinki,etunimi.sukunimi.832@example.com,"Rantala, Pekka",HYAL,2,Kumpula,13
+835,Rantanen,Sami Edvard,,O,Testiosoite 834,10833 Helsinki,etunimi.sukunimi.833@example.com,"Rantanen, Sami",HYAL,2,Kumpula,14
+836,Särkikoski,Sanna Marjaana,,B,Testiosoite 835,10834 Helsinki,etunimi.sukunimi.834@example.com,"Särkikoski, Sanna",HYAL,2,Kumpula,15
+837,Teikari,Ilmo Werner,,T,Testiosoite 836,10835 Helsinki,etunimi.sukunimi.835@example.com,"Teikari, Ilmo",HYAL,2,Kumpula,16
+838,Tupala,Jere Olavi,,L,Testiosoite 837,10836 Helsinki,etunimi.sukunimi.836@example.com,"Tupala, Jere",HYAL,2,Kumpula,17
+839,Fast,Tommi Johannes,,MM,Testiosoite 838,10837 Helsinki,etunimi.sukunimi.837@example.com,"Fast, Tommi 'Tommy'",HYAL,3,Käyttis,1
+840,Hietajärvi,Lauri Ville Oskari,,K,Testiosoite 839,10838 Helsinki,etunimi.sukunimi.838@example.com,"Hietajärvi, Lauri",HYAL,3,Käyttis,2
+841,Koivisto,Eero-Matti Olavi,,E,Testiosoite 840,10839 Helsinki,etunimi.sukunimi.839@example.com,"Koivisto, Eero-Matti 'Ere'",HYAL,3,Käyttis,3
+842,Lampinen,Marina,,H,Testiosoite 841,10840 Helsinki,etunimi.sukunimi.840@example.com,"Lampinen, Marina",HYAL,3,Käyttis,4
+843,Laurila,Sonja Annika,,ML,Testiosoite 842,10841 Helsinki,etunimi.sukunimi.841@example.com,"Laurila, Sonja",HYAL,3,Käyttis,5
+844,Myllyntausta,Saara Johanna,,V,Testiosoite 843,10842 Helsinki,etunimi.sukunimi.842@example.com,"Myllyntausta, Saara",HYAL,3,Käyttis,6
+845,Nurmi,Reetta-Maija Karoliina,,O,Testiosoite 844,10843 Helsinki,etunimi.sukunimi.843@example.com,"Nurmi, Reetta",HYAL,3,Käyttis,7
+846,Pulkkinen,Suvi Saara Maria,,B,Testiosoite 845,10844 Helsinki,etunimi.sukunimi.844@example.com,"Pulkkinen, Suvi",HYAL,3,Käyttis,8
+847,Pöyhönen,Perttu Olavi Jaakonpoika,,T,Testiosoite 846,10845 Helsinki,etunimi.sukunimi.845@example.com,"Pöyhönen, Perttu",HYAL,3,Käyttis,9
+848,Rautio,Tiina Kaarina,,L,Testiosoite 847,10846 Helsinki,etunimi.sukunimi.846@example.com,"Rautio, Tiina",HYAL,3,Käyttis,10
+849,Rinnetmäki,Veli-Matti,,MM,Testiosoite 848,10847 Helsinki,etunimi.sukunimi.847@example.com,"Rinnetmäki, Veli-Matti 'Velkka'",HYAL,3,Käyttis,11
+850,Ropponen,Markus Jouko Juhana,,K,Testiosoite 849,10848 Helsinki,etunimi.sukunimi.848@example.com,"Ropponen, Markus",HYAL,3,Käyttis,12
+851,Aaltonen,Mikko Antero,,E,Testiosoite 850,10849 Helsinki,etunimi.sukunimi.849@example.com,"Aaltonen, Mikko",HYAL,4,Teologit,1
+852,Beckmann,Ida Maria,,H,Testiosoite 851,10850 Helsinki,etunimi.sukunimi.850@example.com,"Beckmann, Ida",HYAL,4,Teologit,2
+853,Elomaa,Laura Maria,,ML,Testiosoite 852,10851 Helsinki,etunimi.sukunimi.851@example.com,"Elomaa, Laura",HYAL,4,Teologit,3
+854,Engström,Vesa Juhani Kristian,,V,Testiosoite 853,10852 Helsinki,etunimi.sukunimi.852@example.com,"Engström, Vesa",HYAL,4,Teologit,4
+855,Haapa-aho,Riitta Sannaliisa,,O,Testiosoite 854,10853 Helsinki,etunimi.sukunimi.853@example.com,"Haapa-aho, Riitta",HYAL,4,Teologit,5
+856,Hautala,Minna Marita,,B,Testiosoite 855,10854 Helsinki,etunimi.sukunimi.854@example.com,"Hautala, Minna",HYAL,4,Teologit,7
+857,Hillberg,Milla Mari,,T,Testiosoite 856,10855 Helsinki,etunimi.sukunimi.855@example.com,"Hillberg, Milla",HYAL,4,Teologit,8
+858,Huhtasalo,Ilari Matti Olavi,,L,Testiosoite 857,10856 Helsinki,etunimi.sukunimi.856@example.com,"Huhtasalo, Ilari",HYAL,4,Teologit,9
+859,Häkkinen,Marie Anneli,,MM,Testiosoite 858,10857 Helsinki,etunimi.sukunimi.857@example.com,"Häkkinen, Marie",HYAL,4,Teologit,10
+860,Jurva,Saara-Maria,,K,Testiosoite 859,10858 Helsinki,etunimi.sukunimi.858@example.com,"Jurva, Saara-Maria",HYAL,4,Teologit,11
+861,Kotisaari,Tuuli Maria,,E,Testiosoite 860,10859 Helsinki,etunimi.sukunimi.859@example.com,"Kotisaari, Tuuli",HYAL,4,Teologit,12
+862,Kouvola,Helena Karolina,,H,Testiosoite 861,10860 Helsinki,etunimi.sukunimi.860@example.com,"Kouvola, Karolina",HYAL,4,Teologit,13
+863,Laitinen,Jussi Antero,,ML,Testiosoite 862,10861 Helsinki,etunimi.sukunimi.861@example.com,"Laitinen, Jussi",HYAL,4,Teologit,14
+864,Leinonen,Juha Erkki Tapio,,V,Testiosoite 863,10862 Helsinki,etunimi.sukunimi.862@example.com,"Leinonen, Juha",HYAL,4,Teologit,15
+865,Leinonen,Tapio Henrikki,,O,Testiosoite 864,10863 Helsinki,etunimi.sukunimi.863@example.com,"Leinonen, Tapio",HYAL,4,Teologit,16
+866,Leipakka,Laura Helena,,B,Testiosoite 865,10864 Helsinki,etunimi.sukunimi.864@example.com,"Leipakka, Laura",HYAL,4,Teologit,17
+867,Lemmetyinen,Simo Rafael,,T,Testiosoite 866,10865 Helsinki,etunimi.sukunimi.865@example.com,"Lemmetyinen, Simo",HYAL,4,Teologit,18
+868,Nykänen,Saara Ilona,,L,Testiosoite 867,10866 Helsinki,etunimi.sukunimi.866@example.com,"Nykänen, Saara",HYAL,4,Teologit,19
+869,Oksanen,Minna Hannele,,MM,Testiosoite 868,10867 Helsinki,etunimi.sukunimi.867@example.com,"Oksanen, Minna",HYAL,4,Teologit,20
+870,Peltola,Jukka Tapio,,K,Testiosoite 869,10868 Helsinki,etunimi.sukunimi.868@example.com,"Peltola, Jukka",HYAL,4,Teologit,21
+871,Puumala,Jenni Karoliina,,E,Testiosoite 870,10869 Helsinki,etunimi.sukunimi.869@example.com,"Puumala, Jenni",HYAL,4,Teologit,22
+872,Rajatalo,Joonas Jalmari,,H,Testiosoite 871,10870 Helsinki,etunimi.sukunimi.870@example.com,"Rajatalo, Joonas 'Jallu'",HYAL,4,Teologit,23
+873,Saarela,Veronica Anna Patricia,,ML,Testiosoite 872,10871 Helsinki,etunimi.sukunimi.871@example.com,"Saarela, Veronica",HYAL,4,Teologit,24
+874,Similä,Sakari Henrik,,V,Testiosoite 873,10872 Helsinki,etunimi.sukunimi.872@example.com,"Similä, Sakari 'Sakke'",HYAL,4,Teologit,25
+875,Toivonen,Niilo Akseli Markunpoika,,O,Testiosoite 874,10873 Helsinki,etunimi.sukunimi.873@example.com,"Toivonen, Niilo",HYAL,4,Teologit,26
+876,Trogen,Tiia Johanna,,B,Testiosoite 875,10874 Helsinki,etunimi.sukunimi.874@example.com,"Trogen, Tiia",HYAL,4,Teologit,27
+877,Helminen,Tuomas Hermanni,,T,Testiosoite 876,10875 Helsinki,etunimi.sukunimi.875@example.com,"Helminen, Tuomas",HYAL,5,Valtiotieteilijät,1
+878,Hovi,Jaakko Matias,,L,Testiosoite 877,10876 Helsinki,etunimi.sukunimi.876@example.com,"Hovi, Jaakko",HYAL,5,Valtiotieteilijät,2
+879,Hämäläinen,Hanne Maaret Ilona,,MM,Testiosoite 878,10877 Helsinki,etunimi.sukunimi.877@example.com,"Hämäläinen, Hanne",HYAL,5,Valtiotieteilijät,3
+880,Jyllikoski,Daniel Alexandr,,K,Testiosoite 879,10878 Helsinki,etunimi.sukunimi.878@example.com,"Jyllikoski, Daniel",HYAL,5,Valtiotieteilijät,4
+881,Karjalainen,Joni Pekka Hemminki,,E,Testiosoite 880,10879 Helsinki,etunimi.sukunimi.879@example.com,"Karjalainen, Joni",HYAL,5,Valtiotieteilijät,5
+882,Koponen,Eija-Leena,,H,Testiosoite 881,10880 Helsinki,etunimi.sukunimi.880@example.com,"Koponen, Eija-Leena",HYAL,5,Valtiotieteilijät,6
+883,Koskela,Katri Marianna,,ML,Testiosoite 882,10881 Helsinki,etunimi.sukunimi.881@example.com,"Koskela, Katri",HYAL,5,Valtiotieteilijät,7
+884,Kostiainen,Aura Iiris Sofia,,V,Testiosoite 883,10882 Helsinki,etunimi.sukunimi.882@example.com,"Kostiainen, Aura",HYAL,5,Valtiotieteilijät,8
+885,Kulmala,Ifeoma Emmi Mirjami,,O,Testiosoite 884,10883 Helsinki,etunimi.sukunimi.883@example.com,"Kulmala, Ifeoma",HYAL,5,Valtiotieteilijät,9
+886,Miettinen,Elina Anniina,,B,Testiosoite 885,10884 Helsinki,etunimi.sukunimi.884@example.com,"Miettinen, Elina",HYAL,5,Valtiotieteilijät,10
+887,Sarhimaa,Jutta Marinella,,T,Testiosoite 886,10885 Helsinki,etunimi.sukunimi.885@example.com,"Sarhimaa, Jutta",HYAL,5,Valtiotieteilijät,11
+888,Stenbäck,Paul John Bernhard,,L,Testiosoite 887,10886 Helsinki,etunimi.sukunimi.886@example.com,"Stenbäck, Paul",HYAL,5,Valtiotieteilijät,12
+889,Suvitie,Aarni Lassi Valtteri,,MM,Testiosoite 888,10887 Helsinki,etunimi.sukunimi.887@example.com,"Suvitie, Aarni",HYAL,5,Valtiotieteilijät,13
+890,Syrman,Simo Valtteri,,K,Testiosoite 889,10888 Helsinki,etunimi.sukunimi.888@example.com,"Syrman, Simo",HYAL,5,Valtiotieteilijät,14
+891,Toroskainen,Kaisa Johanna,,E,Testiosoite 890,10889 Helsinki,etunimi.sukunimi.889@example.com,"Toroskainen, Kaisa",HYAL,5,Valtiotieteilijät,15
+892,Virta,Mikko Antero,,H,Testiosoite 891,10890 Helsinki,etunimi.sukunimi.890@example.com,"Virta, Mikko",HYAL,5,Valtiotieteilijät,16
+893,Aarnio,Jouni Pekka,,ML,Testiosoite 892,10891 Helsinki,etunimi.sukunimi.891@example.com,"Aarnio, Jouni",HYAL,6,Viikki,1
+894,Esteban Lasikari,Joel Alberti,,V,Testiosoite 893,10892 Helsinki,etunimi.sukunimi.892@example.com,"Esteban Lasikari, Joel",HYAL,6,Viikki,2
+895,Front,Eero Petteri,,O,Testiosoite 894,10893 Helsinki,etunimi.sukunimi.893@example.com,"Front, Petteri",HYAL,6,Viikki,3
+896,Hakala,Markku Kasperi,,B,Testiosoite 895,10894 Helsinki,etunimi.sukunimi.894@example.com,"Hakala, Markku",HYAL,6,Viikki,4
+897,Hyvärinen,Laura Kristiina,,T,Testiosoite 896,10895 Helsinki,etunimi.sukunimi.895@example.com,"Hyvärinen, Laura",HYAL,6,Viikki,5
+898,Hämäläinen,Iiro Mikael,,L,Testiosoite 897,10896 Helsinki,etunimi.sukunimi.896@example.com,"Hämäläinen, Iiro",HYAL,6,Viikki,6
+899,Kaloinen,Jaakko Johannes,,MM,Testiosoite 898,10897 Helsinki,etunimi.sukunimi.897@example.com,"Kaloinen, Jaakko",HYAL,6,Viikki,7
+900,Kauko,Hanna Maria,,K,Testiosoite 899,10898 Helsinki,etunimi.sukunimi.898@example.com,"Kauko, Hanna",HYAL,6,Viikki,8
+901,Kinnunen,Jyrki Pekko,,E,Testiosoite 900,10899 Helsinki,etunimi.sukunimi.899@example.com,"Kinnunen, Jyrki",HYAL,6,Viikki,9
+902,Korhonen,Anni Kristiina,,H,Testiosoite 901,10900 Helsinki,etunimi.sukunimi.900@example.com,"Korhonen, Anni",HYAL,6,Viikki,10
+903,Kyllönen,Anjuska Marianne,,ML,Testiosoite 902,10901 Helsinki,etunimi.sukunimi.901@example.com,"Kyllönen, Anjuska",HYAL,6,Viikki,11
+904,Malmberg,Markus Erik,,V,Testiosoite 903,10902 Helsinki,etunimi.sukunimi.902@example.com,"Malmberg, Markus",HYAL,6,Viikki,12
+905,Martikainen,Alpo Jalmari,,O,Testiosoite 904,10903 Helsinki,etunimi.sukunimi.903@example.com,"Martikainen, Alpo",HYAL,6,Viikki,13
+906,Peltoniemi,Pasi Matias,,B,Testiosoite 905,10904 Helsinki,etunimi.sukunimi.904@example.com,"Peltoniemi, Pasi",HYAL,6,Viikki,14
+907,Virkajärvi,Vertti Sakari,,T,Testiosoite 906,10905 Helsinki,etunimi.sukunimi.905@example.com,"Virkajärvi, Vertti",HYAL,6,Viikki,16
+908,Vähämaa,Ilkka Kristian,,L,Testiosoite 907,10906 Helsinki,etunimi.sukunimi.906@example.com,"Vähämaa, Ilkka",HYAL,6,Viikki,17
+909,Lohenoja,Jaakko Johannes,,MM,Testiosoite 908,10907 Helsinki,etunimi.sukunimi.907@example.com,"Lohenoja, Jaakko",,,,
