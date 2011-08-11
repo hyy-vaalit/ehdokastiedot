@@ -26,7 +26,7 @@
 
 <% unless @voting_area.ready -%>
 
-<%= raw "<p>#{flash[:errors]}</p>" if flash[:errors] -%>
+<%= raw "<p style='color:red; font-size: 120%; font-weight: bold;'>#{flash[:errors]}</p>" if flash[:errors] -%>
 
 <%= form_tag voting_area_path, :method => :post do -%>
   <table id="vote_insert_form">
