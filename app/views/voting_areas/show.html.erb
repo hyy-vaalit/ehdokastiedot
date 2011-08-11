@@ -1,5 +1,11 @@
 <p><%= link_to 'logout', login_voting_area_path %></p>
 
+<% if @voting_area.ready -%>
+<p>Marked as ready</p>
+<% else -%>
+<p><%= link_to "Mark vote inserting ready", mark_ready_voting_area_path, :confirm => 'Are you sure, that all votes are inserted' %></p>
+<% end -%>
+
 <h1><%= @voting_area.name %></h1>
 
 <% if @voting_area.votes.count > 0 -%>
@@ -40,11 +46,5 @@
   </table>
   <p><input type="submit" value="Add" /></p>
 <% end -%>
-
-<p><%= link_to "Mark vote inserting ready", mark_ready_voting_area_path, :confirm => 'Are you sure, that all votes are inserted' %></p>
-
-<% else -%>
-
-  <p>Marked as ready</p>
 
 <% end -%>
