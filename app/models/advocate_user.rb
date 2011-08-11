@@ -4,6 +4,8 @@ class AdvocateUser < ActiveRecord::Base
 
   before_validation :generate_password, :on => :create
 
+  before_create :encrypt_password
+
   attr_accessor :password
 
   validates_presence_of :ssn, :password
