@@ -23,10 +23,4 @@ class Ability
     can :create, ElectoralAlliance
   end
 
-  def advocate user
-    unless user.electoral_alliance.nil? or user.electoral_alliance.secretarial_freeze
-      can [:read, :report_fixes], Candidate, :electoral_alliance_id => user.electoral_alliance_id
-    end
-  end
-
 end

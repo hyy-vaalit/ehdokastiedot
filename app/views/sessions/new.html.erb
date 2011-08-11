@@ -1,0 +1,12 @@
+<h1>Advocate login</h1>
+<%= form_tag advocate_session_path, :method => :post do -%>
+  <p>
+    <label for="email">Email:</label>
+    <input type="text" id="email" name="email" />
+  </p>
+  <p>
+    <label for="password">Password:</label>
+    <input type="password" id="password" name="password" />
+  </p>
+  <p><input type="submit" value="Log in" /></p>
+<% end -%>

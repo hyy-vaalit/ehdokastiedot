@@ -1,6 +1,6 @@
 class AdminUser < ActiveRecord::Base
 
-  ROLES = %w[admin secretary advocate]
+  ROLES = %w[admin secretary]
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable

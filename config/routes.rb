@@ -4,6 +4,10 @@ Vaalit::Application.routes.draw do
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
+  resource :advocate do
+    resource :session
+  end
+
   resources :listings, :only => [] do
     collection do
       get :simple
