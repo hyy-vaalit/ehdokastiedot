@@ -39,6 +39,7 @@ ActiveAdmin.register Candidate do
     render 'show'
   end
 
+  filter :candidate_number
   filter :lastname
   filter :firstname
   filter :candidate_name
