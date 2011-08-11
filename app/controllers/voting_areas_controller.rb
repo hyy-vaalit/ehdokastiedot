@@ -15,7 +15,7 @@ class VotingAreasController < ApplicationController
     rescue => e
       flash[:errors] = e.message
     end
-    redirect_to voting_area_path
+    redirect_to voting_area_path(:anchor => 'vote_insert_form')
   end
 
   def login

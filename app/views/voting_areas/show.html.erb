@@ -29,7 +29,7 @@
 <%= raw "<p>#{flash[:errors]}</p>" if flash[:errors] -%>
 
 <%= form_tag voting_area_path, :method => :post do -%>
-  <table>
+  <table id="vote_insert_form">
     <tr>
       <th>Candidate number</th>
       <th>Vote count</th>
