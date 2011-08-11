@@ -20,7 +20,6 @@ Faculty.create!(:name => 'Kaisaniemi post-hautomo', :code => 'KPH')
 
 # Test users
 AdminUser.create!(:email => 'mark@example.com',   :password => 'password',  :password_confirmation => 'password',  :role => 'secretary')
-AdminUser.create!(:email => 'twain@example.com',  :password => 'password',  :password_confirmation => 'password',  :role => 'advocate')
 
 
 # Voting areas
