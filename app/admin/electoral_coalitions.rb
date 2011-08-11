@@ -16,7 +16,7 @@ ActiveAdmin.register ElectoralCoalition do
       f.input :name
     end
     f.inputs 'Alliances' do
-      f.input :electoral_alliances
+      f.input :electoral_alliances, :as => :check_boxes, :collection => ElectoralAlliance.without_coalition.concat(f.object.electoral_alliances)
     end
     f.inputs 'Order' do
       f.input :number_order
