@@ -6,6 +6,7 @@
     <th>Candidate name</th>
     <th>Electoral alliance</th>
     <th>Electoral coalition</th>
+    <th>Votes</th>
     <th>Electoral alliance proportional</th>
     <th>Electoral coalition proportional</th>
   </tr>
@@ -15,6 +16,7 @@
     <td><%= link_to candidate.candidate_name, admin_candidate_path(candidate.id) %></td>
     <td><%= candidate.electoral_alliance.name %></td>
     <td><%= candidate.electoral_alliance.electoral_coalition ? candidate.electoral_alliance.electoral_coalition.name : '' %></td>
+    <td><%= candidate.total_votes %></td>
     <td><%= candidate.alliance_proportional%></td>
     <td><%= candidate.coalition_proportional%></td>
   </tr>
