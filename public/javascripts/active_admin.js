@@ -49,6 +49,10 @@ $(function(){
       return false;
     });
 
+    $('form[method="post"]').live('submit', function(event) {
+      return confirm('Do you really want send this form?');
+    });
+
     $('a[href="#toggle_filter"]').click(function(event) {
       event.preventDefault();
       $('#sidebar').toggle();
