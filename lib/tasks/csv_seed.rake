@@ -65,11 +65,13 @@ namespace :csv_seed do
 
   desc 'Create main voting data'
   task :main_voting => :environment do
-    voting_area = VotingArea.create! :code => 'DEF', :name => 'Default', :password => 'foobar123'
-    csv_contents = CSV.read('doc/votes/HYY09')
-    csv_contents.shift
-    csv_contents.each do |row|
-      Candidate.find_by_candidate_number(row[0]).votes.create! :voting_area => voting_area, :vote_count => row[3]
+    (1..20).to_a.each do |i|
+      voting_area = VotingArea.create! :code => i, :name => 'Default', :password => 'foobar123'
+      csv_contents = CSV.read("doc/votes/#{i}")
+      csv_contents.shift
+      csv_contents.each do |row|
+        Candidate.find_by_candidate_number(row[0]).votes.create! :voting_area => voting_area, :vote_count => row[3]
+      end
     end
   end
 
