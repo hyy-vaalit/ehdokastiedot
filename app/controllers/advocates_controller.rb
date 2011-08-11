@@ -5,6 +5,7 @@ class AdvocatesController < ApplicationController
   before_filter :authenticate
 
   def show
+    @advocate = AdvocateUser.find_by_id(session[:advocate])
   end
 
   private

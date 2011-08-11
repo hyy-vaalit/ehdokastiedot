@@ -1,0 +1,9 @@
+<% @advocate.electoral_alliances.each do |alliance| -%>
+  <h2><%= alliance.name %></h2>
+  <ul>
+  <% alliance.candidates.each do |candidate| -%>
+    <li><%= link_to candidate.candidate_name, advocate_candidate_path(candidate.id) %></li>
+  <% end -%>
+  </ul>
+  <hr />
+<% end -%>

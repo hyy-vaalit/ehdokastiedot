@@ -6,6 +6,11 @@ Vaalit::Application.routes.draw do
 
   resource :advocate do
     resource :session
+    resources :candidates do
+      member do
+        post :report_fixes
+      end
+    end
   end
 
   resources :listings, :only => [] do

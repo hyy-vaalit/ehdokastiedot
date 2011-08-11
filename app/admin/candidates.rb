@@ -75,12 +75,6 @@ ActiveAdmin.register Candidate do
 
   sidebar :fixes, :only => :show
 
-  member_action :report_fixes, :method => :post do
-    candidate = Candidate.find_by_id(params[:id])
-    df = candidate.data_fixes.create! :field_name => params[:field], :old_value => candidate.send(params[:field]), :new_value => params[:new_value]
-    render :json => df
-  end
-
   member_action :apply_fix, :method => :get do
     df = DataFix.find_by_id(params[:fix])
     df.apply!
