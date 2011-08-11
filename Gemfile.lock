@@ -73,6 +73,9 @@ GEM
       launchy (>= 0.3.2)
       rest-client (~> 1.6.1)
       term-ansicolor (~> 1.0.5)
+    hoptoad_notifier (2.4.11)
+      activesupport
+      builder
     i18n (0.5.0)
     inherited_resources (1.2.2)
       has_scope (~> 0.5.0)
@@ -161,6 +164,7 @@ DEPENDENCIES
   growl
   guard-rspec
   heroku
+  hoptoad_notifier
   passgen
   rails (= 3.0.9)
   ranked-model

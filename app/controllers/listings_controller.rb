@@ -14,6 +14,10 @@ class ListingsController < ApplicationController
     @candidates = Candidate.order('coalition_proportional desc, alliance_proportional desc').all
   end
 
+  def lulz
+    raise 'hoptoad-test'.inspect
+  end
+
   private
 
   def authorize_listings

@@ -8,6 +8,7 @@ gem 'cancan'
 gem 'passgen'
 
 gem 'sqlite3'
+gem 'hoptoad_notifier'
 
 group :development do
   gem 'heroku'
