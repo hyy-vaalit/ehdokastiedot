@@ -15,6 +15,7 @@
     <th>Vote count</th>
   </tr>
   <% @voting_area.votes.each do |vote| -%>
+    <% next if vote.vote_count == 0 -%>
     <tr>
       <td><%= vote.candidate.candidate_number %></td>
       <td><%= vote.vote_count %></td>
