@@ -14,6 +14,10 @@ class VotingArea < ActiveRecord::Base
     return area if area.has_password? password
   end
 
+  def total_votes
+    votes.map(&:vote_count).sum
+  end
+
   def give_votes! votes
     invalid = []
     votes.each do |i, vote|
