@@ -1,10 +1,10 @@
 <p><%= link_to raw('&lt;- Back'), advocate_path %></p>
 
-<p><strong>Last name</strong> <span><%= @candidate.lastname %></span> <span id="lastname"><%= link_to t('edit'), '#edit' %></span></p>
-<p><strong>First name</strong> <span><%= @candidate.firstname %></span> <span id="firstname"><%= link_to t('edit'), '#edit' %></span></p>
-<p><strong>Candidate name</strong> <span><%= @candidate.candidate_name %></span> <span id="candidate_name"><%= link_to t('edit'), '#edit' %></span></p>
-<p><strong>Social security number</strong> <span><%= @candidate.social_security_number %></span> <span id="social_security_number"><%= link_to t('edit'), '#edit' %></span></p>
-<p><strong>Address</strong> <span><%= @candidate.address %></span> <span id="address"><%= link_to t('edit'), '#edit' %></span></p>
-<p><strong>Postal information</strong> <span><%= @candidate.postal_information %></span> <span id="postal_information"><%= link_to t('edit'), '#edit' %></span></p>
-<p><strong>Email</strong> <span><%= @candidate.email %></span> <span id="email"><%= link_to t('edit'), '#edit' %></span></p>
-<p><strong>Faculty</strong> <span><%= @candidate.faculty.name %></span> <span id="faculty"><%= link_to t('edit'), '#edit' %></span></p>
+<p><strong>Sukunimi</strong> <span><%= @candidate.lastname %></span> <span id="lastname"><%= link_to t('edit'), '#edit' %></span></p>
+<p><strong>Etunimet</strong> <span><%= @candidate.firstname %></span> <span id="firstname"><%= link_to t('edit'), '#edit' %></span></p>
+<p><strong>Ehdokasnimi</strong> <span><%= @candidate.candidate_name %></span> <span id="candidate_name"><%= link_to t('edit'), '#edit' %></span></p>
+<p><strong>Henkilötunnus</strong> <span><%= @candidate.social_security_number %></span> <span id="social_security_number"><%= link_to t('edit'), '#edit' %></span></p>
+<p><strong>Postiosoite</strong> <span><%= @candidate.address %></span> <span id="address"><%= link_to t('edit'), '#edit' %></span></p>
+<p><strong>Postinumero ja -toimipaikka</strong> <span><%= @candidate.postal_information %></span> <span id="postal_information"><%= link_to t('edit'), '#edit' %></span></p>
+<p><strong>Sähköposti</strong> <span><%= @candidate.email %></span> <span id="email"><%= link_to t('edit'), '#edit' %></span></p>
+<p><strong>Tiedekunta</strong> <span><%= @candidate.faculty.name %></span> <span id="faculty"><%= link_to t('edit'), '#edit' %></span></p>

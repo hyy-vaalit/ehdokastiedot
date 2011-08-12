@@ -1,12 +1,12 @@
-<h1>Voting Area login</h1>
+<h1>Äänestysalueelle kirjautuminen</h1>
 <%= form_tag login_voting_area_path, :method => :post do -%>
   <p>
-    <label for="username">Username:</label>
+    <label for="username">Käyttäjätunnus:</label>
     <input type="text" id="username" name="username" />
   </p>
   <p>
-    <label for="password">Password:</label>
+    <label for="password">Salasana:</label>
     <input type="password" id="password" name="password" />
   </p>
-  <p><input type="submit" value="Log in" /></p>
+  <p><input type="submit" value="Kirjaudu" /></p>
 <% end -%>

@@ -1,9 +1,9 @@
 <p><%= link_to 'logout', login_voting_area_path %></p>
 
 <% if @voting_area.ready -%>
-<p>Marked as ready</p>
+<p>Tämä alueen äänet on merkitty lasketuiksi</p>
 <% else -%>
-<p><%= link_to "Mark vote inserting ready", mark_ready_voting_area_path, :confirm => 'Are you sure, that all votes are inserted' %></p>
+<p><%= link_to "Merkitse alueen äänet lasketuksi", mark_ready_voting_area_path, :confirm => 'Are you sure, that all votes are inserted' %></p>
 <% end -%>
 
 <h1><%= @voting_area.name %></h1>
@@ -11,8 +11,8 @@
 <% if @voting_area.votes.count > 0 -%>
 <table>
   <tr>
-    <th>Candidate number</th>
-    <th>Vote count</th>
+    <th>Ehdokasnimi</th>
+    <th>Äänimäärä</th>
   </tr>
   <% @voting_area.votes.each do |vote| -%>
     <% next if vote.vote_count == 0 -%>
@@ -31,8 +31,8 @@
 <%= form_tag voting_area_path, :method => :post do -%>
   <table id="vote_insert_form">
     <tr>
-      <th>Candidate number</th>
-      <th>Vote count</th>
+      <th>Ehdokasnimi</th>
+      <th>Äänimäärä</th>
     </tr>
   <% 10.times do |i| -%>
     <tr>
@@ -45,7 +45,7 @@
     </tr>
   <% end -%>
   </table>
-  <p><input type="submit" value="Add" /></p>
+  <p><input type="submit" value="Lisää äänitiedot" /></p>
 <% end -%>
 
 <% end -%>
