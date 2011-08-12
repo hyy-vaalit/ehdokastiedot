@@ -19,6 +19,7 @@ Vaalit::Application.routes.draw do
       get :same_ssn
       get :proportional_order
       get :showdown
+      post :showdown, :action => 'showdown_post'
       get :lulz
     end
   end

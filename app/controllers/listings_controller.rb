@@ -18,6 +18,15 @@ class ListingsController < ApplicationController
     @voting_areas = VotingArea.all
   end
 
+  def showdown_post
+    ids = params[:takewith]
+    if ids
+      VotingArea.take! ids
+      Proportionals.calculus!
+    end
+    redirect_to showdown_listings_path
+  end
+
   def lulz
     raise 'hoptoad-test'.inspect
   end

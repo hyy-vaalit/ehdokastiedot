@@ -14,8 +14,19 @@ class VotingArea < ActiveRecord::Base
     return area if area.has_password? password
   end
 
+  def self.take! ids
+    ids.each do |id|
+      va = VotingArea.find_by_id(id)
+      va.taken!
+    end
+  end
+
   def total_votes
     votes.sum(:vote_count)
+  end
+
+  def state
+    ready ? (taken ? 'Laskettu' : 'Valmis') : 'Kesken'
   end
 
   def give_votes! votes
@@ -43,6 +54,10 @@ class VotingArea < ActiveRecord::Base
 
   def ready!
     update_attribute :ready, true
+  end
+
+  def taken!
+    update_attribute :taken, true
   end
 
   private

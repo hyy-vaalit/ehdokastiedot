@@ -1,14 +1,19 @@
-<table>
-  <tr>
-    <th></th>
-    <th>Area</th>
-    <th>Votes</th>
-  </tr>
-<% @voting_areas.each do |area| -%>
-  <tr>
-    <td><input type="checkbox" /></td>
-    <td><%= area.name %></td>
-    <td><%= area.total_votes %></td>
-  </tr>
+<%= form_tag showdown_listings_path, :method => :post, :class => "ordering" do -%>
+  <table>
+    <tr>
+      <th>Area</th>
+      <th>State</th>
+      <th>Votes</th>
+      <th>Take with</th>
+    </tr>
+  <% @voting_areas.each do |area| -%>
+    <tr>
+      <td><%= area.name %></td>
+      <td><%= area.state %></td>
+      <td><%= area.total_votes %></td>
+      <td><% if area.ready and !area.taken %><input type="checkbox" id="takewith_<%= area.id %>" name="takewith[]" value="<%= area.id %>" /><% end %></td>
+    </tr>
+  <% end -%>
+  </table>
+  <p><input type="submit" value="Laske" /></p>
 <% end -%>
-</table>
