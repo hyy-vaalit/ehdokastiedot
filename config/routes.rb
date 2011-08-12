@@ -5,7 +5,7 @@ Vaalit::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   resource :advocate do
-    resource :session
+    resource :session, :only => [:new, :create]
     resources :candidates do
       member do
         post :report_fixes

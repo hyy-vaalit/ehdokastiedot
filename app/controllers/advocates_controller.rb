@@ -5,13 +5,13 @@ class AdvocatesController < ApplicationController
   before_filter :authenticate
 
   def show
-    @advocate = AdvocateUser.find_by_id(session[:advocate])
   end
 
   private
 
   def authenticate
-    redirect_to new_advocate_session_path unless session[:advocate]
+    @advocate = AdvocateUser.find_by_id(session[:advocate])
+    redirect_to new_advocate_session_path unless @advocate
   end
 
 end
