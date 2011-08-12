@@ -18,6 +18,7 @@ class ElectoralAlliance < ActiveRecord::Base
   end
 
   after_create do
+    return unless self.primary_advocate_social_security_number # Seed, etc
     unless AdvocateUser.find_by_ssn(self.primary_advocate_social_security_number)
       AdvocateUser.create! :ssn => self.primary_advocate_social_security_number, :email => self.primary_advocate_email
     end

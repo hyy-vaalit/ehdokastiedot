@@ -5,6 +5,7 @@ namespace :csv_seed do
 
   desc 'Create candidate data from seed.csv'
   task :candidates => :environment do
+    puts '... Creating candidates ...'
     csv_contents = CSV.read('doc/vaalit_2009_ehdokkaat.csv')
     csv_contents.shift
     csv_contents.each do |row|
@@ -53,8 +54,10 @@ namespace :csv_seed do
 
   desc 'Create early voting data'
   task :early_voting => :environment do
+    puts '... Creating early voting areas ...'
     (1..5).to_a.each do |i|
-      voting_area = VotingArea.create! :code => "E#{i}", :name => "Ennakkoäänetyspaikka #{1}", :password => 'foobar123'
+      voting_area = VotingArea.find_by_code "E#{i}"
+      puts "... #{voting_area.name}"
       csv_contents = CSV.read("doc/votes/E#{i}")
       csv_contents.shift
       csv_contents.each do |row|
@@ -65,8 +68,10 @@ namespace :csv_seed do
 
   desc 'Create main voting data'
   task :main_voting => :environment do
+    puts '... Creating voting areas ...'
     (1..20).to_a.each do |i|
-      voting_area = VotingArea.create! :code => i, :name => 'Default', :password => 'foobar123'
+      voting_area = VotingArea.find_by_code i
+      puts "... #{voting_area.name}"
       csv_contents = CSV.read("doc/votes/#{i}")
       csv_contents.shift
       csv_contents.each do |row|
