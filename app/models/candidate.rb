@@ -23,7 +23,7 @@ class Candidate < ActiveRecord::Base
   end
 
   def total_votes
-    self.votes.ready.map(&:vote_count).sum
+    self.votes.ready.sum(:vote_count)
   end
 
   def self.give_numbers!
