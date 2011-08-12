@@ -18,9 +18,9 @@ class ElectoralAlliance < ActiveRecord::Base
   end
 
   after_create do
-    au = AdvocateUser.find_or_create_by_ssn(self.primary_advocate_social_security_number)
-    au.email = self.primary_advocate_email
-    au.save
+    unless AdvocateUser.find_by_ssn(self.primary_advocate_social_security_number)
+      AdvocateUser.create! :ssn => self.primary_advocate_social_security_number, :email => self.primary_advocate_email
+    end
   end
 
 end
