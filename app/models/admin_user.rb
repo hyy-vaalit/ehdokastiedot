@@ -23,7 +23,7 @@ class AdminUser < ActiveRecord::Base
   end
 
   def send_password
-    PasswordDelivery.new_password(password, email)
+    PasswordDelivery.new_password(password, email).deliver
   end
 
 end
