@@ -18,6 +18,7 @@ Vaalit::Application.routes.draw do
       get :simple
       get :same_ssn
       get :proportional_order
+      get :showdown
       get :lulz
     end
   end

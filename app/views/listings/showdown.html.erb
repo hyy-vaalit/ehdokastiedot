@@ -1,0 +1,14 @@
+<table>
+  <tr>
+    <th></th>
+    <th>Area</th>
+    <th>Votes</th>
+  </tr>
+<% @voting_areas.each do |area| -%>
+  <tr>
+    <td><input type="checkbox" /></td>
+    <td><%= area.name %></td>
+    <td><%= area.total_votes %></td>
+  </tr>
+<% end -%>
+</table>
