@@ -6,6 +6,8 @@ class AdvocateUser < ActiveRecord::Base
 
   before_create :encrypt_password
 
+  after_create :send_password
+
   attr_accessor :password
 
   validates_presence_of :ssn, :password
@@ -32,6 +34,10 @@ class AdvocateUser < ActiveRecord::Base
 
   def encrypt(string)
     Digest::SHA2.hexdigest string
+  end
+
+  def send_password
+    PasswordDelivery.new_password(password, email)
   end
 
 end

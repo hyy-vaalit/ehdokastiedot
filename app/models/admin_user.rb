@@ -12,20 +12,18 @@ class AdminUser < ActiveRecord::Base
 
   before_validation :generate_password, :on => :create
 
-  belongs_to :electoral_alliance
+  after_create :send_password
 
-  #def candidates
-  #  if role == 'admin'
-  #    Candidate.all
-  #  else
-  #    self.electoral_alliance.candidates
-  #  end
-  #end
+  belongs_to :electoral_alliance
 
   private
 
   def generate_password
     self.password = Passgen::generate unless self.password
+  end
+
+  def send_password
+    PasswordDelivery.new_password(password, email)
   end
 
 end
