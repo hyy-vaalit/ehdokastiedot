@@ -37,7 +37,7 @@ class AdvocateUser < ActiveRecord::Base
   end
 
   def send_password
-    PasswordDelivery.new_password(password, email).deliver
+    PasswordDelivery.new_password(password, primary_advocate_email).deliver
   end
 
 end
