@@ -15,7 +15,7 @@ class VotingArea < ActiveRecord::Base
   end
 
   def total_votes
-    votes.map(&:vote_count).sum
+    votes.sum(:vote_count)
   end
 
   def give_votes! votes
