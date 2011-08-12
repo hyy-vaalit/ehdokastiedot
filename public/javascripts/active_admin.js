@@ -49,8 +49,28 @@ $(function(){
       return false;
     });
 
-    $('form[method="post"]').live('submit', function(event) {
-      return confirm('Do you really want send this form?');
+    jQuery(document).ready(function($) {
+      textboxes = $("input");
+
+      if ($.browser.mozilla) {
+        $(textboxes).keypress(checkForEnter);
+      } else {
+        $(textboxes).keydown(checkForEnter);
+      }
+
+      function checkForEnter(event) {
+        if (event.keyCode == 13) {
+          currentTextboxNumber = textboxes.index(this);
+
+          if (textboxes[currentTextboxNumber + 1] != null) {
+            nextTextbox = textboxes[currentTextboxNumber + 1];
+            nextTextbox.select();
+          }
+
+          event.preventDefault();
+          return false;
+        }
+      }
     });
 
     $('a[href="#toggle_filter"]').click(function(event) {
