@@ -16,6 +16,8 @@ class Candidate < ActiveRecord::Base
 
   scope :without_electoral_alliance, joins(:electoral_alliance).where('candidates.candidate_name = electoral_alliances.name')
 
+  attr_accessor :has_fixes
+
   def invalid!
     self.update_attribute :marked_invalid, true
   end
@@ -26,6 +28,10 @@ class Candidate < ActiveRecord::Base
 
   def total_votes
     self.votes.ready.sum(:vote_count)
+  end
+
+  def has_fixes
+    self.data_fixes.count > 0
   end
 
   def self.give_numbers!

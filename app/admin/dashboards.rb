@@ -1,3 +1,4 @@
+# coding: utf-8
 ActiveAdmin::Dashboards.build do
 
   section "Exports" do
@@ -13,6 +14,7 @@ ActiveAdmin::Dashboards.build do
     ul do
       li link_to 'Simple list', simple_listings_path
       li link_to 'Same social security number list', same_ssn_listings_path
+      li link_to 'Has fixes', has_fixes_listings_path
       li link_to 'Proportional order list', proportional_order_listings_path
       li link_to 'Showdown, place to control the show', showdown_listings_path
     end

@@ -1,0 +1,5 @@
+<ul>
+<% @candidates.each do |candidate| -%>
+  <li><%= link_to candidate.candidate_name, admin_candidate_path(candidate.id) %></li>
+<% end -%>
+</ul>

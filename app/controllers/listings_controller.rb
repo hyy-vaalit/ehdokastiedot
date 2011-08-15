@@ -36,6 +36,10 @@ class ListingsController < ApplicationController
     redirect_to showdown_listings_path
   end
 
+  def has_fixes
+    @candidates = Candidate.joins(:data_fixes).all
+  end
+
   def lulz
     raise 'hoptoad-test'.inspect
   end

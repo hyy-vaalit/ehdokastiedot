@@ -20,6 +20,7 @@ Vaalit::Application.routes.draw do
       get :proportional_order
       get :showdown
       post :showdown, :action => 'showdown_post'
+      get :has_fixes
       get :lulz
     end
   end
