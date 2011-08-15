@@ -4,7 +4,7 @@ $(document).ready(function() {
 
     $('#candidate_candidate_name').bind('focusin', function(event) {
       var lastname = $('#candidate_lastname').val();
-      var firstname = $('#candidate_firstname').val();
+      var firstname = format_firstname($('#candidate_firstname').val());
       var candidate_name_input = $(this);
       if (!candidate_name_input.val()) {
         candidate_name_input.val(lastname + ', ' + firstname);
@@ -13,7 +13,7 @@ $(document).ready(function() {
 
     $('#candidate_email').bind('focusin', function(event) {
       var lastname = $('#candidate_lastname').val().toLowerCase();
-      var firstname = $('#candidate_firstname').val().toLowerCase();
+      var firstname = format_firstname($('#candidate_firstname').val().toLowerCase());
       var candidate_email_input = $(this);
       if (!candidate_email_input.val()) {
         candidate_email_input.val(firstname + '.' + lastname + '@helsinki.fi');
@@ -24,6 +24,10 @@ $(document).ready(function() {
 
   }
 });
+
+function format_firstname(firstname) {
+  return firstname.split(' ')[0];
+}
 
 function mark_social_security_number_invalid(error) {
   var field =  $('#candidate_social_security_number');
