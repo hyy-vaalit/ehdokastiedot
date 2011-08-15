@@ -74,7 +74,7 @@ namespace :csv_seed do
   task :main_voting => :environment do
     puts '... Creating voting areas ...'
     (1..20).to_a.each do |i|
-      voting_area = VotingArea.find_by_code i
+      voting_area = VotingArea.find_by_code "#{i}"
       puts "... #{voting_area.name}"
       csv_contents = CSV.read("doc/votes/#{i}")
       csv_contents.shift
