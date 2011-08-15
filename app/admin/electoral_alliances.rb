@@ -25,12 +25,14 @@ ActiveAdmin.register ElectoralAlliance do
       "#{alliance.secondary_advocate_lastname}, #{alliance.secondary_advocate_firstname}"
     end
     column :delivered_candidate_form_amount
+    column :secretarial_freeze
 
     default_actions
   end
 
   filter :name
   filter :electoral_coalition
+  filter :secretarial_freeze, :as => :select
 
   form do |f|
     f.inputs 'Basic information' do
