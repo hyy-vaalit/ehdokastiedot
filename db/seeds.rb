@@ -9,8 +9,8 @@
 #   Mayor.create(:name => 'Daley', :city => cities.first)
 
 # Clean database
-DatabaseCleaner.strategy = :truncation
-DatabaseCleaner.clean
+#DatabaseCleaner.strategy = :truncation
+#DatabaseCleaner.clean
 
 # Create a default user
 AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password', :role => 'admin')
