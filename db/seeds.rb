@@ -69,7 +69,7 @@ pelast = ElectoralCoalition.create! :name => 'Pelastusrengas',                  
 snaf = ElectoralCoalition.create! :name => 'Svenska Nationer och Ämnesföreningar (SNÄf)',  :shorten => 'SNÄf'
 
 # Electoral Alliances
-mp.electoral_alliances.create! :name => 'HYYn Vihreät - De Gröna vid HUS',                               :shorten => 'HyVi MP'
+mp.electoral_alliances.create! :name => 'HYYn Vihreät - De Gröna vid HUS',                               :shorten => 'HyVi'
 mp.electoral_alliances.create! :name => 'Sitoutumaton vasemmisto - Obunden vänster - Independent left',  :shorten => 'SitVas'
 hyal.electoral_alliances.create! :name => 'Humanistit',                                                  :shorten => 'Humani'
 help.electoral_alliances.create! :name => 'Viikki',                                                      :shorten => 'Viikki'
