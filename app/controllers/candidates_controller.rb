@@ -8,7 +8,7 @@ class CandidatesController < ApplicationController
   end
 
   def report_fixes
-    df = @candidate.data_fixes.create! :field_name => params[:field], :old_value => candidate.send(params[:field]), :new_value => params[:new_value]
+    df = @candidate.data_fixes.create! :field_name => params[:field], :old_value => @candidate.send(params[:field]), :new_value => params[:new_value]
     render :json => df
   end
 
