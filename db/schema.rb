@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110812124722) do
+ActiveRecord::Schema.define(:version => 20110815075541) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20110812124722) do
     t.string   "secondary_advocate_postal_information"
     t.string   "secondary_advocate_phone"
     t.string   "secondary_advocate_email"
+    t.string   "shorten"
   end
 
   create_table "electoral_coalitions", :force => true do |t|
@@ -115,6 +116,7 @@ ActiveRecord::Schema.define(:version => 20110812124722) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "number_order"
+    t.string   "shorten"
   end
 
   create_table "emails", :force => true do |t|

@@ -2,6 +2,7 @@ ActiveAdmin.register ElectoralCoalition do
 
   index do
     column :name
+    column :shorten
     column :alliances do |coalition|
       coalition.electoral_alliances.map(&:name).join(', ')
     end
@@ -14,6 +15,7 @@ ActiveAdmin.register ElectoralCoalition do
   form do |f|
     f.inputs 'Basic information' do
       f.input :name
+      f.input :shorten
     end
     f.inputs 'Alliances' do
       f.input :electoral_alliances, :as => :check_boxes, :collection => ElectoralAlliance.without_coalition.concat(f.object.electoral_alliances)

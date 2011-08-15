@@ -16,6 +16,7 @@ ActiveAdmin.register ElectoralAlliance do
 
   index do
     column :name
+    column :shorten
     column :electoral_coalition, :sortable => false
     column :primary_advocate do |alliance|
       "#{alliance.primary_advocate_lastname}, #{alliance.primary_advocate_firstname}"
@@ -34,6 +35,7 @@ ActiveAdmin.register ElectoralAlliance do
   form do |f|
     f.inputs 'Basic information' do
       f.input :name
+      f.input :shorten
       f.input :delivered_candidate_form_amount
     end
     f.inputs 'Primary Advocate' do

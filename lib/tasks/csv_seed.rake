@@ -11,12 +11,16 @@ namespace :csv_seed do
     csv_contents.each do |row|
 
       faculty = Faculty.find_or_create_by_code row[4]
-      electoral_coalition = ElectoralCoalition.find_or_create_by_name row[9] if row[9]
+
       alliance_name = (row[11] || row[8])
-      if electoral_coalition
-        electoral_alliance = electoral_coalition.electoral_alliances.find_or_create_by_name alliance_name
-      else
-        electoral_alliance = ElectoralAlliance.find_or_create_by_name alliance_name
+      electoral_alliance = ElectoralAlliance.find_by_name alliance_name
+      unless electoral_alliance
+        electoral_coalition = ElectoralCoalition.find_or_create_by_name row[9] if row[9]
+        if electoral_coalition
+          electoral_alliance = electoral_coalition.electoral_alliances.create! :name => alliance_name
+        else
+          electoral_alliance = ElectoralAlliance.create! :name => alliance_name
+        end
       end
       electoral_alliance.update_attribute :signing_order_position, row[10]
 
