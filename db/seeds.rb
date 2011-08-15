@@ -101,3 +101,9 @@ ElectoralAlliance.create! :name => 'Akateemiset piraatit',                      
 ElectoralAlliance.create! :name => 'Perussuomalainen vaaliliitto',                                       :shorten => 'Peruss'
 ElectoralAlliance.create! :name => 'Ämnesföreningarna',                                                  :shorten => 'Ämnesf'
 snaf.electoral_alliances.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',         :shorten => 'Libera'
+
+
+# Configurations
+Configuration.create! :key => 'total_vote_count', :value => 'ÄÄNIÄ YHTEENSÄ'
+Configuration.create! :key => 'right_to_vote', :value => 'ÄÄNIOIKEUTETTUJA'
+Configuration.create! :key => 'candidates_to_select', :value => 'VALITTAVIA EHDOKKAITA'

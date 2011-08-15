@@ -14,6 +14,8 @@ class Candidate < ActiveRecord::Base
 
   scope :valid, where(:cancelled => false, :marked_invalid => false)
 
+  scope :without_electoral_alliance, joins(:electoral_alliance).where('candidates.candidate_name = electoral_alliances.name')
+
   def invalid!
     self.update_attribute :marked_invalid, true
   end

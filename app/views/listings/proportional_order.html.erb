@@ -1,5 +1,17 @@
 <h1>Vaalitulos</h1>
 
+<ul>
+  <li>Vaalirenkaita yhteensä: <%= @coalition_count %></li>
+  <li>Vaaliliittoja yhteensä: <%= @alliance_count %></li>
+  <li>Ehdokkaita ilman liittoa: <%= @allianceless_candidates %></li>
+  <li>Ehdokkaita yhteensä: <%= @candidates.count %></li>
+  <li>Valittavia ehdokkaita: <%= @candidates_to_select %></li>
+  <li>Äänioikeutettuja: <%= @right_to_vote %></li>
+  <li>Ääniä annettu: <%= @votes_given %></li>
+  <li>Ääniä hyväksytty: <%= @votes_accepted %></li>
+  <li>Äänestysprosentti %: <%= @voting_percentage %></li>
+</ul>
+
 <p>Äänistä laskettu <%= @calculated_votes %>%</p>
 
 <table>
