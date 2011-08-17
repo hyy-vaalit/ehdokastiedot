@@ -1,5 +1,7 @@
 <p><%= link_to raw('&lt;- Back'), advocate_path %></p>
 
+<h1>Korjaa ehdokkaan tiedoja</h1>
+
 <p><strong>Sukunimi</strong> <span><%= @candidate.lastname %></span> <span id="lastname"><%= link_to t('edit'), '#edit' %></span></p>
 <p><strong>Etunimet</strong> <span><%= @candidate.firstname %></span> <span id="firstname"><%= link_to t('edit'), '#edit' %></span></p>
 <p><strong>Ehdokasnimi</strong> <span><%= @candidate.candidate_name %></span> <span id="candidate_name"><%= link_to t('edit'), '#edit' %></span></p>
@@ -8,3 +10,20 @@
 <p><strong>Postinumero ja -toimipaikka</strong> <span><%= @candidate.postal_information %></span> <span id="postal_information"><%= link_to t('edit'), '#edit' %></span></p>
 <p><strong>Sähköposti</strong> <span><%= @candidate.email %></span> <span id="email"><%= link_to t('edit'), '#edit' %></span></p>
 <p><strong>Tiedekunta</strong> <span><%= @candidate.faculty.name %></span> <span id="faculty"><%= link_to t('edit'), '#edit' %></span></p>
+
+<h2>Olemassa olevat korjaukset</h2>
+
+<table>
+  <tr>
+    <th>Kenttä</th>
+    <th>Vanha arvo</th>
+    <th>Uusi arvo</th>
+  </tr>
+<% @candidate.data_fixes.unapplied.each do |fix| -%>
+  <tr>
+    <td><%= t(:"candidate.#{fix.field_name}") %></td>
+    <td><%= fix.old_value %></td>
+    <td><%= fix.new_value %></td>
+  </tr>
+<% end -%>
+</table>
