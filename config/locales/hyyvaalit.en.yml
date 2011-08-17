@@ -23,6 +23,9 @@ en:
         secondary_advocate_phone: "Phone"
         secondary_advocate_email: "Email"
 
+      candidate:
+        firstname: "Firstnames"
+
   mailer:
     candidate_notifier:
       welcome_as_candidate:
