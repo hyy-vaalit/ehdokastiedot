@@ -1,12 +1,18 @@
 <h1>Asiamiesten lähettämät korjaukset</h1>
-<% @coalitions.each do |coalition| -%>
+<% @coalitions.each do |coalition|
+  next unless coalition.has_fix_needing_candidates? -%>
   <h2><%= coalition.name %></h2>
 
-  <% coalition.electoral_alliances.each do |alliance| -%>
+  <% coalition.electoral_alliances.each do |alliance|
+    next unless alliance.has_fix_needing_candidates? -%>
+    <h3><%= alliance.name %></h3>
     <% alliance.candidates.has_fixes.each do |candidate| -%>
-    <ul>
-      <li><%= link_to candidate.candidate_name, admin_candidate_path(candidate.id) %></li>
-    </ul>
+      <h4><%= candidate.candidate_name %></h4>
+      <ul>
+      <% candidate.data_fixes.unapplied.each do |fix| -%>
+        <li><span><%= t(:"candidate.#{fix.field_name}") %></span> <span><%= fix.old_value %></span> <span><%= fix.new_value %></span> <span>(<%= link_to 'Hyväksy', '#accept' %> | <%= link_to 'Hylkää', '#reject' %>)</span></li>
+      <% end -%>
+      </ul>
     <% end -%>
   <% end -%>
 <% end -%>

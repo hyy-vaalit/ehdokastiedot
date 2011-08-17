@@ -19,6 +19,10 @@ class ElectoralAlliance < ActiveRecord::Base
     self.candidates.map(&:total_votes).sum
   end
 
+  def has_fix_needing_candidates?
+    self.candidates.has_fixes.count > 0
+  end
+
   after_create do
     return unless self.primary_advocate_social_security_number # Seed, etc
     unless AdvocateUser.find_by_ssn(self.primary_advocate_social_security_number)
