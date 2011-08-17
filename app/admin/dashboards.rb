@@ -1,22 +1,22 @@
 # coding: utf-8
 ActiveAdmin::Dashboards.build do
 
-  section "Exports" do
+  section "Exportit" do
     ul do
-      li link_to "Candidates (csv)", admin_candidates_path(:format=>:csv)
-      li link_to "Cancelled Candidates (csv)", cancelled_emails_admin_candidates_path
-      li link_to "Electoral Alliances (csv)", admin_electoral_alliances_path(:format=>:csv)
-      li link_to "Electoral Coalitions(csv)", admin_electoral_coalitions_path(:format=>:csv)
+      li link_to "Kaikki ehdokkaat (csv)", admin_candidates_path(:format=>:csv)
+      li link_to "Peruuttaneet ehdokkaat (csv)", cancelled_emails_admin_candidates_path
+      li link_to "Kaikki vaaliliitot (csv)", admin_electoral_alliances_path(:format=>:csv)
+      li link_to "Kaikki vaalirenkaat (csv)", admin_electoral_coalitions_path(:format=>:csv)
     end
   end
 
-  section 'Listings' do
+  section 'Listaukset' do
     ul do
-      li link_to 'Simple list', simple_listings_path
-      li link_to 'Same social security number list', same_ssn_listings_path
-      li link_to 'Has fixes', has_fixes_listings_path
-      li link_to 'Proportional order list', proportional_order_listings_path
-      li link_to 'Showdown, place to control the show', showdown_listings_path
+      li link_to 'Yksinkertainen lista', simple_listings_path
+      li link_to 'Samat henkilötunnukset', same_ssn_listings_path
+      li link_to 'Lista korjauksia sisältävistä ehdokkaista', has_fixes_listings_path
+      li link_to 'Vaalitulos', proportional_order_listings_path
+      li link_to 'Vaalishow', showdown_listings_path
     end
   end
 
