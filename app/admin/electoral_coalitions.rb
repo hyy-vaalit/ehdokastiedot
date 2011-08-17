@@ -26,6 +26,10 @@ ActiveAdmin.register ElectoralCoalition do
   sidebar :order_alliances, :only => :show
   sidebar :order_coalitions, :only => :index
 
+  action_item :only => :index do
+    link_to 'Toggle sidebar visibility', '#toggle_filter'
+  end
+
   member_action :order_alliances, :method => :post do
     ElectoralCoalition.find_by_id(params[:id]).order_alliances(params[:alliances])
     redirect_to :action => :show
