@@ -174,4 +174,5 @@ DEPENDENCIES
   ranked-model
   rspec
   rspec-rails
+  sass
   sqlite3

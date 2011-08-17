@@ -10,6 +10,7 @@ gem 'passgen'
 gem 'sqlite3'
 gem 'hoptoad_notifier'
 gem 'jquery-rails'
+gem 'sass'
 
 group :development do
   gem 'heroku'
