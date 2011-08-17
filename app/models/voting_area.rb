@@ -25,6 +25,10 @@ class VotingArea < ActiveRecord::Base
     votes.sum(:vote_count)
   end
 
+  def state_class
+    ready ? (taken ? 'taken' : 'finish') : 'unfinished'
+  end
+
   def state
     ready ? (taken ? 'Laskettu' : 'Valmis') : 'Kesken'
   end
