@@ -4,14 +4,6 @@ ActiveAdmin.register Candidate do
 
     load_and_authorize_resource :except => [:index]
 
-    def create
-      create! do
-        flash[:notice] = "Candidate created!"
-        redirect_to new_admin_candidate_path
-        return
-      end
-    end
-
     def show
       super
       authorize! :report_fixes, @candidate if current_admin_user.role == 'advocate'
@@ -79,6 +71,10 @@ ActiveAdmin.register Candidate do
     df = DataFix.find_by_id(params[:fix])
     df.apply!
     redirect_to :action => :show
+  end
+
+  action_item :only => :show do
+    link_to 'Insert next candidate', new_admin_candidate_path
   end
 
   action_item :only => :show do

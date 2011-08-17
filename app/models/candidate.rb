@@ -16,6 +16,8 @@ class Candidate < ActiveRecord::Base
 
   scope :without_electoral_alliance, joins(:electoral_alliance).where('candidates.candidate_name = electoral_alliances.name')
 
+  validates_presence_of :lastname
+
   attr_accessor :has_fixes
 
   def invalid!
