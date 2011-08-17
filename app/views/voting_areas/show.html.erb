@@ -11,7 +11,7 @@
 <% if @voting_area.votes.count > 0 -%>
 <table>
   <tr>
-    <th>Ehdokasnimi</th>
+    <th>Ehdokasnumero</th>
     <th>Äänimäärä</th>
   </tr>
   <% @voting_area.votes.each do |vote| -%>
@@ -31,7 +31,7 @@
 <%= form_tag voting_area_path, :method => :post do -%>
   <table id="vote_insert_form">
     <tr>
-      <th>Ehdokasnimi</th>
+      <th>Ehdokasnumero</th>
       <th>Äänimäärä</th>
     </tr>
   <% 10.times do |i| -%>
