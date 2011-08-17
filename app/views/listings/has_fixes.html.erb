@@ -1,5 +1,12 @@
-<ul>
-<% @candidates.each do |candidate| -%>
-  <li><%= link_to candidate.candidate_name, admin_candidate_path(candidate.id) %></li>
+<h1>Asiamiesten lähettämät korjaukset</h1>
+<% @coalitions.each do |coalition| -%>
+  <h2><%= coalition.name %></h2>
+
+  <% coalition.electoral_alliances.each do |alliance| -%>
+    <% alliance.candidates.has_fixes.each do |candidate| -%>
+    <ul>
+      <li><%= link_to candidate.candidate_name, admin_candidate_path(candidate.id) %></li>
+    </ul>
+    <% end -%>
+  <% end -%>
 <% end -%>
-</ul>

@@ -37,7 +37,7 @@ class ListingsController < ApplicationController
   end
 
   def has_fixes
-    @candidates = Candidate.joins(:data_fixes).all
+    @coalitions = ElectoralCoalition.all
   end
 
   def lulz
