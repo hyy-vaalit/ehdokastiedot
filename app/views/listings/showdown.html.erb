@@ -1,13 +1,14 @@
 <%= form_tag showdown_listings_path, :method => :post, :class => "ordering" do -%>
   <table>
     <tr>
-      <th>Äänestysalue</th>
+      <th colspan="2">Äänestysalue</th>
       <th>Tila</th>
       <th>Ääniä</th>
       <th>Ota mukaan</th>
     </tr>
   <% @voting_areas.each do |area| -%>
     <tr>
+      <td><%= area.code %></td>
       <td><%= area.name %></td>
       <td><%= area.state %></td>
       <td><%= area.total_votes %></td>
