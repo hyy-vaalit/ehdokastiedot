@@ -15,8 +15,8 @@ class Ability
 
   def secretary user
     unless user.electoral_alliance.nil? or user.electoral_alliance.secretarial_freeze
-      can [:read, :update], Candidate, :electoral_alliance_id => user.electoral_alliance_id
-      can :create, Candidate
+      can :new, Candidate
+      can [:read, :update, :create], Candidate, :electoral_alliance_id => user.electoral_alliance_id
 
       can [:read, :update, :done], ElectoralAlliance, :id => user.electoral_alliance_id
     end

@@ -5,11 +5,11 @@ ActiveAdmin.register ElectoralAlliance do
     load_and_authorize_resource :except => [:index]
 
     def create
-      create!
       if current_admin_user.role == 'secretary'
         current_admin_user.electoral_alliance = @electoral_alliance
         current_admin_user.save!
       end
+      super
     end
 
   end
