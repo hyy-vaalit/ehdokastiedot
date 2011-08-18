@@ -26,11 +26,39 @@ class VotingArea < ActiveRecord::Base
   end
 
   def state_class
-    ready ? (taken ? 'taken' : 'finish') : 'unfinished'
+    if ready
+      if taken
+        if calculated
+          'calculated'
+        else
+          'taken'
+        end
+      else
+        'finish'
+      end
+    else
+      'unfinished'
+    end
   end
 
   def state
-    ready ? (taken ? 'Laskettu' : 'Valmis') : 'Kesken'
+    if ready
+      if taken
+        if calculated
+          'Laskettu'
+        else
+          'Laskennassa'
+        end
+      else
+        'Valmiina laskentaan'
+      end
+    else
+      'Kesken'
+    end
+  end
+
+  def mark_as_calculated!
+    self.update_attribute :calculated, true
   end
 
   def give_votes! votes

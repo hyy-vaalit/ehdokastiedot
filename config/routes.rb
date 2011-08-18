@@ -17,7 +17,7 @@ Vaalit::Application.routes.draw do
     collection do
       get :simple
       get :same_ssn
-      get :proportional_order
+      get :result
       get :showdown
       post :showdown, :action => 'showdown_post'
       get :has_fixes
