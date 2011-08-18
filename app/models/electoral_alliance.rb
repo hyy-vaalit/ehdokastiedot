@@ -23,10 +23,16 @@ class ElectoralAlliance < ActiveRecord::Base
     self.candidates.has_fixes.count > 0
   end
 
-  after_create do
+  def create_advocate
     return unless self.primary_advocate_social_security_number # Seed, etc
     unless AdvocateUser.find_by_ssn(self.primary_advocate_social_security_number)
       AdvocateUser.create! :ssn => self.primary_advocate_social_security_number, :email => self.primary_advocate_email
+    end
+  end
+
+  def self.create_advocates
+    self.all.each do |alliance|
+      alliance.create_advocate
     end
   end
 
