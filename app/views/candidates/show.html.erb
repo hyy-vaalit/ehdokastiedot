@@ -9,7 +9,7 @@
 <p><strong>Postiosoite</strong> <span><%= @candidate.address %></span> <span id="address"><%= link_to t('edit'), '#edit' %></span></p>
 <p><strong>Postinumero ja -toimipaikka</strong> <span><%= @candidate.postal_information %></span> <span id="postal_information"><%= link_to t('edit'), '#edit' %></span></p>
 <p><strong>Sähköposti</strong> <span><%= @candidate.email %></span> <span id="email"><%= link_to t('edit'), '#edit' %></span></p>
-<p><strong>Tiedekunta</strong> <span><%= @candidate.faculty.name %></span> <span id="faculty"><%= link_to t('edit'), '#edit' %></span></p>
+<p><strong>Tiedekunta</strong> <span><%= @candidate.faculty.name %></span> <span id="faculty_id"><%= link_to t('edit'), '#edit' %></span></p>
 
 <h2>Olemassa olevat korjaukset</h2>
 
@@ -21,9 +21,15 @@
   </tr>
 <% @candidate.data_fixes.unapplied.each do |fix| -%>
   <tr>
+    <% if fix.field_name == 'faculty_id' -%>
+    <td><%= t(:'candidate.faculty') %></td>
+    <td><%= Faculty.find_by_id(fix.old_value).name %></td>
+    <td><% f = Faculty.find_by_id(fix.new_value) %><%= f ? f.name : 'Määrittelemätön' %></td>
+    <% else -%>
     <td><%= t(:"candidate.#{fix.field_name}") %></td>
     <td><%= fix.old_value %></td>
     <td><%= fix.new_value %></td>
+    <% end -%>
   </tr>
 <% end -%>
 </table>
