@@ -6,7 +6,7 @@
   <% coalition.electoral_alliances.each do |alliance|
     next unless alliance.has_fix_needing_candidates? -%>
     <h3><%= alliance.name %></h3>
-    <% alliance.candidates.has_fixes.each do |candidate| -%>
+    <% alliance.candidates.has_fixes.group(:id).each do |candidate| -%>
       <h4><%= candidate.candidate_name %></h4>
       <ul>
       <% candidate.data_fixes.unapplied.each do |fix| -%>
