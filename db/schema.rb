@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110815084407) do
+ActiveRecord::Schema.define(:version => 20110818072951) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -91,6 +91,7 @@ ActiveRecord::Schema.define(:version => 20110815084407) do
     t.boolean  "applied",      :default => false
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "status"
   end
 
   create_table "electoral_alliances", :force => true do |t|
