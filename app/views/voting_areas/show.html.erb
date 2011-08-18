@@ -3,7 +3,7 @@
 <% if @voting_area.ready -%>
 <p>Tämä alueen äänet on merkitty lasketuiksi</p>
 <% else -%>
-<p><%= link_to "Merkitse alueen äänet lasketuksi", mark_ready_voting_area_path, :confirm => 'Are you sure, that all votes are inserted' %></p>
+<p><%= link_to "Merkitse alueen äänet lasketuksi", mark_ready_voting_area_path, :confirm => 'Onko kaikki tiedot varmasti syötetty?' %></p>
 <% end -%>
 
 <h1><%= @voting_area.name %></h1>
