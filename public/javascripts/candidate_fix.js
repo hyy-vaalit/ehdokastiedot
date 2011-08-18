@@ -13,12 +13,18 @@ $(document).ready(function() {
     edit_link.hide();
 
     var edit_area = edit_link.parent();
-    var val_area = $('<input />').attr('type', 'text');
+    var old_value = edit_area.prev().text();
+    var val_area = $('<input />').attr('type', 'text').val(old_value);
 
     var form = $('<form />').append(
-      $('<label />').text('New value')
+      $('<label />').text('Uusi arvo')
     ).append(val_area).append(
-      $('<input />').attr('type', 'submit')
+      $('<input />').attr('type', 'submit').val('Lähetä korjaus')
+    ).append(
+      $('<a />').text('Peruuta').attr('href','#cancel').click(function(event) {
+        event.preventDefault();
+        hideForm(form, edit_link);
+      })
     ).bind('submit', function(event) {
       event.preventDefault();
 
@@ -26,8 +32,7 @@ $(document).ready(function() {
       var value_td = edit_area.prev();
 
       $.post(window.location.href + '/report_fixes', {'field': edit_area.attr('id'), 'new_value': value}, function(data) {
-        form.remove();
-        edit_link.show();
+        hideForm(form, edit_link);
         value_td.text(value);
       });
 
@@ -37,3 +42,8 @@ $(document).ready(function() {
   });
 
 });
+
+function hideForm(form, edit_link) {
+  form.remove();
+  edit_link.show();
+}
