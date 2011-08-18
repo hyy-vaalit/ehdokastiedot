@@ -4,9 +4,9 @@ module ResultPage
     coalition_count = ElectoralCoalition.all.count
     alliance_count = ElectoralAlliance.all.count - ElectoralAlliance.not_real.count
     allianceless_candidates = Candidate.without_electoral_alliance.count
-    candidates_to_select = Configuration.find_by_key('candidates_to_select').value.to_i
-    right_to_vote = Configuration.find_by_key('right_to_vote').value.to_i
-    votes_given = Configuration.find_by_key('total_vote_count').value.to_i
+    candidates_to_select = REDIS.get('candidates_to_select').to_i
+    right_to_vote = REDIS.get('right_to_vote').to_i
+    votes_given = REDIS.get('total_vote_count').to_i
     votes_accepted = Vote.ready.sum(:vote_count)
     voting_percentage = (100 * votes_given / right_to_vote).to_i
     calculated_votes = Vote.calculated

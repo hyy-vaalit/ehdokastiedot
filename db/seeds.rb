@@ -104,6 +104,6 @@ snaf.electoral_alliances.create! :name => 'Liberaalinen vaaliliitto - Yksilönva
 
 
 # Configurations
-Configuration.create! :key => 'total_vote_count', :value => 'ÄÄNIÄ YHTEENSÄ'
-Configuration.create! :key => 'right_to_vote', :value => 'ÄÄNIOIKEUTETTUJA'
-Configuration.create! :key => 'candidates_to_select', :value => 'VALITTAVIA EHDOKKAITA'
+REDIS.set 'total_vote_count', '9999999999'
+REDIS.set 'right_to_vote', '9999999999'
+REDIS.set 'candidates_to_select', '9999999999'

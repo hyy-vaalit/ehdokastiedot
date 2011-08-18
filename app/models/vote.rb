@@ -14,9 +14,9 @@ class Vote < ActiveRecord::Base
     if votes_ready == self.sum(:vote_count)
       100
     else
-      total_votes = Configuration.find_by_key 'total_vote_count'
+      total_votes = REDIS.get('total_vote_count')
       if total_votes
-        (100 * votes_ready / total_votes.value.to_i).to_i
+        (100 * votes_ready / total_votes.to_i).to_i
       else
         0
       end
