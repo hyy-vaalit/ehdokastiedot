@@ -10,7 +10,7 @@
       <h4><%= candidate.candidate_name %></h4>
       <ul>
       <% candidate.data_fixes.unapplied.each do |fix| -%>
-        <li><span><%= t(:"candidate.#{fix.field_name}") %></span> <span><%= fix.old_value %></span> <span><%= fix.new_value %></span> <span>(<%= link_to 'Hyväksy', '#accept' %> | <%= link_to 'Hylkää', '#reject' %>)</span></li>
+        <li id="fix_<%= fix.id %>"><span><%= t(:"candidate.#{fix.field_name}") %></span> <span><%= fix.old_value %></span> <span><%= fix.new_value %></span> <span>(<%= link_to 'Hyväksy', '#accept' %> | <%= link_to 'Hylkää', '#reject' %>)</span></li>
       <% end -%>
       </ul>
     <% end -%>

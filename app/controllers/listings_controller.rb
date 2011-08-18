@@ -40,6 +40,23 @@ class ListingsController < ApplicationController
     @coalitions = ElectoralCoalition.all
   end
 
+  def has_fixes_post
+    fix = DataFix.find_by_id params[:fix_id]
+    if fix
+      method = params[:method]
+      if method == 'accept'
+        fix.accept!
+        render :json => fix
+        return
+      elsif method == 'reject'
+        fix.reject!
+        render :json => fix
+        return
+      end
+    end
+    raise "error"
+  end
+
   def lulz
     raise 'hoptoad-test'.inspect
   end

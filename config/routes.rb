@@ -21,6 +21,7 @@ Vaalit::Application.routes.draw do
       get :showdown
       post :showdown, :action => 'showdown_post'
       get :has_fixes
+      post :has_fixes, :action => 'has_fixes_post'
       get :lulz
     end
   end
