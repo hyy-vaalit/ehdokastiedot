@@ -65,14 +65,6 @@ ActiveAdmin.register Candidate do
     f.buttons
   end
 
-  sidebar :fixes, :only => :show
-
-  member_action :apply_fix, :method => :get do
-    df = DataFix.find_by_id(params[:fix])
-    df.apply!
-    redirect_to :action => :show
-  end
-
   action_item :only => :show do
     link_to 'Insert next candidate', new_admin_candidate_path
   end
