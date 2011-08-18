@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110818072951) do
+ActiveRecord::Schema.define(:version => 20110818104442) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -94,6 +94,21 @@ ActiveRecord::Schema.define(:version => 20110818072951) do
     t.boolean  "status"
   end
 
+  create_table "delayed_jobs", :force => true do |t|
+    t.integer  "priority",   :default => 0
+    t.integer  "attempts",   :default => 0
+    t.text     "handler"
+    t.text     "last_error"
+    t.datetime "run_at"
+    t.datetime "locked_at"
+    t.datetime "failed_at"
+    t.string   "locked_by"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "delayed_jobs", ["priority", "run_at"], :name => "delayed_jobs_priority"
+
   create_table "electoral_alliances", :force => true do |t|
     t.string   "name"
     t.integer  "delivered_candidate_form_amount"
@@ -157,6 +172,7 @@ ActiveRecord::Schema.define(:version => 20110818072951) do
     t.string   "encrypted_password"
     t.boolean  "ready",              :default => false
     t.boolean  "taken",              :default => false
+    t.boolean  "calculated"
   end
 
 end

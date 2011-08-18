@@ -12,6 +12,9 @@ gem 'hoptoad_notifier'
 gem 'jquery-rails'
 gem 'sass'
 
+gem 'delayed_job'
+gem 'redis'
+
 group :development do
   gem 'heroku'
 end
