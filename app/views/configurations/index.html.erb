@@ -25,3 +25,11 @@
     <%= submit_tag 'Save' %>
   </p>
 <% end -%>
+
+<%= form_tag(configuration_path('mailaddress'), :method => :put) do -%>
+  <p>
+    <strong>Järjestelmän mailiosoite:</strong><br />
+    <%= text_field_tag 'value', @mailaddress%>
+    <%= submit_tag 'Save' %>
+  </p>
+<% end -%>

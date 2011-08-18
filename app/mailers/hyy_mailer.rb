@@ -1,5 +1,5 @@
 class HyyMailer < ActionMailer::Base
 
-  default :from => "hostmaster-hyy@enemy.fi"
+  default :from => REDIS.get('mailaddress')
 
 end
