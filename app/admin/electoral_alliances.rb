@@ -65,6 +65,10 @@ ActiveAdmin.register ElectoralAlliance do
     link_to 'Toggle filter visibility', '#toggle_filter'
   end
 
+  action_item :only => :index do
+    link_to 'Create advocates', create_advocates_admin_electoral_alliances_path
+  end
+
   action_item :only => :show do
     ea = ElectoralAlliance.find_by_id(params[:id])
     link_to 'Done', done_admin_electoral_alliance_path if can? :update, electoral_alliance and !ea.secretarial_freeze
@@ -82,6 +86,15 @@ ActiveAdmin.register ElectoralAlliance do
       redirect_to admin_electoral_alliances_path
     else
       redirect_to admin_electoral_alliance_path, :alert => "Candidate amounts doesn't match"
+    end
+  end
+
+  collection_action :create_advocates do
+    begin
+      ElectoralAlliance.create_advocates
+      redirect_to admin_electoral_alliances_path, :notice => 'Advocats created'
+    rescue
+      redirect_to admin_electoral_alliances_path, :alert => 'Make sure that all alliances are ready'
     end
   end
 
