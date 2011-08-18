@@ -11,6 +11,8 @@ class ElectoralAlliance < ActiveRecord::Base
 
   scope :not_real, joins(:candidates).where('candidates.candidate_name = electoral_alliances.name')
 
+  scope :ready, where(:secretarial_freeze => true)
+
   def freeze!
     self.update_attribute :secretarial_freeze, true
   end
@@ -24,13 +26,15 @@ class ElectoralAlliance < ActiveRecord::Base
   end
 
   def create_advocate
-    return unless self.primary_advocate_social_security_number # Seed, etc
-    unless AdvocateUser.find_by_ssn(self.primary_advocate_social_security_number)
-      AdvocateUser.create! :ssn => self.primary_advocate_social_security_number, :email => self.primary_advocate_email
+    ssn = self.primary_advocate_social_security_number
+    return if ssn.nil? || ssn.empty? # Seed, etc
+    unless AdvocateUser.find_by_ssn(ssn)
+      AdvocateUser.create! :ssn => ssn, :email => self.primary_advocate_email
     end
   end
 
   def self.create_advocates
+    raise "all not ready" unless ElectoralAlliance.all.count == (ElectoralAlliance.all & ElectoralAlliance.ready).count
     self.all.each do |alliance|
       alliance.create_advocate
     end
