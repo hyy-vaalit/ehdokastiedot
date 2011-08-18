@@ -1,14 +1,16 @@
 module Proportionals
 
   def self.calculus!
-    coalitions = ElectoralCoalition.all
-    coalitions.each do |coalition|
-      calculate_coalition_proportional(coalition)
-      coalition.electoral_alliances.each do |alliance|
-        calculate_alliance_proportional(alliance)
+    ElectoralCoalition.transaction do
+      coalitions = ElectoralCoalition.all
+      coalitions.each do |coalition|
+        calculate_coalition_proportional(coalition)
+        coalition.electoral_alliances.each do |alliance|
+          calculate_alliance_proportional(alliance)
+        end
       end
+      calculate_proportionals_for_single_candidate
     end
-    calculate_proportionals_for_single_candidate
   end
 
   private
