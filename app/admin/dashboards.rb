@@ -17,6 +17,7 @@ ActiveAdmin::Dashboards.build do
       li link_to 'Lista korjauksia sisältävistä ehdokkaista', has_fixes_listings_path
       li link_to 'Vaalitulos', result_listings_path
       li link_to 'Vaalishow', showdown_listings_path
+      li link_to 'Järjestelmän asetukset', configurations_path
     end
   end
 

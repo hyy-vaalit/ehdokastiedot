@@ -13,6 +13,8 @@ Vaalit::Application.routes.draw do
     end
   end
 
+  resources :configurations, :only => [:index, :update]
+
   resources :listings, :only => [] do
     collection do
       get :simple
