@@ -10,8 +10,8 @@ class Vote < ActiveRecord::Base
   default_scope :include => :candidate, :order => 'candidates.candidate_number'
 
   def self.calculated
-    votes_ready = self.ready.count
-    if votes_ready == self.count
+    votes_ready = self.ready.sum(:vote_count)
+    if votes_ready == self.sum(:vote_count)
       100
     else
       total_votes = Configuration.find_by_key 'total_vote_count'
