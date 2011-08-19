@@ -1,5 +1,8 @@
 ActiveAdmin.register ElectoralAlliance do
 
+  scope :all, :default => true
+  scope :without_coalition
+
   controller do
 
     load_and_authorize_resource :except => [:index]

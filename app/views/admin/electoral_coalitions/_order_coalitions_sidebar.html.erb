@@ -1,3 +1,10 @@
+<%
+  #FIXME: this is ugly
+  alliances_without_coalition_count = ElectoralAlliance.without_coalition.count
+if alliances_without_coalition_count > 0 -%>
+<p>Renkaattomia liittoja löytyi <%= alliances_without_coalition_count %> kpl. Ole hyvä ja luo heille renkaat, niin järjestäminen toimii. <%= link_to 'Listaa renkaattomat liitot', admin_electoral_alliances_path(:scope => :without_coalition) %></p>
+<% else -%>
+
 <%= form_tag order_coalitions_admin_electoral_coalitions_path, :method => :post, :class => "ordering" do -%>
   <% electoral_coalitions.each do |coalition| -%>
     <p>
@@ -6,4 +13,6 @@
     </p>
   <% end -%>
   <p><input type="submit" value="Change order" /></p>
+<% end -%>
+
 <% end -%>
