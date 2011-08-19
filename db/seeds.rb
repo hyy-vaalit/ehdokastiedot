@@ -68,6 +68,13 @@ help = ElectoralCoalition.create! :name => 'HELP',                              
 pelast = ElectoralCoalition.create! :name => 'Pelastusrengas',                             :shorten => 'Pelast'
 snaf = ElectoralCoalition.create! :name => 'Svenska Nationer och Ämnesföreningar (SNÄf)',  :shorten => 'SNÄf'
 
+# Single alliance coalitions
+demarit = ElectoralCoalition.create! :name => 'Opiskelijademarit',            :shorten => 'OSY'
+tsemppi = ElectoralCoalition.create! :name => 'Tsemppi Group',                :shorten => 'Tsempp'
+piraatit = ElectoralCoalition.create! :name => 'Akateemiset piraatit',        :shorten => 'Pirate'
+persut = ElectoralCoalition.create! :name => 'Perussuomalainen vaaliliitto',  :shorten => 'Peruss'
+amnes = ElectoralCoalition.create! :name => 'Ämnesföreningarna',              :shorten => 'Ämnesf'
+
 # Electoral Alliances
 mp.electoral_alliances.create! :name => 'HYYn Vihreät - De Gröna vid HUS',                               :shorten => 'HyVi'
 mp.electoral_alliances.create! :name => 'Sitoutumaton vasemmisto - Obunden vänster - Independent left',  :shorten => 'SitVas'
@@ -90,16 +97,16 @@ osak.electoral_alliances.create! :name => 'PPO',                                
 pelast.electoral_alliances.create! :name => 'Keskeiset',                                                 :shorten => 'Kesk'
 osak.electoral_alliances.create! :name => 'SavO',                                                        :shorten => 'SavO'
 osak.electoral_alliances.create! :name => 'KSO-VSO',                                                     :shorten => 'KSOVSO'
-ElectoralAlliance.create! :name => 'Opiskelijademarit',                                                  :shorten => 'OSY'
+demarit.electoral_alliances.create! :name => 'Opiskelijademarit',                                        :shorten => 'OSY'
 snaf.electoral_alliances.create! :name => 'StudOrg',                                                     :shorten => 'StudO'
 osak.electoral_alliances.create! :name => 'SatO-ESO2',                                                   :shorten => 'SatESO'
 snaf.electoral_alliances.create! :name => 'Nationerna',                                                  :shorten => 'Nation'
-ElectoralAlliance.create! :name => 'Tsemppi Group',                                                      :shorten => 'Tsempp'
+tsemppi.electoral_alliances.create! :name => 'Tsemppi Group',                                            :shorten => 'Tsempp'
 snaf.electoral_alliances.create! :name => 'Codex-Thorax',                                                :shorten => 'CodTho'
 pelast.electoral_alliances.create! :name => 'KD Helsingin Opiskelijat',                                  :shorten => 'KD'
-ElectoralAlliance.create! :name => 'Akateemiset piraatit',                                               :shorten => 'Pirate'
-ElectoralAlliance.create! :name => 'Perussuomalainen vaaliliitto',                                       :shorten => 'Peruss'
-ElectoralAlliance.create! :name => 'Ämnesföreningarna',                                                  :shorten => 'Ämnesf'
+piraatit.electoral_alliances.create! :name => 'Akateemiset piraatit',                                    :shorten => 'Pirate'
+persut.electoral_alliances.create! :name => 'Perussuomalainen vaaliliitto',                              :shorten => 'Peruss'
+amnes.electoral_alliances.create! :name => 'Ämnesföreningarna',                                          :shorten => 'Ämnesf'
 snaf.electoral_alliances.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',         :shorten => 'Libera'
 
 

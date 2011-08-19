@@ -16,11 +16,8 @@ namespace :csv_seed do
       electoral_alliance = ElectoralAlliance.find_by_name alliance_name
       unless electoral_alliance
         electoral_coalition = ElectoralCoalition.find_or_create_by_name row[9] if row[9]
-        if electoral_coalition
-          electoral_alliance = electoral_coalition.electoral_alliances.create! :name => alliance_name
-        else
-          electoral_alliance = ElectoralAlliance.create! :name => alliance_name
-        end
+        electoral_coalition = ElectoralCoalition.create! :name => alliance_name unless electoral_coalition
+        electoral_alliance = electoral_coalition.electoral_alliances.create! :name => alliance_name
       end
       electoral_alliance.update_attribute :signing_order_position, row[10]
 
