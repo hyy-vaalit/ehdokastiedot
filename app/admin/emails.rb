@@ -1,3 +1,4 @@
+# coding: UTF-8
 ActiveAdmin.register Email do
 
   before_filter :add_notice
@@ -12,8 +13,9 @@ ActiveAdmin.register Email do
 
   end
 
-  action_item :only => :show do
-    link_to 'Send', send_mail_admin_email_path
+  show :title => :subject do
+    attributes_table :subject, :content
+    link_to 'Lähetä sähköposti', send_mail_admin_email_path, :class => 'button'
   end
 
   member_action :send_mail do
@@ -22,7 +24,7 @@ ActiveAdmin.register Email do
 
     CandidateNotifier.welcome_as_candidate(addresses, email).deliver
 
-    redirect_to :action => :show, :notice => 'emails sent'
+    redirect_to admin_email_path(email.id), :notice => 'Sähköposti lähetetty onnistuneesti'
   end
 
 end

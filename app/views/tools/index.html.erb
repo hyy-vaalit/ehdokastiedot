@@ -4,6 +4,11 @@
 
 <ul>
   <li><%= link_to 'Luo asiamiehille tunnukset', create_advocates_admin_electoral_alliances_path %></li>
+<% if Email.count == 0 -%>
+  <li><%= link_to 'Luo ehdokkaille lähetettävä sähköposti', new_admin_email_path%></li>
+<% else -%>
+  <li><%= link_to 'Lähetä ehdokkaille sähköpostia', admin_email_path(Email.first.id)%> (Paina <q>Lähetä sähköposti</q> -nappia)</li>
+<% end -%>
 </ul>
 
 <h3>Numerointi</h3>
