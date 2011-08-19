@@ -13,6 +13,8 @@ class ElectoralAlliance < ActiveRecord::Base
 
   scope :ready, where(:secretarial_freeze => true)
 
+  validates_presence_of :name, :delivered_candidate_form_amount, :primary_advocate_social_security_number, :primary_advocate_email
+
   def freeze!
     self.update_attribute :secretarial_freeze, true
   end
