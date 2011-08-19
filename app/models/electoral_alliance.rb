@@ -33,6 +33,10 @@ class ElectoralAlliance < ActiveRecord::Base
     end
   end
 
+  def self.are_all_ready?
+    self.count == self.ready.count
+  end
+
   def self.create_advocates
     raise "all not ready" unless ElectoralAlliance.all.count == (ElectoralAlliance.all & ElectoralAlliance.ready).count
     self.all.each do |alliance|

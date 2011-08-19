@@ -122,8 +122,12 @@ ActiveAdmin.register Candidate do
   end
 
   collection_action :give_numbers do
-    Candidate.give_numbers!
-    redirect_to admin_candidates_path, :notice => 'Ehdokkaat on numeroitu'
+    begin
+      Candidate.give_numbers!
+      redirect_to admin_candidates_path, :notice => 'Ehdokkaat on numeroitu'
+    rescue
+      redirect_to admin_candidates_path, :alert => 'Kaikki liitot eivät ole valmiina tai renkailta puuttuu järjestys'
+    end
   end
 
 end

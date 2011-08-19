@@ -21,6 +21,10 @@ class ElectoralCoalition < ActiveRecord::Base
     self.electoral_alliances.select{|a| a.has_fix_needing_candidates?}.count > 0
   end
 
+  def self.are_all_ordered?
+    self.where(:number_order => nil).count == 0
+  end
+
   def self.give_orders coalition_data
     coalition_data.to_a.each do |array|
       self.find_by_id(array.first).update_attribute :number_order, array.last

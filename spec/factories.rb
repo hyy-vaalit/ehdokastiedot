@@ -11,12 +11,13 @@ FactoryGirl.define do
 
   factory :electoral_coalition do
     sequence(:name) {|n| "Coalition #{n}"}
+    sequence(:number_order) {|n| n+1}
   end
 
   factory :electoral_alliance do
     sequence(:name) {|n| "Alliance #{n}"}
     delivered_candidate_form_amount 2
-    secretarial_freeze false
+    secretarial_freeze true
     electoral_coalition
     primary_advocate_lastname 'First last'
     primary_advocate_firstname 'First first'

@@ -39,6 +39,7 @@ class Candidate < ActiveRecord::Base
   end
 
   def self.give_numbers!
+    raise 'not ready' unless ElectoralAlliance.are_all_ready? and ElectoralCoalition.are_all_ordered?
     Candidate.transaction do
       Candidate.update_all :candidate_number => 0
       candidates_in_order = Candidate.select('candidates.*').joins(:electoral_alliance).joins(:electoral_alliance => :electoral_coalition).order(:number_order).order(:signing_order).order(:sign_up_order).valid.all

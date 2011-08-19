@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Candidate do
 
   it 'can give candidate numbers' do
-    2.times do
+    2.times do |i|
       coalition = FactoryGirl.create(:electoral_coalition)
       3.times do
         FactoryGirl.create_list(:candidate, 20, :electoral_alliance => FactoryGirl.create(:electoral_alliance, :electoral_coalition => coalition))
