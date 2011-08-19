@@ -1,3 +1,4 @@
+# coding: UTF-8
 ActiveAdmin.register Candidate do
 
   controller do
@@ -84,16 +85,12 @@ ActiveAdmin.register Candidate do
   end
 
   action_item :only => :show do
-    link_to 'Insert next candidate', new_admin_candidate_path
+    link_to 'Lisää seuraava ehdokas', new_admin_candidate_path
   end
 
   action_item :only => :show do
     candidate = Candidate.find_by_id(params[:id])
     link_to 'Cancel Candidacy', cancel_admin_candidate_path, :confirm => 'Are you sure' unless candidate.cancelled
-  end
-
-  action_item :only => :index do
-    link_to 'Give numbers', give_numbers_admin_candidates_path
   end
 
   action_item :only => :index do
@@ -126,7 +123,7 @@ ActiveAdmin.register Candidate do
 
   collection_action :give_numbers do
     Candidate.give_numbers!
-    redirect_to :action => :index
+    redirect_to admin_candidates_path, :notice => 'Ehdokkaat on numeroitu'
   end
 
 end

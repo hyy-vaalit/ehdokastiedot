@@ -15,6 +15,8 @@ Vaalit::Application.routes.draw do
 
   resources :configurations, :only => [:index, :update]
 
+  resources :tools, :only => [:index]
+
   resources :listings, :only => [] do
     collection do
       get :simple
