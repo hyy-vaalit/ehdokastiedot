@@ -20,6 +20,8 @@ class Candidate < ActiveRecord::Base
 
   validates_presence_of :lastname
 
+  before_save :clear_lines!
+
   attr_accessor :has_fixes
 
   def invalid!
@@ -47,6 +49,10 @@ class Candidate < ActiveRecord::Base
         candidate.update_attribute :candidate_number, i+2
       end
     end
+  end
+
+  def clear_lines!
+    self.notes.gsub!(/(\r\n|\n|\r)/, ', ') if self.notes
   end
 
 end
