@@ -68,10 +68,6 @@ ActiveAdmin.register ElectoralAlliance do
     link_to 'Toggle filter visibility', '#toggle_filter'
   end
 
-  action_item :only => :index do
-    link_to 'Create advocates', create_advocates_admin_electoral_alliances_path
-  end
-
   action_item :only => :show do
     ea = ElectoralAlliance.find_by_id(params[:id])
     link_to 'Done', done_admin_electoral_alliance_path if can? :update, electoral_alliance and !ea.secretarial_freeze
