@@ -39,20 +39,12 @@ class Candidate < ActiveRecord::Base
   end
 
   def self.give_numbers!
-    ordered_candidates = []
-    all_valid_candidates = Candidate.valid.order(:candidate_name).all
-    coalitions = ElectoralCoalition.order(:number_order).all
-    coalitions.each do |coalition|
-      coalition.electoral_alliances.rank(:signing_order).each do |alliance|
-        alliance.candidates.valid.rank(:sign_up_order).each do |candidate|
-          ordered_candidates << candidate
-          all_valid_candidates.delete(candidate)
-        end
+    Candidate.transaction do
+      Candidate.update_all :candidate_number => 0
+      candidates_in_order = Candidate.select('candidates.*').joins(:electoral_alliance).joins(:electoral_alliance => :electoral_coalition).order(:number_order).order(:signing_order).order(:sign_up_order).all
+      candidates_in_order.each_with_index do |candidate, i|
+        candidate.update_attribute :candidate_number, i+2
       end
-    end
-    ordered_candidates.concat(all_valid_candidates)
-    ordered_candidates.each_with_index do |candidate, i|
-      candidate.update_attribute :candidate_number, i+2
     end
   end
 
