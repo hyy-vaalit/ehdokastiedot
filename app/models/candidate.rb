@@ -41,7 +41,7 @@ class Candidate < ActiveRecord::Base
   def self.give_numbers!
     Candidate.transaction do
       Candidate.update_all :candidate_number => 0
-      candidates_in_order = Candidate.select('candidates.*').joins(:electoral_alliance).joins(:electoral_alliance => :electoral_coalition).order(:number_order).order(:signing_order).order(:sign_up_order).all
+      candidates_in_order = Candidate.select('candidates.*').joins(:electoral_alliance).joins(:electoral_alliance => :electoral_coalition).order(:number_order).order(:signing_order).order(:sign_up_order).valid.all
       candidates_in_order.each_with_index do |candidate, i|
         candidate.update_attribute :candidate_number, i+2
       end
