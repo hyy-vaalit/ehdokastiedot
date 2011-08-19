@@ -35,5 +35,6 @@ ActiveAdmin.setup do |config|
   config.register_stylesheet 'custom_admin.css'
 
   # To load a javascript file:
+  config.register_javascript 'jquery.cookie.js'
   config.register_javascript 'candidate_form.js'
 end

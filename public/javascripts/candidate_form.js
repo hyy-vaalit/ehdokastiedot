@@ -1,5 +1,5 @@
 $(document).ready(function() {
-  if ($('body').hasClass('admin_candidates') && ($('body').hasClass('new') || $('body').hasClass('edit'))) {
+  if ($('body').hasClass('admin_candidates')) {
     // Some hardcore candidate action!
 
     $('#candidate_candidate_name').bind('focusin', function(event) {
@@ -21,6 +21,8 @@ $(document).ready(function() {
     });
 
     $('#candidate_social_security_number').bind('focusout', check_social_security_number);
+
+    select_correct_alliance_and_hide_if_set();
 
   }
 });
@@ -83,4 +85,11 @@ function check_social_security_number(event) {
     return mark_social_security_number_invalid('checksum should be: ' + checksum);
 
   mark_social_security_number_valid();
+}
+
+function select_correct_alliance_and_hide_if_set() {
+  alliance_id = $.cookie('alliance');
+  if (alliance_id) {
+    $('select#candidate_electoral_alliance_id').val(alliance_id).parent().hide();
+  }
 }

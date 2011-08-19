@@ -2,13 +2,31 @@ ActiveAdmin.register Candidate do
 
   controller do
 
+    before_filter :assign_alliance
+
     load_and_authorize_resource :except => [:index]
 
-    def show
-      super
-      authorize! :report_fixes, @candidate if current_admin_user.role == 'advocate'
+    def assign_alliance
+      if current_admin_user.role == 'secretary'
+        alliance_id = current_admin_user.electoral_alliance_id
+        if alliance_id
+          cookies['alliance'] = alliance_id
+          return true
+        end
+      end
+      cookies['alliance'] = ''
+      return true
     end
 
+  end
+
+  scope :current_alliance, :default => true do |candidates|
+    alliance_id = current_admin_user.electoral_alliance_id
+    if alliance_id
+      candidates.where(:electoral_alliance_id => alliance_id)
+    else
+      candidates.all
+    end
   end
 
   index do
