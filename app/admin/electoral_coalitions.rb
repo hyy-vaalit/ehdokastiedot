@@ -1,3 +1,4 @@
+# coding: UTF-8
 ActiveAdmin.register ElectoralCoalition do
 
   index do
@@ -31,13 +32,18 @@ ActiveAdmin.register ElectoralCoalition do
   end
 
   member_action :order_alliances, :method => :post do
-    ElectoralCoalition.find_by_id(params[:id]).order_alliances(params[:alliances])
-    redirect_to :action => :show
+    coalition = ElectoralCoalition.find_by_id(params[:id])
+    coalition.order_alliances(params[:alliances])
+    redirect_to admin_electoral_coalition_path(coalition.id)
   end
 
   collection_action :order_coalitions, :method => :post do
-    ElectoralCoalition.give_orders(params[:coalitions])
-    redirect_to :action => :index
+    if ElectoralAlliance.without_coalition.count > 0
+      redirect_to admin_electoral_coalitions_path, :alert => 'Ei voi järjestää, sillä löytyi irrallisia vaaliliittoja'
+    else
+      ElectoralCoalition.give_orders(params[:coalitions])
+      redirect_to admin_electoral_coalitions_path
+    end
   end
 
 end
