@@ -1,3 +1,4 @@
+
     HYYN EDUSTAJISTOVAALITULOS 2009
     Keskuvaalilautakunnan vahvistama 10.11.2009
 
@@ -26,6 +27,20 @@ LIITOT__________________________________________________________RENGAS_ÄÄNET_P
 <%= sprintf "%3d", (i+1) %>. <%= display_dots_between_name_and_shorten(59, alliance) %> <%= sprintf("%-6s", alliance.electoral_coalition.shorten) %> <%= sprintf "%4d", alliance.total_votes %> <%= sprintf "%2d", alliance.total_places %>
 <% end -%>
 
+<% ElectoralCoalition.all.sort{|x,y| y.total_votes <=> x.total_votes}.each_with_index do |coalition, i| -%>
+RENGAS_________________________________________________________________ÄÄNET_PA
+<%= sprintf "%3d", (i+1) %>. <%= display_dots_between_name_and_shorten(66, coalition) %> <%= sprintf "%4d", coalition.total_votes %> <%= sprintf "%2d", coalition.total_places %>
+
+<% coalition.electoral_alliances.all.sort{|x,y| y.total_votes <=> x.total_votes}.each_with_index do |alliance, i| -%>
+LIITTO__________________________________________________________RENGAS_ÄÄNET_PA
+<%= sprintf "%3d", (i+1) %>. <%= display_dots_between_name_and_shorten(59, alliance) %> <%= sprintf("%-6s", alliance.electoral_coalition.shorten) %> <%= sprintf "%4d", alliance.total_votes %> <%= sprintf "%2d", alliance.total_places %>
+EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT_____
+<% alliance.candidates.each_with_index do |candidate, i| -%>
+<%= sprintf "%3d", (i+1) %><%= show_state_char(candidate) %> <%= display_dots_after_candidate_name(candidate) %> <%= sprintf "%3d", candidate.candidate_number %> <%= sprintf "%6s", candidate.electoral_alliance.shorten %>  <%= sprintf "%3s", candidate.total_votes %>   <%= sprintf "%10.5f", candidate.alliance_proportional %>   <%= sprintf "%10.5f", candidate.coalition_proportional %>
+<% end -%>
+
+<% end -%>
+<% end -%>
 
 
 --------------------------------------------------------------------------------
