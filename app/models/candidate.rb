@@ -32,6 +32,8 @@ class Candidate < ActiveRecord::Base
 
   scope :selection_order, order('coalition_proportional desc, alliance_proportional desc')
 
+  scope :selected, where(:state => :selected)
+
   validates_presence_of :lastname, :electoral_alliance
 
   before_save :clear_lines!

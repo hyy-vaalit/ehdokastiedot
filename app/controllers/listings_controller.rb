@@ -48,6 +48,10 @@ class ListingsController < ApplicationController
     raise "error"
   end
 
+  def deputies
+    @candidates = Candidate.selected.selection_order.all
+  end
+
   def lulz
     raise 'hoptoad-test'.inspect
   end

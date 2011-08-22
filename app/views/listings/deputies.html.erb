@@ -1,0 +1,13 @@
+<table>
+  <tr>
+    <th colspan="2">Ehdokas</th>
+    <th>Num</th>
+  </tr>
+<% @candidates.each_with_index do |candidate, i| -%>
+  <tr>
+    <td><%= i+1 %>.</td>
+    <td><%= candidate.candidate_name %></td>
+    <td><%= candidate.candidate_number %></td>
+  </tr>
+<% end -%>
+</table>

@@ -49,7 +49,7 @@ module Proportionals
   def self.mark_spares
     spare_candidates_to_select = REDIS.get('spare_candidates_to_select').to_i
     ElectoralAlliance.all.each do |alliance|
-      how_many_selected = alliance.candidates.where(:state => :selected).count
+      how_many_selected = alliance.candidates.selected.count
       spare_count = how_many_selected * spare_candidates_to_select
       alliance.candidates.where(:state => :not_selected).order('alliance_proportional desc').limit(spare_count).each do |candidate|
         candidate.spare_me!
