@@ -4,6 +4,8 @@
   <tr>
     <th colspan="2">Ehdokas</th>
     <th>Num</th>
+    <th>Liitto</th>
+    <th>Rengas</th>
     <th>Ääniä</th>
   </tr>
 <% @candidates.each_with_index do |candidate, i| -%>
@@ -11,6 +13,8 @@
     <td><%= i+1 %><%= show_state_char(candidate) %></td>
     <td><%= candidate.candidate_name %></td>
     <td><%= candidate.candidate_number %></td>
+    <td><%= candidate.electoral_alliance.shorten %></td>
+    <td><%= candidate.electoral_alliance.electoral_coalition.shorten %></td>
     <td><%= candidate.total_votes %></td>
   </tr>
 <% end -%>

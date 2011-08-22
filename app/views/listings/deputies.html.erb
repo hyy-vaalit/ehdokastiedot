@@ -4,12 +4,16 @@
   <tr>
     <th colspan="2">Ehdokas</th>
     <th>Num</th>
+    <th>Liitto</th>
+    <th>Rengas</th>
   </tr>
 <% @candidates.each_with_index do |candidate, i| -%>
   <tr>
     <td><%= i+1 %>.</td>
     <td><%= candidate.candidate_name %></td>
     <td><%= candidate.candidate_number %></td>
+    <td><%= candidate.electoral_alliance.shorten %></td>
+    <td><%= candidate.electoral_alliance.electoral_coalition.shorten %></td>
   </tr>
 <% end -%>
 </table>
