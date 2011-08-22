@@ -111,7 +111,7 @@ snaf.electoral_alliances.create! :name => 'Liberaalinen vaaliliitto - Yksilönva
 
 
 # Configurations
-REDIS.set 'total_vote_count', '9999999999'
-REDIS.set 'right_to_vote', '9999999999'
+REDIS.set 'total_vote_count', '999999'
+REDIS.set 'right_to_vote', '999999'
 REDIS.set 'candidates_to_select', '9999999999'
 REDIS.set 'mailaddress', 'hostmaster-hyy@enemy.fi'

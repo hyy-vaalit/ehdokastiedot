@@ -16,3 +16,22 @@ Valittavia ehdokkaita:    <%= sprintf "%2d", candidates_to_select %>
 Ääniä annettu:        <%= sprintf "%6d", votes_given %>
 Ääniä hyväksytty:     <%= sprintf "%6d", votes_accepted %>
 Äänestysprosentti %:  <%= sprintf "%3.2f", voting_percentage %>
+
+
+
+
+
+
+
+
+
+--------------------------------------------------------------------------------
+     EHDOKKAAT VERTAILULUVUN PERUSTEELLA JÄRJESTETTYNÄ
+--------------------------------------------------------------------------------
+
+
+EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT_____
+<% candidates.each_with_index do |candidate, i| -%>
+<%= sprintf "%3d", (i+1) %><%= show_state_char(candidate) %> <%= display_dots_after_name(candidate) %> <%= sprintf "%3d", candidate.candidate_number %> <%= sprintf "%6s", candidate.electoral_alliance.shorten %>  <%= sprintf "%3s", candidate.total_votes %>   <%= sprintf "%10.5f", candidate.alliance_proportional %>   <%= sprintf "%10.5f", candidate.coalition_proportional %>
+<% end -%>
+
