@@ -56,6 +56,10 @@ class ListingsController < ApplicationController
     @candidates = Candidate.all.sort{|x,y| y.total_votes <=> x.total_votes} #TODO: improve with SQL
   end
 
+  def by_alliance
+    @coalitions = ElectoralCoalition.all
+  end
+
   def lulz
     raise 'hoptoad-test'.inspect
   end

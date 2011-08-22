@@ -1,0 +1,31 @@
+<table>
+<% @coalitions.each do |coalition| -%>
+  <tr>
+    <td class="coalition" colspan="4"><%= coalition.name %></td>
+  </tr>
+  <% coalition.electoral_alliances.each do |alliance| -%>
+    <tr>
+      <td class="alliance" colspan="4"><%= alliance.name %></td>
+    </tr>
+    <% if alliance.candidates.selected.count > 0 -%>
+      <tr>
+        <th colspan="2">Ehdokas</th>
+        <th>Num</th>
+        <th>Ääniä</th>
+      </tr>
+      <% alliance.candidates.selected.sort {|x,y| y.total_votes <=> x.total_votes}.each_with_index do |candidate, i| -%>
+        <tr>
+          <td><%= i+1 %><%= show_state_char(candidate) %></td>
+          <td><%= candidate.candidate_name %></td>
+          <td><%= candidate.candidate_number %></td>
+          <td><%= candidate.total_votes %></td>
+        </tr>
+      <% end -%>
+    <% else -%>
+      <tr>
+        <td colspan="4">Ei läpipääseviä ehdokkaita</td>
+      </tr>
+    <% end -%>
+  <% end -%>
+<% end -%>
+</table>
