@@ -16,18 +16,19 @@
 
 <table>
   <tr>
-    <th>Ehdokasnumero</th>
-    <th>Ehdokasnimi</th>
+    <th colspan="2">Ehdokas</th>
+    <th>Num</th>
     <th>Vaaliliitto</th>
     <th>Vaalirengas</th>
     <th>Äänet</th>
     <th>LVRT</th>
     <th>RVRT</th>
   </tr>
-<% candidates.each do |candidate| -%>
+<% candidates.each_with_index do |candidate, i| -%>
   <tr>
-    <td><%= candidate.candidate_number %><%= show_state_char(candidate) %></td>
+    <td><%= i+1 %><%= show_state_char(candidate) %></td>
     <td><%= candidate.candidate_name %></td>
+    <td><%= candidate.candidate_number %></td>
     <td><%= candidate.electoral_alliance.shorten %></td>
     <td><%= candidate.electoral_alliance.electoral_coalition ? candidate.electoral_alliance.electoral_coalition.shorten : '' %></td>
     <td><%= candidate.total_votes %></td>
