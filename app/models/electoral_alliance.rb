@@ -23,6 +23,10 @@ class ElectoralAlliance < ActiveRecord::Base
     self.candidates.map(&:total_votes).sum
   end
 
+  def total_places
+    self.candidates.selected.count
+  end
+
   def has_fix_needing_candidates?
     self.candidates.has_fixes.count > 0
   end
