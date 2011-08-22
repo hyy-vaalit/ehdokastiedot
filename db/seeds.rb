@@ -12,6 +12,12 @@
 #DatabaseCleaner.strategy = :truncation
 #DatabaseCleaner.clean
 
+# Configurations
+REDIS.set 'total_vote_count', '999999'
+REDIS.set 'right_to_vote', '999999'
+REDIS.set 'candidates_to_select', '9999999999'
+REDIS.set 'mailaddress', 'hostmaster-hyy@enemy.fi'
+
 # Create a default user
 AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password', :role => 'admin')
 
@@ -108,10 +114,3 @@ piraatit.electoral_alliances.create! :name => 'Akateemiset piraatit',           
 persut.electoral_alliances.create! :name => 'Perussuomalainen vaaliliitto',                              :shorten => 'Peruss',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
 amnes.electoral_alliances.create! :name => 'Ämnesföreningarna',                                          :shorten => 'Ämnesf',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
 snaf.electoral_alliances.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',         :shorten => 'Libera',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-
-
-# Configurations
-REDIS.set 'total_vote_count', '999999'
-REDIS.set 'right_to_vote', '999999'
-REDIS.set 'candidates_to_select', '9999999999'
-REDIS.set 'mailaddress', 'hostmaster-hyy@enemy.fi'
