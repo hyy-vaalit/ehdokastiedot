@@ -20,8 +20,16 @@
 
 <%= form_tag(configuration_path('candidates_to_select'), :method => :put) do -%>
   <p>
-    <strong>Valittavia ehdokkaita:</strong><br />
+    <strong>Valittavia edustajia:</strong><br />
     <%= text_field_tag 'value', @candidates_to_select %>
+    <%= submit_tag 'Save' %>
+  </p>
+<% end -%>
+
+<%= form_tag(configuration_path('spare_candidates_to_select'), :method => :put) do -%>
+  <p>
+    <strong>Varaedustajia:</strong><br />
+    <%= text_field_tag 'value', @spare_candidates_to_select %>
     <%= submit_tag 'Save' %>
   </p>
 <% end -%>
