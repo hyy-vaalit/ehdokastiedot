@@ -28,6 +28,7 @@ Vaalit::Application.routes.draw do
       post :has_fixes, :action => 'has_fixes_post'
       get :lulz
       get :deputies
+      get :by_votes
     end
   end
 

@@ -1,0 +1,15 @@
+<table>
+  <tr>
+    <th colspan="2">Ehdokas</th>
+    <th>Num</th>
+    <th>Ääniä</th>
+  </tr>
+<% @candidates.each_with_index do |candidate, i| -%>
+  <tr>
+    <td><%= i+1 %><%= show_state_char(candidate) %></td>
+    <td><%= candidate.candidate_name %></td>
+    <td><%= candidate.candidate_number %></td>
+    <td><%= candidate.total_votes %></td>
+  </tr>
+<% end -%>
+</table>
