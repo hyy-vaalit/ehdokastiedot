@@ -2,6 +2,11 @@ module ResultPage
   include ListingsHelper
 
   def self.render_results
+    render_content('html', 'result_output')
+    render_content('text', 'result_text_output')
+  end
+
+  def self.render_content(format, name)
     coalition_count = ElectoralCoalition.all.count
     alliance_count = ElectoralAlliance.all.count - ElectoralAlliance.not_real.count
     allianceless_candidates = Candidate.without_electoral_alliance.count
@@ -14,7 +19,7 @@ module ResultPage
     candidates = Candidate.selection_order.all
 
     av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
-    output = av.render :partial => 'listings/result', :format => :html, :locals => {
+    output = av.render :partial => "listings/result.#{format}.erb", :locals => {
       :coalition_count => coalition_count,
       :alliance_count => alliance_count,
       :allianceless_candidates => allianceless_candidates,
@@ -26,7 +31,7 @@ module ResultPage
       :calculated_votes => calculated_votes,
       :candidates => candidates
     }
-    REDIS.set 'result_output', output
+    REDIS.set name, output
   end
 
 end
