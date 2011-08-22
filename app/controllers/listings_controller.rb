@@ -11,7 +11,10 @@ class ListingsController < ApplicationController
   end
 
   def result
-    render :inline => REDIS.get('result_output'), :format => :html, :layout => true
+    respond_to do |format|
+      format.html { render :inline => REDIS.get('result_output'), :format => :html, :layout => true }
+      format.text { render :text => REDIS.get('result_text_output') }
+    end
   end
 
   def showdown
