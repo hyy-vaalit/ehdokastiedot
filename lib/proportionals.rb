@@ -10,6 +10,8 @@ module Proportionals
         end
       end
     end
+    clear_selection_state
+    mark_selected
   end
 
   private
@@ -27,6 +29,18 @@ module Proportionals
     candidates = coalition.electoral_alliances.map(&:candidates).flatten.sort {|x,y| y.total_votes <=> x.total_votes}
     candidates.each_with_index do |candidate, i|
       candidate.update_attribute :coalition_proportional, (total_votes/(i+1))
+    end
+  end
+
+  def self.clear_selection_state
+    Candidate.all.each do |candidate|
+      candidate.unselect_me!
+    end
+  end
+
+  def self.mark_selected
+    Candidate.selection_order.limit(REDIS.get('candidates_to_select')).each do |candidate|
+      candidate.select_me!
     end
   end
 
