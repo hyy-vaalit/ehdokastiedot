@@ -10,8 +10,9 @@ module ResultPage
     votes_accepted = Vote.ready.sum(:vote_count)
     voting_percentage = (100 * votes_given / right_to_vote).to_i
     calculated_votes = Vote.calculated
-    candidates = Candidate.order('coalition_proportional desc, alliance_proportional desc').all
-    av = ActionView::Base.new(Rails.configuration.view_path)
+    candidates = Candidate.selection_order.all
+
+    av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
     output = av.render :partial => 'listings/result', :format => :html, :locals => {
       :coalition_count => coalition_count,
       :alliance_count => alliance_count,

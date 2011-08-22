@@ -26,7 +26,7 @@
   </tr>
 <% candidates.each do |candidate| -%>
   <tr>
-    <td><%= candidate.candidate_number %></td>
+    <td><%= candidate.candidate_number %><%= show_state_char(candidate) %></td>
     <td><%= candidate.candidate_name %></td>
     <td><%= candidate.electoral_alliance.shorten %></td>
     <td><%= candidate.electoral_alliance.electoral_coalition ? candidate.electoral_alliance.electoral_coalition.shorten : '' %></td>

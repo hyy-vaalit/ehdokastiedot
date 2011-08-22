@@ -30,7 +30,9 @@ class Candidate < ActiveRecord::Base
 
   scope :has_fixes, lambda { joins(:data_fixes) & DataFix.unapplied }
 
-  validates_presence_of :lastname
+  scope :selection_order, order('coalition_proportional desc, alliance_proportional desc')
+
+  validates_presence_of :lastname, :electoral_alliance
 
   before_save :clear_lines!
 
