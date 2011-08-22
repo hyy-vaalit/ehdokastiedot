@@ -29,7 +29,7 @@ describe Proportionals do
         total_vote_count = alliance.total_votes
         candidates = alliance.candidates.sort {|x,y| y.total_votes <=> x.total_votes}
         candidates.each_with_index do |candidate, i|
-          candidate.alliance_proportional.should == (total_vote_count/(i+1))
+          candidate.alliance_proportional.should == (total_vote_count.to_f/(i+1))
         end
       end
     end
@@ -38,7 +38,7 @@ describe Proportionals do
       total_vote_count = @coalition.total_votes
       candidates = @coalition.electoral_alliances.map(&:candidates).flatten.sort {|x,y| y.total_votes <=> x.total_votes}
       candidates.each_with_index do |candidate, i|
-        candidate.coalition_proportional.should == (total_vote_count/(i+1))
+        candidate.coalition_proportional.should == (total_vote_count.to_f/(i+1))
       end
     end
 

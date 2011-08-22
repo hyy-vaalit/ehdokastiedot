@@ -49,13 +49,14 @@ FactoryGirl.define do
     sequence(:code) {|n| "VA#{n}"}
     sequence(:name) {|n| "Voting area #{n}"}
     ready true
+    taken true
     password 'foobar123'
   end
 
   factory :vote do
     voting_area
     candidate
-    vote_count { rand(100) }
+    vote_count { (1+1*rand(100)).to_i }
   end
 
 end
