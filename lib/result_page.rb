@@ -1,4 +1,5 @@
 module ResultPage
+  include ListingsHelper
 
   def self.render_results
     coalition_count = ElectoralCoalition.all.count
