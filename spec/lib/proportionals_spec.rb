@@ -44,26 +44,4 @@ describe Proportionals do
 
   end
 
-  describe "under odd circumstances" do
-
-    it "should do calculus for electoral coalitions, when no coalition is set" do
-      alliance = FactoryGirl.create :electoral_alliance, :electoral_coalition => nil
-      candidate = FactoryGirl.create :candidate, :electoral_alliance => alliance
-      20.times do |i|
-        VotingArea.all.each do |va|
-          FactoryGirl.create(:vote, :candidate => candidate, :voting_area => va)
-        end
-      end
-
-      Proportionals.calculus!
-
-      Candidate.all.each do |candidate|
-        candidate.coalition_proportional.should_not be_nil
-        candidate.alliance_proportional.should_not be_nil
-        candidate.coalition_proportional.should == candidate.alliance_proportional
-      end
-    end
-
-  end
-
 end
