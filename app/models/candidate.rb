@@ -1,6 +1,18 @@
 class Candidate < ActiveRecord::Base
   include RankedModel
 
+  state_machine :initial => :not_selected do
+    event :select_me do
+      transition [:not_selected] => :selected
+    end
+    event :spare_me do
+      transition [:not_selected] => :spared
+    end
+    event :unselect_me do
+      transition any => :not_selected
+    end
+  end
+
   belongs_to :electoral_alliance
   ranks :sign_up_order, :with_same => :electoral_alliance_id
 

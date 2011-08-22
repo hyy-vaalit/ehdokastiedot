@@ -15,6 +15,8 @@ gem 'sass'
 gem 'delayed_job'
 gem 'redis'
 
+gem 'state_machine'
+
 group :development do
   gem 'heroku'
 end
