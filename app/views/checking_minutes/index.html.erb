@@ -1,0 +1,7 @@
+<h1>Tarkastuspöytäkirjat</h1>
+
+<ul>
+<% @voting_areas.each do |voting_area| -%>
+  <li><%= link_to "#{voting_area.code} - #{voting_area.name}", checking_minute_path(voting_area) %></li>
+<% end -%>
+</ul>
