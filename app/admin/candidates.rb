@@ -79,7 +79,7 @@ ActiveAdmin.register Candidate do
     f.inputs 'Other' do
       f.input :faculty
       f.input :electoral_alliance
-      f.input :notes
+      f.input :notes, :hint => 'Erota tiedot pilkuilla. Rivinvaihdot korvataan automaattisesti pilkuiksi.'
     end
     f.buttons
   end
