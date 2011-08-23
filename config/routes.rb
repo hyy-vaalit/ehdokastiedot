@@ -17,19 +17,23 @@ Vaalit::Application.routes.draw do
 
   resources :tools, :only => [:index]
 
+  resources :results, :only => [:index] do
+    collection do
+      get :deputies
+      get :by_votes
+      get :by_alliance
+    end
+  end
+
   resources :listings, :only => [] do
     collection do
       get :simple
       get :same_ssn
-      get :result
       get :showdown
       post :showdown, :action => 'showdown_post'
       get :has_fixes
       post :has_fixes, :action => 'has_fixes_post'
       get :lulz
-      get :deputies
-      get :by_votes
-      get :by_alliance
     end
   end
 

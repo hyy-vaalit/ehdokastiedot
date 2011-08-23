@@ -33,7 +33,7 @@ module ResultPage
   def self.render_content(format, name, data)
 
     av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
-    output = av.render :partial => "listings/result.#{format}.erb", :locals => data
+    output = av.render :partial => "results/result.#{format}.erb", :locals => data
     REDIS.set name, output
   end
 

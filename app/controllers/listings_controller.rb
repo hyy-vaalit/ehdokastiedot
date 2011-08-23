@@ -10,13 +10,6 @@ class ListingsController < ApplicationController
     @candidates = Candidate.all
   end
 
-  def result
-    respond_to do |format|
-      format.html { render :inline => REDIS.get('result_output'), :format => :html, :layout => true }
-      format.text { render :text => REDIS.get('result_text_output') }
-    end
-  end
-
   def showdown
     @voting_areas = VotingArea.all
   end
@@ -49,18 +42,6 @@ class ListingsController < ApplicationController
       end
     end
     raise "error"
-  end
-
-  def deputies
-    @candidates = Candidate.selected.selection_order.all
-  end
-
-  def by_votes
-    @candidates = Candidate.all.sort{|x,y| y.total_votes <=> x.total_votes} #TODO: improve with SQL
-  end
-
-  def by_alliance
-    @coalitions = ElectoralCoalition.all
   end
 
   def lulz

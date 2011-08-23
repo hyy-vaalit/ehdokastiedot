@@ -23,10 +23,10 @@ ActiveAdmin::Dashboards.build do
 
   section 'Vaalitulokset' do
     ul do
-      li link_to 'Vaalitulos', result_listings_path
-      li link_to 'Vain läpimenevät', deputies_listings_path
-      li link_to 'Ehdokkaat äänimäärineen', by_votes_listings_path
-      li link_to 'Vaaliliitoittain läpimenevät', by_alliance_listings_path
+      li link_to 'Vaalitulos', results_path
+      li link_to 'Vain läpimenevät', deputies_results_path
+      li link_to 'Ehdokkaat äänimäärineen', by_votes_results_path
+      li link_to 'Vaaliliitoittain läpimenevät', by_alliance_results_path
     end
   end
 
