@@ -1,0 +1,18 @@
+<h1>Tarkastuspöytäkirja <%= @voting_area.code %> - <%= @voting_area.name %></h1>
+
+<table id="checking_minutes">
+  <tr>
+    <th>Vaaliliitto</th>
+    <th>Ehdokasnumero</th>
+    <th>Äänet</th>
+    <th>Korjaus</th>
+  </tr>
+<% @candidates.each do |candidate| -%>
+  <tr>
+    <td><%= candidate.electoral_alliance.shorten %></td>
+    <td><%= candidate.candidate_number %></td>
+    <td><%= candidate.vote_count_from_area(@voting_area.id) %></td>
+    <td></td>
+  </tr>
+<% end -%>
+</table>

@@ -56,6 +56,12 @@ class Candidate < ActiveRecord::Base
     self.data_fixes.count > 0
   end
 
+  def vote_count_from_area(voting_area_id)
+    voting_area = VotingArea.find_by_id voting_area_id
+    vote = voting_area.votes.find_by_candidate_id self.id
+    vote ? vote.vote_count : 0
+  end
+
   def self.give_numbers!
     raise 'not ready' unless ElectoralAlliance.are_all_ready? and ElectoralCoalition.are_all_ordered?
     Candidate.transaction do
