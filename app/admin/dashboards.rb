@@ -16,8 +16,14 @@ ActiveAdmin::Dashboards.build do
       li link_to 'Samat henkilötunnukset', same_ssn_listings_path
       li link_to 'Lista korjauksia sisältävistä ehdokkaista', has_fixes_listings_path
       li link_to 'Vaalishow', showdown_listings_path
+    end
+  end
+
+  section 'Toiminnallisuuksia' do
+    ul do
       li link_to 'Järjestelmän asetukset', configurations_path
       li link_to 'Vaaralliset toiminnot', tools_path
+      li link_to 'Tarkastuslaskenta', checking_minutes_path
     end
   end
 
