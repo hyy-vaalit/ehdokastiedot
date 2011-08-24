@@ -80,6 +80,29 @@ class VotingArea < ActiveRecord::Base
     raise "Check candidate numbers #{invalid.join(', ')}" unless invalid.empty?
   end
 
+  def give_fix_votes! votes
+    invalid = []
+    votes.each do |i, vote|
+      next if vote[:candidate_number].empty? or vote[:vote_count].empty?
+      begin
+        candidate = Candidate.find_by_candidate_number vote[:candidate_number]
+        old_vote = self.votes.find_by_candidate_id candidate.id
+        if old_vote
+          if old_vote.vote_count == vote[:vote_count]
+            old_vote.update_attribute :fix_count, nil
+          else
+            old_vote.update_attribute :fix_count, vote[:vote_count]
+          end
+        else
+          self.votes.create! :candidate => candidate, :vote_count => 0, :fix_count => vote[:vote_count] unless vote[:vote_count] == 0
+        end
+      rescue
+        invalid << vote[:candidate_number]
+      end
+    end
+    raise "Check candidate numbers #{invalid.join(', ')}" unless invalid.empty?
+  end
+
   def has_password? password
     self.encrypted_password == encrypt(password)
   end

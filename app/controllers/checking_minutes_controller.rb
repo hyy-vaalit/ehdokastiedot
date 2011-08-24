@@ -17,7 +17,12 @@ class CheckingMinutesController < ApplicationController
 
   def update
     @voting_area = VotingArea.find_by_id params[:id]
-    redirect_to edit_checking_minute_path(@voting_area.id)
+    begin
+      @voting_area.give_fix_votes! params[:votes]
+    rescue => e
+      flash[:errors] = e.message
+    end
+    redirect_to edit_checking_minute_path(@voting_area.id, :anchor => 'vote_fix_form')
   end
 
   private

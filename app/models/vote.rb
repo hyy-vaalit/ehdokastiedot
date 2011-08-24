@@ -7,6 +7,8 @@ class Vote < ActiveRecord::Base
 
   scope :ready, joins(:voting_area).where('voting_areas.taken = ?', true)
 
+  scope :with_fixes, where('fix_count is not null')
+
   default_scope :include => :candidate, :order => 'candidates.candidate_number'
 
   def self.calculated

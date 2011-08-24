@@ -1,7 +1,26 @@
 <h1>Tarkastuspöytäkirja <%= @voting_area.code %> - <%= @voting_area.name %></h1>
 
+<% if @voting_area.votes.with_fixes.count > 0 -%>
+<table id="voting_area">
+  <tr>
+    <th>Ehdokasnumero</th>
+    <th>Äänimäärä</th>
+    <th>Korjattu äänimäärä</th>
+  </tr>
+  <% @voting_area.votes.with_fixes.each do |vote| -%>
+    <tr>
+      <td><%= vote.candidate.candidate_number %></td>
+      <td><%= vote.vote_count %></td>
+      <td><%= vote.fix_count %></td>
+    </tr>
+  <% end -%>
+</table>
+<% end -%>
+
+<%= raw "<p style='color:red; font-size: 120%; font-weight: bold;'>#{flash[:errors]}</p>" if flash[:errors] -%>
+
 <%= form_tag checking_minute_path(@voting_area.id), :method => :put do -%>
-  <table id="vote_insert_form">
+  <table id="vote_fix_form">
     <tr>
       <th>Ehdokasnumero</th>
       <th>Korjattu äänimäärä</th>
