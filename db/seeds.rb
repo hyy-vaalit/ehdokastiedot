@@ -17,6 +17,8 @@ REDIS.set 'total_vote_count', '999999'
 REDIS.set 'right_to_vote', '999999'
 REDIS.set 'candidates_to_select', '9999999999'
 REDIS.set 'mailaddress', 'hostmaster-hyy@enemy.fi'
+REDIS.set 'checking_minutes_username', 'foo'
+REDIS.set 'checking_minutes_password', 'bar'
 
 # Create a default user
 AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password', :role => 'admin')

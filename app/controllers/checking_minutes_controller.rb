@@ -1,6 +1,8 @@
 class CheckingMinutesController < ApplicationController
 
-  before_filter :authorize_minutes
+  skip_authorization_check
+
+  before_filter :authenticate
 
   def index
     @voting_areas = VotingArea.all
@@ -27,8 +29,10 @@ class CheckingMinutesController < ApplicationController
 
   private
 
-  def authorize_minutes
-    authorize! :minutes, @current_admin_user
+  def authenticate
+    authenticate_or_request_with_http_basic do |username, password|
+      REDIS.get('checking_minutes_username') && REDIS.get('checking_minutes_password') && username == REDIS.get('checking_minutes_username') && password == REDIS.get('checking_minutes_password')
+    end
   end
 
 end
