@@ -1,0 +1,24 @@
+<h1>Tarkastuslaskennassa tulleet korjaukset</h1>
+
+<% @voting_areas.each do |voting_area| -%>
+  <h2><%= voting_area.code %> - <%= voting_area.name %></h2>
+
+  <% if voting_area.votes.with_fixes.count > 0 -%>
+    <table id="voting_area">
+      <tr>
+        <th>Ehdokasnumero</th>
+        <th>Äänimäärä</th>
+        <th>Korjattu äänimäärä</th>
+      </tr>
+    <% voting_area.votes.with_fixes.each do |vote| -%>
+      <tr>
+        <td><%= vote.candidate.candidate_number %></td>
+        <td><%= vote.vote_count %></td>
+        <td><%= vote.fix_count %></td>
+      </tr>
+    <% end -%>
+    </table>
+  <% else -%>
+    <p>Ei korjauksia tällä äänestysalueella</p>
+  <% end -%>
+<% end -%>

@@ -27,6 +27,10 @@ class CheckingMinutesController < ApplicationController
     redirect_to edit_checking_minute_path(@voting_area.id, :anchor => 'vote_fix_form')
   end
 
+  def fixes
+    @voting_areas = VotingArea.all
+  end
+
   private
 
   def authenticate

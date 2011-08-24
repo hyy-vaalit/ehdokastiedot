@@ -25,7 +25,11 @@ Vaalit::Application.routes.draw do
     end
   end
 
-  resources :checking_minutes, :only => [:index, :show, :edit, :update]
+  resources :checking_minutes, :only => [:index, :show, :edit, :update] do
+    collection do
+      get :fixes
+    end
+  end
 
   resources :listings, :only => [] do
     collection do
