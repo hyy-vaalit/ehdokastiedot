@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110822080107) do
+ActiveRecord::Schema.define(:version => 20110824075319) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -156,6 +156,7 @@ ActiveRecord::Schema.define(:version => 20110822080107) do
     t.integer  "vote_count"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "fix_count"
   end
 
   create_table "voting_areas", :force => true do |t|
