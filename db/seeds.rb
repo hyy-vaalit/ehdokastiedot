@@ -15,7 +15,8 @@
 # Configurations
 REDIS.set 'total_vote_count', '999999'
 REDIS.set 'right_to_vote', '999999'
-REDIS.set 'candidates_to_select', '9999999999'
+REDIS.set 'candidates_to_select', '60'
+REDIS.set 'spare_candidates_to_select', '2'
 REDIS.set 'mailaddress', 'hostmaster-hyy@enemy.fi'
 REDIS.set 'checking_minutes_username', 'foo'
 REDIS.set 'checking_minutes_password', 'bar'
