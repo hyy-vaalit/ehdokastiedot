@@ -1,5 +1,7 @@
 <h1>Tarkastuspöytäkirja <%= @voting_area.code %> - <%= @voting_area.name %></h1>
 
+<p class="edit"><%= link_to 'Syötä korjaukset', edit_checking_minute_path(@voting_area.id) %></p>
+
 <table id="checking_minutes">
   <tr>
     <th>Vaaliliitto</th>

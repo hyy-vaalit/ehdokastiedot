@@ -1,0 +1,21 @@
+<h1>Tarkastuspöytäkirja <%= @voting_area.code %> - <%= @voting_area.name %></h1>
+
+<%= form_tag checking_minute_path(@voting_area.id), :method => :put do -%>
+  <table id="vote_insert_form">
+    <tr>
+      <th>Ehdokasnumero</th>
+      <th>Korjattu äänimäärä</th>
+    </tr>
+  <% 10.times do |i| -%>
+    <tr>
+      <td>
+        <input type="text" id="candidate_numbers_<%= i %>" name="votes[<%= i %>]candidate_number" />
+      </td>
+      <td>
+        <input type="text" id="vote_counts_<%= i %>" name="votes[<%= i %>]vote_count" />
+      </td>
+    </tr>
+  <% end -%>
+  </table>
+  <p><input type="submit" value="Lisää äänitiedot" /></p>
+<% end -%>
