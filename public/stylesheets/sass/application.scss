@@ -40,7 +40,16 @@ td.alliance {
 }
 
 #checking_minutes {
+  border-collapse: collapse;
+  th {
+    border-bottom: thin solid black;
+    padding: 0 0.5em;
+  }
   td {
-    border: thin solid black;
+    border-bottom: thin solid black;
+    padding: 0.3em 0;
+  }
+  td:last-child {
+    border-left: thin solid black;
   }
 }
