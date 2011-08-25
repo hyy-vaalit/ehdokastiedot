@@ -55,6 +55,10 @@ class Candidate < ActiveRecord::Base
     self.votes.ready.sum(:vote_count)
   end
 
+  def fixed_total_votes
+    self.votes.fixed.sum(:vote_count)
+  end
+
   def has_fixes
     self.data_fixes.count > 0
   end

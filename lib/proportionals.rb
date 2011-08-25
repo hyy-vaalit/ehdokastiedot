@@ -37,7 +37,7 @@ module Proportionals
     total_votes = alliance.total_votes
     candidates = alliance.candidates.sort {|x,y| y.method(compare_method).call <=> x.method(compare_method).call}
     candidates.each_with_index do |candidate, i|
-      candidate.update_attribute :alliance_proportional, sprintf("%.5f", total_votes.to_f/(i+1)).to_f
+      candidate.update_attribute (fixed ? :fixed_alliance_proportional : :alliance_proportional), sprintf("%.5f", total_votes.to_f/(i+1)).to_f
     end
   end
 
@@ -46,7 +46,7 @@ module Proportionals
     total_votes = coalition.total_votes
     candidates = coalition.electoral_alliances.map(&:candidates).flatten.sort {|x,y| y.method(compare_method).call <=> x.method(compare_method).call}
     candidates.each_with_index do |candidate, i|
-      candidate.update_attribute :coalition_proportional, sprintf("%.5f", total_votes.to_f/(i+1)).to_f
+      candidate.update_attribute (fixed ? :fixed_coalition_proportional : :coalition_proportional), sprintf("%.5f", total_votes.to_f/(i+1)).to_f
     end
   end
 
