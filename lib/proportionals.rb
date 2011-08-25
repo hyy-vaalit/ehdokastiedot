@@ -4,10 +4,25 @@ module Proportionals
     ElectoralCoalition.transaction do
       coalitions = ElectoralCoalition.all
       coalitions.each do |coalition|
-        calculate_coalition_proportional(coalition)
         coalition.electoral_alliances.each do |alliance|
           calculate_alliance_proportional(alliance)
         end
+        calculate_coalition_proportional(coalition)
+      end
+      clear_selection_state
+      mark_selected
+      mark_spares
+    end
+  end
+
+  def self.fixed_calculus!
+    ElectoralCoalition.transaction do
+      coalitions = ElectoralCoalition.all
+      coalitions.each do |coalition|
+        coalition.electoral_alliances.each do |alliance|
+          calculate_alliance_proportional(alliance, true)
+        end
+        calculate_coalition_proportional(coalition, true)
       end
       clear_selection_state
       mark_selected
@@ -17,17 +32,19 @@ module Proportionals
 
   private
 
-  def self.calculate_alliance_proportional alliance
+  def self.calculate_alliance_proportional alliance, fixed = false
+    compare_method = fixed ? :fixed_total_votes : :total_votes
     total_votes = alliance.total_votes
-    candidates = alliance.candidates.sort {|x,y| y.total_votes <=> x.total_votes}
+    candidates = alliance.candidates.sort {|x,y| y.method(compare_method).call <=> x.method(compare_method).call}
     candidates.each_with_index do |candidate, i|
       candidate.update_attribute :alliance_proportional, sprintf("%.5f", total_votes.to_f/(i+1)).to_f
     end
   end
 
-  def self.calculate_coalition_proportional coalition
+  def self.calculate_coalition_proportional coalition, fixed = false
+    compare_method = fixed ? :fixed_alliance_proportional : :alliance_proportional
     total_votes = coalition.total_votes
-    candidates = coalition.electoral_alliances.map(&:candidates).flatten.sort {|x,y| y.total_votes <=> x.total_votes}
+    candidates = coalition.electoral_alliances.map(&:candidates).flatten.sort {|x,y| y.method(compare_method).call <=> x.method(compare_method).call}
     candidates.each_with_index do |candidate, i|
       candidate.update_attribute :coalition_proportional, sprintf("%.5f", total_votes.to_f/(i+1)).to_f
     end

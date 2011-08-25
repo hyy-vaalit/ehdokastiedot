@@ -36,7 +36,7 @@ describe Proportionals do
 
     it "should do calculus for electoral coalitions" do
       total_vote_count = @coalition.total_votes
-      candidates = @coalition.electoral_alliances.map(&:candidates).flatten.sort {|x,y| y.total_votes <=> x.total_votes}
+      candidates = @coalition.electoral_alliances.map(&:candidates).flatten.sort {|x,y| y.alliance_proportional <=> x.alliance_proportional}
       candidates.each_with_index do |candidate, i|
         candidate.coalition_proportional.should == sprintf("%.5f", total_vote_count.to_f/(i+1)).to_f
       end
