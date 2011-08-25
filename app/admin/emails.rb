@@ -18,8 +18,15 @@ ActiveAdmin.register Email do
 
   end
 
+  index do
+    column :subject
+    default_actions
+  end
+
   show :title => :subject do
-    attributes_table :subject, :content
+    attributes_table :subject do
+      row("content") { raw "<pre>#{email.content}</pre>" }
+    end
     link_to 'Lähetä sähköposti ehdokkaille', send_mail_admin_email_path, :class => 'button'
   end
 
