@@ -98,6 +98,7 @@ ActiveAdmin.register ElectoralAlliance do
     ea = ElectoralAlliance.find_by_id(params[:id])
     if ea.candidates.count == ea.delivered_candidate_form_amount
       ea.freeze!
+      current_admin_user.update_attribute :electoral_alliance, nil
       redirect_to admin_electoral_alliances_path
     else
       redirect_to admin_electoral_alliance_path, :alert => "Candidate amounts doesn't match"
