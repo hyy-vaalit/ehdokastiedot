@@ -1,6 +1,9 @@
 class ElectoralAlliance < ActiveRecord::Base
   include RankedModel
 
+  has_many :alliance_drawings
+  has_many :alliance_draws, :through => :alliance_drawings
+
   has_many :candidates
   belongs_to :advocate_user, :foreign_key => :primary_advocate_social_security_number, :primary_key => :ssn
 
