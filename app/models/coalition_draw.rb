@@ -6,9 +6,9 @@ class CoalitionDraw < ActiveRecord::Base
   def self.check_between_coalitions
     pairs = {}
     Candidate.selection_order.all.each_with_index do |candidate, i|
-      next unless candidate.coalition_proportional
-      pairs[candidate.coalition_proportional] ||= []
-      pairs[candidate.coalition_proportional] << {order: i, coalition: candidate.electoral_alliance.electoral_coalition.id}
+      next unless candidate.fixed_coalition_proportional
+      pairs[candidate.fixed_coalition_proportional] ||= []
+      pairs[candidate.fixed_coalition_proportional] << {order: i, coalition: candidate.electoral_alliance.electoral_coalition.id}
     end
     arrange_draws pairs
     true

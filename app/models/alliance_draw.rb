@@ -8,9 +8,9 @@ class AllianceDraw < ActiveRecord::Base
       pairs = {}
       coalition.electoral_alliances.each do |alliance|
         alliance.candidates.selection_order.each_with_index do |candidate, i|
-          next unless candidate.alliance_proportional
-          pairs[candidate.alliance_proportional] ||= []
-          pairs[candidate.alliance_proportional] << {order: i, alliance: alliance.id}
+          next unless candidate.fixed_alliance_proportional
+          pairs[candidate.fixed_alliance_proportional] ||= []
+          pairs[candidate.fixed_alliance_proportional] << {order: i, alliance: alliance.id}
         end
       end
       arrange_draws pairs
