@@ -97,10 +97,6 @@ ActiveAdmin.register Candidate do
   end
 
   action_item :only => :index do
-    link_to 'Peruneiden ehdokkaiden emailit', cancelled_emails_admin_candidates_path
-  end
-
-  action_item :only => :index do
     link_to 'Toggle filter visibility', '#toggle_filter'
   end
 
