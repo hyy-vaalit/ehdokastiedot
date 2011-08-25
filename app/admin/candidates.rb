@@ -1,6 +1,8 @@
 # coding: UTF-8
 ActiveAdmin.register Candidate do
 
+  before_filter :authorize_this
+
   controller do
 
     before_filter :assign_alliance
@@ -17,6 +19,10 @@ ActiveAdmin.register Candidate do
       end
       cookies['alliance'] = ''
       return true
+    end
+
+    def authorize_this
+      authorize! :read, Candidate
     end
 
   end

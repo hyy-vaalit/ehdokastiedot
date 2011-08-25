@@ -2,6 +2,7 @@
 ActiveAdmin.register Email do
 
   before_filter :add_notice
+  before_filter :authorize_this
 
   controller do
 
@@ -9,6 +10,10 @@ ActiveAdmin.register Email do
 
     def add_notice
       flash[:notice] = params[:notice] if params[:notice]
+    end
+
+    def authorize_this
+      authorize! :manage, Email
     end
 
   end

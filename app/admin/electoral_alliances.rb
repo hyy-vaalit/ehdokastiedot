@@ -1,5 +1,7 @@
 ActiveAdmin.register ElectoralAlliance do
 
+  before_filter :authorize_this
+
   scope :all, :default => true
   scope :without_coalition
 
@@ -13,6 +15,10 @@ ActiveAdmin.register ElectoralAlliance do
         current_admin_user.save!
       end
       super
+    end
+
+    def authorize_this
+      authorize! :read, ElectoralAlliance
     end
 
   end

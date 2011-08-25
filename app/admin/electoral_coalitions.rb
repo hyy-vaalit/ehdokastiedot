@@ -1,6 +1,16 @@
 # coding: UTF-8
 ActiveAdmin.register ElectoralCoalition do
 
+  before_filter :authorize_this
+
+  controller do
+
+    def authorize_this
+      authorize! :manage, ElectoralCoalition
+    end
+
+  end
+
   index do
     column :name
     column :shorten
