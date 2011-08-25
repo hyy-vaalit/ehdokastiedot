@@ -23,7 +23,6 @@ ActiveAdmin::Dashboards.build do
     ul do
       li link_to 'Järjestelmän asetukset', configurations_path
       li link_to 'Vaaralliset toiminnot', tools_path
-      li link_to 'Tarkastuslaskenta', checking_minutes_path
     end
   end
 
@@ -33,6 +32,14 @@ ActiveAdmin::Dashboards.build do
       li link_to 'Vain läpimenevät', deputies_results_path
       li link_to 'Ehdokkaat äänimäärineen', by_votes_results_path
       li link_to 'Vaaliliitoittain läpimenevät', by_alliance_results_path
+    end
+  end
+
+  section 'Erikoiskirjautumiset' do
+    ul do
+      li link_to 'Asiamiesten korjaukset', advocate_path
+      li link_to 'Äänestysalue', voting_area_path
+      li link_to 'Tarkastuslaskenta', checking_minutes_path
     end
   end
 
