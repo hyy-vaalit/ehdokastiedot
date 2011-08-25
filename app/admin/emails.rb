@@ -20,7 +20,7 @@ ActiveAdmin.register Email do
 
   show :title => :subject do
     attributes_table :subject, :content
-    link_to 'Lähetä sähköposti', send_mail_admin_email_path, :class => 'button'
+    link_to 'Lähetä sähköposti ehdokkaille', send_mail_admin_email_path, :class => 'button'
   end
 
   member_action :send_mail do

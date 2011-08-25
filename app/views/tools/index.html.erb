@@ -7,7 +7,7 @@
 <% if Email.count == 0 -%>
   <li><%= link_to 'Luo ehdokkaille lähetettävä sähköposti', new_admin_email_path%></li>
 <% else -%>
-  <li><%= link_to 'Lähetä ehdokkaille sähköpostia', admin_email_path(Email.first.id)%> (Paina <q>Lähetä sähköposti</q> -nappia)</li>
+  <li><%= link_to 'Lähetä ehdokkaille sähköpostia', admin_email_path(Email.first.id)%> (Paina <q>Lähetä sähköposti ehdokkaille</q> -nappia)</li>
 <% end -%>
 </ul>
 
