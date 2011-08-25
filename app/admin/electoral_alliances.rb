@@ -39,6 +39,12 @@ ActiveAdmin.register ElectoralAlliance do
     default_actions
   end
 
+  show do
+    attributes_table :name, :shorten, :delivered_candidate_form_amount, :secretarial_freeze
+    attributes_table :primary_advocate_lastname, :primary_advocate_firstname, :primary_advocate_social_security_number, :primary_advocate_address, :primary_advocate_postal_information, :primary_advocate_phone, :primary_advocate_email
+    attributes_table :secondary_advocate_lastname, :secondary_advocate_firstname, :secondary_advocate_social_security_number, :secondary_advocate_address, :secondary_advocate_postal_information, :secondary_advocate_phone, :secondary_advocate_email
+  end
+
   filter :name
   filter :electoral_coalition
   filter :secretarial_freeze, :as => :select
