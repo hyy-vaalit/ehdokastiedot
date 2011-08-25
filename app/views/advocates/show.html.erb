@@ -1,7 +1,11 @@
 <% @advocate.electoral_alliances.each do |alliance| -%>
   <h2><%= alliance.name %></h2>
+
+  <p>Merkintä * tarkoittaa, että ehdokkaassa on korjauksia</p>
+
   <table>
     <tr>
+      <th></th>
       <th>Sukunimi</th>
       <th>Etunimet</th>
       <th>Ehdokasnimi</th>
@@ -15,6 +19,7 @@
     </tr>
   <% alliance.candidates.each do |candidate| -%>
     <tr>
+      <td><%= '*' if candidate.has_fixes %></td>
       <td><%= candidate.lastname %></td>
       <td><%= candidate.firstname %></td>
       <td><%= candidate.candidate_name %></td>
