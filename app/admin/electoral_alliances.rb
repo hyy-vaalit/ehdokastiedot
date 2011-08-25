@@ -10,6 +10,14 @@ ActiveAdmin.register ElectoralAlliance do
 
     load_and_authorize_resource :except => [:index]
 
+    def index
+      if current_admin_user.role == 'secretary' and !current_admin_user.electoral_alliance.nil?
+        redirect_to admin_electoral_alliance_path(current_admin_user.electoral_alliance.id)
+      else
+        super
+      end
+    end
+
     def create
       if current_admin_user.role == 'secretary'
         current_admin_user.electoral_alliance = @electoral_alliance
