@@ -53,7 +53,8 @@ ActiveAdmin.register Candidate do
   end
 
   show do
-    render 'show'
+    attributes_table :lastname, :firstname, :candidate_name, :social_security_number, :address, :postal_information, :email, :faculty, :electoral_alliance, :notes
+    link_to 'Lisää seuraava ehdokas', new_admin_candidate_path, :class => 'button'
   end
 
   filter :candidate_number
@@ -88,10 +89,6 @@ ActiveAdmin.register Candidate do
       f.input :notes, :hint => 'Erota tiedot pilkuilla. Rivinvaihdot korvataan automaattisesti pilkuiksi.'
     end
     f.buttons
-  end
-
-  action_item :only => :show do
-    link_to 'Lisää seuraava ehdokas', new_admin_candidate_path
   end
 
   action_item :only => :show do
