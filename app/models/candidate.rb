@@ -13,6 +13,9 @@ class Candidate < ActiveRecord::Base
     end
   end
 
+  has_many :candidate_drawings
+  has_many :candidate_draws, :through => :candidate_drawings
+
   belongs_to :electoral_alliance
   ranks :sign_up_order, :with_same => :electoral_alliance_id
 
