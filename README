@@ -1,5 +1,12 @@
+== Setting up environment
+
+Project uses redis
+
+$ brew install redis
+$ redis-server
+
 == Setting up the seed
 
-rake db:migrate
-rake db:seed
-rake csv_seed
+$ rake db:migrate
+$ rake db:seed
+$ rake csv_seed
