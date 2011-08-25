@@ -1,4 +1,9 @@
 <h1>Lista samoista henkilötunnuksista</h1>
+
+<% if @ssn_and_candidates.count == 0 -%>
+  <p>Ei ole syötetty samoja henkilötunnuksia</p>
+<% end -%>
+
 <% @ssn_and_candidates.each do |pair| -%>
   <h2>'<%= pair.first %>'</h2>
   <% pair.last.each do |candidate| -%>

@@ -1,6 +1,9 @@
 <h1>Asiamiesten lähettämät korjaukset</h1>
-<% @coalitions.each do |coalition|
-  next unless coalition.has_fix_needing_candidates? -%>
+<% if @coalitions.count == 0 %>
+  <p>Ei ole korjauksia</p>
+<% end -%>
+
+<% @coalitions.each do |coalition| -%>
   <h2><%= coalition.name %></h2>
 
   <% coalition.electoral_alliances.each do |alliance|

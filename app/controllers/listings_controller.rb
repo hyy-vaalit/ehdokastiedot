@@ -24,7 +24,7 @@ class ListingsController < ApplicationController
   end
 
   def has_fixes
-    @coalitions = ElectoralCoalition.all
+    @coalitions = ElectoralCoalition.all.select{|coalition| coalition.has_fix_needing_candidates?}
   end
 
   def has_fixes_post
