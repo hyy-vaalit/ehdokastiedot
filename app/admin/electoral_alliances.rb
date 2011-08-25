@@ -48,7 +48,7 @@ ActiveAdmin.register ElectoralAlliance do
     default_actions
   end
 
-  show do
+  show :title => :name do
     attributes_table :name, :shorten do
       row("candidates") { "#{electoral_alliance.candidates.count} / #{electoral_alliance.delivered_candidate_form_amount}" }
       row("ready") { electoral_alliance.secretarial_freeze ? 'Liiton tiedot ovat valmiina' : 'Liiton tiedot eivät ole valmiina' }

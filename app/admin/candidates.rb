@@ -52,7 +52,7 @@ ActiveAdmin.register Candidate do
     default_actions
   end
 
-  show do
+  show :title => :candidate_name do
     attributes_table :lastname, :firstname, :candidate_name, :social_security_number, :address, :postal_information, :email, :faculty, :electoral_alliance, :notes
     link_to 'Lisää seuraava ehdokas', new_admin_candidate_path, :class => 'button'
   end
