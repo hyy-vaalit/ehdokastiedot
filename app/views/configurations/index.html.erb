@@ -28,7 +28,7 @@
 
 <%= form_tag(configuration_path('spare_candidates_to_select'), :method => :put) do -%>
   <p>
-    <strong>Varaedustajia:</strong><br />
+    <strong>Varaedustajia per varsinainen edustaja:</strong><br />
     <%= text_field_tag 'value', @spare_candidates_to_select %>
     <%= submit_tag 'Save' %>
   </p>
@@ -36,8 +36,10 @@
 
 <%= form_tag(configuration_path('mailaddress'), :method => :put) do -%>
   <p>
-    <strong>Järjestelmän mailiosoite:</strong><br />
+    <strong>Järjestelmän sähköpostiosoite:</strong><br />
     <%= text_field_tag 'value', @mailaddress%>
     <%= submit_tag 'Save' %>
+    <br>
+    Osoite näkyy mm. asiamiehille ja ehdokkaille lähtevän viestin lähettäjänäosoitteena.
   </p>
 <% end -%>

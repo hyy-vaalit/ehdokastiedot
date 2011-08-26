@@ -13,13 +13,13 @@
 #DatabaseCleaner.clean
 
 # Configurations
-REDIS.set 'total_vote_count', '999999'
-REDIS.set 'right_to_vote', '999999'
+REDIS.set 'total_vote_count', '10417'
+REDIS.set 'right_to_vote', '29563'
 REDIS.set 'candidates_to_select', '60'
 REDIS.set 'spare_candidates_to_select', '2'
 REDIS.set 'mailaddress', 'hostmaster-hyy@enemy.fi'
-REDIS.set 'checking_minutes_username', 'foo'
-REDIS.set 'checking_minutes_password', 'bar'
+REDIS.set 'checking_minutes_username', 'tlkpj'
+REDIS.set 'checking_minutes_password', 'pass123'
 
 # Create a default user
 AdminUser.create!(:email => 'admin@example.com', :password => 'password', :password_confirmation => 'password', :role => 'admin')
