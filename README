@@ -10,3 +10,13 @@ $ redis-server
 $ rake db:migrate
 $ rake db:seed
 $ rake csv_seed
+
+== Esimerkkikäyttäjätunnukset
+
+=== ATK-vastaava
+admin@example.com
+password
+
+=== Äänestysalueet
+Käyttäjätunnus: E1..E5 tai 1..25
+Salasana: pass123

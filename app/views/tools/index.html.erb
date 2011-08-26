@@ -1,19 +1,26 @@
 <h1>Vaaralliset toiminnot</h1>
 
+<iframe width="420" height="345"
+src="http://www.youtube.com/embed/V8rZWw9HE7o" frameborder="0"
+allowfullscreen></iframe>
+
 <h2>Ehdokasasettelu</h2>
 
 <ul>
-  <li><%= link_to 'Luo asiamiehille tunnukset', create_advocates_admin_electoral_alliances_path %></li>
-<% if Email.count == 0 -%>
-  <li><%= link_to 'Luo ehdokkaille lähetettävä sähköposti', new_admin_email_path%></li>
-<% else -%>
-  <li><%= link_to 'Lähetä ehdokkaille sähköpostia', admin_email_path(Email.first.id)%> (Paina <q>Lähetä sähköposti ehdokkaille</q> -nappia)</li>
-<% end -%>
+  <li>
+    <%= link_to 'Luo asiamiehille tunnukset', create_advocates_admin_electoral_alliances_path, :confirm => "Luodaanko asiamiesten tunnukset tietojen korjaamiseksi?\nSalasana välitetään jokaiselle asiamiehelle sähköpostitse." %>
+    (salasana välitetään jokaiselle asiamiehelle sähköpostitse)
+  </li>
+
+  <li>
+    <%= link_to 'Kirjoita ehdokkaille lähetettävä sähköposti', new_admin_email_path %>
+    (viestin voi lähettää kirjoittamisen jälkeen)
+  </li>
 </ul>
 
-<h3>Numerointi</h3>
+<h3>Ehdokasnumerot</h3>
 
 <ul>
-  <li><%= link_to 'Järjestä vaalirenkaat', admin_electoral_coalitions_path %> (Sivun oikea reuna)</li>
-  <li><%= link_to 'Anna ehdokkaille numerot', give_numbers_admin_candidates_path %></li>
+  <li><%= link_to 'Aseta vaalirenkaiden keskinäinen järjestys', admin_electoral_coalitions_path %> (Sivun oikeasta reunasta)</li>
+  <li><%= link_to 'Anna ehdokkaille numerot', give_numbers_admin_candidates_path, :confirm => "Jaetaanko ehdokasnumerot?" %></li>
 </ul>

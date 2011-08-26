@@ -1,25 +1,32 @@
 # coding: utf-8
 ActiveAdmin::Dashboards.build do
 
-  section "Exportit" do
+  section "Vienti (export)" do
     ul do
       li link_to "Kaikki ehdokkaat (csv)", admin_candidates_path(:format=>:csv)
       li link_to "Peruuttaneet ehdokkaat (csv)", cancelled_emails_admin_candidates_path
       li link_to "Kaikki vaaliliitot (csv)", admin_electoral_alliances_path(:format=>:csv)
       li link_to "Kaikki vaalirenkaat (csv)", admin_electoral_coalitions_path(:format=>:csv)
     end
-  end
-
-  section 'Listaukset' do
-    ul do
-      li link_to 'Yksinkertainen lista', simple_listings_path
-      li link_to 'Samat henkilötunnukset', same_ssn_listings_path
-      li link_to 'Lista korjauksia sisältävistä ehdokkaista', has_fixes_listings_path
-      li link_to 'Vaalishow', showdown_listings_path
+    h3 "Ohjeet CSV-tiedoston tuomiseksi Exceliin"
+    ol do
+      li "Avaa CSV-tiedosto Exceliin."
+      li "Valitse ja mustaa koko sarake 'A'."
+      li "Valitse: Tiedot > Teksti sarakkeisiin"
+      li "Valitse: Tiedostolaji: Erotettu > Seuraava."
+      li "Valitse: Erottimet: Pilkku > Valmis."
     end
   end
 
-  section 'Toiminnallisuuksia' do
+  section 'Ehdokastiedot' do
+    ul do
+      li link_to 'Yksinkertaistettu lista ehdokastiedoista', simple_listings_path
+      li link_to 'Ehdokkaat, joilla sama henkilöturvatunnus', same_ssn_listings_path
+      li link_to 'Asiamiesten korjaukset ehdokastietoihin', has_fixes_listings_path
+    end
+  end
+
+  section 'X-files' do
     ul do
       li link_to 'Järjestelmän asetukset', configurations_path
       li link_to 'Vaaralliset toiminnot', tools_path
@@ -28,18 +35,20 @@ ActiveAdmin::Dashboards.build do
 
   section 'Vaalitulokset' do
     ul do
-      li link_to 'Vaalitulos', results_path
-      li link_to 'Vain läpimenevät', deputies_results_path
-      li link_to 'Ehdokkaat äänimäärineen', by_votes_results_path
-      li link_to 'Vaaliliitoittain läpimenevät', by_alliance_results_path
+      li link_to 'Äänestysalueet ääntenlaskentaan', showdown_listings_path
+      li link_to 'Alustava vaalitulos', results_path
+      li link_to 'Lopullinen vaalitulos (#TODO)', "#"
+      li link_to 'Ehdokkaat läpipääsyn mukaan', deputies_results_path
+      li link_to 'Ehdokkaat vaaliliitoittain', by_alliance_results_path
+      li link_to 'Ehdokkaat äänimäärän mukaan', by_votes_results_path
     end
   end
 
-  section 'Erikoiskirjautumiset' do
+  section 'Muiden sidosryhmien sisäänkirjautuminen' do
     ul do
-      li link_to 'Asiamiesten korjaukset', advocate_path
-      li link_to 'Äänestysalue', voting_area_path
-      li link_to 'Tarkastuslaskenta', checking_minutes_path
+      li link_to 'Asiamiesten korjaukset (liiton 1. asiamies)', advocate_path
+      li link_to 'Äänestysalue (äänestysalueen pj)', voting_area_path
+      li link_to 'Tarkastuslaskenta (tllk:n pj)', checking_minutes_path
     end
   end
 

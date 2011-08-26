@@ -1,4 +1,13 @@
-<h1>Showdown - Vaalishown hallinta</h1>
+<h1>Ääntenlaskennan eteneminen</h1>
+
+<h2>Ohjeita äänestysalueen ottamiseksi mukaan ääntenlaskentaan:</h2>
+<ul>
+  <li>Valitse äänestysalueet ja paina "Laske".</li>
+  <li>Odota laskennan valmistumista. Voit ladata tätä sivua uudelleen (paina: F5/CTRL-R).</li>
+  <li>Kun äänestysalueen tilana on "laskennassa", äänet eivät vielä näy osana vaalitulosta.</li>
+  <li>Äänten laskeminen tapahtuu taustalla, ja laskenta kestää 5-15 minuuttia.</li>
+  <li>Kun äänestysalueen tilana on "laskettu", näkyvät alueelta annetut äänet osana vaalitulosta.</li>
+</ul>
 
 <%= form_tag showdown_listings_path, :method => :post, :class => "showdown" do -%>
   <table>
@@ -18,5 +27,8 @@
     </tr>
   <% end -%>
   </table>
-  <p><input type="submit" value="Laske" /></p>
+  <p>
+    <input type="submit" value="Laske" />
+  </p>
+
 <% end -%>
