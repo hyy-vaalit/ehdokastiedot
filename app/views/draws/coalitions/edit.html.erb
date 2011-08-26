@@ -7,7 +7,7 @@
 <% @coalition_draw.coalition_drawings.each do |drawing| -%>
   <tr>
     <td><%= drawing.electoral_coalition.shorten %></td>
-    <td><input name="coalition_drawing[<%= drawing.id %>]" type="text" value="<%= drawing.position_in_draw_position %>" /></td>
+    <td><input name="coalition_drawing[<%= drawing.id %>]" type="text" /></td>
   </tr>
 <% end -%>
 </table>

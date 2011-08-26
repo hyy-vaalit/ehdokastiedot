@@ -5,8 +5,8 @@
 <% @alliance_draws.each do |draw| -%>
   <div>
     <ul>
-      <% draw.electoral_alliances.each do |alliance| -%>
-        <li><%= alliance.shorten %></li>
+      <% draw.alliance_drawings.rank(:position_in_draw).each_with_index do |drawing, i| -%>
+        <li><%= drawing.electoral_alliance.shorten %>: <%= i+1 if draw.drawed %></li>
       <% end -%>
     </ul>
     <p><%= link_to 'Siirry arvontaan', edit_draws_alliance_path(draw.id) %></p>

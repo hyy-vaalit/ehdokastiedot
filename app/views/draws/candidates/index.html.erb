@@ -5,8 +5,8 @@
 <% @candidate_draws.each do |draw| -%>
   <div>
     <ul>
-      <% draw.candidates.each do |candidate| -%>
-        <li><%= candidate.candidate_number %></li>
+      <% draw.candidate_drawings.rank(:position_in_draw).each_with_index do |drawing, i| -%>
+        <li><%= drawing.candidate.candidate_number %>: <%= i+1 if draw.drawed %></li>
       <% end -%>
     </ul>
     <p><%= link_to 'Siirry arvontaan', edit_draws_candidate_path(draw.id) %></p>
