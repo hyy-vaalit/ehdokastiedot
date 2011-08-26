@@ -6,7 +6,7 @@
 <table>
 <% @coalition_draw.coalition_drawings.each do |drawing| -%>
   <tr>
-    <td><%= drawing.electoral_coalition.shorten %></td>
+    <td><%= get_draw_candidate_from_coalition(drawing) %></td>
     <td><input name="coalition_drawing[<%= drawing.id %>]" type="text" /></td>
   </tr>
 <% end -%>

@@ -6,7 +6,7 @@
   <div id="draw_<%= draw.id %>">
     <ul>
       <% draw.coalition_drawings.rank(:position_in_draw).each_with_index do |drawing, i| -%>
-        <li><%= drawing.electoral_coalition.shorten %>: <%= i+1 if draw.drawed %></li>
+        <li><%= get_draw_candidate_from_coalition(drawing) %>: <%= i+1 if draw.drawed %></li>
       <% end -%>
     </ul>
     <p><%= link_to 'Siirry arvontaan', edit_draws_coalition_path(draw.id) %></p>

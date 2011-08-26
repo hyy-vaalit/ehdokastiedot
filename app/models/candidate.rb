@@ -37,6 +37,11 @@ class Candidate < ActiveRecord::Base
 
   scope :selected, where(:state => :selected)
 
+  scope :from_coalition, lambda { |coalition|
+    alliance_ids = coalition.electoral_alliance_ids
+    where('candidates.electoral_alliance_id in (?)', alliance_ids)
+  }
+
   validates_presence_of :lastname, :electoral_alliance
 
   before_save :clear_lines!
@@ -73,6 +78,10 @@ class Candidate < ActiveRecord::Base
     voting_area = VotingArea.find_by_id voting_area_id
     vote = voting_area.votes.find_by_candidate_id self.id
     vote ? vote.fix_count : ''
+  end
+
+  def position_in_coalition
+    Candidate.from_coalition(self.electoral_alliance.electoral_coalition).selection_order.index self
   end
 
   def self.give_numbers!
