@@ -3,7 +3,7 @@
 <p><%= link_to 'Takaisin kaikkiin arvontoihin', draws_path %></p>
 
 <% @alliance_draws.each do |draw| -%>
-  <div>
+  <div class="draw" id="draw_<%= draw.id %>">
     <ul>
       <% draw.alliance_drawings.rank(:position_in_draw).each_with_index do |drawing, i| -%>
         <li><%= get_draw_candidate_from_alliance(drawing) %>: <%= i+1 if draw.drawed %></li>

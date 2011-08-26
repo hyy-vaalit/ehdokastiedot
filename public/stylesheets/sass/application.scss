@@ -61,3 +61,13 @@ p.notice {
     size: 120%;
   }
 }
+
+.draw {
+  border: thin solid black;
+  padding: 1em;
+  margin: 1em;
+  ul {
+    list-style-type: none;
+    padding: 0;
+  }
+}
