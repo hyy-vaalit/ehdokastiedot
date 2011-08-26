@@ -1,5 +1,11 @@
 Vaalit::Application.routes.draw do
 
+  get "coalitions/index"
+
+  get "alliances/index"
+
+  get "candidates/index"
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -30,6 +36,13 @@ Vaalit::Application.routes.draw do
       get :fixes
       post :ready
     end
+  end
+
+  namespace :draws do
+    match '/', :controller => :index, :action => :index
+    resources :coalitions
+    resources :alliances
+    resources :candidates
   end
 
   resources :listings, :only => [] do

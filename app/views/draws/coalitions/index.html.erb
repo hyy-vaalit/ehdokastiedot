@@ -1,0 +1,13 @@
+<h1>Renkaiden väliset arvonnat</h1>
+
+<p><%= link_to 'Takaisin kaikkiin arvontoihin', draws_path %></p>
+
+<% @coalition_draws.each do |draw| -%>
+  <div>
+    <ul>
+      <% draw.electoral_coalitions.each do |coalition| -%>
+        <li><%= coalition.shorten %></li>
+      <% end -%>
+    </ul>
+  </div>
+<% end -%>

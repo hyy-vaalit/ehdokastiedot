@@ -1,0 +1,2 @@
+module Draws::AlliancesHelper
+end

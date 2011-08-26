@@ -1,0 +1,2 @@
+module Draws::CoalitionsHelper
+end

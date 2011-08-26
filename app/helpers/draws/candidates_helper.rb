@@ -1,0 +1,2 @@
+module Draws::CandidatesHelper
+end
