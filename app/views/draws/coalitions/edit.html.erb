@@ -1,0 +1,16 @@
+<h1>Renkaiden väliset arvonnat</h1>
+
+<p><%= link_to 'Takaisin renkaiden välisiin arvontoihin', draws_coalitions_path %></p>
+
+<% form_tag do -%>
+<table>
+<% @coalition_draw.coalition_drawings.each do |drawing| -%>
+  <tr>
+    <td><%= drawing.electoral_coalition.shorten %></td>
+    <td><input type="text" /></td>
+  </tr>
+<% end -%>
+</table>
+
+<input type="submit" value="Tallenna" />
+<% end -%>

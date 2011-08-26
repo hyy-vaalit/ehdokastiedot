@@ -4,4 +4,8 @@ class Draws::AlliancesController < DrawsController
     @alliance_draws = AllianceDraw.all
   end
 
+  def edit
+    @alliance_draw = AllianceDraw.find_by_id params[:id]
+  end
+
 end
