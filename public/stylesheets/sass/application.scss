@@ -53,3 +53,11 @@ td.alliance {
     border-left: thin solid black;
   }
 }
+
+p.notice {
+  color: green;
+  font: {
+    weight: bold;
+    size: 120%;
+  }
+}

@@ -1,5 +1,7 @@
 <h1>Tarkastuspöytäkirjat</h1>
 
+<p><%= link_to 'Merkitse tarkastuslaskenta valmiiksi', ready_checking_minutes_path, :method => :post, :confirm => 'Onko kaikki alueet varmasti tarkistettuna?' %></p>
+
 <ul>
 <% @voting_areas.each do |voting_area| -%>
   <li><%= link_to "#{voting_area.code} - #{voting_area.name}", checking_minute_path(voting_area) %></li>

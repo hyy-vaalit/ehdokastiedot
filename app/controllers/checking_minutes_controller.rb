@@ -3,6 +3,7 @@ class CheckingMinutesController < ApplicationController
   skip_authorization_check
 
   before_filter :authenticate
+  before_filter :check_if_ready, :except => :fixes
 
   def index
     @voting_areas = VotingArea.all
@@ -31,11 +32,24 @@ class CheckingMinutesController < ApplicationController
     @voting_areas = VotingArea.all
   end
 
+  def ready
+    Delayed::Job.enqueue(DrawArrangeJob.new)
+    REDIS.set('checking_minutes_ready', true)
+    redirect_to checking_minutes_path
+  end
+
   private
 
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
       REDIS.get('checking_minutes_username') && REDIS.get('checking_minutes_password') && username == REDIS.get('checking_minutes_username') && password == REDIS.get('checking_minutes_password')
+    end
+  end
+
+  def check_if_ready
+    if REDIS.get('checking_minutes_ready')
+      redirect_to fixes_checking_minutes_path, :notice => 'Tarkastuslaskenta on valmis'
+      return
     end
   end
 

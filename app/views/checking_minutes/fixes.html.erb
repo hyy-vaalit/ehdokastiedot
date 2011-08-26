@@ -1,5 +1,11 @@
 <h1>Tarkastuslaskennassa tulleet korjaukset</h1>
 
+<p><%= link_to 'Takaisin', checking_minutes_path %></p>
+
+<% if flash[:notice] -%>
+  <p class="notice"><%= flash[:notice] %></p>
+<% end -%>
+
 <% @voting_areas.each do |voting_area| -%>
   <h2><%= voting_area.code %> - <%= voting_area.name %></h2>
 
