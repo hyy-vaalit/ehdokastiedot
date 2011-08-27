@@ -40,9 +40,21 @@ Vaalit::Application.routes.draw do
 
   namespace :draws do
     match '/', :controller => :index, :action => :index
-    resources :coalitions
-    resources :alliances
-    resources :candidates
+    resources :coalitions do
+      collection do
+        post :ready
+      end
+    end
+    resources :alliances do
+      collection do
+        post :ready
+      end
+    end
+    resources :candidates do
+      collection do
+        post :ready
+      end
+    end
   end
 
   resources :listings, :only => [] do

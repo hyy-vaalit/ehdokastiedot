@@ -2,6 +2,8 @@
 
 <p><%= link_to 'Takaisin kaikkiin arvontoihin', draws_path %></p>
 
+<p><%= link_to 'Merkitse renkaiden väliset arvonnat valmiiksi', ready_draws_coalitions_path, :method => :post %></p>
+
 <% @coalition_draws.each do |draw| -%>
   <div class="draw" id="draw_<%= draw.id %>">
     <ul>

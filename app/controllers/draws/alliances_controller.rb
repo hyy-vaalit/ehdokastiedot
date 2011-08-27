@@ -1,5 +1,7 @@
 class Draws::AlliancesController < DrawsController
 
+  before_filter :check_if_finished
+
   def index
     @alliance_draws = AllianceDraw.all
   end
@@ -16,6 +18,20 @@ class Draws::AlliancesController < DrawsController
     end
     @draw.update_attribute :drawed, true
     redirect_to draws_alliances_path(:anchor => "draw_#{@draw.id}")
+  end
+
+  def ready
+    REDIS.set('alliance_draw_status', true)
+    redirect_to draws_alliances_path
+  end
+
+  private
+
+  def check_if_finished
+    if REDIS.get('alliance_draw_status')
+      redirect_to draws_path
+      return
+    end
   end
 
 end

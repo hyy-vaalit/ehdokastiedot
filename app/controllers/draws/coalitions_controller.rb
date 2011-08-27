@@ -1,5 +1,7 @@
 class Draws::CoalitionsController < DrawsController
 
+  before_filter :check_if_finished
+
   def index
     @coalition_draws = CoalitionDraw.all
   end
@@ -16,6 +18,20 @@ class Draws::CoalitionsController < DrawsController
     end
     @draw.update_attribute :drawed, true
     redirect_to draws_coalitions_path(:anchor => "draw_#{@draw.id}")
+  end
+
+  def ready
+    REDIS.set('coalition_draw_status', true)
+    redirect_to draws_coalitions_path
+  end
+
+  private
+
+  def check_if_finished
+    if REDIS.get('coalition_draw_status')
+      redirect_to draws_path
+      return
+    end
   end
 
 end
