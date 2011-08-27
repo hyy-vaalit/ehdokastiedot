@@ -1,4 +1,3 @@
-# coding: UTF-8
 class CoalitionDraw < ActiveRecord::Base
 
   has_many :coalition_drawings

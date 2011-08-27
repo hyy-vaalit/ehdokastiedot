@@ -4,6 +4,10 @@
 
 <p><%= link_to 'Merkitse liittojen väliset arvonnat valmiiksi', ready_draws_alliances_path, :method => :post %></p>
 
+<% if flash[:alert] -%>
+  <p class="alert"><%= flash[:alert] %></p>
+<% end -%>
+
 <% @alliance_draws.each do |draw| -%>
   <div class="draw" id="draw_<%= draw.id %>">
     <ul>

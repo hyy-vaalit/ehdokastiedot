@@ -26,7 +26,7 @@ class Draws::CandidatesController < DrawsController
       REDIS.set('candidate_draw_status', true)
       redirect_to draws_candidates_path
     else
-      redirect_to draws_candidates_path, :notice => 'Kaikkia arvontoja ei ole vielä suoritettu'
+      redirect_to draws_candidates_path, alert: 'Kaikkia arvontoja ei ole vielä suoritettu'
     end
   end
 

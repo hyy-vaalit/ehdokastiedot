@@ -26,7 +26,7 @@ class Draws::AlliancesController < DrawsController
       REDIS.set('alliance_draw_status', true)
       redirect_to draws_alliances_path
     else
-      redirect_to draws_alliances_path, :notice => 'Kaikkia arvontoja ei ole vielä suoritettu'
+      redirect_to draws_alliances_path, alert: 'Kaikkia arvontoja ei ole vielä suoritettu'
     end
   end
 
