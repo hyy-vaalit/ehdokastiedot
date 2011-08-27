@@ -1,3 +1,4 @@
+# coding: UTF-8
 class Draws::AlliancesController < DrawsController
 
   before_filter :check_if_finished
@@ -21,8 +22,12 @@ class Draws::AlliancesController < DrawsController
   end
 
   def ready
-    REDIS.set('alliance_draw_status', true)
-    redirect_to draws_alliances_path
+    if AllianceDraw.count == AllianceDraw.ready.count
+      REDIS.set('alliance_draw_status', true)
+      redirect_to draws_alliances_path
+    else
+      redirect_to draws_alliances_path, :notice => 'Kaikkia arvontoja ei ole vielä suoritettu'
+    end
   end
 
   private

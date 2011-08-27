@@ -1,7 +1,10 @@
+# coding: UTF-8
 class CoalitionDraw < ActiveRecord::Base
 
   has_many :coalition_drawings
   has_many :electoral_coalitions, :through => :coalition_drawings
+
+  scope :ready, where(drawed: true)
 
   def self.check_between_coalitions
     pairs = {}

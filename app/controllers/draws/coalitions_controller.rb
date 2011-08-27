@@ -21,8 +21,12 @@ class Draws::CoalitionsController < DrawsController
   end
 
   def ready
-    REDIS.set('coalition_draw_status', true)
-    redirect_to draws_coalitions_path
+    if CoalitionDraw.count == CoalitionDraw.ready.count
+      REDIS.set('coalition_draw_status', true)
+      redirect_to draws_coalitions_path
+    else
+      redirect_to draws_coalitions_path, :notice => 'Kaikkia arvontoja ei ole vielä suoritettu'
+    end
   end
 
   private

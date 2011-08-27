@@ -3,6 +3,8 @@ class AllianceDraw < ActiveRecord::Base
   has_many :alliance_drawings
   has_many :electoral_alliances, :through => :alliance_drawings
 
+  scope :ready, where(drawed: true)
+
   def self.check_between_alliances
     ElectoralCoalition.all.each do |coalition|
       pairs = {}

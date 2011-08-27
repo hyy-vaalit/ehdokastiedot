@@ -1,3 +1,4 @@
+# coding: UTF-8
 class Draws::CandidatesController < DrawsController
 
   before_filter :check_if_finished
@@ -21,8 +22,12 @@ class Draws::CandidatesController < DrawsController
   end
 
   def ready
-    REDIS.set('candidate_draw_status', true)
-    redirect_to draws_candidates_path
+    if CandidateDraw.count == CandidateDraw.ready.count
+      REDIS.set('candidate_draw_status', true)
+      redirect_to draws_candidates_path
+    else
+      redirect_to draws_candidates_path, :notice => 'Kaikkia arvontoja ei ole vielä suoritettu'
+    end
   end
 
   private
