@@ -28,6 +28,7 @@ Vaalit::Application.routes.draw do
       get :deputies
       get :by_votes
       get :by_alliance
+      get :final
     end
   end
 
