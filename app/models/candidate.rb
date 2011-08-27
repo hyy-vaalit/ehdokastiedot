@@ -13,6 +13,18 @@ class Candidate < ActiveRecord::Base
     end
   end
 
+  state_machine :final_state, :initial => :not_selected_at_all do
+    event :select_me_at_last do
+      transition [:not_selected_at_all] => :selected_at_last
+    end
+    event :spare_me_at_last do
+      transition [:not_selected_at_all] => :spared_at_last
+    end
+    event :unselect_me_at_last do
+      transition any => :not_selected_at_all
+    end
+  end
+
   has_many :candidate_drawings
   has_many :candidate_draws, :through => :candidate_drawings
 

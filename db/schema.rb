@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110826113505) do
+ActiveRecord::Schema.define(:version => 20110827140631) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -108,6 +108,7 @@ ActiveRecord::Schema.define(:version => 20110826113505) do
     t.string   "state",                        :default => "not_selected"
     t.float    "fixed_alliance_proportional"
     t.float    "fixed_coalition_proportional"
+    t.string   "final_state"
   end
 
   create_table "coalition_drawings", :force => true do |t|
