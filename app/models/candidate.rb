@@ -47,7 +47,8 @@ class Candidate < ActiveRecord::Base
 
   scope :selection_order, order('coalition_proportional desc, alliance_proportional desc')
 
-  scope :selected, where(:state => :selected)
+  scope :selected, where(state: :selected)
+  scope :selected_at_last, where(state: :selected_at_last)
 
   scope :from_coalition, lambda { |coalition|
     alliance_ids = coalition.electoral_alliance_ids

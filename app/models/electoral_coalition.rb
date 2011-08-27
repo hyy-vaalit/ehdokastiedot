@@ -20,6 +20,10 @@ class ElectoralCoalition < ActiveRecord::Base
     self.electoral_alliances.map(&:total_votes).sum
   end
 
+  def fixed_total_votes
+    self.electoral_alliances.map(&:fixed_total_votes).sum
+  end
+
   def total_places
     self.electoral_alliances.map(&:total_places).sum
   end
