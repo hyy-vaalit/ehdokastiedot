@@ -52,6 +52,13 @@ ActiveAdmin::Dashboards.build do
     end
   end
 
+  section 'Tarkastuslaskenta' do
+    ul do
+      li link_to 'Tarkastuslaskennan korjausyhteenveto', summary_checking_minutes_path
+      li link_to 'Arvonnat', draws_path
+    end
+  end
+
   # == Simple Dashboard Section
   # Here is an example of a simple dashboard section
   #

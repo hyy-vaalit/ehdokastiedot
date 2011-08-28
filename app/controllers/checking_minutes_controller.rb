@@ -1,9 +1,9 @@
 class CheckingMinutesController < ApplicationController
 
-  skip_authorization_check
+  skip_authorization_check :except => :summary
 
-  before_filter :authenticate
-  before_filter :check_if_ready, :except => :fixes
+  before_filter :authenticate, :except => :summary
+  before_filter :check_if_ready, :except => [:fixes, :summary]
 
   def index
     @voting_areas = VotingArea.all
@@ -30,6 +30,12 @@ class CheckingMinutesController < ApplicationController
 
   def fixes
     @voting_areas = VotingArea.all
+  end
+
+  def summary
+    authorize! :manage, VotingArea
+    @voting_areas = VotingArea.all
+    render :fixes
   end
 
   def ready
