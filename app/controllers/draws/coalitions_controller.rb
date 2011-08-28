@@ -4,7 +4,7 @@ class Draws::CoalitionsController < DrawsController
   before_filter :check_if_finished
 
   def index
-    @coalition_draws = CoalitionDraw.all
+    @coalition_draws = CoalitionDraw.order('id').all
   end
 
   def edit

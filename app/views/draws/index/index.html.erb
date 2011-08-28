@@ -1,7 +1,11 @@
 <h1>Arvonnat</h1>
 
+<% if @drawing_is_ready -%>
 <ul>
   <li><strong>Vaalirenkaiden välillä vaikuttava arvonta:</strong> <%= @count_of_coalition_draws %>, <%= coalition_draws_status @status_of_coalition_draws %></li>
   <li><strong>Vaaliliittojen välillä vaikuttava arvonta:</strong> <%= @count_of_alliance_draws %>, <%= alliance_draws_status @status_of_alliance_draws %></li>
   <li><strong>Vaaliliiton sisällä vaikuttava arvonta:</strong> <%= @count_of_candidate_draws %>, <%= candidate_draws_status @status_of_candidate_draws %></li>
 </ul>
+<% else -%>
+<p>Arvontoja muodostetaan ...</p>
+<% end -%>

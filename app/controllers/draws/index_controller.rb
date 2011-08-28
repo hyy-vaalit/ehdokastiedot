@@ -1,6 +1,11 @@
 class Draws::IndexController < DrawsController
 
+  skip_before_filter :check_draw_status
+
   def index
+    status = REDIS.get('drawing_status')
+    @drawing_is_ready = !status.nil? and status == 'ready'
+
     @count_of_coalition_draws = CoalitionDraw.count
     @count_of_alliance_draws = AllianceDraw.count
     @count_of_candidate_draws = CandidateDraw.count

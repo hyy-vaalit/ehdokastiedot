@@ -10,7 +10,7 @@ class CheckingMinutesController < ApplicationController
   end
 
   def show
-    @candidates = Candidate.includes(:electoral_alliance).all
+    @candidates = Candidate.includes(:electoral_alliance).order('candidates.candidate_number ASC').all
     @voting_area = VotingArea.find_by_id params[:id]
   end
 

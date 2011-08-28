@@ -7,8 +7,7 @@ class Vote < ActiveRecord::Base
 
   scope :ready, joins(:voting_area).where('voting_areas.taken = ?', true)
 
-  #TODO: check if this works only in SQLite
-  scope :fixed, from("(SELECT IFNULL(v.fix_count, v.vote_count) as vote_count, v.id, v.candidate_id, v.voting_area_id, v.created_at, v.updated_at, v.fix_count FROM votes v) votes")
+  scope :fixed, from("(SELECT COALESCE(v.fix_count, v.vote_count) as vote_count, v.id, v.candidate_id, v.voting_area_id, v.created_at, v.updated_at, v.fix_count FROM votes v) votes")
 
   scope :with_fixes, where('fix_count is not null')
 

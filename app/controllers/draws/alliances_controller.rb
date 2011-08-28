@@ -4,7 +4,7 @@ class Draws::AlliancesController < DrawsController
   before_filter :check_if_finished
 
   def index
-    @alliance_draws = AllianceDraw.all
+    @alliance_draws = AllianceDraw.order('id').all
   end
 
   def edit

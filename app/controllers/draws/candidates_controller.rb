@@ -4,7 +4,7 @@ class Draws::CandidatesController < DrawsController
   before_filter :check_if_finished
 
   def index
-    @candidate_draws = CandidateDraw.all
+    @candidate_draws = CandidateDraw.order('id').all
   end
 
   def edit
