@@ -37,7 +37,7 @@ ActiveAdmin::Dashboards.build do
     ul do
       li link_to 'Äänestysalueet ääntenlaskentaan', showdown_listings_path
       li link_to 'Alustava vaalitulos', results_path
-      li link_to 'Lopullinen vaalitulos (#TODO)', "#"
+      li link_to 'Lopullinen vaalitulos', final_results_path
       li link_to 'Ehdokkaat läpipääsyn mukaan', deputies_results_path
       li link_to 'Ehdokkaat vaaliliitoittain', by_alliance_results_path
       li link_to 'Ehdokkaat äänimäärän mukaan', by_votes_results_path
