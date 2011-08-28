@@ -1,13 +1,13 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.9'
+gem 'rails', '3.0.10'
 
 gem 'activeadmin'
 gem 'ranked-model'
 gem 'cancan'
 gem 'passgen'
 
-gem 'sqlite3'
+gem 'pg'
 gem 'hoptoad_notifier'
 gem 'jquery-rails'
 gem 'sass'
