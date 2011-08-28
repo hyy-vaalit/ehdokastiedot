@@ -6,6 +6,15 @@
   <li><strong>Vaaliliittojen välillä vaikuttava arvonta:</strong> <%= @count_of_alliance_draws %>, <%= alliance_draws_status @status_of_alliance_draws %></li>
   <li><strong>Vaaliliiton sisällä vaikuttava arvonta:</strong> <%= @count_of_candidate_draws %>, <%= candidate_draws_status @status_of_candidate_draws %></li>
 </ul>
+
+<% if @drawings_are_finished -%>
+  <% if @final_result_status == 'in_formatting' -%>
+    <p>Lopullista vaalitulosta muotoillaan</p>
+  <% else -%>
+    <p><%= link_to 'Huomioi äänestykset vaalituloksessa', draws_notice_path %></p>
+  <% end -%>
+<% end -%>
+
 <% else -%>
 <p>Arvontoja muodostetaan ...</p>
 <% end -%>

@@ -13,6 +13,18 @@ class Draws::IndexController < DrawsController
     @status_of_coalition_draws = REDIS.get('coalition_draw_status')
     @status_of_alliance_draws = REDIS.get('alliance_draw_status')
     @status_of_candidate_draws = REDIS.get('candidate_draw_status')
+
+    @drawings_are_finished = @status_of_coalition_draws and @status_of_alliance_draws and @status_of_candidate_draws
+
+    @final_result_status = REDIS.get('final_result_status')
+  end
+
+  def notice
+    unless REDIS.get('final_result_status')
+      REDIS.set('final_result_status', 'in_formatting')
+      Delayed::Job.enqueue(FinalResultJob.new)
+    end
+    redirect_to draws_path
   end
 
 end

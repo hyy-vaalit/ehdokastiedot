@@ -42,6 +42,7 @@ Vaalit::Application.routes.draw do
 
   namespace :draws do
     match '/', :controller => :index, :action => :index
+    match '/notice', :controller => :index, :action => :notice
     resources :coalitions do
       collection do
         post :ready
