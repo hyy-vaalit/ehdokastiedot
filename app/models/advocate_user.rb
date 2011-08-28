@@ -37,7 +37,7 @@ class AdvocateUser < ActiveRecord::Base
   end
 
   def send_password
-    PasswordDelivery.new_password(self.password, self.email).deliver
+    PasswordDelivery.advocate_fixer(self.password, self.email, self.electoral_alliances.first.name).deliver
   end
 
 end

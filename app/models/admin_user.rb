@@ -23,7 +23,11 @@ class AdminUser < ActiveRecord::Base
   end
 
   def send_password
-    PasswordDelivery.new_password(password, email).deliver
+    if role == 'secretary'
+      PasswordDelivery.secretary(password, email).deliver
+    else
+      PasswordDelivery.new_password(password, email).deliver
+    end
   end
 
 end
