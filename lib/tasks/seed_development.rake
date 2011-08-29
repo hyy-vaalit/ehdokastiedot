@@ -4,8 +4,8 @@ require 'csv'
 namespace :seed do
   namespace :development do
 
-    desc 'Some specific settings'
-    task :defaults => :environment do
+    desc 'Default project settings'
+    task :configuration => :environment do
       REDIS.set 'total_vote_count', '10417'
       REDIS.set 'right_to_vote', '29563'
       REDIS.set 'candidates_to_select', '60'
@@ -196,7 +196,7 @@ namespace :seed do
   end
 
   task :development do
-    Rake::Task['development:defaults'].invoke
+    Rake::Task['development:configuration'].invoke
     Rake::Task['development:faculties'].invoke
     Rake::Task['development:electoral'].invoke
     Rake::Task['development:candidates'].invoke

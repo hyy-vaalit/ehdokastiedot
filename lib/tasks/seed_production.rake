@@ -46,7 +46,7 @@ namespace :seed do
     end
 
     desc 'Setup production configuration defaults'
-    task :defaults => :environment do
+    task :configuration => :environment do
       REDIS.set 'mailaddress', 'vaalit@hyy.fi'
       REDIS.set 'total_vote_count', '0'
       REDIS.set 'right_to_vote', '0'
@@ -63,7 +63,7 @@ namespace :seed do
   task :production do
     Rake::Task['production:faculties'].invoke
     Rake::Task['production:voting_areas'].invoke
-    Rake::Task['production:defaults'].invoke
+    Rake::Task['production:configuration'].invoke
   end
 
 end
