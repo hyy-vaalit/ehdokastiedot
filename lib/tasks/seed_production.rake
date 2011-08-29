@@ -39,10 +39,10 @@ namespace :seed do
       VotingArea.create! :code => 'XIII', :name => 'EE-talo', :password => 'salainensana'
       VotingArea.create! :code => 'XIV', :name => 'Ympäristöekologian laitos', :password => 'salainensana'
       VotingArea.create! :code => 'XV', :name => 'Vaasan yliopisto', :password => 'salainensana'
-      VotingArea.create! :code => 'E I', :name => 'Keskustakampus, Porthania', :password => 'salainensana'
-      VotingArea.create! :code => 'E II', :name => 'Viikin kampus, Infokeskus', :password => 'salainensana'
-      VotingArea.create! :code => 'E III', :name => 'Kumpulan kampus, Physicum', :password => 'salainensana'
-      VotingArea.create! :code => 'E IV', :name => 'Meilahden kampus, Terveystieteiden keskuskirjasto', :password => 'salainensana'
+      VotingArea.create! :code => 'EI', :name => 'Keskustakampus, Porthania', :password => 'salainensana'
+      VotingArea.create! :code => 'EII', :name => 'Viikin kampus, Infokeskus', :password => 'salainensana'
+      VotingArea.create! :code => 'EIII', :name => 'Kumpulan kampus, Physicum', :password => 'salainensana'
+      VotingArea.create! :code => 'EIV', :name => 'Meilahden kampus, Terveystieteiden keskuskirjasto', :password => 'salainensana'
     end
 
     desc 'Setup production configuration defaults'
