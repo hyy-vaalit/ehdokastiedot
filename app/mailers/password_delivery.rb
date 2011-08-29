@@ -1,3 +1,5 @@
+# coding: UTF-8
+
 class PasswordDelivery < HyyMailer
 
   def new_password(password, email)
