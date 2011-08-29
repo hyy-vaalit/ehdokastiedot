@@ -52,6 +52,12 @@ Käyttäjätunnus: tlkpj
 Ks. kohta "Salasanat".
 
 
+=== Asiamiesten korjaukset
+Käyttäjätunnukset (kehitysympäristössä):
+  asiamies1@example.com (123456-123K)
+  asiamies2@example.com (123456-9876)
+
+
 === Salasanat
 Kehitysympäristön salasanat: pass123
 Tuotantoseedin esimerkkisalasanat: salainensana

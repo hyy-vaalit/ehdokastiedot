@@ -37,7 +37,9 @@ class AdvocateUser < ActiveRecord::Base
   end
 
   def send_password
-    PasswordDelivery.advocate_fixer(self.password, self.email, self.electoral_alliances.first.name).deliver
+    alliance_name = self.electoral_alliances.any? ? self.electoral_alliances.first.name : ""
+
+    PasswordDelivery.advocate_fixer(self.password, self.email, alliance_name).deliver
   end
 
 end

@@ -15,6 +15,7 @@ namespace :seed do
       REDIS.set 'mailaddress', 'hostmaster-hyy@enemy.fi'
 
       AdminUser.create!(:email => 'admin@example.com', :password => 'pass123', :password_confirmation => 'pass123', :role => 'admin')
+      AdminUser.create!(:email => 'sihteeri@example.com', :password => 'pass123', :password_confirmation => 'pass123', :role => 'secretary')
     end
 
     desc 'Create faculties'
@@ -79,38 +80,44 @@ namespace :seed do
       libera = ElectoralCoalition.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',  :shorten => 'Libera'
 
       # Electoral Alliances
-      mp.electoral_alliances.create! :name => 'HYYn Vihreät - De Gröna vid HUS',                               :shorten => 'HyVi',    :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      mp.electoral_alliances.create! :name => 'Sitoutumaton vasemmisto - Obunden vänster - Independent left',  :shorten => 'SitVas',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      hyal.electoral_alliances.create! :name => 'Humanistit',                                                  :shorten => 'Humani',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      hyal.electoral_alliances.create! :name => 'Viikki',                                                      :shorten => 'Viikki',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      help.electoral_alliances.create! :name => 'Pykälä',                                                      :shorten => 'Pykälä',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      hyal.electoral_alliances.create! :name => 'Kumpula',                                                     :shorten => 'Kumpul',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      help.electoral_alliances.create! :name => 'LKS/HLKS',                                                    :shorten => 'LKSHLK',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      hyal.electoral_alliances.create! :name => 'Käyttis',                                                     :shorten => 'Käytti',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      osak.electoral_alliances.create! :name => 'ESO',                                                         :shorten => 'ESO',     :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      pelast.electoral_alliances.create! :name => 'Kokoomusopiskelijat 1',                                     :shorten => 'Kok1',    :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      help.electoral_alliances.create! :name => 'EKY',                                                         :shorten => 'EKY',     :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      hyal.electoral_alliances.create! :name => 'Valtiotieteilijät',                                           :shorten => 'Valtio',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      hyal.electoral_alliances.create! :name => 'Teologit',                                                    :shorten => 'Teolog',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      osak.electoral_alliances.create! :name => 'HO-Natura',                                                   :shorten => 'HO-Nat',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      osak.electoral_alliances.create! :name => 'EPO',                                                         :shorten => 'EPO',     :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      pelast.electoral_alliances.create! :name => 'Kokoomusopiskelijat 2',                                     :shorten => 'Kok2',    :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      osak.electoral_alliances.create! :name => 'Domus Gaudiumin Osakunnat',                                   :shorten => 'DG',      :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      osak.electoral_alliances.create! :name => 'PPO',                                                         :shorten => 'PPO',     :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      pelast.electoral_alliances.create! :name => 'Keskeiset',                                                 :shorten => 'Kesk',    :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      osak.electoral_alliances.create! :name => 'SavO',                                                        :shorten => 'SavO',    :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      osak.electoral_alliances.create! :name => 'KSO-VSO',                                                     :shorten => 'KSOVSO',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      demarit.electoral_alliances.create! :name => 'Opiskelijademarit',                                        :shorten => 'OSY',     :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      snaf.electoral_alliances.create! :name => 'StudOrg',                                                     :shorten => 'StudO',   :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      osak.electoral_alliances.create! :name => 'SatO-ESO2',                                                   :shorten => 'SatESO',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      snaf.electoral_alliances.create! :name => 'Nationerna',                                                  :shorten => 'Nation',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      tsemppi.electoral_alliances.create! :name => 'Tsemppi Group',                                            :shorten => 'Tsempp',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      snaf.electoral_alliances.create! :name => 'Codex-Thorax',                                                :shorten => 'CodTho',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      pelast.electoral_alliances.create! :name => 'KD Helsingin Opiskelijat',                                  :shorten => 'KD',      :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      piraatit.electoral_alliances.create! :name => 'Akateemiset piraatit',                                    :shorten => 'Pirate',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      persut.electoral_alliances.create! :name => 'Perussuomalainen vaaliliitto',                              :shorten => 'Peruss',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      snaf.electoral_alliances.create! :name => 'Ämnesföreningarna',                                          :shorten => 'Ämnesf',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
-      libera.electoral_alliances.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',         :shorten => 'Libera',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
+      mp.electoral_alliances.create! :name => 'HYYn Vihreät - De Gröna vid HUS',                               :shorten => 'HyVi',    :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      mp.electoral_alliances.create! :name => 'Sitoutumaton vasemmisto - Obunden vänster - Independent left',  :shorten => 'SitVas',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      hyal.electoral_alliances.create! :name => 'Humanistit',                                                  :shorten => 'Humani',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      hyal.electoral_alliances.create! :name => 'Viikki',                                                      :shorten => 'Viikki',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      help.electoral_alliances.create! :name => 'Pykälä',                                                      :shorten => 'Pykälä',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      hyal.electoral_alliances.create! :name => 'Kumpula',                                                     :shorten => 'Kumpul',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      help.electoral_alliances.create! :name => 'LKS/HLKS',                                                    :shorten => 'LKSHLK',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      hyal.electoral_alliances.create! :name => 'Käyttis',                                                     :shorten => 'Käytti',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      osak.electoral_alliances.create! :name => 'ESO',                                                         :shorten => 'ESO',     :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      pelast.electoral_alliances.create! :name => 'Kokoomusopiskelijat 1',                                     :shorten => 'Kok1',    :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      help.electoral_alliances.create! :name => 'EKY',                                                         :shorten => 'EKY',     :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      hyal.electoral_alliances.create! :name => 'Valtiotieteilijät',                                           :shorten => 'Valtio',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      hyal.electoral_alliances.create! :name => 'Teologit',                                                    :shorten => 'Teolog',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      osak.electoral_alliances.create! :name => 'HO-Natura',                                                   :shorten => 'HO-Nat',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      osak.electoral_alliances.create! :name => 'EPO',                                                         :shorten => 'EPO',     :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      pelast.electoral_alliances.create! :name => 'Kokoomusopiskelijat 2',                                     :shorten => 'Kok2',    :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+      osak.electoral_alliances.create! :name => 'Domus Gaudiumin Osakunnat',                                   :shorten => 'DG',      :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      osak.electoral_alliances.create! :name => 'PPO',                                                         :shorten => 'PPO',     :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      pelast.electoral_alliances.create! :name => 'Keskeiset',                                                 :shorten => 'Kesk',    :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      osak.electoral_alliances.create! :name => 'SavO',                                                        :shorten => 'SavO',    :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      osak.electoral_alliances.create! :name => 'KSO-VSO',                                                     :shorten => 'KSOVSO',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      demarit.electoral_alliances.create! :name => 'Opiskelijademarit',                                        :shorten => 'OSY',     :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      snaf.electoral_alliances.create! :name => 'StudOrg',                                                     :shorten => 'StudO',   :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      osak.electoral_alliances.create! :name => 'SatO-ESO2',                                                   :shorten => 'SatESO',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      snaf.electoral_alliances.create! :name => 'Nationerna',                                                  :shorten => 'Nation',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      tsemppi.electoral_alliances.create! :name => 'Tsemppi Group',                                            :shorten => 'Tsempp',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      snaf.electoral_alliances.create! :name => 'Codex-Thorax',                                                :shorten => 'CodTho',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      pelast.electoral_alliances.create! :name => 'KD Helsingin Opiskelijat',                                  :shorten => 'KD',      :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      piraatit.electoral_alliances.create! :name => 'Akateemiset piraatit',                                    :shorten => 'Pirate',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      persut.electoral_alliances.create! :name => 'Perussuomalainen vaaliliitto',                              :shorten => 'Peruss',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      snaf.electoral_alliances.create! :name => 'Ämnesföreningarna',                                          :shorten => 'Ämnesf',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      libera.electoral_alliances.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',         :shorten => 'Libera',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+    end
+
+    desc 'Create fixer advocates'
+    task :fixer_advocates => :environment do
+      AdvocateUser.create! :ssn => '123456-123K', :email => 'asiamies1@example.com', :password => 'pass123'
+      AdvocateUser.create! :ssn => '123456-9876', :email => 'asiamies2@example.com', :password => 'pass123'
     end
 
     desc 'Create candidate data from seed.csv'
@@ -128,7 +135,7 @@ namespace :seed do
           unless electoral_alliance
             electoral_coalition = ElectoralCoalition.find_or_create_by_name row[9] if row[9]
             electoral_coalition = ElectoralCoalition.create! :name => alliance_name unless electoral_coalition
-            electoral_alliance = electoral_coalition.electoral_alliances.create! :name => alliance_name, :delivered_candidate_form_amount => 0, :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'sami.saada@enemy.fi'
+            electoral_alliance = electoral_coalition.electoral_alliances.create! :name => alliance_name, :delivered_candidate_form_amount => 0, :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
           end
           electoral_alliance.update_attribute :signing_order_position, row[10]
 
@@ -202,6 +209,7 @@ namespace :seed do
     Rake::Task['seed:development:candidates'].invoke
     Rake::Task['seed:development:early_voting'].invoke
     Rake::Task['seed:development:main_voting'].invoke
+    Rake::Task['seed:development:fixer_advocates'].invoke
   end
 
 end
