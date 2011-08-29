@@ -54,7 +54,13 @@ ActiveAdmin.register Candidate do
 
   show :title => :candidate_name do
     attributes_table :lastname, :firstname, :candidate_name, :social_security_number, :address, :postal_information, :email, :faculty, :electoral_alliance, :notes
-    link_to 'Lisää seuraava ehdokas', new_admin_candidate_path, :class => 'button'
+    div do
+      link_to 'Lisää seuraava ehdokas', new_admin_candidate_path, :class => 'button'
+    end
+    div do
+      br
+      p 'Kun olet syöttänyt kaikki ehdokkaat, siirry vaaliliiton sivuille ja merkitse vaaliliitto valmiiksi oikealta yläkulmasta löytyvällä napilla.'
+    end
   end
 
   filter :candidate_number
