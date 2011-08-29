@@ -88,12 +88,12 @@ ActiveAdmin.register ElectoralAlliance do
 
   action_item :only => :show do
     ea = ElectoralAlliance.find_by_id(params[:id])
-    link_to 'Done', done_admin_electoral_alliance_path if can? :update, electoral_alliance and !ea.secretarial_freeze
+    link_to 'Merkitse vaaliliitto valmiiksi', done_admin_electoral_alliance_path if can? :update, electoral_alliance and !ea.secretarial_freeze
   end
 
   action_item :only => :show do
     ea = ElectoralAlliance.find_by_id(params[:id])
-    link_to 'Candidates', admin_candidates_path(:q => {:electoral_alliance_id_eq => ea.id})
+    link_to 'Vaaliliiton ehdokkaat', admin_candidates_path(:q => {:electoral_alliance_id_eq => ea.id})
   end
 
   member_action :done do
@@ -103,16 +103,16 @@ ActiveAdmin.register ElectoralAlliance do
       current_admin_user.update_attribute :electoral_alliance, nil
       redirect_to admin_electoral_alliances_path
     else
-      redirect_to admin_electoral_alliance_path, :alert => "Candidate amounts doesn't match"
+      redirect_to admin_electoral_alliance_path, :alert => "Ehdokkaiden määrä ei täsmää kerrottuun määrään"
     end
   end
 
   collection_action :create_advocates do
     begin
       ElectoralAlliance.create_advocates
-      redirect_to admin_electoral_alliances_path, :notice => 'Advocats created'
+      redirect_to admin_electoral_alliances_path, :notice => 'Asiamiestunnukset on luotu'
     rescue
-      redirect_to admin_electoral_alliances_path, :alert => 'Make sure that all alliances are ready'
+      redirect_to admin_electoral_alliances_path, :alert => 'Varmista, että kaikki vaaliliitot ovat valmiita'
     end
   end
 
