@@ -44,10 +44,16 @@ namespace :production_seed do
     VotingArea.create! :code => 'E IV', :name => 'Meilahden kampus, Terveystieteiden keskuskirjasto', :password => 'salainensana'
   end
 
+  desc 'Setup production configuration defaults'
+  task :defaults => :environment do
+    REDIS.set 'mailaddress', 'vaalit@hyy.fi'
+    AdminUser.create!(:email => 'emma.ronkainen@hyy.fi', :password => 'salainensana', :password_confirmation => 'salainensana', :role => 'admin')
+  end
 end
 
 desc 'Runs production seed data'
 task :production_seed do
   Rake::Task['production_seed:faculties'].invoke
   Rake::Task['production_seed:voting_areas'].invoke
+  Rake::Task['production_seed:defaults'].invoke
 end
