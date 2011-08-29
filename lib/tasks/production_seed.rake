@@ -4,6 +4,7 @@ namespace :production_seed do
 
   desc 'Seed data for faculties'
   task :faculties => :environment do
+    puts 'Seeding faculties ...'
     Faculty.create! :code => 'B',   :name => 'Biotieteellinen'
     Faculty.create! :code => 'E',   :name => 'Eläinlääketieteellinen'
     Faculty.create! :code => 'F',   :name => 'Farmasia'
