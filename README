@@ -7,18 +7,26 @@ $ redis-server
 
 Tietokannan alustaminen
 
-$ rake db:migrate
-$ rake db:seed
+$ rake db:create
+$ rake db:schema:load
+$ rake -T seed
+
 
 == Tuotantoympäristön pystyttäminen
 
 Tuotanto-seed vaatii äänestysalueiden salasanojen syötön ennen `rake production_seed` komennon ajamista.
 
-$ rake production_seed
+Ympäristö, jossa peruskonffit muttei vanhaa vaalidataa:
 
-== Testiympäristön pystyttäminen
+$ rake seed:production
 
-$ rake csv_seed
+
+== Kehitysympäristön pystyttäminen
+
+Vuoden 2009 vaalien data:
+
+$ rake seed:development
+
 
 == Esimerkkikäyttäjätunnukset (testi-seed)
 
@@ -27,9 +35,23 @@ admin@example.com
 password
 
 === Äänestysalueet
-Käyttäjätunnus: E1..E5 tai 1..25
-Salasana: pass123
+Käyttäjätunnus tuotannossa: äänestysalueen tunnus, esimerkiksi:
+  EI, EII, .., EIV
+  I, II, III, .., XV
+
+Käyttäjätunnus kehitysdatassa:
+  E1, E2, .., E5
+  1, 2, 3, ..., 20
+
+Ks. kohta "Salasanat".
+
 
 === Tarkastuslaskenta
 Käyttäjätunnus: tlkpj
-Salasana: pass123
+
+Ks. kohta "Salasanat".
+
+
+=== Salasanat
+Kehitysympäristön salasanat: pass123
+Tuotantoseedin esimerkkisalasanat: salainensana
