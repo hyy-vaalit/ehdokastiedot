@@ -196,12 +196,12 @@ namespace :seed do
   end
 
   task :development do
-    Rake::Task['development:configuration'].invoke
-    Rake::Task['development:faculties'].invoke
-    Rake::Task['development:electoral'].invoke
-    Rake::Task['development:candidates'].invoke
-    Rake::Task['development:early_voting'].invoke
-    Rake::Task['development:main_voting'].invoke
+    Rake::Task['seed:development:configuration'].invoke
+    Rake::Task['seed:development:faculties'].invoke
+    Rake::Task['seed:development:electoral'].invoke
+    Rake::Task['seed:development:candidates'].invoke
+    Rake::Task['seed:development:early_voting'].invoke
+    Rake::Task['seed:development:main_voting'].invoke
   end
 
 end

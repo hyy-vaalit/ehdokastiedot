@@ -61,9 +61,9 @@ namespace :seed do
 
   desc 'Runs production seed data'
   task :production do
-    Rake::Task['production:faculties'].invoke
-    Rake::Task['production:voting_areas'].invoke
-    Rake::Task['production:configuration'].invoke
+    Rake::Task['seed:production:faculties'].invoke
+    Rake::Task['seed:production:voting_areas'].invoke
+    Rake::Task['seed:production:configuration'].invoke
   end
 
 end
