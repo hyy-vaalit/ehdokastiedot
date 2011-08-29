@@ -1,17 +1,26 @@
-== Setting up environment
+== Yleisen ympäristön pystyttäminen
 
-Project uses redis
+Projektissa on käytössä redis.
 
 $ brew install redis
 $ redis-server
 
-== Setting up the seed
+Tietokannan alustaminen
 
 $ rake db:migrate
 $ rake db:seed
+
+== Tuotantoympäristön pystyttäminen
+
+Tuotanto-seed vaatii äänestysalueiden salasanojen syötön ennen `rake production_seed` komennon ajamista.
+
+$ rake production_seed
+
+== Testiympäristön pystyttäminen
+
 $ rake csv_seed
 
-== Esimerkkikäyttäjätunnukset
+== Esimerkkikäyttäjätunnukset (testi-seed)
 
 === ATK-vastaava
 admin@example.com
