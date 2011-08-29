@@ -1,6 +1,16 @@
 # coding: utf-8
 ActiveAdmin::Dashboards.build do
 
+  section "1) Ohjeet ehdokastietojen syöttämiseksi (sihteeri / asiamies)" do
+    ol do
+      li link_to "Luo uusi vaaliliitto.", new_admin_electoral_alliance_path
+      li "Klikkaa luomasi vaaliliiton sivun oikeasta yläkulmasta 'Vaaliliiton ehdokkaat'."
+      li "Kun ehdokkaat on syötetty, klikkaa em. valikosta 'Merkitse vaaliliitto valmiiksi'."
+      li "Voit luoda uuden vaaliliiton vasta, kun edellinen vaaliliitto on valmis."
+    end
+  end
+
+
   section "Vienti (export)" do
     ul do
       li link_to "Kaikki ehdokkaat (csv)", admin_candidates_path(:format=>:csv)

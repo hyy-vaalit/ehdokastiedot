@@ -16,6 +16,15 @@ class AdminUser < ActiveRecord::Base
 
   belongs_to :electoral_alliance
 
+
+  def is_secretary?
+    role == 'secretary'
+  end
+
+  def is_admin?
+    role == 'admin'
+  end
+
   private
 
   def generate_password
@@ -23,7 +32,7 @@ class AdminUser < ActiveRecord::Base
   end
 
   def send_password
-    if role == 'secretary'
+    if role == 'secretary' # FIXME: use method!
       PasswordDelivery.secretary(password, email).deliver
     else
       PasswordDelivery.new_password(password, email).deliver
