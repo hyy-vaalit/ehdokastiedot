@@ -3,7 +3,7 @@
 development:
   adapter: postgresql
   database: hyyvaalit
-  username: hyy
+  host: localhost
   pool: 5
   timeout: 5000
   encoding: utf8
@@ -14,7 +14,7 @@ development:
 test:
   adapter: postgresql
   database: hyyvaalit-test
-  username: hyy
+  host: localhost
   pool: 5
   timeout: 5000
   encoding: utf8
