@@ -105,6 +105,7 @@ GEM
       activesupport (~> 3.0.2)
       arel (~> 2.0.2)
     mime-types (1.16)
+    newrelic_rpm (3.1.1)
     orm_adapter (0.0.5)
     passgen (1.0.2)
     pg (0.11.0)
@@ -177,6 +178,7 @@ DEPENDENCIES
   heroku
   hoptoad_notifier
   jquery-rails
+  newrelic_rpm
   passgen
   pg
   rails (= 3.0.10)

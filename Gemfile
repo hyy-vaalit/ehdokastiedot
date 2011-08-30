@@ -9,6 +9,7 @@ gem 'passgen'
 
 gem 'pg'
 gem 'hoptoad_notifier'
+gem 'newrelic_rpm'
 gem 'jquery-rails'
 gem 'sass'
 
