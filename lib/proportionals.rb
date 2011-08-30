@@ -4,13 +4,17 @@ module Proportionals
     ElectoralCoalition.transaction do
       coalitions = ElectoralCoalition.all
       coalitions.each do |coalition|
+        puts "Proportionals.calculus! calculating results for coalition #{coalition.name}"
         coalition.electoral_alliances.each do |alliance|
           calculate_alliance_proportional(alliance)
         end
         calculate_coalition_proportional(coalition)
       end
+      puts "Proportionals.calculus! clearing selection state"
       clear_selection_state
+      puts "Proportionals.calculus! marking selected"
       mark_selected
+      puts "Proportionals.calculus! marking spares"
       mark_spares
     end
   end
@@ -36,6 +40,7 @@ module Proportionals
     compare_method = fixed ? :fixed_total_votes : :total_votes
     total_votes = alliance.total_votes
     candidates = alliance.candidates.sort {|x,y| y.method(compare_method).call <=> x.method(compare_method).call}
+    puts "Proportionals.calculus! calculating alliance proportional for #{alliance.name} with #{candidates.size} candidates"
     candidates.each_with_index do |candidate, i|
       candidate.update_attribute (fixed ? :fixed_alliance_proportional : :alliance_proportional), sprintf("%.5f", total_votes.to_f/(i+1)).to_f
     end
@@ -45,6 +50,7 @@ module Proportionals
     compare_method = fixed ? :fixed_alliance_proportional : :alliance_proportional
     total_votes = coalition.total_votes
     candidates = coalition.electoral_alliances.map(&:candidates).flatten.sort {|x,y| y.method(compare_method).call <=> x.method(compare_method).call}
+    puts "Proportionals.calculus! calculating coalition proportional for #{coalition.name} with #{candidates.size} candidates"
     candidates.each_with_index do |candidate, i|
       candidate.update_attribute (fixed ? :fixed_coalition_proportional : :coalition_proportional), sprintf("%.5f", total_votes.to_f/(i+1)).to_f
     end

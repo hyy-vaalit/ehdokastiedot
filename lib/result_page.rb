@@ -12,7 +12,6 @@ module ResultPage
     voting_percentage = (100 * votes_given / right_to_vote).to_i
     calculated_votes = Vote.calculated
     candidates = Candidate.selection_order.all
-
     data = {
       :coalition_count => coalition_count,
       :alliance_count => alliance_count,
@@ -26,7 +25,9 @@ module ResultPage
       :candidates => candidates
     }
 
+    puts "ResultPage.render_results rendering html"
     render_content('html', 'result_output', data)
+    puts "ResultPage.render_results rendering text"
     render_content('text', 'result_text_output', data)
   end
 
@@ -63,7 +64,10 @@ module ResultPage
     partial = final ? 'final_result' : 'result'
     av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
     output = av.render :partial => "results/#{partial}.#{format}.erb", :locals => data
+    puts "ResultPage.render_results starting to set rendered result to REDIS"
+    puts "output is #{output.size} long"
     REDIS.set name, output
+    puts "ResultPage.render_results finished setting rendered result to REDIS"
   end
 
 end
