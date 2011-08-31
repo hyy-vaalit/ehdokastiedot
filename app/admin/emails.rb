@@ -1,7 +1,7 @@
 # coding: UTF-8
 ActiveAdmin.register Email do
 
-  menu :label => "Sähköpostit ehdokkaille", :if => proc { can? :manage, AdminUser }
+  menu :label => "Sähköpostit ehdokkaille", :priority => 10, :if => proc { can? :manage, AdminUser }
 
   before_filter :add_notice
   before_filter :authorize_this
