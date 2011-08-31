@@ -6,8 +6,13 @@ ActiveAdmin::Dashboards.build do
       li link_to "Luo uusi vaaliliitto.", new_admin_electoral_alliance_path
       li "Klikkaa luomasi vaaliliiton sivun oikeasta yläkulmasta 'Vaaliliiton ehdokkaat'."
       li "Kun ehdokkaat on syötetty, klikkaa em. valikosta 'Merkitse vaaliliitto valmiiksi'."
-      li "Voit luoda uuden vaaliliiton vasta, kun edellinen vaaliliitto on valmis."
+    end
+    h3 "Huomioi nämä:"
+    ul do
+      li "Voit luoda uuden vaaliliiton vasta, kun edellinen vaaliliitto on merkitty valmiiksi."
       li "Voit ladata tiedot itsellesi Exceliin 'Export'-valikosta."
+      li "ATK-vastaava kytkee vaaliliitot vaalirenkaisiin ehdokasasettelun päättymisen jälkeen."
+      li "Näet etusivulla linkkejä, joihin et pääse käsiksi. Pahoittelemme hämmennystä."
     end
   end
 
