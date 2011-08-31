@@ -7,6 +7,8 @@ gem 'ranked-model'
 gem 'cancan'
 gem 'passgen'
 
+gem "aws-s3", :require => "aws/s3"
+
 gem 'pg'
 gem 'hoptoad_notifier'
 gem 'newrelic_rpm'

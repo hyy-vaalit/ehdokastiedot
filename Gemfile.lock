@@ -37,6 +37,10 @@ GEM
       activesupport (= 3.0.10)
     activesupport (3.0.10)
     arel (2.0.10)
+    aws-s3 (0.6.2)
+      builder
+      mime-types
+      xml-simple
     bcrypt-ruby (2.1.4)
     builder (2.1.2)
     cancan (1.6.5)
@@ -173,6 +177,7 @@ GEM
     warden (1.0.4)
       rack (>= 1.0)
     will_paginate (3.0.pre2)
+    xml-simple (1.1.0)
     yamler (0.1.0)
 
 PLATFORMS
@@ -180,6 +185,7 @@ PLATFORMS
 
 DEPENDENCIES
   activeadmin
+  aws-s3
   cancan
   cover_me
   database_cleaner

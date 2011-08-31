@@ -26,9 +26,9 @@ module ResultPage
     }
 
     puts "ResultPage.render_results rendering html"
-    render_content('html', 'result_output', data)
+    render_content('html', 'tulos-alustava.html', data)
     puts "ResultPage.render_results rendering text"
-    render_content('text', 'result_text_output', data)
+    render_content('text', 'tulos-alustava.txt', data)
   end
 
   def self.render_final_results
@@ -56,18 +56,30 @@ module ResultPage
       :candidates => candidates
     }
 
-    render_content('html', 'final_result_output', data, true)
-    render_content('text', 'final_result_text_output', data, true)
+    render_content('html', 'tulos-lopullinen.html', data, true)
+    render_content('text', 'tulos-lopullinen.txt', data, true)
   end
 
-  def self.render_content(format, name, data, final=false)
+  def self.render_content(format, filename, data, final=false)
     partial = final ? 'final_result' : 'result'
     av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
     output = av.render :partial => "results/#{partial}.#{format}.erb", :locals => data
-    puts "ResultPage.render_results starting to set rendered result to REDIS"
-    puts "output is #{output.size} long"
-    REDIS.set name, output
-    puts "ResultPage.render_results finished setting rendered result to REDIS"
+    puts "ResultPage.render_results #{format} output is #{output.size} long"
+
+    if Rails.env.production?
+      puts "ResultPage.render_results starting to set rendered result to S3 + REDIS"
+      AWS::S3::S3Object.store("#{filename}", output, ENV['S3_BUCKET_NAME'],
+        :content_type => Mime::Type.lookup_by_extension(File.extname(filename)).to_s + '; charset=utf-8' )
+      REDIS.set filename, "https://s3.amazonaws.com/#{ENV['S3_BUCKET_NAME']}/#{filename}"
+    else
+      puts "ResultPage.render_results starting to set rendered result to public/ + REDIS"
+      File.open("#{Rails.root}/public/#{filename}", "w+") do |f|
+        f.write output
+      end
+      REDIS.set filename, "#{Rails.root}/public/#{filename}"
+    end
+
+    puts "ResultPage.render_results finished setting rendered result"
   end
 
 end

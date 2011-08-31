@@ -60,8 +60,10 @@ ActiveAdmin::Dashboards.build do
   section 'Vaalitulokset' do
     ul do
       li link_to 'Äänestysalueet ääntenlaskentaan', showdown_listings_path
-      li link_to 'Alustava vaalitulos', results_path
-      li link_to 'Lopullinen vaalitulos', final_results_path
+      li link_to 'Alustava vaalitulos(HTML)', results_path(:format => :html)
+      li link_to 'Alustava vaalitulos(Teksti)', results_path(:format => :text)
+      li link_to 'Lopullinen vaalitulos(HTML)', final_results_path(:format => :html)
+      li link_to 'Lopullinen vaalitulos(Teksti)', final_results_path(:format => :text)
       li link_to 'Ehdokkaat läpipääsyn mukaan', deputies_results_path
       li link_to 'Ehdokkaat vaaliliitoittain', by_alliance_results_path
       li link_to 'Ehdokkaat äänimäärän mukaan', by_votes_results_path

@@ -5,15 +5,15 @@ class ResultsController < ApplicationController
 
   def index
     respond_to do |format|
-      format.html { render :inline => REDIS.get('result_output') || 'Ei vielä vaalitulosta', :format => :html, :layout => true }
-      format.text { render :text => REDIS.get('result_text_output') || 'Ei vielä vaalitulosta' }
+      format.html { redirect_to REDIS.get('tulos-alustava.html') }
+      format.text { redirect_to REDIS.get('tulos-alustava.txt') }
     end
   end
 
   def final
     respond_to do |format|
-      format.html { render :inline => REDIS.get('final_result_output') || 'Ei vielä lopullista vaalitulosta', :format => :html, :layout => true }
-      format.text { render :text => REDIS.get('final_result_text_output') || 'Ei vielä lopullista vaalitulosta' }
+      format.html { redirect_to REDIS.get('tulos-lopullinen.html') }
+      format.text { redirect_to REDIS.get('tulos-lopullinen.txt') }
     end
   end
 
