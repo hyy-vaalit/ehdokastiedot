@@ -3,6 +3,7 @@
 development:
   adapter: postgresql
   database: hyyvaalit
+  host: localhost
   pool: 5
   timeout: 5000
   encoding: utf8
@@ -13,6 +14,7 @@ development:
 test:
   adapter: postgresql
   database: hyyvaalit-test
+  host: localhost
   pool: 5
   timeout: 5000
   encoding: utf8
