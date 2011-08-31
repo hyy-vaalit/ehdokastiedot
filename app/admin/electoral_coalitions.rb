@@ -57,7 +57,7 @@ ActiveAdmin.register ElectoralCoalition do
 
   collection_action :order_coalitions, :method => :post do
     if ElectoralAlliance.without_coalition.count > 0
-      redirect_to admin_electoral_coalitions_path, :alert => 'Ei voi järjestää, sillä löytyi irrallisia vaaliliittoja'
+      redirect_to admin_electoral_coalitions_path, :alert => 'Vaalirenkaita ei voi järjestää ennen kuin kaikilla vaaliliitoilla on rengas. Luo itsenäisille vaaliliitoille rengas, jonka nimenä on vaaliliiton nimi.'
     else
       ElectoralCoalition.give_orders(params[:coalitions])
       redirect_to admin_electoral_coalitions_path

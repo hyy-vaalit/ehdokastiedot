@@ -109,16 +109,16 @@ ActiveAdmin.register ElectoralAlliance do
       current_admin_user.update_attribute :electoral_alliance, nil
       redirect_to admin_electoral_alliances_path
     else
-      redirect_to admin_electoral_alliance_path, :alert => "Ehdokkaiden määrä ei täsmää kerrottuun määrään"
+      redirect_to admin_electoral_alliance_path, :alert => "Ehdokkaiden määrä ei täsmää kerrottuun määrään."
     end
   end
 
   collection_action :create_advocates do
     begin
       ElectoralAlliance.create_advocates
-      redirect_to admin_electoral_alliances_path, :notice => 'Asiamiestunnukset on luotu'
+      redirect_to admin_electoral_alliances_path, :notice => 'Asiamiestunnukset on luotu!'
     rescue
-      redirect_to admin_electoral_alliances_path, :alert => 'Varmista, että kaikki vaaliliitot ovat valmiita'
+      redirect_to admin_electoral_alliances_path, :alert => 'Asiamiestunnuksia ei voida luoda ennen kuin kaikki vaaliliitot ovat valmiita.'
     end
   end
 
