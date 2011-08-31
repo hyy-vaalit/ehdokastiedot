@@ -10,7 +10,7 @@ ActiveAdmin::Dashboards.build do
           klikkaa em. valikosta 'Merkitse vaaliliitto valmiiksi'.".html_safe
       li "Jos haluat tiedot itsellesi,<br />
           lataa export-tiedosto ennen kuin luot uuden vaaliliiton.<br />
-          Saat CSV-tiedoston vain yhdestä (nykyisestä) vaaliliitosta.".html_safe
+          Saat CSV-tiedoston vain nykyisestä vaaliliitosta.".html_safe
     end
     h3 "Huomioi nämä:"
     ul do
