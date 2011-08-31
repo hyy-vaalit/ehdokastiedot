@@ -2,6 +2,7 @@
 ActiveAdmin.register Candidate do
 
   before_filter :authorize_this
+  before_filter :preserve_default_scope
 
   controller do
 
@@ -23,6 +24,12 @@ ActiveAdmin.register Candidate do
 
     def authorize_this
       authorize! :read, Candidate
+    end
+
+    def preserve_default_scope
+      if current_admin_user.is_secretary?
+        params[:scope] = "current_alliance"
+      end
     end
 
   end
