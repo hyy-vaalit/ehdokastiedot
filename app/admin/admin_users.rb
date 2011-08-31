@@ -1,7 +1,7 @@
 # coding: UTF-8
 ActiveAdmin.register AdminUser do
 
-  menu :label => "Käyttäjätunnukset", :if => proc { can? :manage, AdminUser }, :parent => "Ylläpito"
+  menu :label => "Käyttäjätunnukset", :if => proc { can? :manage, AdminUser }
 
   before_filter :authorize_this
 
