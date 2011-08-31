@@ -1,23 +1,31 @@
 # coding: utf-8
 ActiveAdmin::Dashboards.build do
 
-  section "Ohjeet ehdokastietojen syöttämiseksi (sihteeri / asiamies)", :priority => 1 do
+  section "Ohjeet ehdokastietojen syöttämiseksi (sihteeri / asiamies):", :priority => 1 do
     ol do
       li link_to "Luo uusi vaaliliitto.", new_admin_electoral_alliance_path
-      li "Klikkaa luomasi vaaliliiton sivun oikeasta yläkulmasta 'Vaaliliiton ehdokkaat'."
-      li "Kun ehdokkaat on syötetty, klikkaa em. valikosta 'Merkitse vaaliliitto valmiiksi'."
+      li "Luo ehdokkaat valitsemalla vaaliliiton<br />
+          sivun oikeasta yläkulmasta 'Vaaliliiton ehdokkaat'.".html_safe
+      li "Kun ehdokkaat on syötetty,<br />
+          klikkaa em. valikosta 'Merkitse vaaliliitto valmiiksi'.".html_safe
+      li "Jos haluat tiedot itsellesi,<br />
+          lataa export-tiedosto ennen kuin luot uuden vaaliliiton.<br />
+          Saat CSV-tiedoston vain yhdestä (nykyisestä) vaaliliitosta.".html_safe
     end
     h3 "Huomioi nämä:"
     ul do
-      li "Voit luoda uuden vaaliliiton vasta, kun edellinen vaaliliitto on merkitty valmiiksi."
-      li "Voit ladata tiedot itsellesi Exceliin 'Export'-valikosta."
-      li "ATK-vastaava kytkee vaaliliitot vaalirenkaisiin ehdokasasettelun päättymisen jälkeen."
-      li "Näet etusivulla linkkejä, joihin et pääse käsiksi. Pahoittelemme hämmennystä."
+      li "Voit luoda uuden vaaliliiton vasta,<br />
+          kun edellinen vaaliliitto on merkitty valmiiksi.".html_safe
+      li "Voit ladata tiedot itsellesi Exceliin<br />
+          'Export'-valikosta.".html_safe
+      li "ATK-vastaava kytkee vaaliliitot vaalirenkaisiin<br />
+          ehdokasasettelun päättymisen jälkeen.".html_safe
+      li "Näet etusivulla linkkejä, joihin et pääse käsiksi.<br />
+          Pahoittelemme hämmennystä.".html_safe
     end
   end
 
-
-  section "Tiedot Exceliin (export)", :priority => 2 do
+  section "Tiedot Exceliin (CSV Export)", :priority => 2 do
     ul do
       li link_to "Kaikki ehdokkaat (csv)", admin_candidates_path(:format=>:csv)
       li link_to "Peruuttaneet ehdokkaat (csv)", cancelled_emails_admin_candidates_path
@@ -42,7 +50,7 @@ ActiveAdmin::Dashboards.build do
     end
   end
 
-  section 'X-files' do
+  section 'X-files', :priority => 999 do
     ul do
       li link_to 'Järjestelmän asetukset', configurations_path
       li link_to 'Vaaralliset toiminnot', tools_path
