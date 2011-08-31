@@ -657,7 +657,7 @@ form {
     background: -moz-linear-gradient(-90deg, #87a28b, #657b6a);
     filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#87a28b, endColorstr=#657b6a);
     -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr=#87a28b, endColorstr=#657b6a); }
-  .flash.flash_error {
+  .flash.flash_error, .flash.flash_alert {
     background: #ca5b4f;
     background: -webkit-gradient(linear, left top, left bottom, from(#ca5b4f), to(#97443c));
     background: -moz-linear-gradient(-90deg, #ca5b4f, #97443c);
