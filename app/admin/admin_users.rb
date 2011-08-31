@@ -1,4 +1,7 @@
+# coding: UTF-8
 ActiveAdmin.register AdminUser do
+
+  menu :label => "Käyttäjätunnukset", :if => proc { can? :manage, AdminUser }, :parent => "Ylläpito"
 
   before_filter :authorize_this
 
@@ -9,8 +12,6 @@ ActiveAdmin.register AdminUser do
     end
 
   end
-
-  menu :label => "User management", :if => proc { can? :manage, AdminUser }
 
   index do
     column :email

@@ -3,6 +3,8 @@ ActiveAdmin.register ElectoralCoalition do
 
   before_filter :authorize_this
 
+  menu :label => "Vaalirenkaat", :priority => 2
+
   controller do
 
     def authorize_this

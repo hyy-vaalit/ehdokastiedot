@@ -4,6 +4,8 @@ ActiveAdmin.register ElectoralAlliance do
   scope :all, :default => true
   scope :without_coalition
 
+  menu :label => "Vaaliliitot", :priority => 1
+
   controller do
 
     load_and_authorize_resource :except => [:index]

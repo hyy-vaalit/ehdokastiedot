@@ -1,6 +1,8 @@
 # coding: UTF-8
 ActiveAdmin.register Email do
 
+  menu :parent => "Ylläpito", :label => "Sähköpostit ehdokkaille", :if => proc { can? :manage, AdminUser }
+
   before_filter :add_notice
   before_filter :authorize_this
 

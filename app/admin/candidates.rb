@@ -4,6 +4,8 @@ ActiveAdmin.register Candidate do
   before_filter :authorize_this
   before_filter :preserve_default_scope
 
+  menu :label => "Ehdokkaat", :priority => 2
+
   controller do
 
     before_filter :assign_alliance
