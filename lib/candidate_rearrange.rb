@@ -15,4 +15,18 @@ module CandidateRearrange
     end
   end
 
+  def switch_coalition_proportionals_according_alliance_draws
+    AllianceDraw.all.each do |draw|
+      drawings = draw.alliance_drawings.rank(:position_in_draw)
+      values = []
+      drawings.each do |drawing|
+        values << drawing.electoral_alliance.candidates.selection_order[drawing.position_in_alliance].fixed_coalition_proportional
+      end
+      values.sort!{|x,y| y<=>x}
+      drawings.each do |drawing|
+        drawing.electoral_alliance.candidates.selection_order[drawing.position_in_alliance].update_attribute :fixed_coalition_proportional, values.shift
+      end
+    end
+  end
+
 end
