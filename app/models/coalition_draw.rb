@@ -29,4 +29,14 @@ class CoalitionDraw < ActiveRecord::Base
     end
   end
 
+  def include_candidate? candidate
+    coalition = candidate.electoral_alliance.electoral_coalition
+    position_in_coalition = candidate.position_in_coalition
+    !self.coalition_drawings.select{|drawing| drawing.electoral_coalition == coalition and drawing.position_in_coalition == position_in_coalition}.empty?
+  end
+
+  def candidates
+    self.coalition_drawings.map(&:candidate)
+  end
+
 end

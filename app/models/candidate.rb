@@ -97,6 +97,25 @@ class Candidate < ActiveRecord::Base
     Candidate.from_coalition(self.electoral_alliance.electoral_coalition).selection_order.index self
   end
 
+  def self.final_order
+    draws = CoalitionDraw.all
+    self.selection_order.sort do |x,y|
+      order_int = y.coalition_proportional <=> x.coalition_proportional
+      if order_int == 0
+        draw = draws.select{|d| d.include_candidate? x and d.include_candidate? y}.first
+        if draw
+          candidates = draw.candidates
+          x_index = candidates.index x
+          y_index = candidates.index y
+          order_int = x_index <=> y_index
+        else
+          puts 'BUG' #FIXME: deprecated after 17873117 is fixed
+        end
+      end
+      order_int
+    end
+  end
+
   def self.give_numbers!
     raise 'not ready' unless ElectoralAlliance.are_all_ready? and ElectoralCoalition.are_all_ordered?
     Candidate.transaction do

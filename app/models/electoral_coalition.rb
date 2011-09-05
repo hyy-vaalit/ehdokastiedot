@@ -32,6 +32,10 @@ class ElectoralCoalition < ActiveRecord::Base
     self.electoral_alliances.select{|a| a.has_fix_needing_candidates?}.count > 0
   end
 
+  def candidate_from_position position
+    Candidate.from_coalition(self).selection_order[position]
+  end
+
   def self.are_all_ordered?
     self.where(:number_order => nil).count == 0
   end
