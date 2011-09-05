@@ -34,6 +34,15 @@ module Proportionals
     end
   end
 
+  def self.final_position!
+    Candidate.transaction do
+      clear_finally_selection_state
+      mark_finally_selected
+      mark_finally_spares
+    end
+    true
+  end
+
   private
 
   def self.calculate_alliance_proportional alliance, fixed = false
@@ -76,6 +85,30 @@ module Proportionals
       spare_count = how_many_selected * spare_candidates_to_select
       alliance.candidates.where(:state => :not_selected).order('alliance_proportional desc').limit(spare_count).each do |candidate|
         candidate.spare_me!
+      end
+    end
+  end
+
+  def self.clear_finally_selection_state
+    Candidate.all.each do |candidate|
+      candidate.unselect_me_at_last!
+    end
+  end
+
+  def self.mark_finally_selected
+    candidates_to_select = REDIS.get('candidates_to_select').to_i
+    Candidate.final_order[0...candidates_to_select].each do |candidate|
+      candidate.select_me_at_last!
+    end
+  end
+
+  def self.mark_finally_spares
+    spare_candidates_to_select = REDIS.get('spare_candidates_to_select').to_i
+    ElectoralAlliance.all.each do |alliance|
+      how_many_selected = alliance.candidates.selected_at_last.count
+      spare_count = how_many_selected * spare_candidates_to_select
+      alliance.candidates.where(:final_state => :not_selected_at_all).order('fixed_alliance_proportional desc').limit(spare_count).each do |candidate|
+        candidate.spare_me_at_last!
       end
     end
   end
