@@ -1,6 +1,6 @@
 module CandidateRearrange
 
-  def switch_proportionals_according_draws
+  def self.switch_proportionals_according_draws
     CandidateDraw.all.each do |draw|
       drawings = draw.candidate_drawings.rank(:position_in_draw)
       values = []
@@ -15,7 +15,7 @@ module CandidateRearrange
     end
   end
 
-  def switch_coalition_proportionals_according_alliance_draws
+  def self.switch_coalition_proportionals_according_alliance_draws
     AllianceDraw.all.each do |draw|
       drawings = draw.alliance_drawings.rank(:position_in_draw)
       values = []

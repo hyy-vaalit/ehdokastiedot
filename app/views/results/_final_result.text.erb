@@ -20,20 +20,20 @@ Valittavia ehdokkaita:    <%= sprintf "%2d", candidates_to_select %>
 
 RENKAAT________________________________________________________________ÄÄNET_PA
 <% ElectoralCoalition.all.sort{|x,y| y.total_votes <=> x.total_votes}.each_with_index do |coalition, i| -%>
-<%= sprintf "%3d", (i+1) %>. <%= display_dots_between_name_and_shorten(66, coalition) %> <%= sprintf "%4d", coalition.total_votes %> <%= sprintf "%2d", coalition.total_places %>
+<%= sprintf "%3d", (i+1) %>. <%= display_dots_between_name_and_shorten(66, coalition) %> <%= sprintf "%4d", coalition.total_votes %> <%= sprintf "%2d", coalition.final_total_places %>
 <% end -%>
 LIITOT__________________________________________________________RENGAS_ÄÄNET_PA
 <% ElectoralAlliance.all.sort{|x,y| y.total_votes <=> x.total_votes}.each_with_index do |alliance, i| -%>
-<%= sprintf "%3d", (i+1) %>. <%= display_dots_between_name_and_shorten(59, alliance) %> <%= sprintf("%-6s", alliance.electoral_coalition.shorten) %> <%= sprintf "%4d", alliance.total_votes %> <%= sprintf "%2d", alliance.total_places %>
+<%= sprintf "%3d", (i+1) %>. <%= display_dots_between_name_and_shorten(59, alliance) %> <%= sprintf("%-6s", alliance.electoral_coalition.shorten) %> <%= sprintf "%4d", alliance.total_votes %> <%= sprintf "%2d", alliance.final_total_places %>
 <% end -%>
 
 <% ElectoralCoalition.all.sort{|x,y| y.total_votes <=> x.total_votes}.each_with_index do |coalition, i| -%>
 RENGAS_________________________________________________________________ÄÄNET_PA
-<%= sprintf "%3d", (i+1) %>. <%= display_dots_between_name_and_shorten(66, coalition) %> <%= sprintf "%4d", coalition.total_votes %> <%= sprintf "%2d", coalition.total_places %>
+<%= sprintf "%3d", (i+1) %>. <%= display_dots_between_name_and_shorten(66, coalition) %> <%= sprintf "%4d", coalition.total_votes %> <%= sprintf "%2d", coalition.final_total_places %>
 
 <% coalition.electoral_alliances.all.sort{|x,y| y.total_votes <=> x.total_votes}.each_with_index do |alliance, i| -%>
 LIITTO__________________________________________________________RENGAS_ÄÄNET_PA
-<%= sprintf "%3d", (i+1) %>. <%= display_dots_between_name_and_shorten(59, alliance) %> <%= sprintf("%-6s", alliance.electoral_coalition.shorten) %> <%= sprintf "%4d", alliance.total_votes %> <%= sprintf "%2d", alliance.total_places %>
+<%= sprintf "%3d", (i+1) %>. <%= display_dots_between_name_and_shorten(59, alliance) %> <%= sprintf("%-6s", alliance.electoral_coalition.shorten) %> <%= sprintf "%4d", alliance.total_votes %> <%= sprintf "%2d", alliance.final_total_places %>
 EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT_____
 <% alliance.candidates.selection_order.each_with_index do |candidate, i| -%>
 <%= sprintf "%3d", (i+1) %><%= show_state_char(candidate) %> <%= display_dots_after_candidate_name(candidate) %> <%= sprintf "%3d", candidate.candidate_number %> <%= sprintf "%6s", candidate.electoral_alliance.shorten %>  <%= sprintf "%3s", candidate.total_votes %>   <%= sprintf "%10.5f", candidate.alliance_proportional %>   <%= sprintf "%10.5f", candidate.coalition_proportional %>

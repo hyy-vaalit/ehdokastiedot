@@ -41,7 +41,7 @@ module ResultPage
     votes_accepted = Vote.fixed.sum(:vote_count)
     voting_percentage = (100 * votes_given / right_to_vote).to_i
     calculated_votes = Vote.calculated
-    candidates = Candidate.selection_order.all
+    candidates = Candidate.final_order
 
     data = {
       :coalition_count => coalition_count,
@@ -56,7 +56,6 @@ module ResultPage
       :candidates => candidates
     }
 
-    render_content('html', 'tulos-lopullinen.html', data, true)
     render_content('text', 'tulos-lopullinen.txt', data, true)
   end
 
