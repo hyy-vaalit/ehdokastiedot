@@ -11,6 +11,7 @@ class AdvocateUser < ActiveRecord::Base
   attr_accessor :password
 
   validates_presence_of :ssn, :password
+  validates_uniqueness_of :email
 
   def self.authenticate email, password
     advocate = self.find_by_email email

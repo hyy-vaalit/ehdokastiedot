@@ -117,6 +117,8 @@ ActiveAdmin.register ElectoralAlliance do
     begin
       ElectoralAlliance.create_advocates
       redirect_to admin_electoral_alliances_path, :notice => 'Asiamiestunnukset on luotu!'
+    rescue ActiveRecord::RecordInvalid
+      redirect_to admin_electoral_alliances_path, :alert => 'Usealla asiamiehellä on sama sähköpostiosoite'
     rescue
       redirect_to admin_electoral_alliances_path, :alert => 'Asiamiestunnuksia ei voida luoda ennen kuin kaikki vaaliliitot ovat valmiita.'
     end
