@@ -23,7 +23,11 @@ class VotingAreasController < ApplicationController
 
   def login_post
     @voting_area = VotingArea.authenticate params[:username], params[:password]
-    session[:voting_area_id] = @voting_area.id if @voting_area
+    if @voting_area
+      session[:voting_area_id] = @voting_area.id
+    else
+      session[:voting_area_id] = nil
+    end
     redirect_to voting_area_path
   end
 
