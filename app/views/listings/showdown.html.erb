@@ -1,9 +1,12 @@
+<%= link_to "&larr; Takaisin etusivulle".html_safe, admin_dashboard_path %>
+
 <h1>Ääntenlaskennan eteneminen</h1>
 
-<h2>Ohjeita äänestysalueen ottamiseksi mukaan ääntenlaskentaan:</h2>
+<h2>Ohjeet äänestysalueen ottamiseksi mukaan ääntenlaskentaan:</h2>
 <ul>
   <li>Valitse äänestysalueet ja paina "Laske".</li>
   <li>Odota laskennan valmistumista. Voit ladata tätä sivua uudelleen (paina: F5/CTRL-R).</li>
+  <li>Kun äänestysalueen tilana on "kesken", äänestysalueen pj ei ole vielä merkinnyt ääniä lasketuiksi.</li>
   <li>Kun äänestysalueen tilana on "laskennassa", äänet eivät vielä näy osana vaalitulosta.</li>
   <li>Äänten laskeminen tapahtuu taustalla, ja laskenta kestää 5-15 minuuttia.</li>
   <li>Kun äänestysalueen tilana on "laskettu", näkyvät alueelta annetut äänet osana vaalitulosta.</li>
@@ -28,7 +31,7 @@
   <% end -%>
   </table>
   <p>
-    <input type="submit" value="Laske" />
+    <input type="submit" value="Ota valitut äänestysalueet laskentaan" />
   </p>
 
 <% end -%>

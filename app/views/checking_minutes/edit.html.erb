@@ -1,4 +1,14 @@
+<%= link_to "&larr; Takaisin äänestysalueen sivulle".html_safe, checking_minute_path(@voting_area) %>
+
 <h1>Tarkastuspöytäkirja <%= @voting_area.code %> - <%= @voting_area.name %></h1>
+
+<ul>
+  <li>Syötä taulukkoon uudet tiedot ja paina "Tallenna".</li>
+  <li>Voit syöttää korkeintaan kymmenen korjausta kerrallaan. Voit syöttää lisää vasta, kun olet tallentanut ensimmäiset kymmenen.</li>
+  <li>Voit korjata syöttämääsi tietoa antamalla ehdokasnumerolle uuden äänimäärän.</li>
+  <li>Nollan syöttäminen vastaa äänimäärän poistamista.</li>
+  <li>Tarkista syöttämäsi tiedot ennen kuin poistut näkymästä.</li>
+</ul>
 
 <% if @voting_area.votes.with_fixes.count > 0 -%>
 <table id="voting_area">
@@ -19,6 +29,7 @@
 
 <%= raw "<p style='color:red; font-size: 120%; font-weight: bold;'>#{flash[:errors]}</p>" if flash[:errors] -%>
 
+<h2>Tallentamattomat uudet äänimäärät:</h2>
 <%= form_tag checking_minute_path(@voting_area.id), :method => :put do -%>
   <table id="vote_fix_form">
     <tr>
@@ -36,5 +47,5 @@
     </tr>
   <% end -%>
   </table>
-  <p><input type="submit" value="Lisää korjaukset äänimääriin" /></p>
+  <p><input type="submit" value="Tallenna korjaukset äänimääriin" /></p>
 <% end -%>

@@ -1,4 +1,6 @@
-<h1>Tarkastuspöytäkirja <%= @voting_area.code %> - <%= @voting_area.name %></h1>
+<%= link_to "&larr; Takaisin etusivulle".html_safe, checking_minutes_path %>
+
+<h1>Tarkastuslaskentapöytäkirja <%= @voting_area.code %> - <%= @voting_area.name %></h1>
 
 <p class="edit"><%= link_to 'Syötä korjaukset', edit_checking_minute_path(@voting_area.id) %></p>
 
