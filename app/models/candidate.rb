@@ -46,6 +46,7 @@ class Candidate < ActiveRecord::Base
   scope :has_fixes, lambda { joins(:data_fixes) & DataFix.unapplied }
 
   scope :selection_order, order('coalition_proportional desc, alliance_proportional desc')
+  scope :by_alliance, order('electoral_alliance_id desc')
 
   scope :selected, where(state: :selected)
   scope :selected_at_last, where(final_state: :selected_at_last)
