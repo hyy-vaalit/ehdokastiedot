@@ -1,6 +1,12 @@
-<p><%= link_to raw('&lt;- Back'), advocate_path %></p>
+<p><%= link_to raw('&larr; Takaisin listaukseen'), advocate_path %></p>
 
 <h1>Korjaa ehdokkaan tiedoja</h1>
+
+<p>
+  HYYn vaalityöntekijä joko hyväksyy tai hylkää korjauksen.
+</p>
+
+<h2>Ehdokastiedot</h2>
 
 <p><strong>Sukunimi</strong> <span><%= @candidate.lastname %></span> <span id="lastname"><%= link_to 'Muokkaa', '#edit' %></span></p>
 <p><strong>Etunimet</strong> <span><%= @candidate.firstname %></span> <span id="firstname"><%= link_to 'Muokkaa', '#edit' %></span></p>

@@ -1,3 +1,5 @@
+<%= link_to "Kirjaudu ulos", logout_advocate_session_path %>
+
 <% if @advocate.electoral_alliances.empty? %>
 
 <h1>Virhe?</h1>
@@ -11,17 +13,24 @@
 <% @advocate.electoral_alliances.each do |alliance| -%>
   <h2><%= alliance.name %></h2>
 
-  <p>Merkintä * tarkoittaa, että ehdokkaassa on korjauksia</p>
 
-  <table>
+  <p>Ohjeet:</p>
+  <ul>
+    <li>Esitä korjausta tietoihin valitsemalla ehdokkaan riviltä "Muokkaa".</li>
+    <li>Merkintä * tarkoittaa, että ehdokkaan tiedoissa on korjauksia.</li>
+    <li>HYYn vaalityöntekijä hyväksyy tai hylkää esitetyt korjaukset.</li>
+    <li>Zoomaa sivua tarvittaessa pienemmäksi (ctrl-miinus tai ctrl-plus).</li>
+  </ul>
+
+  <table class="long-listing nowrap">
     <tr>
       <th></th>
       <th>Sukunimi</th>
       <th>Etunimet</th>
       <th>Ehdokasnimi</th>
-      <th>Henkilötunnus</th>
+      <th>Hetu</th>
       <th>Postisoite</th>
-      <th>Postitoiminumero ja -paikka</th>
+      <th>Postioimipaikka</th>
       <th>Sähköposti</th>
       <th>Tiedekunta</th>
       <th>Huomiot</th>
@@ -29,7 +38,7 @@
     </tr>
   <% alliance.candidates.each do |candidate| -%>
     <tr>
-      <td><%= '*' if candidate.has_fixes %></td>
+      <td style="padding-right: 5px;"><%= '*' if candidate.has_fixes %></td>
       <td><%= candidate.lastname %></td>
       <td><%= candidate.firstname %></td>
       <td><%= candidate.candidate_name %></td>

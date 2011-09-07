@@ -4,6 +4,8 @@ class AdvocatesController < ApplicationController
 
   before_filter :authenticate
 
+  layout "outside_activeadmin"
+
   def show
   end
 

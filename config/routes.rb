@@ -11,7 +11,9 @@ Vaalit::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   resource :advocate do
-    resource :session, :only => [:new, :create]
+    resource :session, :only => [:new, :create, :destroy] do
+      get :logout, :action => :destroy
+    end
     resources :candidates do
       member do
         post :report_fixes
