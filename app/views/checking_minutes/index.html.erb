@@ -1,7 +1,14 @@
-<h1>Tarkastuspöytäkirjat</h1>
+<h1>Tarkastuslaskentapöytäkirjat</h1>
 
-<p><%= link_to 'Merkitse tarkastuslaskenta valmiiksi', ready_checking_minutes_path, :method => :post, :confirm => 'Onko jokaisen äänestysalueen tarkastuslaskenta valmis?' %></p>
+<h2>Toiminnot</h2>
+<ul>
+  <li><%= link_to "Yhteenveto kaikista korjauksista.", summary_checking_minutes_path %></li>
+  <li><%= link_to 'Merkitse tarkastuslaskenta valmiiksi!', ready_checking_minutes_path, :method => :post, :confirm => 'Onko jokaisen äänestysalueen tarkastuslaskenta valmis?' %></li>
+  <li><%= link_to "Ylläpitäjän toiminnot (dashboard)", admin_dashboard_path %></li>
 
+</ul>
+
+<h2>Äänestysalueet</h2>
 <ul>
 <% @voting_areas.each do |voting_area| -%>
   <li><%= link_to "#{voting_area.code} - #{voting_area.name}", checking_minute_path(voting_area) %></li>
