@@ -7,6 +7,7 @@ ActiveAdmin::Dashboards.build do
         li link_to "Luo uusi vaaliliitto.", new_admin_electoral_alliance_path
         li "Luo ehdokkaat valitsemalla #{link_to 'luomasi vaaliliiton sivun', admin_electoral_alliances_path}<br />
             oikeasta yläkulmasta 'Vaaliliiton ehdokkaat'.".html_safe
+        li "Syötä ehdokkaat samassa järjestyksessä kuin haluat ehdokasnumerot."
         li "Kun ehdokkaat on syötetty,<br />
             klikkaa em. valikosta 'Merkitse vaaliliitto valmiiksi'.".html_safe
       end
@@ -15,6 +16,7 @@ ActiveAdmin::Dashboards.build do
       ul do
         li "Syötä vasta lopulliset tiedot: <br />
             tietojen tulee vastata paperisia ehdokaslomakkeita.".html_safe
+        li "Et voi poistaa syöttämiäsi tietoja etkä muuttaa järjestystä."
         li "Virhesyöttöjen välttämiseksi selaimen täydennysehdotuksen<br />
             voi valita ainoastaan tabulaattorilla eikä enter-napilla.".html_safe
         li "Voit luoda uuden vaaliliiton vasta,<br />
