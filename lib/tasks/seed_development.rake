@@ -78,6 +78,7 @@ namespace :seed do
       piraatit = ElectoralCoalition.create! :name => 'Akateemiset piraatit',        :shorten => 'Pirate'
       persut = ElectoralCoalition.create! :name => 'Perussuomalainen vaaliliitto',  :shorten => 'Peruss'
       libera = ElectoralCoalition.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',  :shorten => 'Libera'
+      ite1 = ElectoralCoalition.create! :name => 'Itsenäinen ehdokas 1',  :shorten => 'ITE1'
 
       # Electoral Alliances
       mp.electoral_alliances.create! :name => 'HYYn Vihreät - De Gröna vid HUS',                               :shorten => 'HyVi',    :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
@@ -112,6 +113,7 @@ namespace :seed do
       persut.electoral_alliances.create! :name => 'Perussuomalainen vaaliliitto',                              :shorten => 'Peruss',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
       snaf.electoral_alliances.create! :name => 'Ämnesföreningarna',                                          :shorten => 'Ämnesf',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
       libera.electoral_alliances.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',         :shorten => 'Libera',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      ite1.electoral_alliances.create! :name => 'Itsenäinen ehdokas 1',         :shorten => 'ITE1',  :delivered_candidate_form_amount => '0', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
     end
 
     desc 'Create fixer advocates'
