@@ -4,16 +4,20 @@ class ResultsController < ApplicationController
   skip_authorization_check
 
   def index
+    result = REDIS.get('tulos-alustava.txt')
+    render :text => "Vaalitulosta ei ole vielä laskettu." and return unless result
+
     respond_to do |format|
-      format.html { redirect_to REDIS.get('tulos-alustava.html') }
-      format.text { redirect_to REDIS.get('tulos-alustava.txt') }
+      format.text { redirect_to result }
     end
   end
 
   def final
+    result = REDIS.get('tulos-lopullinen.txt')
+    render :text => "Vaalitulosta ei ole vielä laskettu." and return unless result
+
     respond_to do |format|
-      format.html { redirect_to REDIS.get('tulos-lopullinen.html') }
-      format.text { redirect_to REDIS.get('tulos-lopullinen.txt') }
+      format.text { redirect_to result }
     end
   end
 
