@@ -89,17 +89,17 @@ ActiveAdmin.register ElectoralAlliance do
   end
 
   action_item :only => :index do
-    link_to 'Toggle filter visibility', '#toggle_filter'
+    link_to 'Näytä/piilota hakutoiminnot', '#toggle_filter'
   end
 
   action_item :only => :show do
     ea = ElectoralAlliance.find_by_id(params[:id])
-    link_to 'Merkitse vaaliliitto valmiiksi', done_admin_electoral_alliance_path if can? :update, electoral_alliance and !ea.secretarial_freeze
+    link_to 'Merkitse vaaliliitto valmiiksi!', done_admin_electoral_alliance_path if can? :update, electoral_alliance and !ea.secretarial_freeze
   end
 
   action_item :only => :show do
     ea = ElectoralAlliance.find_by_id(params[:id])
-    link_to 'Vaaliliiton ehdokkaat', admin_candidates_path(:q => {:electoral_alliance_id_eq => ea.id})
+    link_to 'Syötä ehdokkaita vaaliliittoon...', admin_candidates_path(:q => {:electoral_alliance_id_eq => ea.id})
   end
 
   member_action :done do

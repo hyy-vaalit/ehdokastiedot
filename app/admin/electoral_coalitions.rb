@@ -46,7 +46,7 @@ ActiveAdmin.register ElectoralCoalition do
   sidebar :order_coalitions, :only => :index
 
   action_item :only => :index do
-    link_to 'Toggle sidebar visibility', '#toggle_filter'
+    link_to 'Näytä/piilota hakutoiminnot', '#toggle_filter'
   end
 
   member_action :order_alliances, :method => :post do

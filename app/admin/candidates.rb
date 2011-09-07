@@ -108,11 +108,11 @@ ActiveAdmin.register Candidate do
 
   action_item :only => :show do
     candidate = Candidate.find_by_id(params[:id])
-    link_to 'Cancel Candidacy', cancel_admin_candidate_path, :confirm => 'Are you sure' unless candidate.cancelled
+    link_to 'Cancel Candidacy', cancel_admin_candidate_path, :confirm => 'Peruutetaanko henkilön ehdokkuus?' unless candidate.cancelled
   end
 
   action_item :only => :index do
-    link_to 'Toggle filter visibility', '#toggle_filter'
+    link_to 'Näytä/piilota hakutoiminnot', '#toggle_filter'
   end
 
   member_action :cancel, :method => :get do
