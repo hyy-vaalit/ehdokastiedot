@@ -51,7 +51,7 @@ ActiveAdmin.register ElectoralAlliance do
   show :title => :name do
     attributes_table :name, :shorten do
       row("candidates") { "#{electoral_alliance.candidates.count} / #{electoral_alliance.delivered_candidate_form_amount}" }
-      row("ready") { electoral_alliance.secretarial_freeze ? 'Liiton tiedot ovat valmiina' : 'Liiton tiedot eivät ole valmiina' }
+      row("ready") { electoral_alliance.secretarial_freeze ? 'Vaaliliitto on merkitty valmiiksi.' : 'Vaaliliittoa ei ole vielä merkitty valmiiksi.' }
     end
     attributes_table :primary_advocate_lastname, :primary_advocate_firstname, :primary_advocate_social_security_number, :primary_advocate_address, :primary_advocate_postal_information, :primary_advocate_phone, :primary_advocate_email
     attributes_table :secondary_advocate_lastname, :secondary_advocate_firstname, :secondary_advocate_social_security_number, :secondary_advocate_address, :secondary_advocate_postal_information, :secondary_advocate_phone, :secondary_advocate_email
@@ -109,7 +109,7 @@ ActiveAdmin.register ElectoralAlliance do
       current_admin_user.update_attribute :electoral_alliance, nil
       redirect_to admin_electoral_alliances_path
     else
-      redirect_to admin_electoral_alliance_path, :alert => "Ehdokkaiden määrä ei täsmää kerrottuun määrään."
+      redirect_to admin_electoral_alliance_path, :alert => "Vaaliliiton ehdokkaiden määrä ei täsmää perustamisilmoituksessa kerrottuun määrään. Tarkista, että olet syöttänyt täsmälleen yhtä monta ehdokasta kuin vaaliliiton perustamisilmoituksessa on kerrottu."
     end
   end
 
