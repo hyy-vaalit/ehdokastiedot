@@ -1,3 +1,4 @@
+# coding: UTF-8
 class VotingAreasController < ApplicationController
 
   skip_authorization_check
@@ -5,6 +6,8 @@ class VotingAreasController < ApplicationController
   before_filter :authenticate, :except => [:login, :login_post]
 
   before_filter :assign_voting_area, :except => [:login, :login_post]
+
+  layout "outside_activeadmin"
 
   def show
   end
@@ -26,8 +29,11 @@ class VotingAreasController < ApplicationController
     if @voting_area
       session[:voting_area_id] = @voting_area.id
     else
+      flash[:alert] = "Sisäänkirjautuminen epäonnistui."
       session[:voting_area_id] = nil
+      redirect_to login_voting_area_path and return
     end
+
     redirect_to voting_area_path
   end
 
