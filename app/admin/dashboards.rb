@@ -62,7 +62,7 @@ ActiveAdmin::Dashboards.build do
         li link_to 'Alustava vaalitulos', results_path(:format => :text)
         # li link_to 'Ehdokkaat läpipääsyn mukaan', deputies_results_path
         # li link_to 'Ehdokkaat vaaliliitoittain', by_alliance_results_path
-        li link_to 'Ehdokkaat äänimäärän mukaan', by_votes_results_path
+        # FIXME: ei saa syöttövaiheessa olla julkinen: li link_to 'Ehdokkaat äänimäärän mukaan', by_votes_results_path
       end
     end
 
