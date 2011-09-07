@@ -1,10 +1,20 @@
 <p><%= link_to 'Kirjaudu ulos', login_voting_area_path %></p>
 
 <% if @voting_area.ready -%>
-<p>Tämä alueen äänet on merkitty lasketuiksi</p>
+<p>Äänestysalue on merkitty lasketuksi.</p>
 <% else -%>
 <p><%= link_to "Merkitse alueen äänet lasketuksi", mark_ready_voting_area_path, :confirm => 'Onko kaikki tiedot varmasti syötetty?' %></p>
 <% end -%>
+
+
+<h2>Ohjeet</h2>
+<ul>
+  <li>Syötä ehdokasnumero ja numeroa vastaava kokonaisäänimäärä.</li>
+  <li>Voit syöttää korkeintaan kymmenen ehdokkaan äänimäärän kerrallaan ennen kuin tulokset täytyy tallentaa.</li>
+  <li>Voit korjata tallennettua tietoa: uuden äänimäärän syöttäminen ehdokasnumerolle korvaa aiemmin samalle ehdokasnumerolle syötetyt äänet.</li>
+  <li>Esimerkiksi: Ehdokasnumerolle 123 on syötetty 98 ääntä ja tämä äänimäärä näkyy listauksessa. Jos ehdokasnumerolle syötetään uusi äänimäärä 100 ääntä, ehdokasnumerolla 123 on tallennuksen jälkeen yhteensä 100 ääntä.</li>
+  <li>Lopuksi käy syötetyt tiedot läpi ennen kuin merkitset äänestysalueen lasketuksi.</li>
+</ul>
 
 <h1><%= @voting_area.name %></h1>
 
@@ -29,6 +39,8 @@
 <%= raw "<p style='color:red; font-size: 120%; font-weight: bold;'>#{flash[:errors]}</p>" if flash[:errors] -%>
 
 <%= form_tag voting_area_path, :method => :post do -%>
+
+
   <table id="vote_insert_form">
     <tr>
       <th>Ehdokasnumero</th>
@@ -45,7 +57,7 @@
     </tr>
   <% end -%>
   </table>
-  <p><input type="submit" value="Lisää äänitiedot" /></p>
+  <p><input type="submit" value="Tallenna äänet" /></p>
 <% end -%>
 
 <% end -%>
