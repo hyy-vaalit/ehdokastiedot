@@ -68,7 +68,9 @@ ActiveAdmin.register Candidate do
     end
     div do
       br
-      p 'Kun olet syöttänyt kaikki ehdokkaat, siirry vaaliliiton sivuille ja merkitse vaaliliitto valmiiksi oikealta yläkulmasta löytyvällä napilla.'
+      p "Kun olet syöttänyt kaikki vaaliliiton ehdokkaat,
+         #{link_to 'siirry vaaliliiton sivuille', admin_electoral_alliances_path}
+        ja merkitse vaaliliitto valmiiksi.".html_safe
     end
   end
 
