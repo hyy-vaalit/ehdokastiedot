@@ -11,7 +11,7 @@ class PasswordDelivery < HyyMailer
   def advocate_creator(password, email, alliance_name)
     @email = email
     @password = password
-    @site_address = 'http://vaalit.hyy.fi'
+    @site_address = 'http://vaalit.hyy.fi/admin'
     @alliance_name = alliance_name
     mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
   end
@@ -19,7 +19,7 @@ class PasswordDelivery < HyyMailer
   def advocate_fixer(password, email, alliance_name)
     @email = email
     @password = password
-    @site_address = 'http://vaalit.hyy.fi'
+    @site_address = 'http://vaalit.hyy.fi/advocate'
     @alliance_name = alliance_name
     mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
   end
@@ -27,7 +27,7 @@ class PasswordDelivery < HyyMailer
   def secretary(password, email)
     @email = email
     @password = password
-    @site_address = 'http://vaalit.hyy.fi'
+    @site_address = 'http://vaalit.hyy.fi/admin'
     mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
   end
 

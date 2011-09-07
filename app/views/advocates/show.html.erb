@@ -1,3 +1,13 @@
+<% if @advocate.electoral_alliances.empty? %>
+
+<h1>Virhe?</h1>
+
+<p>
+  Käyttäjätunnukseesi ei ole kytketty yhtään vaaliliittoa. Ota yhteys HYYn vaalityöntekijään!
+</p>
+
+<% end %>
+
 <% @advocate.electoral_alliances.each do |alliance| -%>
   <h2><%= alliance.name %></h2>
 
