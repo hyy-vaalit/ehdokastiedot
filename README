@@ -32,6 +32,14 @@ Vuoden 2009 vaalien data:
 
 $ rake seed:development
 
+== Staging-ympäristön runtsaus
+
+$ heroku pg:reset SHARED_DATABASE --app APP_NAME
+$ git push [-f] staging
+$ heroku rake db:schema:load --app APP_NAME
+$ heroku rake seed:[production|development] --app APP_NAME
+$ heroku restart --app APP_NAME
+
 
 == Esimerkkikäyttäjätunnukset (testi-seed)
 
