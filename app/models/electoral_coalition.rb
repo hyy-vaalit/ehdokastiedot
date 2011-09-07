@@ -7,6 +7,8 @@ class ElectoralCoalition < ActiveRecord::Base
 
   default_scope order(:number_order)
 
+  validates_presence_of :name, :shorten
+
   def order_alliances alliance_data
     original_array = alliance_data.to_a
     sorted_array = original_array.sort {|x,y| x.last <=> y.last}
