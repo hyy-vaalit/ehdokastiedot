@@ -1,73 +1,82 @@
 # coding: utf-8
 ActiveAdmin::Dashboards.build do
 
-  section "Ohjeet ehdokastietojen syöttämiseksi (sihteeri / asiamies):", :priority => 1 do
-    ol do
-      li link_to "Luo uusi vaaliliitto.", new_admin_electoral_alliance_path
-      li "Luo ehdokkaat valitsemalla vaaliliiton<br />
-          sivun oikeasta yläkulmasta 'Vaaliliiton ehdokkaat'.".html_safe
-      li "Kun ehdokkaat on syötetty,<br />
-          klikkaa em. valikosta 'Merkitse vaaliliitto valmiiksi'.".html_safe
-      li "Jos haluat tiedot itsellesi,<br />
-          lataa export-tiedosto ennen kuin luot uuden vaaliliiton.<br />
-          Saat CSV-tiedoston vain nykyisestä vaaliliitosta.".html_safe
+  section "Asiamiehen ja sihteerin toiminnot", :priority => 1 do
+    h3 do
+      ol do
+        li link_to "Luo uusi vaaliliitto.", new_admin_electoral_alliance_path
+        li "Luo ehdokkaat valitsemalla vaaliliiton<br />
+            sivun oikeasta yläkulmasta 'Vaaliliiton ehdokkaat'.".html_safe
+        li "Kun ehdokkaat on syötetty,<br />
+            klikkaa em. valikosta 'Merkitse vaaliliitto valmiiksi'.".html_safe
+      end
     end
-    h3 "Huomioi nämä:"
-    ul do
-      li "Voit luoda uuden vaaliliiton vasta,<br />
-          kun edellinen vaaliliitto on merkitty valmiiksi.".html_safe
-      li "Voit ladata tiedot itsellesi Exceliin<br />
-          'Export'-valikosta.".html_safe
-      li "ATK-vastaava kytkee vaaliliitot vaalirenkaisiin<br />
-          ehdokasasettelun päättymisen jälkeen.".html_safe
-      li "Näet etusivulla linkkejä, joihin et pääse käsiksi.<br />
-          Pahoittelemme hämmennystä.".html_safe
-    end
+      h4 "Huomioi nämä:"
+      ul do
+        li "Virhesyöttöjen välttämiseksi selaimen täydennysehdotuksen<br />
+            voi valita ainoastaan tabulaattorilla eikä enter-napilla.".html_safe
+        li "Voit luoda uuden vaaliliiton vasta,<br />
+            kun edellinen vaaliliitto on merkitty valmiiksi.".html_safe
+        li "HYYn vaalityöntekijä kytkee vaaliliitot vaalirenkaisiin<br />
+            ehdokasasettelun päättymisen jälkeen.".html_safe
+        li "Näet etusivulla linkkejä, joihin et pääse käsiksi.<br />
+            Pahoittelemme hämmennystä.".html_safe
+      end
+
   end
 
-  section "Tiedot Exceliin (CSV Export)", :priority => 2 do
-    ul do
-      li link_to "Kaikki ehdokkaat (csv)", admin_candidates_path(:format=>:csv)
-      li link_to "Peruuttaneet ehdokkaat (csv)", cancelled_emails_admin_candidates_path
-      li link_to "Kaikki vaaliliitot (csv)", admin_electoral_alliances_path(:format=>:csv)
-      li link_to "Kaikki vaalirenkaat (csv)", admin_electoral_coalitions_path(:format=>:csv)
+  section "Ylläpidon toiminnot", :priority => 2 do
+    section "Tiedot Exceliin (CSV Export)" do
+      ul do
+        li link_to "Kaikki ehdokkaat (csv)", admin_candidates_path(:format=>:csv)
+        li link_to "Peruuttaneet ehdokkaat (csv)", cancelled_emails_admin_candidates_path
+        li link_to "Kaikki vaaliliitot (csv)", admin_electoral_alliances_path(:format=>:csv)
+        li link_to "Kaikki vaalirenkaat (csv)", admin_electoral_coalitions_path(:format=>:csv)
+      end
+      section "Ohjeet CSV-tiedoston tuomiseksi Exceliin" do
+        ol do
+          li "Avaa CSV-tiedosto Exceliin."
+          li "Valitse ja mustaa koko sarake 'A'."
+          li "Valitse: Tiedot > Teksti sarakkeisiin"
+          li "Valitse: Tiedostolaji: Erotettu > Seuraava."
+          li "Valitse: Erottimet: Pilkku > Valmis."
+        end
+      end
     end
-    h3 "Ohjeet CSV-tiedoston tuomiseksi Exceliin"
-    ol do
-      li "Avaa CSV-tiedosto Exceliin."
-      li "Valitse ja mustaa koko sarake 'A'."
-      li "Valitse: Tiedot > Teksti sarakkeisiin"
-      li "Valitse: Tiedostolaji: Erotettu > Seuraava."
-      li "Valitse: Erottimet: Pilkku > Valmis."
-    end
-  end
 
-  section 'Ehdokastiedot' do
-    ul do
-      li link_to 'Yksinkertaistettu lista ehdokastiedoista', simple_listings_path
-      li link_to 'Ehdokkaat, joilla sama henkilöturvatunnus', same_ssn_listings_path
-      li link_to 'Asiamiesten korjaukset ehdokastietoihin', has_fixes_listings_path
+    section 'Ehdokastiedot' do
+      ul do
+        li link_to 'Yksinkertaistettu lista ehdokastiedoista', simple_listings_path
+        li link_to 'Ehdokkaat, joilla sama henkilöturvatunnus', same_ssn_listings_path
+        li link_to 'Asiamiesten korjaukset ehdokastietoihin', has_fixes_listings_path
+      end
     end
-  end
 
-  section 'X-files', :priority => 999 do
-    ul do
-      li link_to 'Järjestelmän asetukset', configurations_path
-      li link_to 'Vaaralliset toiminnot', tools_path
+    section 'Vaalivalvojaiset' do
+      ul do
+        li link_to 'Äänestysalueet ääntenlaskentaan', showdown_listings_path
+        li link_to 'Alustava vaalitulos', results_path(:format => :text)
+        # li link_to 'Ehdokkaat läpipääsyn mukaan', deputies_results_path
+        # li link_to 'Ehdokkaat vaaliliitoittain', by_alliance_results_path
+        li link_to 'Ehdokkaat äänimäärän mukaan', by_votes_results_path
+      end
     end
-  end
 
-  section 'Vaalitulokset' do
-    ul do
-      li link_to 'Äänestysalueet ääntenlaskentaan', showdown_listings_path
-      li link_to 'Alustava vaalitulos(HTML)', results_path(:format => :html)
-      li link_to 'Alustava vaalitulos(Teksti)', results_path(:format => :text)
-      li link_to 'Lopullinen vaalitulos(HTML)', final_results_path(:format => :html)
-      li link_to 'Lopullinen vaalitulos(Teksti)', final_results_path(:format => :text)
-      li link_to 'Ehdokkaat läpipääsyn mukaan', deputies_results_path
-      li link_to 'Ehdokkaat vaaliliitoittain', by_alliance_results_path
-      li link_to 'Ehdokkaat äänimäärän mukaan', by_votes_results_path
+    section 'Tarkastuslaskenta' do
+      ul do
+        li link_to 'Tarkastuslaskennan korjausyhteenveto', summary_checking_minutes_path
+        li link_to 'Arvonnat', draws_path
+        li link_to 'Lopullinen vaalitulos', final_results_path(:format => :text)
+      end
     end
+
+    section 'X-files', :priority => 999 do
+      ul do
+        li link_to 'Järjestelmän asetukset', configurations_path
+        li link_to 'Vaaralliset toiminnot', tools_path
+      end
+    end
+
   end
 
   section 'Muiden sidosryhmien sisäänkirjautuminen' do
@@ -78,12 +87,6 @@ ActiveAdmin::Dashboards.build do
     end
   end
 
-  section 'Tarkastuslaskenta' do
-    ul do
-      li link_to 'Tarkastuslaskennan korjausyhteenveto', summary_checking_minutes_path
-      li link_to 'Arvonnat', draws_path
-    end
-  end
 
   # == Simple Dashboard Section
   # Here is an example of a simple dashboard section
