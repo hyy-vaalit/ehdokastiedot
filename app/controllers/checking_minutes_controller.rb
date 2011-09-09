@@ -54,7 +54,7 @@ class CheckingMinutesController < ApplicationController
 
   def check_if_ready
     if REDIS.get('checking_minutes_ready')
-      redirect_to fixes_checking_minutes_path, :notice => 'Tarkastuslaskenta on valmis'
+      redirect_to fixes_checking_minutes_path, :notice => 'Tarkastuslaskenta on merkitty valmiiksi.'
       return
     end
   end

@@ -107,7 +107,7 @@ ActiveAdmin.register ElectoralAlliance do
     if ea.candidates.count == ea.delivered_candidate_form_amount
       ea.freeze!
       current_admin_user.update_attribute :electoral_alliance, nil
-      redirect_to admin_electoral_alliances_path
+      redirect_to admin_electoral_alliances_path, :notice => "Vaaliliitto on merkitty valmiiksi! Voit luoda nyt uuden vaaliliiton."
     else
       redirect_to admin_electoral_alliance_path, :alert => "Vaaliliiton ehdokkaiden määrä ei täsmää perustamisilmoituksessa kerrottuun määrään. Tarkista, että olet syöttänyt täsmälleen yhtä monta ehdokasta kuin vaaliliiton perustamisilmoituksessa on kerrottu."
     end

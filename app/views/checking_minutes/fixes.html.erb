@@ -1,7 +1,10 @@
 
 <h1>Tarkastuslaskennassa tulleet korjaukset</h1>
 
-<p><%= link_to 'Takaisin', checking_minutes_path %></p>
+<ul>
+  <li><%= link_to 'Takaisin tarkastuslaskentaan (tlk-pj)', checking_minutes_path %></li>
+  <li><%= link_to 'Takaisin ylläpidon dashboardille (admin)', admin_dashboard_path %></li>
+</ul>
 
 <% if flash[:notice] -%>
   <p class="notice"><%= flash[:notice] %></p>
