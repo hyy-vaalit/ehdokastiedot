@@ -61,6 +61,7 @@ namespace :seed do
 
   desc 'Runs production seed data'
   task :production do
+    Rake::Task['seed:redis:reset_keys'].invoke
     Rake::Task['seed:production:faculties'].invoke
     Rake::Task['seed:production:voting_areas'].invoke
     Rake::Task['seed:production:configuration'].invoke

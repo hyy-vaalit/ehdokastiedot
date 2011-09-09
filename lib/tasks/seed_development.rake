@@ -205,6 +205,7 @@ namespace :seed do
   end
 
   task :development do
+    Rake::Task['seed:redis:reset_keys'].invoke
     Rake::Task['seed:development:configuration'].invoke
     Rake::Task['seed:development:faculties'].invoke
     Rake::Task['seed:development:electoral'].invoke
