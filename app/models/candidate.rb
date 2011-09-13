@@ -43,7 +43,8 @@ class Candidate < ActiveRecord::Base
 
   scope :without_electoral_alliance, joins(:electoral_alliance).where('candidates.candidate_name = electoral_alliances.name')
 
-  scope :has_fixes, lambda { joins(:data_fixes) & DataFix.unapplied }
+  # Operator '&' is an intersection, ie, it matches only entities which are present in both groups.
+  scope :has_fixes, lambda { joins(:data_fixes).select("distinct candidates.id, candidates.*") & DataFix.unapplied }
 
   scope :selection_order, order('coalition_proportional desc, alliance_proportional desc')
   scope :by_alliance, order('electoral_alliance_id desc')
