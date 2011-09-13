@@ -1,4 +1,4 @@
-.long-listing td {
+.long-listing td, .long-listing th {
   border-bottom: 1px gray solid;
   border-right: 1px gray solid;
   padding-left: 3px;
@@ -28,6 +28,10 @@
   }
 }
 
+thead {
+  text-align: left;
+  background-color: #D3D3D3;
+}
 #voting_area {
   tr:nth-child(even) {
     background: #CCC;

@@ -11,11 +11,24 @@
     <h3><%= alliance.name %></h3>
     <% alliance.candidates.has_fixes.each do |candidate| -%>
       <h4><%= candidate.candidate_name %></h4>
-      <ul>
+      <table class="long-listing">
+        <thead>
+          <tr>
+            <th>Kenttä</th>
+            <th>Alkuperäinen</th>
+            <th>Korjattu</th>
+            <th>Toiminto</th>
+          </tr>
+        </thead>
       <% candidate.data_fixes.unapplied.each do |fix| -%>
-        <li id="fix_<%= fix.id %>"><span><%= t(:"candidate.#{fix.field_name}") %></span> <span><%= fix.old_value %></span> <span><%= fix.new_value %></span> <span>(<%= link_to 'Hyväksy', '#accept' %> | <%= link_to 'Hylkää', '#reject' %>)</span></li>
+        <tr id="fix_<%= fix.id %>">
+            <td><%= t(:"candidate.#{fix.field_name}") %></td>
+            <td><%= fix.old_value %></td>
+            <td><%= fix.new_value %></td>
+            <td><%= link_to 'Hyväksy', '#accept' %> | <%= link_to 'Hylkää', '#reject' %></td>
+        </tr>
       <% end -%>
-      </ul>
+      </table>
     <% end -%>
   <% end -%>
 <% end -%>
