@@ -1,3 +1,18 @@
+.long-listing td {
+  border-bottom: 1px gray solid;
+  border-right: 1px gray solid;
+  padding-left: 3px;
+  padding-right: 13px;
+}
+
+.long-listing tr:hover {
+  background: #ffffcc;
+}
+
+.nowrap {
+  white-space: nowrap;
+}
+
 .showdown {
   .unfinished {
     background-color: #FCC;
