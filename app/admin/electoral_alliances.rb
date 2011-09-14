@@ -116,11 +116,11 @@ ActiveAdmin.register ElectoralAlliance do
   collection_action :create_advocates do
     begin
       ElectoralAlliance.create_advocates
-      redirect_to admin_electoral_alliances_path, :notice => 'Asiamiestunnukset on luotu!'
+      redirect_to admin_advocate_users_path, :notice => 'Asiamiestunnukset on luotu!'
     rescue ActiveRecord::RecordInvalid
-      redirect_to admin_electoral_alliances_path, :alert => 'Usealla asiamiehellä on sama sähköpostiosoite'
+      redirect_to admin_advocate_users_path, :alert => 'Usealla asiamiehellä on sama sähköpostiosoite'
     rescue
-      redirect_to admin_electoral_alliances_path, :alert => 'Asiamiestunnuksia ei voida luoda ennen kuin kaikki vaaliliitot ovat valmiita.'
+      redirect_to admin_advocate_users_path, :alert => 'Asiamiestunnuksia ei voida luoda ennen kuin kaikki vaaliliitot ovat valmiita.'
     end
   end
 
