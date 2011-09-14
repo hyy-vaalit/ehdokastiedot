@@ -65,20 +65,20 @@ namespace :seed do
 
 
       # Electoral Coalition
-      hyal = ElectoralCoalition.create! :name => 'Ainejärjestöjen vaalirengas',                  :shorten => 'HYAL'
-      osak = ElectoralCoalition.create! :name => 'Osakuntien suuri vaalirengas',                 :shorten => 'Osak'
-      mp = ElectoralCoalition.create! :name => 'Maailmanpyörä',                                  :shorten => 'MP'
-      help = ElectoralCoalition.create! :name => 'HELP',                                         :shorten => 'HELP'
-      pelast = ElectoralCoalition.create! :name => 'Pelastusrengas',                             :shorten => 'Pelast'
-      snaf = ElectoralCoalition.create! :name => 'Svenska Nationer och Ämnesföreningar (SNÄf)',  :shorten => 'SNÄf'
+      hyal = ElectoralCoalition.create! :name => 'Ainejärjestöjen vaalirengas',                  :shorten => 'HYAL', :number_order => "10"
+      osak = ElectoralCoalition.create! :name => 'Osakuntien suuri vaalirengas',                 :shorten => 'Osak', :number_order => "9"
+      mp = ElectoralCoalition.create! :name => 'Maailmanpyörä',                                  :shorten => 'MP', :number_order => "8"
+      help = ElectoralCoalition.create! :name => 'HELP',                                         :shorten => 'HELP', :number_order => "6"
+      pelast = ElectoralCoalition.create! :name => 'Pelastusrengas',                             :shorten => 'Pelast', :number_order => "4"
+      snaf = ElectoralCoalition.create! :name => 'Svenska Nationer och Ämnesföreningar (SNÄf)',  :shorten => 'SNÄf', :number_order => "5"
 
       # Single alliance coalitions
-      demarit = ElectoralCoalition.create! :name => 'Opiskelijademarit',            :shorten => 'OSY'
-      tsemppi = ElectoralCoalition.create! :name => 'Tsemppi Group',                :shorten => 'Tsempp'
-      piraatit = ElectoralCoalition.create! :name => 'Akateemiset piraatit',        :shorten => 'Pirate'
-      persut = ElectoralCoalition.create! :name => 'Perussuomalainen vaaliliitto',  :shorten => 'Peruss'
-      libera = ElectoralCoalition.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',  :shorten => 'Libera'
-      ite1 = ElectoralCoalition.create! :name => 'Itsenäinen ehdokas 1',  :shorten => 'ITE1'
+      demarit = ElectoralCoalition.create! :name => 'Opiskelijademarit',            :shorten => 'OSY', :number_order => "3"
+      tsemppi = ElectoralCoalition.create! :name => 'Tsemppi Group',                :shorten => 'Tsempp', :number_order => "2"
+      piraatit = ElectoralCoalition.create! :name => 'Akateemiset piraatit',        :shorten => 'Pirate', :number_order => "1"
+      persut = ElectoralCoalition.create! :name => 'Perussuomalainen vaaliliitto',  :shorten => 'Peruss', :number_order => "7"
+      libera = ElectoralCoalition.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',  :shorten => 'Libera', :number_order => "5"
+      ite1 = ElectoralCoalition.create! :name => 'Itsenäinen ehdokas 1',  :shorten => 'ITE1', :number_order => "11"
 
       # Electoral Alliances
       mp.electoral_alliances.create! :name => 'HYYn Vihreät - De Gröna vid HUS',                               :shorten => 'HyVi',    :delivered_candidate_form_amount => '60', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
