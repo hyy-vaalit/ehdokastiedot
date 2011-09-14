@@ -23,19 +23,21 @@
   </ul>
 
   <table class="long-listing nowrap">
-    <tr>
-      <th></th>
-      <th>Sukunimi</th>
-      <th>Etunimet</th>
-      <th>Ehdokasnimi</th>
-      <th>Hetu</th>
-      <th>Postisoite</th>
-      <th>Postioimipaikka</th>
-      <th>Sähköposti</th>
-      <th>Tiedekunta</th>
-      <th>Huomiot</th>
-      <th></th>
-    </tr>
+    <thead>
+      <tr>
+        <th></th>
+        <th>Sukunimi</th>
+        <th>Etunimet</th>
+        <th>Ehdokasnimi</th>
+        <th>Hetu</th>
+        <th>Postisoite</th>
+        <th>Postioimipaikka</th>
+        <th>Sähköposti</th>
+        <th>Tiedekunta</th>
+        <th>Huomiot</th>
+        <th></th>
+      </tr>
+    </thead>
   <% alliance.candidates.each do |candidate| -%>
     <tr>
       <td style="padding-right: 5px;"><%= '*' if candidate.has_fixes %></td>
