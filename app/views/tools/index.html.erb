@@ -9,18 +9,41 @@ allowfullscreen></iframe>
 <ul>
   <li>
     <%= link_to 'Luo asiamiehille tunnukset', create_advocates_admin_electoral_alliances_path, :confirm => "Luodaanko asiamiesten tunnukset tietojen korjaamiseksi?\nSalasana välitetään jokaiselle asiamiehelle sähköpostitse." %>
-    (salasana välitetään jokaiselle asiamiehelle sähköpostitse)
+    <ul>
+      <li>Salasana välitetään jokaiselle sähköpostitse.</li>
+      <li>Tunnus luodaan jokaisen liiton ensisijaiselle asiamiehelle.</li>
+      <li>Liiton asiamies kohdistetaan käyttäjätunnukseen hetun perusteella.</li>
+      <li>Jokaista hetua kohden luodaan vain yksi käyttäjätunnus.</li>
+    </ul>
   </li>
 
   <li>
     <%= link_to 'Kirjoita ehdokkaille lähetettävä sähköposti', new_admin_email_path %>
-    (viestin voi lähettää kirjoittamisen jälkeen)
+    <ul>
+      <li>Kirjoita viesti avautuvalta sivulta.</li>
+      <li>Liitä kaikki eri kieliversiot samaan viestiin.</li>
+      <li>Viestin voi lähettää kirjoittamisen jälkeen.</li>
+    </ul>
   </li>
 </ul>
 
 <h3>Ehdokasnumerot</h3>
 
 <ul>
-  <li><%= link_to 'Aseta vaalirenkaiden keskinäinen järjestys', admin_electoral_coalitions_path %> (Sivun oikeasta reunasta)</li>
-  <li><%= link_to 'Anna ehdokkaille numerot', give_numbers_admin_candidates_path, :confirm => "Jaetaanko ehdokasnumerot?" %></li>
+  <li>
+    <%= link_to 'Aseta vaalirenkaiden keskinäinen järjestys', admin_electoral_coalitions_path %> (Sivun oikeasta reunasta)
+    <ul>
+      <li>Liitä jokainen vaaliliitto vaalirenkaaseen.</li>
+      <li>Luo myös jokaiselle itsenäiselle liitolle (ja ehdokkaalle) oma vaalirengas, jolla on sama nimi kuin liitolla.</li>
+      <li>Määritä järjestys (peruste ehdokasnumeroille) sen jälkeen, kun KVL on arponut renkaiden ja itsenäisten liittojen keskinäisen järjestyksen.</li>
+    </ul>
+  </li>
+  <li>
+    <%= link_to 'Anna ehdokkaille numerot', give_numbers_admin_candidates_path, :confirm => "Jaetaanko ehdokasnumerot?" %>
+    <ul>
+      <li>Ks. ohjeet renkaiden järjestämisestä.</li>
+      <li>Kun renkaiden keskinäinen järjestys on määritetty, ehdokasnumerot voidaan jakaa.</li>
+      <li>Ehdokasnumerot jaetaan samassa järjestyksessä kuin missä ehdokkaat näkyvät "Ehdokkaat"-sivulla.</li>
+    </ul>
+  </li>
 </ul>
