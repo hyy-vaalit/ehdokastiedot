@@ -61,6 +61,7 @@ class VotingArea < ActiveRecord::Base
     self.update_attribute :calculated, true
   end
 
+  # FIXME: Transaktio puuttuu! #18336147
   def give_votes! votes
     invalid = []
     votes.each do |i, vote|
@@ -80,6 +81,7 @@ class VotingArea < ActiveRecord::Base
     raise "Check candidate numbers #{invalid.join(', ')}" unless invalid.empty?
   end
 
+  # FIXME: Transaktio puuttuu!
   def give_fix_votes! votes
     invalid = []
     votes.each do |i, vote|
