@@ -14,8 +14,8 @@
     <td><%= candidate.candidate_number %></td>
     <td><%= link_to candidate.candidate_name, admin_candidate_path(candidate.id) %></td>
     <td><%= candidate.social_security_number %></td>
-    <td><%= candidate.electoral_alliance.shorten %></td>
-    <td><%= candidate.electoral_alliance.electoral_coalition ? candidate.electoral_alliance.electoral_coalition.shorten : '' %></td>
+    <td><%= candidate.electoral_alliance.shorten if candidate.electoral_alliance.shorten %></td>
+    <td><%= candidate.electoral_alliance.electoral_coalition.shorten if candidate.electoral_alliance.electoral_coalition and candidate.electoral_alliance.electoral_coalition.shorten %></td>
     <td><%= candidate.notes %></td>
   </tr>
 <% end -%>
