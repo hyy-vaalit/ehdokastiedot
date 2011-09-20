@@ -33,16 +33,14 @@ ActiveAdmin.register Email do
   end
 
   member_action :send_mail do
+    raise "THIS IS BORKEN:/ timeout error. and some weird heroku+sendgrid issue which prevents email sending from rails console."
+
     message = Email.find_by_id(params[:id])
     Candidate.all.each do |c|
-      CandidateNotifier.welcome_as_candidate(c.email, message).deliver # FIXME: bubble gum production fix, should be sent in background
+      CandidateNotifier.welcome_as_candidate(c.email, message).deliver # FIXME
     end
 
     redirect_to admin_email_path(email.id), :notice => 'Sähköposti lähetetty! Lähetystietoja voi tarkkailla Sendgrid-palvelussa.'
   end
 
-  member_action :lulzig do
-    # "sengrid wtf happens in heroku production environment" test
-    CandidateNotifier.welcome_as_candidate("petrus.repo+testiviesti@enemy.fi", Email.find(2)).deliver
-  end
 end
