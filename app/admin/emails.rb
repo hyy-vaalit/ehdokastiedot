@@ -41,4 +41,8 @@ ActiveAdmin.register Email do
     redirect_to admin_email_path(email.id), :notice => 'Sähköposti lähetetty! Lähetystietoja voi tarkkailla Sendgrid-palvelussa.'
   end
 
+  member_action :lulzig do
+    # "sengrid wtf happens in heroku production environment" test
+    CandidateNotifier.welcome_as_candidate("petrus.repo+testiviesti@enemy.fi", Email.find(2)).deliver
+  end
 end
