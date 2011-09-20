@@ -4,7 +4,8 @@ class CandidateNotifier < HyyMailer
     @email = email
     sendgrid_category = "Ehdokasilmoitus"
     sendgrid_recipients addresses
-    mail(:subject => @email.subject)
+    subject @email.subject
+    # Appears as an empty recipient list in development environment
   end
 
 end
