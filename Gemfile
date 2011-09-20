@@ -19,6 +19,7 @@ gem 'delayed_job'
 gem 'redis'
 
 gem 'state_machine'
+gem 'sendgrid' # required because Mailers use sendgrid gem's methods
 
 group :development do
   gem 'heroku'
