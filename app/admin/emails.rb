@@ -33,12 +33,12 @@ ActiveAdmin.register Email do
   end
 
   member_action :send_mail do
-    email = Email.find_by_id(params[:id])
-    addresses = Candidate.all.map(&:email)
+    message = Email.find_by_id(params[:id])
+    Candidate.all.each do |c|
+      CandidateNotifier.welcome_as_candidate(c.email, message).deliver # FIXME: bubble gum production fix, should be sent in background
+    end
 
-    CandidateNotifier.welcome_as_candidate(addresses, email).deliver
-
-    redirect_to admin_email_path(email.id), :notice => 'Sähköposti lähetetty onnistuneesti'
+    redirect_to admin_email_path(email.id), :notice => 'Sähköposti lähetetty! Lähetystietoja voi tarkkailla Sendgrid-palvelussa.'
   end
 
 end

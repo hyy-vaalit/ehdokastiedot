@@ -26,7 +26,3 @@ en:
       candidate:
         firstname: "Firstnames"
 
-  mailer:
-    candidate_notifier:
-      welcome_as_candidate:
-        subject: "Welcome as candidate"

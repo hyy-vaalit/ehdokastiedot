@@ -1,12 +1,10 @@
 class CandidateNotifier < HyyMailer
 
-  def welcome_as_candidate(addresses, email)
+  def welcome_as_candidate(recipient_address, email)
     @email = email
     sendgrid_category = "Ehdokasilmoitus"
-    sendgrid_recipients addresses
-    subject @email.subject
-    from REDIS.get('mailaddress') # bubble gum production fix, default :from does not work with sendgrid gem
-    # Appears as an empty recipient list in development environment
+
+    mail :to => recipient_address, :subject => "Ehdokasilmoittautumisesi on vastaanotettu"
   end
 
 end
