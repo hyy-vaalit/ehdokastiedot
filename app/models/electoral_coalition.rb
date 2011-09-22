@@ -1,6 +1,7 @@
 class ElectoralCoalition < ActiveRecord::Base
 
   has_many :electoral_alliances
+  has_many :candidates, :through => :electoral_alliances
 
   has_many :coalition_drawings
   has_many :coalition_draws, :through => :coalition_drawings
@@ -18,8 +19,8 @@ class ElectoralCoalition < ActiveRecord::Base
     end
   end
 
-  def total_votes
-    self.electoral_alliances.map(&:total_votes).sum
+  def vote_count
+    electoral_alliances.map(&:votes).map(&:preliminary_sum).sum # forgive me for not using sql
   end
 
   def fixed_total_votes

@@ -18,13 +18,15 @@ class ElectoralAlliance < ActiveRecord::Base
 
   validates_presence_of :name, :delivered_candidate_form_amount, :primary_advocate_social_security_number, :primary_advocate_email, :shorten
 
+  has_many :votes, :through => :candidates do
+    def preliminary_sum
+      countable.sum("amount")
+    end
+  end
+
   def freeze!
     # FIXME: This requires validation but the validaion is done in the controller.
     self.update_attribute :secretarial_freeze, true
-  end
-
-  def total_votes
-    self.candidates.map(&:total_votes).sum
   end
 
   def fixed_total_votes

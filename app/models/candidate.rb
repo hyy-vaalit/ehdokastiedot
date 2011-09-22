@@ -1,5 +1,6 @@
 class Candidate < ActiveRecord::Base
   include RankedModel
+  include VotableBehaviour
 
   state_machine :initial => :not_selected do
     event :select_me do
@@ -35,8 +36,6 @@ class Candidate < ActiveRecord::Base
 
   has_many :data_fixes
 
-  has_many :votes
-
   scope :cancelled, where(:cancelled => true)
 
   scope :valid, where(:cancelled => false, :marked_invalid => false)
@@ -69,10 +68,6 @@ class Candidate < ActiveRecord::Base
 
   def cancel!
     self.update_attribute :cancelled, true
-  end
-
-  def total_votes
-    self.votes.ready.sum(:vote_count)
   end
 
   def fixed_total_votes

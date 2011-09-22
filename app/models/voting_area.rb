@@ -21,8 +21,8 @@ class VotingArea < ActiveRecord::Base
     end
   end
 
-  def total_votes
-    votes.sum(:vote_count)
+  def vote_count
+    votes.sum(:amount)
   end
 
   def state_class
