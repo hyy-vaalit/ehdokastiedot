@@ -183,7 +183,7 @@ namespace :seed do
         csv_contents = CSV.read("doc/votes/E#{i}")
         csv_contents.shift
         csv_contents.each do |row|
-          Candidate.find_by_candidate_number(row[0]).votes.create! :voting_area => voting_area, :vote_count => row[3]
+          Candidate.find_by_candidate_number(row[0]).votes.create! :voting_area => voting_area, :amount => row[3]
         end
       end
     end
@@ -197,7 +197,7 @@ namespace :seed do
         csv_contents = CSV.read("doc/votes/#{i}")
         csv_contents.shift
         csv_contents.each do |row|
-          Candidate.find_by_candidate_number(row[0]).votes.create! :voting_area => voting_area, :vote_count => row[3]
+          Candidate.find_by_candidate_number(row[0]).votes.create! :voting_area => voting_area, :amount => row[3]
         end
       end
     end

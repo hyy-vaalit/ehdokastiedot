@@ -20,6 +20,7 @@ gem 'redis'
 
 gem 'state_machine'
 gem 'sendgrid' # required because Mailers use sendgrid gem's methods
+gem 'foreigner'
 
 group :development do
   gem 'heroku'

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110827140631) do
+ActiveRecord::Schema.define(:version => 20110922120317) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -204,7 +204,7 @@ ActiveRecord::Schema.define(:version => 20110827140631) do
   create_table "votes", :force => true do |t|
     t.integer  "voting_area_id"
     t.integer  "candidate_id"
-    t.integer  "vote_count"
+    t.integer  "amount",         :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "fix_count"
@@ -220,5 +220,8 @@ ActiveRecord::Schema.define(:version => 20110827140631) do
     t.boolean  "taken",              :default => false
     t.boolean  "calculated"
   end
+
+  add_foreign_key "votes", "candidates", :name => "votes_candidate_id_fk"
+  add_foreign_key "votes", "voting_areas", :name => "votes_voting_area_id_fk"
 
 end
