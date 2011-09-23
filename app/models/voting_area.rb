@@ -1,3 +1,7 @@
+# States:
+#  - "ready" when all votes have been filled to the voting area
+#  - "taken" when voting area has been taken in to the voting calculations (FIXME: has been calculated or will be calculated?)
+
 class VotingArea < ActiveRecord::Base
 
   has_many :votes

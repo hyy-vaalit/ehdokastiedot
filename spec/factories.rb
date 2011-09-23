@@ -11,11 +11,13 @@ FactoryGirl.define do
 
   factory :electoral_coalition do
     sequence(:name) {|n| "Coalition #{n}"}
+    sequence(:shorten) {|n| "c #{n}"}
     sequence(:number_order) {|n| n+1}
   end
 
   factory :electoral_alliance do
     sequence(:name) {|n| "Alliance #{n}"}
+    sequence(:shorten) {|n| "a #{n}"}
     delivered_candidate_form_amount 2
     secretarial_freeze true
     electoral_coalition
@@ -56,7 +58,7 @@ FactoryGirl.define do
   factory :vote do
     voting_area
     candidate
-    vote_count { (1+1*rand(100)).to_i }
+    amount { rand(200) }
   end
 
 end
