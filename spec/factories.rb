@@ -61,4 +61,23 @@ FactoryGirl.define do
     amount { rand(200) }
   end
 
+  factory :ready_voting_area, :parent => :voting_area do |area|
+    area.ready { true }
+  end
+
+  factory :ready_voting_area_with_votes_for, :parent => :ready_voting_area do |area|
+    area.after_create { |a| Factory(:vote, :candidate => candidate, :amount => amount)}
+  end
+
+  factory :unready_voting_area, :parent => :voting_area do |area|
+    area.ready { false }
+  end
+
+  factory :voted_candidate, :parent => :candidate do |candidate|
+    candidate.after_create { |c| Factory(:vote, :candidate => c, :amount => 1234) }
+  end
+
+  factory :electoral_alliance_with_candidates, :parent => :electoral_alliance do |alliance|
+    alliance.after_create { |a| 3.times { a.candidates << Factory(:candidate) } }
+  end
 end

@@ -3,7 +3,7 @@ class Vote < ActiveRecord::Base
   belongs_to :voting_area
   belongs_to :candidate
 
-  validates_presence_of :voting_area, :candidate
+  validates_presence_of :voting_area, :candidate, :amount
 
   scope :countable, joins(:voting_area).where('voting_areas.ready = ?', true)
 
