@@ -39,33 +39,26 @@ describe 'votable behaviour' do
 
   describe 'votable alliance behaviour' do
     describe 'preliminary votes' do
+      before(:each) do
+        @alliance = FactoryGirl.create(:electoral_alliance_with_candidates)
+      end
 
       it 'has preliminary votes from voting areas which have been fully counted' do
         amount = 10
-        @alliance = FactoryGirl.create(:electoral_alliance_with_candidates)
         @alliance.candidates.each { |c| create_votes_for(c, amount, @ready_voting_areas) }
 
-        expected_count = 0
-        @alliance.candidates.each {|c| expected_count += c.votes.preliminary_sum }
-        #@alliance.votes.preliminary_sum.should == amount * @ready_voting_areas.count * @alliance.candidates.count + 1
-        @alliance.reload
-        @alliance.votes.should_not be_empty
-        @alliance.votes.preliminary_sum.should == expected_count
+        @alliance.votes.preliminary_sum.should == amount * @ready_voting_areas.count * @alliance.candidates.count
       end
-    #
-    #   it 'does not count votes from unfinished voting areas to preliminary votes' do
-    #     amount = 10
-    #     @alliance.candidates.should_not be_empty
-    #     @alliance.candidates.each do |candidate|
-    #       @ready_voting_areas.each { |area| create_votes_for(candidate, area, amount) }
-    #       @unready_voting_areas.each { |area| create_votes_for(candidate, area, amount) }
-    #     end
-    #     puts "alliance votes: #{@alliance.votes}"
-    #     @alliance.candidates.each {|c| puts c.votes.preliminary_sum.inspect}
-    #     puts "lkm: #{@alliance.candidates.inspect}"
-    #     @alliance.votes.preliminary_sum.should == amount * @ready_voting_areas.size
-    #     @alliance.votes.sum("amount").should == amount * @ready_voting_areas.size * @unready_voting_areas.size
-    #   end
+
+      it 'does not count votes from unfinished voting areas to preliminary votes' do
+        amount = 10
+        @alliance.candidates.each do |candidate|
+          create_votes_for(candidate, amount, @ready_voting_areas)
+          create_votes_for(candidate, amount, @unready_voting_areas)
+        end
+
+        @alliance.votes.preliminary_sum.should == amount * @ready_voting_areas.count * @alliance.candidates.count
+      end
     end
 
   end
