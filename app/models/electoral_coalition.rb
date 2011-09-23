@@ -19,8 +19,8 @@ class ElectoralCoalition < ActiveRecord::Base
     end
   end
 
-  def vote_count
-    electoral_alliances.map(&:votes).map(&:preliminary_sum).sum # forgive me for not using sql
+  def preliminary_vote_sum
+    electoral_alliances.map(&:votes).map(&:preliminary_sum).sum # did not work with sql the same way as in alliances
   end
 
   def fixed_total_votes
