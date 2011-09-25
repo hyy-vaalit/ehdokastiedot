@@ -19,7 +19,6 @@ class ElectoralAlliance < ActiveRecord::Base
 
   validates_presence_of :name, :delivered_candidate_form_amount, :primary_advocate_social_security_number, :primary_advocate_email, :shorten
 
-
   def freeze!
     # FIXME: This requires validation but the validaion is done in the controller.
     self.update_attribute :secretarial_freeze, true

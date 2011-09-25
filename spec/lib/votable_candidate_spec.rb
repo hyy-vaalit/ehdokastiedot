@@ -2,7 +2,6 @@ require 'spec_helper'
 
 describe 'votable behaviour' do
   before(:each) do
-    @candidate = FactoryGirl.create(:candidate)
     @ready_voting_areas = []
     @unready_voting_areas = []
     3.times { @ready_voting_areas << FactoryGirl.create(:ready_voting_area) }
@@ -11,8 +10,14 @@ describe 'votable behaviour' do
 
   describe 'votable candidates' do
 
+    it 'gives a list of all candidates ordered by their vote sum'
+
+
     describe 'preliminary votes' do
 
+      before(:each) do
+        @candidate = FactoryGirl.create(:candidate)
+      end
 
       it 'has preliminary votes from voting areas which have been fully counted' do
         amount = 10
@@ -45,7 +50,7 @@ describe 'votable behaviour' do
 
       it 'has preliminary votes from voting areas which have been fully counted' do
         amount = 10
-        @alliance.candidates.each { |c| create_votes_for_candidate(c, amount, @ready_voting_areas) }
+        @alliance.candidates.each { |c| VotableSupport::create_votes_for_candidate(c, amount, @ready_voting_areas) }
 
         @alliance.votes.preliminary_sum.should == amount * @ready_voting_areas.count * @alliance.candidates.count
       end
@@ -53,8 +58,8 @@ describe 'votable behaviour' do
       it 'does not count votes from unfinished voting areas to preliminary votes' do
         amount = 10
         @alliance.candidates.each do |candidate|
-          create_votes_for_candidate(candidate, amount, @ready_voting_areas)
-          create_votes_for_candidate(candidate, amount, @unready_voting_areas)
+          VotableSupport::create_votes_for_candidate(candidate, amount, @ready_voting_areas)
+          VotableSupport::create_votes_for_candidate(candidate, amount, @unready_voting_areas)
         end
 
         @alliance.votes.preliminary_sum.should == amount * @ready_voting_areas.count * @alliance.candidates.count
@@ -71,7 +76,7 @@ describe 'votable behaviour' do
 
       it 'has preliminary votes as a sum of alliance votes' do
         amount = 10
-        @coalition.electoral_alliances.each { |alliance| create_votes_for_alliance(alliance, amount, @ready_voting_areas) }
+        @coalition.electoral_alliances.each { |alliance| VotableSupport::create_votes_for_alliance(alliance, amount, @ready_voting_areas) }
 
         @coalition.preliminary_vote_sum.should == amount * @ready_voting_areas.count * @coalition.candidates.count
       end
@@ -79,8 +84,8 @@ describe 'votable behaviour' do
       it 'does not count votes from unfinished voting areas to preliminary votes' do
         amount = 10
         @coalition.electoral_alliances.each do |alliance|
-          create_votes_for_alliance(alliance, amount, @ready_voting_areas)
-          create_votes_for_alliance(alliance, amount, @unready_voting_areas)
+          VotableSupport::create_votes_for_alliance(alliance, amount, @ready_voting_areas)
+          VotableSupport::create_votes_for_alliance(alliance, amount, @unready_voting_areas)
         end
 
         @coalition.preliminary_vote_sum.should == amount * @ready_voting_areas.count * @coalition.candidates.count
@@ -89,13 +94,4 @@ describe 'votable behaviour' do
 
   end
 
-  def create_votes_for_alliance(alliance, amount, voting_areas)
-    alliance.candidates.each { |c| create_votes_for_candidate(c, amount, voting_areas) }
-  end
-
-  def create_votes_for_candidate(candidate, amount, voting_areas)
-    voting_areas.each do |area|
-      FactoryGirl.create(:vote, :candidate => candidate, :voting_area => area, :amount => amount)
-    end
-  end
 end
