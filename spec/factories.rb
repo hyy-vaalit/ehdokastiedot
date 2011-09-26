@@ -81,7 +81,7 @@ FactoryGirl.define do
     alliance.after_create { |a| 3.times { a.candidates << Factory(:candidate, :electoral_alliance => a) } }
   end
 
-  factory :electoral_coalition_with_alliances, :parent => :electoral_coalition do |coalition|
+  factory :electoral_coalition_with_alliances_and_candidates, :parent => :electoral_coalition do |coalition|
     coalition.after_create { |c| 3.times { c.electoral_alliances << Factory(:electoral_alliance_with_candidates, :electoral_coalition => c) } }
   end
 end

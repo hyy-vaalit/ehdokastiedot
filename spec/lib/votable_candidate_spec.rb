@@ -86,7 +86,7 @@ describe 'votable behaviour' do
   describe 'votable coalition behaviour' do
     describe 'preliminary votes' do
       before(:each) do
-        @coalition = FactoryGirl.create(:electoral_coalition_with_alliances)
+        @coalition = FactoryGirl.create(:electoral_coalition_with_alliances_and_candidates)
       end
 
       it 'has preliminary votes as a sum of alliance votes' do
