@@ -10,7 +10,22 @@ describe 'votable behaviour' do
 
   describe 'votable candidates' do
 
-    it 'gives a list of all candidates ordered by their vote sum'
+    it 'gives a list of all candidates ordered by their vote sum' do
+      candidates = []
+      10.times { candidates << FactoryGirl.create(:candidate) }
+      VotableSupport::create_votes_for(candidates, @ready_voting_areas, :ascending => true)
+
+      Candidate.by_vote_sum.map(&:id).should == candidates.reverse.map(&:id)
+    end
+
+    it 'gives a list of all candidates ordered by their vote sum and excludes unready voting areas' do
+      candidates = []
+      10.times { candidates << FactoryGirl.create(:candidate) }
+      VotableSupport::create_votes_for(candidates, @ready_voting_areas, :ascending => true)
+      VotableSupport::create_votes_for(candidates, @unready_voting_areas, :ascending => false, :base_vote_count => 10000)
+
+      Candidate.by_vote_sum.map(&:id).should == candidates.reverse.map(&:id)
+    end
 
 
     describe 'preliminary votes' do

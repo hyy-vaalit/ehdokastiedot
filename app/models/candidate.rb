@@ -62,6 +62,16 @@ class Candidate < ActiveRecord::Base
 
   attr_accessor :has_fixes
 
+  def self.by_vote_sum
+    find_by_sql("
+      select candidates.id, candidates.candidate_number, sum(votes.amount) as vote_sum from candidates, votes, voting_areas
+      where votes.candidate_id = candidates.id
+        and voting_areas.ready = true
+        and votes.voting_area_id = voting_areas.id
+      group by candidates.id, candidates.candidate_number
+      order by vote_sum desc")
+  end
+
   def invalid!
     self.update_attribute :marked_invalid, true
   end
