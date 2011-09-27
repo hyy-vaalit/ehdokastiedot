@@ -12,7 +12,7 @@ class CoalitionProportional < ActiveRecord::Base
     ElectoralCoalition.all.each do |coalition|
       coalition_votes = coalition.preliminary_vote_sum
       coalition.candidates.by_vote_sum.each_with_index do |candidate, array_index|
-        cp = self.create! :result_id => result.id, :candidate_id => candidate.id, :number => calculate_proportional(coalition_votes, array_index)
+        self.create! :result_id => result.id, :candidate_id => candidate.id, :number => calculate_proportional(coalition_votes, array_index)
       end
     end
 
