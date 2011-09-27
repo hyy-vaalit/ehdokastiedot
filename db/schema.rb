@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110926133154) do
+ActiveRecord::Schema.define(:version => 20110927091136) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -110,13 +110,9 @@ ActiveRecord::Schema.define(:version => 20110926133154) do
     t.integer  "sign_up_order"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "cancelled",                    :default => false
-    t.boolean  "marked_invalid",               :default => false
-    t.float    "alliance_proportional"
-    t.float    "coalition_proportional"
-    t.string   "state",                        :default => "not_selected"
-    t.float    "fixed_alliance_proportional"
-    t.float    "fixed_coalition_proportional"
+    t.boolean  "cancelled",              :default => false
+    t.boolean  "marked_invalid",         :default => false
+    t.string   "state",                  :default => "not_selected"
     t.string   "final_state"
   end
 

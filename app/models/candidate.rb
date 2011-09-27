@@ -26,6 +26,9 @@ class Candidate < ActiveRecord::Base
     end
   end
 
+  has_many :coalition_proportionals
+  has_many :alliance_proportionals
+
   has_many :candidate_drawings
   has_many :candidate_draws, :through => :candidate_drawings
 
@@ -45,7 +48,6 @@ class Candidate < ActiveRecord::Base
   # Operator '&' is an intersection, ie, it matches only entities which are present in both groups.
   scope :has_fixes, lambda { joins(:data_fixes).select("distinct candidates.id, candidates.*") & DataFix.unapplied }
 
-  scope :selection_order, order('coalition_proportional desc, alliance_proportional desc')
   scope :by_alliance, order('electoral_alliance_id desc')
 
   scope :selected, where(state: :selected)
