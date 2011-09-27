@@ -7,8 +7,10 @@ class Result < ActiveRecord::Base
   protected
 
   def calculate_proportionals!
-    alliance_proportionals!
-    coalition_proportionals!
+    Result.transaction do
+      alliance_proportionals!
+      coalition_proportionals!
+    end
   end
 
   def alliance_proportionals!

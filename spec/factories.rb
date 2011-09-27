@@ -71,6 +71,18 @@ FactoryGirl.define do
     candidate
   end
 
+  factory :alliance_proportional do
+    number { rand * rand(100) }
+    result
+    candidate
+  end
+
+  factory :ordered_alliance_proportional, :class => AllianceProportional do
+    sequence(:number) { |n| n*10 }
+    result
+    candidate
+  end
+
   factory :ready_voting_area, :parent => :voting_area do |area|
     area.ready { true }
   end
@@ -85,6 +97,10 @@ FactoryGirl.define do
 
   factory :voted_candidate, :parent => :candidate do |candidate|
     candidate.after_create { |c| Factory(:vote, :candidate => c, :amount => 1234) }
+  end
+
+  factory :result_with_alliance_proportionals_and_candidates, :parent => :result do |result|
+    result.after_create { |r| 10.times { Factory(:ordered_alliance_proportional, :result => r) } }
   end
 
   factory :electoral_alliance_with_candidates, :parent => :electoral_alliance do |alliance|

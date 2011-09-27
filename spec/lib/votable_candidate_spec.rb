@@ -10,6 +10,23 @@ describe 'votable behaviour' do
 
   describe 'votable candidates' do
 
+    it 'gives a list of all candidates ordered by their alliance proportional' do
+      AllianceProportional.stub!(:calculate!)
+      CoalitionProportional.stub!(:calculate!)
+      result = FactoryGirl.create(:result_with_alliance_proportionals_and_candidates)
+
+      ordered_candidates = Candidate.by_alliance_proportional(result)
+      raise "FIXME"
+
+      ordered_candidates.should_not be_empty
+      ordered_candidates.each_with_index do |candidate, index|
+        next_candidate = ordered_candidates[index+1]
+        puts "nro: #{candidate.alliance_proportionals.last.number}"
+        candidate.alliance_proportionals.last.number.should < next_candidate if next_candidate
+      end
+
+    end
+
     it 'gives a list of all candidates ordered by their vote sum' do
       candidates = []
       10.times { candidates << FactoryGirl.create(:candidate) }
