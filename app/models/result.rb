@@ -16,7 +16,7 @@ class Result < ActiveRecord::Base
   end
 
   def coalition_proportionals!
-    CoalitionProportional.calculate!
+    CoalitionProportional.calculate!(self)
   end
 
 end

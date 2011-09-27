@@ -61,6 +61,16 @@ FactoryGirl.define do
     amount { rand(200) }
   end
 
+  factory :result do
+
+  end
+
+  factory :coalition_proportional do
+    number { rand * rand(100) }
+    result
+    candidate
+  end
+
   factory :ready_voting_area, :parent => :voting_area do |area|
     area.ready { true }
   end
