@@ -16,15 +16,30 @@ describe 'votable behaviour' do
       result = FactoryGirl.create(:result_with_alliance_proportionals_and_candidates)
 
       ordered_candidates = Candidate.by_alliance_proportional(result)
-      raise "FIXME"
 
       ordered_candidates.should_not be_empty
       ordered_candidates.each_with_index do |candidate, index|
         next_candidate = ordered_candidates[index+1]
-        puts "nro: #{candidate.alliance_proportionals.last.number}"
-        candidate.alliance_proportionals.last.number.should < next_candidate if next_candidate
+        candidate.alliance_proportionals.last.number.should > next_candidate.alliance_proportional.to_f if next_candidate
       end
+    end
 
+    it 'allows chaining by_votes_sum with other scopes' do
+      alliance = FactoryGirl.create(:electoral_alliance_with_candidates)
+      other_alliance = FactoryGirl.create(:electoral_alliance_with_candidates)
+      VotableSupport::create_votes_for(alliance.candidates, @ready_voting_areas, :ascending => true)
+      VotableSupport::create_votes_for(other_alliance.candidates, @ready_voting_areas, :ascending => true)
+
+      Candidate.count.should > alliance.candidates.count
+      alliance.candidates.by_vote_sum.map(&:id).should == alliance.candidates.reverse.map(&:id)
+    end
+
+    it 'allows chaining by_alliance_proportional with other scopes' do
+      result = FactoryGirl.create(:result_with_alliance_proportionals_and_candidates)
+      alliance = result.alliance_proportionals.first.candidate.electoral_alliance
+      Candidate.count.should > alliance.candidates.count
+
+      alliance.candidates.by_alliance_proportional(result).map(&:id).should == alliance.candidates.map(&:id)
     end
 
     it 'gives a list of all candidates ordered by their vote sum' do

@@ -66,19 +66,19 @@ FactoryGirl.define do
   end
 
   factory :coalition_proportional do
-    number { rand * rand(100) }
+    number { (rand * rand(100)).to_f }
     result
     candidate
   end
 
   factory :alliance_proportional do
-    number { rand * rand(100) }
+    number { (rand * rand(100)).to_f }
     result
     candidate
   end
 
   factory :ordered_alliance_proportional, :class => AllianceProportional do
-    sequence(:number) { |n| n*10 }
+    sequence(:number) { |n| (n*10).to_f }
     result
     candidate
   end

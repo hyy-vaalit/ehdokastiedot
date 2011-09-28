@@ -65,23 +65,22 @@ class Candidate < ActiveRecord::Base
   attr_accessor :has_fixes
 
   def self.by_vote_sum
-    find_by_sql(
-     "select candidates.id, candidates.candidate_number, sum(votes.amount) as vote_sum from candidates, votes, voting_areas
-      where votes.candidate_id = candidates.id
-        and voting_areas.ready = true
-        and votes.voting_area_id = voting_areas.id
-      group by candidates.id, candidates.candidate_number
-      order by vote_sum desc")
+    select('candidates.id, sum(votes.amount) as vote_sum').from(
+      'candidates, votes, voting_areas').where(
+      'votes.candidate_id = candidates.id
+         and voting_areas.ready = true
+         and votes.voting_area_id = voting_areas.id').group(
+      'candidates.id').order(
+      'vote_sum desc')
   end
 
   def self.by_alliance_proportional(result)
-    find_by_sql([
-     "select candidates.id, candidates.candidate_number, alliance_proportionals.number as proportional
-      from candidates, alliance_proportionals, results
-      where alliance_proportionals.candidate_id = candidates.id
-        and results.id = alliance_proportionals.result_id
-        and results.id = ?
-      order by proportional", result.id])
+    select('"candidates".id, "alliance_proportionals".number, "alliance_proportionals".number as alliance_proportional').from(
+      '"candidates"').joins(
+      'left join "alliance_proportionals" ON "candidates".id = alliance_proportionals.candidate_id').joins(
+      'left join "results" ON "results".id = "alliance_proportionals".result_id').where([
+      'results.id = ?', result.id]).order(
+      '"alliance_proportionals".number desc')
   end
 
   def invalid!
