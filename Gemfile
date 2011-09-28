@@ -35,6 +35,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'growl'
   gem 'taps'
+  gem 'ruby-debug19'
 end
 
 group :test do
