@@ -4,6 +4,7 @@ gem 'rails', '3.0.10'
 
 gem 'activeadmin'
 gem 'ranked-model'
+gem 'draper'
 gem 'cancan'
 gem 'passgen'
 
