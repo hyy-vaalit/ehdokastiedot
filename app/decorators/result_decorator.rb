@@ -29,4 +29,5 @@ class ResultDecorator < ApplicationDecorator
   #     h.content_tag :span, time.strftime("%a %m/%d/%y"),
   #                   :class => 'timestamp'
   #   end
+
 end
