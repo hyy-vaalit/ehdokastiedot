@@ -30,4 +30,55 @@ class ResultDecorator < ApplicationDecorator
   #                   :class => 'timestamp'
   #   end
 
+  def candidates_by_coalition_proportional
+    ordered_candidates
+  end
+
+
+  def rendered_output
+    av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
+    output = av.render :partial => "results/result.text.erb", :locals => {:result_decorator => self}
+
+  end
+
+  def candidate_result_line(candidate, index)
+    formatted_order_number(index+1) +
+    formatted_state_char(candidate.candidate_name) +
+    formatted_dots_after_candidate_name(candidate.candidate_name) +
+    formatted_candidate_number(candidate.candidate_number) +
+    formatted_alliance_name(candidate.electoral_alliance.shorten) +  #FIXME: check validates_presence_of
+    formatted_vote_sum(candidate.votes.preliminary_sum) + #TODO
+    formatted_proportional_number(candidate.alliance_proportionals.last.number) + #TODO
+    formatted_proportional_number(candidate.coalition_proportionals.last.number) #TODO
+  end
+
+
+  def formatted_order_number(number)
+    sprintf "%4d", number
+  end
+
+  def formatted_state_char(candidate_name)
+    "X #{candidate_name}"
+  end
+
+  def formatted_candidate_number(number)
+    sprintf "%4d", number
+  end
+
+  def formatted_dots_after_candidate_name(candidate_name)
+    "..clip.. #{candidate_name}"
+  end
+
+  def formatted_alliance_name(alliance_name)
+    sprintf "%6s", alliance_name
+  end
+
+  def formatted_vote_sum(number)
+    sprintf "%4s", number
+  end
+
+  def formatted_proportional_number(number)
+    sprintf "%10.5f", number
+  end
+
 end
