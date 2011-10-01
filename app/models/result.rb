@@ -7,11 +7,13 @@ class Result < ActiveRecord::Base
   after_create :calculate_proportionals!
 
   def ordered_candidates
-    self.candidates.by_coalition_proportional
+    self.candidates.by_coalition_proportional.select('
+      "alliance_proportionals".number as alliance_proportional').joins(
+      'inner join "alliance_proportionals" ON "candidates".id = alliance_proportionals.candidate_id')
   end
 
   def elected_candidates
-    self.ordered_candidates.limit(60) # siirrä conffiin
+    self.ordered_candidates.limit(Vaalit::Voting::ELECTED_CANDIDATE_COUNT)
   end
 
   protected

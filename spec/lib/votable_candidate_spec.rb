@@ -30,12 +30,13 @@ describe 'votable behaviour' do
       result = FactoryGirl.create(:result_with_coalition_proportionals_and_candidates)
 
       ordered_candidates = result.candidates.by_coalition_proportional
-
       ordered_candidates.should_not be_empty
+
       ordered_candidates.each_with_index do |candidate, index|
         next_candidate = ordered_candidates[index+1]
         candidate.coalition_proportionals.last.number.should > next_candidate.coalition_proportionals.last.number if next_candidate
       end
+
 
     end
 

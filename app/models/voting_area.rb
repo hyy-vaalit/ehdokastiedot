@@ -12,6 +12,8 @@ class VotingArea < ActiveRecord::Base
 
   before_create :encrypt_password
 
+  scope :countable, where('ready = ?', true)
+
   def self.authenticate code, password
     area = self.find_by_code code
     return nil if area.nil?

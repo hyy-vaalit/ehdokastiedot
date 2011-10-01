@@ -84,7 +84,9 @@ class Candidate < ActiveRecord::Base
   end
 
   def self.by_coalition_proportional
-    select('"candidates".id, "coalition_proportionals".number, "coalition_proportionals".number as coalition_proportional').from(
+    select('"candidates".id,
+            "coalition_proportionals".number,
+            "coalition_proportionals".number as coalition_proportional').from(
       '"candidates"').joins(:coalition_proportionals).order(
       '"coalition_proportionals".number desc')
   end

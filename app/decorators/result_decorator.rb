@@ -43,13 +43,13 @@ class ResultDecorator < ApplicationDecorator
 
   def candidate_result_line(candidate, index)
     formatted_order_number(index+1) +
-    formatted_state_char(candidate.candidate_name) +
-    formatted_dots_after_candidate_name(candidate.candidate_name) +
-    formatted_candidate_number(candidate.candidate_number) +
-    formatted_alliance_name(candidate.electoral_alliance.shorten) +  #FIXME: check validates_presence_of
-    formatted_vote_sum(candidate.votes.preliminary_sum) + #TODO
-    formatted_proportional_number(candidate.alliance_proportionals.last.number) + #TODO
-    formatted_proportional_number(candidate.coalition_proportionals.last.number) #TODO
+    formatted_state_char(candidate.candidate_name) + " " +
+    formatted_candidate_name_with_dots(candidate.candidate_name) +
+    formatted_candidate_number(candidate.candidate_number) + " " +
+    formatted_alliance_name(candidate.electoral_alliance.shorten) +
+    formatted_vote_sum(candidate.votes.preliminary_sum) + " " + #TODO
+    formatted_proportional_number(candidate.alliance_proportional) + " " +
+    formatted_proportional_number(candidate.coalition_proportional)
   end
 
 
@@ -58,15 +58,19 @@ class ResultDecorator < ApplicationDecorator
   end
 
   def formatted_state_char(candidate_name)
-    "X #{candidate_name}"
+    "*" # TODO
   end
 
   def formatted_candidate_number(number)
-    sprintf "%4d", number
+    sprintf "%4d", number.to_i
   end
 
-  def formatted_dots_after_candidate_name(candidate_name)
-    "..clip.. #{candidate_name}"
+  def formatted_candidate_name_with_dots(candidate_name)
+    max_count = 30
+    dot_count = max_count - candidate_name.length
+    dot_count = 0 if dot_count < 0
+
+    sprintf "%s%s", candidate_name, '.' * dot_count
   end
 
   def formatted_alliance_name(alliance_name)
@@ -78,7 +82,8 @@ class ResultDecorator < ApplicationDecorator
   end
 
   def formatted_proportional_number(number)
-    sprintf "%10.5f", number
+    precision = Vaalit::Voting::PROPORTIONAL_PRECISION
+    sprintf "%10.#{precision}f", number.to_f
   end
 
 end
