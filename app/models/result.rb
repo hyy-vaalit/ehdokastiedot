@@ -9,7 +9,8 @@ class Result < ActiveRecord::Base
   def ordered_candidates
     self.candidates.by_coalition_proportional.select('
       "alliance_proportionals".number as alliance_proportional').joins(
-      'inner join "alliance_proportionals" ON "candidates".id = alliance_proportionals.candidate_id')
+      'inner join "alliance_proportionals" ON "candidates".id = alliance_proportionals.candidate_id').where(
+      ['alliance_proportionals.result_id = ?', self.id])
   end
 
   def elected_candidates
