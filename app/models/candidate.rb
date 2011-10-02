@@ -91,6 +91,13 @@ class Candidate < ActiveRecord::Base
       '"coalition_proportionals".number desc')
   end
 
+  def self.includes_vote_sum
+    select('SUM("votes"."amount") AS vote_sum').joins(
+      'INNER JOIN "votes" ON "votes"."candidate_id" = "candidates"."id"').joins(
+      'INNER JOIN "voting_areas" ON "voting_areas"."id" = "votes"."voting_area_id"').where(
+      ['voting_areas.ready = ?', true]).group("candidates.id")
+  end
+
   def invalid!
     self.update_attribute :marked_invalid, true
   end

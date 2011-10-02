@@ -2,15 +2,20 @@ class Result < ActiveRecord::Base
   has_many :coalition_proportionals
   has_many :alliance_proportionals
 
-  has_many :candidates, :through => :coalition_proportionals
+  has_many :candidates,
+           :through => :coalition_proportionals,
+           :select => "candidates.id, candidates.candidate_name, candidates.candidate_number,
+                       candidates.electoral_alliance_id"
 
   after_create :calculate_proportionals!
 
-  def ordered_candidates
-    self.candidates.by_coalition_proportional.select('
+  def candidates_by_coalition_proportional
+    candidates.includes_vote_sum.by_coalition_proportional.select('
       "alliance_proportionals".number as alliance_proportional').joins(
       'inner join "alliance_proportionals" ON "candidates".id = alliance_proportionals.candidate_id').where(
-      ['alliance_proportionals.result_id = ?', self.id])
+      ['alliance_proportionals.result_id = ?', self.id]).group(
+    "candidates.id, candidates.candidate_name, candidates.candidate_number, candidates.electoral_alliance_id,
+     coalition_proportionals.number, alliance_proportionals.number")
   end
 
   def elected_candidates

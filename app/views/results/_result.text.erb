@@ -2,7 +2,8 @@
 HYYN ALUSTAVA EDUSTAJISTOVAALITULOS 2011
 
 Lopullinen vaalitulos vahvistetaan tarkastuslaskennan jälkeen.
-Läpimenneet merkitty tähdellä (*). Varaedustajat plussalla (+).
+Läpimenneet merkitty tähdellä (*), varaedustajat plussalla (+) ja
+arvontontaan menevät ehdokkaat kysymysmerkillä (?).
 
 Tiedoston lopussa on listattu kaikki ehdokkaat järjestettynä vertailuluvun mukaan.
 
@@ -21,6 +22,21 @@ Valittavia ehdokkaita:    <%#= sprintf "%2d", candidates_to_select %>
 EHDOKKAAT LIITOITTAIN JÄRJESTETTYNÄ
 --------------------------------------------------------------------------------
 
+<%# result_decorator.coalitions_by_vote_sum.each_with_index do |coalition, coalition_index| %>
+
+<%#= "rengas: #{coalition.shorten}" %>
+
+<%# coalition.electoral_alliances.X .each_with_index do |alliance, i| -%>
+LIITTO__________________________________________________________RENGAS_ÄÄNET_PA
+ 24. SatO-ESO2............................................SatESO Osak    181  1
+
+<%# end -%>
+
+EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT_____
+<%# result_decorator.alliance.candidates.selection_order.each_with_index do |candidate, candidate_index| -%>
+<%#= result_decorator.candidate_result_line(candidate, index) %>
+<%# end -%>
+
 
 --------------------------------------------------------------------------------
 EHDOKKAAT RENGASVERTAILULUVUN PERUSTEELLA JÄRJESTETTYNÄ
@@ -28,6 +44,6 @@ EHDOKKAAT RENGASVERTAILULUVUN PERUSTEELLA JÄRJESTETTYNÄ
 
 EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT_____
 <% result_decorator.candidates_by_coalition_proportional.each_with_index do |candidate, index| -%>
-  <%= result_decorator.candidate_result_line(candidate, index) %>
+<%= result_decorator.candidate_result_line(candidate, index) %>
 <% end -%>
 

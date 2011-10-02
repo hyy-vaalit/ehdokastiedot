@@ -30,12 +30,8 @@ class ResultDecorator < ApplicationDecorator
   #                   :class => 'timestamp'
   #   end
 
-  def candidates_by_coalition_proportional
-    ordered_candidates
-  end
-
-
   def rendered_output
+    # DEPRECATION WARNING: config.view_path is deprecated, please do paths.app.views instead.
     av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
     output = av.render :partial => "results/result.text.erb", :locals => {:result_decorator => self}
 
@@ -47,7 +43,7 @@ class ResultDecorator < ApplicationDecorator
     formatted_candidate_name_with_dots(candidate.candidate_name) +
     formatted_candidate_number(candidate.candidate_number) + " " +
     formatted_alliance_name(candidate.electoral_alliance.shorten) +
-    formatted_vote_sum(candidate.votes.preliminary_sum) + " " + #TODO
+    formatted_vote_sum(candidate.vote_sum) + " " + #TODO
     formatted_proportional_number(candidate.alliance_proportional) + " " +
     formatted_proportional_number(candidate.coalition_proportional)
   end
