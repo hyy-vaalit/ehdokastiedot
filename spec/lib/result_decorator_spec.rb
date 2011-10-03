@@ -19,7 +19,7 @@ describe 'votable behaviour' do
     candidate.electoral_alliance.stub!(:shorten).and_return(alliance)
     candidate.stub!(:candidate_name).and_return(candidate_name)
     candidate.stub!(:candidate_number).and_return(cno)
-    candidate.votes.stub!(:preliminary_sum).and_return(votes)
+    candidate.stub!(:vote_sum).and_return(votes)
     candidate.stub!(:alliance_proportional).and_return(aprop)
     candidate.stub!(:coalition_proportional).and_return(cprop)
 
