@@ -16,7 +16,7 @@ describe 'votable behaviour' do
     votes = 42
     cprop = 123.45678
     aprop = 432.12345
-    candidate.electoral_alliance.stub!(:shorten).and_return(alliance)
+    candidate.stub!(:electoral_alliance_shorten).and_return(alliance)
     candidate.stub!(:candidate_name).and_return(candidate_name)
     candidate.stub!(:candidate_number).and_return(cno)
     candidate.stub!(:vote_sum).and_return(votes)

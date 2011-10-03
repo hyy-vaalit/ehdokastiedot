@@ -42,8 +42,8 @@ class ResultDecorator < ApplicationDecorator
     formatted_state_char(candidate.candidate_name) + " " +
     formatted_candidate_name_with_dots(candidate.candidate_name) +
     formatted_candidate_number(candidate.candidate_number) + " " +
-    formatted_alliance_name(candidate.electoral_alliance.shorten) +
-    formatted_vote_sum(candidate.vote_sum) + " " + #TODO
+    formatted_alliance_name(candidate.electoral_alliance_shorten) +
+    formatted_vote_sum(candidate.vote_sum) + " " + #TODO: Äänet vain Resultin äänestysalueista (luo relaatio)
     formatted_proportional_number(candidate.alliance_proportional) + " " +
     formatted_proportional_number(candidate.coalition_proportional)
   end

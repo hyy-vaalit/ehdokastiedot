@@ -11,11 +11,13 @@ class Result < ActiveRecord::Base
 
   def candidates_by_coalition_proportional
     candidates.includes_vote_sum.by_coalition_proportional.select('
-      "alliance_proportionals".number as alliance_proportional').joins(
+      "alliance_proportionals".number as alliance_proportional,
+      "electoral_alliances".shorten as electoral_alliance_shorten').joins(
+      'inner join "electoral_alliances" ON "candidates".electoral_alliance_id = electoral_alliances.id').joins(
       'inner join "alliance_proportionals" ON "candidates".id = alliance_proportionals.candidate_id').where(
       ['alliance_proportionals.result_id = ?', self.id]).group(
     "candidates.id, candidates.candidate_name, candidates.candidate_number, candidates.electoral_alliance_id,
-     coalition_proportionals.number, alliance_proportionals.number")
+     coalition_proportionals.number, alliance_proportionals.number, electoral_alliances.shorten")
   end
 
   def elected_candidates
