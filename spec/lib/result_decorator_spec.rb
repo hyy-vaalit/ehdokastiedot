@@ -51,7 +51,28 @@ describe 'votable behaviour' do
     dot_count = 60 - alliance.name.length - alliance.shorten.length
 
     # 1. HYYn Vihreät - De Gröna vid HUS........................HyVi MP     1045  6
-    expected = "  #{idx+1}. #{alliance.name}#{'.' * dot_count}#{alliance.shorten} #{alliance.electoral_coalition.shorten}   #{vote_sum}  3"
+    expected = "  #{idx+1}. #{alliance.name}#{'.' * dot_count}.#{alliance.shorten} #{alliance.electoral_coalition.shorten}  #{vote_sum}  3"
+
+    @decorator.alliance_result_line(alliance_result, idx).should == expected
+  end
+
+  it 'formats a long alliance result line' do
+    vote_sum = 1234
+    alliance_result = FactoryGirl.build(:alliance_result, :vote_sum_cache => vote_sum)
+    coalition = "MP"
+    alliance_shorten = "SitVas"
+    alliance_name           = "Sitoutumaton vasemmisto - Obunden vänster - Independent Left"
+    truncated_alliance_name = "Sitoutumaton vasemmisto - Obunden vänster - Independ"
+    alliance = alliance_result.electoral_alliance
+    alliance.stub!(:name).and_return(alliance_name)
+    alliance.stub!(:shorten).and_return(alliance_shorten)
+    alliance.electoral_coalition.stub!(:shorten).and_return(coalition)
+    places   = 4
+    idx      = 1
+    dot_count = 1
+
+    # 2. Sitoutumaton vasemmisto - Obunden vänster - Independe.SitVas MP       96  5
+    expected = "  #{idx+1}. #{truncated_alliance_name}.#{alliance_shorten} #{coalition}    #{vote_sum}  3"
 
     @decorator.alliance_result_line(alliance_result, idx).should == expected
   end

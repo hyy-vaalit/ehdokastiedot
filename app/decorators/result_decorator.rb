@@ -62,7 +62,7 @@ class ResultDecorator < ApplicationDecorator
   def alliance_result_line(alliance_result, index)
     formatted_order_number(index+1) + ". " +
     formatted_alliance_name_with_dots_and_shorten(alliance_result.electoral_alliance.name, alliance_result.electoral_alliance.shorten) + " " +
-    formatted_coalition_shorten(alliance_result.electoral_alliance.electoral_coalition.shorten) + " " +
+    formatted_coalition_shorten(alliance_result.electoral_alliance.electoral_coalition.shorten) +
     formatted_vote_sum(alliance_result.vote_sum_cache) + " " +
     formatted_elected_candidates_count(5) # TODO
   end
@@ -98,7 +98,7 @@ class ResultDecorator < ApplicationDecorator
   def formatted_alliance_name_with_dots_and_shorten(name, shorten)
     line_width = 60
 
-    sprintf "%.52s%s%.6s", name, fill_dots(line_width, name, shorten), shorten
+    sprintf "%.52s%s.%.6s", name, fill_dots(line_width, name, shorten), shorten
   end
 
   def formatted_coalition_name_with_dots_and_shorten(name, shorten)
