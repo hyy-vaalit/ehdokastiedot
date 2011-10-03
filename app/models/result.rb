@@ -7,7 +7,24 @@ class Result < ActiveRecord::Base
            :select => "candidates.id, candidates.candidate_name, candidates.candidate_number,
                        candidates.electoral_alliance_id"
 
+  has_many :alliance_results
+  has_many :electoral_alliances,
+           :through => :alliance_results
+
+  has_many :coalition_results
+  has_many :electoral_coalitions,
+           :through => :coalition_results,
+           :select => "electoral_coalitions.id, electoral_coalitions.name, electoral_coalitions.shorten"
+
   after_create :calculate_proportionals!
+
+  def coalition_results_by_vote_sum
+    coalition_results.order("vote_sum_cache desc")
+  end
+
+  def alliance_results_by_vote_sum
+    alliance_results.order("vote_sum_cache desc")
+  end
 
   def candidates_by_coalition_proportional
     candidates.includes_vote_sum.by_coalition_proportional.select('

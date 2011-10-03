@@ -1,3 +1,5 @@
+# coding: UTF-8
+
 FactoryGirl.define do
 
   factory :admin_user do
@@ -63,6 +65,18 @@ FactoryGirl.define do
 
   factory :result do
 
+  end
+
+  factory :coalition_result do
+    result
+    electoral_coalition
+    sequence(:vote_sum_cache) { |n| n+100 }
+  end
+
+  factory :alliance_result do
+    result
+    electoral_alliance
+    sequence(:vote_sum_cache) { |n| n+10 }
   end
 
   factory :coalition_proportional do

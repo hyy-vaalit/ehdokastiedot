@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110927175040) do
+ActiveRecord::Schema.define(:version => 20111003142907) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -80,6 +80,14 @@ ActiveRecord::Schema.define(:version => 20110927175040) do
     t.float    "number",       :null => false
   end
 
+  create_table "alliance_results", :force => true do |t|
+    t.integer  "result_id"
+    t.integer  "electoral_alliance_id"
+    t.integer  "vote_sum_cache"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "candidate_drawings", :force => true do |t|
     t.integer  "candidate_draw_id"
     t.integer  "candidate_id"
@@ -138,6 +146,14 @@ ActiveRecord::Schema.define(:version => 20110927175040) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.float    "number",       :null => false
+  end
+
+  create_table "coalition_results", :force => true do |t|
+    t.integer  "result_id"
+    t.integer  "electoral_coalition_id"
+    t.integer  "vote_sum_cache"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "data_fixes", :force => true do |t|
@@ -241,8 +257,14 @@ ActiveRecord::Schema.define(:version => 20110927175040) do
   add_foreign_key "alliance_proportionals", "candidates", :name => "alliance_proportionals_candidate_id_fk"
   add_foreign_key "alliance_proportionals", "results", :name => "alliance_proportionals_result_id_fk"
 
+  add_foreign_key "alliance_results", "electoral_alliances", :name => "alliance_results_electoral_alliance_id_fk"
+  add_foreign_key "alliance_results", "results", :name => "alliance_results_result_id_fk"
+
   add_foreign_key "coalition_proportionals", "candidates", :name => "coalition_proportionals_candidate_id_fk"
   add_foreign_key "coalition_proportionals", "results", :name => "coalition_proportionals_result_id_fk"
+
+  add_foreign_key "coalition_results", "electoral_coalitions", :name => "coalition_results_electoral_coalition_id_fk"
+  add_foreign_key "coalition_results", "results", :name => "coalition_results_result_id_fk"
 
   add_foreign_key "votes", "candidates", :name => "votes_candidate_id_fk"
   add_foreign_key "votes", "voting_areas", :name => "votes_voting_area_id_fk"

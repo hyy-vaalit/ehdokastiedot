@@ -42,35 +42,78 @@ class ResultDecorator < ApplicationDecorator
     formatted_state_char(candidate.candidate_name) + " " +
     formatted_candidate_name_with_dots(candidate.candidate_name) +
     formatted_candidate_number(candidate.candidate_number) + " " +
-    formatted_alliance_name(candidate.electoral_alliance_shorten) +
+    formatted_alliance_shorten(candidate.electoral_alliance_shorten) +
     formatted_vote_sum(candidate.vote_sum) + " " + #TODO: Äänet vain Resultin äänestysalueista (luo relaatio)
     formatted_proportional_number(candidate.alliance_proportional) + " " +
     formatted_proportional_number(candidate.coalition_proportional)
   end
 
+  #RENKAAT________________________________________________________________ÄÄNET_PA
+  #  6. Svenska Nationer och Ämnesföreningar (SNÄf)...................SNÄf  555  3
+  def coalition_result_line(coalition_result, index)
+    formatted_order_number(index+1) + ". " +
+    formatted_coalition_name_with_dots_and_shorten(coalition_result.electoral_coalition.name, coalition_result.electoral_coalition.shorten) + " " +
+    formatted_vote_sum(coalition_result.vote_sum_cache) + " " +
+    formatted_elected_candidates_count(10) # TODO
+  end
+
+  # LIITOT__________________________________________________________RENGAS_ÄÄNET_PA
+  #  24. SatO-ESO2............................................SatESO Osak    181  1
+  def alliance_result_line(alliance_result, index)
+    formatted_order_number(index+1) + ". " +
+    formatted_alliance_name_with_dots_and_shorten(alliance_result.electoral_alliance.name, alliance_result.electoral_alliance.shorten) + " " +
+    formatted_coalition_shorten(alliance_result.electoral_alliance.electoral_coalition.shorten) + " " +
+    formatted_vote_sum(alliance_result.vote_sum_cache) + " " +
+    formatted_elected_candidates_count(5) # TODO
+  end
 
   def formatted_order_number(number)
-    sprintf "%4d", number
+    sprintf "%3d", number
   end
 
   def formatted_state_char(candidate_name)
     "*" # TODO
   end
 
+  def formatted_elected_candidates_count(number)
+    sprintf "%2d", number.to_i
+  end
+
   def formatted_candidate_number(number)
     sprintf "%4d", number.to_i
   end
 
-  def formatted_candidate_name_with_dots(candidate_name)
-    max_count = 30
-    dot_count = max_count - candidate_name.length
+  def fill_dots(line_width, *contents)
+    content_length = contents.map(&:length).sum
+    dot_count = line_width - content_length
     dot_count = 0 if dot_count < 0
 
-    sprintf "%s%s", candidate_name, '.' * dot_count
+    '.' * dot_count
   end
 
-  def formatted_alliance_name(alliance_name)
-    sprintf "%6s", alliance_name
+  def formatted_coalition_shorten(shorten)
+    sprintf "%-6.6s", shorten
+  end
+
+  def formatted_alliance_name_with_dots_and_shorten(name, shorten)
+    line_width = 60
+
+    sprintf "%.52s%s%.6s", name, fill_dots(line_width, name, shorten), shorten
+  end
+
+  def formatted_coalition_name_with_dots_and_shorten(name, shorten)
+    line_width = 66
+
+    sprintf "%.52s%s%.6s", name, fill_dots(line_width, name, shorten), shorten
+  end
+
+  def formatted_candidate_name_with_dots(candidate_name)
+    line_width = 30
+    sprintf "%.#{line_width}s%s", candidate_name, fill_dots(line_width, candidate_name)
+  end
+
+  def formatted_alliance_shorten(shorten)
+    sprintf "%6.6s", shorten
   end
 
   def formatted_vote_sum(number)

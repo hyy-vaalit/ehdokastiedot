@@ -22,15 +22,15 @@ Valittavia ehdokkaita:    <%#= sprintf "%2d", candidates_to_select %>
 EHDOKKAAT LIITOITTAIN JÄRJESTETTYNÄ
 --------------------------------------------------------------------------------
 
-<%# result_decorator.coalitions_by_vote_sum.each_with_index do |coalition, coalition_index| %>
+RENKAAT________________________________________________________________ÄÄNET_PA
+<% result_decorator.coalition_results_by_vote_sum.each_with_index do |coalition_result, coalition_index| %>
+<%= result_decorator.coalition_result_line(coalition_result, coalition_index) %>
+<% end -%>
 
-<%#= "rengas: #{coalition.shorten}" %>
-
-<%# coalition.electoral_alliances.X .each_with_index do |alliance, i| -%>
-LIITTO__________________________________________________________RENGAS_ÄÄNET_PA
- 24. SatO-ESO2............................................SatESO Osak    181  1
-
-<%# end -%>
+LIITOT__________________________________________________________RENGAS_ÄÄNET_PA
+<% result_decorator.alliance_results_by_vote_sum.each_with_index do |alliance_result, alliance_index| -%>
+<%= result_decorator.alliance_result_line(alliance_result, alliance_index) %>
+<% end -%>
 
 EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT_____
 <%# result_decorator.alliance.candidates.selection_order.each_with_index do |candidate, candidate_index| -%>
