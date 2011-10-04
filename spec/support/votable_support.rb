@@ -1,5 +1,11 @@
 module VotableSupport
 
+  def self.stub_result_class!
+    Result.stub!(:calculate_votes!)
+    Result.stub!(:alliance_proportionals!)
+    Result.stub!(:coalition_proportionals!)
+  end
+
   def self.create_votes_for_alliance(alliance, amount, voting_areas)
     alliance.candidates.each { |c| create_votes_for_candidate(c, amount, voting_areas) }
   end

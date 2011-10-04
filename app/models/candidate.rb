@@ -28,6 +28,7 @@ class Candidate < ActiveRecord::Base
 
   has_many :coalition_proportionals
   has_many :alliance_proportionals
+  has_many :candidate_results
 
   has_many :candidate_drawings
   has_many :candidate_draws, :through => :candidate_drawings

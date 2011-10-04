@@ -6,6 +6,10 @@ class ElectoralAlliance < ActiveRecord::Base
   has_many :alliance_draws, :through => :alliance_drawings
 
   has_many :candidates
+  has_many :candidate_results,
+           :through => :candidates,
+           :select => "candidate_results.result_id"
+
   belongs_to :advocate_user, :foreign_key => :primary_advocate_social_security_number, :primary_key => :ssn
 
   belongs_to :electoral_coalition
@@ -18,6 +22,11 @@ class ElectoralAlliance < ActiveRecord::Base
   scope :ready, where(:secretarial_freeze => true)
 
   validates_presence_of :name, :delivered_candidate_form_amount, :primary_advocate_social_security_number, :primary_advocate_email, :shorten
+
+  def vote_sum_caches
+    candidate_results.select(
+      'candidate_results.result_id, sum(candidate_results.vote_sum_cache) as alliance_vote_sum_cache').group('candidate_results.result_id')
+  end
 
   def freeze!
     # FIXME: This requires validation but the validaion is done in the controller.

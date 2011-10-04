@@ -79,6 +79,12 @@ FactoryGirl.define do
     sequence(:vote_sum_cache) { |n| n+10 }
   end
 
+  factory :candidate_result do
+    result
+    candidate
+    sequence(:vote_sum_cache) { |n| n+10 }
+  end
+
   factory :coalition_proportional do
     number { (rand * rand(100)).to_f }
     result
