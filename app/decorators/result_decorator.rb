@@ -37,13 +37,15 @@ class ResultDecorator < ApplicationDecorator
 
   end
 
+  # EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT_____
+  # 1* Sukunimi, Etunimi 'Lempinimi.... 788 Humani   55    696.00000   2901.00000
   def candidate_result_line(candidate, index)
     formatted_order_number(index+1) +
-    formatted_state_char(candidate.candidate_name) + " " +
+    formatted_status_char(candidate.elected, false) + " " + # TODO
     formatted_candidate_name_with_dots(candidate.candidate_name) +
     formatted_candidate_number(candidate.candidate_number) + " " +
     formatted_alliance_shorten(candidate.electoral_alliance_shorten) +
-    formatted_vote_sum(candidate.vote_sum) + " " + #TODO: Äänet vain Resultin äänestysalueista (luo relaatio)
+    formatted_vote_sum(candidate.vote_sum) + " " +
     formatted_proportional_number(candidate.alliance_proportional) + " " +
     formatted_proportional_number(candidate.coalition_proportional)
   end
@@ -71,8 +73,11 @@ class ResultDecorator < ApplicationDecorator
     sprintf "%3d", number
   end
 
-  def formatted_state_char(candidate_name)
-    "*" # TODO
+
+  def formatted_status_char(elected, spare)
+    return "*" if elected
+    return "+" if spare
+    return "."
   end
 
   def formatted_elected_candidates_count(number)

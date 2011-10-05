@@ -22,10 +22,10 @@ describe 'votable behaviour' do
     candidate.stub!(:candidate_name).and_return(candidate_name)
     candidate.stub!(:candidate_number).and_return(cno)
     candidate.stub!(:vote_sum).and_return(votes)
+    candidate.stub!(:elected).and_return(true)
     candidate.stub!(:alliance_proportional).and_return(aprop)
     candidate.stub!(:coalition_proportional).and_return(cprop)
 
-    # TODO: state char is not stubbed
     expected = "#{idx+1}* #{candidate_name}...... #{cno} #{alliance}  #{votes}  #{aprop}  #{cprop}"
     @decorator.candidate_result_line(candidate, idx).should == expected
   end
@@ -168,6 +168,12 @@ describe 'votable behaviour' do
     @decorator.formatted_candidate_name_with_dots(long_name).should == "Ei Mahdu vaan on liian pitkä a"
   end
 
+  it 'formats election status character' do
+    @decorator.formatted_status_char(true, false).should  == "*"
+    @decorator.formatted_status_char(false, true).should  == "+"
+    @decorator.formatted_status_char(false, false).should == "."
+  end
+
   def how_many_dots(name, max_count)
     count = max_count - name.length
     count = 0 if count < 0
@@ -175,8 +181,4 @@ describe 'votable behaviour' do
     count
   end
 
-  # def formatted_state_char(candidate_name)
-  #   "X #{candidate_name}"
-  # end
-  #
 end

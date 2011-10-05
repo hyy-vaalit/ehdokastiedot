@@ -1,6 +1,6 @@
 class Result < ActiveRecord::Base
-  has_many :coalition_proportionals
-  has_many :alliance_proportionals
+  has_many :coalition_proportionals, :dependent => :destroy
+  has_many :alliance_proportionals, :dependent => :destroy
 
   has_many :candidates_in_election_order,
            :through => :coalition_proportionals,
@@ -9,17 +9,17 @@ class Result < ActiveRecord::Base
            :source  => :candidate,
            :order   => 'coalition_proportionals.number desc'
 
-  has_many :candidate_results
+  has_many :candidate_results, :dependent => :destroy
   has_many :candidates,
            :through => :candidate_results,
            :select => "candidates.id, candidates.candidate_name, candidates.candidate_number,
                        candidates.electoral_alliance_id"
 
-  has_many :alliance_results
+  has_many :alliance_results, :dependent => :destroy
   has_many :electoral_alliances,
            :through => :alliance_results
 
-  has_many :coalition_results
+  has_many :coalition_results, :dependent => :destroy
   has_many :electoral_coalitions,
            :through => :coalition_results,
            :select => "electoral_coalitions.id, electoral_coalitions.name, electoral_coalitions.shorten"
@@ -42,6 +42,7 @@ class Result < ActiveRecord::Base
     candidates_in_election_order.select(
         'alliance_proportionals.number     AS  alliance_proportional,
          electoral_alliances.shorten       AS  electoral_alliance_shorten,
+         candidate_results.elected         AS  elected,
          candidate_results.vote_sum_cache  AS  vote_sum').joins(
         'INNER JOIN electoral_alliances    ON  candidates.electoral_alliance_id = electoral_alliances.id').joins(
         'INNER JOIN candidate_results      ON  candidates.id = candidate_results.candidate_id').joins(
@@ -49,7 +50,7 @@ class Result < ActiveRecord::Base
         ['alliance_proportionals.result_id = ?', self.id]).group(
       "candidates.id, candidates.candidate_name, candidates.candidate_number,
        coalition_proportionals.number, alliance_proportionals.number, electoral_alliances.shorten,
-       candidate_results.vote_sum_cache")
+       candidate_results.vote_sum_cache, candidate_results.elected")
 
   end
 
@@ -71,6 +72,7 @@ class Result < ActiveRecord::Base
       calculate_votes!
       alliance_proportionals!
       coalition_proportionals!
+      elect_candidates!
     end
   end
 
@@ -86,5 +88,10 @@ class Result < ActiveRecord::Base
     Candidate.by_vote_sum.each do |candidate|
       CandidateResult.create! :result => self, :vote_sum_cache => candidate.vote_sum, :candidate_id => candidate.id
     end
+  end
+
+  def elect_candidates!
+    candidate_ids = candidate_results_in_election_order.limit(Vaalit::Voting::ELECTED_CANDIDATE_COUNT).map(&:id)
+    CandidateResult.elect!(candidate_ids, self.id)
   end
 end

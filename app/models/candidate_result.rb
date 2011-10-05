@@ -6,4 +6,7 @@ class CandidateResult < ActiveRecord::Base
     find(:all, :conditions => ["candidate_id IN (?)", candidate_ids])
   end
 
+  def self.elect!(candidate_ids, result_id)
+    update_all ["elected = ?", true], ["result_id = ? AND candidate_id IN (?)", result_id, candidate_ids]
+  end
 end
