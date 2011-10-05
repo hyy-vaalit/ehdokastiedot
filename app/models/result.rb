@@ -55,6 +55,13 @@ class Result < ActiveRecord::Base
 
   def alliance_results_of(coalition_result)
     alliance_results.for_alliances(coalition_result.electoral_coalition.electoral_alliance_ids)
+    # TODO: order by ?
+  end
+
+  def candidate_results_of(alliance_result)
+    candidate_results_in_election_order.where(
+      'electoral_alliance_id = ? ', alliance_result.electoral_alliance_id).reorder(
+      'vote_sum_cache desc')
   end
 
   protected

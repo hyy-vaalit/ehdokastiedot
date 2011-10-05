@@ -100,6 +100,14 @@ class Candidate < ActiveRecord::Base
       ['voting_areas.ready = ?', true]).group("candidates.id")
   end
 
+  def self.by_cached_vote_sum
+    select('candidates.id, candidates.candidate_name, candidates.candidate_number,
+            SUM(candidate_results.vote_sum_cache) as vote_sum_cache').joins(
+      'INNER JOIN candidate_results ON candidate_results.candidate_id = candidates.id').group(
+      'candidates.id, candidates.candidate_name, candidates.candidate_number').order(
+      'SUM(candidate_results.vote_sum_cache) desc')
+  end
+
   def invalid!
     self.update_attribute :marked_invalid, true
   end

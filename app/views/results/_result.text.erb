@@ -39,14 +39,14 @@ RENGAS_________________________________________________________________ÄÄNET_P
 <% result_decorator.alliance_results_of(coalition_result).each_with_index do |alliance_result, alliance_index| -%>
 LIITTO__________________________________________________________RENGAS_ÄÄNET_PA
 <%= result_decorator.alliance_result_line(alliance_result, alliance_index) %>
-<% end -%>
-
-<% end -%>
 EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT_____
-<%# result_decorator.alliance.candidates.selection_order.each_with_index do |candidate, candidate_index| -%>
-<%#= result_decorator.candidate_result_line(candidate, index) %>
-<%# end -%>
+<% result_decorator.candidate_results_of(alliance_result).each_with_index do |candidate_result, candidate_index| -%>
+<%= result_decorator.candidate_result_line(candidate_result, candidate_index) %>
+<% end -%>
 
+<% end -%>
+
+<% end -%>
 
 --------------------------------------------------------------------------------
 EHDOKKAAT RENGASVERTAILULUVUN PERUSTEELLA JÄRJESTETTYNÄ
