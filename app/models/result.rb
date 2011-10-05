@@ -51,9 +51,11 @@ class Result < ActiveRecord::Base
        coalition_proportionals.number, alliance_proportionals.number, electoral_alliances.shorten,
        candidate_results.vote_sum_cache")
 
-       # group  candidates.electoral_alliance_id,
   end
 
+  def alliance_results_of(coalition_result)
+    alliance_results.for_alliances(coalition_result.electoral_coalition.electoral_alliance_ids)
+  end
 
   protected
 
