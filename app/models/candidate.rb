@@ -88,7 +88,8 @@ class Candidate < ActiveRecord::Base
     select('"candidates".id,
             "coalition_proportionals".number,
             "coalition_proportionals".number as coalition_proportional').from(
-      '"candidates"').joins(:coalition_proportionals).order(
+      '"candidates"').joins(
+      'inner join "coalition_proportionals" ON "candidates".id = coalition_proportionals.candidate_id').order(
       '"coalition_proportionals".number desc')
   end
 

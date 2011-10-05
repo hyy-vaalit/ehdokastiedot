@@ -85,6 +85,13 @@ FactoryGirl.define do
     sequence(:vote_sum_cache) { |n| n+10 }
   end
 
+  factory :candidate_result_with_proportionals, :parent => :candidate_result do |candidate_result|
+    candidate_result.after_create do |cr|
+      Factory(:ordered_coalition_proportional, :result => cr.result, :candidate => cr.candidate)
+      Factory(:ordered_alliance_proportional, :result => cr.result, :candidate => cr.candidate)
+    end
+  end
+
   factory :coalition_proportional do
     number { (rand * rand(100)).to_f }
     result
@@ -130,7 +137,7 @@ FactoryGirl.define do
   end
 
   factory :result_with_coalition_proportionals_and_candidates, :parent => :result do |result|
-    result.after_create { |r| 10.times { Factory(:ordered_coalition_proportional, :result => r) } }
+    result.after_create { |r| 10.times { Factory(:candidate_result_with_proportionals, :result => r) } }
   end
 
   factory :electoral_alliance_with_candidates, :parent => :electoral_alliance do |alliance|

@@ -43,7 +43,7 @@ EHDOKKAAT RENGASVERTAILULUVUN PERUSTEELLA JÄRJESTETTYNÄ
 --------------------------------------------------------------------------------
 
 EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT_____
-<% result_decorator.candidates_by_coalition_proportional.each_with_index do |candidate, index| -%>
+<% result_decorator.candidate_results_in_election_order.each_with_index do |candidate, index| -%>
 <%= result_decorator.candidate_result_line(candidate, index) %>
 <% end -%>
 

@@ -25,16 +25,15 @@ describe 'votable behaviour' do
     end
 
     it 'gives a list of all candidates ordered by their coalition proportional' do
-      AllianceProportional.stub!(:calculate!)
-      CoalitionProportional.stub!(:calculate!)
+      VotableSupport::stub_result_class!
       result = FactoryGirl.create(:result_with_coalition_proportionals_and_candidates)
 
-      ordered_candidates = result.candidates.by_coalition_proportional
+      ordered_candidates = result.candidate_results_in_election_order
       ordered_candidates.should_not be_empty
 
       ordered_candidates.each_with_index do |candidate, index|
         next_candidate = ordered_candidates[index+1]
-        candidate.coalition_proportionals.last.number.should > next_candidate.coalition_proportionals.last.number if next_candidate
+        candidate.coalition_proportional.to_f.should > next_candidate.coalition_proportional.to_f if next_candidate
       end
 
 
