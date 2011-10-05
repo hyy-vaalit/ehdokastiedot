@@ -12,6 +12,6 @@ describe ElectoralAlliance do
     FactoryGirl.create(:candidate_result, :vote_sum_cache => votes,
                                           :candidate => candidate, :result => result)
 
-    alliance.vote_sum_caches.find_by_result_id(result.id).alliance_vote_sum_cache.should == 2 * votes
+    alliance.vote_sum_caches.find_by_result_id(result.id).alliance_vote_sum_cache.to_i.should == 2 * votes
   end
 end

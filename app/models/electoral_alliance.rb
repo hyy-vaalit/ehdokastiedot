@@ -10,6 +10,9 @@ class ElectoralAlliance < ActiveRecord::Base
            :through => :candidates,
            :select => "candidate_results.result_id"
 
+  has_many :alliance_results
+  has_many :results, :through => :alliance_results
+
   belongs_to :advocate_user, :foreign_key => :primary_advocate_social_security_number, :primary_key => :ssn
 
   belongs_to :electoral_coalition
