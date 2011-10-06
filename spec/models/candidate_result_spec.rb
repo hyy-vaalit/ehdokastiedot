@@ -7,17 +7,12 @@ describe CandidateResult do
     nodraw_candidates = []
     alliance = FactoryGirl.create(:electoral_alliance_with_candidates)
     result   = FactoryGirl.create(:result)
+    draw_votes = 100
 
-    alliance.candidates.each_with_index do |candidate, index|
-      if index % 2 == 0
-        FactoryGirl.create(:candidate_result, :vote_sum_cache => 100, :result => result, :candidate => candidate)
-      else
-        FactoryGirl.create(:candidate_result, :vote_sum_cache => index, :result => result, :candidate => candidate)
-      end
-    end
+    VotableSupport::create_alliance_draws(alliance, result, draw_votes)
 
     draws = CandidateResult.find_duplicate_vote_sums(result)
-    draws.first.vote_sum_cache.should == 100
+    draws.first.vote_sum_cache.should == draw_votes
     draws.first.should == draws.last # size == 1 hack since count/size will create pgsql syntax error
   end
 end

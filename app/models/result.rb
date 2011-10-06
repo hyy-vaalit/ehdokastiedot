@@ -73,6 +73,7 @@ class Result < ActiveRecord::Base
       alliance_proportionals!
       coalition_proportionals!
       elect_candidates!
+      create_alliance_draws!
     end
   end
 
@@ -93,5 +94,15 @@ class Result < ActiveRecord::Base
   def elect_candidates!
     candidate_ids = candidate_results_in_election_order.limit(Vaalit::Voting::ELECTED_CANDIDATE_COUNT).map(&:id)
     CandidateResult.elect!(candidate_ids, self.id)
+  end
+
+  def create_alliance_draws!
+    CandidateResult.find_duplicate_vote_sums(self.id).each do |draw|
+      candidate_ids = ElectoralAlliance.find(draw.electoral_alliance_id).candidate_ids
+      candidate_results = CandidateResult.find(:all, :conditions => ["candidate_id IN (?) AND vote_sum_cache = ?", candidate_ids, draw.vote_sum_cache])
+
+      alliance_draw = AllianceDraw.create! :result_id => self.id
+      alliance_draw.candidate_results << candidate_results
+    end
   end
 end

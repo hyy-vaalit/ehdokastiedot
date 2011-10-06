@@ -85,6 +85,11 @@ FactoryGirl.define do
     sequence(:vote_sum_cache) { |n| n+10 }
   end
 
+  factory :draw_candidate_result, :class => CandidateResult do
+    electoral_alliance_id '1'
+    vote_sum_cache '10'
+  end
+
   factory :candidate_result_with_proportionals, :parent => :candidate_result do |candidate_result|
     candidate_result.after_create do |cr|
       Factory(:ordered_coalition_proportional, :result => cr.result, :candidate => cr.candidate)
