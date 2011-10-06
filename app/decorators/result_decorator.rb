@@ -45,7 +45,8 @@ class ResultDecorator < ApplicationDecorator
     formatted_candidate_name_with_dots(candidate.candidate_name) +
     formatted_candidate_number(candidate.candidate_number) + " " +
     formatted_alliance_shorten(candidate.electoral_alliance_shorten) +
-    formatted_vote_sum(candidate.vote_sum) + " " +
+    formatted_vote_sum(candidate.vote_sum) +
+    formatted_alliance_draw_char(candidate.alliance_draw_identifier) +
     formatted_proportional_number(candidate.alliance_proportional) + " " +
     formatted_proportional_number(candidate.coalition_proportional)
   end
@@ -73,6 +74,9 @@ class ResultDecorator < ApplicationDecorator
     sprintf "%3d", number
   end
 
+  def formatted_alliance_draw_char(identifier)
+    sprintf "%2.2s", identifier
+  end
 
   def formatted_status_char(elected, spare)
     return "*" if elected

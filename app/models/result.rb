@@ -43,15 +43,13 @@ class Result < ActiveRecord::Base
         'alliance_proportionals.number     AS  alliance_proportional,
          electoral_alliances.shorten       AS  electoral_alliance_shorten,
          candidate_results.elected         AS  elected,
+         alliance_draws.identifier         AS  alliance_draw_identifier,
          candidate_results.vote_sum_cache  AS  vote_sum').joins(
-        'INNER JOIN electoral_alliances    ON  candidates.electoral_alliance_id = electoral_alliances.id').joins(
+        'INNER JOIN electoral_alliances    ON  candidates.electoral_alliance_id   = electoral_alliances.id').joins(
         'INNER JOIN candidate_results      ON  candidates.id = candidate_results.candidate_id').joins(
+        'LEFT OUTER JOIN alliance_draws    ON  candidate_results.alliance_draw_id = alliance_draws.id').joins(
         'INNER JOIN alliance_proportionals ON  candidates.id = alliance_proportionals.candidate_id').where(
-        ['alliance_proportionals.result_id = ?', self.id]).group(
-      "candidates.id, candidates.candidate_name, candidates.candidate_number,
-       coalition_proportionals.number, alliance_proportionals.number, electoral_alliances.shorten,
-       candidate_results.vote_sum_cache, candidate_results.elected")
-
+        ['alliance_proportionals.result_id = ?', self.id])
   end
 
   def alliance_results_of(coalition_result)
@@ -97,11 +95,11 @@ class Result < ActiveRecord::Base
   end
 
   def create_alliance_draws!
-    CandidateResult.find_duplicate_vote_sums(self.id).each do |draw|
+    CandidateResult.find_duplicate_vote_sums(self.id).each_with_index do |draw, index|
       candidate_ids = ElectoralAlliance.find(draw.electoral_alliance_id).candidate_ids
       candidate_results = CandidateResult.find(:all, :conditions => ["candidate_id IN (?) AND vote_sum_cache = ?", candidate_ids, draw.vote_sum_cache])
 
-      alliance_draw = AllianceDraw.create! :result_id => self.id
+      alliance_draw = AllianceDraw.create! :result_id => self.id, :identifier_number => index
       alliance_draw.candidate_results << candidate_results
     end
   end

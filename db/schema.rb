@@ -58,6 +58,7 @@ ActiveRecord::Schema.define(:version => 20111006082618) do
 
   create_table "alliance_draws", :force => true do |t|
     t.integer  "result_id"
+    t.string   "identifier"
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -1,7 +1,7 @@
 class CandidateResult < ActiveRecord::Base
   belongs_to :result
   belongs_to :candidate
-  belongs_to :alliance_draw
+  belongs_to :alliance_draw, :dependent => :destroy
 
   def self.for_candidates(candidate_ids)
     find(:all, :conditions => ["candidate_id IN (?)", candidate_ids])
