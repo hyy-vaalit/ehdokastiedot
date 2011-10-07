@@ -21,4 +21,15 @@ class CandidateResult < ActiveRecord::Base
       'candidates.electoral_alliance_id, candidate_results.vote_sum_cache having count(*) > 1').order('electoral_alliance_id')
   end
 
+  def self.elected
+    where(:elected => true)
+  end
+
+  def self.elected_in_alliance(alliance_id, result_id)
+    elected.joins(
+    'INNER JOIN candidates            ON candidate_results.candidate_id     = candidates.id').joins(
+    'INNER JOIN electoral_alliances   ON electoral_alliances.id             = candidates.electoral_alliance_id').where(
+    'electoral_alliances.id = ? AND candidate_results.result_id = ?', alliance_id, result_id)
+  end
+
 end
