@@ -18,15 +18,18 @@ describe 'votable behaviour' do
     votes = 42
     cprop = 123.45678
     aprop = 432.12345
+    alliance_draw = "ax"
     candidate.stub!(:electoral_alliance_shorten).and_return(alliance)
     candidate.stub!(:candidate_name).and_return(candidate_name)
     candidate.stub!(:candidate_number).and_return(cno)
     candidate.stub!(:vote_sum).and_return(votes)
     candidate.stub!(:elected).and_return(true)
+    candidate.stub!(:alliance_draw_identifier).and_return(alliance_draw)
     candidate.stub!(:alliance_proportional).and_return(aprop)
     candidate.stub!(:coalition_proportional).and_return(cprop)
+    candidate.stub!(:alliance_draw_affects_elected?).and_return(false)
 
-    expected = "#{idx+1}* #{candidate_name}...... #{cno} #{alliance}  #{votes}  #{aprop}  #{cprop}"
+    expected = "#{idx+1}* #{candidate_name}...... #{cno} #{alliance}  #{votes}#{alliance_draw}  #{aprop}  #{cprop}"
     @decorator.candidate_result_line(candidate, idx).should == expected
   end
 
@@ -169,9 +172,12 @@ describe 'votable behaviour' do
   end
 
   it 'formats election status character' do
-    @decorator.formatted_status_char(true, false).should  == "*"
-    @decorator.formatted_status_char(false, true).should  == "+"
-    @decorator.formatted_status_char(false, false).should == "."
+    not_effective = not_elected = false
+    effective = elected = true
+
+    @decorator.formatted_status_char(elected, not_effective).should  == "*"
+    @decorator.formatted_status_char(elected, effective).should == "?"
+    @decorator.formatted_status_char(not_elected, not_effective).should  == "."
   end
 
   def how_many_dots(name, max_count)

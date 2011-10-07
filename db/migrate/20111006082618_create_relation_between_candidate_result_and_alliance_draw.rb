@@ -4,6 +4,8 @@ class CreateRelationBetweenCandidateResultAndAllianceDraw < ActiveRecord::Migrat
     create_table :alliance_draws do |t|
       t.references :result
       t.string :identifier
+      t.boolean :affects_elected_candidates
+
       t.timestamps
     end
 

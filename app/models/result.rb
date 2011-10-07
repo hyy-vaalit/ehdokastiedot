@@ -44,12 +44,13 @@ class Result < ActiveRecord::Base
          electoral_alliances.shorten       AS  electoral_alliance_shorten,
          candidate_results.elected         AS  elected,
          alliance_draws.identifier         AS  alliance_draw_identifier,
+         alliance_draws.affects_elected_candidates AS alliance_draw_affects_elected,
          candidate_results.vote_sum_cache  AS  vote_sum').joins(
         'INNER JOIN electoral_alliances    ON  candidates.electoral_alliance_id   = electoral_alliances.id').joins(
         'INNER JOIN candidate_results      ON  candidates.id = candidate_results.candidate_id').joins(
         'LEFT OUTER JOIN alliance_draws    ON  candidate_results.alliance_draw_id = alliance_draws.id').joins(
         'INNER JOIN alliance_proportionals ON  candidates.id = alliance_proportionals.candidate_id').where(
-        ['alliance_proportionals.result_id = ?', self.id])
+        ['alliance_proportionals.result_id = ? AND candidate_results.result_id = ?', self.id, self.id])
   end
 
   def alliance_results_of(coalition_result)
@@ -90,7 +91,7 @@ class Result < ActiveRecord::Base
   end
 
   def elect_candidates!
-    candidate_ids = candidate_results_in_election_order.limit(Vaalit::Voting::ELECTED_CANDIDATE_COUNT).map(&:id)
+    candidate_ids = candidates_in_election_order.limit(Vaalit::Voting::ELECTED_CANDIDATE_COUNT).map(&:id)
     CandidateResult.elect!(candidate_ids, self.id)
   end
 
@@ -98,8 +99,9 @@ class Result < ActiveRecord::Base
     CandidateResult.find_duplicate_vote_sums(self.id).each_with_index do |draw, index|
       candidate_ids = ElectoralAlliance.find(draw.electoral_alliance_id).candidate_ids
       candidate_results = CandidateResult.find(:all, :conditions => ["candidate_id IN (?) AND vote_sum_cache = ?", candidate_ids, draw.vote_sum_cache])
+      affects_elected_candidates = candidate_results.map(&:elected).include?(true)
 
-      alliance_draw = AllianceDraw.create! :result_id => self.id, :identifier_number => index
+      alliance_draw = AllianceDraw.create! :result_id => self.id, :identifier_number => index, :affects_elected_candidates => affects_elected_candidates
       alliance_draw.candidate_results << candidate_results
     end
   end
