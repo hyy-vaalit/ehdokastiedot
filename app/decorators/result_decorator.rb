@@ -46,9 +46,10 @@ class ResultDecorator < ApplicationDecorator
     formatted_candidate_number(candidate.candidate_number) + " " +
     formatted_alliance_shorten(candidate.electoral_alliance_shorten) +
     formatted_vote_sum(candidate.vote_sum) +
-    formatted_alliance_draw_char(candidate.alliance_draw_identifier) + " " +
-    formatted_proportional_number(candidate.alliance_proportional) + " " +
-    formatted_proportional_number(candidate.coalition_proportional)
+    formatted_draw_char(candidate.alliance_draw_identifier) +
+    formatted_proportional_number(candidate.alliance_proportional) + "  " +
+    formatted_proportional_number(candidate.coalition_proportional) +
+    formatted_draw_char(candidate.coalition_draw_identifier)
   end
 
   #RENKAAT________________________________________________________________ÄÄNET_PA
@@ -74,7 +75,7 @@ class ResultDecorator < ApplicationDecorator
     sprintf "%3d", number
   end
 
-  def formatted_alliance_draw_char(identifier)
+  def formatted_draw_char(identifier)
     sprintf "%2.2s", identifier
   end
 
@@ -128,12 +129,12 @@ class ResultDecorator < ApplicationDecorator
   end
 
   def formatted_vote_sum(number)
-    sprintf "%4s", number
+    sprintf "%5s", number
   end
 
   def formatted_proportional_number(number)
     precision = Vaalit::Voting::PROPORTIONAL_PRECISION
-    sprintf "%10.#{precision}f", number.to_f
+    sprintf "%11.#{precision}f", number.to_f
   end
 
 end

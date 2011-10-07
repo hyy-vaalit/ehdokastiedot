@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111006082618) do
+ActiveRecord::Schema.define(:version => 20111007122039) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -88,6 +88,7 @@ ActiveRecord::Schema.define(:version => 20111006082618) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "alliance_draw_id"
+    t.integer  "coalition_draw_id"
   end
 
   create_table "candidates", :force => true do |t|
@@ -109,6 +110,14 @@ ActiveRecord::Schema.define(:version => 20111006082618) do
     t.boolean  "marked_invalid",         :default => false
     t.string   "state",                  :default => "not_selected"
     t.string   "final_state"
+  end
+
+  create_table "coalition_draws", :force => true do |t|
+    t.integer  "result_id"
+    t.string   "identifier"
+    t.boolean  "affects_elected_candidates"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   create_table "coalition_proportionals", :force => true do |t|
@@ -235,7 +244,10 @@ ActiveRecord::Schema.define(:version => 20111006082618) do
 
   add_foreign_key "candidate_results", "alliance_draws", :name => "candidate_results_alliance_draw_id_fk"
   add_foreign_key "candidate_results", "candidates", :name => "candidate_results_candidate_id_fk"
+  add_foreign_key "candidate_results", "coalition_draws", :name => "candidate_results_coalition_draw_id_fk"
   add_foreign_key "candidate_results", "results", :name => "candidate_results_result_id_fk"
+
+  add_foreign_key "coalition_draws", "results", :name => "coalition_draws_result_id_fk"
 
   add_foreign_key "coalition_proportionals", "candidates", :name => "coalition_proportionals_candidate_id_fk"
   add_foreign_key "coalition_proportionals", "results", :name => "coalition_proportionals_result_id_fk"

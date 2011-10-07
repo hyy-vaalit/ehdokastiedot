@@ -19,17 +19,20 @@ describe 'votable behaviour' do
     cprop = 123.45678
     aprop = 432.12345
     alliance_draw = "ax"
+    coalition_draw = " a"
     candidate.stub!(:electoral_alliance_shorten).and_return(alliance)
     candidate.stub!(:candidate_name).and_return(candidate_name)
     candidate.stub!(:candidate_number).and_return(cno)
     candidate.stub!(:vote_sum).and_return(votes)
     candidate.stub!(:elected).and_return(true)
     candidate.stub!(:alliance_draw_identifier).and_return(alliance_draw)
+    candidate.stub!(:coalition_draw_identifier).and_return(coalition_draw)
     candidate.stub!(:alliance_proportional).and_return(aprop)
     candidate.stub!(:coalition_proportional).and_return(cprop)
     candidate.stub!(:alliance_draw_affects_elected?).and_return(false)
 
-    expected = "#{idx+1}* #{candidate_name}...... #{cno} #{alliance}  #{votes}#{alliance_draw}  #{aprop}  #{cprop}"
+    # "124* Testinen, Martti 'Sakke'...... 789 Tumpit   42ax  432.12345    123.45678 a"
+    expected = "#{idx+1}* #{candidate_name}...... #{cno} #{alliance}   #{votes}#{alliance_draw}  #{aprop}    #{cprop}#{coalition_draw}"
     @decorator.candidate_result_line(candidate, idx).should == expected
   end
 
@@ -40,7 +43,7 @@ describe 'votable behaviour' do
     places    = 3
     idx       = 1
     dot_count = 66 - coalition.name.length - coalition.shorten.length
-    expected = "  #{idx+1}. #{coalition.name}#{'.' * dot_count}#{coalition.shorten} #{vote_sum}  3"
+    expected = "  #{idx+1}. #{coalition.name}#{'.' * dot_count}#{coalition.shorten}  #{vote_sum}  3"
 
     @decorator.coalition_result_line(coalition_result, idx).should == expected
   end
@@ -54,7 +57,7 @@ describe 'votable behaviour' do
     dot_count = 60 - alliance.name.length - alliance.shorten.length
 
     # 1. HYYn Vihreät - De Gröna vid HUS........................HyVi MP     1045  6
-    expected = "  #{idx+1}. #{alliance.name}#{'.' * dot_count}.#{alliance.shorten} #{alliance.electoral_coalition.shorten}  #{vote_sum}  3"
+    expected = "  #{idx+1}. #{alliance.name}#{'.' * dot_count}.#{alliance.shorten} #{alliance.electoral_coalition.shorten}   #{vote_sum}  3"
 
     @decorator.alliance_result_line(alliance_result, idx).should == expected
   end
@@ -75,7 +78,7 @@ describe 'votable behaviour' do
     dot_count = 1
 
     # 2. Sitoutumaton vasemmisto - Obunden vänster - Independe.SitVas MP       96  5
-    expected = "  #{idx+1}. #{truncated_alliance_name}.#{alliance_shorten} #{coalition}    #{vote_sum}  3"
+    expected = "  #{idx+1}. #{truncated_alliance_name}.#{alliance_shorten} #{coalition}     #{vote_sum}  3"
 
     @decorator.alliance_result_line(alliance_result, idx).should == expected
   end
@@ -120,23 +123,24 @@ describe 'votable behaviour' do
 
   it 'formats proportional number' do
     precision = Vaalit::Voting::PROPORTIONAL_PRECISION
-    @decorator.formatted_proportional_number(nil).should   ==  "   0." + "0" * precision
-    @decorator.formatted_proportional_number(0.0).should   ==  "   0." + "0" * precision
-    @decorator.formatted_proportional_number(1.123).should ==  "   1.123" + "0" * (precision-3)
-    @decorator.formatted_proportional_number(1).should     ==  "   1." + "0" * precision
-    @decorator.formatted_proportional_number(10).should    ==  "  10." + "0" * precision
-    @decorator.formatted_proportional_number(100).should   ==  " 100." + "0" * precision
-    @decorator.formatted_proportional_number(1000).should  ==  "1000." + "0" * precision
+    @decorator.formatted_proportional_number(nil).should   ==  "    0." + "0" * precision
+    @decorator.formatted_proportional_number(0.0).should   ==  "    0." + "0" * precision
+    @decorator.formatted_proportional_number(1.123).should ==  "    1.123" + "0" * (precision-3)
+    @decorator.formatted_proportional_number(1).should     ==  "    1." + "0" * precision
+    @decorator.formatted_proportional_number(10).should    ==  "   10." + "0" * precision
+    @decorator.formatted_proportional_number(100).should   ==  "  100." + "0" * precision
+    @decorator.formatted_proportional_number(1000).should  ==  " 1000." + "0" * precision
     @decorator.formatted_proportional_number(10000).should ==  "10000." + "0" * precision
   end
 
   it 'formats vote sum' do
-    @decorator.formatted_vote_sum(nil).should  == "    "
-    @decorator.formatted_vote_sum(0).should    == "   0"
-    @decorator.formatted_vote_sum(1).should    == "   1"
-    @decorator.formatted_vote_sum(10).should   == "  10"
-    @decorator.formatted_vote_sum(100).should  == " 100"
-    @decorator.formatted_vote_sum(1000).should == "1000"
+    @decorator.formatted_vote_sum(nil).should   == "     "
+    @decorator.formatted_vote_sum(0).should     == "    0"
+    @decorator.formatted_vote_sum(1).should     == "    1"
+    @decorator.formatted_vote_sum(10).should    == "   10"
+    @decorator.formatted_vote_sum(100).should   == "  100"
+    @decorator.formatted_vote_sum(1000).should  == " 1000"
+    @decorator.formatted_vote_sum(10000).should == "10000"
   end
 
   it 'formats character which shows whether the candidate has been elected'

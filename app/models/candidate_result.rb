@@ -2,6 +2,9 @@ class CandidateResult < ActiveRecord::Base
   belongs_to :result
   belongs_to :candidate
   belongs_to :alliance_draw, :dependent => :destroy
+  belongs_to :coalition_draw, :dependent => :destroy
+
+  validates_presence_of :result_id, :candidate_id
 
   def self.for_candidates(candidate_ids)
     find(:all, :conditions => ["candidate_id IN (?)", candidate_ids])
@@ -17,4 +20,5 @@ class CandidateResult < ActiveRecord::Base
       'candidate_results.result_id = ?', result_id).group(
       'candidates.electoral_alliance_id, candidate_results.vote_sum_cache having count(*) > 1').order('electoral_alliance_id')
   end
+
 end

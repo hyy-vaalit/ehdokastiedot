@@ -24,6 +24,9 @@ class Result < ActiveRecord::Base
            :through => :coalition_results,
            :select => "electoral_coalitions.id, electoral_coalitions.name, electoral_coalitions.shorten"
 
+  has_many :alliance_draws, :dependent => :destroy
+  has_many :coalition_draws, :dependent => :destroy
+
   after_create :calculate_proportionals!
 
   def coalition_results_by_vote_sum
@@ -45,10 +48,13 @@ class Result < ActiveRecord::Base
          candidate_results.elected         AS  elected,
          alliance_draws.identifier         AS  alliance_draw_identifier,
          alliance_draws.affects_elected_candidates AS alliance_draw_affects_elected,
+         coalition_draws.identifier         AS  coalition_draw_identifier,
+         coalition_draws.affects_elected_candidates AS coalition_draw_affects_elected,
          candidate_results.vote_sum_cache  AS  vote_sum').joins(
         'INNER JOIN electoral_alliances    ON  candidates.electoral_alliance_id   = electoral_alliances.id').joins(
         'INNER JOIN candidate_results      ON  candidates.id = candidate_results.candidate_id').joins(
         'LEFT OUTER JOIN alliance_draws    ON  candidate_results.alliance_draw_id = alliance_draws.id').joins(
+        'LEFT OUTER JOIN coalition_draws   ON  candidate_results.coalition_draw_id = coalition_draws.id').joins(
         'INNER JOIN alliance_proportionals ON  candidates.id = alliance_proportionals.candidate_id').where(
         ['alliance_proportionals.result_id = ? AND candidate_results.result_id = ?', self.id, self.id])
   end
@@ -73,6 +79,7 @@ class Result < ActiveRecord::Base
       coalition_proportionals!
       elect_candidates!
       create_alliance_draws!
+      create_coalition_draws!
     end
   end
 
@@ -98,11 +105,24 @@ class Result < ActiveRecord::Base
   def create_alliance_draws!
     CandidateResult.find_duplicate_vote_sums(self.id).each_with_index do |draw, index|
       candidate_ids = ElectoralAlliance.find(draw.electoral_alliance_id).candidate_ids
-      candidate_results = CandidateResult.find(:all, :conditions => ["candidate_id IN (?) AND vote_sum_cache = ?", candidate_ids, draw.vote_sum_cache])
-      affects_elected_candidates = candidate_results.map(&:elected).include?(true)
+      draw_candidate_results = self.candidate_results.where(["candidate_id IN (?) AND vote_sum_cache = ?", candidate_ids, draw.vote_sum_cache])
 
-      alliance_draw = AllianceDraw.create! :result_id => self.id, :identifier_number => index, :affects_elected_candidates => affects_elected_candidates
-      alliance_draw.candidate_results << candidate_results
+      alliance_draw = AllianceDraw.create! :result_id => self.id,
+                                           :identifier_number => index,
+                                           :affects_elected_candidates => AllianceDraw.affects_elected?(draw_candidate_results)
+      alliance_draw.candidate_results << draw_candidate_results
+    end
+  end
+
+  def create_coalition_draws!
+    CoalitionProportional.find_duplicate_numbers(self.id).each_with_index do |draw_proportional, index|
+      candidate_ids = CoalitionProportional.select('candidate_id').where(["number = ? AND result_id = ?", draw_proportional.number, self.id]).map(&:candidate_id)
+      draw_candidate_results = self.candidate_results.where(["candidate_id IN (?)", candidate_ids])
+
+      coalition_draw = CoalitionDraw.create! :result_id => self.id,
+                                             :identifier_number => index,
+                                             :affects_elected_candidates => CoalitionDraw.affects_elected?(draw_candidate_results)
+      coalition_draw.candidate_results << draw_candidate_results
     end
   end
 end
