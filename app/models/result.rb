@@ -70,6 +70,10 @@ class Result < ActiveRecord::Base
       'vote_sum_cache desc')
   end
 
+  def elected_candidates_in_alliance(alliance_result)
+    CandidateResult.elected_in_alliance(alliance_result.electoral_alliance_id, alliance_result.result_id)
+  end
+
   protected
 
   def calculate_proportionals!

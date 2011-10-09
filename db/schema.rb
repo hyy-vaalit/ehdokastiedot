@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111007122039) do
+ActiveRecord::Schema.define(:version => 20111009181827) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -59,7 +59,7 @@ ActiveRecord::Schema.define(:version => 20111007122039) do
   create_table "alliance_draws", :force => true do |t|
     t.integer  "result_id"
     t.string   "identifier"
-    t.boolean  "affects_elected_candidates"
+    t.boolean  "affects_elected_candidates", :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -84,7 +84,7 @@ ActiveRecord::Schema.define(:version => 20111007122039) do
     t.integer  "result_id"
     t.integer  "candidate_id"
     t.integer  "vote_sum_cache"
-    t.boolean  "elected"
+    t.boolean  "elected",           :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
     t.integer  "alliance_draw_id"
@@ -115,7 +115,7 @@ ActiveRecord::Schema.define(:version => 20111007122039) do
   create_table "coalition_draws", :force => true do |t|
     t.integer  "result_id"
     t.string   "identifier"
-    t.boolean  "affects_elected_candidates"
+    t.boolean  "affects_elected_candidates", :default => false, :null => false
     t.datetime "created_at"
     t.datetime "updated_at"
   end

@@ -41,7 +41,7 @@ class ResultDecorator < ApplicationDecorator
   # 1* Sukunimi, Etunimi 'Lempinimi.... 788 Humani   55    696.00000   2901.00000
   def candidate_result_line(candidate, index)
     formatted_order_number(index+1) +
-    formatted_status_char(candidate.elected,
+    formatted_status_char(candidate.elected?,
                           candidate.alliance_draw_affects_elected?,
                           candidate.coalition_draw_affects_elected?) + " " +
     formatted_candidate_name_with_dots(candidate.candidate_name) +
@@ -70,7 +70,7 @@ class ResultDecorator < ApplicationDecorator
     formatted_alliance_name_with_dots_and_shorten(alliance_result.electoral_alliance.name, alliance_result.electoral_alliance.shorten) + " " +
     formatted_coalition_shorten(alliance_result.electoral_alliance.electoral_coalition.shorten) +
     formatted_vote_sum(alliance_result.vote_sum_cache) + " " +
-    formatted_elected_candidates_count(5) # TODO
+    formatted_elected_candidates_count(elected_candidates_in_alliance(alliance_result).count)
   end
 
   def formatted_order_number(number)
