@@ -41,7 +41,9 @@ class ResultDecorator < ApplicationDecorator
   # 1* Sukunimi, Etunimi 'Lempinimi.... 788 Humani   55    696.00000   2901.00000
   def candidate_result_line(candidate, index)
     formatted_order_number(index+1) +
-    formatted_status_char(candidate.elected, candidate.alliance_draw_affects_elected?) + " " + # TODO
+    formatted_status_char(candidate.elected,
+                          candidate.alliance_draw_affects_elected?,
+                          candidate.coalition_draw_affects_elected?) + " " +
     formatted_candidate_name_with_dots(candidate.candidate_name) +
     formatted_candidate_number(candidate.candidate_number) + " " +
     formatted_alliance_shorten(candidate.electoral_alliance_shorten) +
@@ -79,9 +81,10 @@ class ResultDecorator < ApplicationDecorator
     sprintf "%2.2s", identifier
   end
 
-  def formatted_status_char(elected, effective_draw)
+  def formatted_status_char(elected, effective_alliance_draw, effective_coalition_draw)
     spare = false # TODO
-    return "?" if effective_draw
+    return "=" if effective_coalition_draw
+    return "?" if effective_alliance_draw
     return "*" if elected
     return "+" if spare
     return "."

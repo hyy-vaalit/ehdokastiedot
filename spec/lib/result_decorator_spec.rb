@@ -30,6 +30,7 @@ describe 'votable behaviour' do
     candidate.stub!(:alliance_proportional).and_return(aprop)
     candidate.stub!(:coalition_proportional).and_return(cprop)
     candidate.stub!(:alliance_draw_affects_elected?).and_return(false)
+    candidate.stub!(:coalition_draw_affects_elected?).and_return(false)
 
     # "124* Testinen, Martti 'Sakke'...... 789 Tumpit   42ax  432.12345    123.45678 a"
     expected = "#{idx+1}* #{candidate_name}...... #{cno} #{alliance}   #{votes}#{alliance_draw}  #{aprop}    #{cprop}#{coalition_draw}"
@@ -179,9 +180,15 @@ describe 'votable behaviour' do
     not_effective = not_elected = false
     effective = elected = true
 
-    @decorator.formatted_status_char(elected, not_effective).should  == "*"
-    @decorator.formatted_status_char(elected, effective).should == "?"
-    @decorator.formatted_status_char(not_elected, not_effective).should  == "."
+    @decorator.formatted_status_char(elected, not_effective, not_effective).should  == "*"
+    @decorator.formatted_status_char(elected, not_effective, effective).should  == "="
+    @decorator.formatted_status_char(elected, effective, not_effective).should == "?"
+    @decorator.formatted_status_char(elected, effective, effective).should == "="
+
+    @decorator.formatted_status_char(not_elected, not_effective, not_effective).should  == "."
+    @decorator.formatted_status_char(not_elected, not_effective, effective).should  == "="
+    @decorator.formatted_status_char(not_elected, effective, not_effective).should  == "?"
+    @decorator.formatted_status_char(not_elected, effective, effective).should  == "="
   end
 
   def how_many_dots(name, max_count)
