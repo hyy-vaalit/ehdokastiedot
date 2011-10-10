@@ -58,7 +58,7 @@ class ResultDecorator < ApplicationDecorator
   #  6. Svenska Nationer och Ämnesföreningar (SNÄf)...................SNÄf  555  3
   def coalition_result_line(coalition_result, index)
     formatted_order_number(index+1) + ". " +
-    formatted_coalition_name_with_dots_and_shorten(coalition_result.electoral_coalition.name, coalition_result.electoral_coalition.shorten) + " " +
+    formatted_coalition_name_with_dots_and_shorten(coalition_result.electoral_coalition.name, coalition_result.electoral_coalition.shorten) +
     formatted_vote_sum(coalition_result.vote_sum_cache) + " " +
     formatted_elected_candidates_count(elected_candidates_in_coalition(coalition_result).count)
   end
@@ -111,7 +111,7 @@ class ResultDecorator < ApplicationDecorator
   end
 
   def formatted_alliance_name_with_dots_and_shorten(name, shorten)
-    line_width = 60
+    line_width = 58
 
     sprintf "%.52s%s.%.6s", name, fill_dots(line_width, name, shorten), shorten
   end
