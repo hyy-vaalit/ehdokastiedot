@@ -1,7 +1,9 @@
 # States:
 #  - "ready" when all votes have been filled to the voting area
 #  - "taken" when voting area has been taken in to the voting calculations (FIXME: has been calculated or will be calculated?)
-
+#
+# Good to know:
+#  - marking a voting area ready does not prevent submitting new votes by the submission form if the form is visible.
 class VotingArea < ActiveRecord::Base
 
   has_many :votes

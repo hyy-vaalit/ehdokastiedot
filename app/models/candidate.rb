@@ -67,8 +67,10 @@ class Candidate < ActiveRecord::Base
 
   attr_accessor :has_fixes
 
+  # Calculates all votes from all 'ready' (calculable) voting areas for each candidate.
+  # If there exists a fixed vote amount, it will be used instead of the preliminary amount.
   def self.by_vote_sum
-    select('candidates.id, sum(votes.amount) as vote_sum').from(
+    select('candidates.id, SUM(COALESCE(votes.fixed_amount, votes.amount)) as vote_sum').from(
       'candidates, votes, voting_areas').where(
       'votes.candidate_id = candidates.id
          and voting_areas.ready = true
