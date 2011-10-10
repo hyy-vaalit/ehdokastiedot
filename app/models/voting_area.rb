@@ -15,6 +15,11 @@ class VotingArea < ActiveRecord::Base
   before_create :encrypt_password
 
   scope :countable, where('ready = ?', true)
+  scope :markable_as_ready, where('submitted = ?', true)
+
+  def self.for_showdown
+    order('ready desc, submitted desc, id asc')
+  end
 
   def self.authenticate code, password
     area = self.find_by_code code
@@ -22,51 +27,8 @@ class VotingArea < ActiveRecord::Base
     return area if area.has_password? password
   end
 
-  def self.take! ids
-    ids.each do |id|
-      va = VotingArea.find_by_id(id)
-      va.taken!
-    end
-  end
-
   def vote_count
     votes.sum(:amount)
-  end
-
-  def state_class
-    if ready
-      if taken
-        if calculated
-          'calculated'
-        else
-          'taken'
-        end
-      else
-        'finish'
-      end
-    else
-      'unfinished'
-    end
-  end
-
-  def state
-    if ready
-      if taken
-        if calculated
-          'Laskettu'
-        else
-          'Laskennassa'
-        end
-      else
-        'Valmiina laskentaan'
-      end
-    else
-      'Kesken'
-    end
-  end
-
-  def mark_as_calculated!
-    self.update_attribute :calculated, true
   end
 
   def create_votes_from(vote_submissions, opts = {})
@@ -97,8 +59,8 @@ class VotingArea < ActiveRecord::Base
     update_attribute :ready, true
   end
 
-  def taken!
-    update_attribute :taken, true
+  def submitted!
+    update_attribute :submitted, true
   end
 
   private

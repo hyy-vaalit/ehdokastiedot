@@ -5,7 +5,7 @@
 <h2>Ohjeet äänestysalueen ottamiseksi mukaan ääntenlaskentaan:</h2>
 <ul>
   <li>Valitse äänestysalueet ja paina "Laske".</li>
-  <li>Odota laskennan valmistumista. Voit ladata tätä sivua uudelleen (paina: F5/CTRL-R).</li>
+  <li>Uusi vaalitulos näkyy vaalitulossivulla.</li>
   <li>Kun äänestysalueen tilana on "kesken", äänestysalueen pj ei ole vielä merkinnyt ääniä lasketuiksi.</li>
   <li>Kun äänestysalueen tilana on "laskennassa", äänet eivät vielä näy osana vaalitulosta.</li>
   <li>Äänten laskeminen tapahtuu taustalla, ja laskenta kestää 5-15 minuuttia.</li>
@@ -13,22 +13,27 @@
 </ul>
 
 <%= form_tag showdown_listings_path, :method => :post, :class => "showdown" do -%>
-  <table>
+  <table class="long-listing">
     <tr>
       <th colspan="2">Äänestysalue</th>
-      <th>Tila</th>
       <th>Ääniä</th>
-      <th>Ota mukaan</th>
+      <th>Laskentaan</th>
     </tr>
   <% @voting_areas.each do |area| -%>
-    <tr class="<%= area.state_class %>">
-      <td><%= area.code %></td>
-      <td><%= area.name %></td>
-      <td><%= area.state %></td>
-      <td><%= area.total_votes %></td>
-      <td><% if area.ready and !area.taken %><input type="checkbox" id="takewith_<%= area.id %>" name="takewith[]" value="<%= area.id %>" /><% end %></td>
+    <% area_decorator = VotingAreaDecorator.new(area) %>
+    <tr class="<%= area_decorator.state_class %>">
+      <td><%= area_decorator.code %></td>
+      <td><%= area_decorator.name %></td>
+      <td><%= area_decorator.vote_count %></td>
+      <td>
+        <% if area_decorator.markable_ready? %>
+          <input type="checkbox" id="mark_ready_<%= area_decorator.id %>" name="mark_ready[]" value="<%= area_decorator.id %>" />
+        <% else %>
+          <%= area_decorator.formatted_state(area.ready?) %>
+        <% end %>
+      </td>
     </tr>
-  <% end -%>
+  <% end %>
   </table>
   <p>
     <input type="submit" value="Ota valitut äänestysalueet laskentaan" />

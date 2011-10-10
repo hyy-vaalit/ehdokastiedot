@@ -29,6 +29,10 @@ class Result < ActiveRecord::Base
 
   after_create :calculate_proportionals!
 
+  def filename(suffix = ".txt")
+    "tulos-" + created_at.to_s(:number) + suffix
+  end
+
   def coalition_results_by_vote_sum
     coalition_results.order("vote_sum_cache desc")
   end

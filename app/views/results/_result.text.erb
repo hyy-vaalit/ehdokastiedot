@@ -1,11 +1,16 @@
 
 HYYN ALUSTAVA EDUSTAJISTOVAALITULOS 2011
 
-Lopullinen vaalitulos vahvistetaan tarkastuslaskennan jälkeen.
-Läpimenneet merkitty tähdellä (*), varaedustajat plussalla (+) ja
-arvontontaan menevät ehdokkaat kysymysmerkillä (?).
+Laskettu: <%= result_decorator.formatted_created_at %>
 
-Tiedoston lopussa on listattu kaikki ehdokkaat järjestettynä vertailuluvun mukaan.
+Lopullinen vaalitulos vahvistetaan tarkastuslaskennan jälkeen.
+- Läpimenevät ehdokkaat merkitty tähdellä (*).
+- Ehdokas on merkitty kysymysmerkillä (?), jos saman vaaliliiton sisällä
+  useampi ehdokas on saanut saman äänimäärän ja läpipääsevä ratkaistaan arvalla.
+- Jos kahdella ehdokkaalla on sama rengasvertailuluku, mikä voi vaikuttaa
+  vaalirenkaan paikkamäärään, ehdokas on merkitty yhtäsuuruusmerkillä (=).
+
+Tiedoston lopussa on listattu kaikki ehdokkaat rengasvertailuluvun mukaan.
 
 Vaalirenkaita yhteensä:   <%#= sprintf "%2d", coalition_count %>
 Vaaliliittoja yhteensä:   <%#= sprintf "%2d", alliance_count %>

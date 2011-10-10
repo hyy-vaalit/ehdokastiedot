@@ -11,15 +11,15 @@ class ListingsController < ApplicationController
   end
 
   def showdown
-    @voting_areas = VotingArea.all
+    @voting_areas = VotingArea.for_showdown
   end
 
   def showdown_post
-    ids = params[:takewith]
-    if ids
-      VotingArea.take! ids
-      Delayed::Job.enqueue(VoteCalculusJob.new(ids))
+    params[:mark_ready].each do |voting_area_id|
+      VotingArea.find(voting_area_id).ready!
     end
+
+    Delayed::Job.enqueue(CreateResultJob.new)
     redirect_to showdown_listings_path
   end
 

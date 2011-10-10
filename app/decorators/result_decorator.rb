@@ -30,6 +30,10 @@ class ResultDecorator < ApplicationDecorator
   #                   :class => 'timestamp'
   #   end
 
+  def formatted_created_at
+    created_at.strftime("%Y-%m-%d klo %H:%M:%S")
+  end
+
   def rendered_output
     # DEPRECATION WARNING: config.view_path is deprecated, please do paths.app.views instead.
     av = ApplicationController.view_context_class.new(Rails.configuration.view_path)

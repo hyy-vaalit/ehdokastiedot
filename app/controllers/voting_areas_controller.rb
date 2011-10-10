@@ -35,8 +35,8 @@ class VotingAreasController < ApplicationController
     redirect_to voting_area_path
   end
 
-  def mark_ready
-    @voting_area.ready!
+  def mark_submitted
+    @voting_area.submitted!
     redirect_to voting_area_path
   end
 
