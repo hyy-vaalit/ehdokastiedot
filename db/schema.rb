@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111010082444) do
+ActiveRecord::Schema.define(:version => 20111010122755) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -222,6 +222,8 @@ ActiveRecord::Schema.define(:version => 20111010082444) do
     t.datetime "updated_at"
     t.integer  "fixed_amount"
   end
+
+  add_index "votes", ["candidate_id", "voting_area_id"], :name => "index_unique_votes_per_candidate_in_voting_area", :unique => true
 
   create_table "voting_areas", :force => true do |t|
     t.string   "code"
