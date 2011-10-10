@@ -53,7 +53,7 @@ FactoryGirl.define do
     sequence(:code) {|n| "VA#{n}"}
     sequence(:name) {|n| "Voting area #{n}"}
     ready true
-    taken true
+    submitted true
     password 'foobar123'
   end
 

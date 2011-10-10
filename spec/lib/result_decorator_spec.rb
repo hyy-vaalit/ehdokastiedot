@@ -45,7 +45,7 @@ describe 'votable behaviour' do
     idx       = 1
     dot_count = 66 - coalition.name.length - coalition.shorten.length
 
-    expected = "  #{idx+1}. #{coalition.name}#{'.' * dot_count}#{coalition.shorten}  #{vote_sum}  #{places}"
+    expected = "  #{idx+1}. #{coalition.name}#{'.' * dot_count}#{coalition.shorten} #{vote_sum}  #{places}"
 
     @decorator.coalition_result_line(coalition_result, idx).should == expected
   end
@@ -56,7 +56,7 @@ describe 'votable behaviour' do
     alliance = alliance_result.electoral_alliance
     places   = 0
     idx      = 1
-    dot_count = 60 - alliance.name.length - alliance.shorten.length
+    dot_count = 58 - alliance.name.length - alliance.shorten.length
 
     # 1. HYYn Vihreät - De Gröna vid HUS........................HyVi MP     1045  4
     expected = "  #{idx+1}. #{alliance.name}#{'.' * dot_count}.#{alliance.shorten} #{alliance.electoral_coalition.shorten}   #{vote_sum}  #{places}"
