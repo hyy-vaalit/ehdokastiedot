@@ -24,7 +24,7 @@ describe 'votable behaviour' do
     candidate.stub!(:candidate_name).and_return(candidate_name)
     candidate.stub!(:candidate_number).and_return(cno)
     candidate.stub!(:vote_sum).and_return(votes)
-    candidate.stub!(:elected).and_return(true)
+    candidate.stub!(:elected?).and_return(true)
     candidate.stub!(:alliance_draw_identifier).and_return(alliance_draw)
     candidate.stub!(:coalition_draw_identifier).and_return(coalition_draw)
     candidate.stub!(:alliance_proportional).and_return(aprop)
@@ -41,10 +41,11 @@ describe 'votable behaviour' do
     vote_sum = 1234
     coalition_result = FactoryGirl.build(:coalition_result, :vote_sum_cache => vote_sum)
     coalition = coalition_result.electoral_coalition
-    places    = 3
+    places    = 0
     idx       = 1
     dot_count = 66 - coalition.name.length - coalition.shorten.length
-    expected = "  #{idx+1}. #{coalition.name}#{'.' * dot_count}#{coalition.shorten}  #{vote_sum}  3"
+
+    expected = "  #{idx+1}. #{coalition.name}#{'.' * dot_count}#{coalition.shorten}  #{vote_sum}  #{places}"
 
     @decorator.coalition_result_line(coalition_result, idx).should == expected
   end
@@ -53,12 +54,12 @@ describe 'votable behaviour' do
     vote_sum = 1234
     alliance_result = FactoryGirl.build(:alliance_result, :vote_sum_cache => vote_sum)
     alliance = alliance_result.electoral_alliance
-    places   = 4
+    places   = 0
     idx      = 1
     dot_count = 60 - alliance.name.length - alliance.shorten.length
 
-    # 1. HYYn Vihreät - De Gröna vid HUS........................HyVi MP     1045  6
-    expected = "  #{idx+1}. #{alliance.name}#{'.' * dot_count}.#{alliance.shorten} #{alliance.electoral_coalition.shorten}   #{vote_sum}  3"
+    # 1. HYYn Vihreät - De Gröna vid HUS........................HyVi MP     1045  4
+    expected = "  #{idx+1}. #{alliance.name}#{'.' * dot_count}.#{alliance.shorten} #{alliance.electoral_coalition.shorten}   #{vote_sum}  #{places}"
 
     @decorator.alliance_result_line(alliance_result, idx).should == expected
   end
@@ -74,12 +75,12 @@ describe 'votable behaviour' do
     alliance.stub!(:name).and_return(alliance_name)
     alliance.stub!(:shorten).and_return(alliance_shorten)
     alliance.electoral_coalition.stub!(:shorten).and_return(coalition)
-    places   = 4
+    places   = 0
     idx      = 1
     dot_count = 1
 
     # 2. Sitoutumaton vasemmisto - Obunden vänster - Independe.SitVas MP       96  5
-    expected = "  #{idx+1}. #{truncated_alliance_name}.#{alliance_shorten} #{coalition}     #{vote_sum}  3"
+    expected = "  #{idx+1}. #{truncated_alliance_name}.#{alliance_shorten} #{coalition}     #{vote_sum}  #{places}"
 
     @decorator.alliance_result_line(alliance_result, idx).should == expected
   end

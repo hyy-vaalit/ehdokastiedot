@@ -74,6 +74,11 @@ class Result < ActiveRecord::Base
     CandidateResult.elected_in_alliance(alliance_result.electoral_alliance_id, alliance_result.result_id)
   end
 
+  def elected_candidates_in_coalition(coalition_result)
+    CandidateResult.elected_in_coalition(coalition_result.electoral_coalition_id, coalition_result.result_id)
+  end
+
+
   protected
 
   def calculate_proportionals!

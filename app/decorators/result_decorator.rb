@@ -60,7 +60,7 @@ class ResultDecorator < ApplicationDecorator
     formatted_order_number(index+1) + ". " +
     formatted_coalition_name_with_dots_and_shorten(coalition_result.electoral_coalition.name, coalition_result.electoral_coalition.shorten) + " " +
     formatted_vote_sum(coalition_result.vote_sum_cache) + " " +
-    formatted_elected_candidates_count(10) # TODO
+    formatted_elected_candidates_count(elected_candidates_in_coalition(coalition_result).count)
   end
 
   # LIITOT__________________________________________________________RENGAS_ÄÄNET_PA
