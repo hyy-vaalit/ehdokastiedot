@@ -67,26 +67,6 @@ class VotingArea < ActiveRecord::Base
     self.update_attribute :calculated, true
   end
 
-  # FIXME: Transaktio puuttuu! #18336147
-  def give_votes! votes
-    invalid = []
-    votes.each do |i, vote|
-      next if vote[:candidate_number].empty?
-      begin
-        candidate = Candidate.find_by_candidate_number vote[:candidate_number]
-        old_vote = self.votes.find_by_candidate_id candidate.id
-        if old_vote
-          old_vote.update_attribute :vote_count, vote[:vote_count]
-        else
-          self.votes.create! :candidate => candidate, :vote_count => vote[:vote_count]
-        end
-      rescue
-        invalid << vote[:candidate_number]
-      end
-    end
-    raise "Check candidate numbers #{invalid.join(', ')}" unless invalid.empty?
-  end
-
   def create_votes_from(vote_submissions, opts = {})
     use_fixed_amount = opts[:use_fixed_amount]
 

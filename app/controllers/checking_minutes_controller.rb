@@ -6,6 +6,8 @@ class CheckingMinutesController < ApplicationController
   before_filter :authenticate, :except => :summary
   before_filter :check_if_ready, :except => [:fixes, :summary]
 
+  layout "outside_activeadmin"
+
   def index
     @voting_areas = VotingArea.all
   end

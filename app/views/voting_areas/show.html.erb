@@ -1,13 +1,19 @@
 <p><%= link_to 'Kirjaudu ulos', login_voting_area_path %></p>
 
 <% if @voting_area.ready -%>
-<p>Äänestysalue on merkitty lasketuksi.</p>
+  <p>Äänestysalue on merkitty lasketuksi.</p>
 <% else -%>
-<p><%= link_to "Merkitse alueen äänet lasketuksi", mark_ready_voting_area_path, :confirm => 'Onko kaikki tiedot varmasti syötetty?' %></p>
+  <p><%= link_to "Merkitse alueen äänet lasketuksi", mark_ready_voting_area_path, :confirm => 'Onko kaikki tiedot varmasti syötetty?' %></p>
 <% end -%>
 
 
-<h2>Ohjeet</h2>
+<h1>
+  Äänestysalue <%= @voting_area.code %><br />
+  <%= @voting_area.name %>
+</h1>
+
+<h2>Ääntenlaskentapöytäkirja</h2>
+
 <ul>
   <li>Syötä ehdokasnumero ja numeroa vastaava kokonaisäänimäärä.</li>
   <li>Voit syöttää korkeintaan kymmenen ehdokkaan äänimäärän kerrallaan ennen kuin tulokset täytyy tallentaa.</li>
@@ -16,19 +22,24 @@
   <li>Lopuksi käy syötetyt tiedot läpi ennen kuin merkitset äänestysalueen lasketuksi.</li>
 </ul>
 
-<h1><%= @voting_area.name %></h1>
 
 <% if @voting_area.votes.count > 0 -%>
-<table id="voting_area">
-  <tr>
-    <th>Ehdokasnumero</th>
-    <th>Äänimäärä</th>
-  </tr>
+<table id="voting-area" class="long-listing">
+  <thead>
+    <tr>
+      <th colspan="4">Äänestysalue <%= @voting_area.code %> - <%= @voting_area.name %></th>
+    </tr>
+    <tr>
+      <th>Ehdokasnumero</th>
+      <th>Äänimäärä</th>
+    </tr>
+  </thead>
+
   <% @voting_area.votes.each do |vote| -%>
-    <% next if vote.vote_count == 0 -%>
+    <% next if vote.amount == 0 -%>
     <tr>
       <td><%= vote.candidate.candidate_number %></td>
-      <td><%= vote.vote_count %></td>
+      <td><%= vote.amount %></td>
     </tr>
   <% end -%>
 </table>
@@ -36,28 +47,34 @@
 
 <% unless @voting_area.ready -%>
 
-<%= raw "<p style='color:red; font-size: 120%; font-weight: bold;'>#{flash[:errors]}</p>" if flash[:errors] -%>
+  <% if flash[:invalid_candidate_numbers] and flash[:invalid_candidate_numbers].any? %>
+    <div class="error">
+      <p>
+        Annoit seuraavat virheelliset ehdokasnumerot:
+         <%= flash[:invalid_candidate_numbers].join(", ") %>
+      </p>
+    </div>
+  <% end %>
 
-<%= form_tag voting_area_path, :method => :post do -%>
+  <%= form_tag voting_area_path, :method => :post do -%>
 
-
-  <table id="vote_insert_form">
-    <tr>
-      <th>Ehdokasnumero</th>
-      <th>Äänimäärä</th>
-    </tr>
-  <% 10.times do |i| -%>
-    <tr>
-      <td>
-        <input type="text" id="candidate_numbers_<%= i %>" name="votes[<%= i %>]candidate_number" />
-      </td>
-      <td>
-        <input type="text" id="vote_counts_<%= i %>" name="votes[<%= i %>]vote_count" />
-      </td>
-    </tr>
+    <table id="submit-votes">
+      <tr>
+        <th>Ehdokasnumero</th>
+        <th>Äänimäärä</th>
+      </tr>
+    <% 10.times do |i| -%>
+      <tr>
+        <td>
+          <input type="text" id="candidate_numbers_<%= i %>" name="votes[<%= i %>]candidate_number" />
+        </td>
+        <td>
+          <input type="text" id="vote_amounts_<%= i %>" name="votes[<%= i %>]vote_amount" />
+        </td>
+      </tr>
+    <% end -%>
+    </table>
+    <p><input type="submit" value="Tallenna äänet" /></p>
   <% end -%>
-  </table>
-  <p><input type="submit" value="Tallenna äänet" /></p>
-<% end -%>
 
 <% end -%>

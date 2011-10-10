@@ -13,12 +13,10 @@ class VotingAreasController < ApplicationController
   end
 
   def create
-    begin
-      @voting_area.give_votes! params[:votes]
-    rescue => e
-      flash[:errors] = e.message
-    end
-    redirect_to voting_area_path(:anchor => 'vote_insert_form')
+    @voting_area.create_votes_from(params[:votes], :use_fixed_amount => false)
+
+    flash[:invalid_candidate_numbers] = @voting_area.errors[:invalid_candidate_numbers] if @voting_area.errors[:invalid_candidate_numbers]
+    redirect_to voting_area_path(:anchor => 'submit-votes')
   end
 
   def login
@@ -54,7 +52,7 @@ class VotingAreasController < ApplicationController
   end
 
   def assign_voting_area
-    @voting_area = VotingArea.find_by_id session[:voting_area_id]
+    @voting_area = VotingArea.find(session[:voting_area_id])
   end
 
 end
