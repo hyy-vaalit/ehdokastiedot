@@ -110,6 +110,19 @@ class Candidate < ActiveRecord::Base
       'SUM(candidate_results.vote_sum_cache) desc')
   end
 
+  def self.with_votes_in_voting_area(voting_area_id)
+    select('candidates.id, candidates.candidate_number, votes.amount AS vote_amount, votes.fixed_amount AS fixed_vote_amount').joins(
+      'INNER JOIN "votes" ON "votes"."candidate_id" = "candidates"."id"').joins(
+      'INNER JOIN "voting_areas" ON "voting_areas"."id" = "votes"."voting_area_id"').where(
+      ['voting_areas.id = ?', voting_area_id]).order('candidates.candidate_number asc')
+  end
+
+  def self.for_checking_minutes(voting_area_id)
+   with_votes_in_voting_area(voting_area_id).select(
+     'electoral_alliances.shorten as electoral_alliance_shorten').joins(
+     'inner join "electoral_alliances" ON "candidates".electoral_alliance_id = electoral_alliances.id')
+  end
+
   def invalid!
     self.update_attribute :marked_invalid, true
   end
@@ -118,24 +131,8 @@ class Candidate < ActiveRecord::Base
     self.update_attribute :cancelled, true
   end
 
-  def fixed_total_votes
-    self.votes.fixed.sum(:vote_count)
-  end
-
   def has_fixes
     self.data_fixes.count > 0
-  end
-
-  def vote_count_from_area(voting_area_id)
-    voting_area = VotingArea.find_by_id voting_area_id
-    vote = voting_area.votes.find_by_candidate_id self.id
-    vote ? vote.vote_count : 0
-  end
-
-  def fix_vote_count_from_area(voting_area_id)
-    voting_area = VotingArea.find_by_id voting_area_id
-    vote = voting_area.votes.find_by_candidate_id self.id
-    vote ? vote.fix_count : ''
   end
 
   def position_in_coalition

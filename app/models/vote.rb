@@ -13,6 +13,11 @@ class Vote < ActiveRecord::Base
 
   default_scope :include => :candidate, :order => 'candidates.candidate_number'
 
+  def self.final
+    select('COALESCE(votes.fixed_amount, votes.amount) as final_vote_amount,
+           votes.id, votes.candidate_id, votes.voting_area_id')
+  end
+
   def self.calculated
     votes_ready = self.ready.sum(:vote_count)
     if votes_ready == self.sum(:vote_count)

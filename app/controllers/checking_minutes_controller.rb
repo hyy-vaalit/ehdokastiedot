@@ -10,16 +10,15 @@ class CheckingMinutesController < ApplicationController
   end
 
   def show
-    @candidates = Candidate.includes(:electoral_alliance).order('candidates.candidate_number ASC').all
-    @voting_area = VotingArea.find_by_id params[:id]
+    @voting_area = VotingArea.find(params[:id])
   end
 
   def edit
-    @voting_area = VotingArea.find_by_id params[:id]
+    @voting_area = VotingArea.find(params[:id])
   end
 
   def update
-    @voting_area = VotingArea.find_by_id params[:id]
+    @voting_area = VotingArea.find(params[:id])
     begin
       @voting_area.give_fix_votes! params[:votes]
     rescue => e

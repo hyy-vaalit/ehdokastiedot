@@ -1,22 +1,37 @@
 <%= link_to "&larr; Takaisin etusivulle".html_safe, checking_minutes_path %>
 
-<h1>Tarkastuslaskentapöytäkirja <%= @voting_area.code %> - <%= @voting_area.name %></h1>
+<h1>
+  Äänestysalue <%= @voting_area.code %><br />
+  <%= @voting_area.name %>
+</h1>
 
-<p class="edit"><%= link_to 'Syötä korjaukset', edit_checking_minute_path(@voting_area.id) %></p>
+<h2>Tarkastuslaskentapöytäkirja</h2>
 
-<table id="checking_minutes">
+<ul>
+  <li>Tulosta pöytäkirja Firefoxilla, muilla selaimilla sivunvaihdot ja otsikoinnit eivät asetu oikein.</li>
+  <li>Jos sivunumerointi puuttuu, lisää se Firefoxin tulostusasetuksista.</li>
+  <li>Syötä korjaukset ainoastaan niille ehdokkaille, joiden äänimäärä on väärin.</li>
+  <li><%= link_to 'Syötä korjaukset tästä linkistä aukeavalla sivulla.', edit_checking_minute_path(@voting_area.id) %></li>
+</ul>
+
+<table id="checking_minutes" class="long-listing">
+  <thead>
+    <tr>
+      <th colspan="4">Äänestysalue <%= @voting_area.code %> - <%= @voting_area.name %></th>
+    </tr>
+    <tr>
+      <th>Vaaliliitto</th>
+      <th>Ehdokas</th>
+      <th>Ääniä</th>
+      <th>Korjattu</th>
+    </tr>
+  </thead>
+<% Candidate.for_checking_minutes(@voting_area.id).each do |candidate| -%>
   <tr>
-    <th>Vaaliliitto</th>
-    <th>Ehdokasnumero</th>
-    <th>Äänet</th>
-    <th>Korjaus</th>
-  </tr>
-<% @candidates.each do |candidate| -%>
-  <tr>
-    <td><%= candidate.electoral_alliance.shorten %></td>
+    <td><%= candidate.electoral_alliance_shorten %></td>
     <td><%= candidate.candidate_number %></td>
-    <td><%= candidate.vote_count_from_area(@voting_area.id) %></td>
-    <td><%= candidate.fix_vote_count_from_area(@voting_area.id) %></td>
+    <td><%= candidate.vote_amount %></td>
+    <td><%= candidate.fixed_vote_amount %></td>
   </tr>
 <% end -%>
 </table>
