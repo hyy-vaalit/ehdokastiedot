@@ -87,28 +87,24 @@ class VotingArea < ActiveRecord::Base
     raise "Check candidate numbers #{invalid.join(', ')}" unless invalid.empty?
   end
 
-  # FIXME: Transaktio puuttuu!
-  def give_fix_votes! votes
-    invalid = []
-    votes.each do |i, vote|
-      next if vote[:candidate_number].empty? or vote[:vote_count].empty?
-      begin
-        candidate = Candidate.find_by_candidate_number vote[:candidate_number]
-        old_vote = self.votes.find_by_candidate_id candidate.id
-        if old_vote
-          if old_vote.vote_count == vote[:vote_count]
-            old_vote.update_attribute :fix_count, nil
-          else
-            old_vote.update_attribute :fix_count, vote[:vote_count]
-          end
+  def create_votes_from(vote_submissions, opts = {})
+    use_fixed_amount = opts[:use_fixed_amount]
+
+    VotingArea.transaction do
+      vote_submissions.each do |index, vote|
+        candidate_number = vote["candidate_number"]
+        vote_amount       = vote["vote_amount"]
+        next if candidate_number.blank? or vote_amount.blank?
+
+        candidate = Candidate.find_by_candidate_number(candidate_number)
+
+        if candidate and Vote.create_or_update_from(self.id, candidate.id, vote_amount, use_fixed_amount)
+          next # success
         else
-          self.votes.create! :candidate => candidate, :vote_count => 0, :fix_count => vote[:vote_count] unless vote[:vote_count] == 0
+          errors.add :invalid_candidate_numbers, candidate_number
         end
-      rescue
-        invalid << vote[:candidate_number]
       end
     end
-    raise "Check candidate numbers #{invalid.join(', ')}" unless invalid.empty?
   end
 
   def has_password? password

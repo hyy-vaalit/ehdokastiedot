@@ -1,3 +1,8 @@
+.error {
+  color: red;
+  font-weight: bold;
+}
+
 .long-listing td, .long-listing th {
   border-bottom: 1px gray solid;
   border-right: 1px gray solid;
@@ -32,17 +37,6 @@ thead {
   text-align: left;
   background-color: #D3D3D3;
 }
-#voting_area {
-  tr:nth-child(even) {
-    background: #CCC;
-  }
-  tr:nth-child(odd) {
-    background: #FFF
-  }
-  td {
-    text-align: center;
-  }
-}
 
 td.coalition {
   font: {
@@ -58,7 +52,7 @@ td.alliance {
   }
 }
 
-#checking_minutes {
+#voting-area {
   border-collapse: collapse;
   th {
   }

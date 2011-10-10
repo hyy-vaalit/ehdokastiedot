@@ -1,3 +1,4 @@
+# coding: UTF-8
 class CheckingMinutesController < ApplicationController
 
   skip_authorization_check :except => :summary
@@ -19,11 +20,10 @@ class CheckingMinutesController < ApplicationController
 
   def update
     @voting_area = VotingArea.find(params[:id])
-    begin
-      @voting_area.give_fix_votes! params[:votes]
-    rescue => e
-      flash[:errors] = e.message
-    end
+    @voting_area.create_votes_from(params[:votes], :use_fixed_amount => true)
+
+    flash[:invalid_candidate_numbers] = @voting_area.errors[:invalid_candidate_numbers] if @voting_area.errors[:invalid_candidate_numbers]
+
     redirect_to edit_checking_minute_path(@voting_area.id, :anchor => 'vote_fix_form')
   end
 

@@ -11,20 +11,25 @@
 <% end -%>
 
 <% @voting_areas.each do |voting_area| -%>
-  <h2><%= voting_area.code %> - <%= voting_area.name %></h2>
+  <h4><%= voting_area.code %> - <%= voting_area.name %></h4>
 
   <% if voting_area.votes.with_fixes.count > 0 -%>
-    <table id="voting_area">
+    <table id="voting-area" class="long-listing">
+      <thead>
+        <tr>
+          <th colspan="4">Äänestysalue <%= voting_area.code %> - <%= voting_area.name %></th>
+        </tr>
+        <tr>
+          <th>Ehdokasnumero</th>
+          <th>Äänimäärä</th>
+          <th>Korjattu äänimäärä</th>
+        </tr>
+      </thead>
+    <% Candidate.for_checking_minutes_only_fixed_votes(voting_area.id).each do |candidate| -%>
       <tr>
-        <th>Ehdokasnumero</th>
-        <th>Äänimäärä</th>
-        <th>Korjattu äänimäärä</th>
-      </tr>
-    <% voting_area.votes.with_fixes.each do |vote| -%>
-      <tr>
-        <td><%= vote.candidate.candidate_number %></td>
-        <td><%= vote.vote_count %></td>
-        <td><%= vote.fix_count %></td>
+        <td><%= candidate.candidate_number %></td>
+        <td><%= candidate.vote_amount %></td>
+        <td><%= candidate.fixed_vote_amount %></td>
       </tr>
     <% end -%>
     </table>

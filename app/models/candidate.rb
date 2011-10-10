@@ -123,6 +123,10 @@ class Candidate < ActiveRecord::Base
      'inner join "electoral_alliances" ON "candidates".electoral_alliance_id = electoral_alliances.id')
   end
 
+  def self.for_checking_minutes_only_fixed_votes(voting_area_id)
+    for_checking_minutes(voting_area_id).where("votes.fixed_amount is not null")
+  end
+
   def invalid!
     self.update_attribute :marked_invalid, true
   end
