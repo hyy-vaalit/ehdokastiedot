@@ -59,7 +59,7 @@ ActiveAdmin::Dashboards.build do
     section 'Vaalivalvojaiset' do
       ul do
         li link_to 'Äänestysalueet ääntenlaskentaan', showdown_listings_path
-        li link_to 'Alustava vaalitulos', results_path(:format => :text)
+        li link_to 'Vaalitulokset', results_path
         # li link_to 'Ehdokkaat läpipääsyn mukaan', deputies_results_path
         # li link_to 'Ehdokkaat vaaliliitoittain', by_alliance_results_path
         # FIXME: ei saa syöttövaiheessa olla julkinen: li link_to 'Ehdokkaat äänimäärän mukaan', by_votes_results_path
@@ -69,8 +69,8 @@ ActiveAdmin::Dashboards.build do
     section 'Tarkastuslaskenta' do
       ul do
         li link_to 'Tarkastuslaskennan korjausyhteenveto', summary_checking_minutes_path
-        li link_to 'Arvonnat', draws_path
-        li link_to 'Lopullinen vaalitulos', final_results_path(:format => :text)
+        li link_to 'Arvonnat', "#"
+        li link_to 'Lopullinen vaalitulos', "#"
       end
     end
 

@@ -1,36 +1,21 @@
 # coding: UTF-8
 class ResultsController < ApplicationController
 
-  skip_authorization_check
+  before_filter :authenticate_admin_user!
+  before_filter :authorize
+
+  layout "outside_activeadmin"
 
   def index
-    result = REDIS.get('tulos-alustava.txt')
-    render :text => "Vaalitulosta ei ole vielä laskettu." and return unless result
+    @results = ResultDecorator.for_listing
 
-    respond_to do |format|
-      format.text { redirect_to result }
-    end
   end
 
-  def final
-    result = REDIS.get('tulos-lopullinen.txt')
-    render :text => "Vaalitulosta ei ole vielä laskettu." and return unless result
 
-    respond_to do |format|
-      format.text { redirect_to result }
-    end
-  end
+  protected
 
-  def deputies
-    @candidates = Candidate.selected.selection_order.all
-  end
-
-  def by_votes
-    @candidates = Candidate.all.sort{|x,y| y.total_votes <=> x.total_votes} #TODO: improve with SQL
-  end
-
-  def by_alliance
-    @coalitions = ElectoralCoalition.all
+  def authorize
+    authorize! :manage, :results
   end
 
 end

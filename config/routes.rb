@@ -25,14 +25,8 @@ Vaalit::Application.routes.draw do
 
   resources :tools, :only => [:index]
 
-  resources :results, :only => [:index] do
-    collection do
-      get :deputies
-      get :by_votes
-      get :by_alliance
-      get :final
-    end
-  end
+  resources :results, :only => [:index, :show]
+
 
   resources :checking_minutes, :only => [:index, :show, :edit, :update] do
     collection do

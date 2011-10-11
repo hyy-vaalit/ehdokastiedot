@@ -7,7 +7,7 @@ class CreateResultJob
     # hackety hack, #todo: extract class
     if Rails.env.production?
       s3_bucket_name = ENV['S3_BUCKET_NAME']
-      public_filename = "tulos-alustava.txt"
+      public_filename = Vaalit::Results::PUBLIC_FILENAME
       unique_filename = result.filename
       puts "Rendering result output"
       result_output = ResultDecorator.new(result).rendered_output
