@@ -1,5 +1,7 @@
 <h1>Vaalitulokset</h1>
 
+<%= link_to "Takaisin etusivulle", admin_dashboard_url %>
+
 <h2>Alustavat vaalitulokset</h2>
 
 <p>
@@ -23,7 +25,7 @@
     <td><%= result_decorator.formatted_created_at %></td>
     <td><%= link_to "Tulostiedosto", result_decorator.result_file_url %></td>
     <td><%= link_to "Paikat ryhmittäin", result_url(result), :target => "_blank" %></td>
-    <td>Paikat liitoittain</td>
+    <td><%= link_to "Paikat liitoittain", result_url(result, :chart => "alliances"), :target => "_blank" %></td>
   </tr>
 
 <% end %>

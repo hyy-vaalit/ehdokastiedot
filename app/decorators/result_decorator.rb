@@ -34,6 +34,10 @@ class ResultDecorator < ApplicationDecorator
     created_at.strftime("%Y-%m-%d klo %H:%M:%S")
   end
 
+  def most_recent?
+     id == Result.last.id
+  end
+
   def result_file_url
     "#{Vaalit::Results::S3_BUCKET_URL}/#{filename}"
   end

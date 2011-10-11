@@ -1,5 +1,5 @@
 <!--Load the AJAX API-->
-<script type="text/javascript" src="/javascripts/google-jsapi.js"></script>
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
 <script type="text/javascript">
 
   // Load the Visualization API and the piechart package.
@@ -28,7 +28,8 @@
                  'is3D':false,
                  'legend':'right',
                  'width':800,
-                 'height':600};
+                 'height':600,
+                 'titlePosition': 'in'};
 
   // Instantiate and draw our chart, passing in some options.
   var chart = new google.visualization.PieChart(document.getElementById('chart_div'));
@@ -38,7 +39,7 @@
 
 <h1>Vaalirenkaiden edustajistopaikat</h1>
 
-<% if result.id != Result.last.id %>
+<% if not result.most_recent? %>
   <p>
     <strong>Huomio!</strong> Kaavio ei koske tuoreinta vaalitulosta.
   </p>

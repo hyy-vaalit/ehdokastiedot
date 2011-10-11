@@ -1,1 +1,5 @@
-<%= render :partial => "piechart", :locals => {:result => @result} %>
+<% if @chart == "alliances"%>
+  <%= render :partial => "alliance_barchart", :locals => {:result => @result} %>
+<% else %>
+  <%= render :partial => "coalition_piechart", :locals => {:result => @result} %>
+<% end %>

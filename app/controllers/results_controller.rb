@@ -12,6 +12,7 @@ class ResultsController < ApplicationController
   end
 
   def show
+    @chart = params[:chart] # alliances || coalitions (defualt)
     @result = ResultDecorator.find(params[:id])
   end
 

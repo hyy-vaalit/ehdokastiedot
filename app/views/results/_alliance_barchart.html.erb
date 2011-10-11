@@ -1,0 +1,43 @@
+<script type="text/javascript" src="https://www.google.com/jsapi"></script>
+<script type="text/javascript">
+  google.load("visualization", "1", {packages:["corechart"]});
+  google.setOnLoadCallback(drawChart);
+  function drawChart() {
+    var data = new google.visualization.DataTable();
+    //data.addColumn('string', 'Liitto');
+    //data.addColumn('number', 'Paikkoja');
+
+
+    // data.addRows(<%= result.alliance_results.count -%>);
+    <%# result.alliance_results.each_with_index do |alliance_result, index| -%>
+    //  data.setValue(<%#= index -%>, 0, '<%#= alliance_result.electoral_alliance.shorten -%>')
+    //  data.setValue(<%#= index -%>, 1, <%#= result.elected_candidates_in_alliance(alliance_result).count -%>)
+    <%# end -%>
+    data.addRows(1);
+    <% result.alliance_results.each_with_index do |alliance_result, index| -%>
+      data.addColumn('number', '<%= alliance_result.electoral_alliance.shorten -%>');
+      data.setValue(0, <%= index -%>, <%= result.elected_candidates_in_alliance(alliance_result).count -%>);
+    <% end %>
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+    chart.draw(data, {width: 1024, height: 1024, title: 'Liittokohtaiset paikkamäärät',
+                      axisTitlesPosition: 'in',
+                      titlePosition: 'in',
+                      hAxis: {title: 'Tilanne <%= result.formatted_created_at -%>',
+                              titleTextStyle: {color: 'red'},
+                              showTextEvery: 1,
+                              textPosition: 'in'},
+                      vAxis: {textPosition: 'in'}
+                     });
+  }
+</script>
+
+<h1>Vaaliliittojen edustajistopaikat</h1>
+
+<% if not result.most_recent? %>
+  <p>
+    <strong>Huomio!</strong> Kaavio ei koske tuoreinta vaalitulosta.
+  </p>
+<% end %>
+
+<div id="chart_div"></div>
