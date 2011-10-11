@@ -30,11 +30,6 @@ class ResultDecorator < ApplicationDecorator
   #                   :class => 'timestamp'
   #   end
 
-  def self.for_listing
-    Result.order('created_at desc')
-  end
-
-
   def formatted_created_at
     created_at.strftime("%Y-%m-%d klo %H:%M:%S")
   end

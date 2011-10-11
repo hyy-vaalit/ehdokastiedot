@@ -29,6 +29,10 @@ class Result < ActiveRecord::Base
 
   after_create :calculate_proportionals!
 
+  def self.for_listing
+    order('created_at desc')
+  end
+
   def filename(suffix = ".txt")
     "tulos-" + created_at.to_s(:number) + suffix
   end

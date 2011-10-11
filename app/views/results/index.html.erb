@@ -22,7 +22,7 @@
   <tr>
     <td><%= result_decorator.formatted_created_at %></td>
     <td><%= link_to "Tulostiedosto", result_decorator.result_file_url %></td>
-    <td>Paikat ryhmittäin</td>
+    <td><%= link_to "Paikat ryhmittäin", result_url(result), :target => "_blank" %></td>
     <td>Paikat liitoittain</td>
   </tr>
 

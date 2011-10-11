@@ -7,10 +7,13 @@ class ResultsController < ApplicationController
   layout "outside_activeadmin"
 
   def index
-    @results = ResultDecorator.for_listing
+    @results = Result.for_listing
 
   end
 
+  def show
+    @result = ResultDecorator.find(params[:id])
+  end
 
   protected
 
