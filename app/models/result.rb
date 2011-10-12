@@ -8,6 +8,7 @@ class Result < ActiveRecord::Base
                         coalition_proportionals.number as coalition_proportional, coalition_proportionals.number', # selected twice for count(*)
            :source  => :candidate,
            :order   => 'coalition_proportionals.number desc'
+           # TODO: joins candidate_result, order coalition_draw_order
 
   has_many :candidate_results, :dependent => :destroy
   has_many :candidates,
@@ -75,7 +76,7 @@ class Result < ActiveRecord::Base
   def candidate_results_of(alliance_result)
     candidate_results_in_election_order.where(
       'electoral_alliance_id = ? ', alliance_result.electoral_alliance_id).reorder(
-      'vote_sum_cache desc')
+      'alliance_proportionals.number desc')
   end
 
   def elected_candidates_in_alliance(alliance_result)
