@@ -1,3 +1,17 @@
+.seat-listing ul {
+  display: block;
+}
+  .seat-listing li {
+    float: left;
+    padding: 0.5em;
+    border-right: 1px black dotted;
+    border-bottom: 1px black dotted;
+    list-style-type: none;
+    font-weight: bold;
+    width: 100px;
+  }
+
+
 .error {
   color: red;
   font-weight: bold;

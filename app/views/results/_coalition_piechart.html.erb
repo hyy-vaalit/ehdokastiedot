@@ -26,7 +26,7 @@
   // Set chart options
   var options = {'title':'Tilanne <%= result.formatted_created_at -%>',
                  'is3D':false,
-                 'legend':'right',
+                 'pieSliceText': 'label',
                  'width':800,
                  'height':600,
                  'titlePosition': 'in'};
@@ -45,4 +45,10 @@
   </p>
 <% end %>
 
+
+<ul class="seat-listing">
+  <% result.coalition_results.each do |cr| -%>
+    <li><%= cr.electoral_coalition.shorten -%>: <%= result.elected_candidates_in_coalition(cr).count -%></li>
+  <% end -%>
+</ul>
 <div id="chart_div"></div>
