@@ -1,6 +1,11 @@
 class Candidate < ActiveRecord::Base
   include RankedModel
-  include VotableBehaviour
+
+  has_many :votes do
+    def preliminary_sum
+      countable.sum("amount")
+    end
+  end
 
   has_many :coalition_proportionals
   has_many :alliance_proportionals

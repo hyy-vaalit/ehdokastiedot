@@ -1,6 +1,11 @@
 class ElectoralAlliance < ActiveRecord::Base
   include RankedModel
-  include VotableAllianceBehaviour
+
+  has_many :votes, :through => :candidates do
+    def preliminary_sum
+      countable.sum("amount")
+    end
+  end
 
   has_many :alliance_drawings
   has_many :alliance_draws, :through => :alliance_drawings
