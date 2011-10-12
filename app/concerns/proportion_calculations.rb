@@ -11,5 +11,18 @@ module ProportionCalculations
 
   end
 
+  module ClassMethods
+    # Params:
+    #  :result_id => result.id,
+    #  :candidate_id => candidate.id,
+    #  :number => proportional_number
+    def create_or_update!(opts = {})
+      if existing = self.where(:candidate_id => opts[:candidate]).where(:result_id => opts[:result]).first
+        existing.update_attributes!(:number => opts[:number])
+      else
+        self.create!(opts)
+      end
+    end
+  end
 
 end
