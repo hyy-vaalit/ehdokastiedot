@@ -7,7 +7,7 @@ class ElectoralAlliance < ActiveRecord::Base
     end
 
     def countable_sum
-      countable.sum("COALESCE(votes.fixed_amount, votes.amount)")
+      countable.sum("COALESCE(votes.fixed_amount, votes.amount)").to_i  # result is a string otherwise
     end
   end
 

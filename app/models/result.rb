@@ -28,14 +28,37 @@ class Result < ActiveRecord::Base
   has_many :alliance_draws, :dependent => :destroy
   has_many :coalition_draws, :dependent => :destroy
 
-  after_create :calculate_proportionals!
+  after_create :calculate!
 
   def self.for_listing
     order('created_at desc')
   end
 
+  def self.final
+    where(:final => true)
+  end
+
+  def self.freezed
+    where(:freezed => true)
+  end
+
+  def self.create_freezed!
+    raise "Only one freezed result may be created (it will be used for drawings)!" if self.freezed.any?
+
+    self.create! :freezed => true
+  end
+
+  def finalize!
+    raise "Only a freezed result can be finalized!" if not freezed?
+
+    self.final = true
+    self.save!
+    recalculate!
+  end
+
   def filename(suffix = ".txt")
-    "tulos-" + created_at.to_s(:number) + suffix
+    final_text = self.final? ? "lopullinen" : ""
+    "tulos-" + final_text + created_at.to_s(:number) + suffix
   end
 
   def coalition_results_by_vote_sum
@@ -90,7 +113,7 @@ class Result < ActiveRecord::Base
 
   protected
 
-  def calculate_proportionals!
+  def calculate!
     Result.transaction do
       calculate_votes!
       alliance_proportionals!
@@ -98,6 +121,14 @@ class Result < ActiveRecord::Base
       elect_candidates!
       create_alliance_draws!
       create_coalition_draws!
+    end
+  end
+
+  def recalculate!
+    Result.transaction do
+      alliance_proportionals!
+      coalition_proportionals!
+      elect_candidates!
     end
   end
 

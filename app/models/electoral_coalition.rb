@@ -27,7 +27,7 @@ class ElectoralCoalition < ActiveRecord::Base
   end
 
   def countable_vote_sum
-    electoral_alliances.map(&:votes).map(&:countable_sum).sum
+    electoral_alliances.map(&:votes).map(&:countable_sum).sum # sql trololooo
   end
 
   def has_fix_needing_candidates?

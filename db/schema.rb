@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111011191251) do
+ActiveRecord::Schema.define(:version => 20111012135744) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -72,6 +72,8 @@ ActiveRecord::Schema.define(:version => 20111011191251) do
     t.float    "number",       :null => false
   end
 
+  add_index "alliance_proportionals", ["candidate_id", "result_id"], :name => "index_unique_alliance_prop_per_candidate_and_result", :unique => true
+
   create_table "alliance_results", :force => true do |t|
     t.integer  "result_id"
     t.integer  "electoral_alliance_id"
@@ -79,6 +81,8 @@ ActiveRecord::Schema.define(:version => 20111011191251) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "alliance_results", ["electoral_alliance_id", "result_id"], :name => "index_unique_alliance_result", :unique => true
 
   create_table "candidate_results", :force => true do |t|
     t.integer  "result_id"
@@ -92,6 +96,8 @@ ActiveRecord::Schema.define(:version => 20111011191251) do
     t.integer  "alliance_draw_order"
     t.integer  "coalition_draw_order"
   end
+
+  add_index "candidate_results", ["candidate_id", "result_id"], :name => "index_unique_candidate_result", :unique => true
 
   create_table "candidates", :force => true do |t|
     t.string   "firstname"
@@ -130,6 +136,8 @@ ActiveRecord::Schema.define(:version => 20111011191251) do
     t.float    "number",       :null => false
   end
 
+  add_index "coalition_proportionals", ["candidate_id", "result_id"], :name => "index_unique_coalition_prop_per_candidate_and_result", :unique => true
+
   create_table "coalition_results", :force => true do |t|
     t.integer  "result_id"
     t.integer  "electoral_coalition_id"
@@ -137,6 +145,8 @@ ActiveRecord::Schema.define(:version => 20111011191251) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "coalition_results", ["electoral_coalition_id", "result_id"], :name => "index_unique_coalition_result", :unique => true
 
   create_table "data_fixes", :force => true do |t|
     t.integer  "candidate_id"
@@ -214,6 +224,8 @@ ActiveRecord::Schema.define(:version => 20111011191251) do
   create_table "results", :force => true do |t|
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.boolean  "final",      :default => false, :null => false
+    t.boolean  "freezed",    :default => false, :null => false
   end
 
   create_table "votes", :force => true do |t|
