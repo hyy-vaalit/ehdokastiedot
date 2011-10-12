@@ -36,26 +36,6 @@ Vaalit::Application.routes.draw do
     end
   end
 
-  namespace :draws do
-    match '/', :controller => :index, :action => :index
-    match '/notice', :controller => :index, :action => :notice
-    resources :coalitions do
-      collection do
-        post :ready
-      end
-    end
-    resources :alliances do
-      collection do
-        post :ready
-      end
-    end
-    resources :candidates do
-      collection do
-        post :ready
-      end
-    end
-  end
-
   resources :listings, :only => [] do
     collection do
       get :simple

@@ -2,30 +2,6 @@ class Candidate < ActiveRecord::Base
   include RankedModel
   include VotableBehaviour
 
-  state_machine :initial => :not_selected do
-    event :select_me do
-      transition [:not_selected] => :selected
-    end
-    event :spare_me do
-      transition [:not_selected] => :spared
-    end
-    event :unselect_me do
-      transition any => :not_selected
-    end
-  end
-
-  state_machine :final_state, :initial => :not_selected_at_all do
-    event :select_me_at_last do
-      transition [:not_selected_at_all] => :selected_at_last
-    end
-    event :spare_me_at_last do
-      transition [:not_selected_at_all] => :spared_at_last
-    end
-    event :unselect_me_at_last do
-      transition any => :not_selected_at_all
-    end
-  end
-
   has_many :coalition_proportionals
   has_many :alliance_proportionals
   has_many :candidate_results
@@ -52,14 +28,6 @@ class Candidate < ActiveRecord::Base
   scope :has_fixes, lambda { joins(:data_fixes).select("distinct candidates.id, candidates.*") & DataFix.unapplied }
 
   scope :by_alliance, order('electoral_alliance_id desc')
-
-  scope :selected, where(state: :selected)
-  scope :selected_at_last, where(final_state: :selected_at_last)
-
-  scope :from_coalition, lambda { |coalition|
-    alliance_ids = coalition.electoral_alliance_ids
-    where('candidates.electoral_alliance_id in (?)', alliance_ids)
-  }
 
   validates_presence_of :lastname, :electoral_alliance
 
@@ -139,29 +107,6 @@ class Candidate < ActiveRecord::Base
 
   def has_fixes
     self.data_fixes.count > 0
-  end
-
-  def position_in_coalition
-    Candidate.from_coalition(self.electoral_alliance.electoral_coalition).selection_order.index self
-  end
-
-  def self.final_order
-    draws = CoalitionDraw.all
-    self.selection_order.sort do |x,y|
-      order_int = y.coalition_proportional <=> x.coalition_proportional
-      if order_int == 0
-        draw = draws.select{|d| d.include_candidate? x and d.include_candidate? y}.first
-        if draw
-          candidates = draw.candidates
-          x_index = candidates.index x
-          y_index = candidates.index y
-          order_int = x_index <=> y_index
-        else
-          puts 'BUG' #FIXME: deprecated after 17873117 is fixed
-        end
-      end
-      order_int
-    end
   end
 
   def self.give_numbers!

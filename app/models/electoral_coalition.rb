@@ -26,24 +26,8 @@ class ElectoralCoalition < ActiveRecord::Base
     electoral_alliances.map(&:votes).map(&:preliminary_sum).sum # did not work with sql the same way as in alliances
   end
 
-  def fixed_total_votes
-    self.electoral_alliances.map(&:fixed_total_votes).sum
-  end
-
-  def total_places
-    self.electoral_alliances.map(&:total_places).sum
-  end
-
-  def final_total_places
-    self.electoral_alliances.map(&:final_total_places).sum
-  end
-
   def has_fix_needing_candidates?
     self.electoral_alliances.select{|a| a.has_fix_needing_candidates?}.count > 0
-  end
-
-  def candidate_from_position position
-    Candidate.from_coalition(self).selection_order[position]
   end
 
   def self.are_all_ordered?

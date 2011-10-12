@@ -30,20 +30,6 @@ class Vote < ActiveRecord::Base
     end
   end
 
-  def self.calculated
-    votes_ready = self.ready.sum(:vote_count)
-    if votes_ready == self.sum(:vote_count)
-      100
-    else
-      total_votes = REDIS.get('total_vote_count')
-      if total_votes
-        (100 * votes_ready / total_votes.to_i).to_i
-      else
-        0
-      end
-    end
-  end
-
   protected
 
   def must_have_positive_amount
