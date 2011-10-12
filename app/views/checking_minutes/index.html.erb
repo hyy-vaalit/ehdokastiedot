@@ -1,14 +1,19 @@
-<h1>Tarkastuslaskentapöytäkirjat</h1>
+<h1>Tarkastuslaskenta</h1>
 
-<h2>Toiminnot</h2>
+<%= link_to "Takaisin ylläpitäjän etusivulle", admin_dashboard_path %>
+
+<h2>Ohjeet</h2>
 <ul>
-  <li><%= link_to "Yhteenveto kaikista korjauksista.", summary_checking_minutes_path %></li>
-  <li><%= link_to 'Merkitse tarkastuslaskenta valmiiksi!', ready_checking_minutes_path, :method => :post, :confirm => 'Onko jokaisen äänestysalueen tarkastuslaskenta valmis?' %></li>
-  <li><%= link_to "Ylläpitäjän toiminnot (dashboard)", admin_dashboard_path %></li>
-
+  <li>Tarkastuslaskenta täytyy tehdä näitä pöytäkirjoja vasten (äänestysalueen pöytäkirjoja ei pidä käyttää!)</li>
+  <li>Voit tulostaa kunkin äänestysalueen tiedot paperille merkintöjen tekemistä varten.</li>
+  <li>Tulosta paperille Firefox-selaimella, jotta taulukko rivittyy oikein.</li>
+  <li>Keskusvaalilautakuntaa varten tarjotaan <%= link_to "yhteenveto kaikista korjauksista.", summary_checking_minutes_path %>.</li>
+  <li>Kun tarkastuslaskentalautakunta on lopettanut työnsä, vaalityöntekijä merkitsee tarkastuslaskennan valmiiksi <%= link_to "vaaralliset toiminnot -sivulta", tools_url %>.</li>
 </ul>
 
-<h2>Äänestysalueet</h2>
+
+
+<h2>Äänestysalueiden tarkastuslaskentapöytäkirjat</h2>
 <ul>
 <% @voting_areas.each do |voting_area| -%>
   <li><%= link_to "#{voting_area.code} - #{voting_area.name}", checking_minute_path(voting_area) %></li>
