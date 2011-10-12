@@ -5,6 +5,10 @@ class ElectoralAlliance < ActiveRecord::Base
     def preliminary_sum
       countable.sum("amount")
     end
+
+    def countable_sum
+      countable.sum("COALESCE(votes.fixed_amount, votes.amount)")
+    end
   end
 
   has_many :alliance_drawings

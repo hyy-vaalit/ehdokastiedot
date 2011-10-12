@@ -11,7 +11,7 @@ describe AllianceProportional do
     ElectoralCoalition.should_receive(:all).and_return([coalition])
     coalition.should_receive(:electoral_alliances).and_return([alliance])
     alliance.candidates.should_receive(:by_vote_sum).and_return(alliance.candidates)
-    alliance.votes.should_receive(:preliminary_sum).and_return(total_vote_sum)
+    alliance.votes.should_receive(:countable_sum).and_return(total_vote_sum)
 
     result = FactoryGirl.create(:result)
 

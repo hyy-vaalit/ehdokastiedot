@@ -17,7 +17,7 @@ class CoalitionProportional < ActiveRecord::Base
   # The number in question is the coalition proportional number.
   def self.calculate!(result)
     ElectoralCoalition.all.each do |coalition|
-      coalition_votes = coalition.preliminary_vote_sum
+      coalition_votes = coalition.countable_vote_sum
       CoalitionResult.create! :result => result, :electoral_coalition => coalition, :vote_sum_cache => coalition_votes
 
       coalition.candidates.by_alliance_proportional(result).each_with_index do |candidate, array_index|

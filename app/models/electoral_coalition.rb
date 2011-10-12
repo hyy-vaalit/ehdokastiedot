@@ -26,6 +26,10 @@ class ElectoralCoalition < ActiveRecord::Base
     electoral_alliances.map(&:votes).map(&:preliminary_sum).sum # did not work with sql the same way as in alliances
   end
 
+  def countable_vote_sum
+    electoral_alliances.map(&:votes).map(&:countable_sum).sum
+  end
+
   def has_fix_needing_candidates?
     self.electoral_alliances.select{|a| a.has_fix_needing_candidates?}.count > 0
   end

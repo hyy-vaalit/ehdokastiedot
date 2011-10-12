@@ -20,7 +20,7 @@ class AllianceProportional < ActiveRecord::Base
   def self.calculate!(result)
     ElectoralCoalition.all.each do |coalition|
       coalition.electoral_alliances.each do |alliance|
-        alliance_votes = alliance.votes.preliminary_sum
+        alliance_votes = alliance.votes.countable_sum
         AllianceResult.create! :result => result, :electoral_alliance => alliance, :vote_sum_cache => alliance_votes
 
         alliance.candidates.by_vote_sum.each_with_index do |candidate, array_index|
