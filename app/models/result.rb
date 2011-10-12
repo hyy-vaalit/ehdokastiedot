@@ -2,14 +2,6 @@ class Result < ActiveRecord::Base
   has_many :coalition_proportionals, :dependent => :destroy
   has_many :alliance_proportionals, :dependent => :destroy
 
-  has_many :candidates_in_election_order,
-           :through => :coalition_proportionals,
-           :select  => 'candidates.id,candidates.candidate_name, candidates.candidate_number,
-                        coalition_proportionals.number as coalition_proportional, coalition_proportionals.number', # selected twice for count(*)
-           :source  => :candidate,
-           :order   => 'coalition_proportionals.number desc'
-           # TODO: joins candidate_result, order coalition_draw_order
-
   has_many :candidate_results, :dependent => :destroy
   has_many :candidates,
            :through => :candidate_results,
@@ -73,6 +65,15 @@ class Result < ActiveRecord::Base
     candidate_results.order("vote_sum_cache desc")
   end
 
+  def candidates_in_election_order
+    candidates.select(
+      'candidates.id, candidates.candidate_name, candidates.candidate_number,
+       coalition_proportionals.number as coalition_proportional, coalition_proportionals.number').joins(
+       'INNER JOIN coalition_proportionals    ON candidates.id = coalition_proportionals.candidate_id').where(
+       'coalition_proportionals.result_id = ?', self.id).order(
+       'coalition_proportionals.number desc, candidate_results.coalition_draw_order asc')
+  end
+
   def candidate_results_in_election_order
     candidates_in_election_order.select(
         'alliance_proportionals.number     AS  alliance_proportional,
@@ -84,7 +85,6 @@ class Result < ActiveRecord::Base
          coalition_draws.affects_elected_candidates AS coalition_draw_affects_elected,
          candidate_results.vote_sum_cache  AS  vote_sum').joins(
         'INNER JOIN electoral_alliances    ON  candidates.electoral_alliance_id   = electoral_alliances.id').joins(
-        'INNER JOIN candidate_results      ON  candidates.id = candidate_results.candidate_id').joins(
         'LEFT OUTER JOIN alliance_draws    ON  candidate_results.alliance_draw_id = alliance_draws.id').joins(
         'LEFT OUTER JOIN coalition_draws   ON  candidate_results.coalition_draw_id = coalition_draws.id').joins(
         'INNER JOIN alliance_proportionals ON  candidates.id = alliance_proportionals.candidate_id').where(
@@ -141,12 +141,13 @@ class Result < ActiveRecord::Base
   end
 
   def calculate_votes!
-    Candidate.by_vote_sum.each do |candidate|
+    Candidate.with_vote_sums_for(self).each do |candidate|
       CandidateResult.create! :result => self, :vote_sum_cache => candidate.vote_sum, :candidate_id => candidate.id
     end
   end
 
   def elect_candidates!
+    # TODO by coalition_draw_order
     candidate_ids = candidates_in_election_order.limit(Vaalit::Voting::ELECTED_CANDIDATE_COUNT).map(&:id)
     CandidateResult.elect!(candidate_ids, self.id)
   end

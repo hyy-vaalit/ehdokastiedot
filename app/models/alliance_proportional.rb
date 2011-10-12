@@ -23,7 +23,7 @@ class AllianceProportional < ActiveRecord::Base
         alliance_votes = alliance.votes.countable_sum
         AllianceResult.create_or_update! :result => result, :electoral_alliance => alliance, :vote_sum_cache => alliance_votes
 
-        alliance.candidates.by_vote_sum.each_with_index do |candidate, array_index|
+        alliance.candidates.with_vote_sums_for(result).each_with_index do |candidate, array_index|
           self.create_or_update! :result_id => result.id, :candidate_id => candidate.id,
                                  :number => calculate_proportional(alliance_votes, array_index)
         end

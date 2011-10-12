@@ -42,14 +42,17 @@ class Candidate < ActiveRecord::Base
 
   # Calculates all votes from all 'ready' (calculable) voting areas for each candidate.
   # If there exists a fixed vote amount, it will be used instead of the preliminary amount.
-  def self.by_vote_sum
-    select('candidates.id, SUM(COALESCE(votes.fixed_amount, votes.amount)) as vote_sum').from(
-      'candidates, votes, voting_areas').where(
+  def self.with_vote_sums_for(result)
+    select('candidates.id, SUM(COALESCE(votes.fixed_amount, votes.amount)) as vote_sum').joins(
+     'INNER JOIN  votes                 ON votes.candidate_id = candidates.id').joins(
+     'INNER JOIN candidate_results ON candidate_results.candidate_id = candidates.id').joins(
+     'INNER JOIN  voting_areas          ON voting_areas.id = votes.voting_area_id').where(
       'votes.candidate_id = candidates.id
-         and voting_areas.ready = true
-         and votes.voting_area_id = voting_areas.id').group(
-      'candidates.id').order(
-      'vote_sum desc')
+         AND voting_areas.ready = ?
+         AND candidate_results.result_id = ?
+         AND votes.voting_area_id = voting_areas.id', true, result.id).group(
+      'candidates.id, candidate_results.alliance_draw_order').order(
+      'vote_sum desc, candidate_results.alliance_draw_order asc')
   end
 
   def self.by_alliance_proportional(result)
