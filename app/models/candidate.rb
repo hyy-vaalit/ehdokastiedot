@@ -45,7 +45,7 @@ class Candidate < ActiveRecord::Base
   def self.with_vote_sums_for(result)
     select('candidates.id, SUM(COALESCE(votes.fixed_amount, votes.amount)) as vote_sum').joins(
      'INNER JOIN  votes                 ON votes.candidate_id = candidates.id').joins(
-     'INNER JOIN candidate_results ON candidate_results.candidate_id = candidates.id').joins(
+     'INNER JOIN  candidate_results     ON candidate_results.candidate_id = candidates.id').joins(
      'INNER JOIN  voting_areas          ON voting_areas.id = votes.voting_area_id').where(
       'votes.candidate_id = candidates.id
          AND voting_areas.ready = ?
@@ -53,6 +53,14 @@ class Candidate < ActiveRecord::Base
          AND votes.voting_area_id = voting_areas.id', true, result.id).group(
       'candidates.id, candidate_results.alliance_draw_order').order(
       'vote_sum desc, candidate_results.alliance_draw_order asc')
+  end
+
+  def self.with_vote_sums
+    select('candidates.id, SUM(COALESCE(votes.fixed_amount, votes.amount)) as vote_sum').joins(
+      'INNER JOIN "votes" ON "votes"."candidate_id" = "candidates"."id"').joins(
+      'INNER JOIN "voting_areas" ON "voting_areas"."id" = "votes"."voting_area_id"').where(
+      'voting_areas.ready = ?', true).group("candidates.id").order(
+      'vote_sum desc')
   end
 
   def self.by_alliance_proportional(result)
@@ -71,13 +79,6 @@ class Candidate < ActiveRecord::Base
       '"candidates"').joins(
       'inner join "coalition_proportionals" ON "candidates".id = coalition_proportionals.candidate_id').order(
       '"coalition_proportionals".number desc')
-  end
-
-  def self.includes_vote_sum
-    select('SUM("votes"."amount") AS vote_sum').joins(
-      'INNER JOIN "votes" ON "votes"."candidate_id" = "candidates"."id"').joins(
-      'INNER JOIN "voting_areas" ON "voting_areas"."id" = "votes"."voting_area_id"').where(
-      ['voting_areas.ready = ?', true]).group("candidates.id")
   end
 
   def self.by_cached_vote_sum

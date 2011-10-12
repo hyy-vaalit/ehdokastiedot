@@ -141,13 +141,12 @@ class Result < ActiveRecord::Base
   end
 
   def calculate_votes!
-    Candidate.with_vote_sums_for(self).each do |candidate|
+    Candidate.with_vote_sums.each do |candidate|
       CandidateResult.create! :result => self, :vote_sum_cache => candidate.vote_sum, :candidate_id => candidate.id
     end
   end
 
   def elect_candidates!
-    # TODO by coalition_draw_order
     candidate_ids = candidates_in_election_order.limit(Vaalit::Voting::ELECTED_CANDIDATE_COUNT).map(&:id)
     CandidateResult.elect!(candidate_ids, self.id)
   end
