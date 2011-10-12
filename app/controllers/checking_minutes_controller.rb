@@ -40,7 +40,7 @@ class CheckingMinutesController < ApplicationController
   end
 
   def ready
-    Delayed::Job.enqueue(DrawArrangeJob.new)
+    Delayed::Job.enqueue(CreateFinalResultJob.new)
     REDIS.set('checking_minutes_ready', true)
     redirect_to checking_minutes_path
   end
