@@ -14,6 +14,7 @@ class CandidateResult < ActiveRecord::Base
   end
 
   def self.elect!(candidate_ids, result_id)
+    update_all ["elected = ?", false], ["result_id = ?", result_id]
     update_all ["elected = ?", true], ["result_id = ? AND candidate_id IN (?)", result_id, candidate_ids]
   end
 
