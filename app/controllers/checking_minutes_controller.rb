@@ -1,10 +1,10 @@
 # coding: UTF-8
 class CheckingMinutesController < ApplicationController
 
-  skip_authorization_check :except => :summary
+  skip_authorization_check :except => :summary # accessible by tlk-pj
 
-  before_filter :authenticate, :except => :summary
-  before_filter :check_if_ready, :except => [:fixes, :summary]
+  before_filter :authenticate, :except => [:summary, :ready] # accessible by admin user
+  before_filter :check_if_ready, :except => [:fixes, :summary, :ready]
 
   layout "outside_activeadmin"
 
@@ -26,7 +26,7 @@ class CheckingMinutesController < ApplicationController
 
     flash[:invalid_candidate_numbers] = @voting_area.errors[:invalid_candidate_numbers] if @voting_area.errors[:invalid_candidate_numbers]
 
-    redirect_to edit_checking_minute_path(@voting_area.id, :anchor => 'vote_fix_form')
+    redirect_to edit_checking_minute_path(@voting_area.id, :anchor => 'vote_fix_form'), :notice => "Tarkastuslaskenta on merkitty valmiiksi."
   end
 
   def fixes
@@ -40,9 +40,9 @@ class CheckingMinutesController < ApplicationController
   end
 
   def ready
-    Delayed::Job.enqueue(CreateFinalResultJob.new)
+    Delayed::Job.enqueue(CreateFreezedResultJob.new)
     REDIS.set('checking_minutes_ready', true)
-    redirect_to checking_minutes_path
+    redirect_to tools_path
   end
 
   private
