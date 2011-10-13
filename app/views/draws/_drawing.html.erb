@@ -1,0 +1,20 @@
+
+<%= form_for draw, :html => {:method => :put} do |f| %>
+
+<table class="long-listing">
+
+
+  <thead>
+    <th>Ehdokas</th>
+    <th>Järjestys</th>
+  </thead>
+  <% draw.candidate_results.each do |candidate_result| %>
+    <tr>
+      <td><%= candidate_result.candidate.candidate_name %> </td>
+      <td><input type="text" name="draw_order[<%= candidate_result.id %>]" id="draw_order_<%= candidate_result.id %>" /></td>
+    </tr>
+  <% end %>
+</table>
+
+<%= submit_tag "Tallenna" %>
+<% end %>

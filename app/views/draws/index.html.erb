@@ -1,0 +1,37 @@
+<p><%= link_to "Takaisin etusivulle", admin_dashboard_path %></p>
+
+<h1>Arvonnat</h1>
+
+<% if not @result %>
+  Arvonnat voidaan aloittaa vasta sen jälkeen, kun
+  <%= link_to "tarkastuslaskenta on merkitty valmiiksi", tools_path %>.
+<% end %>
+
+
+<% if @result %>
+
+  <h2>Renkaiden väliset arvonnat</h2>
+  <% if @result.coalition_draws.effective.any? %>
+
+    <%= render :partial => "listing", :locals => {:draws => @result.coalition_draws.effective} %>
+
+  <% else %>
+    <p>Renkaiden keskinäisiin paikkamääriin vaikuttavia arvontoja ei ole.</p>
+  <% end %>
+
+
+  <h2>Liittojen väliset arvonnat</h2>
+  <% if @result.alliance_draws.effective.any? %>
+
+    <%= render :partial => "listing", :locals => {:draws => @result.alliance_draws.effective} %>
+
+  <% else %>
+    <p>Yksikään liiton sisällä tapahtuva arvonta ei vaikuta ehdokkaiden läpipääsyyn varsinaiseksi tai varaedustajaksi.</p>
+  <% end %>
+
+  <h2>Arvonnat, jotka eivät vaikuta varsinaisiin tai varaedustajiin</h2>
+  <p>
+    TODO
+  </p>
+
+<% end %>

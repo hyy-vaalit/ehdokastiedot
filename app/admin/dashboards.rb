@@ -69,7 +69,7 @@ ActiveAdmin::Dashboards.build do
     section 'Tarkastuslaskenta' do
       ul do
         li link_to 'Tarkastuslaskennan korjausyhteenveto', summary_checking_minutes_path
-        li link_to 'Arvonnat', "#"
+        li link_to 'Arvonnat', draws_index_path
         li link_to 'Lopullinen vaalitulos', "#"
       end
     end

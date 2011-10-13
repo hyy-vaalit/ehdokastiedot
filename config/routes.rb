@@ -27,6 +27,11 @@ Vaalit::Application.routes.draw do
 
   resources :results, :only => [:index, :show]
 
+  namespace :draws, :as => "" do
+    get :index, :as => :draws
+    resources :coalitions, :as => :coalition_draws
+    resources :alliances, :as => :alliance_draws
+  end
 
   resources :checking_minutes, :only => [:index, :show, :edit, :update] do
     collection do

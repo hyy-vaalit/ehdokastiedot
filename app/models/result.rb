@@ -34,17 +34,18 @@ class Result < ActiveRecord::Base
     where(:freezed => true)
   end
 
+  # A freezed result is created after vote re-counting (tarkastuslaskenta) has been finished.
   def self.create_freezed!
     raise "Only one freezed result may be created (it will be used for drawings)!" if self.freezed.any?
 
     self.create! :freezed => true
   end
 
+  # Result is finalized after coalition and alliance drawings have been made.
   def finalize!
     raise "Only a freezed result can be finalized!" if not freezed?
 
-    self.final = true
-    self.save!
+    self.update_attributes!(:final => true)
     recalculate!
   end
 
@@ -124,6 +125,8 @@ class Result < ActiveRecord::Base
     end
   end
 
+  # Recalculates alliance and coalition proportionals according to drawings that have been made.
+  # Votes are not re-calculated and existing drawing results are preserved.
   def recalculate!
     Result.transaction do
       alliance_proportionals!

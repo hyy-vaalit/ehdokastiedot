@@ -1,0 +1,11 @@
+<%= link_to "Takaisin", draws_path %>
+
+<h1>Vaaliliittojen välinen arvonta</h1>
+
+<p>
+  Tunnus: '<%= @draw.identifier %>'
+  <br />
+  Ehdokkaita: '<%= @draw.candidate_results.count %>'
+</p>
+
+<%= render :partial => "draws/drawing", :locals => {:draw => @draw} %>

@@ -1,0 +1,23 @@
+<table class="long-listing">
+  <thead>
+    <th>ID</th>
+    <th>Ehdokkaat</th>
+    <th>Arvonta</th>
+  </thead>
+
+  <% draws.each do |draw| %>
+    <tr>
+      <td><%= draw.identifier %></td>
+      <td>
+        <ul>
+          <% draw.candidate_results.by_coalition_draw_order.each do |candidate_result| %>
+          <li>
+            <%= candidate_result.candidate.candidate_name %>: <%= candidate_result.coalition_draw_order %>
+          </li>
+          <% end %>
+        </ul>
+      </td>
+      <td><%= link_to "Suorita..", draw %></td>
+    </tr>
+  <% end %>
+</table>
