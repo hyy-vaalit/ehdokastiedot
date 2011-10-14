@@ -66,11 +66,11 @@ ActiveAdmin::Dashboards.build do
       end
     end
 
-    section 'Tarkastuslaskenta' do
+    section 'Vaalituloksen vahvistaminen' do
       ul do
         li link_to 'Tarkastuslaskennan korjausyhteenveto', summary_checking_minutes_path
-        li link_to 'Arvonnat', draws_index_path
-        li link_to 'Lopullinen vaalitulos', "#"
+        li link_to 'Arvonnat', draws_path
+        li link_to 'Lopullinen vaalitulos', results_path
       end
     end
 
