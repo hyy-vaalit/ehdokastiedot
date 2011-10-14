@@ -28,10 +28,4 @@ class CoalitionProportional < ActiveRecord::Base
 
   end
 
-  def self.find_duplicate_numbers(result_id)
-    select('coalition_proportionals.number').from('coalition_proportionals').where(
-    'coalition_proportionals.result_id = ?', result_id).group(
-    'coalition_proportionals.number having count(*) > 1').order('coalition_proportionals.number desc')
-  end
-
 end
