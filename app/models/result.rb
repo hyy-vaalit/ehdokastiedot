@@ -129,13 +129,18 @@ class Result < ActiveRecord::Base
         'alliance_proportionals.number     AS  alliance_proportional,
          electoral_alliances.shorten       AS  electoral_alliance_shorten,
          candidate_results.elected         AS  elected,
+
          candidate_draws.identifier         AS  candidate_draw_identifier,
          candidate_draws.affects_elected_candidates AS candidate_draw_affects_elected,
+         alliance_draws.identifier         AS  alliance_draw_identifier,
+         alliance_draws.affects_elected_candidates AS alliance_draw_affects_elected,
          coalition_draws.identifier         AS  coalition_draw_identifier,
          coalition_draws.affects_elected_candidates AS coalition_draw_affects_elected,
+
          candidate_results.vote_sum_cache  AS  vote_sum').joins(
         'INNER JOIN electoral_alliances    ON  candidates.electoral_alliance_id   = electoral_alliances.id').joins(
-        'LEFT OUTER JOIN candidate_draws    ON  candidate_results.candidate_draw_id = candidate_draws.id').joins(
+        'LEFT OUTER JOIN candidate_draws   ON  candidate_results.candidate_draw_id = candidate_draws.id').joins(
+        'LEFT OUTER JOIN alliance_draws    ON  candidate_results.alliance_draw_id = alliance_draws.id').joins(
         'LEFT OUTER JOIN coalition_draws   ON  candidate_results.coalition_draw_id = coalition_draws.id').joins(
         'INNER JOIN alliance_proportionals ON  candidates.id = alliance_proportionals.candidate_id').where(
         ['alliance_proportionals.result_id = ? AND candidate_results.result_id = ?', self.id, self.id])

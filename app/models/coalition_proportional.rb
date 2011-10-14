@@ -26,6 +26,12 @@ class CoalitionProportional < ActiveRecord::Base
       end
     end
 
+  def find_duplicate_numbers(result_id)
+    select("#{table_name}.number").from(table_name).where(
+    "#{table_name}.result_id = ?", result_id).group(
+    "#{table_name}.number having count(*) > 1").order("#{table_name}.number desc")
+  end
+
   end
 
 end

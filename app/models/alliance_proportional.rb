@@ -31,4 +31,10 @@ class AllianceProportional < ActiveRecord::Base
     end
   end
 
+  def self.find_duplicate_numbers(result_id)
+    select("candidates.electoral_alliance_id, alliance_proportionals.number").joins(
+      'inner join candidates on alliance_proportionals.candidate_id = candidates.id').where(
+      "alliance_proportionals.result_id = ?", result_id).group(
+      "candidates.electoral_alliance_id, alliance_proportionals.number having count(*) > 1").order("alliance_proportionals.number desc")
+  end
 end

@@ -7,20 +7,25 @@ Lopullinen vaalitulos vahvistetaan tarkastuslaskennan jälkeen.
 - Läpimenevät ehdokkaat merkitty tähdellä (*).
 - Ehdokas on merkitty kysymysmerkillä (?), jos saman vaaliliiton sisällä
   useampi ehdokas on saanut saman äänimäärän ja läpipääsevä ratkaistaan arvalla.
-- Jos kahdella ehdokkaalla on sama rengasvertailuluku, mikä voi vaikuttaa
-  vaalirenkaan paikkamäärään, ehdokas on merkitty yhtäsuuruusmerkillä (=).
+- Jos kahdella ehdokkaalla on sama liittovertailuluku, eli jos ehdokkaan
+  läpipääsy joudutaan arpomaan vaalirenkaan sisällä, ehdokas on merkitty
+  tildellä (~).
+- Jos kahdella ehdokkaalla on sama rengasvertailuluku, eli jos ehdokkaan
+  läpipääsy joudutaan arpomaan vaalirenkaiden kesken, ehdokas on merkitty
+  yhtäsuuruusmerkillä (=).
+- Varaedustajia valitaan jokaisesta vaaliliitosta kaksi per läpipääsevä ehdokas.
 
 Tiedoston lopussa on listattu kaikki ehdokkaat rengasvertailuluvun mukaan.
 
-Vaalirenkaita yhteensä:   <%#= sprintf "%2d", coalition_count %>
-Vaaliliittoja yhteensä:   <%#= sprintf "%2d", alliance_count %>
-Ehdokkaita ilman liittoa: <%#= sprintf "%2d", allianceless_candidates %>
-Ehdokkaita yhteensä:    <%#= sprintf "%4d", candidates.count %>
-Valittavia ehdokkaita:    <%#= sprintf "%2d", candidates_to_select %>
-Äänioikeutettuja:     <%#= sprintf "%6d", right_to_vote %>
-Ääniä annettu:        <%#= sprintf "%6d", votes_given %>
-Ääniä hyväksytty:     <%#= sprintf "%6d", votes_accepted %>
-Äänestysprosentti %:  <%#= sprintf "%3.2f", voting_percentage %>
+<%# Vaalirenkaita yhteensä:   <%#= sprintf "%2d", coalition_count %>
+<%# Vaaliliittoja yhteensä:   <%#= sprintf "%2d", alliance_count %>
+<%# Ehdokkaita ilman liittoa: <%#= sprintf "%2d", allianceless_candidates %>
+<%# Ehdokkaita yhteensä:    <%#= sprintf "%4d", candidates.count %>
+<%# Valittavia ehdokkaita:    <%#= sprintf "%2d", candidates_to_select %>
+<%# Äänioikeutettuja:     <%#= sprintf "%6d", right_to_vote %>
+<%# Ääniä annettu:        <%#= sprintf "%6d", votes_given %>
+<%# Ääniä hyväksytty:     <%#= sprintf "%6d", votes_accepted %>
+<%# Äänestysprosentti %:  <%#= sprintf "%3.2f", voting_percentage %>
 
 
 --------------------------------------------------------------------------------
