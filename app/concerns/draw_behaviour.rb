@@ -11,10 +11,14 @@ module DrawBehaviour
 
     @@identifier_range = ('a'..'zzz').to_a
 
+    def identifier_number=(number)
+      self.identifier = identifier_from_number(number)
+    end
+
     # Translates a unique identifier number (eg. an iterator index) to
     # a string (eg. "ax") which will be displayed as draw identifier in results.
-    def identifier_number=(number)
-      self.identifier = @@identifier_range[number]
+    def identifier_from_number(number)
+      @@identifier_range[number]
     end
 
     # If some of the draw's candidates have :elected status and some do not,

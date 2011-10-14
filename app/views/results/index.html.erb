@@ -6,7 +6,7 @@
 
 <p>
   Tuoreimman vaalituloksen julkinen osoite on
-  <%= link_to Vaalit::Results::PUBLIC_RESULT_URL %>.
+  <%= link_to Vaalit::Results::PUBLIC_RESULT_URL, Vaalit::Results::PUBLIC_RESULT_URL %>.
 </p>
 
 <table class="long-listing">
@@ -23,7 +23,7 @@
 
   <tr>
     <td><%= result_decorator.formatted_created_at %></td>
-    <td><%= link_to "Tulostiedosto", result_decorator.result_file_url %></td>
+    <td><%= link_to result_decorator.filename, result_decorator.result_file_url %></td>
     <td><%= link_to "Paikat ryhmittäin", result_url(result), :target => "_blank" %></td>
     <td><%= link_to "Paikat liitoittain", result_url(result, :chart => "alliances"), :target => "_blank" %></td>
   </tr>

@@ -60,21 +60,22 @@ class Result < ActiveRecord::Base
     not coalition_draws_ready?
   end
 
+  # Result must be freezed before any draws can be marked ready.
   def candidate_draws_ready!
-    raise "Result must be freezed before any draws can be marked ready." if not self.freezed?
+    return false if not self.freezed?
 
     Result.transaction do
       update_attributes!(:candidate_draws_ready => true)
       alliance_proportionals!
       coalition_proportionals!
       elect_candidates!
-      #create_alliance_draws!
-      create_coalition_draws!
+      create_alliance_draws!
     end
   end
 
+  # Candidate draws must be marked ready before alliance draws can be finalized.
   def alliance_draws_ready!
-    raise "Candidate draws must be marked ready before alliance draws can be finalized." if not self.candidate_draws_ready?
+    return false if not self.candidate_draws_ready?
 
     Result.transaction do
       update_attributes!(:alliance_draws_ready => true)
@@ -84,13 +85,10 @@ class Result < ActiveRecord::Base
     end
   end
 
-  def coalition_draws_ready!
-    finalize!
-  end
-
   # Result is finalized after all drawings have been made.
+  # Alliance draws must be marked ready result can be finalized.
   def finalize!
-    raise "Alliance draws must be marked ready result can be finalized!" if not self.alliance_draws_ready?
+    return false if not self.alliance_draws_ready?
 
     Result.transaction do
       self.update_attributes!(:final => true, :coalition_draws_ready => true)
@@ -171,8 +169,8 @@ class Result < ActiveRecord::Base
       alliance_proportionals!
       coalition_proportionals!
       elect_candidates!
-      # create_candidate_draws!
       create_candidate_draws!
+      create_alliance_draws!
       create_coalition_draws!
     end
   end
@@ -197,6 +195,7 @@ class Result < ActiveRecord::Base
   end
 
   def create_candidate_draws!
+    CandidateDraw.where(:result_id => self.id).destroy_all
     CandidateResult.find_duplicate_vote_sums(self.id).each_with_index do |draw, index|
       candidate_ids = ElectoralAlliance.find(draw.electoral_alliance_id).candidate_ids
       draw_candidate_results = self.candidate_results.where(["candidate_id IN (?) AND vote_sum_cache = ?", candidate_ids, draw.vote_sum_cache])
@@ -208,15 +207,34 @@ class Result < ActiveRecord::Base
     end
   end
 
-  def create_coalition_draws!
-    CoalitionProportional.find_duplicate_numbers(self.id).each_with_index do |draw_proportional, index|
-      candidate_ids = CoalitionProportional.select('candidate_id').where(["number = ? AND result_id = ?", draw_proportional.number, self.id]).map(&:candidate_id)
-      draw_candidate_results = self.candidate_results.where(["candidate_id IN (?)", candidate_ids])
+  def create_alliance_draws!
+    create_proportional_draws!(AllianceDraw, AllianceProportional)
+  end
 
-      coalition_draw = CoalitionDraw.create! :result_id => self.id,
-                                             :identifier_number => index,
-                                             :affects_elected_candidates => CoalitionDraw.affects_elected?(draw_candidate_results)
-      coalition_draw.candidate_results << draw_candidate_results
+  def create_coalition_draws!
+    create_proportional_draws!(CoalitionDraw, CoalitionProportional)
+  end
+
+
+  private
+
+  def create_proportional_draws!(draw_class, proportional_class)
+    draw_class.where(:result_id => self.id).destroy_all
+
+    proportional_class.find_duplicate_numbers(self.id).each_with_index do |draw_proportional, index|
+      draw_candidate_results = find_draw_candidate_results_of(proportional_class, draw_proportional)
+      draw = draw_class.create! :result_id => self.id,
+                                :identifier_number => index,
+                                :affects_elected_candidates => draw_class.affects_elected?(draw_candidate_results)
+      draw.candidate_results << draw_candidate_results
     end
   end
+
+  def find_draw_candidate_results_of(proportional_class, draw_proportional)
+    candidate_ids = proportional_class.select('candidate_id').where(
+                          ["number = ? AND result_id = ?", draw_proportional.number, self.id]
+                        ).map(&:candidate_id)
+    self.candidate_results.where(["candidate_id IN (?)", candidate_ids])
+  end
+
 end

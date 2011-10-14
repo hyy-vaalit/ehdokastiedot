@@ -7,9 +7,10 @@
   </thead>
 
   <% draws.each do |draw| %>
-    <tr>
+    <%= puts "draw: #{draw.inspect}"%>
+    <tr id="draw_<%= draw.identifier -%>">
       <td><%= draw.identifier %></td>
-      <td><%= draw.candidate_results.first.vote_sum_cache %></td>
+      <td><%#= draw.candidate_results.first.vote_sum_cache %></td>
       <td>
         <ul>
           <% draw.candidate_results.each do |candidate_result| %>

@@ -41,8 +41,7 @@ class CheckingMinutesController < ApplicationController
 
   def ready
     Delayed::Job.enqueue(CreateFreezedResultJob.new)
-    REDIS.set('checking_minutes_ready', true)
-    redirect_to tools_path
+    redirect_to draws_path
   end
 
   private

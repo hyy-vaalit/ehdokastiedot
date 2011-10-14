@@ -10,21 +10,54 @@
 
 <% if @result %>
 
+  <% if @result.final? %>
+    Arvonnat on suoritettu. Löydät lopullisen vaalituloksen <%= link_to "vaalitulossivulta", results_path %>.
+  <% end %>
+
   <% if @result.pending_candidate_draws? %>
     <h2>Liiton sisällä saman äänimäärän saaneet ehdokkaat (<%= @result.candidate_draws.count %> kpl)</h2>
-
-    <% if  @result.candidate_draws.any? %>
-
+    <%= button_to "Merkitse äänimäärien arvonta valmiiksi!", candidate_draws_ready_path,
+                                                             :method => :post,
+                                                             :confirm => "Seuraavaksi siirrytään arpomaan liittovertailulukuja. Ok?" %>
+    <br />
+    <% if @result.candidate_draws.any? %>
       <%= render :partial => "listing", :locals => {:draws => @result.candidate_draws.by_identifier, :order_method => :candidate_draw_order} %>
-
     <% else %>
       <p>Saman äänimäärän saaneiden ehdokkaiden arvontoja ei ole.</p>
     <% end %>
+
   <% end %>
 
   <% if @result.pending_alliance_draws? %>
 
-    TODO: Alliance!
+    <h2>Renkaan sisällä saman liittovertailuluvun saaneet ehdokkaat (<%= @result.alliance_draws.count %> kpl)</h2>
+    <%= button_to "Merkitse liittovertailukuarvonta valmiiksi!", alliance_draws_ready_path,
+                                                             :method => :post,
+                                                             :confirm => "Seuraavaksi siirrytään arpomaan rengasvertailulukuja. Ok?" %>
+
+    <br />
+    <% if @result.alliance_draws.any? %>
+      <%= render :partial => "listing", :locals => {:draws => @result.alliance_draws.by_identifier, :order_method => :alliance_draw_order} %>
+    <% else %>
+      <p>Saman liittovertailulukujen saaneiden ehdokkaiden arvontoja ei ole.</p>
+    <% end %>
+
+  <% end %>
+
+  <% if @result.pending_coalition_draws? %>
+
+    <h2>Saman rengasvertailuluvun saaneet ehdokkaat (<%= @result.coalition_draws.count %> kpl)</h2>
+    <%= button_to "Merkitse rengasvertailukuarvonta valmiiksi!", coalition_draws_ready_path,
+                                                             :method => :post,
+                                                             :confirm => "Seuraavaksi lasketaan lopullinen vaalitulos. Ok?" %>
+
+    <br />
+    <% if @result.coalition_draws.any? %>
+      <%= render :partial => "listing", :locals => {:draws => @result.coalition_draws.by_identifier, :order_method => :coalition_draw_order} %>
+    <% else %>
+      <p>Saman rengasvertailulukujen saaneiden ehdokkaiden arvontoja ei ole.</p>
+    <% end %>
+
   <% end %>
 
 <% end %>
