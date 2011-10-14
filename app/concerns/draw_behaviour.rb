@@ -5,7 +5,7 @@ module DrawBehaviour
     has_many :candidate_results, :dependent => :nullify
     belongs_to :result
 
-    scope :effective, where(:affects_elected_candidates => true) # TODO: spares
+    scope :effective, where(:affects_elected_candidates => true)
 
     validates_presence_of :result_id
 

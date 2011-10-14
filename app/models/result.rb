@@ -41,12 +41,44 @@ class Result < ActiveRecord::Base
     self.create! :freezed => true
   end
 
-  # Result is finalized after coalition and alliance drawings have been made.
-  def finalize!
-    raise "Only a freezed result can be finalized!" if not freezed?
+  def candidate_draws_ready!
+    raise "Result must be freezed before any draws can be marked ready." if not self.freezed?
 
-    self.update_attributes!(:final => true)
-    recalculate!
+    Result.transaction do
+      update_attributes!(:candidate_draws_ready => true)
+      alliance_proportionals!
+      coalition_proportionals!
+      elect_candidates!
+      #create_alliance_draws!
+      create_coalition_draws!
+    end
+  end
+
+  def alliance_draws_ready!
+    raise "Candidate draws must be marked ready before alliance draws can be finalized." if not self.candidate_draws_ready?
+
+    Result.transaction do
+      update_attributes!(:alliance_draws_ready => true)
+      coalition_proportionals!
+      elect_candidates!
+      create_coalition_draws!
+    end
+  end
+
+  def coalition_draws_ready!
+    finalize!
+  end
+
+  # Result is finalized after all drawings have been made.
+  def finalize!
+    raise "Alliance draws must be marked ready result can be finalized!" if not self.alliance_draws_ready?
+
+    Result.transaction do
+      self.update_attributes!(:final => true, :coalition_draws_ready => true)
+      alliance_proportionals!
+      coalition_proportionals!
+      elect_candidates!
+    end
   end
 
   def filename(suffix = ".txt")
@@ -120,18 +152,9 @@ class Result < ActiveRecord::Base
       alliance_proportionals!
       coalition_proportionals!
       elect_candidates!
+      # create_candidate_draws!
       create_alliance_draws!
       create_coalition_draws!
-    end
-  end
-
-  # Recalculates alliance and coalition proportionals according to drawings that have been made.
-  # Votes are not re-calculated and existing drawing results are preserved.
-  def recalculate!
-    Result.transaction do
-      alliance_proportionals!
-      coalition_proportionals!
-      elect_candidates!
     end
   end
 
