@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111013141802) do
+ActiveRecord::Schema.define(:version => 20111014065339) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -84,6 +84,14 @@ ActiveRecord::Schema.define(:version => 20111013141802) do
 
   add_index "alliance_results", ["electoral_alliance_id", "result_id"], :name => "index_unique_alliance_result", :unique => true
 
+  create_table "candidate_draws", :force => true do |t|
+    t.integer  "result_id"
+    t.string   "identifier"
+    t.boolean  "affects_elected_candidates"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
   create_table "candidate_results", :force => true do |t|
     t.integer  "result_id"
     t.integer  "candidate_id"
@@ -95,6 +103,8 @@ ActiveRecord::Schema.define(:version => 20111013141802) do
     t.integer  "coalition_draw_id"
     t.integer  "alliance_draw_order"
     t.integer  "coalition_draw_order"
+    t.integer  "candidate_draw_id"
+    t.integer  "candidate_draw_order"
   end
 
   add_index "candidate_results", ["candidate_id", "result_id"], :name => "index_unique_candidate_result", :unique => true
@@ -260,7 +270,10 @@ ActiveRecord::Schema.define(:version => 20111013141802) do
   add_foreign_key "alliance_results", "electoral_alliances", :name => "alliance_results_electoral_alliance_id_fk"
   add_foreign_key "alliance_results", "results", :name => "alliance_results_result_id_fk"
 
+  add_foreign_key "candidate_draws", "results", :name => "candidate_draws_result_id_fk"
+
   add_foreign_key "candidate_results", "alliance_draws", :name => "candidate_results_alliance_draw_id_fk"
+  add_foreign_key "candidate_results", "candidate_draws", :name => "candidate_results_candidate_draw_id_fk"
   add_foreign_key "candidate_results", "candidates", :name => "candidate_results_candidate_id_fk"
   add_foreign_key "candidate_results", "coalition_draws", :name => "candidate_results_coalition_draw_id_fk"
   add_foreign_key "candidate_results", "results", :name => "candidate_results_result_id_fk"

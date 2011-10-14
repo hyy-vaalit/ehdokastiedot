@@ -5,7 +5,7 @@ module DrawBehaviour
     has_many :candidate_results, :dependent => :nullify
     belongs_to :result
 
-    scope :effective, where(:affects_elected_candidates => true)
+    scope :by_identifier, order("identifier asc")
 
     validates_presence_of :result_id
 
@@ -27,11 +27,23 @@ module DrawBehaviour
       status.include?(true) and status.include?(false)
     end
 
-    def give_order!(order_attribute, draw_order)
-      draw_order.each do |candidate_result_id, draw_order|
-        candidate_result = self.candidate_results.find(candidate_result_id)
-        candidate_result.update_attributes!(order_attribute => draw_order)
+    def give_order!(order_attribute, draw_orders, automatically = false)
+      if automatically
+        give_order_automatically!(order_attribute)
+      else
+        draw_orders.each do |candidate_result_id, draw_order|
+          candidate_result = self.candidate_results.find(candidate_result_id)
+          candidate_result.update_attributes!(order_attribute => draw_order)
+        end
       end
     end
+
+    private
+
+    def give_order_automatically!(order_attribute)
+      random_order = Array(1..self.candidate_results.count).sort_by { rand }
+      self.candidate_results.each_with_index {|c,i| c.update_attributes!(order_attribute => random_order[i])}
+    end
+
   end
 end

@@ -1,15 +1,23 @@
 
+<p>
+  Tunnus: <%= @draw.identifier %>
+  <br />
+  Ehdokkaita: <%= @draw.candidate_results.count %>
+</p>
+
+
 <%= form_for draw, :html => {:method => :put} do |f| %>
 
 <table class="long-listing">
 
 
   <thead>
-    <th>Ehdokas</th>
+    <th colspan="2">Ehdokas</th>
     <th>Järjestys</th>
   </thead>
   <% draw.candidate_results.each do |candidate_result| %>
     <tr>
+      <td><%= candidate_result.candidate.candidate_number %> </td>
       <td><%= candidate_result.candidate.candidate_name %> </td>
       <td><input type="text" name="draw_order[<%= candidate_result.id %>]" id="draw_order_<%= candidate_result.id %>" /></td>
     </tr>

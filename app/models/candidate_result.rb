@@ -1,12 +1,12 @@
 class CandidateResult < ActiveRecord::Base
   belongs_to :result
   belongs_to :candidate
-  belongs_to :alliance_draw, :dependent => :destroy
+  belongs_to :candidate_draw, :dependent => :destroy
   belongs_to :coalition_draw, :dependent => :destroy
 
   validates_presence_of :result_id, :candidate_id
 
-  scope :by_alliance_draw_order, order("alliance_draw_order asc")
+  scope :by_candidate_draw_order, order("candidate_draw_order asc")
   scope :by_coalition_draw_order, order("coalition_draw_order asc")
 
   def self.for_candidates(candidate_ids)

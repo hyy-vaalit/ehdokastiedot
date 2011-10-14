@@ -17,6 +17,7 @@ class Result < ActiveRecord::Base
            :through => :coalition_results,
            :select => "electoral_coalitions.id, electoral_coalitions.name, electoral_coalitions.shorten"
 
+  has_many :candidate_draws, :dependent => :destroy
   has_many :alliance_draws, :dependent => :destroy
   has_many :coalition_draws, :dependent => :destroy
 
@@ -39,6 +40,24 @@ class Result < ActiveRecord::Base
     raise "Only one freezed result may be created (it will be used for drawings)!" if self.freezed.any?
 
     self.create! :freezed => true
+  end
+
+  def pending_candidate_draws?
+    return false if not freezed?
+
+    not candidate_draws_ready?
+  end
+
+  def pending_alliance_draws?
+    return false if pending_candidate_draws?
+
+    not alliance_draws_ready?
+  end
+
+  def pending_coalition_draws?
+    return false if pending_alliance_draws?
+
+    not coalition_draws_ready?
   end
 
   def candidate_draws_ready!
@@ -112,13 +131,13 @@ class Result < ActiveRecord::Base
         'alliance_proportionals.number     AS  alliance_proportional,
          electoral_alliances.shorten       AS  electoral_alliance_shorten,
          candidate_results.elected         AS  elected,
-         alliance_draws.identifier         AS  alliance_draw_identifier,
-         alliance_draws.affects_elected_candidates AS alliance_draw_affects_elected,
+         candidate_draws.identifier         AS  candidate_draw_identifier,
+         candidate_draws.affects_elected_candidates AS candidate_draw_affects_elected,
          coalition_draws.identifier         AS  coalition_draw_identifier,
          coalition_draws.affects_elected_candidates AS coalition_draw_affects_elected,
          candidate_results.vote_sum_cache  AS  vote_sum').joins(
         'INNER JOIN electoral_alliances    ON  candidates.electoral_alliance_id   = electoral_alliances.id').joins(
-        'LEFT OUTER JOIN alliance_draws    ON  candidate_results.alliance_draw_id = alliance_draws.id').joins(
+        'LEFT OUTER JOIN candidate_draws    ON  candidate_results.candidate_draw_id = candidate_draws.id').joins(
         'LEFT OUTER JOIN coalition_draws   ON  candidate_results.coalition_draw_id = coalition_draws.id').joins(
         'INNER JOIN alliance_proportionals ON  candidates.id = alliance_proportionals.candidate_id').where(
         ['alliance_proportionals.result_id = ? AND candidate_results.result_id = ?', self.id, self.id])
@@ -153,7 +172,7 @@ class Result < ActiveRecord::Base
       coalition_proportionals!
       elect_candidates!
       # create_candidate_draws!
-      create_alliance_draws!
+      create_candidate_draws!
       create_coalition_draws!
     end
   end
@@ -177,15 +196,15 @@ class Result < ActiveRecord::Base
     CandidateResult.elect!(candidate_ids, self.id)
   end
 
-  def create_alliance_draws!
+  def create_candidate_draws!
     CandidateResult.find_duplicate_vote_sums(self.id).each_with_index do |draw, index|
       candidate_ids = ElectoralAlliance.find(draw.electoral_alliance_id).candidate_ids
       draw_candidate_results = self.candidate_results.where(["candidate_id IN (?) AND vote_sum_cache = ?", candidate_ids, draw.vote_sum_cache])
 
-      alliance_draw = AllianceDraw.create! :result_id => self.id,
+      candidate_draw = CandidateDraw.create! :result_id => self.id,
                                            :identifier_number => index,
-                                           :affects_elected_candidates => AllianceDraw.affects_elected?(draw_candidate_results)
-      alliance_draw.candidate_results << draw_candidate_results
+                                           :affects_elected_candidates => CandidateDraw.affects_elected?(draw_candidate_results)
+      candidate_draw.candidate_results << draw_candidate_results
     end
   end
 

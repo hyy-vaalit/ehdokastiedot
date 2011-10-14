@@ -51,8 +51,8 @@ class Candidate < ActiveRecord::Base
          AND voting_areas.ready = ?
          AND candidate_results.result_id = ?
          AND votes.voting_area_id = voting_areas.id', true, result.id).group(
-      'candidates.id, candidate_results.alliance_draw_order').order(
-      'vote_sum desc, candidate_results.alliance_draw_order asc')
+      'candidates.id, candidate_results.candidate_draw_order').order(
+      'vote_sum desc, candidate_results.candidate_draw_order asc')
   end
 
   def self.with_vote_sums

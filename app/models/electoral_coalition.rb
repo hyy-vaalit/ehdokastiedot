@@ -6,9 +6,6 @@ class ElectoralCoalition < ActiveRecord::Base
   has_many :electoral_alliances
   has_many :candidates, :through => :electoral_alliances
 
-  has_many :coalition_drawings
-  has_many :coalition_draws, :through => :coalition_drawings
-
   default_scope order(:number_order)
 
   validates_presence_of :name, :shorten

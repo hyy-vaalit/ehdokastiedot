@@ -31,6 +31,7 @@ Vaalit::Application.routes.draw do
     get :index, :as => :draws
     resources :coalitions, :as => :coalition_draws
     resources :alliances, :as => :alliance_draws
+    resources :candidates, :as => :candidate_draws
   end
 
   resources :checking_minutes, :only => [:index, :show, :edit, :update] do

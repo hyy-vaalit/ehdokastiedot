@@ -18,22 +18,22 @@ describe 'votable behaviour' do
     votes = 42
     cprop = 123.45678
     aprop = 432.12345
-    alliance_draw = "ax"
+    candidate_draw = "ax"
     coalition_draw = " a"
     candidate.stub!(:electoral_alliance_shorten).and_return(alliance)
     candidate.stub!(:candidate_name).and_return(candidate_name)
     candidate.stub!(:candidate_number).and_return(cno)
     candidate.stub!(:vote_sum).and_return(votes)
     candidate.stub!(:elected?).and_return(true)
-    candidate.stub!(:alliance_draw_identifier).and_return(alliance_draw)
+    candidate.stub!(:candidate_draw_identifier).and_return(candidate_draw)
     candidate.stub!(:coalition_draw_identifier).and_return(coalition_draw)
     candidate.stub!(:alliance_proportional).and_return(aprop)
     candidate.stub!(:coalition_proportional).and_return(cprop)
-    candidate.stub!(:alliance_draw_affects_elected?).and_return(false)
+    candidate.stub!(:candidate_draw_affects_elected?).and_return(false)
     candidate.stub!(:coalition_draw_affects_elected?).and_return(false)
 
     # "124* Testinen, Martti 'Sakke'...... 789 Tumpit   42ax  432.12345    123.45678 a"
-    expected = "#{idx+1}* #{candidate_name}...... #{cno} #{alliance}   #{votes}#{alliance_draw}  #{aprop}    #{cprop}#{coalition_draw}"
+    expected = "#{idx+1}* #{candidate_name}...... #{cno} #{alliance}   #{votes}#{candidate_draw}  #{aprop}    #{cprop}#{coalition_draw}"
     @decorator.candidate_result_line(candidate, idx).should == expected
   end
 

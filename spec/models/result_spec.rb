@@ -20,14 +20,14 @@ describe Result do
   #   Result.stub!(:alliance_proportionals!)
   #   Result.stub!(:coalition_proportionals!)
   #   Result.stub!(:elect_candidates!)
-  #   Result.should_receive(:create_alliance_draws!)
+  #   Result.should_receive(:create_candidate_draws!)
   #   alliance   = FactoryGirl.create(:electoral_alliance_with_candidates)
   #   result     = FactoryGirl.create(:result)
   #   draw_votes = 100
   #
   #   CandidateResult.should_receive(:find_duplicate_vote_sums).and_return(Factory(:draw_candidate_result))
   #
-  #   VotableSupport::create_alliance_draws(alliance, result, draw_votes)
+  #   VotableSupport::create_candidate_draws(alliance, result, draw_votes)
   #
   #
   # end

@@ -11,6 +11,7 @@ class RecreateCandidateDraws < ActiveRecord::Migration
 
     change_table :candidate_results do |t|
       t.references :candidate_draw
+      t.integer :candidate_draw_order
     end
 
     add_foreign_key(:candidate_draws, :results)
@@ -20,6 +21,7 @@ class RecreateCandidateDraws < ActiveRecord::Migration
   def self.down
     change_table :candidate_results do |t|
       t.remove :candidate_draw_id
+      t.remove :candidate_draw_order
     end
 
     drop_table :candidate_draws

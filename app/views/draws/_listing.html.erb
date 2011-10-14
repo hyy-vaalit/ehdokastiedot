@@ -1,23 +1,28 @@
 <table class="long-listing">
   <thead>
     <th>ID</th>
+    <th>Ääniä</th>
     <th>Ehdokkaat</th>
-    <th>Arvonta</th>
+    <th colspan="2">Arvonta</th>
   </thead>
 
   <% draws.each do |draw| %>
     <tr>
       <td><%= draw.identifier %></td>
+      <td><%= draw.candidate_results.first.vote_sum_cache %></td>
       <td>
         <ul>
-          <% draw.candidate_results.by_coalition_draw_order.each do |candidate_result| %>
+          <% draw.candidate_results.each do |candidate_result| %>
           <li>
-            <%= candidate_result.candidate.candidate_name %>: <%= candidate_result.coalition_draw_order %>
+            <%= candidate_result.candidate.candidate_name %>: <%= candidate_result.send(order_method) %>
           </li>
           <% end %>
         </ul>
       </td>
-      <td><%= link_to "Suorita..", draw %></td>
+      <td><%= link_to "Arvo koneella..", polymorphic_url(draw, :automatic => "true"),
+                                        :method => 'put',
+                                        :confirm => "Arvotaanko tunnuksen '#{draw.identifier}' järjestys koneellisesti?" %></td>
+      <td><%= link_to "Arvo käsin..", draw %></td>
     </tr>
   <% end %>
 </table>

@@ -54,13 +54,13 @@ class ResultDecorator < ApplicationDecorator
   def candidate_result_line(candidate, index)
     formatted_order_number(index+1) +
     formatted_status_char(candidate.elected?,
-                          candidate.alliance_draw_affects_elected?,
+                          candidate.candidate_draw_affects_elected?,
                           candidate.coalition_draw_affects_elected?) + " " +
     formatted_candidate_name_with_dots(candidate.candidate_name) +
     formatted_candidate_number(candidate.candidate_number) + " " +
     formatted_alliance_shorten(candidate.electoral_alliance_shorten) +
     formatted_vote_sum(candidate.vote_sum) +
-    formatted_draw_char(candidate.alliance_draw_identifier) +
+    formatted_draw_char(candidate.candidate_draw_identifier) +
     formatted_proportional_number(candidate.alliance_proportional) + "  " +
     formatted_proportional_number(candidate.coalition_proportional) +
     formatted_draw_char(candidate.coalition_draw_identifier)
@@ -93,10 +93,10 @@ class ResultDecorator < ApplicationDecorator
     sprintf "%2.2s", identifier
   end
 
-  def formatted_status_char(elected, effective_alliance_draw, effective_coalition_draw)
+  def formatted_status_char(elected, effective_candidate_draw, effective_coalition_draw)
     spare = false # TODO
     return "=" if effective_coalition_draw
-    return "?" if effective_alliance_draw
+    return "?" if effective_candidate_draw
     return "*" if elected
     return "+" if spare
     return "."

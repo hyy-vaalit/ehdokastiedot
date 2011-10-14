@@ -9,7 +9,7 @@ describe CandidateResult do
     result   = FactoryGirl.create(:result)
     draw_votes = 100
 
-    VotableSupport::create_alliance_draws(alliance, result, draw_votes)
+    VotableSupport::create_candidate_draws(alliance, result, draw_votes)
 
     draws = CandidateResult.find_duplicate_vote_sums(result)
     draws.first.vote_sum_cache.should == draw_votes

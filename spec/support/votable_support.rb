@@ -6,7 +6,7 @@ module VotableSupport
     Result.stub!(:coalition_proportionals!)
   end
 
-  def self.create_alliance_draws(alliance, result, draw_votes)
+  def self.create_candidate_draws(alliance, result, draw_votes)
     alliance.candidates.each_with_index do |candidate, index|
       if index % 2 == 0
         FactoryGirl.create(:candidate_result, :vote_sum_cache => draw_votes, :result => result, :candidate => candidate)

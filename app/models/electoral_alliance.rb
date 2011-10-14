@@ -11,9 +11,6 @@ class ElectoralAlliance < ActiveRecord::Base
     end
   end
 
-  has_many :alliance_drawings
-  has_many :alliance_draws, :through => :alliance_drawings
-
   has_many :candidates
   has_many :candidate_results,
            :through => :candidates,

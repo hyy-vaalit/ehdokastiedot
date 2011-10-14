@@ -10,28 +10,21 @@
 
 <% if @result %>
 
-  <h2>Renkaiden väliset arvonnat</h2>
-  <% if @result.coalition_draws.effective.any? %>
+  <% if @result.pending_candidate_draws? %>
+    <h2>Liiton sisällä saman äänimäärän saaneet ehdokkaat (<%= @result.candidate_draws.count %> kpl)</h2>
 
-    <%= render :partial => "listing", :locals => {:draws => @result.coalition_draws.effective} %>
+    <% if  @result.candidate_draws.any? %>
 
-  <% else %>
-    <p>Renkaiden keskinäisiin paikkamääriin vaikuttavia arvontoja ei ole.</p>
+      <%= render :partial => "listing", :locals => {:draws => @result.candidate_draws.by_identifier, :order_method => :candidate_draw_order} %>
+
+    <% else %>
+      <p>Saman äänimäärän saaneiden ehdokkaiden arvontoja ei ole.</p>
+    <% end %>
   <% end %>
 
+  <% if @result.pending_alliance_draws? %>
 
-  <h2>Liittojen väliset arvonnat</h2>
-  <% if @result.alliance_draws.effective.any? %>
-
-    <%= render :partial => "listing", :locals => {:draws => @result.alliance_draws.effective} %>
-
-  <% else %>
-    <p>Yksikään liiton sisällä tapahtuva arvonta ei vaikuta ehdokkaiden läpipääsyyn varsinaiseksi tai varaedustajaksi.</p>
+    TODO: Alliance!
   <% end %>
-
-  <h2>Arvonnat, jotka eivät vaikuta varsinaisiin tai varaedustajiin</h2>
-  <p>
-    TODO
-  </p>
 
 <% end %>
