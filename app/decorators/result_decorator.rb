@@ -96,9 +96,11 @@ class ResultDecorator < ApplicationDecorator
   end
 
   def formatted_status_char(elected, effective_candidate_draw, effective_alliance_draw, effective_coalition_draw)
-    return "=" if effective_coalition_draw
-    return "~" if effective_alliance_draw
-    return "?" if effective_candidate_draw
+    if not final?
+      return "=" if effective_coalition_draw
+      return "~" if effective_alliance_draw
+      return "?" if effective_candidate_draw
+    end
     return "*" if elected
     return "."
   end
