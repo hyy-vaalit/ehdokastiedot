@@ -91,7 +91,13 @@ class ResultDecorator < ApplicationDecorator
     sprintf "%3d", number
   end
 
+  # Draw char is displayed only when the result is not final.
+  # This is because the the final result is calculated *after* all the draws have been made.
+  # Therefore, it could be confusing to show old draws because
+  # - they no longer match with the recalculated proporitional numbers)
+  # - and the previous draws have already been completed, that is, there are no more "new" draws.
   def formatted_draw_char(identifier)
+    identifier = "" if final?
     sprintf "%2.2s", identifier
   end
 
