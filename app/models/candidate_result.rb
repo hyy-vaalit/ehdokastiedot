@@ -4,6 +4,11 @@ class CandidateResult < ActiveRecord::Base
   belongs_to :candidate_draw, :dependent => :destroy
   belongs_to :coalition_draw, :dependent => :destroy
 
+  has_one :alliance_proportional,
+          :through => :candidate,
+          :source => :alliance_proportionals,
+          :conditions => ['alliance_proportionals.result_id = result_id']
+
   validates_presence_of :result_id, :candidate_id
 
   scope :by_candidate_draw_order, order("candidate_draw_order asc")

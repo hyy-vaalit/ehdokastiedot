@@ -8,7 +8,7 @@ describe CoalitionProportional do
     total_vote_sum = 1235
 
     ElectoralCoalition.should_receive(:all).and_return([coalition])
-    coalition.candidates.should_receive(:by_alliance_proportional).and_return(coalition.candidates)
+    coalition.candidates.should_receive(:with_alliance_proportionals_for).and_return(coalition.candidates)
     coalition.should_receive(:countable_vote_sum).and_return(total_vote_sum)
 
     result = FactoryGirl.create(:result)

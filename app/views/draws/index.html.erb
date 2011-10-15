@@ -10,10 +10,11 @@
    <p>Merkitsemisen jälkeen odota hetki, että arvonnat valmistellaan. Lataa sen jälkeen tämä sivu uudelleen.</p>
 <% end %>
 
-<p>
-  Mikäli sivulla näkyy väärä arvonta, odota hetki ja lataa sivu uudelleen. Älä paina kahteen kertaan "merkitse valmiiksi"-nappia.
-  Arvontojen taustavalmistelussa kestää 1-5 minuuttia.
-</p>
+<ul>
+  <li>Mikäli sivulla näkyy jo suoritettu arvonta, odota hetki ja lataa sivu uudelleen.</li>
+  <li>Älä paina kahteen kertaan "merkitse valmiiksi"-nappia.</li>
+  <li>Uuden arvontakierroksen valmistelu kestää 1-5 minuuttia.</li>
+</ul>
 
 <% if @result %>
 
@@ -28,7 +29,7 @@
                                                              :confirm => "Seuraavaksi siirrytään arpomaan liittovertailulukuja. Ok?" %>
     <br />
     <% if @result.candidate_draws.any? %>
-      <%= render :partial => "listing", :locals => {:draws => @result.candidate_draws.by_identifier, :order_method => :candidate_draw_order} %>
+      <%= render :partial => "listing", :locals => {:draws => @result.candidate_draws.for_drawings, :order_method => :candidate_draw_order} %>
     <% else %>
       <p>Saman äänimäärän saaneiden ehdokkaiden arvontoja ei ole.</p>
     <% end %>
@@ -44,7 +45,7 @@
 
     <br />
     <% if @result.alliance_draws.any? %>
-      <%= render :partial => "listing", :locals => {:draws => @result.alliance_draws.by_identifier, :order_method => :alliance_draw_order} %>
+      <%= render :partial => "listing", :locals => {:draws => @result.alliance_draws.for_drawings, :order_method => :alliance_draw_order} %>
     <% else %>
       <p>Saman liittovertailulukujen saaneiden ehdokkaiden arvontoja ei ole.</p>
     <% end %>
@@ -60,7 +61,7 @@
 
     <br />
     <% if @result.coalition_draws.any? %>
-      <%= render :partial => "listing", :locals => {:draws => @result.coalition_draws.by_identifier, :order_method => :coalition_draw_order} %>
+      <%= render :partial => "listing", :locals => {:draws => @result.coalition_draws.for_drawings, :order_method => :coalition_draw_order} %>
     <% else %>
       <p>Saman rengasvertailulukujen saaneiden ehdokkaiden arvontoja ei ole.</p>
     <% end %>

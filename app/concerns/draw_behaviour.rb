@@ -3,9 +3,10 @@ module DrawBehaviour
 
   included do
     has_many :candidate_results, :dependent => :nullify
+
     belongs_to :result
 
-    scope :by_identifier, order("identifier asc")
+    scope :for_drawings, includes(:candidate_results => [:candidate => [:electoral_alliance]]).order("identifier asc")
 
     validates_presence_of :result_id
 
@@ -40,6 +41,23 @@ module DrawBehaviour
           candidate_result.update_attributes!(order_attribute => draw_order)
         end
       end
+    end
+
+    def drawable_candidates
+      candidate_results.select("candidates.id as candidate_id, candidates.candidate_name, candidates.candidate_number,
+         candidate_results.id as candidate_result_id, candidate_results.elected as elected,
+         electoral_alliances.shorten as alliance_shorten,
+         electoral_coalitions.shorten as coalition_shorten,
+         coalition_proportionals.number as coalition_proportional_number,
+         alliance_proportionals.number as alliance_proportional_number,
+         candidate_results.vote_sum_cache").joins(
+       'INNER JOIN candidates              ON candidates.id = candidate_results.candidate_id').joins(
+       'INNER JOIN alliance_proportionals  ON alliance_proportionals.candidate_id = candidates.id').joins(
+       'INNER JOIN coalition_proportionals ON coalition_proportionals.candidate_id = candidates.id').joins(
+       'INNER JOIN electoral_alliances     ON candidates.electoral_alliance_id = electoral_alliances.id').joins(
+       'INNER JOIN electoral_coalitions    ON electoral_alliances.electoral_coalition_id = electoral_coalitions.id').where(
+        "alliance_proportionals.result_id = ? AND coalition_proportionals.result_id = ?", self.result_id, self.result_id).order(
+       'candidate_results.vote_sum_cache desc')
     end
 
     private

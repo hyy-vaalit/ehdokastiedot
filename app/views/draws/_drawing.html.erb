@@ -1,6 +1,6 @@
 
 <p>
-  Tunnus: <%= @draw.identifier %>
+  Arvontatunnus: <%= @draw.identifier %>
   <br />
   Ehdokkaita: <%= @draw.candidate_results.count %>
 </p>
@@ -12,14 +12,25 @@
 
 
   <thead>
+    <th>Rengas</th>
+    <th>Liitto</th>
+    <th>Ääniä</th>
+    <th>Lvert</th>
+    <th>Rvert</th>
     <th colspan="2">Ehdokas</th>
     <th>Järjestys</th>
   </thead>
-  <% draw.candidate_results.each do |candidate_result| %>
+
+  <% draw.drawable_candidates.each do |candidate| %>
     <tr>
-      <td><%= candidate_result.candidate.candidate_number %> </td>
-      <td><%= candidate_result.candidate.candidate_name %> </td>
-      <td><input type="text" name="draw_order[<%= candidate_result.id %>]" id="draw_order_<%= candidate_result.id %>" /></td>
+      <td><%= candidate.coalition_shorten %> </td>
+      <td><%= candidate.alliance_shorten %> </td>
+      <td><%= candidate.vote_sum_cache %> </td>
+      <td><%= candidate.alliance_proportional_number %></td>
+      <td><%= candidate.coalition_proportional_number %></td>
+      <td><%= candidate.candidate_number %> </td>
+      <td><%= candidate.candidate_name %> </td>
+      <td><input type="text" name="draw_order[<%= candidate.candidate_result_id %>]" id="draw_order_<%= candidate.candidate_result_id %>" /></td>
     </tr>
   <% end %>
 </table>

@@ -55,7 +55,7 @@ class Result < ActiveRecord::Base
   end
 
   def pending_coalition_draws?
-    return false if pending_alliance_draws?
+    return false if pending_alliance_draws? or pending_candidate_draws?
 
     not coalition_draws_ready?
   end
