@@ -25,13 +25,18 @@ class CoalitionProportional < ActiveRecord::Base
                                :number => calculate_proportional(coalition_votes, array_index)
       end
     end
-
-  def find_duplicate_numbers(result_id)
-    select("#{table_name}.number").from(table_name).where(
-    "#{table_name}.result_id = ?", result_id).group(
-    "#{table_name}.number having count(*) > 1").order("#{table_name}.number desc")
   end
 
+  def self.find_duplicate_numbers(result_id)
+    select("coalition_proportionals.number").from(table_name).where(
+    "coalition_proportionals.result_id = ?", result_id).group(
+    "coalition_proportionals.number having count(*) > 1").order("coalition_proportionals.number desc")
+  end
+
+  def self.find_draw_candidate_ids_of(draw_proportional, result_id)
+    select('candidate_id').where(
+        ["number = ? AND result_id = ?", draw_proportional.number, result_id]
+    ).map(&:candidate_id)
   end
 
 end

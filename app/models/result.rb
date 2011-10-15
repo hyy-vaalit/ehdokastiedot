@@ -66,10 +66,9 @@ class Result < ActiveRecord::Base
 
     Result.transaction do
       update_attributes!(:candidate_draws_ready => true)
-      alliance_proportionals!
-      coalition_proportionals!
-      elect_candidates!
+      recalculate!
       create_alliance_draws!
+      create_coalition_draws!
     end
   end
 
@@ -79,8 +78,7 @@ class Result < ActiveRecord::Base
 
     Result.transaction do
       update_attributes!(:alliance_draws_ready => true)
-      coalition_proportionals!
-      elect_candidates!
+      recalculate!
       create_coalition_draws!
     end
   end
@@ -92,9 +90,7 @@ class Result < ActiveRecord::Base
 
     Result.transaction do
       self.update_attributes!(:final => true, :coalition_draws_ready => true)
-      alliance_proportionals!
-      coalition_proportionals!
-      elect_candidates!
+      recalculate!
     end
   end
 
@@ -180,6 +176,14 @@ class Result < ActiveRecord::Base
     end
   end
 
+  def recalculate!
+    Result.transaction do
+      alliance_proportionals!
+      coalition_proportionals!
+      elect_candidates!
+    end
+  end
+
   def alliance_proportionals!
     AllianceProportional.calculate!(self)
   end
@@ -227,7 +231,9 @@ class Result < ActiveRecord::Base
     draw_class.where(:result_id => self.id).destroy_all
 
     proportional_class.find_duplicate_numbers(self.id).each_with_index do |draw_proportional, index|
-      draw_candidate_results = find_draw_candidate_results_of(proportional_class, draw_proportional)
+      draw_candidate_ids = proportional_class.find_draw_candidate_ids_of(draw_proportional, self.id)
+      draw_candidate_results = find_candidate_results_for(draw_candidate_ids)
+
       draw = draw_class.create! :result_id => self.id,
                                 :identifier_number => index,
                                 :affects_elected_candidates => draw_class.affects_elected?(draw_candidate_results)
@@ -235,11 +241,7 @@ class Result < ActiveRecord::Base
     end
   end
 
-  def find_draw_candidate_results_of(proportional_class, draw_proportional)
-    candidate_ids = proportional_class.select('candidate_id').where(
-                          ["number = ? AND result_id = ?", draw_proportional.number, self.id]
-                        ).map(&:candidate_id)
-    self.candidate_results.where(["candidate_id IN (?)", candidate_ids])
+  def find_candidate_results_for(candidate_ids)
+    candidate_results.where(["candidate_id IN (?)", candidate_ids])
   end
-
 end
