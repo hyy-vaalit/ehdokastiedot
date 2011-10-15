@@ -41,4 +41,7 @@ class DrawsController < ApplicationController
     authorize! :manage, :draws
   end
 
+  def automatically?
+    params[:automatically] == "true"
+  end
 end

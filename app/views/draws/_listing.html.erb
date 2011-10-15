@@ -20,7 +20,7 @@
           <% end %>
         </ul>
       </td>
-      <td><%= link_to "Arvo koneella..", polymorphic_url(draw, :automatic => "true"),
+      <td><%= link_to "Arvo koneella..", polymorphic_url(draw, :automatically => "true"),
                                         :method => 'put',
                                         :confirm => "Arvotaanko tunnuksen '#{draw.identifier}' järjestys koneellisesti?" %></td>
       <td><%= link_to "Arvo käsin..", draw %></td>
