@@ -36,8 +36,9 @@ class Result < ActiveRecord::Base
   end
 
   # A freezed result is created after vote re-counting (tarkastuslaskenta) has been finished.
+  # Only one freezed result may be created (it will be used for drawings).
   def self.create_freezed!
-    raise "Only one freezed result may be created (it will be used for drawings)!" if self.freezed.any?
+    return false if self.freezed.any? or self.final.any?
 
     self.create! :freezed => true
   end
