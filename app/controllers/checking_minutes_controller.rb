@@ -1,6 +1,10 @@
 # coding: UTF-8
 class CheckingMinutesController < ApplicationController
 
+  # FIXME: Käsittämätön autentikaatiologiikka ja kaksi eri tyyppistä käyttäjää.
+  #        Kamala toteutus ja suuri riski siihen että oikeudet ovat väärin.
+
+
   skip_authorization_check :except => :summary # accessible by tlk-pj
 
   before_filter :authenticate, :except => [:summary, :ready] # accessible by admin user
@@ -29,10 +33,12 @@ class CheckingMinutesController < ApplicationController
     redirect_to edit_checking_minute_path(@voting_area.id, :anchor => 'vote_fix_form'), :notice => "Tarkastuslaskenta on merkitty valmiiksi."
   end
 
+  # FIXME: Brainfuck. fixes vs. summary
   def fixes
     @voting_areas = VotingArea.all
   end
 
+  # FIXME: Brainfuck. fixes vs. summary
   def summary
     authorize! :manage, VotingArea
     @voting_areas = VotingArea.all
@@ -53,8 +59,8 @@ class CheckingMinutesController < ApplicationController
   end
 
   def check_if_ready
-    if REDIS.get('checking_minutes_ready')
-      redirect_to fixes_checking_minutes_path, :notice => 'Tarkastuslaskenta on merkitty valmiiksi.'
+    if Result.freezed.any?
+      redirect_to fixes_checking_minutes_path, :notice => 'Tarkastuslaskenta on merkitty valmiiksi eikä korjauksia voi enää syöttää.'
       return
     end
   end

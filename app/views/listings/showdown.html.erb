@@ -5,11 +5,9 @@
 <h2>Ohjeet äänestysalueen ottamiseksi mukaan ääntenlaskentaan:</h2>
 <ul>
   <li>Valitse äänestysalueet ja paina "Laske".</li>
-  <li>Uusi vaalitulos näkyy vaalitulossivulla.</li>
-  <li>Kun äänestysalueen tilana on "kesken", äänestysalueen pj ei ole vielä merkinnyt ääniä lasketuiksi.</li>
-  <li>Kun äänestysalueen tilana on "laskennassa", äänet eivät vielä näy osana vaalitulosta.</li>
-  <li>Äänten laskeminen tapahtuu taustalla, ja laskenta kestää 5-15 minuuttia.</li>
-  <li>Kun äänestysalueen tilana on "laskettu", näkyvät alueelta annetut äänet osana vaalitulosta.</li>
+  <li>Uusi vaalitulos näkyy <%= link_to "vaalitulossivulla", results_path %>.</li>
+  <li>Äänestysalueen voi ottaa laskentaan vasta, kun se on merkitty syötetyksi.</li>
+  <li>Äänten laskeminen tapahtuu taustalla, ja laskenta kestää 1-5 minuuttia.</li>
 </ul>
 
 <%= form_tag showdown_listings_path, :method => :post, :class => "showdown" do -%>
