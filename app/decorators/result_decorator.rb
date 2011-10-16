@@ -31,7 +31,7 @@ class ResultDecorator < ApplicationDecorator
   #   end
 
   def formatted_timestamp(timestamp_method, opts = {})
-    time = opts[:time] == true ? " klo %H:%M:%S" : ""
+    time = opts[:time] == false ? "" : " klo %H:%M:%S"
     self.send(timestamp_method).strftime("%d.%m.%Y" + time)
   end
 
