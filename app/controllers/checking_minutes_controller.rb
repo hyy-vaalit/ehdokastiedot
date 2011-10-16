@@ -41,7 +41,7 @@ class CheckingMinutesController < ApplicationController
 
   def ready
     Delayed::Job.enqueue(CreateFreezedResultJob.new)
-    redirect_to draws_path
+    redirect_to draws_path, :notice => "Tarkastuslaskenta on merkitty valmiiksi!"
   end
 
   private

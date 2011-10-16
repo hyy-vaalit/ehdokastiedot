@@ -43,6 +43,14 @@ class Result < ActiveRecord::Base
     self.create! :freezed => true
   end
 
+  def processed!
+    update_attributes!(:in_process => false)
+  end
+
+  def in_process!
+    update_attributes!(:in_process => true)
+  end
+
   def pending_candidate_draws?
     return false if not freezed?
 
@@ -70,6 +78,7 @@ class Result < ActiveRecord::Base
       recalculate!
       create_alliance_draws!
       create_coalition_draws!
+      processed!
     end
   end
 
@@ -81,6 +90,7 @@ class Result < ActiveRecord::Base
       update_attributes!(:alliance_draws_ready => true)
       recalculate!
       create_coalition_draws!
+      processed!
     end
   end
 
@@ -92,6 +102,7 @@ class Result < ActiveRecord::Base
     Result.transaction do
       self.update_attributes!(:final => true, :coalition_draws_ready => true)
       recalculate!
+      processed!
     end
   end
 

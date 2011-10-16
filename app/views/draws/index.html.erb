@@ -6,17 +6,24 @@
   <p>Arvonnat voidaan aloittaa vasta sen jälkeen, kun
   <%= link_to "tarkastuslaskenta on merkitty valmiiksi", tools_path %>.</p>
 
-
    <p>Merkitsemisen jälkeen odota hetki, että arvonnat valmistellaan. Lataa sen jälkeen tämä sivu uudelleen.</p>
 <% end %>
 
 <ul>
-  <li>Mikäli sivulla näkyy jo suoritettu arvonta, odota hetki ja lataa sivu uudelleen.</li>
-  <li>Älä paina kahteen kertaan "merkitse valmiiksi"-nappia.</li>
+  <li>Mikäli sivulla ei vielä näy suoritettavaa arvontaa, odota hetki ja lataa sivu uudelleen.</li>
   <li>Uuden arvontakierroksen valmistelu kestää 1-5 minuuttia.</li>
 </ul>
 
-<% if @result %>
+<% if @result and @result.in_process? %>
+  <p>
+    Arvontojen valmistelu on vielä kesken. Odota hetki ja lataa tämä sivu sen jälkeen uudelleen.
+  </p>
+
+<% elsif @result %>
+  <ul>
+    <li><%= link_to "Väliaikainen vaalitulos", result_path(@result, :format => :text), :target => "_blank" %>,
+    jota vasten arvonta suoritetaan (ei julkinen).</li>
+  </ul>
 
   <% if @result.final? %>
     Arvonnat on suoritettu. Löydät lopullisen vaalituloksen <%= link_to "vaalitulossivulta", results_path %>.
