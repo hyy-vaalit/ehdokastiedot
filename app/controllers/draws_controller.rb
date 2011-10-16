@@ -27,7 +27,7 @@ class DrawsController < ApplicationController
   end
 
   def coalition_draws_ready
-    Delayed::Job::enqueue(CoalitionDrawsReadyJob.new)
+    Delayed::Job::enqueue(CreateFinalResultJob.new)
 
     redirect_to draws_path,
                 :notice => "Rengasvertailulukujen arvonnat merkitty valmiiksi.
