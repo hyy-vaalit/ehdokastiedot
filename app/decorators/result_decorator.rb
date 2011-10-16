@@ -30,8 +30,9 @@ class ResultDecorator < ApplicationDecorator
   #                   :class => 'timestamp'
   #   end
 
-  def formatted_timestamp(timestamp_method)
-    self.send(timestamp_method).strftime("%Y-%m-%d klo %H:%M:%S")
+  def formatted_timestamp(timestamp_method, opts = {})
+    time = opts[:time] == true ? " klo %H:%M:%S" : ""
+    self.send(timestamp_method).strftime("%d.%m.%Y" + time)
   end
 
   def most_recent?
