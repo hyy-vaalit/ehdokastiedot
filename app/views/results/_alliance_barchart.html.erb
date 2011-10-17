@@ -6,9 +6,12 @@
     var data = new google.visualization.DataTable();
 
     data.addRows(1);
-    <% result.alliance_results.each_with_index do |alliance_result, index| -%>
-      data.addColumn('number', '<%= alliance_result.electoral_alliance.shorten -%>');
-      data.setValue(0, <%= index -%>, <%= result.elected_candidates_in_alliance(alliance_result).count -%>);
+    <% result.alliance_results.by_vote_sum.each_with_index do |alliance_result, index| -%>
+      <% elected_count = result.elected_candidates_in_alliance(alliance_result).count -%>
+      <% if elected_count > 0 -%>
+        data.addColumn('number', '<%= alliance_result.electoral_alliance.shorten -%>');
+        data.setValue(0, <%= index -%>, <%= elected_count -%>);
+      <% end -%>
     <% end %>
 
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
@@ -32,4 +35,13 @@
   </p>
 <% end %>
 
-<div id="chart_div"></div>
+<ul class="seat-listing">
+  <% result.alliance_results.by_vote_sum.each do |alliance_result| -%>
+    <% elected_count = result.elected_candidates_in_alliance(alliance_result).count -%>
+    <% if elected_count > 0 -%>
+      <li><%= alliance_result.electoral_alliance.shorten -%>: <%= result.elected_candidates_in_alliance(alliance_result).count -%></li>
+    <% end -%>
+  <% end -%>
+</ul>
+
+<div style="clear:both; margin-left:-100px; padding:0;" id="chart_div"></div>

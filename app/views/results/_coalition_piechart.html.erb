@@ -18,7 +18,7 @@
   data.addColumn('string', 'Topping');
   data.addColumn('number', 'Slices');
   data.addRows([
-    <% result.coalition_results.each do |cr| -%>
+    <% result.coalition_results.by_vote_sum.each do |cr| -%>
       ['<%= cr.electoral_coalition.shorten -%>', <%= result.elected_candidates_in_coalition(cr).count -%>],
     <% end -%>
   ]);
@@ -47,8 +47,8 @@
 
 
 <ul class="seat-listing">
-  <% result.coalition_results.each do |cr| -%>
+  <% result.coalition_results.by_vote_sum.each do |cr| -%>
     <li><%= cr.electoral_coalition.shorten -%>: <%= result.elected_candidates_in_coalition(cr).count -%></li>
   <% end -%>
 </ul>
-<div id="chart_div"></div>
+<div style="clear: both;" id="chart_div"></div>
