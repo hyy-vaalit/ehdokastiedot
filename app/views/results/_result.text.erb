@@ -43,16 +43,16 @@ EHDOKKAAT LIITOITTAIN JÄRJESTETTYNÄ
 --------------------------------------------------------------------------------
 
 RENKAAT________________________________________________________________ÄÄNET_PA
-<% result_decorator.coalition_results_by_vote_sum.each_with_index do |coalition_result, index| -%>
+<% result_decorator.coalition_results.by_vote_sum.each_with_index do |coalition_result, index| -%>
 <%= result_decorator.coalition_result_line(coalition_result, index) %>
 <% end -%>
 
 LIITOT__________________________________________________________RENGAS_ÄÄNET_PA
-<% result_decorator.alliance_results_by_vote_sum.each_with_index do |alliance_result, index| -%>
+<% result_decorator.alliance_results.by_vote_sum.each_with_index do |alliance_result, index| -%>
 <%= result_decorator.alliance_result_line(alliance_result, index) %>
 <% end -%>
 
-<% result_decorator.coalition_results_by_vote_sum.each_with_index do |coalition_result, coalition_index| -%>
+<% result_decorator.coalition_results.by_vote_sum.each_with_index do |coalition_result, coalition_index| -%>
 RENGAS_________________________________________________________________ÄÄNET_PA
 <%= result_decorator.coalition_result_line(coalition_result, coalition_index) %>
 

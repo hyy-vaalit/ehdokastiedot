@@ -13,6 +13,7 @@ class CandidateResult < ActiveRecord::Base
 
   scope :by_candidate_draw_order, order("candidate_draw_order asc")
   scope :by_coalition_draw_order, order("coalition_draw_order asc")
+  scope :by_vote_sum, order("vote_sum_cache desc")
 
   def self.for_candidates(candidate_ids)
     find(:all, :conditions => ["candidate_id IN (?)", candidate_ids])

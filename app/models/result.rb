@@ -111,18 +111,6 @@ class Result < ActiveRecord::Base
     "tulos-" + final_text + created_at.to_s(:number) + suffix
   end
 
-  def coalition_results_by_vote_sum
-    coalition_results.order("vote_sum_cache desc")
-  end
-
-  def alliance_results_by_vote_sum
-    alliance_results.order("vote_sum_cache desc")
-  end
-
-  def candidate_results_by_vote_sum
-    candidate_results.order("vote_sum_cache desc")
-  end
-
   def candidates_in_election_order
     candidates.select(
       'candidates.id, candidates.candidate_name, candidates.candidate_number,
