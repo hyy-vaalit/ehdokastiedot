@@ -196,6 +196,8 @@ class Result < ActiveRecord::Base
     Candidate.with_vote_sums.each do |candidate|
       CandidateResult.create! :result => self, :vote_sum_cache => candidate.vote_sum, :candidate_id => candidate.id
     end
+
+    self.update_attributes!(:vote_sum_cache => Vote.countable_sum)
   end
 
   def elect_candidates!

@@ -51,7 +51,6 @@ namespace :seed do
       REDIS.set 'total_vote_count', '0'
       REDIS.set 'right_to_vote', '0'
       REDIS.set 'candidates_to_select', '60'
-      REDIS.set 'spare_candidates_to_select', '2'
       REDIS.set 'checking_minutes_username', 'tlkpj'
       REDIS.set 'checking_minutes_password', 'salainensana'
 

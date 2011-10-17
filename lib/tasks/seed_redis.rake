@@ -20,8 +20,8 @@ namespace :seed do
       REDIS.del 'mailaddress'
       REDIS.del 'total_vote_count'
       REDIS.del 'right_to_vote'
+      REDIS.del 'votes_accepted'
       REDIS.del 'candidates_to_select'
-      REDIS.del 'spare_candidates_to_select'
       REDIS.del 'checking_minutes_username'
       REDIS.del 'checking_minutes_password'
     end

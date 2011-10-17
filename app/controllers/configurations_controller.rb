@@ -5,8 +5,8 @@ class ConfigurationsController < ApplicationController
   def index
     @total_vote_count = REDIS.get 'total_vote_count'
     @right_to_vote = REDIS.get 'right_to_vote'
+    @votes_accepted = REDIS.get 'votes_accepted'
     @candidates_to_select = REDIS.get 'candidates_to_select'
-    @spare_candidates_to_select = REDIS.get 'spare_candidates_to_select'
     @mailaddress = REDIS.get 'mailaddress'
   end
 

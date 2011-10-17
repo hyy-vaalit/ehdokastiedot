@@ -8,6 +8,9 @@
   <li>Uusi vaalitulos näkyy <%= link_to "vaalitulossivulla", results_path %>.</li>
   <li>Äänestysalueen voi ottaa laskentaan vasta, kun se on merkitty syötetyksi.</li>
   <li>Äänten laskeminen tapahtuu taustalla, ja laskenta kestää 1-5 minuuttia.</li>
+  <li>Kun hyväksyttyjen äänten yhteislukumäärä on selvillä, <%= link_to "päivitä se asetussivulle", configurations_path %>
+       ennen viimeisen äänestysalueen ottamista mukaan laskentaan.<br />
+       Tällöin ääntenlaskentaprosentti on lopuksi tasan 100 %.</li>
 </ul>
 
 <%= form_tag showdown_listings_path, :method => :post, :class => "showdown" do -%>
@@ -32,6 +35,12 @@
       </td>
     </tr>
   <% end %>
+    <tr>
+      <td></td>
+      <td>Yhteensä</td>
+      <td><%= Vote.sum("amount") %></td>
+      <td></td>
+    </tr>
   </table>
   <p>
     <input type="submit" value="Ota valitut äänestysalueet laskentaan" />

@@ -30,6 +30,38 @@ class ResultDecorator < ApplicationDecorator
   #                   :class => 'timestamp'
   #   end
 
+  def potential_voters
+    REDIS.get('right_to_vote').to_i
+  end
+
+  def votes_given
+    REDIS.get('total_vote_count').to_i
+  end
+
+  def candidates_to_elect
+    Vaalit::Voting::ELECTED_CANDIDATE_COUNT
+  end
+
+  def votes_counted
+    vote_sum_cache
+  end
+
+  def votes_counted_percentage
+    return 0 if votes_accepted.to_i == 0
+
+    100.0 * votes_counted / votes_given
+  end
+
+  def votes_accepted
+    REDIS.get('votes_accepted').to_i
+  end
+
+  def voting_percentage
+    return 0 if votes_given.to_i == 0
+
+    100.0 * votes_given / potential_voters
+  end
+
   def formatted_timestamp(timestamp_method, opts = {})
     time = opts[:time] == false ? "" : " klo %H:%M:%S"
     self.send(timestamp_method).strftime("%d.%m.%Y" + time)

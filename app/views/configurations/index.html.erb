@@ -4,8 +4,16 @@
 
 <%= form_tag(configuration_path('total_vote_count'), :method => :put) do -%>
   <p>
-    <strong>Ääniä yhteensä:</strong><br />
+    <strong>Ääniä annettu:</strong><br />
     <%= text_field_tag 'value', @total_vote_count %>
+    <%= submit_tag 'Save' %>
+  </p>
+<% end -%>
+
+<%= form_tag(configuration_path('votes_accepted'), :method => :put) do -%>
+  <p>
+    <strong>Ääniä hyväksytty:</strong><br />
+    <%= text_field_tag 'value', @votes_accepted %>
     <%= submit_tag 'Save' %>
   </p>
 <% end -%>
@@ -22,14 +30,6 @@
   <p>
     <strong>Valittavia edustajia:</strong><br />
     <%= text_field_tag 'value', @candidates_to_select %>
-    <%= submit_tag 'Save' %>
-  </p>
-<% end -%>
-
-<%= form_tag(configuration_path('spare_candidates_to_select'), :method => :put) do -%>
-  <p>
-    <strong>Varaedustajia per varsinainen edustaja:</strong><br />
-    <%= text_field_tag 'value', @spare_candidates_to_select %>
     <%= submit_tag 'Save' %>
   </p>
 <% end -%>

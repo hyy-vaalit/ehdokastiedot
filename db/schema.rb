@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20111016121848) do
+ActiveRecord::Schema.define(:version => 20111017171438) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -240,6 +240,7 @@ ActiveRecord::Schema.define(:version => 20111016121848) do
     t.boolean  "alliance_draws_ready",  :default => false, :null => false
     t.boolean  "coalition_draws_ready", :default => false, :null => false
     t.boolean  "in_process",            :default => false, :null => false
+    t.integer  "vote_sum_cache",        :default => 0,     :null => false
   end
 
   create_table "votes", :force => true do |t|

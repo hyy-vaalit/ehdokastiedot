@@ -7,9 +7,9 @@ namespace :seed do
     desc 'Default project settings'
     task :configuration => :environment do
       REDIS.set 'total_vote_count', '10417'
+      REDIS.set 'votes_accepted', '10367'
       REDIS.set 'right_to_vote', '29563'
       REDIS.set 'candidates_to_select', '60'
-      REDIS.set 'spare_candidates_to_select', '2'
       REDIS.set 'checking_minutes_username', 'tlkpj'
       REDIS.set 'checking_minutes_password', 'pass123'
       REDIS.set 'mailaddress', 'hostmaster-hyy@enemy.fi'

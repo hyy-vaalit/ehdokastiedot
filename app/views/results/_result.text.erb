@@ -30,12 +30,13 @@ Tiedoston lopussa on listattu kaikki ehdokkaat rengasvertailuluvun mukaan.
 <%# Vaalirenkaita yhteensä:   <%#= sprintf "%2d", coalition_count %>
 <%# Vaaliliittoja yhteensä:   <%#= sprintf "%2d", alliance_count %>
 <%# Ehdokkaita ilman liittoa: <%#= sprintf "%2d", allianceless_candidates %>
-<%# Ehdokkaita yhteensä:    <%#= sprintf "%4d", candidates.count %>
-<%# Valittavia ehdokkaita:    <%#= sprintf "%2d", candidates_to_select %>
-<%# Äänioikeutettuja:     <%#= sprintf "%6d", right_to_vote %>
-<%# Ääniä annettu:        <%#= sprintf "%6d", votes_given %>
-<%# Ääniä hyväksytty:     <%#= sprintf "%6d", votes_accepted %>
-<%# Äänestysprosentti %:  <%#= sprintf "%3.2f", voting_percentage %>
+Ehdokkaita yhteensä:      <%= sprintf "%6d", result_decorator.candidates.count %>
+Valittavia ehdokkaita:    <%= sprintf "%6d", result_decorator.candidates_to_elect %>
+Äänioikeutettuja:         <%= sprintf "%6d", result_decorator.potential_voters %>
+Ääniä annettu:            <%= sprintf "%6d", result_decorator.votes_given %>
+Ääniä hyväksytty:         <%= sprintf "%6d", result_decorator.votes_accepted %>
+Ääniä laskettu:           <%= sprintf "%6d (%.2f %%)", result_decorator.votes_counted, result_decorator.votes_counted_percentage %>
+Äänestysprosentti:        <%= sprintf "%6.2f", result_decorator.voting_percentage %> %
 
 
 --------------------------------------------------------------------------------
