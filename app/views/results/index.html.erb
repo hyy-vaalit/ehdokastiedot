@@ -16,7 +16,7 @@
     <tr>
       <th>Luotu</th>
       <th>Tulostiedosto</th>
-      <th colspan="2">Kuvaajat</th>
+      <th colspan="3">Kuvaajat</th>
     </tr>
   </thead>
 
@@ -28,6 +28,7 @@
     <td><%= link_to result_decorator.filename, result_decorator.result_file_url %></td>
     <td><%= link_to "Paikat ryhmittäin", result_url(result), :target => "_blank" %></td>
     <td><%= link_to "Paikat liitoittain", result_url(result, :chart => "alliances"), :target => "_blank" %></td>
+    <td><%= link_to "Äänestetyimmät ehdokkaat", result_url(result, :chart => "candidates"), :target => "_blank" %></td>
   </tr>
 
 <% end %>

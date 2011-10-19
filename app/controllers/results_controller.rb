@@ -16,7 +16,7 @@ class ResultsController < ApplicationController
   # Rendering the result view is *slow* and may result to request timeout. For any other production purposes,
   # use the file which is stored in S3.
   def show
-    @chart = params[:chart] # alliances || coalitions (defualt)
+    @chart = params[:chart] # alliances || candidates || coalitions (default)
     @result = ResultDecorator.find(params[:id])
 
     respond_to do |format|
