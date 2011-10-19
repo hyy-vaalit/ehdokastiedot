@@ -6,11 +6,15 @@
     var data = new google.visualization.DataTable();
 
     data.addRows(1);
-    <% result.alliance_results.by_vote_sum.each_with_index do |alliance_result, index| -%>
+
+    <% index_displayed_alliances = 0 %>
+    <% result.alliance_results.by_vote_sum.each do |alliance_result| -%>
       <% elected_count = result.elected_candidates_in_alliance(alliance_result).count -%>
+
       <% if elected_count > 0 -%>
         data.addColumn('number', '<%= alliance_result.electoral_alliance.shorten -%>');
-        data.setValue(0, <%= index -%>, <%= elected_count -%>);
+        data.setValue(0, <%= index_displayed_alliances -%>, <%= elected_count -%>);
+        <% index_displayed_alliances = index_displayed_alliances + 1 %>
       <% end -%>
     <% end %>
 
