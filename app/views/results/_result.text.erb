@@ -30,7 +30,7 @@ Tiedoston lopussa on listattu kaikki ehdokkaat rengasvertailuluvun mukaan.
 <%# Vaalirenkaita yhteensä:   <%#= sprintf "%2d", coalition_count %>
 <%# Vaaliliittoja yhteensä:   <%#= sprintf "%2d", alliance_count %>
 <%# Ehdokkaita ilman liittoa: <%#= sprintf "%2d", allianceless_candidates %>
-Ehdokkaita yhteensä:      <%= sprintf "%6d", result_decorator.candidates.count %>
+Ehdokkaita yhteensä:      <%= sprintf "%6d", Candidate.votable.count %>
 Valittavia ehdokkaita:    <%= sprintf "%6d", result_decorator.candidates_to_elect %>
 Äänioikeutettuja:         <%= sprintf "%6d", result_decorator.potential_voters %>
 Ääniä annettu:            <%= sprintf "%6d", result_decorator.votes_given %>

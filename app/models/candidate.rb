@@ -33,6 +33,7 @@ class Candidate < ActiveRecord::Base
   scope :has_fixes, lambda { joins(:data_fixes).select("distinct candidates.id, candidates.*") & DataFix.unapplied }
 
   scope :by_alliance, order('electoral_alliance_id desc')
+  scope :votable, where(:cancelled => false, :marked_invalid => false)
 
   validates_presence_of :lastname, :electoral_alliance
 
