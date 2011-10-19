@@ -85,7 +85,7 @@ class ResultDecorator < ApplicationDecorator
   # EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT_____
   # 1* Sukunimi, Etunimi 'Lempinimi.... 788 Humani   55    696.00000   2901.00000
   def candidate_result_line(candidate, index)
-    formatted_order_number(index+1) +
+    (formatted_order_number(index+1) +
     formatted_status_char(candidate.elected?,
                           candidate.candidate_draw_affects_elected?,
                           candidate.alliance_draw_affects_elected?,
@@ -98,7 +98,7 @@ class ResultDecorator < ApplicationDecorator
     formatted_proportional_number(candidate.alliance_proportional) +
     formatted_draw_char(candidate.alliance_draw_identifier) +
     formatted_proportional_number(candidate.coalition_proportional) +
-    formatted_draw_char(candidate.coalition_draw_identifier)
+    formatted_draw_char(candidate.coalition_draw_identifier)).html_safe  # FIXME: Otherwise double quotes will mess output
   end
 
   #RENKAAT________________________________________________________________ÄÄNET_PA
@@ -160,19 +160,22 @@ class ResultDecorator < ApplicationDecorator
 
   def formatted_alliance_name_with_dots_and_shorten(name, shorten)
     line_width = 58
-
-    sprintf "%.52s%s.%.6s", name, fill_dots(line_width, name, shorten), shorten
+    truncated_name = name.slice(0,52)
+    truncated_shorten = shorten.slice(0,6)
+    sprintf "%.52s%s.%.6s", truncated_name, fill_dots(line_width, truncated_name, truncated_shorten), truncated_shorten
   end
 
   def formatted_coalition_name_with_dots_and_shorten(name, shorten)
     line_width = 66
-
-    sprintf "%.52s%s%.6s", name, fill_dots(line_width, name, shorten), shorten
+    truncated_shorten = shorten.slice(0,6)
+    truncated_name = name.slice(0,52)
+    sprintf "%.52s%s%.6s", truncated_name, fill_dots(line_width, truncated_name, truncated_shorten), truncated_shorten
   end
 
   def formatted_candidate_name_with_dots(candidate_name)
     line_width = 30
-    sprintf "%.#{line_width}s%s", candidate_name, fill_dots(line_width, candidate_name)
+    truncated_name = candidate_name.slice(0,line_width)
+    sprintf "%.#{line_width}s%s", truncated_name, fill_dots(line_width, truncated_name)
   end
 
   def formatted_alliance_shorten(shorten)
