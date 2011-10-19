@@ -44,23 +44,23 @@ class Candidate < ActiveRecord::Base
   # Calculates all votes from all 'ready' (calculable) voting areas for each candidate.
   # If there exists a fixed vote amount, it will be used instead of the preliminary amount.
   def self.with_vote_sums_for(result)
-    select('candidates.id, SUM(COALESCE(votes.fixed_amount, votes.amount)) as vote_sum').joins(
-     'INNER JOIN  votes                 ON votes.candidate_id = candidates.id').joins(
-     'INNER JOIN  candidate_results     ON candidate_results.candidate_id = candidates.id').joins(
-     'INNER JOIN  voting_areas          ON voting_areas.id = votes.voting_area_id').where(
-      'votes.candidate_id = candidates.id
-         AND voting_areas.ready = ?
-         AND candidate_results.result_id = ?
-         AND votes.voting_area_id = voting_areas.id', true, result.id).group(
+    select('candidates.id, SUM(COALESCE(votes.fixed_amount, votes.amount, 0)) as vote_sum').joins(
+     'LEFT JOIN  votes                 ON votes.candidate_id = candidates.id').joins(
+     'LEFT JOIN  candidate_results     ON candidate_results.candidate_id = candidates.id').joins(
+     'LEFT JOIN  voting_areas          ON voting_areas.id = votes.voting_area_id').where(
+      '(votes.candidate_id = candidates.id OR votes.candidate_id IS NULL)
+         AND (voting_areas.ready = ?                 OR voting_areas.ready IS NULL)
+         AND (candidate_results.result_id = ?        OR candidate_results.result_id IS NULL)
+         AND (votes.voting_area_id = voting_areas.id OR votes.voting_area_id IS NULL)', true, result.id).group(
       'candidates.id, candidate_results.candidate_draw_order').order(
       'vote_sum desc, candidate_results.candidate_draw_order asc')
   end
 
   def self.with_vote_sums
-    select('candidates.id, SUM(COALESCE(votes.fixed_amount, votes.amount)) as vote_sum').joins(
-      'INNER JOIN "votes" ON "votes"."candidate_id" = "candidates"."id"').joins(
-      'INNER JOIN "voting_areas" ON "voting_areas"."id" = "votes"."voting_area_id"').where(
-      'voting_areas.ready = ?', true).group("candidates.id").order(
+    votable.select('candidates.id, SUM(COALESCE(votes.fixed_amount, votes.amount, 0)) as vote_sum').joins(
+      'LEFT JOIN "votes" ON "votes"."candidate_id" = "candidates"."id"').joins(
+      'LEFT JOIN "voting_areas" ON "voting_areas"."id" = "votes"."voting_area_id"').where(
+      'voting_areas.ready = ? OR voting_areas.ready IS NULL', true).group("candidates.id").order(
       'vote_sum desc')
   end
 
