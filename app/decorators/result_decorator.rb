@@ -49,7 +49,7 @@ class ResultDecorator < ApplicationDecorator
   def votes_counted_percentage
     return 0 if votes_accepted.to_i == 0
 
-    100.0 * votes_counted / votes_given
+    100.0 * votes_counted / votes_accepted
   end
 
   def votes_accepted
