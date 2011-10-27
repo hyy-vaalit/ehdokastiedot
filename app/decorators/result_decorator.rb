@@ -52,8 +52,15 @@ class ResultDecorator < ApplicationDecorator
     100.0 * votes_counted / votes_accepted
   end
 
+  # If result is freezed (not going to be recalculated any more), then
+  # the amount of all counted votes is the same amount of all accepted votes.
+  # Otherwise all accepted votes is submitted manually during the Vaalivalvojaiset show.
   def votes_accepted
-    REDIS.get('votes_accepted').to_i
+    if self.freezed?
+      votes_counted
+    else
+      REDIS.get('votes_accepted').to_i
+    end
   end
 
   def voting_percentage
