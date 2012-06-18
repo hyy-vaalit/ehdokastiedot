@@ -1,6 +1,8 @@
 source 'http://rubygems.org'
 
-gem 'rails', '3.0.10'
+gem 'rails', '3.0.15'       # deprecation warnings for Rails 3.1
+gem 'delayed_job', '~> 2.1' # incompatible with 3.x
+gem 'formtastic', '~> 2.1'  # deprecation warnings (needed by active admin)
 
 gem 'activeadmin'
 gem 'ranked-model'
@@ -16,7 +18,6 @@ gem 'newrelic_rpm'
 gem 'jquery-rails'
 gem 'sass'
 
-gem 'delayed_job'
 gem 'redis'
 
 gem 'state_machine'

@@ -1,5 +1,8 @@
 # coding: UTF-8
 
+# DEPRECATION WARNING: Calling after_create is deprecated; use the syntax after(:create)
+
+
 FactoryGirl.define do
 
   factory :admin_user do

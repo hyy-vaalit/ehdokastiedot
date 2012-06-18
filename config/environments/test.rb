@@ -34,4 +34,4 @@ Vaalit::Application.configure do
   config.active_support.deprecation = :stderr
 end
 
-ENV["REDISTOGO_URL"] = 'redis://localhost'
+ENV["REDISTOGO_URL"] = 'redis://localhost:6379'

@@ -30,6 +30,7 @@ class Candidate < ActiveRecord::Base
   scope :without_electoral_alliance, joins(:electoral_alliance).where('candidates.candidate_name = electoral_alliances.name')
 
   # Operator '&' is an intersection, ie, it matches only entities which are present in both groups.
+  # DEPRECATION WARNING: Using & to merge relations has been deprecated and will be removed in Rails 3.1. Please use the relation's merge method, instead.
   scope :has_fixes, lambda { joins(:data_fixes).select("distinct candidates.id, candidates.*") & DataFix.unapplied }
 
   scope :by_alliance, order('electoral_alliance_id desc')

@@ -85,6 +85,8 @@ ActiveAdmin.register ElectoralAlliance do
       f.input :secondary_advocate_phone
       f.input :secondary_advocate_email
     end
+
+    # DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information.
     f.buttons
   end
 
