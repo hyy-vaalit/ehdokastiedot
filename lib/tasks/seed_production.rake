@@ -58,7 +58,7 @@ namespace :seed do
     end
   end
 
-  desc 'Runs production seed data'
+  desc 'Seed initial production data (required for deployment!)'
   task :production do
     Rake::Task['seed:redis:reset_keys'].invoke
     Rake::Task['seed:production:faculties'].invoke

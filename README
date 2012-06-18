@@ -5,7 +5,10 @@ Projektissa on käytössä redis.
 $ brew install redis
 $ redis-server
 
-Tietokannan alustaminen
+Kehitysympäristön reset, tietokannan alustus ja seedidatan syöttö:
+$ rake runts
+
+Pelkän tietokannan alustaminen
 
 $ rake db:create
 $ rake db:schema:load
@@ -20,7 +23,6 @@ Tuotantoympäristö vaatii seuraavat ympäristömuuttujat:
 - S3_BUCKET_NAME
 
 Tuotanto-seed vaatii äänestysalueiden salasanojen syötön ennen `rake production_seed` komennon ajamista.
-
 Ympäristö, jossa peruskonffit muttei vanhaa vaalidataa:
 
 $ rake seed:production
@@ -43,9 +45,16 @@ $ heroku restart --app APP_NAME
 
 == Esimerkkikäyttäjätunnukset (testi-seed)
 
+=== Salasanat
+Kehitysympäristön salasanat: pass123
+Tuotantoseedin esimerkkisalasanat: salainensana
+
+
 === ATK-vastaava
-admin@example.com
-password
+http://localhost:3000/admin
+admin@example.com / pass123
+Ks. kohta "Salasanat".
+
 
 === Äänestysalueet
 Käyttäjätunnus tuotannossa: äänestysalueen tunnus, esimerkiksi:
@@ -70,7 +79,6 @@ Käyttäjätunnukset (kehitysympäristössä):
   asiamies1@example.com (123456-123K)
   asiamies2@example.com (123456-9876)
 
+Ks. kohta "Salasanat".
 
-=== Salasanat
-Kehitysympäristön salasanat: pass123
-Tuotantoseedin esimerkkisalasanat: salainensana
+

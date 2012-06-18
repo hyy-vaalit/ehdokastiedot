@@ -204,6 +204,7 @@ namespace :seed do
 
   end
 
+  desc 'Seed a complete development data set.'
   task :development do
     Rake::Task['seed:redis:reset_keys'].invoke
     Rake::Task['seed:development:configuration'].invoke
