@@ -10,6 +10,10 @@ class AdminUser < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :role, :password, :password_confirmation, :remember_me
 
+  scope :secretaries, where(:role => "secretary")
+
+  validates_presence_of :role
+
   before_validation :generate_password, :on => :create
 
   after_create :send_password
