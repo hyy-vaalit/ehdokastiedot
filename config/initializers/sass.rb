@@ -1,3 +1,5 @@
+# Comment out this line temporarily if you want
+# to regenerate active_admin.css in public/stylesheets
 Sass::Plugin.options.merge!(
   :template_location => 'public/stylesheets/sass',
   :css_location => 'tmp/stylesheets'
