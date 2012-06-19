@@ -6,4 +6,10 @@ $(function(){
     window.location.search = "";
     return false;
   });
+
+  $('a[href="#toggle_filter"]').click(function(event) {
+    event.preventDefault();
+    $('#sidebar').toggle();
+  });
+
 });
