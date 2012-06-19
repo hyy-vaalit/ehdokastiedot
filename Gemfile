@@ -3,10 +3,10 @@ source 'http://rubygems.org'
 gem 'rails', '3.0.15'       # deprecation warnings for Rails 3.1
 gem 'delayed_job', '~> 2.1' # incompatible with 3.x
 gem 'formtastic', '~> 2.1'  # deprecation warnings (needed by active admin)
+gem 'draper', '0.7.3'       # draper 0.12.x doesn't work with Rails 3.0
 
 gem 'activeadmin'
 gem 'ranked-model'
-gem 'draper'
 gem 'cancan'
 gem 'passgen'
 
@@ -14,7 +14,6 @@ gem "aws-s3", :require => "aws/s3"
 
 gem 'pg'
 gem 'hoptoad_notifier'
-gem 'newrelic_rpm'
 gem 'jquery-rails'
 gem 'sass'
 
