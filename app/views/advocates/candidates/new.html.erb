@@ -1,13 +1,31 @@
 <h1>Uusi ehdokas</h1>
 
-Sukunimi    Kaikki etunimet
 
-Henkilötunnus    Tiedekunta
+<%= semantic_form_for @candidate, :url => advocates_alliance_candidates_path(@alliance) do |f| %>
 
-Laitoksen nimi virallisessa muodossa (mikäli tiedekunnassa on laitoksia)
 
-Lähiosoite  Postinumero  Postitoimipaikka
+  <%#= f.inputs %>
 
-Puhelinnumero   Sähköpostiosoite
+  <label>Vaaliliitto:</label> <%= @candidate.electoral_alliance.name %>
 
-Ehdokkaan nimi siinä muodossa, kuin se halutaan merkittäväksi ehdokaslistojen yhdistelmään (etunimen rinnalla tai sen sijasta voidaan käyttää yleisesti tunnettua puhuttelunimeä tai etunimeä lyhennettynä, eli esimerkiksi Sukunimi, Etunimi; Sukunimi, Puhuttelunimi tai Sukunimi, Etunimi "Puhuttelunimi")
+  <%= f.input :lastname, :label => "Sukunimi" %>    <%= f.input :firstname, :label => "Kaikki etunimet" %>
+
+  <%= f.input :social_security_number, :label => "Henkilötunnus" %>
+    <%= f.input :faculty, :label => "Tiedekunta" %>
+
+  <%#= f.input Laitoksen nimi virallisessa muodossa (mikäli tiedekunnassa on laitoksia) %>
+
+  <%= f.input :address, :label => "Lähiosoite" %>
+    <%= f.input :postal_information, :label => "Postinumero ja postitoimipaikka" %>
+
+  <%#= f.input :phone_number, :label => "Puhelinnumero" %>
+    <%= f.input :email, :label => "Sähköpostiosoite"  %>
+
+  <%= f.input :candidate_name, :label => "Ehdokasnimi (Sukunimi, Etunimi)",
+          :hint => 'Ehdokkaan nimi siinä muodossa, kuin se halutaan merkittäväksi ehdokaslistojen yhdistelmään (etunimen rinnalla tai sen sijasta voidaan käyttää yleisesti tunnettua puhuttelunimeä tai etunimeä lyhennettynä, eli esimerkiksi Sukunimi, Etunimi; Sukunimi, Puhuttelunimi tai Sukunimi, Etunimi "Puhuttelunimi"' %>
+
+  <%= f.input :notes, :label => "Huomioita HYYn vaalivirkailijalle",
+                      :input_html => { :class => 'autogrow', :rows => 3 } %>
+
+  <%= f.actions %>
+<% end %>

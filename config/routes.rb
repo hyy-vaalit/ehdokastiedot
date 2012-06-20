@@ -14,8 +14,9 @@ Vaalit::Application.routes.draw do
 
   namespace :advocates do
     get :index, :as => :advocates
-    resources :alliances
-    resources :candidates
+    resources :alliances do
+      resources :candidates
+    end
   end
 
   resources :configurations, :only => [:index, :update]
