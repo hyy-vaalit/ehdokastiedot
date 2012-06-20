@@ -85,7 +85,7 @@ ActiveAdmin::Dashboards.build do
 
   section 'Muiden sidosryhmien sisäänkirjautuminen' do
     ul do
-      li link_to 'Asiamiesten korjaukset (liiton 1. asiamies)', advocate_path
+      li link_to 'Asiamiesten korjaukset (liiton 1. asiamies) #TODO', '#' #advocate_path
       li link_to 'Äänestysalue (äänestysalueen pj)', voting_area_path
       li link_to 'Tarkastuslaskenta (tllk:n pj)', checking_minutes_path
     end

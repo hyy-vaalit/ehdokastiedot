@@ -1,46 +1,20 @@
 class AdvocateUser < ActiveRecord::Base
+  # Include default devise modules. Others available are:
+  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable,
+  # :registerable,
+  devise :database_authenticatable,
+         :recoverable, :rememberable, :trackable, :validatable
+
+  # Setup accessible (or protected) attributes for your model
+  attr_accessible :ssn, :email, :password, :password_confirmation, :remember_me
 
   has_many :electoral_alliances, :foreign_key => :primary_advocate_social_security_number, :primary_key => :ssn
 
-  before_validation :generate_password, :on => :create
-
-  before_create :encrypt_password
-
-  after_create :send_password
-
-  attr_accessor :password
+#  before_validation :generate_password, :on => :create
+#  before_create :encrypt_password
+#  after_create :send_password
 
   validates_presence_of :ssn, :password, :email
   validates_uniqueness_of :email, :ssn
-
-  def self.authenticate email, password
-    advocate = self.find_by_email email
-    return nil unless advocate
-    return advocate if advocate.has_password? password
-  end
-
-  def has_password? password
-    self.encrypted_password == encrypt(password)
-  end
-
-  private
-
-  def generate_password
-    self.password = Passgen::generate unless self.password
-  end
-
-  def encrypt_password
-    self.encrypted_password = encrypt password
-  end
-
-  def encrypt(string)
-    Digest::SHA2.hexdigest string
-  end
-
-  def send_password
-    alliance_name = self.electoral_alliances.any? ? self.electoral_alliances.first.name : ""
-
-    PasswordDelivery.advocate_fixer(self.password, self.email, alliance_name).deliver
-  end
 
 end

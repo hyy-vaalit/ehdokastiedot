@@ -1,24 +1,21 @@
 Vaalit::Application.routes.draw do
 
+  devise_for :advocate_users
+
   get "coalitions/index"
-
   get "alliances/index"
-
   get "candidates/index"
 
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  resource :advocate do
-    resource :session, :only => [:new, :create, :destroy] do
-      get :logout, :action => :destroy
-    end
-    resources :candidates do
-      member do
-        post :report_fixes
-      end
-    end
+  root :to => "advocates#index"
+
+  namespace :advocates do
+    get :index, :as => :advocates
+    resources :alliances
+    resources :candidates
   end
 
   resources :configurations, :only => [:index, :update]

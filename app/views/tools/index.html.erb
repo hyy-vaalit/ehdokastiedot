@@ -7,15 +7,16 @@ allowfullscreen></iframe>
 <h2>Ehdokasasettelu</h2>
 
 <ul>
+  <!-- # FIXME 6/2012
   <li>
-    <%= link_to 'Luo asiamiehille tunnukset', create_advocates_admin_electoral_alliances_path, :confirm => "Luodaanko asiamiesten tunnukset tietojen korjaamiseksi?\nSalasana välitetään jokaiselle asiamiehelle sähköpostitse." %>
+    <#%= link_to 'Luo asiamiehille tunnukset', create_advocates_admin_electoral_alliances_path, :confirm => "Luodaanko asiamiesten tunnukset tietojen korjaamiseksi?\nSalasana välitetään jokaiselle asiamiehelle sähköpostitse." %>
     <ul>
       <li>Salasana välitetään jokaiselle sähköpostitse.</li>
       <li>Tunnus luodaan jokaisen liiton ensisijaiselle asiamiehelle.</li>
       <li>Liiton asiamies kohdistetaan käyttäjätunnukseen hetun perusteella.</li>
       <li>Jokaista hetua kohden luodaan vain yksi käyttäjätunnus.</li>
     </ul>
-  </li>
+  </li> -->
 
   <li>
     <%= link_to 'Kirjoita ehdokkaille lähetettävä sähköposti', new_admin_email_path %>

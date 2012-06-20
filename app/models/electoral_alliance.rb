@@ -46,23 +46,8 @@ class ElectoralAlliance < ActiveRecord::Base
     self.candidates.has_fixes.count > 0
   end
 
-  def create_advocate
-    ssn = self.primary_advocate_social_security_number
-    return if ssn.nil? || ssn.empty? # Seed, etc
-    unless AdvocateUser.find_by_ssn(ssn)
-      AdvocateUser.create! :ssn => ssn, :email => self.primary_advocate_email
-    end
-  end
-
   def self.are_all_ready?
     self.count == self.ready.count
-  end
-
-  def self.create_advocates
-    raise "all not ready" unless ElectoralAlliance.all.count == (ElectoralAlliance.all & ElectoralAlliance.ready).count
-    self.all.each do |alliance|
-      alliance.create_advocate
-    end
   end
 
 end

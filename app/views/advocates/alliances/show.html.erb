@@ -1,0 +1,14 @@
+<h1><%= @alliance.name %></h1>
+
+Ehdokkaita: <%= @alliance.candidates.count %>
+
+<br>
+<%= link_to "Luo ehdokas", new_advocates_candidate_path %>
+
+<h2>Ehdokkaat:</h2>
+
+<ul>
+  <% @alliance.candidates.each do |c| %>
+    <li><%= c.name %></li>
+  <% end %>
+</ul>

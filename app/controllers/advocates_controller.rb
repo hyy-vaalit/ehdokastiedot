@@ -1,19 +1,11 @@
 class AdvocatesController < ApplicationController
 
-  skip_authorization_check
+  before_filter :authenticate_advocate_user!
 
-  before_filter :authenticate
+  skip_authorization_check # FIXME
 
-  layout "outside_activeadmin"
-
-  def show
-  end
-
-  private
-
-  def authenticate
-    @advocate = AdvocateUser.find_by_id(session[:advocate])
-    redirect_to new_advocate_session_path unless @advocate
+  def index
+    render :text =>  "JES AdvocatesController#index, devise_controller: #{devise_controller?}, current_user: #{current_advocate_user.email}"
   end
 
 end
