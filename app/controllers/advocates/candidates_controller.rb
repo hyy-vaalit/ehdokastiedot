@@ -4,7 +4,8 @@ class Advocates::CandidatesController < AdvocatesController
   before_filter :find_alliance
 
   def new
-    @candidate = Candidate.new(:electoral_alliance => @alliance)
+    @candidate = Candidate.new
+    @candidate.electoral_alliance = @alliance
   end
 
   def create
