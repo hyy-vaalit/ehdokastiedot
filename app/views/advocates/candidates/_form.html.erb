@@ -1,3 +1,7 @@
+<p>
+  <%= link_to "&larr; Palaa tallentamatta".html_safe, advocates_alliance_path(@alliance) %>
+</p>
+
 <label>Vaaliliitto:</label> <%= candidate.electoral_alliance.name %>
 
 <%= f.input :lastname, :label => "Sukunimi" %>    <%= f.input :firstname, :label => "Kaikki etunimet" %>
@@ -18,3 +22,5 @@
 
 <%= f.input :notes, :label => "Huomioita HYYn vaalivirkailijalle",
                     :input_html => { :class => 'autogrow', :rows => 3 } %>
+
+

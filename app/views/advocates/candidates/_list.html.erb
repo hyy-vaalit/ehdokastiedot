@@ -1,4 +1,51 @@
-<table class="long-listing">
+<script>
+  $(function() {
+    sortableClass          = "sortable";
+    sortableCandidates     = "table#candidates tbody.sortable";
+    enableSortingElement   = "#enable-sorting";
+    disableSortingElement  = "#disable-sorting";
+
+    function enableSorting() {
+      $( sortableCandidates ).sortable({
+        update: function(event, ui) {
+          new_position = ui.item.index();
+          alliance_id  = ui.item.attr("data-alliance-id");
+          candidate_id = ui.item.attr("data-candidate-id");
+
+          $.ajax({
+            type: 'PUT',
+            url: '/advocates/alliances/'+ alliance_id +'/candidates/'+ candidate_id,
+            dataType: 'json',
+            data: { candidate: { numbering_order_position: new_position } },
+          });
+        }
+      });
+
+      $( sortableCandidates ).disableSelection();
+    }
+
+    $( enableSortingElement ).click(function() {
+      triggerElement  = $(enableSortingElement);
+
+      sortableElement = $(triggerElement.attr("data-sortable-element"));
+      sortableElement.addClass(sortableClass);
+
+      triggerElement.hide();
+      $(disableSortingElement).show();
+
+      enableSorting();
+    }),
+
+    $( disableSortingElement ).click(function() {
+      window.location.reload();
+    })
+  });
+</script>
+
+<button id="enable-sorting" data-sortable-element="table#candidates tbody">Muuta ehdokkaiden järjestystä</button>
+<button id="disable-sorting" style="display:none;">Lopeta ehdokkaiden järjestäminen</button>
+
+<table id="candidates" class="long-listing">
   <thead>
     <th></th>
     <th>Sukunimi</th>
@@ -16,7 +63,7 @@
 
     <% candidates.each do |c| %>
 
-    <tr>
+    <tr data-alliance-id="<%= c.electoral_alliance.id -%>" data-candidate-id="<%= c.id -%>">
       <td><%= link_to "Muokkaa", edit_advocates_alliance_candidate_path(c.electoral_alliance, c) %></td>
       <td><%= c.candidate_name %></td>
       <td><%= c.lastname %></td>

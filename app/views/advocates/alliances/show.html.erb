@@ -5,9 +5,6 @@ Ehdokkaita: <%= @alliance.candidates.count %>
 <br>
 <%= link_to "Luo ehdokas", new_advocates_alliance_candidate_path(@alliance) %>
 
-<br>
-TODO: Järjestys
-
 <h2>Ehdokkaat:</h2>
 
 <%= render :partial => "advocates/candidates/list", :locals => { :candidates => @alliance.candidates } %>

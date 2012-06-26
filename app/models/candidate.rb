@@ -1,9 +1,11 @@
 class Candidate < ActiveRecord::Base
   include RankedModel
 
+  default_scope order(:numbering_order)
+
   attr_accessible :lastname, :firstname, :social_security_number,
                   :faculty_id, :address, :postal_information, :email,
-                  :candidate_name, :notes
+                  :candidate_name, :notes, :numbering_order_position
 
   has_many :votes do
     def preliminary_sum

@@ -1,5 +1,6 @@
 # encoding: utf-8
 class Advocates::CandidatesController < AdvocatesController
+  respond_to :html, :json, :only => :update
 
   before_filter :find_alliance
 
@@ -17,12 +18,14 @@ class Advocates::CandidatesController < AdvocatesController
 
     if @candidate.update_attributes(params[:candidate])
       flash[:notice] = "Muutokset tallennettu."
-      redirect_to advocates_alliance_path(@alliance)
     else
       flash[:alert] = "Muutosten tallentaminen epäonnistui!"
-      render :action => :edit
+      render :action => :edit and return
     end
 
+    respond_with(@alliance) do |format|
+      format.html { redirect_to advocates_alliance_path(@alliance) }
+    end
   end
 
   def create

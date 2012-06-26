@@ -89,3 +89,7 @@ p.notice {
     padding: 0;
   }
 }
+
+.sortable tr:hover {
+  cursor: move;
+}
