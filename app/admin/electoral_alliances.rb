@@ -42,7 +42,7 @@ ActiveAdmin.register ElectoralAlliance do
     column :secondary_advocate do |alliance|
       "#{alliance.secondary_advocate_lastname}, #{alliance.secondary_advocate_firstname}"
     end
-    column :delivered_candidate_form_amount
+    column :expected_candidate_count
     column :secretarial_freeze
 
     default_actions
@@ -50,7 +50,7 @@ ActiveAdmin.register ElectoralAlliance do
 
   show :title => :name do
     attributes_table :name, :shorten do
-      row("candidates") { "#{electoral_alliance.candidates.count} / #{electoral_alliance.delivered_candidate_form_amount}" }
+      row("candidates") { "#{electoral_alliance.candidates.count} / #{electoral_alliance.expected_candidate_count}" }
       row("ready") { electoral_alliance.secretarial_freeze ? 'Vaaliliitto on merkitty valmiiksi.' : 'Vaaliliittoa ei ole vielä merkitty valmiiksi.' }
     end
     attributes_table :primary_advocate_lastname, :primary_advocate_firstname, :primary_advocate_social_security_number, :primary_advocate_address, :primary_advocate_postal_information, :primary_advocate_phone, :primary_advocate_email
@@ -65,7 +65,7 @@ ActiveAdmin.register ElectoralAlliance do
     f.inputs 'Basic information' do
       f.input :name
       f.input :shorten
-      f.input :delivered_candidate_form_amount
+      f.input :expected_candidate_count
     end
     f.inputs 'Primary Advocate' do
       f.input :primary_advocate_lastname
@@ -106,7 +106,7 @@ ActiveAdmin.register ElectoralAlliance do
 
   member_action :done do
     ea = ElectoralAlliance.find_by_id(params[:id])
-    if ea.candidates.count == ea.delivered_candidate_form_amount
+    if ea.candidates.count == ea.expected_candidate_count
       ea.freeze!
       current_admin_user.update_attribute :electoral_alliance, nil
       redirect_to admin_electoral_alliances_path, :notice => "Vaaliliitto on merkitty valmiiksi! Voit luoda nyt uuden vaaliliiton."

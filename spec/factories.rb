@@ -23,7 +23,7 @@ FactoryGirl.define do
   factory :electoral_alliance do
     sequence(:name) {|n| "Alliance #{n}"}
     sequence(:shorten) {|n| "a #{n}"}
-    delivered_candidate_form_amount 2
+    expected_candidate_count 2
     secretarial_freeze true
     electoral_coalition
     primary_advocate_lastname 'First last'

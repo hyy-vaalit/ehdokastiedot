@@ -1,0 +1,6 @@
+<%= semantic_form_for @alliance, :url => advocates_alliances_path(@alliance) do |f| %>
+
+  <%= render :partial => "form", :locals => { :alliance => @alliance, :f => f } %>
+
+  <%= f.actions %>
+<% end %>

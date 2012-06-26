@@ -1,9 +1,11 @@
 
-<h1>Liitot:</h1>
+<h1>Vaaliliitot:</h1>
 
 <% @alliances.each do |a| %>
   <ul>
-    <li><%= link_to a.name, advocates_alliance_path(a) %></li>
+    <li><%= link_to a.name, advocates_alliance_path(a) %>
+      (<%= a.candidates.count %> / <%= a.expected_candidate_count %> ehdokasta)</li>
   </ul>
 <% end %>
 
+<%= link_to "Luo uusi vaaliliitto", new_advocates_alliance_path %>

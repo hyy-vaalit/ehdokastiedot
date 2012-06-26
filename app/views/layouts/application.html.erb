@@ -22,6 +22,10 @@
     <% end %>
   <% end %>
 
+  <% if current_advocate_user %>
+    <p><%= current_advocate_user.email %></p>
+  <% end %>
+
 <%= yield %>
 
 </body>

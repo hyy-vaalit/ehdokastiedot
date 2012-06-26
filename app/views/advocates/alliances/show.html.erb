@@ -1,6 +1,6 @@
 <h1><%= @alliance.name %></h1>
 
-Ehdokkaita: <%= @alliance.candidates.count %>
+Ehdokkaita: <%= @alliance.candidates.count %> / <%= @alliance.expected_candidate_count %>
 
 <br>
 <%= link_to "Luo ehdokas", new_advocates_alliance_candidate_path(@alliance) %>

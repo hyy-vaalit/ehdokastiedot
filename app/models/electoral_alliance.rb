@@ -21,7 +21,7 @@ class ElectoralAlliance < ActiveRecord::Base
   has_many :alliance_results
   has_many :results, :through => :alliance_results
 
-  belongs_to :advocate_user, :foreign_key => :primary_advocate_social_security_number, :primary_key => :ssn
+  belongs_to :advocate_user, :foreign_key => :primary_advocate_id
 
   belongs_to :electoral_coalition
   ranks :numbering_order, :with_same => :electoral_coalition_id
@@ -32,7 +32,9 @@ class ElectoralAlliance < ActiveRecord::Base
 
   scope :ready, where(:secretarial_freeze => true)
 
-  validates_presence_of :name, :delivered_candidate_form_amount, :primary_advocate_social_security_number, :primary_advocate_email, :shorten
+  validates_presence_of :name, :shorten
+  validates_length_of :shorten, :in => 2..6
+  validates_presence_of :expected_candidate_count, :allow_nil => true
 
   def vote_sum_caches
     candidate_results.select(

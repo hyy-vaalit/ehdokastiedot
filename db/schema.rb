@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120626094430) do
+ActiveRecord::Schema.define(:version => 20120626140636) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -62,6 +62,12 @@ ActiveRecord::Schema.define(:version => 20120626094430) do
     t.datetime "last_sign_in_at"
     t.string   "current_sign_in_ip"
     t.string   "last_sign_in_ip"
+    t.string   "firstname"
+    t.string   "lastname"
+    t.string   "postal_address"
+    t.string   "postal_code"
+    t.string   "postal_city"
+    t.string   "phone_number"
   end
 
   add_index "advocate_users", ["email"], :name => "index_advocate_users_on_email", :unique => true
@@ -197,27 +203,15 @@ ActiveRecord::Schema.define(:version => 20120626094430) do
 
   create_table "electoral_alliances", :force => true do |t|
     t.string   "name"
-    t.integer  "delivered_candidate_form_amount"
-    t.boolean  "secretarial_freeze",                        :default => false
+    t.integer  "expected_candidate_count"
+    t.boolean  "secretarial_freeze",       :default => false
     t.integer  "electoral_coalition_id"
     t.integer  "numbering_order"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "primary_advocate_lastname"
-    t.string   "primary_advocate_firstname"
-    t.string   "primary_advocate_social_security_number"
-    t.string   "primary_advocate_address"
-    t.string   "primary_advocate_postal_information"
-    t.string   "primary_advocate_phone"
-    t.string   "primary_advocate_email"
-    t.string   "secondary_advocate_lastname"
-    t.string   "secondary_advocate_firstname"
-    t.string   "secondary_advocate_social_security_number"
-    t.string   "secondary_advocate_address"
-    t.string   "secondary_advocate_postal_information"
-    t.string   "secondary_advocate_phone"
-    t.string   "secondary_advocate_email"
     t.string   "shorten"
+    t.integer  "primary_advocate_id"
+    t.integer  "secondary_advocate_id"
   end
 
   create_table "electoral_coalitions", :force => true do |t|
@@ -298,6 +292,9 @@ ActiveRecord::Schema.define(:version => 20120626094430) do
 
   add_foreign_key "coalition_results", "electoral_coalitions", :name => "coalition_results_electoral_coalition_id_fk"
   add_foreign_key "coalition_results", "results", :name => "coalition_results_result_id_fk"
+
+  add_foreign_key "electoral_alliances", "advocate_users", :name => "electoral_alliances_primary_advocate_id_fk", :column => "primary_advocate_id"
+  add_foreign_key "electoral_alliances", "advocate_users", :name => "electoral_alliances_secondary_advocate_id_fk", :column => "secondary_advocate_id"
 
   add_foreign_key "votes", "candidates", :name => "votes_candidate_id_fk"
   add_foreign_key "votes", "voting_areas", :name => "votes_voting_area_id_fk"

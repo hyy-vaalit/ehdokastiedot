@@ -8,7 +8,7 @@ class AdvocateUser < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :ssn, :email, :password, :password_confirmation, :remember_me
 
-  has_many :electoral_alliances, :foreign_key => :primary_advocate_social_security_number, :primary_key => :ssn
+  has_many :electoral_alliances, :foreign_key => :primary_advocate_id
 
 #  before_validation :generate_password, :on => :create
 #  before_create :encrypt_password
@@ -17,4 +17,7 @@ class AdvocateUser < ActiveRecord::Base
   validates_presence_of :ssn, :password, :email
   validates_uniqueness_of :email, :ssn
 
+  def friendly_name
+    "#{firstname} #{lastname}"
+  end
 end

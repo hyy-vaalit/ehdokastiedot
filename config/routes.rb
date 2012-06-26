@@ -11,6 +11,7 @@ Vaalit::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   root :to => "advocates#index"
+  match "/advocates", :to => "advocates#index"
 
   namespace :advocates do
     get :index, :as => :advocates
