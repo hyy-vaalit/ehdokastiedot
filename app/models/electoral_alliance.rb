@@ -22,7 +22,7 @@ class ElectoralAlliance < ActiveRecord::Base
   belongs_to :advocate_user, :foreign_key => :primary_advocate_social_security_number, :primary_key => :ssn
 
   belongs_to :electoral_coalition
-  ranks :signing_order, :with_same => :electoral_coalition_id
+  ranks :numbering_order, :with_same => :electoral_coalition_id
 
   scope :without_coalition, where(:electoral_coalition_id => nil)
 

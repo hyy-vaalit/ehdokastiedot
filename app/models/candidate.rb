@@ -21,7 +21,7 @@ class Candidate < ActiveRecord::Base
   belongs_to :electoral_alliance
   has_one :electoral_coalition, :through => :electoral_alliance
 
-  ranks :sign_up_order, :with_same => :electoral_alliance_id
+  ranks :numbering_order, :with_same => :electoral_alliance_id
 
   belongs_to :faculty
 
@@ -117,10 +117,12 @@ class Candidate < ActiveRecord::Base
   end
 
   def self.give_numbers!
+    raise "FIXME! Ordering refactored."
+
     raise 'not ready' unless ElectoralAlliance.are_all_ready? and ElectoralCoalition.are_all_ordered?
     Candidate.transaction do
       Candidate.update_all :candidate_number => 0
-      candidates_in_order = Candidate.select('candidates.*').joins(:electoral_alliance).joins(:electoral_alliance => :electoral_coalition).order(:number_order).order(:signing_order).order(:sign_up_order).valid.all
+      candidates_in_order = Candidate.select('candidates.*').joins(:electoral_alliance).joins(:electoral_alliance => :electoral_coalition).order(:numbering_order).order(:numbering_order).order(:numbering_order).valid.all
       candidates_in_order.each_with_index do |candidate, i|
         candidate.update_attribute :candidate_number, i+2
       end

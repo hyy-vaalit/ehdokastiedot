@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120619142729) do
+ActiveRecord::Schema.define(:version => 20120626094430) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -132,7 +132,7 @@ ActiveRecord::Schema.define(:version => 20120619142729) do
     t.integer  "electoral_alliance_id"
     t.integer  "candidate_number"
     t.text     "notes"
-    t.integer  "sign_up_order"
+    t.integer  "numbering_order"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "cancelled",              :default => false
@@ -200,7 +200,7 @@ ActiveRecord::Schema.define(:version => 20120619142729) do
     t.integer  "delivered_candidate_form_amount"
     t.boolean  "secretarial_freeze",                        :default => false
     t.integer  "electoral_coalition_id"
-    t.integer  "signing_order"
+    t.integer  "numbering_order"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string   "primary_advocate_lastname"
@@ -224,7 +224,7 @@ ActiveRecord::Schema.define(:version => 20120619142729) do
     t.string   "name"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "number_order"
+    t.integer  "numbering_order"
     t.string   "shorten"
   end
 

@@ -6,7 +6,7 @@ class ElectoralCoalition < ActiveRecord::Base
   has_many :electoral_alliances
   has_many :candidates, :through => :electoral_alliances
 
-  default_scope order(:number_order)
+  default_scope order(:numbering_order)
 
   validates_presence_of :name, :shorten
 
@@ -15,7 +15,7 @@ class ElectoralCoalition < ActiveRecord::Base
     sorted_array = original_array.sort {|x,y| x.last <=> y.last}
     ordered_hashes = sorted_array.map {|array| {:id => array.first, :position => array.last}}
     ordered_hashes.each do |hash|
-      self.electoral_alliances.find_by_id(hash[:id]).update_attribute :signing_order_position, hash[:position]
+      self.electoral_alliances.find_by_id(hash[:id]).update_attribute :numbering_order_position, hash[:position]
     end
   end
 
@@ -32,12 +32,12 @@ class ElectoralCoalition < ActiveRecord::Base
   end
 
   def self.are_all_ordered?
-    self.where(:number_order => nil).count == 0
+    self.where(:numbering_order => nil).count == 0
   end
 
   def self.give_orders coalition_data
     coalition_data.to_a.each do |array|
-      self.find_by_id(array.first).update_attribute :number_order, array.last
+      self.find_by_id(array.first).update_attribute :numbering_order, array.last
     end
   end
 

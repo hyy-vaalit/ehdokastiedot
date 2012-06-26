@@ -65,20 +65,20 @@ namespace :seed do
 
 
       # Electoral Coalition
-      hyal = ElectoralCoalition.create! :name => 'Ainejärjestöjen vaalirengas',                  :shorten => 'HYAL', :number_order => "10"
-      osak = ElectoralCoalition.create! :name => 'Osakuntien suuri vaalirengas',                 :shorten => 'Osak', :number_order => "9"
-      mp = ElectoralCoalition.create! :name => 'Maailmanpyörä',                                  :shorten => 'MP', :number_order => "8"
-      help = ElectoralCoalition.create! :name => 'HELP',                                         :shorten => 'HELP', :number_order => "6"
-      pelast = ElectoralCoalition.create! :name => 'Pelastusrengas',                             :shorten => 'Pelast', :number_order => "4"
-      snaf = ElectoralCoalition.create! :name => 'Svenska Nationer och Ämnesföreningar (SNÄf)',  :shorten => 'SNÄf', :number_order => "5"
+      hyal = ElectoralCoalition.create! :name => 'Ainejärjestöjen vaalirengas',                  :shorten => 'HYAL', :numbering_order => "10"
+      osak = ElectoralCoalition.create! :name => 'Osakuntien suuri vaalirengas',                 :shorten => 'Osak', :numbering_order => "9"
+      mp = ElectoralCoalition.create! :name => 'Maailmanpyörä',                                  :shorten => 'MP', :numbering_order => "8"
+      help = ElectoralCoalition.create! :name => 'HELP',                                         :shorten => 'HELP', :numbering_order => "6"
+      pelast = ElectoralCoalition.create! :name => 'Pelastusrengas',                             :shorten => 'Pelast', :numbering_order => "4"
+      snaf = ElectoralCoalition.create! :name => 'Svenska Nationer och Ämnesföreningar (SNÄf)',  :shorten => 'SNÄf', :numbering_order => "5"
 
       # Single alliance coalitions
-      demarit = ElectoralCoalition.create! :name => 'Opiskelijademarit',            :shorten => 'OSY', :number_order => "3"
-      tsemppi = ElectoralCoalition.create! :name => 'Tsemppi Group',                :shorten => 'Tsempp', :number_order => "2"
-      piraatit = ElectoralCoalition.create! :name => 'Akateemiset piraatit',        :shorten => 'Pirate', :number_order => "1"
-      persut = ElectoralCoalition.create! :name => 'Perussuomalainen vaaliliitto',  :shorten => 'Peruss', :number_order => "7"
-      libera = ElectoralCoalition.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',  :shorten => 'Libera', :number_order => "5"
-      ite1 = ElectoralCoalition.create! :name => 'Itsenäinen ehdokas 1',  :shorten => 'ITE1', :number_order => "11"
+      demarit = ElectoralCoalition.create! :name => 'Opiskelijademarit',            :shorten => 'OSY', :numbering_order => "3"
+      tsemppi = ElectoralCoalition.create! :name => 'Tsemppi Group',                :shorten => 'Tsempp', :numbering_order => "2"
+      piraatit = ElectoralCoalition.create! :name => 'Akateemiset piraatit',        :shorten => 'Pirate', :numbering_order => "1"
+      persut = ElectoralCoalition.create! :name => 'Perussuomalainen vaaliliitto',  :shorten => 'Peruss', :numbering_order => "7"
+      libera = ElectoralCoalition.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',  :shorten => 'Libera', :numbering_order => "5"
+      ite1 = ElectoralCoalition.create! :name => 'Itsenäinen ehdokas 1',  :shorten => 'ITE1', :numbering_order => "11"
 
       # Electoral Alliances
       mp.electoral_alliances.create! :name => 'HYYn Vihreät - De Gröna vid HUS',                               :shorten => 'HyVi',    :delivered_candidate_form_amount => '60', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
@@ -139,7 +139,7 @@ namespace :seed do
             electoral_coalition = ElectoralCoalition.create! :name => alliance_name unless electoral_coalition
             electoral_alliance = electoral_coalition.electoral_alliances.create! :name => alliance_name, :delivered_candidate_form_amount => 0, :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
           end
-          electoral_alliance.update_attribute :signing_order_position, row[10]
+          electoral_alliance.update_attribute :numbering_order_position, row[10]
 
           def generate_ssn
             @@order = (@@order ||= 0) + 1
@@ -168,7 +168,7 @@ namespace :seed do
                                         :email                  => "#{row[7].split('@')[0]}@example.com",
                                         :candidate_name         => row[8],
                                         :electoral_alliance     => electoral_alliance,
-                                        :sign_up_order_position => row[12],
+                                        :numbering_order_position => row[12],
                                         :notes                  => row[13]
         end
       end

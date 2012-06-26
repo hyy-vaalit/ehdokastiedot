@@ -17,7 +17,7 @@ FactoryGirl.define do
   factory :electoral_coalition do
     sequence(:name) {|n| "Coalition #{n}"}
     sequence(:shorten) {|n| "c #{n}"}
-    sequence(:number_order) {|n| n+1}
+    sequence(:numbering_order) {|n| n+1}
   end
 
   factory :electoral_alliance do
