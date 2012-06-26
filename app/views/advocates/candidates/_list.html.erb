@@ -1,0 +1,36 @@
+<table class="long-listing">
+  <thead>
+    <th></th>
+    <th>Sukunimi</th>
+    <th>Etunimi</th>
+    <th>Ehdokasnimi</th>
+    <th>Henkilötunnus</th>
+    <th>Postiosoite</th>
+    <th>Postinro ja -toimipaikka</th>
+    <th>Sähköposti</th>
+    <th>Sähköposti</th>
+    <th>Tiedekunta</th>
+
+  </thead>
+
+  <tbody>
+
+    <% candidates.each do |c| %>
+
+    <tr>
+      <td><%= link_to "Muokkaa", edit_advocates_alliance_candidate_path(c.electoral_alliance, c) %></td>
+      <td><%= c.candidate_name %></td>
+      <td><%= c.lastname %></td>
+      <td><%= c.firstname %></td>
+      <td><%= c.social_security_number %></td>
+      <td><%= c.address %></td>
+      <td><%= c.postal_information %></td>
+      <td><%= c.email %></td>
+      <td><%= c.faculty.name %></td>
+    </tr>
+
+    <% end %>
+
+  </tbody>
+
+</table>
