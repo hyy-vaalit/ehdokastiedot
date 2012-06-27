@@ -1,3 +1,36 @@
+<script>
+  $(function() {
+    var email_element      = $('#candidate_email');
+    var firstname_element  = $('#candidate_firstname');
+    var lastname_element   = $('#candidate_lastname');
+
+    email_element.bind('focusin', function(event) {
+      suggest_email_address(email_element, firstname_element, lastname_element);
+    });
+
+    firstname_element.bind('focusout', function(event) {
+      if (lastname_element.val() && firstname_element.val() ) {
+        suggest_email_address(email_element, firstname_element, lastname_element);
+      }
+    });
+
+    function suggest_email_address(email_element, firstname_element, lastname_element) {
+      var suggested_domain = "@helsinki.fi";
+      var lastname         = lastname_element.val().toLowerCase();
+      var firstname        = first_of_firstnames(firstname_element.val().toLowerCase());
+
+      if (!email_element.val()) {
+        email_element.val(firstname + '.' + lastname + suggested_domain);
+      }
+    }
+
+    function first_of_firstnames(firstnames) {
+      return firstnames.split(' ')[0];
+    }
+
+  });
+</script>
+
 <p>
   <%= link_to "&larr; Palaa tallentamatta".html_safe, advocates_alliance_path(@alliance) %>
 </p>
