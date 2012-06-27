@@ -3,6 +3,24 @@ require 'csv'
 
 namespace :seed do
   namespace :development do
+    def random_advocate_user(number)
+      (number % 2 == 0) ? AdvocateUser.first : AdvocateUser.last
+    end
+
+    def create_alliance!(coalition, opts)
+      alliance = coalition.electoral_alliances.build(opts)
+      alliance.advocate_user = random_advocate_user(coalition.id)
+
+      alliance.save!
+    end
+
+    def create_candidate!(alliance, faculty, candidate_number, opts)
+      candidate = alliance.candidates.build(opts)
+      candidate.faculty = faculty
+      candidate.candidate_number = candidate_number
+
+      candidate.save!
+    end
 
     desc 'Default project settings'
     task :configuration => :environment do
@@ -36,6 +54,7 @@ namespace :seed do
 
     desc 'Create electoral coalitions and alliances'
     task :electoral => :environment do
+
       # Voting areas
       VotingArea.create! :code => '1',   :name => 'Unicafe Ylioppilasaukio',    :password => 'pass123'
       VotingArea.create! :code => '2',   :name => 'Yliopiston päärakennus',     :password => 'pass123'
@@ -81,45 +100,47 @@ namespace :seed do
       ite1 = ElectoralCoalition.create! :name => 'Itsenäinen ehdokas 1',  :shorten => 'ITE1', :numbering_order => "11"
 
       # Electoral Alliances
-      mp.electoral_alliances.create! :name => 'HYYn Vihreät - De Gröna vid HUS',                               :shorten => 'HyVi',    :expected_candidate_count => '60', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      mp.electoral_alliances.create! :name => 'Sitoutumaton vasemmisto - Obunden vänster - Independent left',  :shorten => 'SitVas',  :expected_candidate_count => '60', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      hyal.electoral_alliances.create! :name => 'Humanistit',                                                  :shorten => 'Humani',  :expected_candidate_count => '40', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      hyal.electoral_alliances.create! :name => 'Viikki',                                                      :shorten => 'Viikki',  :expected_candidate_count => '16', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      help.electoral_alliances.create! :name => 'Pykälä',                                                      :shorten => 'Pykälä',  :expected_candidate_count => '44', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      hyal.electoral_alliances.create! :name => 'Kumpula',                                                     :shorten => 'Kumpul',  :expected_candidate_count => '17', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      help.electoral_alliances.create! :name => 'LKS/HLKS',                                                    :shorten => 'LKSHLK',  :expected_candidate_count => '15', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      hyal.electoral_alliances.create! :name => 'Käyttis',                                                     :shorten => 'Käytti',  :expected_candidate_count => '12', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      osak.electoral_alliances.create! :name => 'ESO',                                                         :shorten => 'ESO',     :expected_candidate_count => '60', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      pelast.electoral_alliances.create! :name => 'Kokoomusopiskelijat 1',                                     :shorten => 'Kok1',    :expected_candidate_count => '49', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      help.electoral_alliances.create! :name => 'EKY',                                                         :shorten => 'EKY',     :expected_candidate_count => '16', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      hyal.electoral_alliances.create! :name => 'Valtiotieteilijät',                                           :shorten => 'Valtio',  :expected_candidate_count => '16', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      hyal.electoral_alliances.create! :name => 'Teologit',                                                    :shorten => 'Teolog',  :expected_candidate_count => '26', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      osak.electoral_alliances.create! :name => 'HO-Natura',                                                   :shorten => 'HO-Nat',  :expected_candidate_count => '39', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      osak.electoral_alliances.create! :name => 'EPO',                                                         :shorten => 'EPO',     :expected_candidate_count => '57', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      pelast.electoral_alliances.create! :name => 'Kokoomusopiskelijat 2',                                     :shorten => 'Kok2',    :expected_candidate_count => '49', :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
-      osak.electoral_alliances.create! :name => 'Domus Gaudiumin Osakunnat',                                   :shorten => 'DG',      :expected_candidate_count => '44', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      osak.electoral_alliances.create! :name => 'PPO',                                                         :shorten => 'PPO',     :expected_candidate_count => '42', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      pelast.electoral_alliances.create! :name => 'Keskeiset',                                                 :shorten => 'Kesk',    :expected_candidate_count => '18', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      osak.electoral_alliances.create! :name => 'SavO',                                                        :shorten => 'SavO',    :expected_candidate_count => '42', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      osak.electoral_alliances.create! :name => 'KSO-VSO',                                                     :shorten => 'KSOVSO',  :expected_candidate_count => '29', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      demarit.electoral_alliances.create! :name => 'Opiskelijademarit',                                        :shorten => 'OSY',     :expected_candidate_count => '32', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      snaf.electoral_alliances.create! :name => 'StudOrg',                                                     :shorten => 'StudO',   :expected_candidate_count => '12', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      osak.electoral_alliances.create! :name => 'SatO-ESO2',                                                   :shorten => 'SatESO',  :expected_candidate_count => '43', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      snaf.electoral_alliances.create! :name => 'Nationerna',                                                  :shorten => 'Nation',  :expected_candidate_count => '18', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      tsemppi.electoral_alliances.create! :name => 'Tsemppi Group',                                            :shorten => 'Tsempp',  :expected_candidate_count => '15', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      snaf.electoral_alliances.create! :name => 'Codex-Thorax',                                                :shorten => 'CodTho',  :expected_candidate_count => '8', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      pelast.electoral_alliances.create! :name => 'KD Helsingin Opiskelijat',                                  :shorten => 'KD',      :expected_candidate_count => '14', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      piraatit.electoral_alliances.create! :name => 'Akateemiset piraatit',                                    :shorten => 'Pirate',  :expected_candidate_count => '4', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      persut.electoral_alliances.create! :name => 'Perussuomalainen vaaliliitto',                              :shorten => 'Peruss',  :expected_candidate_count => '3', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      snaf.electoral_alliances.create! :name => 'Ämnesföreningarna',                                          :shorten => 'Ämnesf',  :expected_candidate_count => '4', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      libera.electoral_alliances.create! :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',         :shorten => 'Libera',  :expected_candidate_count => '3', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
-      ite1.electoral_alliances.create! :name => 'Itsenäinen ehdokas 1',         :shorten => 'ITE1',  :expected_candidate_count => '1', :primary_advocate_social_security_number => '123456-9876', :primary_advocate_email => 'asiamies2@example.com'
+      create_alliance! mp, :name => 'HYYn Vihreät - De Gröna vid HUS',                              :shorten => 'HyVi',   :expected_candidate_count => '60'
+      create_alliance! mp, :name => 'Sitoutumaton vasemmisto - Obunden vänster - Independent left', :shorten => 'SitVas', :expected_candidate_count => '60'
+
+      create_alliance! hyal, :name => 'Humanistit',  :shorten => 'Humani', :expected_candidate_count => '40'
+      create_alliance! hyal, :name => 'Viikki',      :shorten => 'Viikki', :expected_candidate_count => '16'
+
+      create_alliance! help, :name => 'Pykälä',      :shorten => 'Pykälä', :expected_candidate_count => '44'
+      create_alliance! hyal, :name => 'Kumpula',     :shorten => 'Kumpul', :expected_candidate_count => '17'
+      create_alliance! help, :name => 'LKS/HLKS',                                                    :shorten => 'LKSHLK',  :expected_candidate_count => '15'
+      create_alliance! hyal, :name => 'Käyttis',                                                     :shorten => 'Käytti',  :expected_candidate_count => '12'
+      create_alliance! osak, :name => 'ESO',                                                         :shorten => 'ESO',     :expected_candidate_count => '60'
+      create_alliance! pelast, :name => 'Kokoomusopiskelijat 1',                                     :shorten => 'Kok1',    :expected_candidate_count => '49'
+      create_alliance! help, :name => 'EKY',                                                         :shorten => 'EKY',     :expected_candidate_count => '16'
+      create_alliance! hyal, :name => 'Valtiotieteilijät',                                           :shorten => 'Valtio',  :expected_candidate_count => '16'
+      create_alliance! hyal, :name => 'Teologit',                                                    :shorten => 'Teolog',  :expected_candidate_count => '26'
+      create_alliance! osak, :name => 'HO-Natura',                                                   :shorten => 'HO-Nat',  :expected_candidate_count => '39'
+      create_alliance! osak, :name => 'EPO',                                                         :shorten => 'EPO',     :expected_candidate_count => '57'
+      create_alliance! pelast, :name => 'Kokoomusopiskelijat 2',                                     :shorten => 'Kok2',    :expected_candidate_count => '49'
+      create_alliance! osak, :name => 'Domus Gaudiumin Osakunnat',                                   :shorten => 'DG',      :expected_candidate_count => '44'
+      create_alliance! osak, :name => 'PPO',                                                         :shorten => 'PPO',     :expected_candidate_count => '42'
+      create_alliance! pelast, :name => 'Keskeiset',                                                 :shorten => 'Kesk',    :expected_candidate_count => '18'
+      create_alliance! osak, :name => 'SavO',                                                        :shorten => 'SavO',    :expected_candidate_count => '42'
+      create_alliance! osak, :name => 'KSO-VSO',                                                     :shorten => 'KSOVSO',  :expected_candidate_count => '29'
+      create_alliance! demarit, :name => 'Opiskelijademarit',                                        :shorten => 'OSY',     :expected_candidate_count => '32'
+      create_alliance! snaf, :name => 'StudOrg',                                                     :shorten => 'StudO',   :expected_candidate_count => '12'
+      create_alliance! osak, :name => 'SatO-ESO2',                                                   :shorten => 'SatESO',  :expected_candidate_count => '43'
+      create_alliance! snaf, :name => 'Nationerna',                                                  :shorten => 'Nation',  :expected_candidate_count => '18'
+      create_alliance! tsemppi, :name => 'Tsemppi Group',                                            :shorten => 'Tsempp',  :expected_candidate_count => '15'
+      create_alliance! snaf, :name => 'Codex-Thorax',                                                :shorten => 'CodTho',  :expected_candidate_count => '8'
+      create_alliance! pelast, :name => 'KD Helsingin Opiskelijat',                                  :shorten => 'KD',      :expected_candidate_count => '14'
+      create_alliance! piraatit, :name => 'Akateemiset piraatit',                                    :shorten => 'Pirate',  :expected_candidate_count => '4'
+      create_alliance! persut, :name => 'Perussuomalainen vaaliliitto',                              :shorten => 'Peruss',  :expected_candidate_count => '3'
+      create_alliance! snaf, :name => 'Ämnesföreningarna',                                          :shorten => 'Ämnesf',  :expected_candidate_count => '4'
+      create_alliance! libera, :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',         :shorten => 'Libera',  :expected_candidate_count => '3'
+      create_alliance! ite1, :name => 'Itsenäinen ehdokas 1',         :shorten => 'ITE1',  :expected_candidate_count => '1'
     end
 
-    desc 'Create fixer advocates'
-    task :fixer_advocates => :environment do
-      AdvocateUser.create! :ssn => '123456-123K', :email => 'asiamies1@example.com', :password => 'pass123'
-      AdvocateUser.create! :ssn => '123456-9876', :email => 'asiamies2@example.com', :password => 'pass123'
+    desc 'Create advocate users'
+    task :create_advocates => :environment do
+      AdvocateUser.create! :firstname => "Rami", :lastname => "Raavas", :ssn => '123456-123K', :email => 'asiamies1@example.com', :password => 'pass123'
+      AdvocateUser.create! :firstname => "Laura", :lastname => "Lanttunen", :ssn => '123456-9876', :email => 'asiamies2@example.com', :password => 'pass123'
     end
 
     desc 'Create candidate data from seed.csv'
@@ -137,7 +158,7 @@ namespace :seed do
           unless electoral_alliance
             electoral_coalition = ElectoralCoalition.find_or_create_by_name row[9] if row[9]
             electoral_coalition = ElectoralCoalition.create! :name => alliance_name unless electoral_coalition
-            electoral_alliance = electoral_coalition.electoral_alliances.create! :name => alliance_name, :expected_candidate_count => 0, :primary_advocate_social_security_number => '123456-123K', :primary_advocate_email => 'asiamies1@example.com'
+            electoral_alliance = create_alliance(electoral_coalition, :name => alliance_name, :expected_candidate_count => 0)
           end
           electoral_alliance.update_attribute :numbering_order_position, row[10]
 
@@ -158,18 +179,16 @@ namespace :seed do
 
           end
 
-          candidate = Candidate.create! :candidate_number       => row[0],
+          create_candidate!(electoral_alliance, faculty, row[0],
                                         :lastname               => row[1],
                                         :firstname              => row[2],
                                         :social_security_number => (row[3] || generate_ssn),
-                                        :faculty                => faculty,
                                         :address                => row[5],
                                         :postal_information     => row[6],
                                         :email                  => "#{row[7].split('@')[0]}@example.com",
                                         :candidate_name         => row[8],
-                                        :electoral_alliance     => electoral_alliance,
                                         :numbering_order_position => row[12],
-                                        :notes                  => row[13]
+                                        :notes                  => row[13])
         end
       end
     end
@@ -208,12 +227,12 @@ namespace :seed do
   task :development do
     Rake::Task['seed:redis:reset_keys'].invoke
     Rake::Task['seed:development:configuration'].invoke
+    Rake::Task['seed:development:create_advocates'].invoke
     Rake::Task['seed:development:faculties'].invoke
     Rake::Task['seed:development:electoral'].invoke
     Rake::Task['seed:development:candidates'].invoke
     Rake::Task['seed:development:early_voting'].invoke
     Rake::Task['seed:development:main_voting'].invoke
-    Rake::Task['seed:development:fixer_advocates'].invoke
   end
 
 end
