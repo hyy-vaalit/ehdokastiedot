@@ -1,8 +1,9 @@
 <script>
   $(function() {
-    var email_element      = $('#candidate_email');
-    var firstname_element  = $('#candidate_firstname');
-    var lastname_element   = $('#candidate_lastname');
+    var email_element          = $('#candidate_email');
+    var firstname_element      = $('#candidate_firstname');
+    var lastname_element       = $('#candidate_lastname');
+    var candidate_name_element = $('#candidate_candidate_name');
 
     email_element.bind('focusin', function(event) {
       suggest_email_address(email_element, firstname_element, lastname_element);
@@ -10,9 +11,33 @@
 
     firstname_element.bind('focusout', function(event) {
       if (lastname_element.val() && firstname_element.val() ) {
+        suggest_candidate_name(candidate_name_element, firstname_element, lastname_element);
         suggest_email_address(email_element, firstname_element, lastname_element);
       }
     });
+
+    candidate_name_element.bind('focusin', function(event) {
+      suggest_candidate_name(candidate_name_element, firstname_element, lastname_element);
+    });
+
+    candidate_name_element.bind('focusout', function(event) {
+      replace_quotes(candidate_name_element);
+    });
+
+    function replace_quotes(element) {
+        element.val(function(index, value) {
+          return value.replace(/"/g, "'");
+        });
+    }
+
+    function suggest_candidate_name(candidate_name_element, firstname_element, lastname_element) {
+      var lastname = lastname_element.val();
+      var firstname = first_of_firstnames(firstname_element.val());
+
+      if (!candidate_name_element.val()) {
+        candidate_name_element.val(lastname + ', ' + firstname);
+      }
+    }
 
     function suggest_email_address(email_element, firstname_element, lastname_element) {
       var suggested_domain = "@helsinki.fi";
@@ -51,7 +76,7 @@
   <%= f.input :email, :label => "Sähköpostiosoite"  %>
 
 <%= f.input :candidate_name, :label => "Ehdokasnimi (Sukunimi, Etunimi)",
-        :hint => 'Ehdokkaan nimi siinä muodossa, kuin se halutaan merkittäväksi ehdokaslistojen yhdistelmään (etunimen rinnalla tai sen sijasta voidaan käyttää yleisesti tunnettua puhuttelunimeä tai etunimeä lyhennettynä, eli esimerkiksi Sukunimi, Etunimi; Sukunimi, Puhuttelunimi tai Sukunimi, Etunimi "Puhuttelunimi"' %>
+        :hint => "Ehdokkaan nimi siinä muodossa, kuin se halutaan merkittäväksi ehdokaslistojen yhdistelmään (etunimen rinnalla tai sen sijasta voidaan käyttää yleisesti tunnettua puhuttelunimeä tai etunimeä lyhennettynä, eli esimerkiksi Sukunimi, Etunimi; Sukunimi, Puhuttelunimi tai Sukunimi, Etunimi 'Puhuttelunimi'" %>
 
 <%= f.input :notes, :label => "Huomioita HYYn vaalivirkailijalle",
                     :input_html => { :class => 'autogrow', :rows => 3 } %>

@@ -72,7 +72,7 @@
       <td><%= c.address %></td>
       <td><%= c.postal_information %></td>
       <td><%= c.email %></td>
-      <td><%= c.faculty.name %></td>
+      <td><%= c.faculty.name if c.faculty %></td>
     </tr>
 
     <% end %>

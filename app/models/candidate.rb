@@ -43,6 +43,10 @@ class Candidate < ActiveRecord::Base
   scope :votable, where(:cancelled => false, :marked_invalid => false)
 
   validates_presence_of :lastname, :electoral_alliance
+  validates_format_of :candidate_name, :with => /\A(.+), (.+)\Z/, # Lastname, Firstname Whatever Here 'this' or "this"
+                                       :message => "Ehdokasnimen on oltava muotoa Sukunimi, Etunimi, ks. ohje."
+
+  validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
 
   before_save :clear_lines!
 
