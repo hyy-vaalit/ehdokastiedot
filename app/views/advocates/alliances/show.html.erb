@@ -3,6 +3,8 @@
 Ehdokkaita: <%= @alliance.candidates.count %> / <%= @alliance.expected_candidate_count %>
 
 <br>
+<%= link_to "Muokkaa vaaliliiton tietoja", edit_advocates_alliance_path(@alliance) %>
+<br>
 <%= link_to "Luo ehdokas", new_advocates_alliance_candidate_path(@alliance) %>
 
 <h2>Ehdokkaat:</h2>

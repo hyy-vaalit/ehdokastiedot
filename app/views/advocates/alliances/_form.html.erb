@@ -1,11 +1,11 @@
 <p>
-  <%= link_to "&larr; Palaa tallentamatta".html_safe, advocates_alliances_path(@alliance) %>
+  <%= link_to "&larr; Palaa tallentamatta".html_safe, advocates_alliance_path(@alliance) %>
 </p>
 
 <%= f.input :name,    :label => "Vaaliliiton nimi" %>
 <%= f.input :shorten, :label => "Vaaliliiton lyhenne (2-6 merkkiä)", :hint => "Lyhennettä käytetään vaalituloksen esittämisessä: esimerkiksi TaVi, ParasS, WTF. HYY varaa itselleen oikeuden muuttaa lyhennettä tarvittaessa." %>
 
-<%= f.input :delivered_candidate_form_amount, :label => "Kuinka monta ehdokasta liittoon tulee" %>
+<%= f.input :expected_candidate_count, :label => "Kuinka monta ehdokasta liittoon tulee" %>
 
 <h2>Vaaliliiton ensisijainen asiamies:</h2>
 <dl>
