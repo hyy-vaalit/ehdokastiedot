@@ -6,7 +6,8 @@ class AdvocateUser < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
 
   # Setup accessible (or protected) attributes for your model
-  attr_accessible :ssn, :email, :password, :password_confirmation, :remember_me
+  attr_accessible :firstname, :lastname, :ssn, :email, :password, :password_confirmation, :remember_me,
+                  :postal_address, :postal_code, :postal_city, :phone_number
 
   has_many :electoral_alliances, :foreign_key => :primary_advocate_id
 

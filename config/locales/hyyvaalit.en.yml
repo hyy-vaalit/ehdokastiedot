@@ -5,7 +5,6 @@ en:
 
       electoral_alliance:
         name: "Name"
-        expected_candidate_count: "How many candidate forms"
 
         primary_advocate_lastname: "Lastname"
         primary_advocate_firstname: "Firstname"

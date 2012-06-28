@@ -123,7 +123,7 @@ class Candidate < ActiveRecord::Base
   end
 
   def self.give_numbers!
-    raise "FIXME! Ordering refactored."
+    raise 'FIXME! Ordering refactored. use order("#{table_name}.numbering_order DESC")'
 
     raise 'not ready' unless ElectoralAlliance.are_all_ready? and ElectoralCoalition.are_all_ordered?
     Candidate.transaction do

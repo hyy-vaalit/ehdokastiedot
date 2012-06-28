@@ -133,7 +133,8 @@
   <%= f.input :postal_information, :label => "Postinumero ja postitoimipaikka" %>
 
 <%#= f.input :phone_number, :label => "Puhelinnumero" %>
-  <%= f.input :email, :label => "Sähköpostiosoite"  %>
+  <%= f.input :email, :label => "Sähköpostiosoite",
+                      :hint => "Ehdokasilmoituksen vahvistusilmoitus lähetetään sähköpostitse. Jos osoite puuttuu, yritä etsiä se HY:n Mainari-palvelusta." %>
 
 <%= f.input :candidate_name, :label => "Ehdokasnimi (Sukunimi, Etunimi)",
         :hint => "Ehdokkaan nimi siinä muodossa, kuin se halutaan merkittäväksi ehdokaslistojen yhdistelmään (etunimen rinnalla tai sen sijasta voidaan käyttää yleisesti tunnettua puhuttelunimeä tai etunimeä lyhennettynä, eli esimerkiksi Sukunimi, Etunimi; Sukunimi, Puhuttelunimi tai Sukunimi, Etunimi 'Puhuttelunimi'" %>

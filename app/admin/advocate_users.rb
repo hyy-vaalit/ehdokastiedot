@@ -14,19 +14,62 @@ ActiveAdmin.register AdvocateUser do
   end
 
   index do
+    column :lastname
+    column :firstname
     column :email
-    column :ssn
+    column("Last sign in") { |user| user.current_sign_in_at.localtime if user.current_sign_in_at }
+    column("Vaaliliittoja") { |user| user.electoral_alliances.count }
+    column :phone_number
+
     default_actions
   end
 
+  show :title => "User details" do | user |
+      panel "Profile Info" do
+
+        attributes_table_for user do
+          row("Name") { |user| user.friendly_name }
+          row :email
+          row :postal_address
+          row :postal_code
+          row :postal_city
+          row :phone_number
+       end
+     end
+
+     panel "Vaaliliitot (#{user.electoral_alliances.count} kpl)" do
+
+       table_for(user.electoral_alliances) do |t|
+         t.column("Valmis") { |alliance| icon(:check) if alliance.secretarial_freeze? }
+         t.column("Vaaliliitto") { |alliance| link_to alliance.name, admin_electoral_alliance_path(alliance) }
+         t.column("Ehdokkaita syötetty") {|alliance| alliance.candidates.count}
+         t.column("Ehdokkaita ilmoitettu") {|alliance| alliance.expected_candidate_count}
+         t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? icon(:check) : ""}
+       end
+     end
+   end
+
   filter :email
   filter :ssn
+  filter :lastname
+  filter :firstname
+
+  # sidebar "XX", :only => :show do
+  # end
 
   form do |f|
     f.inputs do
       f.input :email
       f.input :ssn
+      f.input :firstname
+      f.input :lastname
+      f.input :postal_address
+      f.input :postal_code
+      f.input :postal_city
+      f.input :phone_number
+
     end
+
     f.buttons
   end
 

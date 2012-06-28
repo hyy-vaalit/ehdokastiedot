@@ -23,7 +23,11 @@
   <% end %>
 
   <% if current_advocate_user %>
-    <p><%= current_advocate_user.email %></p>
+    <p>
+    <%= current_advocate_user.email %>
+    <br>
+    <%= link_to "Kirjaudu ulos", destroy_advocate_user_session_path %>
+    </p>
   <% end %>
 
 <%= yield %>

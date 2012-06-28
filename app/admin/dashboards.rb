@@ -1,32 +1,44 @@
 # coding: utf-8
 ActiveAdmin::Dashboards.build do
 
-  section "Asiamiehen ja sihteerin toiminnot", :priority => 1 do
-    h3 do
-      ol do
-        li link_to "Luo uusi vaaliliitto.", new_admin_electoral_alliance_path
-        li "Luo ehdokkaat valitsemalla #{link_to 'luomasi vaaliliiton sivun', admin_electoral_alliances_path}<br />
-            oikeasta yläkulmasta 'Vaaliliiton ehdokkaat'.".html_safe
-        li "Syötä ehdokkaat samassa järjestyksessä kuin haluat ehdokasnumerot."
-        li "Kun ehdokkaat on syötetty,<br />
-            klikkaa em. valikosta 'Merkitse vaaliliitto valmiiksi'.".html_safe
-      end
-    end
-      h4 "Huomioi nämä:"
-      ul do
-        li "Syötä vasta lopulliset tiedot: <br />
-            tietojen tulee vastata paperisia ehdokaslomakkeita.".html_safe
-        li "Et voi poistaa syöttämiäsi tietoja etkä muuttaa järjestystä."
-        li "Virhesyöttöjen välttämiseksi selaimen täydennysehdotuksen<br />
-            voi valita ainoastaan tabulaattorilla eikä enter-napilla.".html_safe
-        li "Voit luoda uuden vaaliliiton vasta,<br />
-            kun edellinen vaaliliitto on merkitty valmiiksi.".html_safe
-        li "HYYn vaalityöntekijä kytkee vaaliliitot vaalirenkaisiin<br />
-            ehdokasasettelun päättymisen jälkeen.".html_safe
-        li "Näet etusivulla linkkejä, joihin et pääse käsiksi.<br />
-            Pahoittelemme hämmennystä.".html_safe
-      end
+  # section "Sihteerin toiminnot", :priority => 1 do
+  #   h3 do
+  #     ol do
+  #       li link_to "Luo uusi vaaliliitto.", new_admin_electoral_alliance_path
+  #       li "Luo ehdokkaat valitsemalla #{link_to 'luomasi vaaliliiton sivun', admin_electoral_alliances_path}<br />
+  #           oikeasta yläkulmasta 'Vaaliliiton ehdokkaat'.".html_safe
+  #       li "Syötä ehdokkaat samassa järjestyksessä kuin haluat ehdokasnumerot."
+  #       li "Kun ehdokkaat on syötetty,<br />
+  #           klikkaa em. valikosta 'Merkitse vaaliliitto valmiiksi'.".html_safe
+  #     end
+  #   end
+  #     h4 "Huomioi nämä:"
+  #     ul do
+  #       li "Syötä vasta lopulliset tiedot: <br />
+  #           tietojen tulee vastata paperisia ehdokaslomakkeita.".html_safe
+  #       li "Et voi poistaa syöttämiäsi tietoja etkä muuttaa järjestystä."
+  #       li "Virhesyöttöjen välttämiseksi selaimen täydennysehdotuksen<br />
+  #           voi valita ainoastaan tabulaattorilla eikä enter-napilla.".html_safe
+  #       li "Voit luoda uuden vaaliliiton vasta,<br />
+  #           kun edellinen vaaliliitto on merkitty valmiiksi.".html_safe
+  #       li "HYYn vaalityöntekijä kytkee vaaliliitot vaalirenkaisiin<br />
+  #           ehdokasasettelun päättymisen jälkeen.".html_safe
+  #       li "Näet etusivulla linkkejä, joihin et pääse käsiksi.<br />
+  #           Pahoittelemme hämmennystä.".html_safe
+  #     end
+  #
+  # end
 
+  alliances = ElectoralAlliance.for_dashboard
+  section "Vaaliliitot  (#{alliances.count} kpl)" do
+    table_for(alliances) do |t|
+      t.column("Valmis") { |alliance| icon(:check) if alliance.secretarial_freeze? }
+      t.column("Vaaliliitto") { |alliance| link_to alliance.name, admin_electoral_alliance_path(alliance) }
+      t.column("Ehdokkaita syötetty") {|alliance| alliance.candidates.count}
+      t.column("Ehdokkaita ilmoitettu") {|alliance| alliance.expected_candidate_count}
+      t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? icon(:check) : ""}
+      t.column("Asiamies") {|alliance| link_to alliance.advocate_user.friendly_name, admin_advocate_user_path(alliance.advocate_user) }
+    end
   end
 
   section "Ylläpidon toiminnot", :priority => 2 do
@@ -81,14 +93,14 @@ ActiveAdmin::Dashboards.build do
       end
     end
 
-  end
-
-  section 'Muiden sidosryhmien sisäänkirjautuminen' do
-    ul do
-      li link_to 'Asiamiesten korjaukset (liiton 1. asiamies) #TODO', '#' #advocate_path
-      li link_to 'Äänestysalue (äänestysalueen pj)', voting_area_path
-      li link_to 'Tarkastuslaskenta (tllk:n pj)', checking_minutes_path
+    section 'Muiden sidosryhmien sisäänkirjautuminen' do
+      ul do
+        li link_to 'Asiamiesten korjaukset (liiton 1. asiamies) #TODO', '#' #advocate_path
+        li link_to 'Äänestysalue (äänestysalueen pj)', voting_area_path
+        li link_to 'Tarkastuslaskenta (tllk:n pj)', checking_minutes_path
+      end
     end
+
   end
 
 

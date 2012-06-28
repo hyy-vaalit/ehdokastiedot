@@ -22,19 +22,20 @@ class ElectoralAlliance < ActiveRecord::Base
   has_many :results, :through => :alliance_results
 
   belongs_to :advocate_user, :foreign_key => :primary_advocate_id
+  validates_presence_of :primary_advocate_id
 
   belongs_to :electoral_coalition
   ranks :numbering_order, :with_same => :electoral_coalition_id
 
   scope :without_coalition, where(:electoral_coalition_id => nil)
-
   scope :not_real, joins(:candidates).where('candidates.candidate_name = electoral_alliances.name')
-
   scope :ready, where(:secretarial_freeze => true)
+  scope :for_dashboard, order("primary_advocate_id ASC")
 
   validates_presence_of :name, :shorten
   validates_length_of :shorten, :in => 2..6
   validates_presence_of :expected_candidate_count, :allow_nil => true
+
 
   def vote_sum_caches
     candidate_results.select(
@@ -48,6 +49,10 @@ class ElectoralAlliance < ActiveRecord::Base
 
   def has_fix_needing_candidates?
     self.candidates.has_fixes.count > 0
+  end
+
+  def has_all_candidates?
+    candidates.count == expected_candidate_count
   end
 
   def self.are_all_ready?
