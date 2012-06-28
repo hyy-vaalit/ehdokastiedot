@@ -54,11 +54,18 @@ ActiveAdmin.register AdvocateUser do
   filter :lastname
   filter :firstname
 
-  # sidebar "XX", :only => :show do
-  # end
+  sidebar "Ohjeet", :only => :new do
+    ul do
+      li "Tunnuksen luomisen jälkeen asiamiehelle lähetetään salasana sähköpostitse."
+      li "Vaaliliiton ensisijainen asiamies syöttää vaaliliiton ehdokkaat."
+      li "Ehdokasasettelun päättymisen jälkeen asiamies ei voi enää lisätä ehdokkaita, mutta voi esittää korjauksia tietoihin."
+      li "HYYn vaalityöntekijä (admin) hyväkstyy tai hylkää asiamiehen esittämät korjaukset."
+    end
+  end
 
   form do |f|
     f.inputs do
+
       f.input :email
       f.input :ssn
       f.input :firstname

@@ -1,6 +1,6 @@
 # coding: UTF-8
 
-class PasswordDelivery < HyyMailer
+class RegistrationMailer < HyyMailer
 
   def new_password(password, email)
     @email = email
@@ -8,18 +8,18 @@ class PasswordDelivery < HyyMailer
     mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
   end
 
-  def advocate_creator(password, email, alliance_name)
+  def welcome_advocate(email, password)
     @email = email
     @password = password
-    @site_address = 'http://vaalit.hyy.fi/admin'
-    @alliance_name = alliance_name
+    @site_address = 'http://vaalit.hyy.fi/advocates'
+
     mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
   end
 
   def advocate_fixer(password, email, alliance_name)
     @email = email
     @password = password
-    @site_address = 'http://vaalit.hyy.fi/advocate'
+    @site_address = 'http://vaalit.hyy.fi/advocates'
     @alliance_name = alliance_name
     mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
   end
