@@ -46,8 +46,30 @@ ActiveAdmin.register ElectoralAlliance do
 
   show :title => :name do
     attributes_table :name, :shorten do
+      row :created_at
+      row :updated_at
       row("candidates") { "#{electoral_alliance.candidates.count} / #{electoral_alliance.expected_candidate_count}" }
       row("ready") { electoral_alliance.secretarial_freeze ? 'Vaaliliitto on merkitty valmiiksi.' : 'Vaaliliittoa ei ole vielä merkitty valmiiksi.' }
+    end
+
+    candidates = electoral_alliance.candidates
+    panel "Ehdokkaat (#{candidates.count} kpl)" do
+      div do
+        link_to "Luo uusi ehdokas vaaliliittoon", new_admin_candidate_path(:electoral_alliance_id => electoral_alliance.id)
+      end
+
+      table_for(candidates) do |t|
+        t.column("Nro") { |candidate| candidate.candidate_number }
+        t.column("Ehdokasnimi") { |candidate| link_to candidate.candidate_name, admin_candidate_path(candidate) }
+        t.column("Etunimet") { |candidate| candidate.firstname }
+        t.column("Sukunimi") { |candidate| candidate.lastname }
+        t.column("Email") { |candidate| candidate.email }
+        t.column("Hetu") { |candidate| candidate.social_security_number }
+        t.column("Tdk") { |candidate| candidate.faculty.name if candidate.faculty }
+        t.column("Osoite") { |candidate| candidate.address }
+        t.column("Toimipaikka") { |candidate| candidate.postal_information }
+        t.column("Huomioita") { |candidate| candidate.notes }
+      end
     end
   end
 
@@ -100,11 +122,6 @@ ActiveAdmin.register ElectoralAlliance do
   action_item :only => :show do
     ea = ElectoralAlliance.find_by_id(params[:id])
     link_to 'Merkitse vaaliliitto valmiiksi!', done_admin_electoral_alliance_path if can? :update, electoral_alliance and !ea.secretarial_freeze
-  end
-
-  action_item :only => :show do
-    ea = ElectoralAlliance.find_by_id(params[:id])
-    link_to 'Syötä ehdokkaita vaaliliittoon...', admin_candidates_path(:q => {:electoral_alliance_id_eq => ea.id})
   end
 
   member_action :done do

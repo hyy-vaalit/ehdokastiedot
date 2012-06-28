@@ -37,7 +37,7 @@ function mark_social_security_number_invalid(error) {
   var list_item = field.parent();
   var errorbox = list_item.find('.errorbox');
   if (errorbox.length == 0) {
-    errorbox = $('<span>').addClass('errorbox').text(error);
+    errorbox = $('<p class="inline-errors">').addClass('errorbox').text(error);
     list_item.append(errorbox);
   } else {
     errorbox.text(error);

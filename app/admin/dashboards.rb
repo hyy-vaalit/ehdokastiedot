@@ -10,6 +10,10 @@ ActiveAdmin::Dashboards.build do
   #       li "Syötä ehdokkaat samassa järjestyksessä kuin haluat ehdokasnumerot."
   #       li "Kun ehdokkaat on syötetty,<br />
   #           klikkaa em. valikosta 'Merkitse vaaliliitto valmiiksi'.".html_safe
+  # p "Kun olet syöttänyt kaikki vaaliliiton ehdokkaat,
+  #      #{link_to 'siirry vaaliliiton sivuille', admin_electoral_alliances_path}
+  #     ja merkitse vaaliliitto valmiiksi.".html_safe
+  #
   #     end
   #   end
   #     h4 "Huomioi nämä:"

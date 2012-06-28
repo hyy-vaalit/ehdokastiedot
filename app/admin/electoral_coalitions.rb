@@ -24,7 +24,7 @@ ActiveAdmin.register ElectoralCoalition do
   end
 
   show :title => :name do
-    attributes_table :name, :shorten do
+    attributes_table :name, :shorten, :created_at, :updated_at do
       row("electoral_alliances") { electoral_coalition.electoral_alliances.map(&:name).join(', ')} if electoral_coalition.electoral_alliances.count > 1
     end
 

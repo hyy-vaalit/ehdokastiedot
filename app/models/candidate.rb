@@ -5,7 +5,10 @@ class Candidate < ActiveRecord::Base
 
   attr_accessible :lastname, :firstname, :social_security_number,
                   :faculty_id, :address, :postal_information, :email,
-                  :candidate_name, :notes, :numbering_order_position
+                  :candidate_name, :notes, :numbering_order_position,
+                  :active_admin_hack_alliance_id # See comments in Admin::Candidates
+
+  attr_accessor :active_admin_hack_alliance_id # See comments in Admin::Candidates
 
   has_many :votes do
     def preliminary_sum
@@ -30,10 +33,8 @@ class Candidate < ActiveRecord::Base
   has_many :data_fixes
 
   scope :cancelled, where(:cancelled => true)
-
+  scope :without_alliance, where(:electoral_alliance_id => nil)
   scope :valid, where(:cancelled => false, :marked_invalid => false)
-
-  scope :without_electoral_alliance, joins(:electoral_alliance).where('candidates.candidate_name = electoral_alliances.name')
 
   # Operator '&' is an intersection, ie, it matches only entities which are present in both groups.
   # DEPRECATION WARNING: Using & to merge relations has been deprecated and will be removed in Rails 3.1. Please use the relation's merge method, instead.
@@ -42,7 +43,11 @@ class Candidate < ActiveRecord::Base
   scope :by_alliance, order('electoral_alliance_id desc')
   scope :votable, where(:cancelled => false, :marked_invalid => false)
 
+  # Advocate must be able to fill candidate information which lacks of information.
+  # The information may not be available even in the paper form, but it can be
+  # submitted later. Validation must not be too strict!
   validates_presence_of :lastname, :electoral_alliance
+
   validates_format_of :candidate_name, :with => /\A(.+), (.+)\Z/, # Lastname, Firstname Whatever Here 'this' or "this"
                                        :message => "Ehdokasnimen on oltava muotoa Sukunimi, Etunimi, ks. ohje."
 
