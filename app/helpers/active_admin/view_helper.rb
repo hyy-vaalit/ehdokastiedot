@@ -1,3 +1,2 @@
 module ActiveAdmin::ViewHelper
-
 end

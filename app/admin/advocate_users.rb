@@ -77,6 +77,12 @@ ActiveAdmin.register AdvocateUser do
 
     end
 
+    f.inputs 'Vaaliliitot' do
+      f.input :electoral_alliances,
+              :as => :check_boxes,
+              :collection => ElectoralAlliance.without_advocate_user.concat(f.object.electoral_alliances)
+    end
+
     f.buttons
   end
 

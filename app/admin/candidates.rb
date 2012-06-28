@@ -4,7 +4,7 @@ ActiveAdmin.register Candidate do
   before_filter :authorize_this
   before_filter :preserve_default_scope
 
-  menu :label => " Ehdokkaat", :priority => 2
+  menu :label => " Ehdokkaat", :priority => 4
 
   controller do
 

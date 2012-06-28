@@ -2,7 +2,11 @@
   #FIXME: this is ugly
   alliances_without_coalition_count = ElectoralAlliance.without_coalition.count
 if alliances_without_coalition_count > 0 -%>
-<p>Renkaattomia liittoja löytyi <%= alliances_without_coalition_count %> kpl. Ole hyvä ja luo heille renkaat, niin järjestäminen toimii. <%= link_to 'Listaa renkaattomat liitot', admin_electoral_alliances_path(:scope => :without_coalition) %></p>
+<p>
+  <%= link_to "Renkaattomia liittoja on #{alliances_without_coalition_count} kpl", admin_electoral_alliances_path(:scope => :without_coalition) %>.
+  <br>
+  Jokaisen liiton on kuuluttava renkaaseen ennen kuin renkaille voidaan antaa järjestys. Jos liitolla ei ole rengasta, luo rengas jolla on liiton nimi.
+</p>
 <% else -%>
 
 <%= form_tag order_coalitions_admin_electoral_coalitions_path, :method => :post, :class => "ordering" do -%>

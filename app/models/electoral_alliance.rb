@@ -22,17 +22,19 @@ class ElectoralAlliance < ActiveRecord::Base
   has_many :results, :through => :alliance_results
 
   belongs_to :advocate_user, :foreign_key => :primary_advocate_id
-  validates_presence_of :primary_advocate_id
 
   belongs_to :electoral_coalition
   ranks :numbering_order, :with_same => :electoral_coalition_id
 
+  scope :without_advocate_user, where(:primary_advocate_id => nil)
   scope :without_coalition, where(:electoral_coalition_id => nil)
   scope :not_real, joins(:candidates).where('candidates.candidate_name = electoral_alliances.name')
   scope :ready, where(:secretarial_freeze => true)
   scope :for_dashboard, order("primary_advocate_id ASC")
 
   validates_presence_of :name, :shorten
+  validates_uniqueness_of :shorten, :name
+
   validates_length_of :shorten, :in => 2..6
   validates_presence_of :expected_candidate_count, :allow_nil => true
 

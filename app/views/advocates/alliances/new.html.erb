@@ -1,3 +1,8 @@
+<p>
+  <%= link_to "&larr; Palaa tallentamatta".html_safe, advocates_alliances_path %>
+</p>
+
+
 <%= semantic_form_for @alliance, :url => advocates_alliances_path(@alliance) do |f| %>
 
   <%= render :partial => "form", :locals => { :alliance => @alliance, :f => f } %>

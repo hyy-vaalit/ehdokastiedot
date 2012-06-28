@@ -3,7 +3,7 @@ ActiveAdmin.register ElectoralCoalition do
 
   before_filter :authorize_this
 
-  menu :label => " Vaalirenkaat", :priority => 2
+  menu :label => " Vaalirenkaat", :priority => 3
 
   controller do
 
@@ -27,17 +27,31 @@ ActiveAdmin.register ElectoralCoalition do
     attributes_table :name, :shorten do
       row("electoral_alliances") { electoral_coalition.electoral_alliances.map(&:name).join(', ')} if electoral_coalition.electoral_alliances.count > 1
     end
+
+    alliances = electoral_coalition.electoral_alliances
+    panel "Vaaliliitot  (#{alliances.count} kpl)" do
+      table_for(alliances) do |t|
+        t.column("Valmis") { |alliance| icon(:check) if alliance.secretarial_freeze? }
+        t.column("Vaaliliitto") { |alliance| link_to alliance.name, admin_electoral_alliance_path(alliance) }
+        t.column("Ehdokkaita syötetty") {|alliance| alliance.candidates.count}
+        t.column("Ehdokkaita ilmoitettu") {|alliance| alliance.expected_candidate_count}
+        t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? icon(:check) : ""}
+        t.column("Asiamies") {|alliance| link_to alliance.advocate_user.friendly_name, admin_advocate_user_path(alliance.advocate_user) if alliance.advocate_user}
+      end
+    end
+
   end
 
   filter :name
 
   form do |f|
-    f.inputs 'Basic information' do
+    f.inputs 'Vaalirenkaan tiedot' do
       f.input :name
       f.input :shorten
     end
-    f.inputs 'Alliances' do
-      f.input :electoral_alliances, :as => :check_boxes, :collection => ElectoralAlliance.without_coalition.concat(f.object.electoral_alliances)
+    f.inputs 'Vaalirenkaan liitot' do
+      f.input :electoral_alliances, :as => :check_boxes, :collection => ElectoralAlliance.without_coalition.concat(f.object.electoral_alliances),
+                                    :hint => "Tässä ovat näkyvissä ainoastaan renkaisiin kuulumattomat liitot. Luo vaaliliitto ennen vaalirenkaan luomista."
     end
     f.buttons
   end

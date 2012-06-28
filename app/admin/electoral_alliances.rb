@@ -3,8 +3,9 @@ ActiveAdmin.register ElectoralAlliance do
 
   scope :all, :default => true
   scope :without_coalition
+  scope :without_advocate_user
 
-  menu :label => " Vaaliliitot", :priority => 1
+  menu :label => " Vaaliliitot", :priority => 2
 
   controller do
 
@@ -36,12 +37,7 @@ ActiveAdmin.register ElectoralAlliance do
     column :name
     column :shorten
     column :electoral_coalition, :sortable => false
-    # column :primary_advocate do |alliance|
-    #   "#{alliance.primary_advocate_lastname}, #{alliance.primary_advocate_firstname}"
-    # end
-    # column :secondary_advocate do |alliance|
-    #   "#{alliance.secondary_advocate_lastname}, #{alliance.secondary_advocate_firstname}"
-    # end
+    column :advocate_user, :sortable => false
     column :expected_candidate_count
     column :secretarial_freeze
 
@@ -53,49 +49,45 @@ ActiveAdmin.register ElectoralAlliance do
       row("candidates") { "#{electoral_alliance.candidates.count} / #{electoral_alliance.expected_candidate_count}" }
       row("ready") { electoral_alliance.secretarial_freeze ? 'Vaaliliitto on merkitty valmiiksi.' : 'Vaaliliittoa ei ole vielä merkitty valmiiksi.' }
     end
-    #attributes_table :primary_advocate_lastname, :primary_advocate_firstname, :primary_advocate_social_security_number, :primary_advocate_address, :primary_advocate_postal_information, :primary_advocate_phone, :primary_advocate_email
-    #attributes_table :secondary_advocate_lastname, :secondary_advocate_firstname, :secondary_advocate_social_security_number, :secondary_advocate_address, :secondary_advocate_postal_information, :secondary_advocate_phone, :secondary_advocate_email
   end
 
   filter :name
   filter :electoral_coalition
   filter :secretarial_freeze, :as => :select
 
-  # sidebar "ADSF Details", :only => :show do
-  #   attributes_table_for :advocate_user, :email, :created_at
-  # end
-
   sidebar "Asiamies", :only => :show do
-    attributes_table_for electoral_alliance do
-      row("Nimi") { link_to electoral_alliance.advocate_user.friendly_name, admin_advocate_user_path(electoral_alliance.advocate_user) }
-      row("Viimeksi kirjautunut") { electoral_alliance.advocate_user.current_sign_in_at }
+    if electoral_alliance.advocate_user
+      attributes_table_for electoral_alliance do
+        row("Nimi") { link_to electoral_alliance.advocate_user.friendly_name, admin_advocate_user_path(electoral_alliance.advocate_user) }
+        row("Viimeksi kirjautunut") { electoral_alliance.advocate_user.current_sign_in_at }
+      end
+    else
+      "Vaalirenkaalle ei ole vielä määritetty asiamiestä."
+    end
+  end
+
+  sidebar "Vaalirengas", :only => :show do
+    if electoral_alliance.electoral_coalition
+      link_to electoral_alliance.electoral_coalition.name, admin_electoral_coalition_path(electoral_alliance.electoral_coalition)
+    else
+      "Vaalirenkaalle ei ole vielä määritetty rengasta. Mene vaalirenkaan 'edit'-sivulle ja aseta sieltä renkaaseen kuuluvat liitot."
+    end
+  end
+
+  sidebar "Ohjeet", :only => :new do
+    ul do
+      li "Tästä näkymästä luodaan vaaliliitto, jonka tiedot on toimitettu ainoastaan paperilla."
+      li "Vaaliliiton luonnin jälkeen HYYn sihteeri syöttää vaaliliiton ehdokkaat."
+      li "Kun vaaliliiton ehdokkaat on luotu, HYYn vaalityöntekjiä luo vaaliliiton asiamiestunnuksen, jolla asiamies voi syöttää korjauksia ehdokastietoihin."
     end
   end
 
   form do |f|
-    f.inputs 'Basic information' do
-      f.input :name
-      f.input :shorten
-      f.input :expected_candidate_count
+    f.inputs 'Vaaliliiton tiedot' do
+      f.input :name, :label => "Virallinen nimi"
+      f.input :shorten, :label => "Lyhenne (2-6 merkkiä)", :hint => "Käytä mieluiten samaa lyhennettä kuin edellisissä vaaleissa."
+      f.input :expected_candidate_count, :label => "Kuinka monta ehdokasta", :hint => "Luvun on täsmättävä paperilomakkeiden määrän kanssa."
     end
-    # f.inputs 'Primary Advocate' do
-    #   f.input :primary_advocate_lastname
-    #   f.input :primary_advocate_firstname
-    #   f.input :primary_advocate_social_security_number
-    #   f.input :primary_advocate_address
-    #   f.input :primary_advocate_postal_information
-    #   f.input :primary_advocate_phone
-    #   f.input :primary_advocate_email
-    # end
-    # f.inputs 'Secondary Advocate' do
-    #   f.input :secondary_advocate_lastname
-    #   f.input :secondary_advocate_firstname
-    #   f.input :secondary_advocate_social_security_number
-    #   f.input :secondary_advocate_address
-    #   f.input :secondary_advocate_postal_information
-    #   f.input :secondary_advocate_phone
-    #   f.input :secondary_advocate_email
-    # end
 
     # DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information.
     f.buttons
