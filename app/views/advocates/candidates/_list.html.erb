@@ -1,12 +1,11 @@
 <script>
   $(function() {
     var sortableClass          = "sortable";
-    var sortableCandidates     = "table#candidates tbody.sortable";
     var enableSortingElement   = "#enable-sorting";
     var disableSortingElement  = "#disable-sorting";
 
-    function enableSorting() {
-      $( sortableCandidates ).sortable({
+    function enableSorting(sortableRowsSelector) {
+      $( sortableRowsSelector ).sortable({
         update: function(event, ui) {
           var new_position = ui.item.index();
           var alliance_id  = ui.item.attr("data-alliance-id");
@@ -21,19 +20,19 @@
         }
       });
 
-      $( sortableCandidates ).disableSelection();
+      $( sortableRowsSelector ).disableSelection();
     }
 
     $( enableSortingElement ).click(function() {
-      var triggerElement  = $(enableSortingElement);
-
-      var sortableElement = $(triggerElement.attr("data-sortable-element"));
+      var triggerElement        = $(enableSortingElement);
+      var sortableRowsSelector  = $(triggerElement).attr("data-sortable-rows");
+      var sortableElement       = $(triggerElement.attr("data-sortable-element"));
       sortableElement.addClass(sortableClass);
 
       triggerElement.hide();
       $(disableSortingElement).show();
 
-      enableSorting();
+      enableSorting(sortableRowsSelector);
     }),
 
     $( disableSortingElement ).click(function() {
@@ -42,7 +41,7 @@
   });
 </script>
 
-<button id="enable-sorting" data-sortable-element="table#candidates tbody">Muuta ehdokkaiden järjestystä</button>
+<button id="enable-sorting" data-sortable-element="table#candidates tbody" data-sortable-rows="table#candidates tbody.sortable">Muuta ehdokkaiden järjestystä</button>
 <button id="disable-sorting" style="display:none;">Lopeta ehdokkaiden järjestäminen</button>
 
 <table id="candidates" class="long-listing">
