@@ -3,3 +3,7 @@ form.ordering {
     width: 2em;
   }
 }
+
+.sortable tr:hover {
+  cursor: move;
+}

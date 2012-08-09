@@ -24,12 +24,13 @@ ActiveAdmin.register Candidate do
     # mass-assignment protection (which is needed for advocate users).
     def update
       @candidate = Candidate.find(params[:id])
-      alliance_id = params[:candidate].delete(:electoral_alliance_id)
-      @candidate.electoral_alliance_id = alliance_id
 
       if @candidate.update_attributes(params[:candidate])
         flash[:notice] = "Muutokset tallennettu."
-        redirect_to admin_candidate_path(@candidate)
+
+        respond_with(@alliance) do |format|
+          format.html { redirect_to admin_candidate_path(@candidate) }
+        end
       else
         super
       end
@@ -113,8 +114,17 @@ ActiveAdmin.register Candidate do
   # Therefore create will prematurely fail if electoral_alliance_id is included in params.
   # --> Deliver electoral_alliance_id in hidden hack_alliance_id.
   form do |f|
-    if alliance = ElectoralAlliance.find_by_id(params[:electoral_alliance_id])
-      f.inputs "Uusi ehdokas vaaliliittoon: #{alliance.name}" do
+    alliance_id = f.object.new_record? ? params[:electoral_alliance_id] : f.object.electoral_alliance_id
+    alliance = ElectoralAlliance.find_by_id(alliance_id)
+
+    if params[:action] == "new" && alliance.nil?
+      panel "Harmin paikka!" do
+         "Eksyit uuden ehdokkaan luontisivulle ilman vaaliliittoa. Näin ei olisi pitänyt käydä, dzori!
+         <br />
+         Mene takaisin vaaliliiton sivulle ja klikkaa sieltä 'Uusi ehdokas'.".html_safe
+      end
+    else
+      f.inputs "Ehdokkaan vaaliliitto: #{alliance.name}" do
         f.input :lastname
         f.input :firstname
         f.input :candidate_name
@@ -131,12 +141,6 @@ ActiveAdmin.register Candidate do
       end
       f.input :active_admin_hack_alliance_id, :as => :hidden, :value => alliance.id
       f.buttons
-    else
-      panel "Harmin paikka!" do
-         "Eksyit uuden ehdokkaan luontisivulle ilman vaaliliittoa. Näin ei olisi pitänyt käydä, dzori!
-         <br />
-         Mene takaisin vaaliliiton sivulle ja klikkaa sieltä 'Uusi ehdokas'.".html_safe
-      end
     end
   end
 

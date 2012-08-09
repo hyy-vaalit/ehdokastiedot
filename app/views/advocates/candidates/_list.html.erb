@@ -1,70 +1,27 @@
-<script>
-  $(function() {
-    var sortableClass          = "sortable";
-    var enableSortingElement   = "#enable-sorting";
-    var disableSortingElement  = "#disable-sorting";
-
-    function enableSorting(sortableRowsSelector) {
-      $( sortableRowsSelector ).sortable({
-        update: function(event, ui) {
-          var new_position = ui.item.index();
-          var alliance_id  = ui.item.attr("data-alliance-id");
-          var candidate_id = ui.item.attr("data-candidate-id");
-
-          $.ajax({
-            type: 'PUT',
-            url: '/advocates/alliances/'+ alliance_id +'/candidates/'+ candidate_id,
-            dataType: 'json',
-            data: { candidate: { numbering_order_position: new_position } },
-          });
-        }
-      });
-
-      $( sortableRowsSelector ).disableSelection();
-    }
-
-    $( enableSortingElement ).click(function() {
-      var triggerElement        = $(enableSortingElement);
-      var sortableRowsSelector  = $(triggerElement).attr("data-sortable-rows");
-      var sortableElement       = $(triggerElement.attr("data-sortable-element"));
-      sortableElement.addClass(sortableClass);
-
-      triggerElement.hide();
-      $(disableSortingElement).show();
-
-      enableSorting(sortableRowsSelector);
-    }),
-
-    $( disableSortingElement ).click(function() {
-      window.location.reload();
-    })
-  });
-</script>
-
-<button id="enable-sorting" data-sortable-element="table#candidates tbody" data-sortable-rows="table#candidates tbody.sortable">Muuta ehdokkaiden järjestystä</button>
+<button id="enable-sorting" data-sortable-element="table#candidates tbody">Muuta ehdokkaiden järjestystä</button>
 <button id="disable-sorting" style="display:none;">Lopeta ehdokkaiden järjestäminen</button>
 
 <table id="candidates" class="long-listing">
   <thead>
-    <th></th>
+    <th>Nro</th>
+    <th>Ehdokasnimi</th>
     <th>Sukunimi</th>
     <th>Etunimi</th>
-    <th>Ehdokasnimi</th>
     <th>Henkilötunnus</th>
     <th>Postiosoite</th>
     <th>Postinro ja -toimipaikka</th>
     <th>Sähköposti</th>
     <th>Tiedekunta</th>
-
+    <th>Huomioita</th>
   </thead>
 
   <tbody>
 
     <% candidates.each do |c| %>
 
-    <tr data-alliance-id="<%= c.electoral_alliance.id -%>" data-candidate-id="<%= c.id -%>">
-      <td><%= link_to "Muokkaa", edit_advocates_alliance_candidate_path(c.electoral_alliance, c) %></td>
-      <td><%= c.candidate_name %></td>
+    <tr data-scope="<%= scope %>" data-alliance-id="<%= c.electoral_alliance.id -%>" data-candidate-id="<%= c.id -%>" class="<%= cycle('odd', 'even') %>">
+      <td><%= c.candidate_number %></td>
+      <td><%= link_to c.candidate_name, link_to_edit_candidate(scope, c) %></td>
       <td><%= c.lastname %></td>
       <td><%= c.firstname %></td>
       <td><%= c.social_security_number %></td>
@@ -72,6 +29,7 @@
       <td><%= c.postal_information %></td>
       <td><%= c.email %></td>
       <td><%= c.faculty.name if c.faculty %></td>
+      <td><%= c.notes %></td>
     </tr>
 
     <% end %>

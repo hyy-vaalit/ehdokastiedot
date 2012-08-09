@@ -58,17 +58,8 @@ ActiveAdmin.register ElectoralAlliance do
         link_to "Luo uusi ehdokas vaaliliittoon", new_admin_candidate_path(:electoral_alliance_id => electoral_alliance.id)
       end
 
-      table_for(candidates) do |t|
-        t.column("Nro") { |candidate| candidate.candidate_number }
-        t.column("Ehdokasnimi") { |candidate| link_to candidate.candidate_name, admin_candidate_path(candidate) }
-        t.column("Etunimet") { |candidate| candidate.firstname }
-        t.column("Sukunimi") { |candidate| candidate.lastname }
-        t.column("Email") { |candidate| candidate.email }
-        t.column("Hetu") { |candidate| candidate.social_security_number }
-        t.column("Tdk") { |candidate| candidate.faculty.name if candidate.faculty }
-        t.column("Osoite") { |candidate| candidate.address }
-        t.column("Toimipaikka") { |candidate| candidate.postal_information }
-        t.column("Huomioita") { |candidate| candidate.notes }
+      div do
+        render :partial => "advocates/candidates/list", :locals => { :candidates => electoral_alliance.candidates, :scope => "admin" }
       end
     end
   end
@@ -95,6 +86,7 @@ ActiveAdmin.register ElectoralAlliance do
       "Vaalirenkaalle ei ole vielä määritetty rengasta. Mene vaalirenkaan 'edit'-sivulle ja aseta sieltä renkaaseen kuuluvat liitot."
     end
   end
+
 
   sidebar "Ohjeet", :only => :new do
     ul do

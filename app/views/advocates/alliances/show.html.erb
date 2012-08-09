@@ -9,4 +9,4 @@ Ehdokkaita: <%= @alliance.candidates.count %> / <%= @alliance.expected_candidate
 
 <h2>Ehdokkaat:</h2>
 
-<%= render :partial => "advocates/candidates/list", :locals => { :candidates => @alliance.candidates } %>
+<%= render :partial => "advocates/candidates/list", :locals => { :candidates => @alliance.candidates, :scope => "advocates" } %>
