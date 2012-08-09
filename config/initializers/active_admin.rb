@@ -36,5 +36,5 @@ ActiveAdmin.setup do |config|
 
   # To load a javascript file:
   config.register_javascript 'jquery.cookie.js'
-  config.register_javascript 'candidate_form.js'
+  config.register_javascript 'application.js'
 end
