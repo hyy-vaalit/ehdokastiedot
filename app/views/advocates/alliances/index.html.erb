@@ -1,11 +1,31 @@
+<h1>Vaaliliitot</h1>
 
-<h1>Vaaliliitot:</h1>
+<p>
+  &raquo; <%= link_to "Luo uusi vaaliliitto", new_advocates_alliance_path %>
+</p>
 
-<% @alliances.each do |a| %>
-  <ul>
-    <li><%= link_to a.name, advocates_alliance_path(a) %>
-      (<%= a.candidates.count %> / <%= a.expected_candidate_count %> ehdokasta)</li>
-  </ul>
-<% end %>
+<table class="long-listing">
+  <thead>
+    <th>Vaaliliitto</th>
+    <th>Ehdokkaita syötetty</th>
+    <th>Ehdokkaita yhteensä</th>
+    <th>Valmis?</th>
+  </thead>
 
-<%= link_to "Luo uusi vaaliliitto", new_advocates_alliance_path %>
+  <tbody>
+    <% @alliances.each do |a| %>
+      <tr>
+        <td><%= link_to a.name, advocates_alliance_path(a) %></td>
+        <td><%= a.candidates.count %></td>
+        <td><%= a.expected_candidate_count %></td>
+        <td>
+          <% if alliance_ready?(a) %>
+            <span class='alliance-ready'>OK</span>
+          <% else %>
+            Tarkista ehdokasmäärä.
+          <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+

@@ -3,6 +3,7 @@ $(function() {
   var sortableClass          = "sortable";
   var enableSortingElement   = "#enable-sorting";
   var disableSortingElement  = "#disable-sorting";
+  var sortableHintClass      = ".sortable-hint";
 
   function enableSorting(sortableElement) {
     sortableElement.sortable({
@@ -40,6 +41,7 @@ $(function() {
 
     triggerElement.hide();
     $(disableSortingElement).show();
+    $(sortableHintClass).show();
 
     enableSorting(sortableElement);
   }),

@@ -1,10 +1,13 @@
 <p>
-  <%= link_to "&larr; Palaa tallentamatta".html_safe, advocates_alliance_path(@alliance) %>
+  &larr; <%= link_to "Palaa tallentamatta", advocates_alliance_path(@alliance) %>
 </p>
 
 <%= semantic_form_for @alliance, :url => advocates_alliance_path(@alliance) do |f| %>
 
   <%= render :partial => "form", :locals => { :alliance => @alliance, :f => f } %>
 
-  <%= f.actions %>
+  <%= f.actions do %>
+    <%#= f.action :cancel, :as => :link, :label => "Palaa tallentamatta" %>
+    <%= f.action :submit, :as => :button, :label => "Tallenna" %>
+  <% end %>
 <% end %>

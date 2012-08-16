@@ -74,8 +74,10 @@ td { vertical-align: top; }
    ========================================================================== */
 
 body {
+  font-size: 16px;
   background: #f2f1ed;
-  padding-top: 10em;
+  padding-top: 7.5em;
+  font-family:  Georgia, serif;
 }
 
 header.title {
@@ -120,7 +122,16 @@ nav {
     padding-left: 2.5em;
   }
 
+.content {
+  margin: 0.75em;
+}
 
+footer address {
+  border-top: 1px #999   solid;
+  text-align: center;
+  padding-top: 0.5em;
+  margin-top: 3em;
+}
 
 .seat-listing ul {
   display: block;
@@ -141,16 +152,30 @@ nav {
   font-weight: bold;
 }
 
-.long-listing td, .long-listing th {
-  border-bottom: 1px gray solid;
-  border-right: 1px gray solid;
-  padding-left: 3px;
-  padding-right: 13px;
+.alliance-ready {
+  color: green;
+}
+.alliance-unready {
+  color: yellow;
 }
 
-.long-listing tr:hover {
-  background: #ffffcc;
+form.formtastic li {
+  width: 40em;
 }
+
+table {
+  background: white;
+}
+  .long-listing td, .long-listing th {
+    border: 1px #999 solid;
+    padding-left: 3px;
+    padding-right: 13px;
+    font-size: 85%;
+  }
+
+  .long-listing tr:hover {
+    background: #ffffcc;
+  }
 
 .nowrap {
   white-space: nowrap;

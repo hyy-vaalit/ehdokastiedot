@@ -1,8 +1,22 @@
+<p>
+  &larr; <%= link_to "Palaa tallentamatta", advocates_alliance_path(@alliance) %>
+</p>
+
+<h1>Muokkaa ehdokkaan tietoja</h1>
+
+<ul>
+  <li><strong>Vaaliliitto:</strong></label> <%= @candidate.electoral_alliance.name %>
+  <li><strong>Ehdokas:</strong></label> <%= @candidate.candidate_name %>
+</ul>
 
 <%= semantic_form_for @candidate, :url => advocates_alliance_candidate_path(@alliance) do |f| %>
 
   <%= render :partial => "form", :locals => { :candidate => @candidate, :f => f } %>
 
-  <%= f.actions %>
+  <% f.actions do %>
+    <%#= f.action :cancel, :as => :link, :label => "Palaa tallentamatta" %>
+    <%= f.action :submit, :as => :button, :label => "Tallenna" %>
+  <% end %>
+
 
 <% end %>

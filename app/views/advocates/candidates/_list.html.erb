@@ -1,5 +1,15 @@
-<button id="enable-sorting" data-sortable-element="table#candidates tbody">Muuta ehdokkaiden järjestystä</button>
-<button id="disable-sorting" style="display:none;">Lopeta ehdokkaiden järjestäminen</button>
+<div style="margin-bottom: 0.5em">
+  <button id="enable-sorting" class="btn" data-sortable-element="table#candidates tbody">Muuta ehdokkaiden järjestystä</button>
+  <button id="disable-sorting" class="btn" style="display:none;">Lopeta ehdokkaiden järjestäminen</button>
+  <div class="alert alert-info sortable-hint" style="display:none;">
+    <ul>
+      <li>Muuta ehdokkaiden järjestystä ottamalla hiirellä kiinni rivistä ja vetämällä sitä alas- tai ylöspäin.</li>
+      <li>Muutos tallennetaan jokaisen siirron jälkeen.</li>
+      <li>Kun olet valmis, klikkaa "Lopeta järjestäminen" jolloin sivu latautuu uudelleen.</li>
+      <li>Lopetusnapin painamisen jälkeen tarkista, että ehdokkaat ovat haluamassasi järjestyksessä.</li>
+    </ul>
+  </div>
+</div>
 
 <table id="candidates" class="long-listing">
   <thead>

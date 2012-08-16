@@ -2,6 +2,7 @@
 class Advocates::AlliancesController < AdvocatesController
 
   before_filter :find_alliance, :only => [:show, :edit, :update]
+  before_filter :nav_paths, :only => [:index, :show]
 
   def index
     @alliances = current_advocate_user.electoral_alliances
@@ -45,5 +46,9 @@ class Advocates::AlliancesController < AdvocatesController
 
   def find_alliance
     @alliance = current_advocate_user.electoral_alliances.find(params[:id])
+  end
+
+  def nav_paths
+    @_nav_paths = [{"Kaikki vaaliliitot" => advocates_alliances_path}]
   end
 end
