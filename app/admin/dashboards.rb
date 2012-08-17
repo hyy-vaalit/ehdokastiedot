@@ -33,9 +33,8 @@ ActiveAdmin::Dashboards.build do
   #
   # end
 
-  alliances = ElectoralAlliance.for_dashboard
-  section "Vaaliliitot  (#{alliances.count} kpl)" do
-    table_for(alliances) do |t|
+  section "Vaaliliitot" do
+    table_for(ElectoralAlliance.for_dashboard) do |t|
       t.column("Valmis") { |alliance| icon(:check) if alliance.secretarial_freeze? }
       t.column("Vaaliliitto") { |alliance| link_to alliance.name, admin_electoral_alliance_path(alliance) }
       t.column("Ehdokkaita syötetty") {|alliance| alliance.candidates.count}
