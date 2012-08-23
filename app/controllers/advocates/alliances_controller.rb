@@ -13,6 +13,10 @@ class Advocates::AlliancesController < AdvocatesController
   end
 
   def show
+    respond_to do |format|
+      format.html { }
+      format.csv  { render :layout => false }
+    end
   end
 
   def edit
@@ -45,7 +49,7 @@ class Advocates::AlliancesController < AdvocatesController
   protected
 
   def find_alliance
-    @alliance = current_advocate_user.electoral_alliances.find(params[:id])
+    @alliance = ElectoralAllianceDecorator.new(current_advocate_user.electoral_alliances.find(params[:id]))
   end
 
   def nav_paths

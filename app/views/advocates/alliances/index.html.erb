@@ -11,6 +11,7 @@
       <th>Ehdokkaita syötetty</th>
       <th>Ehdokkaita yhteensä</th>
       <th>Valmis?</th>
+      <th><i class="icon-share"></i> Export</th>
     </thead>
 
     <tbody>
@@ -25,6 +26,8 @@
             <% else %>
               Tarkista ehdokasmäärä.
             <% end %>
+          </td>
+          <td><%= link_to "CSV", advocates_alliance_path(a, :format => :csv) %></td>
         </tr>
       <% end %>
     </tbody>
