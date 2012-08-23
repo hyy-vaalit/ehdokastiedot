@@ -9,6 +9,10 @@ class Advocates::CandidatesController < AdvocatesController
     @candidate.electoral_alliance = @alliance
   end
 
+  def index
+    redirect_to advocates_alliance_url(@alliance)
+  end
+
   def edit
     @candidate = @alliance.candidates.find(params[:id])
   end

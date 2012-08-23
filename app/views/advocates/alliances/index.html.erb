@@ -4,28 +4,59 @@
   &raquo; <%= link_to "Luo uusi vaaliliitto", new_advocates_alliance_path %>
 </p>
 
-<table class="long-listing">
-  <thead>
-    <th>Vaaliliitto</th>
-    <th>Ehdokkaita syötetty</th>
-    <th>Ehdokkaita yhteensä</th>
-    <th>Valmis?</th>
-  </thead>
+<% if @alliances.any? %>
+  <table class="long-listing">
+    <thead>
+      <th>Vaaliliitto</th>
+      <th>Ehdokkaita syötetty</th>
+      <th>Ehdokkaita yhteensä</th>
+      <th>Valmis?</th>
+    </thead>
 
-  <tbody>
-    <% @alliances.each do |a| %>
-      <tr>
-        <td><%= link_to a.name, advocates_alliance_path(a) %></td>
-        <td><%= a.candidates.count %></td>
-        <td><%= a.expected_candidate_count %></td>
-        <td>
-          <% if alliance_ready?(a) %>
-            <span class='alliance-ready'>OK</span>
-          <% else %>
-            Tarkista ehdokasmäärä.
-          <% end %>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <tbody>
+      <% @alliances.each do |a| %>
+        <tr>
+          <td><%= link_to a.name, advocates_alliance_path(a) %></td>
+          <td><%= a.candidates.count %></td>
+          <td><%= a.expected_candidate_count %></td>
+          <td>
+            <% if alliance_ready?(a) %>
+              <span class='alliance-ready'>OK</span>
+            <% else %>
+              Tarkista ehdokasmäärä.
+            <% end %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
 
+<p>
+  Ehdokastiedot on syötettävä ehdokasasettelun päättymiseen maanantaihin NN.NN. klo NN:00 mennessä.
+</p>
+
+
+<h3>Tietojen syöttämisestä:</h3>
+  <ul>
+    <li>Paperilomakkeiden tiedot ovat ensisijaiset.</li>
+    <li>Jos järjestelmään syötetyt tiedot eroavat paperilomakkeen tiedoista, käytetään paperilomakkeen tietoja.</li>
+    <li>Uusia ehdokkaita voi syöttää ehdokasasettelun päättymiseen saakka.</li>
+    <li>Ehdokasasettelun päättymisen jälkeen tietoihin voi tehdä korjauksia ehdokasilmoituksen perumisen määräaikaan saakka.</li>
+  </ul>
+</p>
+
+<h3>Ehdokasnumeroinnista:</h3>
+  <ul>
+    <li>Ehdokasnumerot määräytyvät vaaliliiton sisällä ehdokkaiden järjestyksen mukaan.</li>
+    <li>Ehdokasnumerot määräytyvät vaalirenkaan sisällä vaaliliittojen järjestyksen mukaan.</li>
+    <li>Voit muuttaa ehdokkaiden järjestystä syöttämisen jälkeen.</li>
+    <li>Järjestä ehdokkaat samaan järjestykseen kuin paperilomakkeet.</li>
+  </ul>
+
+<h3>Vaalirenkaista:</h3>
+  <ul>
+    <li>HYYn vaalityöntekijä luo vaalirenkaan ja liittää vaaliliitot vaalirenkaaseen paperilomakkeiden tietojen perusteella.</li>
+    <li>Vaaliliitot asettuvat vaalirenkaasssa vaalirenkaan perustamisilmoituksen (paperilla) määrittämään järjestykseen.</li>
+    <li>Ehdokasnumerot jaetaan vaaliliittojen mukaisessa järjestyksessä.</li>
+    <li>Keskusvaalilautakunta arpoo vaalirenkaiden keskinäisen järjestyksen ehdokasnumerointia varten.</li>
+  </ul>

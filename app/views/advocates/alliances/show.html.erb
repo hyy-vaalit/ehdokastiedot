@@ -1,7 +1,7 @@
 <% @_nav_paths << {@alliance.name => false} %>
 
 
-<h1><%= @alliance.name %></h1>
+<h1>[<%= @alliance.shorten %>] <%= @alliance.name %></h1>
 
 <ul>
   <li>Ehdokkaita: <%= @alliance.candidates.count %> / <%= @alliance.expected_candidate_count %></li>
@@ -9,4 +9,10 @@
   <li><%= link_to "Luo ehdokas", new_advocates_alliance_candidate_path(@alliance) %></li>
 </ul>
 
-<%= render :partial => "advocates/candidates/list", :locals => { :candidates => @alliance.candidates, :scope => "advocates" } %>
+<% if @alliance.candidates.any? %>
+  <%= render :partial => "advocates/candidates/list", :locals => { :candidates => @alliance.candidates, :scope => "advocates" } %>
+<% else %>
+  <p>
+    Vaaliliitossa ei vielä ole yhtään ehdokasta.
+  </p>
+<% end %>
