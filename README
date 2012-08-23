@@ -42,11 +42,29 @@ $ rake seed:development
 
 == Staging-ympäristön runtsaus
 
-$ heroku pg:reset SHARED_DATABASE --app APP_NAME
-$ git push [-f] staging
-$ heroku rake db:schema:load --app APP_NAME
-$ heroku rake seed:[production|development] --app APP_NAME
+$ heroku pg:reset DATABASE --app APP_NAME
+$ git push [-f] staging [staging:master]  # paikallinen staging-branch herokun master-branchiin.
+$ heroku run rake db:schema:load --app APP_NAME
+$ heroku run rake seed:[production|development] --app APP_NAME
 $ heroku restart --app APP_NAME
+
+== AWS
+$ heroku config:set KEY=VALUE --app APP_NAME, seuraaville:
+  * S3_BUCKET_NAME       (hyy-vaalitulos-staging)
+  * S3_BASE_URL          (s3.amazonaws.com)
+  * S3_ACCESS_KEY_ID     (IAM User)
+  * S3_ACCESS_KEY_SECRET (IAM User)
+
+NOTE: The AWS::S3 does not work properly with any other region than US.
+Should try e.g. https://github.com/qoobaa/s3 for better S3 integration
+
+== Heroku
+  * Redis to go
+    - Lisää Add-on
+  * AWS-ympäristömuuttujat
+    - Ks. yllä
+  * Sendgrid (tuotantoon tarvii maksullisen)
+    - ENV["SENDGRID_DOMAIN"]=hyy.fi
 
 
 == Esimerkkikäyttäjätunnukset (testi-seed)
