@@ -14,8 +14,12 @@
   <%= render :partial => "form", :locals => { :candidate => @candidate, :f => f } %>
 
   <% f.actions do %>
-    <%#= f.action :cancel, :as => :link, :label => "Palaa tallentamatta" %>
     <%= f.action :submit, :as => :button, :label => "Tallenna" %>
+
+    <%= link_to "Poista ehdokas", advocates_alliance_candidate_path(@alliance, @candidate),
+                                      :method => :delete,
+                                      :class => "btn btn-danger",
+                                      :confirm => "Poistetaanko ehdokas #{@candidate.candidate_name}? Toimintoa ei voi perua." %>
   <% end %>
 
 

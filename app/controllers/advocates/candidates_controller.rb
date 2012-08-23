@@ -44,6 +44,18 @@ class Advocates::CandidatesController < AdvocatesController
     end
   end
 
+  def destroy
+    @candidate = @alliance.candidates.find(params[:id])
+
+    if @candidate.destroy
+      flash[:notice] = "Ehdokas poistettiin."
+      redirect_to advocates_alliance_path(@alliance)
+    else
+      flash[:alert] = "Ehdokkaan poistaminen epäonnistui."
+      render :action => :edit
+    end
+  end
+
   protected
 
   def find_alliance
