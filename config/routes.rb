@@ -2,10 +2,6 @@ Vaalit::Application.routes.draw do
 
   devise_for :advocate_users
 
-  get "coalitions/index"
-  get "alliances/index"
-  get "candidates/index"
-
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
