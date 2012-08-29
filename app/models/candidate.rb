@@ -23,6 +23,8 @@ class Candidate < ActiveRecord::Base
   has_many :candidate_drawings
   has_many :candidate_draws, :through => :candidate_drawings
 
+  has_many :candidate_attribute_changes
+
   belongs_to :electoral_alliance
   has_one :electoral_coalition, :through => :electoral_alliance
 

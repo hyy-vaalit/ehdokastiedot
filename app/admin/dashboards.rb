@@ -67,7 +67,7 @@ ActiveAdmin::Dashboards.build do
       ul do
         li link_to 'Yksinkertaistettu lista ehdokastiedoista', simple_listings_path
         li link_to 'Ehdokkaat, joilla sama henkilöturvatunnus', same_ssn_listings_path
-        li link_to 'Asiamiesten korjaukset ehdokastietoihin', has_fixes_listings_path
+        li link_to 'Asiamiesten muutokset ehdokasasettelun päättymisen jälkeen', manage_candidate_attribute_changes_path
       end
     end
 
@@ -75,9 +75,6 @@ ActiveAdmin::Dashboards.build do
       ul do
         li link_to 'Äänestysalueet ääntenlaskentaan', showdown_listings_path
         li link_to 'Vaalitulokset', results_path
-        # li link_to 'Ehdokkaat läpipääsyn mukaan', deputies_results_path
-        # li link_to 'Ehdokkaat vaaliliitoittain', by_alliance_results_path
-        # FIXME: ei saa syöttövaiheessa olla julkinen: li link_to 'Ehdokkaat äänimäärän mukaan', by_votes_results_path
       end
     end
 
@@ -98,7 +95,7 @@ ActiveAdmin::Dashboards.build do
 
     section 'Muiden sidosryhmien sisäänkirjautuminen' do
       ul do
-        li link_to 'Asiamiesten korjaukset (liiton 1. asiamies) #TODO', '#' #advocate_path
+        li link_to 'Asiamies (liiton 1. asiamies)', advocates_path
         li link_to 'Äänestysalue (äänestysalueen pj)', voting_area_path
         li link_to 'Tarkastuslaskenta (tllk:n pj)', checking_minutes_path
       end

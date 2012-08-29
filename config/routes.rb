@@ -20,6 +20,8 @@ Vaalit::Application.routes.draw do
     get "configuration", :to => "configurations#index"
     resource :configuration, :only => [:index, :update, :edit]
     resource :danger_zone, :only => [:show]
+
+    resources :candidate_attribute_changes
   end
 
   resources :results, :only => [:index, :show]
