@@ -16,12 +16,12 @@
     <% if current_admin_user -%><th>Nro</th><% end -%>
     <th>Ehdokasnimi</th>
     <th>Sukunimi</th>
-    <th>Etunimi</th>
-    <th>Henkilötunnus</th>
+    <th>Etunimet</th>
+    <th>Hetu</th>
     <th>Postiosoite</th>
-    <th>Postinro ja -toimipaikka</th>
+    <th>Toimipaikka</th>
     <th>Sähköposti</th>
-    <th>Tiedekunta</th>
+    <th>Tdk</th>
     <th>Huomioita</th>
   </thead>
 
@@ -38,7 +38,13 @@
       <td><%= c.address %></td>
       <td><%= c.postal_information %></td>
       <td><%= c.email %></td>
-      <td><%= c.faculty.name if c.faculty %></td>
+      <td>
+        <% if c.faculty %>
+          <abbr title="<%= c.faculty.name -%>">
+            <%= c.faculty.code %>
+          </abbr>
+        <% end %>
+      </td>
       <td><%= c.notes %></td>
     </tr>
 

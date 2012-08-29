@@ -169,14 +169,17 @@ form.formtastic li {
 table {
   background: white;
 }
-  .long-listing td, .long-listing th {
+  td, th {
+    padding: 0.5em;
     border: 1px #999 solid;
-    padding-left: 3px;
-    padding-right: 13px;
     font-size: 85%;
+    padding-top:  0.25em;
+    padding-bottom:  0.25em;
+    padding-left: 0.5em;
+    padding-right: 0.5em;
   }
 
-  .long-listing tr:hover {
+  tr:hover {
     background: #ffffcc;
   }
 
