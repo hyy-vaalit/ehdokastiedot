@@ -30,6 +30,9 @@ class GlobalConfiguration < ActiveRecord::Base
     first.potential_voters_count
   end
 
+  def self.log_candidate_attribute_changes?
+    not candidate_nomination_period_effective?
+  end
 
   def candidate_nomination_period_effective?
     Time.now < candidate_nomination_ends_at

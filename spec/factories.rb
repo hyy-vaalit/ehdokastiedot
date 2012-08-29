@@ -26,20 +26,6 @@ FactoryGirl.define do
     expected_candidate_count 2
     secretarial_freeze true
     electoral_coalition
-    primary_advocate_lastname 'First last'
-    primary_advocate_firstname 'First first'
-    primary_advocate_social_security_number 'First ssn'
-    primary_advocate_address 'First address'
-    primary_advocate_postal_information 'First postal'
-    primary_advocate_phone 'First phone'
-    primary_advocate_email 'First email'
-    secondary_advocate_lastname 'Second last'
-    secondary_advocate_firstname 'Second first'
-    secondary_advocate_social_security_number 'Second ssn'
-    secondary_advocate_address 'Second address'
-    secondary_advocate_postal_information 'Second postal'
-    secondary_advocate_phone 'Second phone'
-    secondary_advocate_email 'Second email'
   end
 
   factory :candidate do

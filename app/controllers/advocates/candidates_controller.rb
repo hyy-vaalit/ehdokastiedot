@@ -20,7 +20,7 @@ class Advocates::CandidatesController < AdvocatesController
   def update
     @candidate = @alliance.candidates.find(params[:id])
 
-    if @candidate.update_attributes(params[:candidate])
+    if @candidate.log_and_update_attributes(params[:candidate])
       flash[:notice] = "Muutokset tallennettu."
     else
       flash[:alert] = "Muutosten tallentaminen epäonnistui!"

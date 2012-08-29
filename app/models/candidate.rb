@@ -144,4 +144,11 @@ class Candidate < ActiveRecord::Base
     self.notes.gsub!(/(\r\n|\n|\r)/, ', ') if self.notes
   end
 
+  def log_and_update_attributes(attrs)
+    Candidate.transaction do
+      self.attributes = attrs
+      CandidateAttributeChange.create_from!(self.id, self.changes) if self.changed? and GlobalConfiguration.log_candidate_attribute_changes?
+      self.save
+    end
+  end
 end
