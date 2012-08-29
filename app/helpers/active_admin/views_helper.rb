@@ -5,8 +5,11 @@ module ActiveAdmin::ViewsHelper
   def link_to_edit_candidate(scope, candidate)
     if scope == "admin"
       edit_admin_candidate_path(candidate)
-    else
+    elsif GlobalConfiguration.candidate_nomination_period_effective?
       edit_advocates_alliance_candidate_path(candidate.electoral_alliance, candidate)
+    else
+      "KORJAA"
     end
   end
+
 end

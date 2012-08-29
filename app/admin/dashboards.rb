@@ -91,7 +91,7 @@ ActiveAdmin::Dashboards.build do
 
     section 'X-files', :priority => 999 do
       ul do
-        li link_to 'Järjestelmän asetukset', configurations_path
+        li link_to 'Järjestelmän asetukset', edit_manage_configuration_path
         li link_to 'Vaaralliset toiminnot', tools_path
       end
     end

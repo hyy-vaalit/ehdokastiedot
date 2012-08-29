@@ -24,13 +24,17 @@ namespace :seed do
 
     desc 'Default project settings'
     task :configuration => :environment do
-      REDIS.set 'total_vote_count', '10417'
-      REDIS.set 'votes_accepted', '10367'
-      REDIS.set 'right_to_vote', '29563'
-      REDIS.set 'candidates_to_select', '60'
+      GlobalConfiguration.create!(
+        :candidate_nomination_ends_at => Time.new(2012, "sep", 24, 12, 00),  # 24.9.2012 klo 12.00 UTC+3
+        :candidate_data_is_freezed_at => Time.new(2012, "oct", 4, 16, 00),   # KVL 4.10.2012 klo 17.00 UTC+3
+        :mail_from_address            => "hostmaster-hyy@enemy.fi",
+        :mail_from_name               => "Vaalit TESTIYMPÄRISTÖ",
+        :votes_given                  => 10417,
+        :votes_accepted               => 10367,
+        :potential_voters_count       => 29563
+      )
       REDIS.set 'checking_minutes_username', 'tlkpj'
       REDIS.set 'checking_minutes_password', 'pass123'
-      REDIS.set 'mailaddress', 'hostmaster-hyy@enemy.fi'
 
       AdminUser.create!(:email => 'admin@example.com', :password => 'pass123', :password_confirmation => 'pass123', :role => 'admin')
       AdminUser.create!(:email => 'sihteeri@example.com', :password => 'pass123', :password_confirmation => 'pass123', :role => 'secretary')

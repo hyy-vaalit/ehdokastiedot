@@ -13,7 +13,7 @@
 
 <table id="candidates" class="long-listing">
   <thead>
-    <th>Nro</th>
+    <% if current_admin_user -%><th>Nro</th><% end -%>
     <th>Ehdokasnimi</th>
     <th>Sukunimi</th>
     <th>Etunimi</th>
@@ -30,7 +30,7 @@
     <% candidates.each do |c| %>
 
     <tr data-scope="<%= scope %>" data-alliance-id="<%= c.electoral_alliance.id -%>" data-candidate-id="<%= c.id -%>" class="<%= cycle('odd', 'even') %>">
-      <td><%= c.candidate_number %></td>
+      <% if current_admin_user -%><td><%= c.candidate_number %></td><% end -%>
       <td><%= link_to c.candidate_name, link_to_edit_candidate(scope, c) %></td>
       <td><%= c.lastname %></td>
       <td><%= c.firstname %></td>

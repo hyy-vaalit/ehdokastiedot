@@ -16,7 +16,10 @@ Vaalit::Application.routes.draw do
     end
   end
 
-  resources :configurations, :only => [:index, :update]
+  namespace :manage do
+    get "configuration", :to => "configurations#index"
+    resource :configuration, :only => [:index, :update, :edit]
+  end
 
   resources :tools, :only => [:index]
 

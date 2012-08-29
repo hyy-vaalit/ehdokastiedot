@@ -1,5 +1,5 @@
 class HyyMailer < ActionMailer::Base
   include SendGrid
-  default :from => REDIS.get('mailaddress')
+  default :from => GlobalConfiguration.mail_from_address
 
 end

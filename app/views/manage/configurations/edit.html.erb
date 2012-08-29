@@ -1,0 +1,56 @@
+<p>
+  &larr; <%= link_to 'Takaisin hallintapaneeliin', admin_dashboard_path %>
+</p>
+
+<h1>Järjestelmän asetukset</h1>
+
+<%= semantic_form_for @configuration, :url => manage_configuration_path(@configuration), :method => :put do |f| %>
+  <h2>Ehdokasasettelu</h2>
+    <p>
+      Ehdokasasettelun päättymisen jälkeen asiamiehet eivät enää voi luoda uusia ehdokkaita tai vaaliliittoja.
+      Päättymisen jälkeen tietoihin voi tehdä korjauksia, kunnes korjausten määräaika tulee umpeen.
+      Korjausten määräaika on tunti ennen keskusvaalilautakunnan kokousta, jossa vahvistetaan ehdokaslistat.
+    </p>
+
+    <table style="margin-top: 1em;">
+      <thead>
+        <tr>
+          <th style="padding-right: 1em;">Ehdokasasettelu päättyy</th>
+          <th>Ehdokastietojen korjausten määräaika</th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr>
+          <td><%= @configuration.candidate_nomination_ends_at.localtime.to_s(:long) %></td>
+          <td><%= @configuration.candidate_data_is_freezed_at.localtime.to_s(:long) %></td>
+        </tr>
+      </tbody>
+    </table>
+
+  <h2>Vaalitulos</h2>
+    <p style="margin-bottom: 1em;">
+      Aseta äänien ja äänioikeutettujen lukumäärä vaali-iltana, kun äänestys on päättynyt.
+      Lukuja käytetään vaalituloksen yläosan tilastotiedoissa.
+    </p>
+
+    <%= f.input :votes_given, :label => "Ääniä annettu" %>
+    <%= f.input :votes_accepted, :label => "Ääniä hyväksytty" %>
+    <%= f.input :potential_voters_count, :label => "Äänioikeutettuja" %>
+    <%= f.input :voters_count, :label => "Äänestäneitä" %>
+
+  <h2>Sähköposti</h2>
+    <%= f.input :mail_from_address,
+                :input_html => { :readonly => true, :disabled => true },
+                :label => "Järjestelmän sähköpostiosoite" %>
+    <%= f.input :mail_from_name,
+                :input_html => { :readonly => true, :disabled => true },
+                :label => "Lähettäjän nimi",
+                :hint => "Osoite näkyy mm. asiamiehille ja ehdokkaille lähtevän viestin lähettäjänäosoitteena." %>
+
+
+  <% f.actions do %>
+     <%= f.action :submit, :as => :button, :label => "Tallenna" %>
+  <% end %>
+
+<% end %>

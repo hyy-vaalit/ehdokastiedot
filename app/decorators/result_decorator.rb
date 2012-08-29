@@ -31,11 +31,11 @@ class ResultDecorator < ApplicationDecorator
   #   end
 
   def potential_voters
-    REDIS.get('right_to_vote').to_i
+    GlobalConfiguration.potential_voters_count
   end
 
   def votes_given
-    REDIS.get('total_vote_count').to_i
+    GlobalConfiguration.votes_given
   end
 
   def candidates_to_elect
@@ -59,7 +59,7 @@ class ResultDecorator < ApplicationDecorator
     if self.freezed?
       votes_counted
     else
-      REDIS.get('votes_accepted').to_i
+      GlobalConfiguration.votes_accepted
     end
   end
 
