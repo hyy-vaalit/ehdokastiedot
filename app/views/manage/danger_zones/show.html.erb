@@ -1,3 +1,7 @@
+<p>
+  &larr; <%= link_to 'Takaisin hallintapaneeliin', admin_dashboard_path %>
+</p>
+
 <h1>Vaaralliset toiminnot</h1>
 
 <iframe width="420" height="345"
@@ -40,7 +44,9 @@ allowfullscreen></iframe>
     </ul>
   </li>
   <li>
-    <%= link_to 'Anna ehdokkaille numerot', give_numbers_admin_candidates_path, :confirm => "Jaetaanko ehdokasnumerot?" %>
+    <%= link_to 'Anna ehdokkaille numerot', give_numbers_admin_candidates_path,
+                                            :class=>"btn btn-danger",
+                                            :confirm => "Jaetaanko ehdokasnumerot?" %>
     <ul>
       <li>Ks. ohjeet renkaiden järjestämisestä.</li>
       <li>Kun renkaiden keskinäinen järjestys on määritetty, ehdokasnumerot voidaan jakaa.</li>
@@ -53,6 +59,9 @@ allowfullscreen></iframe>
 
 <ul>
   <li>
-    <%= link_to 'Merkitse tarkastuslaskenta valmiiksi!', ready_checking_minutes_path, :method => :post, :confirm => 'Onko jokaisen äänestysalueen tarkastuslaskenta valmis? Ääniä ei voi tämän jälkeen enää muokata.' %>
+    <%= link_to 'Merkitse tarkastuslaskenta valmiiksi!', ready_checking_minutes_path,
+                                                        :method => :post,
+                                                        :class=>"btn btn-danger",
+                                                        :confirm => 'Onko jokaisen äänestysalueen tarkastuslaskenta valmis? Ääniä ei voi tämän jälkeen enää muokata.' %>
   </li>
 </ul>

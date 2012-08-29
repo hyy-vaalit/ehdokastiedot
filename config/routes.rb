@@ -19,9 +19,8 @@ Vaalit::Application.routes.draw do
   namespace :manage do
     get "configuration", :to => "configurations#index"
     resource :configuration, :only => [:index, :update, :edit]
+    resource :danger_zone, :only => [:show]
   end
-
-  resources :tools, :only => [:index]
 
   resources :results, :only => [:index, :show]
 

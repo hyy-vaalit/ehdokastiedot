@@ -2,8 +2,6 @@
 
 class Manage::ConfigurationsController < ManageController
 
-  before_filter :authorize_configurations
-
   before_filter :find_configuration
 
   def update
@@ -21,13 +19,11 @@ class Manage::ConfigurationsController < ManageController
 
   end
 
-  private
+  protected
 
-  def authorize_configurations
+  def authorize_this!
     authorize! :configurations, @current_admin_user
   end
-
-  protected
 
   def find_configuration
     @configuration = GlobalConfiguration.first
