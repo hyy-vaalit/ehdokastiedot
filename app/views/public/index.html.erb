@@ -1,0 +1,28 @@
+
+<h2>Vaaliliiton asiamiehen sisäänkirjautuminen</h2>
+
+<% if GlobalConfiguration.advocate_login_enabled? %>
+  <%= form_for("user", :url => advocate_user_session_path) do |f| %>
+    <div>
+      <%= f.label :email, "Sähköpostiosoite"%>
+      <br>
+      <%= f.text_field :email %>
+    </div>
+    <div>
+      <%= f.label :password, "Salasana" %>
+      <br>
+      <%= f.password_field :password %>
+    </div>
+
+    <%= f.submit 'Kirjaudu sisään' %>
+    <br>
+    <%= link_to "Forgot your password?", new_advocate_user_password_path('user') %>
+  <% end %>
+
+<% else %>
+  <p>
+    Asiamiesten sisäänkirjautuminen on toistaiseksi pois käytöstä.
+    <br>
+    Syynä voi olla Keskusvaalilautakunnan kokous, jonka aikana järjestelmän tiedot halutaan pitää muuttumattomina.
+  </p>
+<% end %>
