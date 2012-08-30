@@ -31,7 +31,8 @@ namespace :seed do
         :mail_from_name               => "Vaalit TESTIYMPÄRISTÖ",
         :votes_given                  => 10417,
         :votes_accepted               => 10367,
-        :potential_voters_count       => 29563
+        :potential_voters_count       => 29563,
+        :advocate_login_enabled       => true
       )
       REDIS.set 'checking_minutes_username', 'tlkpj'
       REDIS.set 'checking_minutes_password', 'pass123'

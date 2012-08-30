@@ -1,6 +1,7 @@
 class Manage::DangerZonesController < ManageController
 
   def show
+    @configuration = GlobalConfiguration.first
   end
 
   protected

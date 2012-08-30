@@ -26,7 +26,7 @@ class Ability
   end
 
   def advocate(user)
-    can :access, :advocate
+    can :access, :advocate if GlobalConfiguration.advocate_login_enabled?
 
     can [:manage, :index, :new, :show, :edit, :update, :create, :destroy], [ElectoralAlliance, Candidate]
 

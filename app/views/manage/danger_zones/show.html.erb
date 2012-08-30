@@ -8,6 +8,35 @@
 src="http://www.youtube.com/embed/V8rZWw9HE7o" frameborder="0"
 allowfullscreen></iframe>
 
+<h2>Asiamiehet</h2>
+
+<ul>
+  <li>
+    Asiamiesten sisäänkirjautuminen on tällä hetkellä
+    <strong><u><%= GlobalConfiguration.advocate_login_enabled? ? "sallittu" : "kielletty" %></u></strong>.
+  </li>
+  <li>Sisäänkirjautuminen kannattaa kieltää ennen Keskusvaalilautakunnan kokouksia, jotta
+    <br>tiedot eivät muutu kesken kokouksen ja ehdokasnumerot eivät vuoda julkisiksi etukäteen.
+  </li>
+  <li>
+    Sisäänkirjautumisen estäminen potkaisee samalla ulos kaikki sisäänkirjautuneet asiamiehet,
+    <br>joten siinä vaiheessa asiamiehen tallentamattomat tiedot katoavat. Käytä toimintoa harkiten. :)
+  </li>
+  <li>
+    <% if GlobalConfiguration.advocate_login_enabled? %>
+      <%= button_to "Kiellä asiamiesten sisäänkirjautuminen",
+                    disable_advocate_login_manage_configuration_path,
+                    :class => "btn btn-danger",
+                    :method => :put %>
+    <% else %>
+      <%= button_to "Salli asiamiesten sisäänkirjautuminen",
+                     enable_advocate_login_manage_configuration_path,
+                     :class => "btn btn-danger",
+                     :method => :put %>
+    <% end %>
+  </li>
+</ul>
+
 <h2>Ehdokasasettelu</h2>
 
 <ul>

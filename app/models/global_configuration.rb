@@ -50,6 +50,8 @@ class GlobalConfiguration < ActiveRecord::Base
     Time.now > candidate_data_is_freezed_at
   end
 
+
+
   def candidate_nomination_period_effective?
     Time.now < candidate_nomination_ends_at
   end
@@ -57,4 +59,13 @@ class GlobalConfiguration < ActiveRecord::Base
   def elected_candidate_count
     Vaalit::Voting::ELECTED_CANDIDATE_COUNT
   end
+
+  def enable_advocate_login!
+    self.update_attribute(:advocate_login_enabled, true)
+  end
+
+  def disable_advocate_login!
+    self.update_attribute(:advocate_login_enabled, false)
+  end
+
 end

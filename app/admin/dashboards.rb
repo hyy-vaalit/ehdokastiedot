@@ -34,6 +34,20 @@ ActiveAdmin::Dashboards.build do
   # end
 
   section "Vaaliliitot" do
+    ul do
+      if GlobalConfiguration.advocate_login_enabled?
+        li "Asiamiehet voivat kirjautua sisään: Kytke kirjautuminen pois aina ennen Keskusvaalilautakunnan kokousta, jotta ehdokastiedot tai -numerot eivät vuoda julkisiksi liian aikaisin."
+      else
+        li "Asiamiehet EIVÄT VOI kirjautua sisään: Kytke kirjautuminen takaisin Keskusvaalilautakunnan kokouksen jälkeen, jotta asiamiehet saavat ehdokastietonsa ja -numeronsa."
+      end
+      li "Asiamiehet voivat luoda uusia ehdokkaita ja vaaliliittoja ehdokasasettelun päättymiseen saakka
+         (#{friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at)})."
+      li "Asiamiehet voivat tehdä ehdokastietoihin korjauksia tietojen jäädyttämiseen saakka
+         (#{friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at)})."
+      li "Asiamiehet voivat lukea ja ladata oman vaaliliittonsa ehdokastiedot vielä jäädyttämisenkin jälkeen."
+      li "Asiamiesten sisäänkirjautuminen kannattaa varmuussyistä estää viimeistään vaalipäivänä ennen ääntenlaskun alkamista (vaarallisten toimintojen sivulta)."
+    end
+
     table_for(ElectoralAlliance.for_dashboard) do |t|
       t.column("Valmis") { |alliance| icon(:check) if alliance.secretarial_freeze? }
       t.column("Vaaliliitto") { |alliance| link_to alliance.name, admin_electoral_alliance_path(alliance) }
