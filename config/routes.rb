@@ -7,7 +7,7 @@ Vaalit::Application.routes.draw do
   devise_for :admin_users, ActiveAdmin::Devise.config
 
   root :to => "public#index"
-  get "/advocates", :to => "advocates#index", :as => :advocate_index
+  get "/advocates", :to => "public#index", :as => :advocate_index
 
   namespace :advocates do
     get :index, :as => :advocates

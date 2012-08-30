@@ -34,15 +34,6 @@
         <a href="/"><img src="/images/hyy/logo.png" height="72" width="390"></a>
       </div>
 
-      <ul class="main">
-        <% if current_advocate_user %>
-          <li><%= current_advocate_user.email %>
-          <li>&raquo; <%= link_to "Kirjaudu ulos", destroy_advocate_user_session_path %></li>
-        <% end %>
-      </ul>
-    </nav>
-
-
   </header>
 
 
@@ -64,25 +55,28 @@
       </div>
     <% end %>
 
-    <nav class="path">
-      <% if @_nav_paths %>
-        <%= link_to("Etusivu", root_path) %>
-        <% @_nav_paths.each do |nav_path| %>
-          <% nav_path.each do |link_text, link_url| %>
-            &raquo; <%= link_url ? link_to(link_text, link_url) : link_text %>
-          <% end %>
-        <% end %>
-      <% end %>
-    </nav>
 
-    <%= yield %>
+    <h2>Vaaliliiton asiamiehen sisäänkirjautuminen</h2>
+
+    <% if GlobalConfiguration.advocate_login_enabled? %>
+      <%= yield %>
+    <% else %>
+      <p>
+        Asiamiesten sisäänkirjautuminen on toistaiseksi pois käytöstä.
+        <br>
+        Syynä voi olla Keskusvaalilautakunnan kokous, jonka aikana järjestelmän tiedot halutaan pitää muuttumattomina.
+      </p>
+
+      <p>
+        Mikäli sisäänkirjautuminen ei palaudu kohtuullisessa ajassa, ota yhteys HYYn vaalityöntekijään.
+      </p>
+
+      <p>
+        Lisätietoa osoitteessa <a href="http://hyy.fi/vaalit">hyy.fi/vaalit</a>.
+      </p>
+    <% end %>
+
   </div>
-
-  <footer>
-    <address>
-      Helsingin yliopiston ylioppilaskunta &diamond; vaalit@hyy.fi
-    </address>
-  </footer>
 
    <!-- TODO: Tunnus -->
   <script>

@@ -1,0 +1,29 @@
+Ehdokastietoja käsitellään seuraavasti:
+
+<h2>Ennen ehdokasasettelun päättymistä (<%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %>)</h2>
+<ul>
+  <li>Vaaliliiton ensisijaiselle asiamiehelle luodaan HYYn toimesta käyttäjätunnus.</li>
+  <li>Ensisijaisella asiamiehellä on ehdokasasettelun päättymispäivään saakka aikaa syöttää vaaliliiton ehdokkaat.</li>
+  <li>Ehdokasasettelun päättymisen jälkeen uusia tietoja ei voi enää lisätä.</li>
+  <li>Ehdokastiedot <strong>on toimitettava paperilla HYYn keskustoimistoon määräaikaan <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %> mennessä!</strong></li>
+</ul>
+
+<h2>Ehdokasasettelun päättymisen jälkeen</h2>
+<ul>
+  <li>HYYn vaalityöntekijä liittää vaaliliitot vaalirenkaisiin paperilomakkeiden perusteella.</li>
+  <li>HYYn sihteeristö vertaa paperilomakkeiden tietoja järjestelmän tietoihin. Jos tiedoissa on eroavaisuuksia, paperilomakkeen tiedot ovat ensisijaiset.</li>
+  <li>Ehdokkaille lähetetään sähköpostitse ilmoitus ehdokasilmoittautumisen vastaanottamisesta.</li>
+</ul>
+
+<h2>Ennen ehdokasnumeroiden arpomista</h2>
+<ul>
+  <li>Ehdokasasettelun päättymisen jälkeen tietoihin on mahdollista tehdä korjauksia
+    <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %> saakka.</li>
+  <li>Korjauksia voi tehdä ainoastaan vaaliliiton ensisijainen asiamies.</li>
+  <li>Ehdokkuuden voi perua ainaostaan ehdokas itse ilmoittamalla siitä kirjallisesti HYYn keskustoimistoon.</li>
+</ul>
+
+<p>
+  PS. Voit milloin tahansa kopioida tiedot järjestelmästä itsellesi esim. Exceliin CSV-tiedostomuodossa.
+</p>
+
