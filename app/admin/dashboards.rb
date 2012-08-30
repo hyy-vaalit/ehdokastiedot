@@ -95,7 +95,7 @@ ActiveAdmin::Dashboards.build do
 
     section 'Muiden sidosryhmien sisäänkirjautuminen' do
       ul do
-        li link_to 'Asiamies (liiton 1. asiamies)', advocates_path
+        li link_to 'Asiamies (liiton 1. asiamies)', advocate_index_path
         li link_to 'Äänestysalue (äänestysalueen pj)', voting_area_path
         li link_to 'Tarkastuslaskenta (tllk:n pj)', checking_minutes_path
       end

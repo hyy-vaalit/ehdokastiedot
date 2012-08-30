@@ -67,7 +67,7 @@
 
     <nav class="path">
       <% if @_nav_paths %>
-        <%= link_to("Etusivu", advocates_path) %>
+        <%= link_to("Etusivu", advocate_index_path) %>
         <% @_nav_paths.each do |nav_path| %>
           <% nav_path.each do |link_text, link_url| %>
             &raquo; <%= link_url ? link_to(link_text, link_url) : link_text %>

@@ -55,4 +55,5 @@ class Advocates::AlliancesController < AdvocatesController
   def nav_paths
     @_nav_paths = [{"Kaikki vaaliliitot" => advocates_alliances_path}]
   end
+
 end
