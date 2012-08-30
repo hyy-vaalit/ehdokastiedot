@@ -97,7 +97,7 @@ header.title {
 
 #logo-main {
   float: left;
-  margin-left: 2em;
+  margin-left: 1.25em;
   margin-top: 0.25em;
 }
 
@@ -123,6 +123,8 @@ nav {
 
 .content {
   margin: 0.75em;
+  margin-left: 1.25em;
+  margin-right: 1.25em;
 }
 
 footer address {
@@ -179,6 +181,11 @@ table {
     padding-right: 0.5em;
   }
 
+  .wide-listing td {
+    padding-left:  0.25em;
+    padding-right: 0.25em;
+    font-size: 80%;
+  }
   tr:hover {
     background: #ffffcc;
   }
