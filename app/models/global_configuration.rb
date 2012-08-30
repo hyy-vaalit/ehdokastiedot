@@ -10,6 +10,10 @@ class GlobalConfiguration < ActiveRecord::Base
     first.candidate_nomination_ends_at
   end
 
+  def self.candidate_data_is_freezed_at
+    first.candidate_data_is_freezed_at
+  end
+
   def self.mail_from_address
     first.mail_from_address
   end
@@ -36,6 +40,14 @@ class GlobalConfiguration < ActiveRecord::Base
 
   def self.log_candidate_attribute_changes?
     not candidate_nomination_period_effective?
+  end
+
+  def self.advocate_login_enabled?
+    return first.advocate_login_enabled?
+  end
+
+  def self.candidate_data_frozen?
+    Time.now > candidate_data_is_freezed_at
   end
 
   def candidate_nomination_period_effective?

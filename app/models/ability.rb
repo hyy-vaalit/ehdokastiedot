@@ -27,13 +27,17 @@ class Ability
 
   def advocate(user)
     can :access, :advocate
+
     can [:manage, :index, :new, :show, :edit, :update, :create, :destroy], [ElectoralAlliance, Candidate]
 
     if not GlobalConfiguration.candidate_nomination_period_effective?
-      cannot [:modify, :create, :new, :update, :destroy], ElectoralAlliance
+      cannot [:create, :new, :update, :destroy], ElectoralAlliance
       cannot [:create, :new, :destroy], Candidate
     end
 
+    if GlobalConfiguration.candidate_data_frozen?
+      cannot [:create, :new, :update, :destroy, :edit], [ElectoralAlliance, Candidate]
+    end
   end
 
 

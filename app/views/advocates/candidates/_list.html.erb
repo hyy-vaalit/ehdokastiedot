@@ -1,19 +1,21 @@
-<div style="margin-bottom: 0.5em">
-  <button id="enable-sorting" class="btn" data-sortable-element="table#candidates tbody">Muuta ehdokkaiden järjestystä</button>
-  <button id="disable-sorting" class="btn" style="display:none;">Lopeta ehdokkaiden järjestäminen</button>
-  <div class="alert alert-info sortable-hint" style="display:none;">
-    <ul>
-      <li>Muuta ehdokkaiden järjestystä ottamalla hiirellä kiinni rivistä ja vetämällä sitä alas- tai ylöspäin.</li>
-      <li>Muutos tallennetaan jokaisen siirron jälkeen.</li>
-      <li>Kun olet valmis, klikkaa "Lopeta järjestäminen" jolloin sivu latautuu uudelleen.</li>
-      <li>Lopetusnapin painamisen jälkeen tarkista, että ehdokkaat ovat haluamassasi järjestyksessä.</li>
-    </ul>
+<% if can? :edit, Candidate %>
+  <div style="margin-bottom: 0.5em">
+    <button id="enable-sorting" class="btn" data-sortable-element="table#candidates tbody">Muuta ehdokkaiden järjestystä</button>
+    <button id="disable-sorting" class="btn" style="display:none;">Lopeta ehdokkaiden järjestäminen</button>
+    <div class="alert alert-info sortable-hint" style="display:none;">
+      <ul>
+        <li>Muuta ehdokkaiden järjestystä ottamalla hiirellä kiinni rivistä ja vetämällä sitä alas- tai ylöspäin.</li>
+        <li>Muutos tallennetaan jokaisen siirron jälkeen.</li>
+        <li>Kun olet valmis, klikkaa "Lopeta järjestäminen" jolloin sivu latautuu uudelleen.</li>
+        <li>Lopetusnapin painamisen jälkeen tarkista, että ehdokkaat ovat haluamassasi järjestyksessä.</li>
+      </ul>
+    </div>
   </div>
-</div>
+<% end %>
 
 <table id="candidates" class="long-listing">
   <thead>
-    <% if current_admin_user -%><th>Nro</th><% end -%>
+    <th>Nro</th>
     <th>Ehdokasnimi</th>
     <th>Sukunimi</th>
     <th>Etunimet</th>
@@ -30,8 +32,14 @@
     <% candidates.each do |c| %>
 
     <tr data-scope="<%= scope %>" data-alliance-id="<%= c.electoral_alliance.id -%>" data-candidate-id="<%= c.id -%>" class="<%= cycle('odd', 'even') %>">
-      <% if current_admin_user -%><td><%= c.candidate_number %></td><% end -%>
-      <td><%= link_to c.candidate_name, link_to_edit_candidate(scope, c) %></td>
+      <td><%= c.candidate_number %></td>
+      <td>
+        <% if can? :edit, Candidate %>
+          <%= link_to c.candidate_name, link_to_edit_candidate(scope, c) %>
+        <% else %>
+          <%= c.candidate_name %>
+        <% end %>
+      </td>
       <td><%= c.lastname %></td>
       <td><%= c.firstname %></td>
       <td><%= c.social_security_number %></td>
