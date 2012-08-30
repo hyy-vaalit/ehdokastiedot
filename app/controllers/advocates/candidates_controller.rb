@@ -3,6 +3,7 @@ class Advocates::CandidatesController < AdvocatesController
   respond_to :html, :json, :only => :update
 
   before_filter :find_alliance
+  authorize_resource # After resource has been loaded
 
   def new
     @candidate = Candidate.new
@@ -15,6 +16,10 @@ class Advocates::CandidatesController < AdvocatesController
 
   def edit
     @candidate = @alliance.candidates.find(params[:id])
+  end
+
+  def show
+    raise "Not implemented"
   end
 
   def update

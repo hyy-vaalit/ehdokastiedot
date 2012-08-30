@@ -6,6 +6,10 @@ class GlobalConfiguration < ActiveRecord::Base
     first.candidate_nomination_period_effective?
   end
 
+  def self.candidate_nomination_ends_at
+    first.candidate_nomination_ends_at
+  end
+
   def self.mail_from_address
     first.mail_from_address
   end

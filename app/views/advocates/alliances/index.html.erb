@@ -1,7 +1,11 @@
 <h1>Vaaliliitot</h1>
 
 <p>
-  &raquo; <%= link_to "Luo uusi vaaliliitto", new_advocates_alliance_path %>
+  <% if can? :create, ElectoralAlliance %>
+    &raquo; <%= link_to "Luo uusi vaaliliitto", new_advocates_alliance_path %>
+  <% else %>
+    Ehdokasasettelu on päättynyt eikä uusia vaaliliittoja voi enää luoda eikä nykyisten tietoja muuttaa.
+  <% end %>
 </p>
 
 <% if @alliances.any? %>
@@ -35,7 +39,9 @@
 <% end %>
 
 <p>
-  Ehdokastiedot on syötettävä ehdokasasettelun päättymiseen maanantaihin NN.NN. klo NN:00 mennessä.
+  Ehdokastiedot on syötettävä ehdokasasettelun päättymiseen
+  <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %>
+  mennessä.
 </p>
 
 

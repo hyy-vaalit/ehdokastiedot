@@ -12,4 +12,13 @@ module ActiveAdmin::ViewsHelper
     end
   end
 
+  def friendly_datetime(date)
+    return nil if date.nil?
+    date.localtime.strftime('%d.%m.%Y %H:%M')
+  end
+
+  def friendly_date(date)
+    return nil if date.nil?
+    date.localtime.strftime('%d.%m.%Y')
+  end
 end

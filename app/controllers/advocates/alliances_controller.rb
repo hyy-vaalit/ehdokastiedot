@@ -4,6 +4,8 @@ class Advocates::AlliancesController < AdvocatesController
   before_filter :find_alliance, :only => [:show, :edit, :update]
   before_filter :nav_paths, :only => [:index, :show]
 
+  authorize_resource :electoral_alliance # After resource has been loaded
+
   def index
     @alliances = current_advocate_user.electoral_alliances
   end

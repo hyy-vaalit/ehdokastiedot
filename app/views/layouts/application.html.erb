@@ -35,11 +35,10 @@
       </div>
 
       <ul class="main">
-      <% if current_advocate_user %>
-        <li><%= current_advocate_user.email %>
-        <li>&raquo; <%= link_to "Kirjaudu ulos", destroy_advocate_user_session_path %></li>
-      <% end %>
-
+        <% if current_advocate_user %>
+          <li><%= current_advocate_user.email %>
+          <li>&raquo; <%= link_to "Kirjaudu ulos", destroy_advocate_user_session_path %></li>
+        <% end %>
       </ul>
     </nav>
 

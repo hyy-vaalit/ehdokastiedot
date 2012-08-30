@@ -5,11 +5,13 @@
 
 <ul>
   <li>Ehdokkaita: <%= @alliance.candidates.count %> / <%= @alliance.expected_candidate_count %></li>
-  <li><%= link_to "Muokkaa vaaliliiton tietoja", edit_advocates_alliance_path(@alliance) %></li>
-  <li><%= link_to "Vaaliliiton ehdokkaat CSV-muodossa",
-                   advocates_alliance_path(@alliance, :format => :csv) %>
-      (Exceliin, OpenOfficeen, Google Docsiin)</li>
-  <li><%= link_to "Luo ehdokas", new_advocates_alliance_candidate_path(@alliance) %></li>
+  <% if can? :create, Candidate %>
+    <li><%= link_to "Muokkaa vaaliliiton tietoja", edit_advocates_alliance_path(@alliance) %></li>
+    <li><%= link_to "Luo ehdokas", new_advocates_alliance_candidate_path(@alliance) %></li>
+  <% else %>
+    <li>Ehdokasasettelu on päättynyt eikä uusia ehdokkaita voi enää luoda.</li>
+  <% end %>
+
 </ul>
 
 <% if @alliance.candidates.any? %>
