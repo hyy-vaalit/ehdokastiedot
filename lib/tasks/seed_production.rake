@@ -56,7 +56,7 @@ namespace :seed do
       REDIS.set 'checking_minutes_username', 'tlkpj'
       REDIS.set 'checking_minutes_password', 'salainensana'
 
-      AdminUser.create!(:email => 'emma.ronkainen@hyy.fi', :password => 'salainensana', :password_confirmation => 'salainensana', :role => 'admin')
+      AdminUser.create!(:email => 'petrus.repo+vaalit@enemy.fi', :password => 'salainensana', :password_confirmation => 'salainensana', :role => 'admin')
     end
   end
 
