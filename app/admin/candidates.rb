@@ -133,6 +133,7 @@ ActiveAdmin.register Candidate do
       f.inputs 'Contact' do
         f.input :address
         f.input :postal_information
+        f.input :phone_number
         f.input :email
       end
       f.inputs 'Other' do

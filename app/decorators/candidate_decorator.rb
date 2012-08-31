@@ -56,6 +56,7 @@ class CandidateDecorator < ApplicationDecorator
       "Ehdokasnimi" => candidate_name,
       "Hetu" => social_security_number,
       "Ehdokasnumero" => candidate_number,
+      "Puhelin" => phone_number,
       "Email" => email,
       "Postiosoite" => address,
       "Postitoimipaikka" => postal_information,

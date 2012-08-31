@@ -3,7 +3,7 @@ class Candidate < ActiveRecord::Base
 
   default_scope order(:numbering_order)
 
-  attr_accessible :lastname, :firstname, :social_security_number,
+  attr_accessible :lastname, :firstname, :social_security_number, :phone_number,
                   :faculty_id, :address, :postal_information, :email,
                   :candidate_name, :notes, :numbering_order_position,
                   :active_admin_hack_alliance_id # See comments in Admin::Candidates
