@@ -1,7 +1,7 @@
 class Manage::CandidateAttributeChangesController < ManageController
 
   def index
-    @changes = CandidateAttributeChange.all
+    @changes = CandidateAttributeChange.by_creation
   end
 
   protected

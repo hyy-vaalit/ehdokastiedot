@@ -1,9 +1,6 @@
 class ElectoralAlliance < ActiveRecord::Base
   include RankedModel
 
-  # NOTE: Use reorder() if you need to omit the default order.
-  default_scope order(:numbering_order)
-
   has_many :votes, :through => :candidates do
     def preliminary_sum
       countable.sum("amount")
