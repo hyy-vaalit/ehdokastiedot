@@ -1,9 +1,15 @@
-form.ordering {
-  input[type="text"] {
-    width: 2em;
-  }
-}
+
 
 .sortable tr:hover {
   cursor: move;
 }
+
+form.ordering div {
+  clear: both;
+  padding-top: 1em;
+}
+  form.ordering input[type="text"] {
+      width: 1.5em;
+      float: left;
+      margin-right: 0.5em;
+  }

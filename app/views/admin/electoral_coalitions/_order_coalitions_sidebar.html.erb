@@ -11,13 +11,13 @@ if alliances_without_coalition_count > 0 -%>
 
 <%= form_tag order_coalitions_admin_electoral_coalitions_path, :method => :post, :class => "ordering" do -%>
   <% electoral_coalitions.each do |coalition| -%>
-    <div style="clear:both;padding-top:1em;">
-      <input style="float:left; width:1.5em;margin-right:0.5em;" type="text" name="coalitions[<%= coalition.id %>]" id="coalition_<%= coalition.id %>" value="<%= coalition.numbering_order %>" />
+    <div>
+      <input type="text" name="coalitions[<%= coalition.id %>]" id="coalition_<%= coalition.id %>" value="<%= coalition.numbering_order %>" />
       <label for="coalition_<%= coalition.id %>"><%= coalition.name %></label>
     </div>
   <% end -%>
 
-  <div style="clear:both;margin-top:2em;">
+  <div>
     <input type="submit" value="Change order" />
   </div>
 <% end -%>
