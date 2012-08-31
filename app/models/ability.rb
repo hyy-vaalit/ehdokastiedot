@@ -8,21 +8,14 @@ class Ability
 
   def admin(user)
     can :access, :admin
-
     can :manage, :all
-    cannot :report_fixes, Candidate
   end
 
   def secretary(user)
     can :access, :admin
 
-    unless user.electoral_alliance.nil? or user.electoral_alliance.secretarial_freeze
-      can :new, Candidate
-      can [:read, :update, :create], Candidate, :electoral_alliance_id => user.electoral_alliance_id
-
-      can [:read, :update, :done], ElectoralAlliance, :id => user.electoral_alliance_id
-    end
-    can :create, ElectoralAlliance
+    can [:read, :new, :create, :update, :create], Candidate
+    can [:read, :new, :create, :update, :done], ElectoralAlliance
   end
 
   def advocate(user)

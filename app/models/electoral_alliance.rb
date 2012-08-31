@@ -45,8 +45,11 @@ class ElectoralAlliance < ActiveRecord::Base
   end
 
   def freeze!
-    # FIXME: This requires validation but the validaion is done in the controller.
-    self.update_attribute :secretarial_freeze, true
+    if expected_candidate_count && candidates.count == expected_candidate_count
+      return self.update_attribute :secretarial_freeze, true
+    else
+      return false
+    end
   end
 
   def has_fix_needing_candidates?

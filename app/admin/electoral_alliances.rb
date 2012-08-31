@@ -11,18 +11,6 @@ ActiveAdmin.register ElectoralAlliance do
 
     load_and_authorize_resource :except => [:index]
 
-    def index
-      if current_admin_user.is_secretary?
-        if current_admin_user.electoral_alliance
-          redirect_to admin_electoral_alliance_path(current_admin_user.electoral_alliance.id)
-        else
-          redirect_to new_admin_electoral_alliance_path
-        end
-      else
-        super
-      end
-    end
-
     def create
       if current_admin_user.role == 'secretary'
         current_admin_user.electoral_alliance = @electoral_alliance
@@ -117,11 +105,9 @@ ActiveAdmin.register ElectoralAlliance do
   end
 
   member_action :done do
-    ea = ElectoralAlliance.find_by_id(params[:id])
-    if ea.candidates.count == ea.expected_candidate_count
-      ea.freeze!
+    if ElectoralAlliance.find_by_id(params[:id]).freeze!
       current_admin_user.update_attribute :electoral_alliance, nil
-      redirect_to admin_electoral_alliances_path, :notice => "Vaaliliitto on merkitty valmiiksi! Voit luoda nyt uuden vaaliliiton."
+      redirect_to admin_electoral_alliances_path, :notice => "Vaaliliitto on merkitty valmiiksi!"
     else
       redirect_to admin_electoral_alliance_path, :alert => "Vaaliliiton ehdokkaiden määrä ei täsmää perustamisilmoituksessa kerrottuun määrään. Tarkista, että olet syöttänyt täsmälleen yhtä monta ehdokasta kuin vaaliliiton perustamisilmoituksessa on kerrottu."
     end

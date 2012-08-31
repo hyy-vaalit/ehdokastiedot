@@ -3,20 +3,13 @@ ActiveAdmin.register Candidate do
   config.clear_action_items! # Don't show default actions, especially "New candidate"
 
   before_filter :authorize_this
-  before_filter :preserve_default_scope
 
   menu :label => " Muut ehdokkaat", :priority => 4
-
-  # scope :current_alliance, :default => true do |candidates|
-  #   #current_admin_user.electoral_alliance ? current_admin_user.electoral_alliance.candidates : candidates.all
-  # end
 
   scope :without_alliance, :default => true
   scope :cancelled, :default => true
 
   controller do
-
-    before_filter :assign_alliance
 
     load_and_authorize_resource :except => [:index]
 
@@ -51,26 +44,8 @@ ActiveAdmin.register Candidate do
       end
     end
 
-    def assign_alliance
-      if current_admin_user.role == 'secretary'
-        alliance_id = current_admin_user.electoral_alliance_id
-        if alliance_id
-          cookies['alliance'] = alliance_id
-          return true
-        end
-      end
-      cookies['alliance'] = ''
-      return true
-    end
-
     def authorize_this
       authorize! :read, Candidate
-    end
-
-    def preserve_default_scope
-      if current_admin_user.is_secretary?
-        params[:scope] = "current_alliance"
-      end
     end
 
   end
@@ -178,7 +153,7 @@ ActiveAdmin.register Candidate do
     if Candidate.give_numbers!
       redirect_to admin_candidates_path, :notice => 'Ehdokkaat on numeroitu!'
     else
-      redirect_to admin_candidates_path, :alert => 'Kaikki liitot eivät ole valmiina tai renkailta puuttuu järjestys.'
+      redirect_to manage_danger_zone_path, :alert => 'Kaikki liitot eivät ole valmiina tai renkailta puuttuu järjestys.'
     end
   end
 
