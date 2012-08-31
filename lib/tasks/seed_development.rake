@@ -147,8 +147,8 @@ namespace :seed do
 
     desc 'Create advocate users'
     task :create_advocates => :environment do
-      AdvocateUser.create! :firstname => "Rami", :lastname => "Raavas", :ssn => '123456-123K', :email => 'asiamies1@example.com', :password => 'pass123'
-      AdvocateUser.create! :firstname => "Laura", :lastname => "Lanttunen", :ssn => '123456-9876', :email => 'asiamies2@example.com', :password => 'pass123'
+      AdvocateUser.create! :firstname => "Rami", :lastname => "Raavas", :ssn => '123456-123K', :email => 'asiamies1@example.com', :password => 'pass123', :password_confirmation => 'pass123'
+      AdvocateUser.create! :firstname => "Laura", :lastname => "Lanttunen", :ssn => '123456-9876', :email => 'asiamies2@example.com', :password => 'pass123', :password_confirmation => 'pass123'
     end
 
     desc 'Create candidate data from seed.csv'
