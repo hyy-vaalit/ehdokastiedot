@@ -8,7 +8,7 @@ Syötä vaaliliittosi ehdokastiedot seuraavassa osoitteessa:
   Käyttäjätunnus: <%= @email %>
   Salasana: <%= @password %>
 
-Ehdokastiedot on syötettävä ehdokasasettelun päättymiseen <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) -%> mennessä.
+Ehdokastiedot on syötettävä ehdokasasettelun päättymiseen <%= GlobalConfiguration.candidate_nomination_ends_at.localtime.strftime('%d.%m.%Y %H:%M') -%> mennessä.
 
 Vaaliliiton ensisijaisena asiamiehenä olet henkilökohtaisesti vastuussa käyttäjätunnuksestasi. Käsittele tietoja huolellisesti. Jos kirjaudut järjestelmään yhteiskäytössä olevalta tietokoneelta,
 ** kirjaudu pois järjestelmästä kun olet valmis! **

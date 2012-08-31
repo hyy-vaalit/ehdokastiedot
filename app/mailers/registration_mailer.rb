@@ -2,12 +2,6 @@
 
 class RegistrationMailer < HyyMailer
 
-  def new_password(password, email)
-    @email = email
-    @password = password
-    mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
-  end
-
   def welcome_advocate(email, password)
     @email = email
     @password = password

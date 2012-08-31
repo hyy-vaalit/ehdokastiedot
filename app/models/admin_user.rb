@@ -36,11 +36,7 @@ class AdminUser < ActiveRecord::Base
   end
 
   def send_password
-    if role == 'secretary' # FIXME: use method!
-      RegistrationMailer.secretary(password, email).deliver
-    else
-      RegistrationMailer.new_password(password, email).deliver
-    end
+    RegistrationMailer.secretary(password, email).deliver
   end
 
 end
