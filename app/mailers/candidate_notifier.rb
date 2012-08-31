@@ -4,7 +4,7 @@ class CandidateNotifier < HyyMailer
     @email = email
     sendgrid_category = "Ehdokasilmoitus"
 
-    mail :to => recipient_address, :subject => "Ehdokasilmoittautumisesi on vastaanotettu"
+    mail :to => recipient_address, :subject => email.subject
   end
 
 end
