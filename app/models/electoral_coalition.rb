@@ -14,8 +14,9 @@ class ElectoralCoalition < ActiveRecord::Base
     original_array = alliance_data.to_a
     sorted_array = original_array.sort {|x,y| x.last <=> y.last}
     ordered_hashes = sorted_array.map {|array| {:id => array.first, :position => array.last}}
+
     ordered_hashes.each do |hash|
-      self.electoral_alliances.find_by_id(hash[:id]).update_attribute :numbering_order_position, hash[:position]
+      self.electoral_alliances.find(hash[:id]).update_attribute :numbering_order_position, hash[:position]
     end
   end
 
@@ -33,7 +34,7 @@ class ElectoralCoalition < ActiveRecord::Base
 
   def self.give_orders coalition_data
     coalition_data.to_a.each do |array|
-      self.find_by_id(array.first).update_attribute :numbering_order, array.last
+      self.find(array.first).update_attribute :numbering_order, array.last
     end
   end
 
