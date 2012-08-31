@@ -47,12 +47,13 @@ namespace :seed do
 
     desc 'Setup production configuration defaults'
     task :configuration => :environment do
-      GlobalConfiguration.create!(
-        :candidate_nomination_ends_at => Time.new(2012, "sep", 24, 12, 00),  # 24.9.2012 klo 12.00 UTC+3
-        :candidate_data_is_freezed_at => Time.new(2012, "oct", 4, 16, 00),   # KVL 4.10.2012 klo 17.00 UTC+3
-        :mail_from_address            => "vaalit@hyy.fi",
-        :mail_from_name               => "Emma Ronkainen"
-      )
+      conf = GlobalConfiguration.new
+      conf.candidate_nomination_ends_at = Time.new(2012, "sep", 24, 12, 00)  # 24.9.2012 klo 12.00 UTC+3
+      conf.candidate_data_is_freezed_at = Time.new(2012, "oct", 4, 16, 00)   # KVL 4.10.2012 klo 17.00 UTC+3
+      conf.mail_from_address            = "vaalit@hyy.fi"
+      conf.mail_from_name               = "Emma Ronkainen"
+      conf.advocate_login_enabled       = false
+      conf.save!
 
       REDIS.set 'checking_minutes_username', 'tlkpj'
       REDIS.set 'checking_minutes_password', 'salainensana'

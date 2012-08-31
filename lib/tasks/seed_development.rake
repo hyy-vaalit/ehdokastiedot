@@ -24,16 +24,19 @@ namespace :seed do
 
     desc 'Default project settings'
     task :configuration => :environment do
-      GlobalConfiguration.create!(
-        :candidate_nomination_ends_at => Time.new(2012, "sep", 24, 12, 00),  # 24.9.2012 klo 12.00 UTC+3
-        :candidate_data_is_freezed_at => Time.new(2012, "oct", 4, 16, 00),   # KVL 4.10.2012 klo 17.00 UTC+3
-        :mail_from_address            => "hostmaster-hyy@enemy.fi",
-        :mail_from_name               => "Vaalit TESTIYMPÄRISTÖ",
+      conf = GlobalConfiguration.new(
         :votes_given                  => 10417,
         :votes_accepted               => 10367,
-        :potential_voters_count       => 29563,
-        :advocate_login_enabled       => true
+        :potential_voters_count       => 29563
       )
+      conf.candidate_nomination_ends_at = Time.new(2012, "sep", 24, 12, 00)  # 24.9.2012 klo 12.00 UTC+3
+      conf.candidate_data_is_freezed_at = Time.new(2012, "oct", 4, 16, 00)   # KVL 4.10.2012 klo 17.00 UTC+3
+      conf.mail_from_address            = "hostmaster-hyy@enemy.fi"
+      conf.mail_from_name               = "Vaalit TESTIYMPÄRISTÖ"
+      conf.advocate_login_enabled       = true
+      conf.save!
+
+
       REDIS.set 'checking_minutes_username', 'tlkpj'
       REDIS.set 'checking_minutes_password', 'pass123'
 
