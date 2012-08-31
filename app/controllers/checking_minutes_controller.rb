@@ -10,8 +10,6 @@ class CheckingMinutesController < ApplicationController
   before_filter :authenticate, :except => [:summary, :ready] # accessible by admin user
   before_filter :check_if_ready, :except => [:fixes, :summary, :ready]
 
-  layout "outside_activeadmin"
-
   def index
     @voting_areas = VotingArea.all
   end

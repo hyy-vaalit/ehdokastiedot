@@ -7,8 +7,6 @@ class VotingAreasController < ApplicationController
 
   before_filter :assign_voting_area, :except => [:login, :login_post]
 
-  layout "outside_activeadmin"
-
   def show
   end
 

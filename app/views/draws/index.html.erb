@@ -1,10 +1,12 @@
-<p><%= link_to "Takaisin etusivulle", admin_dashboard_path %></p>
+<p>
+  &larr; <%= link_to "Takaisin hallintapaneeliin", admin_dashboard_path %>
+</p>
 
 <h1>Arvonnat</h1>
 
 <% if not @result %>
   <p>Arvonnat voidaan aloittaa vasta sen jälkeen, kun
-  <%= link_to "tarkastuslaskenta on merkitty valmiiksi", tools_path %>.</p>
+  <%= link_to "tarkastuslaskenta on merkitty valmiiksi", manage_danger_zone_path %>.</p>
 
    <p>Merkitsemisen jälkeen odota hetki, että arvonnat valmistellaan. Lataa sen jälkeen tämä sivu uudelleen.</p>
 <% end %>

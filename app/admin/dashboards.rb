@@ -38,7 +38,7 @@ ActiveAdmin::Dashboards.build do
       if GlobalConfiguration.advocate_login_enabled?
         li "Asiamiehet voivat kirjautua sisään: Kytke kirjautuminen pois aina ennen Keskusvaalilautakunnan kokousta, jotta ehdokastiedot tai -numerot eivät vuoda julkisiksi liian aikaisin."
       else
-        li "Asiamiehet EIVÄT VOI kirjautua sisään: Kytke kirjautuminen takaisin Keskusvaalilautakunnan kokouksen jälkeen, jotta asiamiehet saavat ehdokastietonsa ja -numeronsa."
+        li "Asiamiehet EIVÄT VOI kirjautua sisään: Kytke kirjautuminen päälle, kun haluat että asiamiehet saavat ehdokastietonsa ja -numeronsa."
       end
       li "Asiamiehet voivat luoda uusia ehdokkaita ja vaaliliittoja ehdokasasettelun päättymiseen saakka
          (#{friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at)})."
