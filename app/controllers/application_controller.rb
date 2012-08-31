@@ -14,7 +14,7 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_login_path
-    current_admin_user ? new_admin_user_session_path : new_advocate_user_session_path
+    current_admin_user ? admin_dashboard_path : new_advocate_user_session_path
   end
 
   def current_user
