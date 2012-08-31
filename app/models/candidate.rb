@@ -1,6 +1,7 @@
 class Candidate < ActiveRecord::Base
   include RankedModel
 
+  # NOTE: Use reorder() if you need to omit the default order.
   default_scope order(:numbering_order)
 
   attr_accessible :lastname, :firstname, :social_security_number, :phone_number,
@@ -35,8 +36,6 @@ class Candidate < ActiveRecord::Base
   scope :cancelled, where(:cancelled => true)
   scope :without_alliance, where(:electoral_alliance_id => nil)
   scope :valid, where(:cancelled => false, :marked_invalid => false)
-
-  scope :by_alliance, order('electoral_alliance_id desc')
   scope :votable, where(:cancelled => false, :marked_invalid => false)
 
   # Advocate must be able to fill candidate information which lacks of information.
@@ -50,6 +49,16 @@ class Candidate < ActiveRecord::Base
   validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
 
   before_save :clear_lines!
+
+  # If candidate numbers have been given, order by candidate numbers.
+  # Otherwise order by alliance id.
+  def self.for_listing
+    candidate_numbers_given? ? reorder('candidate_number') : reorder('electoral_alliance_id')
+  end
+
+  def self.candidate_numbers_given?
+    first && first.candidate_number && first.candidate_number > 0
+  end
 
   # Calculates all votes from all 'ready' (calculable) voting areas for each candidate.
   # If there exists a fixed vote amount, it will be used instead of the preliminary amount.
@@ -122,7 +131,7 @@ class Candidate < ActiveRecord::Base
 
     Candidate.transaction do
       Candidate.update_all :candidate_number => 0
-      candidates_in_order = Candidate.select('candidates.*').joins(:electoral_alliance).joins(:electoral_alliance => :electoral_coalition).order(
+      candidates_in_order = Candidate.select('candidates.*').joins(:electoral_alliance).joins(:electoral_alliance => :electoral_coalition).reorder(
         "electoral_coalitions.numbering_order, electoral_alliances.numbering_order, candidates.numbering_order").valid.all
       candidates_in_order.each_with_index do |candidate, i|
         candidate.update_attribute :candidate_number, i+2

@@ -151,7 +151,7 @@ ActiveAdmin.register Candidate do
 
   collection_action :give_numbers do
     if Candidate.give_numbers!
-      redirect_to admin_candidates_path, :notice => 'Ehdokkaat on numeroitu!'
+      redirect_to simple_listings_path, :notice => 'Ehdokkaat on numeroitu!'
     else
       redirect_to manage_danger_zone_path, :alert => 'Kaikki liitot eivät ole valmiina tai renkailta puuttuu järjestys.'
     end

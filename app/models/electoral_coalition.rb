@@ -6,6 +6,7 @@ class ElectoralCoalition < ActiveRecord::Base
   has_many :electoral_alliances
   has_many :candidates, :through => :electoral_alliances
 
+  # NOTE: Use reorder() if you need to omit the default order.
   default_scope order(:numbering_order)
 
   validates_presence_of :name, :shorten

@@ -7,7 +7,7 @@ class ListingsController < ApplicationController
   end
 
   def simple
-    @candidates = Candidate.by_alliance.all
+    @candidates = Candidate.for_listing
   end
 
   def showdown
