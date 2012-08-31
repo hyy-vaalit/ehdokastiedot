@@ -11,23 +11,15 @@ class RegistrationMailer < HyyMailer
   def welcome_advocate(email, password)
     @email = email
     @password = password
-    @site_address = 'http://vaalit.hyy.fi/advocates'
+    @site_address = Vaalit::Public::ADVOCATE_LOGIN_URL
 
-    mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
-  end
-
-  def advocate_fixer(password, email, alliance_name)
-    @email = email
-    @password = password
-    @site_address = 'http://vaalit.hyy.fi/advocates'
-    @alliance_name = alliance_name
     mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
   end
 
   def secretary(password, email)
     @email = email
     @password = password
-    @site_address = 'http://vaalit.hyy.fi/admin'
+    @site_address = Vaalit::Public::SECRETARY_LOGIN_URL
     mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
   end
 

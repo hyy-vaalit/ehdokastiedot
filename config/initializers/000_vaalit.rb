@@ -1,7 +1,13 @@
 module Vaalit
 
-  module Voting
+  module Public
+    SITE_ADDRESS        = "http://vaalit.hyy.fi"
+    ADVOCATE_LOGIN_URL  = "#{SITE_ADDRESS}"
+    SECRETARY_LOGIN_URL = "#{SITE_ADDRESS}/admin"
+    DEVISE_SENDER_EMAIL = "petrus.repo+vaalit@gmail.com"
+  end
 
+  module Voting
     PROPORTIONAL_PRECISION = 5   # Decimals used in proportional numbers (eg. 87.12345 is 5 decimals)
     ELECTED_CANDIDATE_COUNT = 60 # How many candidates are elected
   end
