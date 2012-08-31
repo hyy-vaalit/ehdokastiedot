@@ -39,15 +39,6 @@
     <%= f.input :potential_voters_count, :label => "Äänioikeutettuja" %>
     <%= f.input :voters_count, :label => "Äänestäneitä" %>
 
-  <h2>Sähköposti</h2>
-    <%= f.input :mail_from_address,
-                :input_html => { :readonly => true, :disabled => true },
-                :label => "Järjestelmän sähköpostiosoite" %>
-    <%= f.input :mail_from_name,
-                :input_html => { :readonly => true, :disabled => true },
-                :label => "Lähettäjän nimi",
-                :hint => "Osoite näkyy mm. asiamiehille ja ehdokkaille lähtevän viestin lähettäjänäosoitteena." %>
-
 
   <% f.actions do %>
      <%= f.action :submit, :as => :button, :label => "Tallenna" %>

@@ -3,7 +3,7 @@
 Devise.setup do |config|
   # ==> Mailer Configuration
   # Configure the e-mail address which will be shown in DeviseMailer.
-  config.mailer_sender = Vaalit::Public::DEVISE_SENDER_EMAIL
+  config.mailer_sender = Vaalit::Public::EMAIL_FROM_ADDRESS
 
   # Configure the class responsible to send e-mails.
   # config.mailer = "Devise::Mailer"

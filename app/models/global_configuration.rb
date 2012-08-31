@@ -15,11 +15,11 @@ class GlobalConfiguration < ActiveRecord::Base
   end
 
   def self.mail_from_address
-    first.mail_from_address
+    Vaalit::Public::EMAIL_FROM_ADDRESS
   end
 
   def self.mail_from_name
-    first.mail_from_name
+    Vaalit::Public::EMAIL_FROM_NAME
   end
 
   def self.votes_given

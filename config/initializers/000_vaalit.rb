@@ -4,7 +4,8 @@ module Vaalit
     SITE_ADDRESS        = "http://vaalit.hyy.fi"
     ADVOCATE_LOGIN_URL  = "#{SITE_ADDRESS}"
     SECRETARY_LOGIN_URL = "#{SITE_ADDRESS}/admin"
-    DEVISE_SENDER_EMAIL = "petrus.repo+vaalit@gmail.com"
+    EMAIL_FROM_ADDRESS  = "vaalit@hyy.fi"
+    EMAIL_FROM_NAME     = "Emma Ronkainen"
   end
 
   module Voting

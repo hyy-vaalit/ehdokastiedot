@@ -31,8 +31,6 @@ namespace :seed do
       )
       conf.candidate_nomination_ends_at = Time.new(2012, "sep", 24, 12, 00)  # 24.9.2012 klo 12.00 UTC+3
       conf.candidate_data_is_freezed_at = Time.new(2012, "oct", 4, 16, 00)   # KVL 4.10.2012 klo 17.00 UTC+3
-      conf.mail_from_address            = "hostmaster-hyy@enemy.fi"
-      conf.mail_from_name               = "Vaalit TESTIYMPÄRISTÖ"
       conf.advocate_login_enabled       = true
       conf.save!
 
