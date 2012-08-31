@@ -27,10 +27,6 @@ class ElectoralCoalition < ActiveRecord::Base
     electoral_alliances.map(&:votes).map(&:countable_sum).sum # sql trololooo
   end
 
-  def has_fix_needing_candidates?
-    self.electoral_alliances.select{|a| a.has_fix_needing_candidates?}.count > 0
-  end
-
   def self.are_all_ordered?
     self.where(:numbering_order => nil).count == 0
   end

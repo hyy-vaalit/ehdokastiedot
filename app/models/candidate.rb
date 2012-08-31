@@ -32,15 +32,9 @@ class Candidate < ActiveRecord::Base
 
   belongs_to :faculty
 
-  has_many :data_fixes
-
   scope :cancelled, where(:cancelled => true)
   scope :without_alliance, where(:electoral_alliance_id => nil)
   scope :valid, where(:cancelled => false, :marked_invalid => false)
-
-  # Operator '&' is an intersection, ie, it matches only entities which are present in both groups.
-  # DEPRECATION WARNING: Using & to merge relations has been deprecated and will be removed in Rails 3.1. Please use the relation's merge method, instead.
-  scope :has_fixes, lambda { joins(:data_fixes).select("distinct candidates.id, candidates.*") & DataFix.unapplied }
 
   scope :by_alliance, order('electoral_alliance_id desc')
   scope :votable, where(:cancelled => false, :marked_invalid => false)
@@ -56,8 +50,6 @@ class Candidate < ActiveRecord::Base
   validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
 
   before_save :clear_lines!
-
-  attr_accessor :has_fixes
 
   # Calculates all votes from all 'ready' (calculable) voting areas for each candidate.
   # If there exists a fixed vote amount, it will be used instead of the preliminary amount.
@@ -123,10 +115,6 @@ class Candidate < ActiveRecord::Base
 
   def cancel!
     self.update_attribute :cancelled, true
-  end
-
-  def has_fixes
-    self.data_fixes.count > 0
   end
 
   def self.give_numbers!

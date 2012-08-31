@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120831113433) do
+ActiveRecord::Schema.define(:version => 20120831120644) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -181,17 +181,6 @@ ActiveRecord::Schema.define(:version => 20120831113433) do
   end
 
   add_index "coalition_results", ["electoral_coalition_id", "result_id"], :name => "index_unique_coalition_result", :unique => true
-
-  create_table "data_fixes", :force => true do |t|
-    t.integer  "candidate_id"
-    t.string   "field_name"
-    t.string   "old_value"
-    t.string   "new_value"
-    t.boolean  "applied",      :default => false
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.boolean  "status"
-  end
 
   create_table "delayed_jobs", :force => true do |t|
     t.integer  "priority",   :default => 0

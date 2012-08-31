@@ -23,27 +23,6 @@ class ListingsController < ApplicationController
     redirect_to showdown_listings_path
   end
 
-  def has_fixes
-    @coalitions = ElectoralCoalition.all.select{|coalition| coalition.has_fix_needing_candidates?}
-  end
-
-  def has_fixes_post
-    fix = DataFix.find_by_id params[:fix_id]
-    if fix
-      method = params[:method]
-      if method == 'accept'
-        fix.accept!
-        render :json => fix
-        return
-      elsif method == 'reject'
-        fix.reject!
-        render :json => fix
-        return
-      end
-    end
-    raise "error"
-  end
-
   def lulz
     raise 'hoptoad-test'.inspect
   end

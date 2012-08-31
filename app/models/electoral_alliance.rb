@@ -52,10 +52,6 @@ class ElectoralAlliance < ActiveRecord::Base
     end
   end
 
-  def has_fix_needing_candidates?
-    self.candidates.has_fixes.count > 0
-  end
-
   def has_all_candidates?
     candidates.count == expected_candidate_count
   end
