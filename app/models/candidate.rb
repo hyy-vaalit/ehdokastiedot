@@ -34,6 +34,7 @@ class Candidate < ActiveRecord::Base
   scope :without_alliance, where(:electoral_alliance_id => nil)
   scope :valid, where(:cancelled => false, :marked_invalid => false)
   scope :votable, where(:cancelled => false, :marked_invalid => false)
+  scope :by_numbering_order, order("#{table_name}.numbering_order")
 
   # Advocate must be able to fill candidate information which lacks of information.
   # The information may not be available even in the paper form, but it can be

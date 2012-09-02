@@ -7,7 +7,7 @@ class Advocates::AlliancesController < AdvocatesController
   authorize_resource :electoral_alliance, :parent => false # Conf needed because ElectoralAlliance != Alliance. Without ":parent => false" authorization is not effective.
 
   def index
-    @alliances = current_advocate_user.electoral_alliances
+    @alliances = current_advocate_user.electoral_alliances.by_numbering_order
   end
 
   def new

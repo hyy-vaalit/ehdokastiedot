@@ -29,6 +29,7 @@ class ElectoralAlliance < ActiveRecord::Base
   scope :not_real, joins(:candidates).where('candidates.candidate_name = electoral_alliances.name')
   scope :ready, where(:secretarial_freeze => true)
   scope :for_dashboard, order("primary_advocate_id ASC")
+  scope :by_numbering_order, order("#{table_name}.numbering_order")
 
   validates_presence_of :name, :shorten
   validates_uniqueness_of :shorten, :name

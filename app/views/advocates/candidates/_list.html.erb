@@ -30,7 +30,7 @@
 
   <tbody>
 
-    <% candidates.each do |c| %>
+    <% candidates.by_numbering_order.each do |c| %>
 
     <tr data-scope="<%= scope %>" data-alliance-id="<%= c.electoral_alliance.id -%>" data-candidate-id="<%= c.id -%>" class="<%= cycle('odd', 'even') %>">
       <td><%= c.candidate_number %></td>
