@@ -26,30 +26,31 @@ namespace :seed do
       #raise 'Add passwords and remove this line (production_seed.rake). PS. Plz commit them to github too, ok!'
       VotingArea.create! :code => 'I', :name => 'Unicafe Ylioppilasaukio', :password => 'salainensana'
       VotingArea.create! :code => 'II', :name => 'Yliopiston päärakennus', :password => 'salainensana'
-      VotingArea.create! :code => 'III', :name => 'Yliopiston päärakennus', :password => 'salainensana'
-      VotingArea.create! :code => 'IV', :name => 'Porthania', :password => 'salainensana'
-      VotingArea.create! :code => 'V', :name => 'Metsätalo', :password => 'salainensana'
-      VotingArea.create! :code => 'VI', :name => 'Valtiotieteellisen tiedekunnan kirjasto', :password => 'salainensana'
-      VotingArea.create! :code => 'VII', :name => 'Oppimiskeskus Minerva', :password => 'salainensana'
-      VotingArea.create! :code => 'VIII', :name => 'Terveystieteiden keskuskirjasto', :password => 'salainensana'
-      VotingArea.create! :code => 'IX', :name => 'Hammaslääketieteen laitos', :password => 'salainensana'
-      VotingArea.create! :code => 'X', :name => 'Physicum', :password => 'salainensana'
-      VotingArea.create! :code => 'XI', :name => 'Exactum', :password => 'salainensana'
-      VotingArea.create! :code => 'XII', :name => 'Infokeskus', :password => 'salainensana'
-      VotingArea.create! :code => 'XIII', :name => 'EE-talo', :password => 'salainensana'
-      VotingArea.create! :code => 'XIV', :name => 'Ympäristöekologian laitos', :password => 'salainensana'
-      VotingArea.create! :code => 'XV', :name => 'Vaasan yliopisto', :password => 'salainensana'
+      VotingArea.create! :code => 'III', :name => 'Porthania', :password => 'salainensana'
+      VotingArea.create! :code => 'IV', :name => 'Metsätalo', :password => 'salainensana'
+      VotingArea.create! :code => 'V', :name => 'Kaisa-talo', :password => 'salainensana'
+      VotingArea.create! :code => 'VI', :name => 'Oppimiskeskus Minerva', :password => 'salainensana'
+      VotingArea.create! :code => 'VII', :name => 'Terveystieteiden keskuskirjasto', :password => 'salainensana'
+      VotingArea.create! :code => 'VIII', :name => 'Hammaslääketieteen laitos', :password => 'salainensana'
+      VotingArea.create! :code => 'IX', :name => 'Physicum', :password => 'salainensana'
+      VotingArea.create! :code => 'X', :name => 'Exactum', :password => 'salainensana'
+      VotingArea.create! :code => 'XI', :name => 'Infokeskus', :password => 'salainensana'
+      VotingArea.create! :code => 'XII', :name => 'EE-talo', :password => 'salainensana'
+      VotingArea.create! :code => 'XIII', :name => 'Ympäristöekologian laitos', :password => 'salainensana'
+      VotingArea.create! :code => 'XIV', :name => 'Vaasan yliopisto', :password => 'salainensana'
+
       VotingArea.create! :code => 'EI', :name => 'Keskustakampus, Porthania', :password => 'salainensana'
       VotingArea.create! :code => 'EII', :name => 'Viikin kampus, Infokeskus', :password => 'salainensana'
       VotingArea.create! :code => 'EIII', :name => 'Kumpulan kampus, Physicum', :password => 'salainensana'
       VotingArea.create! :code => 'EIV', :name => 'Meilahden kampus, Terveystieteiden keskuskirjasto', :password => 'salainensana'
+      VotingArea.create! :code => 'EV', :name => 'Kaisa-talo', :password => 'salainensana'
     end
 
     desc 'Setup production configuration defaults'
     task :configuration => :environment do
       conf = GlobalConfiguration.new
       conf.candidate_nomination_ends_at = Time.new(2012, "sep", 24, 12, 00)  # 24.9.2012 klo 12.00 UTC+3
-      conf.candidate_data_is_freezed_at = Time.new(2012, "oct", 4, 16, 00)   # KVL 4.10.2012 klo 17.00 UTC+3
+      conf.candidate_data_is_freezed_at = Time.new(2012, "oct", 4, 12, 00)   # KVL 4.10.2012 klo 12.00 UTC+3
       conf.advocate_login_enabled       = false
       conf.save!
 
