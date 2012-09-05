@@ -1,4 +1,6 @@
-<%= link_to "&larr; Takaisin äänestysalueen sivulle".html_safe, checking_minute_path(@voting_area) %>
+<p>
+  &larr; <%= link_to "Takaisin äänestysalueen sivulle", checking_minute_path(@voting_area) %>
+</p>
 
 <h1>
   Äänestysalue <%= @voting_area.code %><br />

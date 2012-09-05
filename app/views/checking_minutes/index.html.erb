@@ -1,6 +1,8 @@
-<h1>Tarkastuslaskenta</h1>
+<p>
+  &larr; <%= link_to "Takaisin ylläpitäjän etusivulle", admin_dashboard_path %>
+</p>
 
-<%= link_to "Takaisin ylläpitäjän etusivulle", admin_dashboard_path %>
+<h1>Tarkastuslaskenta</h1>
 
 <h2>Ohjeet</h2>
 <ul>
@@ -8,7 +10,7 @@
   <li>Voit tulostaa kunkin äänestysalueen tiedot paperille merkintöjen tekemistä varten.</li>
   <li>Tulosta paperille Firefox-selaimella, jotta taulukko rivittyy oikein.</li>
   <li>Keskusvaalilautakuntaa varten tarjotaan <%= link_to "yhteenveto kaikista korjauksista", fixes_checking_minutes_path %>.</li>
-  <li>Kun tarkastuslaskentalautakunta on lopettanut työnsä, vaalityöntekijä merkitsee <%= link_to "tarkastuslaskennan valmiiksi", tools_url %>.</li>
+  <li>Kun tarkastuslaskentalautakunta on lopettanut työnsä, vaalityöntekijä merkitsee <%= link_to "tarkastuslaskennan valmiiksi", manage_danger_zone_path %>.</li>
 </ul>
 
 
