@@ -37,7 +37,7 @@ ActiveAdmin.register Email do
   form do |f|
     f.inputs "Ehdokkaille lähetettävä sähköposti" do
       f.input :subject, :label => "Otsikko"
-      f.input :content, :label => "Viestin sisältö", :hint => "Jos copypastetat tekstinkäsittelyohjelmasta, varmista etteivät kappaleenvaihdot tule kahteen kertaan ja ettet käytä manuaalisia rivinvaihtoja. Viesti näyttää silloin rumalta."
+      f.input :content, :label => "Viestin sisältö", :hint => "Jos copypastetat tekstinkäsittelyohjelmasta, varmista etteivät kappaleenvaihdot tule kahteen kertaan ja ettet käytä manuaalisia rivinvaihtoja. Viesti näyttää silloin rumalta.<br/>HUOM! Viesti lähetetään vasta seuraavalta sivulta, voit turvallisesti tallentaa kirjoittamasi viestin ennen sen lähettämistä.".html_safe
       f.buttons
     end
   end
