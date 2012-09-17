@@ -51,6 +51,14 @@ class Result < ActiveRecord::Base
     update_attributes!(:in_process => true)
   end
 
+  def published!
+    update_attributes!(:published => true)
+  end
+
+  def published_pending!
+    update_attributes!(:published_pending => true)
+  end
+
   def pending_candidate_draws?
     return false if not freezed?
 
@@ -107,8 +115,9 @@ class Result < ActiveRecord::Base
   end
 
   def filename(suffix = ".txt")
-    final_text = self.final? ? "lopullinen" : ""
-    "tulos-" + final_text + created_at.to_s(:number) + suffix
+    final_text = self.final? ? "lopullinen" : "alustava"
+
+    "tulos-#{final_text}-#{created_at.localtime.to_s(:number)}#{suffix}"
   end
 
   def candidates_in_election_order

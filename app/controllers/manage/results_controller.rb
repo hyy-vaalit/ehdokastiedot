@@ -20,6 +20,18 @@ class Manage::ResultsController < ManageController
     end
   end
 
+  def publish
+    result_publisher = ResultPublisher.find(params[:result_id])
+
+    if result_publisher.publish!
+      flash[:notice] = "Vaalitulos jonossa julkaistavaksi."
+    else
+      flash[:error] = "Vaalituloksen julkaisu epäonnistui."
+    end
+
+    redirect_to manage_results_path
+  end
+
   protected
 
   def authorize_this!

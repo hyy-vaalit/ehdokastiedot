@@ -14,11 +14,12 @@ module Vaalit
   end
 
   module Results
-    S3_BUCKET_NAME  = ENV['S3_BUCKET_NAME'] || "hyy-vaalitulos-staging"
+    S3_BUCKET_NAME  = ENV['S3_BUCKET_NAME'] || "hyy-koe"
     S3_BASE_URL     = ENV['S3_BASE_URL'] || "s3.amazonaws.com"
     PUBLIC_FILENAME = "tulos-alustava.txt"
+    DIRECTORY       = Time.now.year
     S3_BUCKET_URL   = "http://#{S3_BASE_URL}/#{S3_BUCKET_NAME}"
-
-    PUBLIC_RESULT_URL = "#{Vaalit::Results::S3_BUCKET_URL}/#{Vaalit::Results::PUBLIC_FILENAME}"
+    S3_RESULT_PATH  = "#{S3_BUCKET_URL}/#{DIRECTORY}"
+    PUBLIC_RESULT_URL = "#{S3_RESULT_PATH}/#{PUBLIC_FILENAME}"
   end
 end

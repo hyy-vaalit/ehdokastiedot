@@ -27,7 +27,9 @@ Vaalit::Application.routes.draw do
 
     resources :candidate_attribute_changes
 
-    resources :results, :only => [:index, :show]
+    resources :results, :only => [:index, :show] do
+      put :publish
+    end
   end
 
 

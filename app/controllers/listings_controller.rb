@@ -1,3 +1,4 @@
+# coding: UTF-8
 class ListingsController < ApplicationController
 
   before_filter :authorize_listings
@@ -20,6 +21,7 @@ class ListingsController < ApplicationController
     end
 
     Delayed::Job.enqueue(CreateResultJob.new)
+    flash[:notice] = "Äänestysalue otettu laskentaan."
     redirect_to showdown_listings_path
   end
 

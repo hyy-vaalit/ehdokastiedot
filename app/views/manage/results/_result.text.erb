@@ -1,5 +1,6 @@
 
-HELSINGIN YLIOPISTON YLIOPPILASKUNNAN <%= "ALUSTAVA " if not result_decorator.final? -%>EDUSTAJISTOVAALITULOS 2011
+HELSINGIN YLIOPISTON YLIOPPILASKUNNAN <%= "ALUSTAVA " if not result_decorator.final? -%>EDUSTAJISTOVAALITULOS <%= Time.now.year -%>
+
 
 <% if result_decorator.final? -%>
 Keskusvaalilautakunnan vahvistama <%= result_decorator.formatted_timestamp(:updated_at, :time => false) %>

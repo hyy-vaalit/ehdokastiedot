@@ -71,7 +71,7 @@ class ResultDecorator < ApplicationDecorator
 
   def formatted_timestamp(timestamp_method, opts = {})
     time = opts[:time] == false ? "" : " klo %H:%M:%S"
-    self.send(timestamp_method).strftime("%d.%m.%Y" + time)
+    self.send(timestamp_method).localtime.strftime("%d.%m.%Y" + time)
   end
 
   def most_recent?
@@ -79,13 +79,13 @@ class ResultDecorator < ApplicationDecorator
   end
 
   def result_file_url
-    "#{Vaalit::Results::S3_BUCKET_URL}/#{filename}"
+    "#{Vaalit::Results::S3_RESULT_PATH}/#{filename}"
   end
 
   def rendered_output
     # DEPRECATION WARNING: config.view_path is deprecated, please do paths.app.views instead.
     av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
-    output = av.render :partial => "results/result.text.erb", :locals => {:result_decorator => self}
+    output = av.render :partial => "manage/results/result.text.erb", :locals => {:result_decorator => self}
 
   end
 
