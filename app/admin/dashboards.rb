@@ -88,7 +88,7 @@ ActiveAdmin::Dashboards.build do
     section 'Vaalivalvojaiset' do
       ul do
         li link_to 'Äänestysalueet ääntenlaskentaan', showdown_listings_path
-        li link_to 'Vaalitulokset', results_path
+        li link_to 'Vaalitulokset', manage_results_path
       end
     end
 
@@ -96,7 +96,7 @@ ActiveAdmin::Dashboards.build do
       ul do
         li link_to 'Tarkastuslaskennan korjausyhteenveto', summary_checking_minutes_path
         li link_to 'Arvonnat', draws_path
-        li link_to 'Lopullinen vaalitulos', results_path
+        li link_to 'Lopullinen vaalitulos', manage_results_path
       end
     end
 

@@ -1,8 +1,5 @@
 # coding: UTF-8
-class ResultsController < ApplicationController
-
-  before_filter :authenticate_admin_user!
-  before_filter :authorize
+class Manage::ResultsController < ManageController
 
   def index
     @results = Result.for_listing
@@ -25,7 +22,7 @@ class ResultsController < ApplicationController
 
   protected
 
-  def authorize
+  def authorize_this!
     authorize! :manage, :results
   end
 

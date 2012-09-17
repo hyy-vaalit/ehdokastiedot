@@ -28,9 +28,9 @@
   <tr>
     <td><%= result_decorator.formatted_timestamp(:created_at) %></td>
     <td><%= link_to result_decorator.filename, result_decorator.result_file_url %></td>
-    <td><%= link_to "Paikat ryhmittäin", result_url(result), :target => "_blank" %></td>
-    <td><%= link_to "Paikat liitoittain", result_url(result, :chart => "alliances"), :target => "_blank" %></td>
-    <td><%= link_to "Äänestetyimmät ehdokkaat", result_url(result, :chart => "candidates"), :target => "_blank" %></td>
+    <td><%= link_to "Paikat ryhmittäin", manage_result_path(result), :target => "_blank" %></td>
+    <td><%= link_to "Paikat liitoittain", manage_result_path(result, :chart => "alliances"), :target => "_blank" %></td>
+    <td><%= link_to "Äänestetyimmät ehdokkaat", manage_result_path(result, :chart => "candidates"), :target => "_blank" %></td>
   </tr>
 
 <% end %>

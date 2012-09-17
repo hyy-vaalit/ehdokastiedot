@@ -23,12 +23,12 @@
 
 <% elsif @result %>
   <ul>
-    <li><%= link_to "Väliaikainen vaalitulos", result_path(@result, :format => :text), :target => "_blank" %>,
+    <li><%= link_to "Väliaikainen vaalitulos", manage_result_path(@result, :format => :text), :target => "_blank" %>,
     jota vasten arvonta suoritetaan (ei julkinen).</li>
   </ul>
 
   <% if @result.final? %>
-    Arvonnat on suoritettu. Löydät lopullisen vaalituloksen <%= link_to "vaalitulossivulta", results_path %>.
+    Arvonnat on suoritettu. Löydät lopullisen vaalituloksen <%= link_to "vaalitulossivulta", manage_results_path %>.
   <% end %>
 
   <% if @result.pending_candidate_draws? %>

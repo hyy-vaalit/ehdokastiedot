@@ -26,9 +26,10 @@ Vaalit::Application.routes.draw do
     resource :danger_zone, :only => [:show]
 
     resources :candidate_attribute_changes
+
+    resources :results, :only => [:index, :show]
   end
 
-  resources :results, :only => [:index, :show]
 
   namespace :draws, :as => "" do
     get :index, :as => :draws
