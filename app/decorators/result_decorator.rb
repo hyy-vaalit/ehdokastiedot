@@ -85,7 +85,7 @@ class ResultDecorator < ApplicationDecorator
   def rendered_output
     # DEPRECATION WARNING: config.view_path is deprecated, please do paths.app.views instead.
     av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
-    output = av.render :partial => "manage/results/result.text.erb", :locals => {:result_decorator => self}
+    output = av.render :partial => "manage/results/result.html.erb", :locals => {:result_decorator => self}
 
   end
 

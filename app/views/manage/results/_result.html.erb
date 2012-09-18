@@ -1,4 +1,13 @@
-
+<!DOCTYPE html>
+<head>
+  <meta charset="utf-8">
+  <meta name="description" content="HYYn edustajistovaalien tulos <%= Time.now.year -%>">
+  <meta name="viewport" content="width=device-width">
+  <title>HYYn vaalitulos <%= Time.now.year -%></title>
+  <script src="/js/google-analytics.js"></script>
+</head>
+<body>
+<pre>
 HELSINGIN YLIOPISTON YLIOPPILASKUNNAN <%= "ALUSTAVA " if not result_decorator.final? -%>EDUSTAJISTOVAALITULOS <%= Time.now.year -%>
 
 
@@ -12,21 +21,18 @@ Lopullinen vaalitulos vahvistetaan tarkastuslaskennan jälkeen.
 
 
 Perusteet merkinnöille:
-- Edustajat (läpipääsevät ehdokkaat) on merkitty tähdellä (*). Vaaliliitoista
-  valitaan kaksi varaedustajaa jokaista vaaliliiton läpipääsevää ehdokasta kohden.
-- Tasatilanteessa ehdokas on merkitty kysymysmerkillä (?),
+- Edustajiston jäsenet (läpipääsevät ehdokkaat) on merkitty tähdellä (*). Vaali-
+  liitoista valitaan kaksi varajäsentä jokaista läpipääsevää ehdokasta kohden.
+- Tasatilanteessa ehdokas merkitään kysymysmerkillä (?),
   kun saman vaaliliiton sisällä useampi ehdokas on saanut saman äänimäärän ja
-  läpipääsevä ratkaistaan arvalla.
-- Rengasvertailuluvun tasatilanteessa ehdokas on merkitty yhtäsuuruusmerkillä (=),
+  läpipääsevä ratkaistaan arvalla. Läpipääsy arvotaan vaaliliiton sisällä.
+- Rengasvertailuluvun tasatilanteessa ehdokas merkitään yhtäsuuruusmerkillä (=),
   kun arvonta vaikuttaa läpipääsyyn. Läpipääsy arvotaan vaalirenkaiden kesken.
-- Useampi saman liittovertailuluvun saman vaalirenkaan sisällä saanut ehdokas on
-  merkitty tildellä (~), kun arvonta vaikuttaa läpipääsyyn. Läpipääsy arvotaan
+- Useampi saman liittovertailuluvun saman vaalirenkaan sisällä saanut ehdokas
+  merkitään (~), kun arvonta vaikuttaa läpipääsyyn. Läpipääsy arvotaan renkaan
   vaaliliittojen kesken.
-- Saman kirjainyhdistelmän äänimääränsä tai vertailukunsa viereen saaneiden ehdokkaiden
-  keskinäinen järjestys ratkeaa arvonnassa.
-
-
-Tiedoston lopussa on listattu kaikki ehdokkaat rengasvertailuluvun mukaan.
+- Saman kirjainyhdistelmän äänimääränsä tai vertailulukunsa viereen saaneiden
+  ehdokkaiden keskinäinen järjestys ratkeaa arvonnassa.
 
 <%# Vaalirenkaita yhteensä:   <%#= sprintf "%2d", coalition_count %>
 <%# Vaaliliittoja yhteensä:   <%#= sprintf "%2d", alliance_count %>
@@ -39,10 +45,10 @@ Valittavia ehdokkaita:    <%= sprintf "%6d", result_decorator.candidates_to_elec
 Ääniä laskettu:           <%= sprintf "%6d (%.2f %%)", result_decorator.votes_counted, result_decorator.votes_counted_percentage %>
 Äänestysprosentti:        <%= sprintf "%6.2f", result_decorator.voting_percentage %> %
 
+Ehdokkaat listattuna:
+- <a href="#lvert">liittovertailuluvun mukaan</a>
+- <a href="#rvert">rengasvertailuluvun mukaan</a>
 
---------------------------------------------------------------------------------
-EHDOKKAAT LIITOITTAIN JÄRJESTETTYNÄ
---------------------------------------------------------------------------------
 
 RENKAAT________________________________________________________________ÄÄNET_PA
 <% result_decorator.coalition_results.by_vote_sum.each_with_index do |coalition_result, index| -%>
@@ -53,6 +59,11 @@ LIITOT__________________________________________________________RENGAS_ÄÄNET_P
 <% result_decorator.alliance_results.by_vote_sum.each_with_index do |alliance_result, index| -%>
 <%= result_decorator.alliance_result_line(alliance_result, index) %>
 <% end -%>
+
+
+-------------------------------------------------------------------------------
+<a name="lvert">EHDOKKAAT LIITOITTAIN JÄRJESTETTYNÄ</a>
+-------------------------------------------------------------------------------
 
 <% result_decorator.coalition_results.by_vote_sum.each_with_index do |coalition_result, coalition_index| -%>
 RENGAS_________________________________________________________________ÄÄNET_PA
@@ -70,12 +81,15 @@ EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT____
 
 <% end -%>
 
---------------------------------------------------------------------------------
-EHDOKKAAT RENGASVERTAILULUVUN PERUSTEELLA JÄRJESTETTYNÄ
---------------------------------------------------------------------------------
+-------------------------------------------------------------------------------
+<a name="rvert">EHDOKKAAT RENGASVERTAILULUVUN MUKAAN JÄRJESTETTYNÄ</a>
+-------------------------------------------------------------------------------
 
 EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT_____
 <% result_decorator.candidate_results_in_election_order.each_with_index do |candidate, index| -%>
 <%= result_decorator.candidate_result_line(candidate, index) %>
 <% end -%>
 
+</pre>
+</body>
+</html>
