@@ -1,6 +1,22 @@
+== Vaalien vaiheet
+* Ehdokastietojen syöttö
+* Ehdokasasettelun päättyminen: Alustava ehdokaslista KVL:lle
+* Ehdokastietojen korjausvaihe: Uusia ehdokkaita/liittoja ei voi luoda. Korjauksista jää merkintä logiin.
+* Ehdokaslistan vahvistaminen: ehdokastietoihin ei voi enää syöttää korjauksia.
+* Ehdokasnumerointi.
+* Äänten syöttäminen: äänestysalue laskee paperilaput ja syöttää tulospöytäkirjan tiedot järjestelmään.
+* Äänestysalueiden ottaminen mukaan vaalitulokseen: alustava tulos vaalivalvojaisissa ja S3:ssa
+* Alustava vaalitulos on laskettu ja julkaistu.
+* Tarkistuslaskenta: tlk-pj syöttää tarkastuspöytäkirjasta korjatut äänimäärät järjestelmään.
+* Tarkistuslaskennan tuloksen perusteella laskettu uusi vaalitulos.
+* Arvonnat KVL:n kokouksessa uuden vaalituloksen mukaan
+* Lopullinen vaalitulos, jonka KVL vahvistaa.
+* Lopullisen vaalituloksen julkaisu.
+
+
 == Yleisen ympäristön pystyttäminen
 
-Projektissa on käytössä redis.
+Projektissa on (väärin)käytössä redis (poistuu kun tlk-pj tunnarit pois redisistä)
 
 $ brew install redis
 $ redis-server
@@ -34,6 +50,16 @@ Tuotanto-seed vaatii äänestysalueiden salasanojen syötön ennen `rake product
 Ympäristö, jossa peruskonffit muttei vanhaa vaalidataa:
 
 $ rake seed:production
+
+Addons:
+* Sendgrid Pro (kaikille ehdokkaille lähetetään sähköposti ehdokasasettelun päättymisen jälkeen)
+* Worker sähköpostin lähettäjäksi (disabloi sen jälkeen kun ehdokasasettelun meilit lähetetty)
+* Worker vaalituloksen laskemiseen (enabloi ennen vaalivalojaisia, disabloi seuraavana päivänä)
+* Worker tarkastuslaskentaan (enabloi ennen viimeistä KVL-kokousta, disabloi kun lopullinen tulos julki)
+  (Vaihtoehtona myös pitää worker koko ajan päällä, jos siitä halutaan maksaa.)
+* PG Backups
+* PG database plan, jossa rajat ei ota vastaan (viimeistään päivää ennen ääntenlaskentaa)
+  https://devcenter.heroku.com/articles/migrating-from-a-dev-to-a-basic-database
 
 
 == Kehitysympäristön pystyttäminen
