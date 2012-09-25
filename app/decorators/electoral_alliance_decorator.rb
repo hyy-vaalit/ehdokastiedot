@@ -34,13 +34,6 @@ class ElectoralAllianceDecorator < ApplicationDecorator
   #   end
 
   def to_csv
-    decorated_candidates = CandidateDecorator.decorate(candidates)
-
-    CSV.generate do |csv|
-      csv << decorated_candidates.first.csv_header
-      decorated_candidates.each do |candidate|
-        csv <<  candidate.csv_attributes_isolatin
-      end
-    end
+    CandidateDecorator.to_csv(candidates)
   end
 end

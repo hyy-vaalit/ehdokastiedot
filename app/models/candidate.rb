@@ -49,9 +49,9 @@ class Candidate < ActiveRecord::Base
   before_save :clear_lines!
 
   # If candidate numbers have been given, order by candidate numbers.
-  # Otherwise order by alliance id.
+  # Otherwise order by alliance id and numbering order.
   def self.for_listing
-    candidate_numbers_given? ? reorder('candidate_number') : reorder('electoral_alliance_id')
+    candidate_numbers_given? ? reorder('candidate_number') : reorder('electoral_alliance_id, numbering_order')
   end
 
   def self.candidate_numbers_given?

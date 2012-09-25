@@ -23,6 +23,8 @@ Vaalit::Application.routes.draw do
       put :enable_advocate_login,  :to => "configurations#enable_advocate_login"
     end
 
+    resources :candidates, :only => [:index]
+
     resource :danger_zone, :only => [:show]
 
     resources :candidate_attribute_changes

@@ -1,3 +1,6 @@
+require 'csv'
+require 'iconv'
+
 class CandidateDecorator < ApplicationDecorator
   decorates :candidate
 
@@ -29,6 +32,17 @@ class CandidateDecorator < ApplicationDecorator
   #     h.content_tag :span, time.strftime("%a %m/%d/%y"),
   #                   :class => 'timestamp'
   #   end
+
+  def self.to_csv(candidates)
+    decorated_candidates = decorate(candidates)
+
+    CSV.generate do |csv|
+      csv << decorated_candidates.first.csv_header
+      decorated_candidates.each do |candidate|
+        csv <<  candidate.csv_attributes_isolatin
+      end
+    end
+  end
 
   def csv_header
     csv_attribute_data.map(&:keys).flatten

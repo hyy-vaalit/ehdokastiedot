@@ -135,20 +135,6 @@ ActiveAdmin.register Candidate do
     redirect_to :action => :show
   end
 
-  collection_action :cancelled_emails do
-    require 'csv'
-    csv_output = CSV.generate do |csv|
-      collection.cancelled.find_each do |candidate|
-        csv << [candidate.email]
-      end
-    end
-
-    filename = 'cancelled_candidacy_emails.csv'
-    headers['Content-Type'] = "text/csv"
-    headers['Content-Disposition'] = "attachment; filename=#{filename}"
-    render :text => csv_output
-  end
-
   collection_action :give_numbers do
     if Candidate.give_numbers!
       redirect_to simple_listings_path, :notice => 'Ehdokkaat on numeroitu!'

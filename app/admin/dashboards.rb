@@ -1,38 +1,6 @@
 # coding: utf-8
 ActiveAdmin::Dashboards.build do
 
-  # section "Sihteerin toiminnot", :priority => 1 do
-  #   h3 do
-  #     ol do
-  #       li link_to "Luo uusi vaaliliitto.", new_admin_electoral_alliance_path
-  #       li "Luo ehdokkaat valitsemalla #{link_to 'luomasi vaaliliiton sivun', admin_electoral_alliances_path}<br />
-  #           oikeasta yläkulmasta 'Vaaliliiton ehdokkaat'.".html_safe
-  #       li "Syötä ehdokkaat samassa järjestyksessä kuin haluat ehdokasnumerot."
-  #       li "Kun ehdokkaat on syötetty,<br />
-  #           klikkaa em. valikosta 'Merkitse vaaliliitto valmiiksi'.".html_safe
-  # p "Kun olet syöttänyt kaikki vaaliliiton ehdokkaat,
-  #      #{link_to 'siirry vaaliliiton sivuille', admin_electoral_alliances_path}
-  #     ja merkitse vaaliliitto valmiiksi.".html_safe
-  #
-  #     end
-  #   end
-  #     h4 "Huomioi nämä:"
-  #     ul do
-  #       li "Syötä vasta lopulliset tiedot: <br />
-  #           tietojen tulee vastata paperisia ehdokaslomakkeita.".html_safe
-  #       li "Et voi poistaa syöttämiäsi tietoja etkä muuttaa järjestystä."
-  #       li "Virhesyöttöjen välttämiseksi selaimen täydennysehdotuksen<br />
-  #           voi valita ainoastaan tabulaattorilla eikä enter-napilla.".html_safe
-  #       li "Voit luoda uuden vaaliliiton vasta,<br />
-  #           kun edellinen vaaliliitto on merkitty valmiiksi.".html_safe
-  #       li "HYYn vaalityöntekijä kytkee vaaliliitot vaalirenkaisiin<br />
-  #           ehdokasasettelun päättymisen jälkeen.".html_safe
-  #       li "Näet etusivulla linkkejä, joihin et pääse käsiksi.<br />
-  #           Pahoittelemme hämmennystä.".html_safe
-  #     end
-  #
-  # end
-
   section "Vaaliliitot" do
     ul do
       if GlobalConfiguration.advocate_login_enabled?
@@ -59,10 +27,17 @@ ActiveAdmin::Dashboards.build do
   end
 
   section "Ylläpidon toiminnot", :priority => 2 do
+    section 'Ehdokastiedot' do
+      ul do
+        li link_to 'Yksinkertaistettu lista ehdokastiedoista', simple_listings_path
+        li link_to 'Ehdokkaat, joilla sama henkilöturvatunnus', same_ssn_listings_path
+        li link_to 'Asiamiesten muutokset ehdokasasettelun päättymisen jälkeen', manage_candidate_attribute_changes_path
+      end
+    end
+
     section "Tiedot Exceliin (CSV Export)" do
       ul do
-        li link_to "Kaikki ehdokkaat (csv)", admin_candidates_path(:format=>:csv)
-        li link_to "Peruuttaneet ehdokkaat (csv)", cancelled_emails_admin_candidates_path
+        li link_to "Kaikki ehdokkaat (csv)", manage_candidates_path(:format=>:csv)
         li link_to "Kaikki vaaliliitot (csv)", admin_electoral_alliances_path(:format=>:csv)
         li link_to "Kaikki vaalirenkaat (csv)", admin_electoral_coalitions_path(:format=>:csv)
       end
@@ -74,14 +49,6 @@ ActiveAdmin::Dashboards.build do
           li "Valitse: Tiedostolaji: Erotettu > Seuraava."
           li "Valitse: Erottimet: Pilkku > Valmis."
         end
-      end
-    end
-
-    section 'Ehdokastiedot' do
-      ul do
-        li link_to 'Yksinkertaistettu lista ehdokastiedoista', simple_listings_path
-        li link_to 'Ehdokkaat, joilla sama henkilöturvatunnus', same_ssn_listings_path
-        li link_to 'Asiamiesten muutokset ehdokasasettelun päättymisen jälkeen', manage_candidate_attribute_changes_path
       end
     end
 

@@ -1,0 +1,5 @@
+<% if @candidates -%>
+<%= CandidateDecorator.to_csv(@candidates).html_safe -%>
+<% else %>
+Vaalijärjestelmään ei ole vielä syötetty yhtään ehdokasta.
+<% end %>
