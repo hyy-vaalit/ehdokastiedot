@@ -17,7 +17,7 @@ ActiveAdmin.register ElectoralCoalition do
     column :name
     column :shorten
     column :alliances do |coalition|
-      coalition.electoral_alliances.map(&:name).join(', ')
+      coalition.electoral_alliances.by_numbering_order.map(&:name).join(', ')
     end
 
     default_actions
@@ -28,7 +28,7 @@ ActiveAdmin.register ElectoralCoalition do
       row("electoral_alliances") { electoral_coalition.electoral_alliances.map(&:name).join(', ')} if electoral_coalition.electoral_alliances.count > 1
     end
 
-    alliances = electoral_coalition.electoral_alliances
+    alliances = electoral_coalition.electoral_alliances.by_numbering_order
     panel "Vaaliliitot  (#{alliances.count} kpl)" do
       table_for(alliances) do |t|
         t.column("Valmis") { |alliance| icon(:check) if alliance.secretarial_freeze? }
