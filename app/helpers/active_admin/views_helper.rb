@@ -2,13 +2,14 @@
 
 module ActiveAdmin::ViewsHelper
   # Candidate view is shared with ActiveAdmin and Advocates.
+  #
+  # User should only get here if candidates can be edited.
+  # Authorization logic is handled by CanCan.
   def link_to_edit_candidate(scope, candidate)
     if scope == "admin"
       edit_admin_candidate_path(candidate)
-    elsif GlobalConfiguration.candidate_nomination_period_effective?
-      edit_advocates_alliance_candidate_path(candidate.electoral_alliance, candidate)
     else
-      "KORJAA"
+      edit_advocates_alliance_candidate_path(candidate.electoral_alliance, candidate)
     end
   end
 

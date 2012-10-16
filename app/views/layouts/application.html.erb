@@ -36,7 +36,13 @@
 
       <ul class="main">
         <% if current_advocate_user %>
-          <li><%= current_advocate_user.email %>
+          <li>
+            <%= current_advocate_user.email %>
+            <% if current_admin_user %>
+              <br>
+              <u>ADMIN</u>: <%= current_admin_user.email %>
+            <% end %>
+          </li>
           <li>&raquo; <%= link_to "Kirjaudu ulos", destroy_advocate_user_session_path %></li>
         <% end %>
       </ul>
