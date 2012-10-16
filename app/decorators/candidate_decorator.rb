@@ -75,6 +75,7 @@ class CandidateDecorator < ApplicationDecorator
       "Postiosoite" => address,
       "Postitoimipaikka" => postal_information,
       "Vaaliliiton ID" => electoral_alliance_id,
+      "Tiedekunta" => faculty ? faculty.code : "",
       "Huomioita" => notes ]
   end
 end
