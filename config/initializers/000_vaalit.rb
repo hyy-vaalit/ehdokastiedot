@@ -22,4 +22,18 @@ module Vaalit
     S3_RESULT_PATH  = "#{S3_BUCKET_URL}/#{DIRECTORY}"
     PUBLIC_RESULT_URL = "#{S3_RESULT_PATH}/#{PUBLIC_FILENAME}"
   end
+
+  module AWS
+    def self.connect?
+      Rails.env.production?
+    end
+
+    if connect?
+      AWS::S3::Base.establish_connection!(
+        :access_key_id     => ENV['S3_ACCESS_KEY_ID'],
+        :secret_access_key => ENV['S3_ACCESS_KEY_SECRET']
+      )
+    end
+  end
+
 end

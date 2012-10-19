@@ -71,8 +71,12 @@ class ResultPublisher < ApplicationDecorator
 
   # AWS connection is established only in production mode (see amazon_s3_storage.rb initializer)
   def store_s3_object(filepath, contents)
-    Rails.logger.info "Storing result contents to S3, bucket: '#{bucket_name}', filepath: '#{filepath}'"
-    AWS::S3::S3Object.store(filepath, contents, bucket_name, :content_type => 'text/plain; charset=utf-8')
+    if Vaalit::AWS.connect?
+      Rails.logger.info "Storing result contents to S3, bucket: '#{bucket_name}', filepath: '#{filepath}'"
+      AWS::S3::S3Object.store(filepath, contents, bucket_name, :content_type => 'text/plain; charset=utf-8')
+    else
+      Rails.logger.info "Not storing result to S3 because were are in development environment."
+    end
   end
 
 end
