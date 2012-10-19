@@ -6,13 +6,21 @@
     var data = new google.visualization.DataTable();
 
     data.addRows(1);
-    <% result.candidate_results.most_voted.each_with_index do |candidate_result, index| -%>
-        data.addColumn('number', '<%= candidate_result.candidate.candidate_name -%> [<%= candidate_result.candidate.electoral_alliance.shorten %>]');
-        data.setValue(0, <%= index -%>, <%= candidate_result.vote_sum_cache -%>);
+
+    <% index_displayed_alliances = 0 %>
+    <% result.alliance_results.by_vote_sum.each do |alliance_result| -%>
+      <% elected_count = result.elected_candidates_in_alliance(alliance_result).count -%>
+
+      <% if elected_count > 0 -%>
+        data.addColumn('number', '<%= alliance_result.electoral_alliance.shorten -%>');
+        data.setValue(0, <%= index_displayed_alliances -%>, <%= elected_count -%>);
+        <% index_displayed_alliances = index_displayed_alliances + 1 %>
+      <% end -%>
     <% end %>
 
     var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-    chart.draw(data, {width: 800, height: 600, title: 'Äänestetyimmät ehdokkaat (top 10)',
+    chart.draw(data, {width: 800, height: 600, title: 'Liittokohtaiset paikkamäärät',
+                      'backgroundColor':'transparent',
                       axisTitlesPosition: 'in',
                       titlePosition: 'in',
                       hAxis: {title: 'Tilanne <%= result.formatted_timestamp(:created_at) -%>',
@@ -24,7 +32,7 @@
   }
 </script>
 
-<h1>Äänestetyimmät kymmenen ehdokasta</h1>
+<h1>Vaaliliittojen edustajistopaikat</h1>
 
 <% if not result.most_recent? %>
   <p>
@@ -33,12 +41,11 @@
 <% end %>
 
 <ul class="seat-listing">
-  <% result.candidate_results.most_voted.each do |candidate_result| -%>
-      <li style="width: 250px;">
-          <%= candidate_result.candidate.candidate_name %>
-          [<%= candidate_result.candidate.electoral_alliance.shorten -%>]:
-          <%= candidate_result.vote_sum_cache -%>
-      </li>
+  <% result.alliance_results.by_vote_sum.each do |alliance_result| -%>
+    <% elected_count = result.elected_candidates_in_alliance(alliance_result).count -%>
+    <% if elected_count > 0 -%>
+      <li><%= alliance_result.electoral_alliance.shorten -%>: <%= result.elected_candidates_in_alliance(alliance_result).count -%></li>
+    <% end -%>
   <% end -%>
 </ul>
 
