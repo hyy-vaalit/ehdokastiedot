@@ -1,4 +1,6 @@
 class AdvocateUser < ActiveRecord::Base
+  include DeviseUserBehaviour
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable,
   # :registerable,
@@ -13,14 +15,9 @@ class AdvocateUser < ActiveRecord::Base
   has_many :electoral_alliances, :foreign_key => :primary_advocate_id
 
   validates_presence_of :ssn, :email, :firstname, :lastname
-  validates_presence_of :password, :on => :create
 
   validates_uniqueness_of :email, :ssn
-
   validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
-
-  before_validation :generate_password, :on => :create
-  after_create      :send_password
 
   def friendly_name
     "#{firstname} #{lastname}"
@@ -29,11 +26,8 @@ class AdvocateUser < ActiveRecord::Base
 
   protected
 
-  def generate_password
-    self.password = Devise.friendly_token.first(6)
+  def send_password
+    RegistrationMailer.welcome_advocate(email, password).deliver
   end
 
-  def send_password
-    RegistrationMailer.welcome_advocate(email,password).deliver
-  end
 end

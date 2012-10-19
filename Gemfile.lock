@@ -158,7 +158,6 @@ GEM
     netrc (0.7.4)
     nokogiri (1.5.4)
     orm_adapter (0.0.7)
-    passgen (1.0.2)
     pg (0.13.2)
     polyglot (0.3.3)
     rack (1.2.5)
@@ -272,7 +271,6 @@ DEPENDENCIES
   heroku
   hoptoad_notifier
   jquery-rails
-  passgen
   pg
   rails (= 3.0.15)
   ranked-model

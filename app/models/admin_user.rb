@@ -1,4 +1,5 @@
 class AdminUser < ActiveRecord::Base
+  include DeviseUserBehaviour
 
   ROLES = %w[admin secretary]
 
@@ -14,12 +15,7 @@ class AdminUser < ActiveRecord::Base
 
   validates_presence_of :role
 
-  before_validation :generate_password, :on => :create
-
-  after_create :send_password
-
   belongs_to :electoral_alliance
-
 
   def is_secretary?
     role == 'secretary'
@@ -31,12 +27,8 @@ class AdminUser < ActiveRecord::Base
 
   private
 
-  def generate_password
-    self.password = Passgen::generate unless self.password
-  end
-
   def send_password
-    RegistrationMailer.secretary(password, email).deliver
+    RegistrationMailer.welcome_secretary(email, password).deliver
   end
 
 end

@@ -8,7 +8,6 @@ gem 'draper', '0.7.3'       # draper 0.12.x doesn't work with Rails 3.0
 gem 'activeadmin'
 gem 'ranked-model'
 gem 'cancan'
-gem 'passgen'
 
 gem "aws-s3", :require => "aws/s3"
 

@@ -10,7 +10,7 @@ class RegistrationMailer < HyyMailer
     mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
   end
 
-  def secretary(password, email)
+  def welcome_secretary(email, password)
     @email = email
     @password = password
     @site_address = Vaalit::Public::SECRETARY_LOGIN_URL
