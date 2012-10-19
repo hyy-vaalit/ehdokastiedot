@@ -79,7 +79,7 @@ class ResultDecorator < ApplicationDecorator
   end
 
   def result_file_url
-    "#{Vaalit::Results::S3_RESULT_PATH}/#{filename}"
+    "#{Vaalit::Results::PUBLIC_RESULT_URL}/#{filename}"
   end
 
   def rendered_output
