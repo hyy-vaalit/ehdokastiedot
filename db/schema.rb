@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20120917081029) do
+ActiveRecord::Schema.define(:version => 20121019112513) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -238,7 +238,6 @@ ActiveRecord::Schema.define(:version => 20120917081029) do
     t.datetime "candidate_data_is_freezed_at",                    :null => false
     t.integer  "votes_given",                  :default => 0
     t.integer  "votes_accepted",               :default => 0
-    t.integer  "voters_count",                 :default => 0
     t.integer  "potential_voters_count",       :default => 0
     t.datetime "created_at"
     t.datetime "updated_at"
