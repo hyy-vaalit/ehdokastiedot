@@ -63,6 +63,10 @@ Addons:
   https://devcenter.heroku.com/articles/migrating-from-a-dev-to-a-basic-database
 
 
+Worker:
+$ heroku ps:scale worker=1 -a APP_NAME
+
+
 == Kehitysympäristön pystyttäminen
 
 Vuoden 2009 vaalien data:

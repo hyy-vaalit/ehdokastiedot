@@ -19,7 +19,7 @@ module Vaalit
     S3_BUCKET_URL   = "http://#{S3_BASE_URL}/#{S3_BUCKET_NAME}"
 
     RESULT_ADDRESS  = ENV['RESULT_ADDRESS'] || "http://vaalitulos.hyy.fi"
-    PUBLIC_FILENAME = "tulos.txt"
+    PUBLIC_FILENAME = "index.html"
     DIRECTORY       = Time.now.year
     PUBLIC_RESULT_URL = "#{RESULT_ADDRESS}/#{DIRECTORY}"
 
