@@ -49,7 +49,7 @@
       <% end %>
     </td>
 
-    <td><%= link_to result_decorator.filename, result_decorator.result_file_url %></td>
+    <td><%= link_to result_decorator.filename, result_decorator.result_file_url,  :target => "_blank" %></td>
     <td><%= link_to "Paikat ryhmittäin",        manage_result_charts_path(result, :type => :coalition_pie),  :target => "_blank" %></td>
     <td><%= link_to "Paikat liitoittain",       manage_result_charts_path(result, :type => :alliance_bars),  :target => "_blank" %></td>
     <td><%= link_to "Äänestetyimmät ehdokkaat", manage_result_charts_path(result, :type => :candidate_bars), :target => "_blank" %></td>
