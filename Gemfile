@@ -22,10 +22,6 @@ gem 'state_machine'
 gem 'sendgrid' # required because Mailers use sendgrid gem's methods
 gem 'foreigner'
 
-group :development do
-  gem 'heroku'
-end
-
 group :development, :test do
   gem 'database_cleaner'
   gem 'rspec'
