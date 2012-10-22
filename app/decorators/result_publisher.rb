@@ -5,8 +5,6 @@
 # job calls actual publish method:
 #   - uploads to s3
 #   - sets published=true
-#   - initializes mobile push notification
-
 class ResultPublisher < ApplicationDecorator
   decorates :result
 
@@ -69,7 +67,7 @@ class ResultPublisher < ApplicationDecorator
     self.filename
   end
 
-  # AWS connection is established only in production mode (see amazon_s3_storage.rb initializer)
+  # AWS connection is established only in production mode
   def store_s3_object(filepath, contents)
     if Vaalit::AWS.connect?
       Rails.logger.info "Storing result contents to S3, bucket: '#{bucket_name}', filepath: '#{filepath}'"

@@ -4,6 +4,8 @@
 
 <h1>Vaalitulokset</h1>
 
+Julkinen vaalitulos: <%= link_to Vaalit::Results::PUBLIC_RESULT_URL, Vaalit::Results::PUBLIC_RESULT_URL %>
+
 <h2>Alustavat vaalitulokset</h2>
 
 <ul>
@@ -12,10 +14,13 @@
   <li>Tuloksen julkaiseminen päivittää tiedot yllämainittuun osoitteeseen.</li>
   <li>Linkitä HYYn websivuilta ainoastaan julkiseen osoitteeseen.</li>
   <li>Väliaikatulos on tarkoitettu tiedotuksen ja vaalivalvojaisten käyttöön ennen tuloksen julkaisua.</li>
+  <li>Yksittäisen väliaikatuloksen URL-osoitteen voi jakaa HYYn sisällä, mutta sitä ei pidä linkittää julkisesti.</li>
 </ul>
 
 <h3>Vaalivalvojaisissa:</h3>
     <ul>
+      <li>Pimennä videotykki, avaa kaikki näytettävät sivut tabeihin etukäteen ja vasta sen jälkeen tykitä tiedot seinälle.
+        <br>Tällä tavoin saat lisäaikaa rauhalliseen selvittelyyn, jos jotain menee pieleen.</li>
       <li>Avaa selain koko ruudun kokoiseksi (View -> Full Screen).</li>
       <li>Zoomaa vaalitulos sopivankokoiseksi selainikkunaan (ctrl+ ja ctrl-).</li>
       <li>Julkaise vaalitulos vasta tykittämisen jälkeen, jotta jännitys säilyy.</li>
@@ -45,7 +50,7 @@
         <%= button_to "Julkaise", manage_result_publish_path(result),
                       :method   => :put,
                       :class    => "btn btn-danger",
-                      :confirma => "Julkaistaanko vaalitulos? Tämä korvaa aiemman julkaisun välituloksen." %>
+                      :confirm  => "Julkaistaanko vaalitulos? Tämä korvaa aiemman julkaisun välituloksen." %>
       <% end %>
     </td>
 

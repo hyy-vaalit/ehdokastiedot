@@ -1,13 +1,19 @@
 &larr; <%= link_to "Takaisin etusivulle".html_safe, admin_dashboard_path %>
 
-<h1>Ääntenlaskennan eteneminen</h1>
+<h1>Äänestysalueet ääntenlaskentaan</h1>
 
-<h2>Ohjeet äänestysalueen ottamiseksi mukaan ääntenlaskentaan:</h2>
+<h3>Alkuvalmistelut</h3>
 <ul>
-  <li>Aseta <%= link_to "alustavat ääni- ja äänestäjämäärät", edit_manage_configuration_path %> tilastointia varten.</li>
+  <li>Aseta <%= link_to "alustavat ääni- ja äänestäjämäärät", edit_manage_configuration_path %> ääntenlaskentaprosentin laskemista varten.</li>
+  <li>Hyväksyttyjen äänten lukumääränä voidaan käyttää aluksi äänestäjämäärää, koska äänten lukumäärä selviää vasta ääntenlaskennan päätyttyä.</li>
+  <li>Äänestäjämäärä selviää äänioikeuden tarkistamisjärjestelmästä.</li>
+</ul>
+
+<h3>Ääntenlaskennan eteneminen</h3>
+<ul>
   <li>Valitse äänestysalueet ja paina "Laske".</li>
   <li>Uusi vaalitulos näkyy <%= link_to "vaalitulossivulla", manage_results_path %>.</li>
-  <li>Äänestysalueen voi ottaa laskentaan vasta, kun se on merkitty syötetyksi.</li>
+  <li>Äänestysalueen voi ottaa laskentaan vasta, kun äänestysalueen pj on merkinnyt sen syötetyksi.</li>
   <li>Äänten laskeminen tapahtuu taustalla, ja laskenta kestää 1-5 minuuttia.</li>
 </ul>
 
@@ -15,10 +21,12 @@
 <ul>
   <li>Kun hyväksyttyjen äänten yhteislukumäärä on selvillä,
     <br>
-    <%= link_to "aseta lopulliset ääni- ja äänestäjämäärät asetussivulle", edit_manage_configuration_path %>
+    <%= link_to "aseta äänimäärä asetussivulle", edit_manage_configuration_path %>
        ennen viimeisen äänestysalueen ottamista mukaan laskentaan.
        <br />
        Tällöin ääntenlaskentaprosentti on lopuksi tasan 100 %.</li>
+  <li>Hyväksyttyjen äänten lukumäärä näkyy äänestysaluetaulukon alimmalla rivillä.</li>
+  <li>Jos unohdat lisätä lopullisen hyväksyttyjen äänten lukumäärän, vaalivalvojaisissa tulee kettuilua 99,2% tai 101,5% -ääntenlaskentaprosentista. </li>
 </ul>
 
 <%= form_tag showdown_listings_path, :method => :post, :class => "showdown" do -%>

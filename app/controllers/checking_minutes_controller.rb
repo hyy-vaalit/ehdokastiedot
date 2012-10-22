@@ -11,7 +11,7 @@ class CheckingMinutesController < ApplicationController
   before_filter :check_if_ready, :except => [:fixes, :summary, :ready]
 
   def index
-    @voting_areas = VotingArea.all
+    @voting_areas = VotingArea.by_code
   end
 
   def show
@@ -28,18 +28,18 @@ class CheckingMinutesController < ApplicationController
 
     flash[:invalid_candidate_numbers] = @voting_area.errors[:invalid_candidate_numbers] if @voting_area.errors[:invalid_candidate_numbers]
 
-    redirect_to edit_checking_minute_path(@voting_area.id, :anchor => 'vote_fix_form'), :notice => "Tarkastuslaskenta on merkitty valmiiksi."
+    redirect_to edit_checking_minute_path(@voting_area.id, :anchor => 'vote_fix_form'), :notice => "Korjatut äänimäärät talletettu."
   end
 
   # FIXME: Brainfuck. fixes vs. summary
   def fixes
-    @voting_areas = VotingArea.all
+    @voting_areas = VotingArea.by_code
   end
 
   # FIXME: Brainfuck. fixes vs. summary
   def summary
     authorize! :manage, VotingArea
-    @voting_areas = VotingArea.all
+    @voting_areas = VotingArea.by_code
     render :fixes
   end
 

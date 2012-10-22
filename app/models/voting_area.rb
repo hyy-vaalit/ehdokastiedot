@@ -16,6 +16,7 @@ class VotingArea < ActiveRecord::Base
 
   scope :countable, where('ready = ?', true)
   scope :markable_as_ready, where('submitted = ?', true)
+  scope :by_code, order(:code)
 
   def self.for_showdown
     order('ready desc, submitted desc, id asc')
