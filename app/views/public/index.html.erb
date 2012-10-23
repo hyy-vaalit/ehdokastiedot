@@ -1,4 +1,20 @@
 
 <h1>Tervetuloa HYYn vaalijärjestelmään!</h1>
 
-<%= render :partial => "advocates/info" %>
+<% if GlobalConfiguration.candidate_data_frozen? %>
+
+  <p>
+    Vaalitulos julkaistaan osoitteessa <%= link_to Vaalit::Results::RESULT_ADDRESS, Vaalit::Results::RESULT_ADDRESS %>.
+  </p>
+
+
+  <h2>Ehdokastiedot</h2>
+  <p>
+    Ehdokastiedot on jäädytetty eikä niihin voi enää tehdä muutoksia. Jos olet vaaliliiton asiamies, voit kuitenkin tarkistaa ehdokastietosi alla olevasta linkistä.
+  </p>
+  <p>
+      &raquo; <%= link_to "Asiamiesten sisäänkirjautuminen", advocates_alliances_path %>
+  </p>
+<% else %>
+  <%= render :partial => "advocates/info" %>
+<% end %>
