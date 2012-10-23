@@ -9,6 +9,9 @@ Vaalit::Application.routes.draw do
   root :to => "public#index"
   get "/advocates", :to => "public#index", :as => :advocate_index
 
+  # Redirect vaalit.hyy.fi/2012 --> vaalitulos.hyy.fi/2012
+  match "/#{Time.now.year}" => redirect("#{Vaalit::Results::RESULT_ADDRESS}/#{Time.now.year}"), :as => :external_public_result
+
   namespace :advocates do
     get :index, :as => :advocates
     resources :alliances do
