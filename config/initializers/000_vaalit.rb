@@ -16,7 +16,6 @@ module Vaalit
   module Results
     S3_BUCKET_NAME  = ENV['S3_BUCKET_NAME'] || "hyy-koe"
     S3_BASE_URL     = ENV['S3_BASE_URL'] || "s3.amazonaws.com"
-    S3_BUCKET_URL   = "http://#{S3_BASE_URL}/#{S3_BUCKET_NAME}"
 
     RESULT_ADDRESS  = ENV['RESULT_ADDRESS'] || "http://vaalitulos.hyy.fi"
     PUBLIC_FILENAME = "index.html"
