@@ -4,6 +4,7 @@ gem 'rails', '3.0.15'       # deprecation warnings for Rails 3.1
 gem 'delayed_job', '~> 2.1' # incompatible with 3.x
 gem 'formtastic', '~> 2.1'  # deprecation warnings
 gem 'draper', '0.7.3'       # draper 0.12.x doesn't work with Rails 3.0
+gem 'json_builder'
 
 gem 'activeadmin'
 gem 'ranked-model'

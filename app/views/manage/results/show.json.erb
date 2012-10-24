@@ -1,0 +1,12 @@
+<%# Hack.. Wasn't able to render a view without a controller.
+  #
+  # Same kind of rendering, which is used with result.html, did not work.
+  # Tried using 'av.extend JSONBuilder' etc, but did not get it working.
+  # I did not want to include view data in a decorator and wanted to have
+  # the same json template available to controllers, so manually running
+  # JSONBUilder from an ERB template was the "cleanest" solution I came up with.
+  # -- pre 24.10.2012
+  #%>
+<%= raw(JSONBuilder::Compiler.generate do
+  toimiiko result.freezed?
+end) %>

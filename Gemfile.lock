@@ -120,6 +120,9 @@ GEM
       railties (~> 3.0)
       thor (~> 0.14)
     json (1.7.3)
+    json_builder (3.1.7)
+      activesupport (>= 2.0.0)
+      json
     kaminari (0.13.0)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
@@ -258,6 +261,7 @@ DEPENDENCIES
   guard-rspec
   hoptoad_notifier
   jquery-rails
+  json_builder
   pg
   rails (= 3.0.15)
   ranked-model

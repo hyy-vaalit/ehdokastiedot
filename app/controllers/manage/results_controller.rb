@@ -1,5 +1,6 @@
 # coding: UTF-8
 class Manage::ResultsController < ManageController
+  respond_to :json
 
   def index
     @results = Result.for_listing
@@ -13,6 +14,7 @@ class Manage::ResultsController < ManageController
     @result = ResultDecorator.find(params[:id])
 
     respond_to do |format|
+      format.json { render :locals => {:result => @result} }
       format.html { render :partial => "result", :locals => { :result_decorator => @result} }
     end
   end
