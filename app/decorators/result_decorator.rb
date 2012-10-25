@@ -93,7 +93,6 @@ class ResultDecorator < ApplicationDecorator
     # Rails.configuration.paths.app.views.first
     # ActionController::Base.view_paths
     av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
-    @result = self
     output = av.render :template => "manage/results/show.json", :locals => {:result => self}
   end
 

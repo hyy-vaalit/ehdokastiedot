@@ -8,5 +8,30 @@
   # -- pre 24.10.2012
   #%>
 <%= raw(JSONBuilder::Compiler.generate do
-  toimiiko result.freezed?
+  name "Äänimäärät"
+
+  children do
+    array ['HYAL', 'Osak'] do |coalition|
+      name coalition
+      seats 15
+
+      children do
+        array ['Viikki', 'Kumpula'] do |alliance|
+          name alliance
+          seats 3
+
+          children do
+            array ['Seppo Kumpula', 'Jani Aleksi', 'Kori Karinen'] do |candidate|
+              name candidate
+              value 123
+              seats 1
+            end
+          end
+
+        end
+      end
+
+    end
+  end
+
 end) %>
