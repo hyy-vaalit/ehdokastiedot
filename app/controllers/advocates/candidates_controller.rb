@@ -1,4 +1,5 @@
-# encoding: utf-8
+# coding: utf-8
+
 class Advocates::CandidatesController < AdvocatesController
   respond_to :html, :json, :only => :update
 

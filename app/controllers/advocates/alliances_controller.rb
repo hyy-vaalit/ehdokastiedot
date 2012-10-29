@@ -1,4 +1,5 @@
-# encoding: utf-8
+# coding: utf-8
+
 class Advocates::AlliancesController < AdvocatesController
 
   before_filter :find_alliance, :only => [:show, :edit, :update]
