@@ -40,7 +40,7 @@ class ResultPublisher < ApplicationDecorator
 
   def store_to_s3!
     Rails.logger.info "Rendering result output"
-    result_content = ResultDecorator.new(self).rendered_output
+    result_content = ResultDecorator.new(self).to_html
 
     store_s3_object("#{directory}/#{better_filename}", result_content)
   end

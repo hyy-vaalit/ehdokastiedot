@@ -82,7 +82,7 @@ class ResultDecorator < ApplicationDecorator
     "#{Vaalit::Results::PUBLIC_RESULT_URL}/#{filename}"
   end
 
-  def rendered_output
+  def to_html
     # DEPRECATION WARNING: config.view_path is deprecated, please do paths.app.views instead.
     av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
     output = av.render :partial => "manage/results/result.html.erb", :locals => {:result_decorator => self}
