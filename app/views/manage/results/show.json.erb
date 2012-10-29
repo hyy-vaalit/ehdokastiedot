@@ -26,7 +26,7 @@
               name candidate_result.candidate_name
               value candidate_result.vote_sum.to_i
               seats candidate_result.elected? ? 1 : 0
-              classify "candidate #{candidate_result.elected? ? 'elected' : 'not_elected'}"
+              classify "candidate #{candidate_result.elected? ? 'elected' : 'not-elected'}"
             end
           end
 

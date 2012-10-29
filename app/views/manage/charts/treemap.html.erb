@@ -8,20 +8,29 @@
   #chart {
     width: 1024px;
     height: 500px;
-    /*background: #1D4066; tummempi */
-/*    background: #10314E; vaaleampi */
     background: white;
     overflow: hidden;
   }
 
+  g.candidate.not-elected {
+    font-size: 80%;
+  }
+
+  g.candidate.elected {
+    font-weight: bold;
+    font-size: 90%;
+  }
+    g.candidate.not-elected rect {
+      fill: #ddd;
+    }
+
   text {
     pointer-events: none;
-    /*fill: #F2F1ED;*/
   }
 
     .grandparent text {
       font-weight: bold;
-      fill: #222;
+      fill: white;
     }
 
   rect {
@@ -37,8 +46,7 @@
     }
 
     .grandparent rect {
-      fill: #D3D3D3;
-      /*fill: #1D4066;*/
+      fill: #1D4066;
     }
 
     .children rect.parent,
@@ -50,12 +58,12 @@
       pointer-events: all;
     }
 
-    .children:hover rect.child,
+    .children:hover rect.child {
+      fill: #eee;
+    }
     .grandparent:hover rect {
-      /*fill: #efeff5;*/
-      fill: #eeeeee;
-/*      fill: #1D4066;
-*/    }
+      fill: #10314E;
+    }
 
 </style>
 
@@ -66,16 +74,21 @@
 
 <h1>HYYn edustajistopaikkojen jakautuminen</h1>
 
+<p>
+  <aside>
+    Klikkaa solua zoomataksesi sisään; klikkaa otsikkoa zoomataksesi ulos.
+  </aside>
+</p>
+
 <p id="chart">
 
-<aside>Click any cell to zoom in; click the topmost label to zoom out.</aside>
 
 
 
 <script src="/javascripts/d3.v2.min.js"></script>
 <script>
 
-var margin = {top: 20, right: 0, bottom: 0, left: 0},
+var margin = {top: 50, right: 0, bottom: 0, left: 0},
     width = 1024,
     height = 500 - margin.top - margin.bottom,
     formatNumber = d3.format("d"),
@@ -114,8 +127,8 @@ grandparent.append("rect")
 
 grandparent.append("text")
     .attr("x", 6)
-    .attr("y", 6 - margin.top)
-    .attr("dy", ".75em");
+    .attr("y", -0.4 * margin.top)
+    .attr("dy", "0");
 
 <%# TODO %>
 d3.json("/manage/results/7.json", function(root) {
@@ -161,9 +174,8 @@ d3.json("/manage/results/7.json", function(root) {
     }
   }
 
-  function seatCountLabel(labelText) {
-    console.log(labelText)
-    return labelText != undefined ? "(" + labelText +")" : ""
+  function seatCountLabel(seatCount) {
+    return (seatCount > 0) ? "(" + seatCount +")" : ""
   }
 
   function display(d) {
@@ -179,7 +191,8 @@ d3.json("/manage/results/7.json", function(root) {
 
     var g = g1.selectAll("g")
         .data(d.children)
-      .enter().append("g");
+      .enter().append("g")
+        .attr("class", function(d) { return d.classify; });
 
     g.filter(function(d) { return d.children; })
         .classed("children", true)
@@ -195,9 +208,8 @@ d3.json("/manage/results/7.json", function(root) {
         .attr("class", "parent")
         .call(rect)
       .append("title")
-        .text(function(d) { return d.name + " " + formatNumber(d.value); });
+        .text(function(d) { return d.name + ": " + formatNumber(d.value); });
 
-        console.log(seatCountLabel(d.seats))
     g.append("text")
         .attr("dy", ".75em")
         .text(function(d) { return d.name +" "+ seatCountLabel(d.seats); })
