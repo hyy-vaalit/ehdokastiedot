@@ -11,20 +11,22 @@
   name "Äänimäärät"
 
   children do
-    array ['HYAL', 'Osak'] do |coalition|
-      name coalition
-      seats 15
+    array result.coalition_results.by_vote_sum do |cr|
+      name cr.electoral_coalition.shorten
+      seats result.elected_candidates_in_coalition(cr).count
+      value cr.vote_sum_cache
 
       children do
-        array ['Viikki', 'Kumpula'] do |alliance|
-          name alliance
-          seats 3
+        array result.alliance_results_of(cr) do |ar|
+          name ar.electoral_alliance.shorten
+          seats result.elected_candidates_in_alliance(ar).count
 
           children do
-            array ['Seppo Kumpula', 'Jani Aleksi', 'Kori Karinen'] do |candidate|
-              name candidate
-              value 123
-              seats 1
+            array result.candidate_results_of(ar) do |candidate_result|
+              name candidate_result.candidate_name
+              value candidate_result.vote_sum.to_i
+              seats candidate_result.elected? ? 1 : 0
+              classify "candidate #{candidate_result.elected? ? 'elected' : 'not_elected'}"
             end
           end
 

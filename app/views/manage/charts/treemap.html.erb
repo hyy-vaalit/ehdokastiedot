@@ -6,11 +6,12 @@
 <style>
 
   #chart {
-    width: 960px;
+    width: 1024px;
     height: 500px;
     /*background: #1D4066; tummempi */
 /*    background: #10314E; vaaleampi */
     background: white;
+    overflow: hidden;
   }
 
   text {
@@ -75,9 +76,9 @@
 <script>
 
 var margin = {top: 20, right: 0, bottom: 0, left: 0},
-    width = 960,
+    width = 1024,
     height = 500 - margin.top - margin.bottom,
-    formatNumber = d3.format(",d"),
+    formatNumber = d3.format("d"),
     transitioning;
 
 var x = d3.scale.linear()
@@ -194,7 +195,7 @@ d3.json("/manage/results/7.json", function(root) {
         .attr("class", "parent")
         .call(rect)
       .append("title")
-        .text(function(d) { return formatNumber(d.value); });
+        .text(function(d) { return d.name + " " + formatNumber(d.value); });
 
         console.log(seatCountLabel(d.seats))
     g.append("text")
@@ -207,14 +208,14 @@ d3.json("/manage/results/7.json", function(root) {
         .text(function(d) { return "Ääniä: "+ d.value; })
         .call(text);
 
-    g.append("text")
-        .attr("dy", "2.75em")
-        .text(function(d) {
-          return d.seats
-                 ? "Paikkoja: "+ d.seats
-                 : "";
-        })
-        .call(text);
+    // g.append("text")
+    //     .attr("dy", "2.75em")
+    //     .text(function(d) {
+    //       return d.seats
+    //              ? "Paikkoja: "+ d.seats
+    //              : "";
+    //     })
+    //     .call(text);
 
     function transition(d) {
       if (transitioning || !d) return;
