@@ -18,7 +18,6 @@ module Vaalit
     S3_BASE_URL     = ENV['S3_BASE_URL'] || "s3.amazonaws.com"
 
     RESULT_ADDRESS  = ENV['RESULT_ADDRESS'] || "http://vaalitulos.hyy.fi"
-    PUBLIC_FILENAME = "index.html"
     DIRECTORY       = Time.now.year
     PUBLIC_RESULT_URL = "#{RESULT_ADDRESS}/#{DIRECTORY}"
 

@@ -3,8 +3,9 @@
 # set status to pending
 # create aws s3 job
 # job calls actual publish method:
-#   - uploads to s3
-#   - sets published=true
+#   - uploads Result#to_html to s3
+#   - uploads Result#to_json to s3
+#   - sets published=true if result is made "public" (ie. index.html or index.json), otherwise uses unique filename
 class ResultPublisher < ApplicationDecorator
   decorates :result
 
@@ -40,15 +41,16 @@ class ResultPublisher < ApplicationDecorator
 
   def store_to_s3!
     Rails.logger.info "Rendering result output"
-    result_content = ResultDecorator.new(self).to_html
+    result = ResultDecorator.new(self)
 
-    store_s3_object("#{directory}/#{better_filename}", result_content)
+    store_s3_object("#{directory}/#{better_filename(".html")}", result.to_html)
+    store_s3_object("#{directory}/#{better_filename(".json")}", result.to_json)
   end
 
-  private
+  #private
 
-  def better_filename
-    self.published? ? public_filename : unique_filename
+  def better_filename(suffix)
+    self.published? ? public_filename(suffix) : unique_filename(suffix)
   end
 
   def directory
@@ -59,12 +61,12 @@ class ResultPublisher < ApplicationDecorator
     Vaalit::Results::S3_BUCKET_NAME
   end
 
-  def public_filename
-    Vaalit::Results::PUBLIC_FILENAME
+  def public_filename(suffix)
+    "index#{suffix}"
   end
 
-  def unique_filename
-    self.filename
+  def unique_filename(suffix)
+    self.filename(suffix)
   end
 
   # AWS connection is established only in production mode
@@ -73,7 +75,7 @@ class ResultPublisher < ApplicationDecorator
       Rails.logger.info "Storing result contents to S3, bucket: '#{bucket_name}', filepath: '#{filepath}'"
       AWS::S3::S3Object.store(filepath, contents, bucket_name, :content_type => 'text/html; charset=utf-8')
     else
-      Rails.logger.info "Not storing result to S3 because were are in development environment."
+      Rails.logger.info "Not storing result ('#{filepath}') to S3 because were are in development environment."
     end
   end
 
