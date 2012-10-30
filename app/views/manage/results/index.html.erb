@@ -54,8 +54,32 @@ Julkinen vaalitulos: <%= link_to Vaalit::Results::PUBLIC_RESULT_URL, Vaalit::Res
       <% end %>
     </td>
 
-    <td><%= link_to result_decorator.filename, result_decorator.result_file_url,  :target => "_blank" %></td>
-    <td><%= link_to "Puukartta", manage_result_charts_path(result, :type => :treemap), :target => "_blank" %> </td>
+    <td>
+      <%= link_to result_decorator.filename, result_decorator.result_file_url,  :target => "_blank" %>
+      <% if Rails.env.development? %>
+        <h4>DEVAUSLINKIT:</h4>
+        <ul>
+          <li>Tulos:
+              <%= link_to "(html)", manage_result_path(result), :target => "_blank" %>
+              |
+              <%= link_to "(json)", manage_result_path(result, :format=>:json), :target => "_blank" %>
+          </li>
+          <li>
+            <%= link_to "Puukartta",
+                        manage_result_charts_path(result,
+                                                  :type => :treemap,
+                                                  :json=>manage_result_path(result, :format=>:json)),
+                        :target => "_blank" %>
+          </li>
+        </ul>
+      <% end %>
+    </td>
+
+    <td>
+      <%= link_to "Puukartta",
+                  chart_address(result, :treemap),
+                  :target => "_blank" %>
+    </td>
     <td><%= link_to "Paikat ryhmittäin",        manage_result_charts_path(result, :type => :coalition_pie),  :target => "_blank" %></td>
     <td><%= link_to "Paikat liitoittain",       manage_result_charts_path(result, :type => :alliance_bars),  :target => "_blank" %></td>
     <td><%= link_to "Äänestetyimmät ehdokkaat", manage_result_charts_path(result, :type => :candidate_bars), :target => "_blank" %></td>
