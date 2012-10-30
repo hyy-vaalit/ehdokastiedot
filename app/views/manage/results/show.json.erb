@@ -21,6 +21,7 @@
         array result.alliance_results_of(cr) do |ar|
           name ar.electoral_alliance.shorten
           seats result.elected_candidates_in_alliance(ar).count
+          value ar.vote_sum_cache
           role "alliance"
 
           children do
