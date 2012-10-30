@@ -6,21 +6,18 @@
     var data = new google.visualization.DataTable();
 
     data.addRows(1);
+    data.addColumn('string');
+    data.setValue(0,0,'Paikkoja');
 
-    <% index_displayed_alliances = 0 %>
-    <% result.alliance_results.by_vote_sum.each do |alliance_result| -%>
-      <% elected_count = result.elected_candidates_in_alliance(alliance_result).count -%>
-
-      <% if elected_count > 0 -%>
+    <% result.alliance_results.by_vote_sum.each_with_index do |alliance_result, i| -%>
         data.addColumn('number', '<%= alliance_result.electoral_alliance.shorten -%>');
-        data.setValue(0, <%= index_displayed_alliances -%>, <%= elected_count -%>);
-        <% index_displayed_alliances = index_displayed_alliances + 1 %>
-      <% end -%>
+        data.setValue(0,
+                      <%= i+1 -%>,
+                      <%= result.elected_candidates_in_alliance(alliance_result).count -%>);
     <% end %>
 
-    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-    chart.draw(data, {width: 800, height: 600, title: 'Liittokohtaiset paikkamäärät',
-                      'backgroundColor':'transparent',
+    var options = {width: 960, height: 600, title: 'Liittokohtaiset paikkamäärät',
+                      backgroundColor:'transparent',
                       axisTitlesPosition: 'in',
                       titlePosition: 'in',
                       hAxis: {title: 'Tilanne <%= result.formatted_timestamp(:created_at) -%>',
@@ -28,7 +25,11 @@
                               showTextEvery: 1,
                               textPosition: 'in'},
                       vAxis: {textPosition: 'in'}
-                     });
+                     };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+    chart.draw(data, options);
   }
 </script>
 

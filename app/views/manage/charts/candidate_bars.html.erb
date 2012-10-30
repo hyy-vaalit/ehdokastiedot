@@ -6,14 +6,16 @@
     var data = new google.visualization.DataTable();
 
     data.addRows(1);
-    <% result.candidate_results.most_voted.each_with_index do |candidate_result, index| -%>
+    data.addColumn('string');
+    data.setValue(0,0,'Ääniä');
+
+    <% result.candidate_results.most_voted.each_with_index do |candidate_result, i| -%>
         data.addColumn('number', '<%= candidate_result.candidate.candidate_name -%> [<%= candidate_result.candidate.electoral_alliance.shorten %>]');
-        data.setValue(0, <%= index -%>, <%= candidate_result.vote_sum_cache -%>);
+        data.setValue(0, <%= i+1 -%>, <%= candidate_result.vote_sum_cache -%>);
     <% end %>
 
-    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
-    chart.draw(data, {width: 800, height: 600, title: 'Äänestetyimmät ehdokkaat (top 10)',
-                     'backgroundColor':'transparent',
+    var options = {width: 960, height: 600, title: 'Äänestetyimmät ehdokkaat (top 10)',
+                      backgroundColor:'transparent',
                       axisTitlesPosition: 'in',
                       titlePosition: 'in',
                       hAxis: {title: 'Tilanne <%= result.formatted_timestamp(:created_at) -%>',
@@ -21,7 +23,11 @@
                               showTextEvery: 1,
                               textPosition: 'in'},
                       vAxis: {textPosition: 'in'}
-                     });
+                     };
+
+    var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+    chart.draw(data, options);
   }
 </script>
 
