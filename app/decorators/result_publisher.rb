@@ -62,7 +62,7 @@ class ResultPublisher < ApplicationDecorator
   end
 
   def public_filename(suffix)
-    "index#{suffix}"
+    "result#{suffix}"
   end
 
   def unique_filename(suffix)
