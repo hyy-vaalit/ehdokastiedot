@@ -64,13 +64,6 @@ Julkinen vaalitulos: <%= link_to Vaalit::Results::PUBLIC_RESULT_URL, Vaalit::Res
               |
               <%= link_to "(json)", manage_result_path(result, :format=>:json), :target => "_blank" %>
           </li>
-          <li>
-            <%= link_to "Puukartta",
-                        manage_result_charts_path(result,
-                                                  :type => :treemap,
-                                                  :json=>manage_result_path(result, :format=>:json)),
-                        :target => "_blank" %>
-          </li>
         </ul>
       <% end %>
     </td>

@@ -12,9 +12,6 @@ Vaalit::Application.routes.draw do
   # Redirect vaalit.hyy.fi/2012 --> vaalitulos.hyy.fi/2012
   match "/#{Time.now.year}" => redirect("#{Vaalit::Results::RESULT_ADDRESS}/#{Time.now.year}"), :as => :external_public_result
 
-  # Ok, sorry for this..
-  match "/js/vendor/d3.v2.10.3.min.js" => redirect("/javascripts/d3.v2.min.js")
-
   namespace :advocates do
     get :index, :as => :advocates
     resources :alliances do
