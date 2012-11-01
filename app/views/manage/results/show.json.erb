@@ -8,7 +8,9 @@
   # -- pre 24.10.2012
   #%>
 <%= raw(JSONBuilder::Compiler.generate do
-  name "Äänimäärät"
+  name "Vaalitulos"
+  year Time.now.year
+  created_at result.created_at.localtime
 
   children do
     array result.coalition_results.by_vote_sum do |cr|
