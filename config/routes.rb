@@ -34,8 +34,8 @@ Vaalit::Application.routes.draw do
 
     resources :results, :only => [:index, :show] do
       put :publish
-
-      match 'charts/:type' => 'charts#show', :as => :charts
+      match 'json/:target' => 'results#json', :as => :result_json
+      match 'charts/:type' => 'charts#show',  :as => :charts
     end
   end
 

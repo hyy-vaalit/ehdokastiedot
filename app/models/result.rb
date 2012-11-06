@@ -114,10 +114,10 @@ class Result < ActiveRecord::Base
     end
   end
 
-  def filename(suffix = ".html")
+  def filename(suffix = ".html", prefix = "tulos")
     final_text = self.final? ? "lopullinen" : "alustava"
 
-    "tulos-#{final_text}-#{created_at.localtime.to_s(:number)}#{suffix}"
+    "#{prefix}-#{final_text}-#{created_at.localtime.to_s(:number)}#{suffix}"
   end
 
   def candidates_in_election_order

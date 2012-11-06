@@ -96,6 +96,12 @@ class ResultDecorator < ApplicationDecorator
     output = av.render :template => "manage/results/show.json", :locals => {:result => self}
   end
 
+  # TODO: Refactor common parts to eg. #to_json(:candidates)
+  def to_json_candidates
+    av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
+    output = av.render :template => "manage/results/candidates.json", :locals => {:result => self}
+  end
+
   # EHDOKKAAT___________________________NUM_LIITTO__ÄÄNET___LVERT________RVERT_____
   # 1* Sukunimi, Etunimi 'Lempinimi.... 788 Humani   55    696.00000   2901.00000
   def candidate_result_line(candidate, index)

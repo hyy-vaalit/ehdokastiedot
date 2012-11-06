@@ -19,6 +19,14 @@ class Manage::ResultsController < ManageController
     end
   end
 
+  def json
+    @result = ResultDecorator.find(params[:result_id])
+
+    respond_to do |format|
+      format.json { render params[:target], :locals => {:result => @result} }
+    end
+  end
+
   def publish
     result_publisher = ResultPublisher.find(params[:result_id])
 
