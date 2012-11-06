@@ -16,11 +16,15 @@ class ListingsController < ApplicationController
   end
 
   def showdown_post
-    params[:mark_ready].each do |voting_area_id|
-      VotingArea.find(voting_area_id).ready!
+    # REFACTOR: Controller is wrong place for this
+    VotingArea.transaction do
+      params[:mark_ready].each do |voting_area_id|
+        VotingArea.find(voting_area_id).ready!
+      end
+
+      Delayed::Job.enqueue(CreateResultJob.new)
     end
 
-    Delayed::Job.enqueue(CreateResultJob.new)
     flash[:notice] = "Äänestysalue otettu laskentaan."
     redirect_to showdown_listings_path
   end
