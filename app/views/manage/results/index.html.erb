@@ -77,9 +77,15 @@ Julkinen vaalitulos: <%= link_to Vaalit::Results::PUBLIC_RESULT_URL, Vaalit::Res
                   chart_address(result, :treemap),
                   :target => "_blank" %>
     </td>
-    <td><%= link_to "Paikat ryhmittäin",        manage_result_charts_path(result, :type => :coalition_pie),  :target => "_blank" %></td>
-    <td><%= link_to "Paikat liitoittain",       manage_result_charts_path(result, :type => :alliance_bars),  :target => "_blank" %></td>
-    <td><%= link_to "Äänestetyimmät ehdokkaat", manage_result_charts_path(result, :type => :candidate_bars), :target => "_blank" %></td>
+    <td><%= link_to "Paikat ryhmittäin",
+                    chart_address(result, :coalitions),
+                    :target => "_blank" %></td>
+    <td><%= link_to "Paikat liitoittain",
+                    chart_address(result, :alliances),
+                    :target => "_blank" %></td>
+    <td><%= link_to "Äänestetyimmät ehdokkaat",
+                    chart_address(result, :candidates),
+                    :target => "_blank" %></td>
   </tr>
 
 <% end %>
