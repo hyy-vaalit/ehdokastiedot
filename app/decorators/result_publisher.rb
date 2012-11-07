@@ -50,7 +50,7 @@ class ResultPublisher < ApplicationDecorator
 
   private
 
-  def better_filename(suffix, name = "tulos")
+  def better_filename(suffix, name = "result")
     self.published? ? public_filename(suffix, name) : unique_filename(suffix, name)
   end
 

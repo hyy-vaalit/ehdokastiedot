@@ -114,7 +114,7 @@ class Result < ActiveRecord::Base
     end
   end
 
-  def filename(suffix = ".html", prefix = "tulos")
+  def filename(suffix = ".html", prefix = "result")
     final_text = self.final? ? "lopullinen" : "alustava"
 
     "#{prefix}-#{final_text}-#{created_at.localtime.to_s(:number)}#{suffix}"
