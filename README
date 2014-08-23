@@ -68,9 +68,10 @@ Addons:
 * PG database plan, jossa rajat ei ota vastaan (viimeistään päivää ennen ääntenlaskentaa)
   https://devcenter.heroku.com/articles/migrating-from-a-dev-to-a-basic-database
 
-
 Worker:
 $ heroku ps:scale worker=1 -a APP_NAME
+
+Muuta ennen vaaleja `config/initializers/secret_token.rb`.
 
 
 == Kehitysympäristön pystyttäminen
@@ -100,11 +101,28 @@ Should try e.g. https://github.com/qoobaa/s3 for better S3 integration
 == Heroku
   * Redis to go
     - Lisää Add-on
+    - Tarkista että `config/initializers/redis.rb` on ajantasalla
   * AWS-ympäristömuuttujat
     - Ks. yllä
   * Sendgrid (tuotantoon tarvii maksullisen)
     - ENV["SENDGRID_DOMAIN"]=hyy.fi
 
+== Airbrake
+
+Konfiguroi Airbrake ajonaikaisten virheiden nappaamiseksi sekä stagingiin että tuotantoon.
+
+Tarkista `config/initializers/hoptoad.rb`
+
+
+== Vaalien konfigurointi
+
+Tarkista `config/initializers/000_vaalit.rb`
+
+Aseta päivämäärät
+  * ehdokasasettelun päättymiselle
+  * tietojen korjaamiselle
+  * GlobalConfiguration#candidate_nomination_ends_at
+  * GlobalConfiguration#candidate_data_is_freezed_at
 
 == Esimerkkikäyttäjätunnukset (testi-seed)
 
@@ -120,6 +138,9 @@ Ks. kohta "Salasanat".
 
 
 === Äänestysalueet
+
+http://localhost:3000/voting_area/
+
 Käyttäjätunnus tuotannossa: äänestysalueen tunnus, esimerkiksi:
   EI, EII, .., EIV
   I, II, III, .., XV
@@ -132,12 +153,18 @@ Ks. kohta "Salasanat".
 
 
 === Tarkastuslaskenta
+
+http://localhost:3000/checking_minutes
+
 Käyttäjätunnus: tlkpj
 
 Ks. kohta "Salasanat".
 
 
 === Asiamiesten korjaukset
+
+http://localhost:3000/advocates
+
 Käyttäjätunnukset (kehitysympäristössä):
   asiamies1@example.com (123456-123K)
   asiamies2@example.com (123456-9876)
@@ -145,3 +172,11 @@ Käyttäjätunnukset (kehitysympäristössä):
 Ks. kohta "Salasanat".
 
 
+=== Pekka's Tips
+
+  * Jos CSS ei generoidu, tarkista `config/initializers/sass.rb`
+
+=== Testirundi
+
+  * Merkitse vaaliliitot valmiiksi:
+    - `ElectoralAlliance.all.each { |a| a.freeze! }`
