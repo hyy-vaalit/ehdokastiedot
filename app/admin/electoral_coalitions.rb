@@ -56,8 +56,15 @@ ActiveAdmin.register ElectoralCoalition do
     f.buttons
   end
 
-  sidebar :order_alliances, :only => :show
-  sidebar :order_coalitions, :only => :index
+  sidebar :order_alliances, :only => :show do
+    render :partial => "order_alliances_sidebar",
+           :locals  => { :electoral_coalition => electoral_coalition }
+  end
+
+  sidebar :order_coalitions, :only => :index do
+    render :partial => "order_coalitions_sidebar",
+           :locals  => { :electoral_coalitions => ElectoralCoalition.by_numbering_order }
+  end
 
   action_item :only => :index do
     link_to 'Näytä/piilota hakutoiminnot', '#toggle_filter'
