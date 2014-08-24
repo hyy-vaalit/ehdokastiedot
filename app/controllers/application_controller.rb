@@ -3,6 +3,12 @@ class ApplicationController < ActionController::Base
 
   check_authorization :unless => :devise_controller?
 
+  # TODO: Remove this after upgrading from Rails 3.0.
+  # Required for Ruby 2.0.0 compatibility to overcome
+  # "no implicit conversion of nil into String".
+  # https://app.asana.com/0/15721084867204/15721084867208
+  config.relative_url_root = ""
+
   protected
 
   def current_ability
