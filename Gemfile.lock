@@ -15,7 +15,8 @@ GEM
       rack-mount (~> 0.6.14)
       rack-test (~> 0.5.7)
       tzinfo (~> 0.3.23)
-    activeadmin (0.4.4)
+    activeadmin (0.5.1)
+      arbre (>= 1.0.1)
       bourbon (>= 1.0.0)
       devise (>= 1.1.2)
       fastercsv
@@ -284,7 +285,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
-  activeadmin
+  activeadmin (= 0.5.1)
   aws-s3
   byebug
   cancan

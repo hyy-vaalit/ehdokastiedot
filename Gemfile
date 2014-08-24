@@ -6,7 +6,7 @@ gem 'formtastic', '~> 2.1'  # deprecation warnings
 gem 'draper', '0.7.3'       # draper 0.12.x doesn't work with Rails 3.0
 gem 'json_builder'
 
-gem 'activeadmin'
+gem 'activeadmin', '0.5.1'  # dashboard is removed in 0.6.0
 gem 'ranked-model'
 gem 'cancan'
 
