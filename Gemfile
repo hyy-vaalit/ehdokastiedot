@@ -31,7 +31,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'growl'
   gem 'taps'
-  gem 'byebug'
+  #gem 'byebug'
 end
 
 group :test do
