@@ -16,6 +16,9 @@ ActiveAdmin.setup do |config|
   #
   # config.allow_comments_in = [:admin]
 
+  # == Batch Actions
+  # Enable and disable Batch Actions
+  config.batch_actions = false
 
   # == Controller Filters
   #
