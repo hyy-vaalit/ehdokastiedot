@@ -1,5 +1,4 @@
 require 'csv'
-require 'iconv'
 
 class CandidateDecorator < ApplicationDecorator
   decorates :candidate
@@ -52,7 +51,10 @@ class CandidateDecorator < ApplicationDecorator
     isolatin_attributes = []
 
     csv_attributes.each do |attr|
-      isolatin_attributes << Iconv.conv('ISO-8859-1', 'utf-8', attr.to_s)
+      isolatin_attributes << attr.to_s.encode('ISO-8859-1',
+                                              :invalid => :replace,
+                                              :undef => :replace,
+                                              :replace => "?")
     end
 
     isolatin_attributes

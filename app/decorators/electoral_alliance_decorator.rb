@@ -1,5 +1,4 @@
 require 'csv'
-require 'iconv'
 
 class ElectoralAllianceDecorator < ApplicationDecorator
   decorates :electoral_alliance
