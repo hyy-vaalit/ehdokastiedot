@@ -207,6 +207,7 @@ Pekka's Tips
 ------------
 
   * Jos CSS ei generoidu, tarkista `config/initializers/sass.rb`
+  * Jos Gemeissä ongelmia, päivitä `gem update --system`
 
 
 Testirundi
