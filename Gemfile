@@ -1,4 +1,4 @@
-source 'http://rubygems.org'
+source 'https://rubygems.org'
 
 gem 'rails', '3.0.20'       # deprecation warnings for Rails 3.1
 gem 'delayed_job', '~> 2.1' # incompatible with 3.x
@@ -32,7 +32,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'growl'
   gem 'taps'
-  gem 'ruby-debug19'
+  gem 'byebug'
 end
 
 group :test do
