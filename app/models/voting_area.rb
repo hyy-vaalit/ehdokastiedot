@@ -1,9 +1,17 @@
-# States:
-#  - "ready" when all votes have been filled to the voting area
-#  - "taken" when voting area has been taken in to the voting calculations (FIXME: has been calculated or will be calculated?)
+# Äänestysalueen tilat:
 #
-# Good to know:
-#  - marking a voting area ready does not prevent submitting new votes by the submission form if the form is visible.
+#  - "submitted":
+#        Äänestysalueen kaikki äänet on laskettu
+#        ja äänestysalueen pj on merkinnyt alueen syötetyksi.
+#        Admin voi valita äänestysalueen äänet mukaan seuraavaan tulokseen.
+#  - "ready":
+#        Admin on merkinnyt äänestysalueen otettavaksi mukaan, kun seuraava
+#        (väliaika)tulos lasketaan.
+#
+# Hyvä tietää:
+#  - vasta äänestysalueen merkitseminen valmiiksi (submitted) estää
+#    uusien äänien syöttämisen kyseiselle alueelle.
+#
 class VotingArea < ActiveRecord::Base
 
   has_many :votes
