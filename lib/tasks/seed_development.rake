@@ -153,7 +153,7 @@ namespace :seed do
     task :candidates => :environment do
       Candidate.transaction do
         puts '... Creating candidates ...'
-        csv_contents = CSV.read('doc/vaalit_2009_ehdokkaat.csv')
+        csv_contents = CSV.read('doc/vaalit_2009_ehdokkaat.csv', encoding: "UTF-8")
         csv_contents.shift
         csv_contents.each do |row|
 
@@ -205,7 +205,7 @@ namespace :seed do
       (1..5).to_a.each do |i|
         voting_area = VotingArea.find_by_code "E#{i}"
         puts "... #{voting_area.name}"
-        csv_contents = CSV.read("doc/votes/E#{i}")
+        csv_contents = CSV.read("doc/votes/E#{i}", encoding: "ISO8859-1")
         csv_contents.shift
         csv_contents.each do |row|
           Candidate.find_by_candidate_number(row[0]).votes.create! :voting_area => voting_area, :amount => row[3]
@@ -219,7 +219,7 @@ namespace :seed do
       (1..20).to_a.each do |i|
         voting_area = VotingArea.find_by_code "#{i}"
         puts "... #{voting_area.name}"
-        csv_contents = CSV.read("doc/votes/#{i}")
+        csv_contents = CSV.read("doc/votes/#{i}", encoding: "ISO8859-1")
         csv_contents.shift
         csv_contents.each do |row|
           Candidate.find_by_candidate_number(row[0]).votes.create! :voting_area => voting_area, :amount => row[3]
