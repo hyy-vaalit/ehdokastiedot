@@ -3,28 +3,28 @@ Ehdokastietoja käsitellään seuraavasti:
 <h2>Ennen ehdokasasettelun päättymistä (<%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %>)</h2>
 <ul>
   <li>Vaaliliiton ensisijaiselle asiamiehelle luodaan HYYn toimesta käyttäjätunnus.</li>
-  <li>Ensisijaisella asiamiehellä on ehdokasasettelun päättymispäivään saakka aikaa syöttää vaaliliiton ehdokkaat.</li>
+  <li>Asiamiehen on syötettävä ehdokkaat ehdokasasettelun päättymispäivään mennessä.</li>
   <li>Ehdokasasettelun päättymisen jälkeen uusia tietoja ei voi enää lisätä.</li>
-  <li>Ehdokastiedot <strong>on toimitettava paperilla HYYn keskustoimistoon määräaikaan <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %> mennessä!</strong></li>
+  <li>Ehdokastiedot on toimitettava paperilla HYYn keskustoimistoon määräaikaan <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %> mennessä.</li>
 </ul>
 
 <h2>Ehdokasasettelun päättymisen jälkeen</h2>
 <ul>
-  <li>HYYn vaalityöntekijä liittää vaaliliitot vaalirenkaisiin paperilomakkeiden perusteella.</li>
+  <li>HYYn vaaliorganisaatio liittää vaaliliitot vaalirenkaisiin paperilomakkeiden perusteella.</li>
   <li>HYYn sihteeristö vertaa paperilomakkeiden tietoja järjestelmän tietoihin. Jos tiedoissa on eroavaisuuksia, paperilomakkeen tiedot ovat ensisijaiset.</li>
-  <li>Ehdokkaille lähetetään sähköpostitse ilmoitus ehdokasilmoittautumisen vastaanottamisesta.</li>
+  <li>Ehdokkaille lähetetään sähköpostiviesti ehdokasilmoituksen vastaanottamisesta.</li>
 </ul>
 
 <h2>Ennen ehdokasnumeroiden arpomista</h2>
 <ul>
   <li>Ehdokasasettelun päättymisen jälkeen tietoihin on mahdollista tehdä korjauksia
     <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %> saakka.</li>
-  <li>Korjauksia voi tehdä ainoastaan vaaliliiton ensisijainen asiamies.</li>
+  <li>Korjauksia voi tehdä vaaliliiton ensisijainen asiamies.</li>
   <li>Ehdokkuuden voi perua ainaostaan ehdokas itse ilmoittamalla siitä kirjallisesti HYYn keskustoimistoon.</li>
 </ul>
 
 <p>
-  PS. Voit milloin tahansa kopioida tiedot järjestelmästä itsellesi esim. Exceliin CSV-tiedostomuodossa.
+  PS. Voit milloin tahansa kopioida tiedot järjestelmästä itsellesi Exceliin CSV-tiedostomuodossa.
 </p>
 
 <%= button_to "Asia selvä!", advocates_alliances_path, :class => "btn", :method => "get" %>
