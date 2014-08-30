@@ -1,5 +1,7 @@
 source 'https://rubygems.org'
 
+ruby '1.9.3' # For Heroku
+
 gem 'rails', '3.0.20'       # deprecation warnings for Rails 3.1
 gem 'delayed_job', '~> 2.1' # incompatible with 3.x
 gem 'formtastic', '~> 2.1'  # deprecation warnings
