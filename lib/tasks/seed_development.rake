@@ -58,10 +58,8 @@ namespace :seed do
       Faculty.create! :code => 'V',   :name => 'Valtiotieteellinen'
     end
 
-    desc 'Create electoral coalitions and alliances'
-    task :electoral => :environment do
-
-      # Voting areas
+    desc 'Create Voting Areas'
+    task :voting_areas => :environment do
       VotingArea.create! :code => '1',   :name => 'Unicafe Ylioppilasaukio',    :password => 'pass123'
       VotingArea.create! :code => '2',   :name => 'Yliopiston päärakennus',     :password => 'pass123'
       VotingArea.create! :code => '3',   :name => 'Yliopiston päärakennus',     :password => 'pass123'
@@ -87,8 +85,10 @@ namespace :seed do
       VotingArea.create! :code => 'E3',  :name => 'Physicum',                   :password => 'pass123'
       VotingArea.create! :code => 'E4',  :name => 'Terveystieteiden keskus',    :password => 'pass123'
       VotingArea.create! :code => 'E5',  :name => 'Unicafe',                    :password => 'pass123'
+    end
 
-
+    desc 'Create electoral coalitions and alliances'
+    task :electoral => :environment do
       # Electoral Coalition
       hyal = ElectoralCoalition.create! :name => 'Ainejärjestöjen vaalirengas',                  :shorten => 'HYAL', :numbering_order => "10"
       osak = ElectoralCoalition.create! :name => 'Osakuntien suuri vaalirengas',                 :shorten => 'Osak', :numbering_order => "9"
@@ -237,6 +237,7 @@ namespace :seed do
     Rake::Task['seed:development:faculties'].invoke
     Rake::Task['seed:development:electoral'].invoke
     Rake::Task['seed:development:candidates'].invoke
+    Rake::Task['seed:development:voting_areas'].invoke
     Rake::Task['seed:development:early_voting'].invoke
     Rake::Task['seed:development:main_voting'].invoke
   end
