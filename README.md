@@ -45,15 +45,23 @@ $ rake jobs:work
 Herokuun projekti tarvitsee myös workerin.
 
 
-Tuotantoympäristön pystyttäminen
-================================
+Heroku-ympäristön pystyttäminen
+===============================
 
-Tuotantoympäristö vaatii seuraavat ympäristömuuttujat (heroku config:add):
+Lisää add-onssit:
+  - Postgres
+  - Redis To Go
+  - PG Backups (optio)
+
+Konfiguroi Airbraken access key ja asenna Gem.
+
+Heroku-ympäristö vaatii seuraavat ympäristömuuttujat (heroku config:add):
   - S3_ACCESS_KEY_ID
   - S3_ACCESS_KEY_SECRET
   - S3_BUCKET_NAME
   - RESULT_ADDRESS (http://vaalitulos.hyy.fi)
   - TZ=Europe/Helsinki (Railsin oma timezone-määritys ei riitä)
+  - ROLLBAR_ACCESS_TOKEN (exceptions, http://rollbar.com)
 
 ~~~
 $ heroku config:add S3_ACCESS_KEY_ID=... S3_ACCESS_KEY_SECRET=... S3_BASE_URL=s3.amazonaws.com --app hyy-vaalit
@@ -130,13 +138,6 @@ Heroku
     - Ks. yllä
   * Sendgrid (tuotantoon tarvii maksullisen)
     - ENV["SENDGRID_DOMAIN"]=hyy.fi
-
-Airbrake
---------
-
-Konfiguroi Airbrake ajonaikaisten virheiden nappaamiseksi sekä stagingiin että tuotantoon.
-
-Tarkista `config/initializers/hoptoad.rb`
 
 
 Vaalien konfigurointi

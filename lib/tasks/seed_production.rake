@@ -49,8 +49,8 @@ namespace :seed do
     desc 'Setup production configuration defaults'
     task :configuration => :environment do
       conf = GlobalConfiguration.new
-      conf.candidate_nomination_ends_at = Time.new(2012, "sep", 24, 12, 00)  # 24.9.2012 klo 12.00 UTC+3
-      conf.candidate_data_is_freezed_at = Time.new(2012, "oct", 4, 12, 00)   # KVL 4.10.2012 klo 12.00 UTC+3
+      conf.candidate_nomination_ends_at = Time.new(2014, "sep", 29, 12, 00)  # 29.9.2014 klo 12.00 UTC+3
+      conf.candidate_data_is_freezed_at = Time.new(2014, "oct", 8, 12, 00)   # KVL 8.10.2012 klo 12.00 UTC+3
       conf.advocate_login_enabled       = false
       conf.save!
 
