@@ -52,6 +52,7 @@ Lisää add-onssit:
   - Postgres
   - Redis To Go
   - PG Backups (optio)
+  - Sendgrid
 
 Konfiguroi Airbraken access key ja asenna Gem.
 
@@ -144,6 +145,8 @@ Vaalien konfigurointi
 =====================
 
 Tarkista `config/initializers/000_vaalit.rb`
+
+Greppaa edellisen vaalityöntekijän nimeä ja muuta se tarvittaessa uudempaan.
 
 Aseta päivämäärät
   * ehdokasasettelun päättymiselle

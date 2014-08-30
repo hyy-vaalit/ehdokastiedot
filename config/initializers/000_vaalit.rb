@@ -5,7 +5,7 @@ module Vaalit
     ADVOCATE_LOGIN_URL  = "#{SITE_ADDRESS}"
     SECRETARY_LOGIN_URL = "#{SITE_ADDRESS}/admin"
     EMAIL_FROM_ADDRESS  = "vaalit@hyy.fi"
-    EMAIL_FROM_NAME     = "Emma Ronkainen"
+    EMAIL_FROM_NAME     = "Silva Loikkanen"
   end
 
   module Voting
