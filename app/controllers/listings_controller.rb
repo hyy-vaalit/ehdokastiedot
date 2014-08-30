@@ -29,10 +29,6 @@ class ListingsController < ApplicationController
     redirect_to showdown_listings_path
   end
 
-  def lulz
-    raise 'hoptoad-test'.inspect
-  end
-
   private
 
   def authorize_listings

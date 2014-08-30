@@ -104,9 +104,6 @@ GEM
     guard-rspec (1.1.0)
       guard (>= 1.1)
     has_scope (0.5.1)
-    hoptoad_notifier (2.4.11)
-      activesupport
-      builder
     i18n (0.5.4)
     inherited_resources (1.3.1)
       has_scope (~> 0.5.0)
@@ -177,6 +174,8 @@ GEM
     responders (0.6.5)
     rest-client (1.6.7)
       mime-types (>= 1.16)
+    rollbar (1.0.0)
+      multi_json (~> 1.3)
     rspec (2.10.0)
       rspec-core (~> 2.10.0)
       rspec-expectations (~> 2.10.0)
@@ -296,13 +295,13 @@ DEPENDENCIES
   formtastic (~> 2.1)
   growl
   guard-rspec
-  hoptoad_notifier
   jquery-rails
   json_builder
   pg
   rails (= 3.0.20)
   ranked-model
   redis
+  rollbar (~> 1.0.0)
   rspec
   rspec-rails
   sass

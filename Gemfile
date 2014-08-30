@@ -15,7 +15,7 @@ gem 'cancan'
 gem "aws-s3", :require => "aws/s3"
 
 gem 'pg'
-gem 'hoptoad_notifier'
+gem 'rollbar', '~> 1.0.0' # Airbrake competitor
 gem 'jquery-rails'
 gem 'sass'
 
