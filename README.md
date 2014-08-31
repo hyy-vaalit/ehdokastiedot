@@ -16,6 +16,15 @@ Vaalien vaiheet
 * Lopullisen vaalituloksen julkaisu.
 
 
+Kustannukset
+============
+
+* SSL Endpoint ($20 / kk)
+* Sertifikaatti ($20 / vuosi)
+* Postgres
+* Sendgrid
+*
+
 Ympäristön pystyttäminen
 ========================
 
@@ -230,6 +239,7 @@ Pekka's Tips
 
   * Jos CSS ei generoidu, tarkista `config/initializers/sass.rb`
   * Jos Gemeissä ongelmia, päivitä `gem update --system`
+  * Jos Gemfile.lock pitää luoda uudelleen ja jää "Resolving dependencies" -luuppiin, kommentoi pois kaikki muut gemit paitsi rails ja lisää ne takaisin ryhmä kerrallaan.
 
 
 Testirundi
