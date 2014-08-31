@@ -62,23 +62,6 @@ Heroku-ympäristö vaatii seuraavat ympäristömuuttujat (heroku config:add):
 $ heroku config:add S3_ACCESS_KEY_ID=... S3_ACCESS_KEY_SECRET=... S3_BASE_URL=s3.amazonaws.com --app hyy-vaalit
 ~~~
 
-AWS-konfiguraatio
------------------
-
-Nämä on tehtävä jokaiseen bucketiin jota käytetään (tuotanto, staging, koe):
-
-Luo vuosiluvulle uusi hakemisto.
-
-AWS IAM sisältää konfiguraation tuotanto, staging ja koe -käyttäjätunnuksille.
-
-Lisää kullekin AWS-käyttäjälle IAM-hallintapaneelista kirjoitusoikeus bucketin vuosilukuhakemistoon (Vaalit::Results::DIRECTORY on esim "2012").
-
-Poista jokaiselta AWS-käyttäjältä kirjoitusoikeus edellisten vaalien hakemistoon.
-Näin vanhat tulokset ovat turvassa.
-
-Testaa AWS-kirjoitusoikeus tuotannossa:
-> AWS::S3::S3Object.store("#{Vaalit::Results::DIRECTORY}/lulz.txt", "Lulz: #{Time.now}", Vaalit::Results::S3_BUCKET_NAME, :content_type => 'text/html; charset=utf-8')
-
 Tuotanto-seed vaatii äänestysalueiden salasanojen syötön ennen `rake production_seed` komennon ajamista.
 Ympäristö, jossa peruskonffit muttei vanhaa vaalidataa:
 ~~~
@@ -104,6 +87,25 @@ $ heroku ps:scale worker=1 -a APP_NAME
 ~~~
 
 Muuta ennen vaaleja `config/initializers/secret_token.rb`.
+
+
+AWS-konfiguraatio
+-----------------
+
+Nämä on tehtävä jokaiseen bucketiin jota käytetään (tuotanto, staging, koe):
+
+Luo vuosiluvulle uusi hakemisto.
+
+AWS IAM sisältää konfiguraation tuotanto, staging ja koe -käyttäjätunnuksille.
+
+Lisää kullekin AWS-käyttäjälle IAM-hallintapaneelista kirjoitusoikeus bucketin vuosilukuhakemistoon (Vaalit::Results::DIRECTORY on esim "2012").
+
+Poista jokaiselta AWS-käyttäjältä kirjoitusoikeus edellisten vaalien hakemistoon.
+Näin vanhat tulokset ovat turvassa.
+
+Testaa AWS-kirjoitusoikeus tuotannossa:
+> AWS::S3::S3Object.store("#{Vaalit::Results::DIRECTORY}/lulz.txt", "Lulz: #{Time.now}", Vaalit::Results::S3_BUCKET_NAME, :content_type => 'text/html; charset=utf-8')
+
 
 
 Kehitysympäristön pystyttäminen
