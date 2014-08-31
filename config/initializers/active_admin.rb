@@ -45,6 +45,6 @@ ActiveAdmin.setup do |config|
   config.register_javascript 'jquery.min.js'
   config.register_javascript 'jquery-ui.min.js'
   config.register_javascript 'jquery.cookie.js'
-  config.register_javascript 'application.js'
+  config.register_javascript 'general.js'
   config.register_javascript 'active_admin_helpers.js'
 end
