@@ -72,6 +72,7 @@ Lisää add-onssit:
 
   * Postgres
   * Redis To Go
+  * Loggly (Logien vastaanottamiseen)
   * Sendgrid Pro (kaikille ehdokkaille lähetetään sähköposti ehdokasasettelun päättymisen jälkeen)
   * Worker sähköpostin lähettäjäksi (disabloi sen jälkeen kun ehdokasasettelun meilit lähetetty)
   * Worker vaalituloksen laskemiseen (enabloi ennen vaalivalojaisia, disabloi seuraavana päivänä)
