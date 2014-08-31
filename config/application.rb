@@ -63,5 +63,30 @@ module Vaalit
 
     # Configure sensitive parameters which will be filtered from the log file.
     config.filter_parameters += [:password]
+
+    # Workaround for Active Admin 0.5.1 bug which causes "Translation missing" errors.
+    # Rails console:
+    #  > I18n.t("active_admin.dashboard")
+    #  => "translation missing: en.active_admin.dashboard"
+    #  > I18n.reload!
+    #  => false
+    #  > I18n.t("active_admin.dashboard")
+    #  => "Dashboard"
+    #
+    # TODO: Remove this if Active Admin is someday updated to >= 0.6.0
+    #       OR if this is no longer needed in Rails 3.2.x
+    # https://github.com/activeadmin/activeadmin/issues/999
+    # https://github.com/jbhannah/active_admin/commit/0f0bd9e6f46b09c1a089c0b580a08f7f250f40af#difffe974f7bed62b0ccd001669c614ea0c3R57
+    #
+    # This does not fix Active Admin's translations in the Rails console.
+    config.after_initialize do |app|
+      if defined?(ActiveAdmin) and ActiveAdmin.application
+        # Try enforce reloading after app bootup
+        Rails.logger.debug("Reloading AA")
+        ActiveAdmin.application.unload!
+        I18n.reload!
+        self.reload_routes!
+      end
+    end
   end
 end
