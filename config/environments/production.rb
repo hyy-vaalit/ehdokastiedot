@@ -15,6 +15,7 @@ Vaalit::Application.configure do
 
   # Precompile additional assets (application.js, application.css, and all non-JS/CSS are already added)
   # config.assets.precompile += %w( search.js )
+  config.assets.precompile += %w( active_admin.css active_admin.js active_admin/print.css )
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
   # config.force_ssl = true
