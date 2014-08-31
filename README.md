@@ -48,19 +48,13 @@ Herokuun projekti tarvitsee myös workerin.
 Heroku-ympäristön pystyttäminen
 ===============================
 
-Lisää add-onssit:
-  - Postgres
-  - Redis To Go
-  - PG Backups (optio)
-  - Sendgrid
-
 Konfiguroi Airbraken access key ja asenna Gem.
 
 Heroku-ympäristö vaatii seuraavat ympäristömuuttujat (heroku config:add):
   - S3_ACCESS_KEY_ID
   - S3_ACCESS_KEY_SECRET
   - S3_BUCKET_NAME
-  - RESULT_ADDRESS (http://vaalitulos.hyy.fi)
+  - RESULT_ADDRESS (http://vaalitulos.hyy.fi; huom! muista http:// alkuun)
   - TZ=Europe/Helsinki (Railsin oma timezone-määritys ei riitä)
   - ROLLBAR_ACCESS_TOKEN (exceptions, http://rollbar.com)
 
@@ -68,7 +62,19 @@ Heroku-ympäristö vaatii seuraavat ympäristömuuttujat (heroku config:add):
 $ heroku config:add S3_ACCESS_KEY_ID=... S3_ACCESS_KEY_SECRET=... S3_BASE_URL=s3.amazonaws.com --app hyy-vaalit
 ~~~
 
-Anna AWS-käyttäjälle IAM-hallintapaneelista kirjoitusoikeus bucketin vuosilukuhakemistoon (Vaalit::Results::DIRECTORY on esim "2012").
+AWS-konfiguraatio
+-----------------
+
+Nämä on tehtävä jokaiseen bucketiin jota käytetään (tuotanto, staging, koe):
+
+Luo vuosiluvulle uusi hakemisto.
+
+AWS IAM sisältää konfiguraation tuotanto, staging ja koe -käyttäjätunnuksille.
+
+Lisää kullekin AWS-käyttäjälle IAM-hallintapaneelista kirjoitusoikeus bucketin vuosilukuhakemistoon (Vaalit::Results::DIRECTORY on esim "2012").
+
+Poista jokaiselta AWS-käyttäjältä kirjoitusoikeus edellisten vaalien hakemistoon.
+Näin vanhat tulokset ovat turvassa.
 
 Testaa AWS-kirjoitusoikeus tuotannossa:
 > AWS::S3::S3Object.store("#{Vaalit::Results::DIRECTORY}/lulz.txt", "Lulz: #{Time.now}", Vaalit::Results::S3_BUCKET_NAME, :content_type => 'text/html; charset=utf-8')
@@ -79,7 +85,10 @@ Ympäristö, jossa peruskonffit muttei vanhaa vaalidataa:
 $ rake seed:production
 ~~~
 
-Addons:
+Lisää add-onssit:
+
+  * Postgres
+  * Redis To Go
   * Sendgrid Pro (kaikille ehdokkaille lähetetään sähköposti ehdokasasettelun päättymisen jälkeen)
   * Worker sähköpostin lähettäjäksi (disabloi sen jälkeen kun ehdokasasettelun meilit lähetetty)
   * Worker vaalituloksen laskemiseen (enabloi ennen vaalivalojaisia, disabloi seuraavana päivänä)
@@ -153,6 +162,12 @@ Aseta päivämäärät
   * tietojen korjaamiselle
   * GlobalConfiguration#candidate_nomination_ends_at
   * GlobalConfiguration#candidate_data_is_freezed_at
+
+Toimita salasanat HYY:lle
+  * äänestysalueet (editoi seed:production)
+  * admin (luo Active Administa, salasana tulee meilitse)
+  * Sendgrid (heroku config)
+
 
 Esimerkkikäyttäjätunnukset (testi-seed)
 =======================================
