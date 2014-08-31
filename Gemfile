@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby '1.9.3' # For Heroku
+ruby '2.0.0' # For Heroku
 
 gem 'rails', '3.0.20'       # deprecation warnings for Rails 3.1
 gem 'delayed_job', '~> 2.1' # incompatible with 3.x
@@ -33,7 +33,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'growl'
   gem 'taps'
-  #gem 'byebug'
+  gem 'byebug'
 end
 
 group :test do
