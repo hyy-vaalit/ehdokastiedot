@@ -42,6 +42,9 @@ ActiveAdmin.setup do |config|
   config.register_stylesheet 'custom_admin.css'
 
   # To load a javascript file:
+  config.register_javascript 'jquery.min.js'
+  config.register_javascript 'jquery-ui.min.js'
   config.register_javascript 'jquery.cookie.js'
   config.register_javascript 'application.js'
+  config.register_javascript 'active_admin_helpers.js'
 end
