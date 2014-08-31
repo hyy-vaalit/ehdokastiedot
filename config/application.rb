@@ -14,6 +14,14 @@ module Vaalit
     # set I18n.enforce_available_locales = false to avoid this message.
     I18n.enforce_available_locales = true
 
+    config.assets.enabled = true
+    config.assets.version = '1.0'
+
+    # If your application is using an "/assets" route for a resource you may
+    # want change the prefix used for assets to avoid conflicts:
+    # Defaults to '/assets'
+    #config.assets.prefix = '/asset-files'
+
     # Settings in config/environments/* take precedence over those specified here.
     # Application configuration should go into files in config/initializers
     # -- all .rb files in that directory are automatically loaded.
