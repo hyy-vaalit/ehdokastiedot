@@ -2,13 +2,14 @@ source 'https://rubygems.org'
 
 ruby '2.0.0' # For Heroku
 
-gem 'rails', '3.0.20'       # deprecation warnings for Rails 3.1
+gem 'rails', '3.1.12'       # deprecation warnings for Rails 3.1
 gem 'delayed_job', '~> 2.1' # incompatible with 3.x
 gem 'formtastic', '~> 2.1'  # deprecation warnings
 gem 'draper', '0.7.3'       # draper 0.12.x doesn't work with Rails 3.0
 gem 'json_builder'
 
 gem 'activeadmin', '0.5.1'  # dashboard is removed in 0.6.0
+gem 'devise', "~> 1.5.3"
 gem 'ranked-model'
 gem 'cancan'
 
