@@ -27,9 +27,11 @@ gem 'ranked-model', "~> 0.0.5"
 gem 'cancan', "~> 1.6.7"
 gem 'json_builder', '~> 3.1.7'
 gem 'devise', "~> 1.5.3"
-gem 'delayed_job', '~> 2.1' # incompatible with 3.x
 gem 'formtastic', '~> 2.1'  # deprecation warnings
 gem 'draper', '0.7.3'       # draper 0.12.x doesn't work with Rails 3.0
+
+gem 'delayed_job', '~> 3.0'
+gem 'delayed_job_active_record'
 
 # gem 'state_machine' # TODO: Ensure this is no longer used
 

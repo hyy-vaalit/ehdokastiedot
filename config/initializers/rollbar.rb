@@ -5,8 +5,8 @@ Rollbar.configure do |config|
 
   config.access_token = "d4d7e14e51cc4f9494b6309a2d29f28a"
 
-  config.delayed_job_enabled = false
-  
+  config.delayed_job_enabled = true
+
   # Here we'll disable in 'test':
   if Rails.env.test?
     config.enabled = false
