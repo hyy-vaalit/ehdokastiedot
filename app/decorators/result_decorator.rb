@@ -83,22 +83,18 @@ class ResultDecorator < ApplicationDecorator
   end
 
   def to_html
-    # DEPRECATION WARNING: config.view_path is deprecated, please do paths.app.views instead.
-    av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
+    av = ApplicationController.view_context_class.new(Rails.configuration.paths['app/views'])
     output = av.render :partial => "manage/results/result.html.erb", :locals => {:result_decorator => self}
   end
 
   def to_json
-    # DEPRECATION WARNING: config.view_path is deprecated, please do paths.app.views instead.
-    # Rails.configuration.paths.app.views.first
-    # ActionController::Base.view_paths
-    av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
+    av = ApplicationController.view_context_class.new(Rails.configuration.paths['app/views'])
     output = av.render :template => "manage/results/show.json", :locals => {:result => self}
   end
 
   # TODO: Refactor common parts to eg. #to_json(:candidates)
   def to_json_candidates
-    av = ApplicationController.view_context_class.new(Rails.configuration.view_path)
+    av = ApplicationController.view_context_class.new(Rails.configuration.paths['app/views'])
     output = av.render :template => "manage/results/candidates.json", :locals => {:result => self}
   end
 
