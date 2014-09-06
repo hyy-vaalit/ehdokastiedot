@@ -38,6 +38,10 @@ Vaalit::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+
+  # Raise exception on mass assignment protection for Active Record models
+  config.active_record.mass_assignment_sanitizer = :strict
+
 end
 
 ENV["REDISTOGO_URL"] = 'redis://localhost:6379'
