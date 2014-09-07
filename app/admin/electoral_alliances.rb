@@ -104,6 +104,9 @@ ActiveAdmin.register ElectoralAlliance do
     link_to 'Merkitse vaaliliitto valmiiksi!', done_admin_electoral_alliance_path if can? :update, electoral_alliance and !ea.secretarial_freeze
   end
 
+  # Rails 3.2
+  # DEPRECATION WARNING: You're trying to create an attribute `electoral_alliance_id'.
+  # Writing arbitrary attributes on a model is deprecated. Please just use `attr_writer` etc.
   member_action :done do
     if ElectoralAlliance.find_by_id(params[:id]).freeze!
       current_admin_user.update_attribute :electoral_alliance, nil
