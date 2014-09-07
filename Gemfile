@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.0.0' # For Heroku
 
-gem 'rails', '3.2.18'       # deprecation warnings for Rails 3.1
+gem 'rails', '3.2.18'
 
 # Needed for the asset pipeline
 group :assets do
