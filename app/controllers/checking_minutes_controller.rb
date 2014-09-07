@@ -52,7 +52,7 @@ class CheckingMinutesController < ApplicationController
 
   def authenticate
     authenticate_or_request_with_http_basic do |username, password|
-      REDIS.get('checking_minutes_username') && REDIS.get('checking_minutes_password') && username == REDIS.get('checking_minutes_username') && password == REDIS.get('checking_minutes_password')
+      CheckingMinutesUser.authenticate username, password
     end
   end
 

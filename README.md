@@ -28,13 +28,6 @@ Kustannukset
 Ympäristön pystyttäminen
 ========================
 
-Projektissa on (väärin)käytössä redis (poistuu kun tlk-pj tunnarit pois redisistä)
-
-~~~
-$ brew install redis
-$ redis-server
-~~~
-
 Kehitysympäristön reset, tietokannan alustus ja seedidatan syöttö:
 ~~~
 $ rake runts
@@ -80,8 +73,7 @@ $ rake seed:production
 Lisää add-onssit:
 
   * Postgres
-  * Redis To Go
-  * Loggly (Logien vastaanottamiseen)
+  * Loggly (Logien vastaanottamiseen, `heroku addons:open loggly`)
   * Sendgrid Pro (kaikille ehdokkaille lähetetään sähköposti ehdokasasettelun päättymisen jälkeen)
   * Worker sähköpostin lähettäjäksi (disabloi sen jälkeen kun ehdokasasettelun meilit lähetetty)
   * Worker vaalituloksen laskemiseen (enabloi ennen vaalivalojaisia, disabloi seuraavana päivänä)
@@ -153,9 +145,6 @@ Should try e.g. https://github.com/qoobaa/s3 for better S3 integration
 Heroku
 ------
 
-  * Redis to go
-    - Lisää Add-on
-    - Tarkista että `config/initializers/redis.rb` on ajantasalla
   * AWS-ympäristömuuttujat
     - Ks. yllä
   * Sendgrid (tuotantoon tarvii maksullisen)

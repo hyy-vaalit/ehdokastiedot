@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140907103909) do
+ActiveRecord::Schema.define(:version => 20140907115827) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -243,6 +243,8 @@ ActiveRecord::Schema.define(:version => 20140907103909) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean  "advocate_login_enabled",       :default => false
+    t.string   "checking_minutes_username",                       :null => false
+    t.string   "checking_minutes_password",                       :null => false
   end
 
   create_table "results", :force => true do |t|

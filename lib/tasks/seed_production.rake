@@ -52,10 +52,9 @@ namespace :seed do
       conf.candidate_nomination_ends_at = Time.new(2014, "sep", 29, 12, 00)  # 29.9.2014 klo 12.00 UTC+3
       conf.candidate_data_is_freezed_at = Time.new(2014, "oct", 8, 12, 00)   # KVL 8.10.2012 klo 12.00 UTC+3
       conf.advocate_login_enabled       = false
+      conf.checking_minutes_username    = 'tlkpj'
+      conf.checking_minutes_password    = 'pass123'
       conf.save!
-
-      REDIS.set 'checking_minutes_username', 'tlkpj'
-      REDIS.set 'checking_minutes_password', 'salainensana'
 
       # Sends password by mail
       AdminUser.create!(:email => 'petrus.repo+vaalit@enemy.fi', :password => 'salainensana', :password_confirmation => 'salainensana', :role => 'admin')
@@ -64,7 +63,6 @@ namespace :seed do
 
   desc 'Seed initial production data (required for deployment!)'
   task :production do
-    Rake::Task['seed:redis:reset_keys'].invoke
     Rake::Task['seed:production:faculties'].invoke
     Rake::Task['seed:production:voting_areas'].invoke
     Rake::Task['seed:production:configuration'].invoke

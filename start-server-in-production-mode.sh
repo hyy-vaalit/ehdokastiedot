@@ -10,7 +10,6 @@ echo "--------------------------------------------------------------------------
 export S3_ACCESS_KEY_ID=123
 export S3_ACCESS_KEY_SECRET=123
 export S3_BUCKET_NAME=http://hyy-koe
-export REDISTOGO_URL=http://example.local
 
 export RAILS_ENV=production
 

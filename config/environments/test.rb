@@ -43,5 +43,3 @@ Vaalit::Application.configure do
   config.active_record.mass_assignment_sanitizer = :strict
 
 end
-
-ENV["REDISTOGO_URL"] = 'redis://localhost:6379'

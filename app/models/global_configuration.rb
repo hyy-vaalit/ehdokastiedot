@@ -46,7 +46,13 @@ class GlobalConfiguration < ActiveRecord::Base
     Time.now > candidate_data_is_freezed_at
   end
 
+  def self.checking_minutes_username
+    return first.checking_minutes_username
+  end
 
+  def self.checking_minutes_password
+    return first.checking_minutes_password
+  end
 
   def candidate_nomination_period_effective?
     Time.now < candidate_nomination_ends_at

@@ -27,16 +27,14 @@ namespace :seed do
       conf = GlobalConfiguration.new(
         :votes_given                  => 10417,
         :votes_accepted               => 10367,
-        :potential_voters_count       => 29563
+        :potential_voters_count       => 29563,
       )
+      conf.checking_minutes_username    = 'tlkpj'
+      conf.checking_minutes_password    = 'pass123'
       conf.candidate_nomination_ends_at = Time.new(2012, "sep", 24, 12, 00)  # 24.9.2012 klo 12.00 UTC+3
       conf.candidate_data_is_freezed_at = Time.new(2012, "oct", 4, 16, 00)   # KVL 4.10.2012 klo 17.00 UTC+3
       conf.advocate_login_enabled       = true
       conf.save!
-
-
-      REDIS.set 'checking_minutes_username', 'tlkpj'
-      REDIS.set 'checking_minutes_password', 'pass123'
 
       AdminUser.create!(:email => 'admin@example.com', :password => 'pass123', :password_confirmation => 'pass123', :role => 'admin')
       AdminUser.create!(:email => 'sihteeri@example.com', :password => 'pass123', :password_confirmation => 'pass123', :role => 'secretary')
@@ -231,7 +229,6 @@ namespace :seed do
 
   desc 'Seed a complete development data set.'
   task :development do
-    Rake::Task['seed:redis:reset_keys'].invoke
     Rake::Task['seed:development:configuration'].invoke
     Rake::Task['seed:development:create_advocates'].invoke
     Rake::Task['seed:development:faculties'].invoke
