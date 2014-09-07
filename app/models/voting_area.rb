@@ -20,6 +20,8 @@ class VotingArea < ActiveRecord::Base
 
   validates_presence_of :password
 
+  validates_uniqueness_of :code
+
   before_create :encrypt_password
 
   scope :countable, where('ready = ?', true)
