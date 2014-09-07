@@ -11,6 +11,8 @@ group :assets do
   gem 'uglifier',     '>= 1.0.3'
 end
 
+gem 'unicorn'
+
 gem 'jquery-rails'
 gem "aws-s3", :require => "aws/s3"
 gem 'pg'

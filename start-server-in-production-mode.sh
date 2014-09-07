@@ -14,4 +14,4 @@ export S3_BUCKET_NAME=http://hyy-koe
 export RAILS_ENV=production
 
 rake assets:precompile
-rails s
+foreman start

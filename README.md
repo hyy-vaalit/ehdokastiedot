@@ -20,10 +20,25 @@ Kustannukset
 ============
 
 * SSL Endpoint ($20 / kk)
-* Sertifikaatti ($20 / vuosi)
+* Sertifikaatti ($49 / vuosi)
 * Postgres
-* Sendgrid
-*
+* Sendgrid ($20 yhdeltä kuukaudelta)
+* Worker
+  - kun ehdokasilmoittautumisen sähköposti
+  - vaalivalvojaiset
+  - arvonnat ja vaalituloksen vahvistaminen
+* Tarvitseeko toisen dynon?
+
+
+Järjestelmä käyntiin
+====================
+
+Tsekkaa `Procfile` ja komenna:
+
+~~~
+$ foreman start
+~~~
+
 
 Ympäristön pystyttäminen
 ========================
@@ -39,12 +54,6 @@ $ rake db:create
 $ rake db:schema:load
 $ rake -T seed
 ~~~
-
-Taustaprosessointia varten Delayed Job, worker kehitysympäristössä:
-~~~
-$ rake jobs:work
-~~~
-Herokuun projekti tarvitsee myös workerin.
 
 
 Heroku-ympäristön pystyttäminen
