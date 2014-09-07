@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140907115827) do
+ActiveRecord::Schema.define(:version => 20140907132018) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -302,6 +302,8 @@ ActiveRecord::Schema.define(:version => 20140907115827) do
   add_foreign_key "candidate_results", "coalition_draws", :name => "candidate_results_coalition_draw_id_fk"
   add_foreign_key "candidate_results", "results", :name => "candidate_results_result_id_fk"
 
+  add_foreign_key "candidates", "electoral_alliances", :name => "candidates_electoral_alliance_id_fk"
+
   add_foreign_key "coalition_draws", "results", :name => "coalition_draws_result_id_fk"
 
   add_foreign_key "coalition_proportionals", "candidates", :name => "coalition_proportionals_candidate_id_fk"
@@ -312,6 +314,7 @@ ActiveRecord::Schema.define(:version => 20140907115827) do
 
   add_foreign_key "electoral_alliances", "advocate_users", :name => "electoral_alliances_primary_advocate_id_fk", :column => "primary_advocate_id"
   add_foreign_key "electoral_alliances", "advocate_users", :name => "electoral_alliances_secondary_advocate_id_fk", :column => "secondary_advocate_id"
+  add_foreign_key "electoral_alliances", "electoral_coalitions", :name => "electoral_alliances_electoral_coalition_id_fk"
 
   add_foreign_key "votes", "candidates", :name => "votes_candidate_id_fk"
   add_foreign_key "votes", "voting_areas", :name => "votes_voting_area_id_fk"
