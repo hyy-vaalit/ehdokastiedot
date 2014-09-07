@@ -23,6 +23,7 @@ namespace :seed do
     task :voting_areas => :environment do
       puts 'Seeding voting areas ...'
 
+      # 2014 Voting Areas
       #raise 'Add passwords and remove this line (production_seed.rake). PS. Plz commit them to github too, ok!'
       VotingArea.create! :code => 'I', :name => 'Unicafe Ylioppilasaukio', :password => 'salainensana'
       VotingArea.create! :code => 'II', :name => 'Yliopiston päärakennus', :password => 'salainensana'
@@ -50,7 +51,7 @@ namespace :seed do
     task :configuration => :environment do
       conf = GlobalConfiguration.new
       conf.candidate_nomination_ends_at = Time.new(2014, "sep", 29, 12, 00)  # 29.9.2014 klo 12.00 UTC+3
-      conf.candidate_data_is_freezed_at = Time.new(2014, "oct", 8, 12, 00)   # KVL 8.10.2012 klo 12.00 UTC+3
+      conf.candidate_data_is_freezed_at = Time.new(2014, "oct", 8, 12, 00)   # KVL 8.10.2014 klo 12.00 UTC+3
       conf.advocate_login_enabled       = false
       conf.checking_minutes_username    = 'tlkpj'
       conf.checking_minutes_password    = 'pass123'
