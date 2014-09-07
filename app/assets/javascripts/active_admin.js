@@ -1,7 +1,6 @@
 //= require ../../../vendor/assets/javascripts/jquery.js
-//= require ../../../vendor/assets/javascripts/google-jsapi.js
+//= require_tree ../../../vendor/assets/javascripts/active_admin
 
-//= require bootstrap.min.js
-//= require candidate_fix.js
+//= require active_admin_helpers.js
 //= require candidate_sorting.js
 //= require general_legacy.js
