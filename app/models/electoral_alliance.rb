@@ -11,7 +11,8 @@ class ElectoralAlliance < ActiveRecord::Base
     end
   end
 
-  has_many :candidates
+  has_many :candidates, :dependent => :nullify
+
   has_many :candidate_results,
            :through => :candidates,
            :select => "candidate_results.result_id"

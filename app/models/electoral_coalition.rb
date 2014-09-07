@@ -3,7 +3,7 @@ class ElectoralCoalition < ActiveRecord::Base
   has_many :coalition_results
   has_many :results, :through => :coalition_results
 
-  has_many :electoral_alliances
+  has_many :electoral_alliances, :dependent => :nullify
   has_many :candidates, :through => :electoral_alliances
 
   validates_presence_of :name, :shorten
