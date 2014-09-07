@@ -139,7 +139,7 @@ ActiveAdmin.register Candidate do
     if Candidate.give_numbers!
       redirect_to simple_listings_path, :notice => 'Ehdokkaat on numeroitu!'
     else
-      redirect_to manage_danger_zone_path, :alert => 'Kaikki liitot eivät ole valmiina tai renkailta puuttuu järjestys.'
+      redirect_to manage_danger_zone_path, :alert => 'Kaikki liitot eivät ole valmiina, renkailta puuttuu järjestys tai kaikilla ehdokkailla ei ole liittoa.'
     end
   end
 

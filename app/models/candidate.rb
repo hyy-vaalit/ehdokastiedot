@@ -124,8 +124,15 @@ class Candidate < ActiveRecord::Base
     self.update_attribute :cancelled, true
   end
 
+  def self.can_give_numbers?
+    ElectoralAlliance.are_all_ready? &&
+      ElectoralCoalition.are_all_ordered? &&
+      Candidate.without_alliance.empty? &&
+      ElectoralAlliance.without_coalition.empty?
+  end
+
   def self.give_numbers!
-    return false unless ElectoralAlliance.are_all_ready? and ElectoralCoalition.are_all_ordered?
+    return false unless can_give_numbers?
 
     Candidate.transaction do
       Candidate.update_all :candidate_number => 0
