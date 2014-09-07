@@ -107,8 +107,8 @@ GEM
     ffi (1.0.11)
     foreigner (1.1.6)
       activerecord (>= 3.0.0)
-    formtastic (2.1.1)
-      actionpack (~> 3.0)
+    formtastic (3.0.0)
+      actionpack (>= 3.2.13)
     gherkin (2.11.0)
       json (>= 1.4.6)
     growl (1.0.3)
@@ -272,7 +272,7 @@ DEPENDENCIES
   draper (= 0.7.3)
   factory_girl_rails
   foreigner
-  formtastic (~> 2.1)
+  formtastic (~> 3.0)
   growl
   guard-rspec
   jquery-rails
