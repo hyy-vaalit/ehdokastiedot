@@ -67,7 +67,8 @@ Heroku-ympäristö vaatii seuraavat ympäristömuuttujat (heroku config:add):
   - S3_BUCKET_NAME
   - RESULT_ADDRESS (http://vaalitulos.hyy.fi; huom! muista http:// alkuun)
   - TZ=Europe/Helsinki (Railsin oma timezone-määritys ei riitä)
-  - ROLLBAR_ACCESS_TOKEN (exceptions, http://rollbar.com)
+  - ROLLBAR_ACCESS_TOKEN (exceptions, http://rollbar.com, valitse vaihtoehdoista "post_server_item")
+    Huom! Default-token on määritetty `config/initializers/rollbar.rb`
 
 ~~~
 $ heroku config:add S3_ACCESS_KEY_ID=... S3_ACCESS_KEY_SECRET=... S3_BASE_URL=s3.amazonaws.com --app hyy-vaalit
