@@ -1,7 +1,7 @@
 module Vaalit
 
   module Public
-    SITE_ADDRESS        = "http://vaalit.hyy.fi"
+    SITE_ADDRESS        = "https://vaalit.hyy.fi"
     ADVOCATE_LOGIN_URL  = "#{SITE_ADDRESS}"
     SECRETARY_LOGIN_URL = "#{SITE_ADDRESS}/admin"
     EMAIL_FROM_ADDRESS  = "vaalit@hyy.fi"
