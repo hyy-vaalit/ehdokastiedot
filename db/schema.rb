@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140927084814) do
+ActiveRecord::Schema.define(:version => 20140927152443) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -262,6 +262,21 @@ ActiveRecord::Schema.define(:version => 20140927084814) do
     t.boolean  "published_pending",     :default => false, :null => false
   end
 
+  create_table "voters", :force => true do |t|
+    t.string   "name",           :null => false
+    t.string   "student_number", :null => false
+    t.string   "ssn",            :null => false
+    t.integer  "start_year"
+    t.datetime "voted_at"
+    t.integer  "voting_area_id"
+    t.integer  "faculty_id",     :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+  end
+
+  add_index "voters", ["ssn"], :name => "index_voters_on_ssn", :unique => true
+  add_index "voters", ["student_number"], :name => "index_voters_on_student_number", :unique => true
+
   create_table "votes", :force => true do |t|
     t.integer  "voting_area_id",                :null => false
     t.integer  "candidate_id",                  :null => false
@@ -283,6 +298,7 @@ ActiveRecord::Schema.define(:version => 20140927084814) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                                        :null => false
     t.datetime "updated_at",                                        :null => false
+    t.integer  "voting_area_id",                                    :null => false
   end
 
   add_index "voting_area_users", ["email"], :name => "index_voting_area_users_on_email", :unique => true
@@ -331,7 +347,12 @@ ActiveRecord::Schema.define(:version => 20140927084814) do
   add_foreign_key "electoral_alliances", "advocate_users", :name => "electoral_alliances_secondary_advocate_id_fk", :column => "secondary_advocate_id"
   add_foreign_key "electoral_alliances", "electoral_coalitions", :name => "electoral_alliances_electoral_coalition_id_fk"
 
+  add_foreign_key "voters", "faculties", :name => "voters_faculty_id_fk"
+  add_foreign_key "voters", "voting_areas", :name => "voters_voting_area_id_fk"
+
   add_foreign_key "votes", "candidates", :name => "votes_candidate_id_fk"
   add_foreign_key "votes", "voting_areas", :name => "votes_voting_area_id_fk"
+
+  add_foreign_key "voting_area_users", "voting_areas", :name => "voting_area_users_voting_area_id_fk"
 
 end

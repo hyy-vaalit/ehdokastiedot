@@ -24,8 +24,10 @@ Vaalit::Application.routes.draw do
   namespace :voting do
     resources :voters do
       collection do
-        post :search
+        get :search
       end
+
+      put :mark_voted
 
     end
   end

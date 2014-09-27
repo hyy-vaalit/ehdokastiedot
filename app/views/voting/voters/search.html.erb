@@ -1,0 +1,35 @@
+
+
+<table class="wide-listing">
+    <thead>
+    <th>Äänioikeus</th>
+    <th>Nimi</th>
+    <th>Henkilöturvatunnus</th>
+    <th>Opiskelijanumero</th>
+    <th>Laitos</th>
+    </thead>
+
+    <tbody>
+
+    <% @voters.each do |v| %>
+
+        <tr class="<%= cycle('odd', 'even') %>">
+            <td>
+                <% if v.can_vote? %>
+                    <%= link_to "Saa äänestää", edit_voting_voter_path(v) %>
+                <% else %>
+                    ÄÄNESTÄNYT
+                    <%= link_to "Saa äänestää", edit_voting_voter_path(v) %>
+
+            <% end %>
+            </td>
+            <td><%= v.name %></td>
+            <td><%= v.ssn %></td>
+            <td><%= v.student_number %></td>
+            <td><%= v.faculty.name %></td>
+        </tr>
+
+    <% end %>
+
+    </tbody>
+</table>

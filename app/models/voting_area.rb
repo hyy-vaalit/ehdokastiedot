@@ -16,6 +16,8 @@ class VotingArea < ActiveRecord::Base
 
   has_many :votes
 
+  has_one :voting_area_user
+
   attr_accessor :password
 
   validates_presence_of :password

@@ -1,0 +1,27 @@
+&laquo; <%= link_to "Palaa takaisin", voting_voters_path %>
+
+<h1><%= @voter.name %></h1>
+
+<dl>
+    <dt>Hetu:</dt>
+        <dd><%= @voter.ssn %></dd>
+
+    <dt>Opiskelijanumero:</dt>
+        <dd><%= @voter.student_number %></dd>
+
+    <dt>Laitos:</dt>
+        <dd><%= @voter.faculty.name %></dd>
+
+    <% if !@voter.can_vote? %>
+        <p class="alert error">
+        Äänioikeus on käytetty <%= friendly_datetime @voter.voted_at %>
+            äänestysalueella <%= @voter.voting_area.code %> <%= @voter.voting_area.name %>
+        </p>
+    <% else %>
+        <%= button_to "Merkitse äänioikeus käytetyksi", voting_voter_mark_voted_path(@voter), :method => :put %>
+<% end %>
+</dl>
+
+#TODO: Poista tämä
+<%= button_to "Merkitse äänioikeus käytetyksi", voting_voter_mark_voted_path(@voter), :method => :put %>
+

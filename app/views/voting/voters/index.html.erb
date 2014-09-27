@@ -1,7 +1,7 @@
 <h1>Äänioikeuden tarkistaminen</h1>
 
 <!--:url => advocates_alliance_candidate_path(@alliance)-->
-<%= semantic_form_for :voter, :url => search_voting_voters_path do |f| %>
+<%= semantic_form_for :voter, :method => :get, :url => search_voting_voters_path do |f| %>
 
     <%= f.input :lastname %>
 
