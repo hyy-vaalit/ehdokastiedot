@@ -22,7 +22,12 @@ Vaalit::Application.routes.draw do
   end
 
   namespace :voting do
-    resources :voters
+    resources :voters do
+      collection do
+        post :search
+      end
+
+    end
   end
 
   namespace :manage do

@@ -1,0 +1,16 @@
+<h1>Äänioikeuden tarkistaminen</h1>
+
+<!--:url => advocates_alliance_candidate_path(@alliance)-->
+<%= semantic_form_for :voter, :url => search_voting_voters_path do |f| %>
+
+    <%= f.input :lastname %>
+
+    <%= f.input :birthdate %>
+
+    <%= f.input :ssn, :label => "Hetu" %>
+
+    <%= f.input :student_number %>
+
+    <%= f.action :submit, :as => :button, :label => "Suorita haku" %>
+
+<% end %>

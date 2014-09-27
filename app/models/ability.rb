@@ -35,6 +35,8 @@ class Ability
 
   def voting_area(user)
     can :access, [:voters, :voting, :voting_area]
+
+    # can [:create, :read, :update], [Voter]
   end
 
   private
