@@ -33,24 +33,35 @@ class Ability
     end
   end
 
+  def voting_area(user)
+    can :access, [:voters, :voting, :voting_area]
+  end
 
   private
 
   def initialize_roles(user)
-    case user.class.to_s when "AdminUser"
-      initialize_admin(user)
-    when "AdvocateUser"
-      initialize_advocate(user)
-    else
-      raise "Current user class could not be determined. This is a bug."
+    case user.class.to_s
+      when "AdminUser"
+        initialize_admin(user)
+      when "VotingAreaUser"
+        initialize_voting_area(user)
+      when "AdvocateUser"
+        initialize_advocate(user)
+      else
+        raise "Current user class could not be determined. This is a bug."
     end
   end
 
+  # Authorize a secretary or a non-restricted admin.
   def initialize_admin(user)
     send user.role, user
   end
 
   def initialize_advocate(user)
     send :advocate, user
+  end
+
+  def initialize_voting_area(user)
+    send :voting_area, user
   end
 end

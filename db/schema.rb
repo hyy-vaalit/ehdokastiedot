@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140914171217) do
+ActiveRecord::Schema.define(:version => 20140927084814) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -272,6 +272,20 @@ ActiveRecord::Schema.define(:version => 20140914171217) do
   end
 
   add_index "votes", ["candidate_id", "voting_area_id"], :name => "index_unique_votes_per_candidate_in_voting_area", :unique => true
+
+  create_table "voting_area_users", :force => true do |t|
+    t.string   "email",                             :default => "", :null => false
+    t.string   "encrypted_password", :limit => 128, :default => "", :null => false
+    t.integer  "sign_in_count",                     :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at",                                        :null => false
+    t.datetime "updated_at",                                        :null => false
+  end
+
+  add_index "voting_area_users", ["email"], :name => "index_voting_area_users_on_email", :unique => true
 
   create_table "voting_areas", :force => true do |t|
     t.string   "code"

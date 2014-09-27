@@ -18,7 +18,19 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user
-    current_admin_user ? current_admin_user : current_advocate_user
+    if current_admin_user
+      return current_admin_user
+    end
+
+    if current_voting_area_user && current_advocate_user
+      raise "#FIXME Cannot handle both AdvocateUser and VotingAreaUser being signed in at the same time. Sign out from either one."
+    end
+
+    if current_voting_area_user
+      return current_voting_area_user
+    else
+      return current_advocate_user
+    end
   end
 
   rescue_from CanCan::AccessDenied do |exception|

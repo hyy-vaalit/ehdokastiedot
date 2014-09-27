@@ -2,6 +2,8 @@ Vaalit::Application.routes.draw do
 
   devise_for :advocate_users
 
+  devise_for :voting_area_users
+
   ActiveAdmin.routes(self)
 
   devise_for :admin_users, ActiveAdmin::Devise.config
@@ -17,6 +19,10 @@ Vaalit::Application.routes.draw do
     resources :alliances do
       resources :candidates
     end
+  end
+
+  namespace :voting do
+    resources :voters
   end
 
   namespace :manage do
