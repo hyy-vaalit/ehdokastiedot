@@ -8,10 +8,11 @@
 
 <% end %>
 
+<br style="clear:both;">
 
-<h1 style="clear: both; margin-top: 2em;">Hakutulokset (<%= @voters.count %>)</h1>
+<% if @voters.any? %>
 
-<% if @voters %>
+    <h1>Hakutulokset (<%= @voters.count %>)</h1>
 
     <table class="listing">
         <thead>
@@ -20,6 +21,7 @@
         <th>Henkilöturvatunnus</th>
         <th>Opiskelijanumero</th>
         <th>Laitos</th>
+        <th>Äänestänyt alueella</th>
         </thead>
 
         <tbody>
@@ -32,18 +34,41 @@
                         <%= link_to "Saa äänestää", edit_voting_voter_path(v) %>
                     <% else %>
                         <%= friendly_datetime(v.voted_at) %>
-                        <%= link_to "Saa äänestää", edit_voting_voter_path(v) %>
-
-                <% end %>
+                    <% end %>
                 </td>
                 <td><%= v.name %></td>
                 <td><%= v.ssn %></td>
                 <td><%= v.student_number %></td>
                 <td><%= v.faculty.name %></td>
+                <td><%= v.voting_area.name %> (<%= v.voting_area.code %>)</td>
             </tr>
 
         <% end %>
 
         </tbody>
     </table>
+
+<% elsif @voter_search.valid? %>
+    <h1>Hakuehdoilla ei löytynyt ketään</h1>
+
+    <p>
+        Tarkista vielä seuraavat:
+        <ul>
+            <li>Opiskelijakortin voimassaolotarra.</li>
+            <li>Hakuehdoissa ei ole kirjoitusvirhettä.</li>
+            <li>Jos nimessä on esim. aksenttimerkki tai jos käytit montaa hakutermiä,
+                yritä hakea pelkällä hetulla tai opiskelijanumerolla.</li>
+        </ul>
+    </p>
+
+    <p>
+        Jos henkilöllä on esittää luotettava todistus jäsenmaksun maksamisesta, voit lisätä uuden henkilön
+        järjestelmään.
+
+    </p>
+
+    <p>
+        &raquo; <%= link_to "Luo uusi äänioikeutettu", new_voting_voter_path %>
+    </p>
+
 <% end %>

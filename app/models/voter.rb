@@ -1,11 +1,17 @@
 class Voter < ActiveRecord::Base
-  attr_accessible :name, :ssn, :start_year, :student_number, :faculty
+  attr_accessible :name, :ssn, :start_year, :student_number, :faculty, :faculty_id
 
   belongs_to :faculty
 
   belongs_to :voting_area
 
-  validates_presence_of :name, :ssn, :start_year, :student_number
+  validates_presence_of :name, :ssn, :student_number, :faculty
+
+  validates_uniqueness_of :ssn, :student_number
+
+  validates_length_of :name, :minimum => 4
+  validates_length_of :ssn, :minimum => 6
+  validates_length_of :student_number, :minimum => 6
 
   def self.match_scope_condition(col, query)
     arel_table[col].matches("%#{query}%")

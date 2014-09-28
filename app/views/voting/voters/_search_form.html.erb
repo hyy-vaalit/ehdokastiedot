@@ -17,13 +17,15 @@
 
 <%= f.input :name,
             :label => "Nimi",
-            :hint => "Tiedot muodossa 'Lipponen Mari Elisabeth" %>
+            :hint  => "Haetaan muodossa: Lipponen Mari Elisabeth" %>
 
 <%= f.input :ssn,
-            :label => "Hetu / syntymäaika (SSN)" %>
+            :label => "Hetu / syntymäaika (SSN)",
+            :hint  => "123456 tai 123456-789A" %>
 
-<%= f.input :student_number %>
+<%= f.input :student_number,
+            :hint => "123456789" %>
 
 <%= f.action :submit,
-             :as => :button,
+             :as    => :button,
              :label => "Suorita haku" %>

@@ -7,6 +7,29 @@ class Voting::VotersController < VotingController
     @voter = Voter.find params[:id]
   end
 
+  def new
+    @voter = Voter.new
+  end
+
+  def create
+    @voter = Voter.new params[:voter]
+
+    if @voter.save && @voter.mark_voted!(current_user.voting_area)
+      flash[:notice] = "Luotiin uusi äänioikeutettu #{@voter.name} ja merkittiin hänet äänestäneeksi."
+
+      # Search for one more time and display results only by SSN so that IF there was a typo,
+      # there's now a last chance to see it before allowing the ballot.
+      redirect_to search_voting_voters_path(
+                      :voter_search => {
+                          :ssn => @voter.ssn
+                      }
+                  )
+    else
+      flash[:alert] = "Äänioikeutetun luominen epäonnistui."
+      render :new
+    end
+  end
+
   def search
     @voter_search = VoterSearch.new(params[:voter_search])
     @voters = []

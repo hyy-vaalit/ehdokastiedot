@@ -1,0 +1,36 @@
+<h1>Uuden äänioikeutetun luominen</h1>
+
+<% if @voter.errors.any? %>
+    <div class="alert error">
+        <h2>Seuraavat virheet estivät tallennuksen:</h2>
+        <ul>
+            <% @voter.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
+
+<%= semantic_form_for :voter, :url => voting_voters_path do |f| %>
+
+    <%= f.input :name,
+                :label => "Nimi",
+                :hint  => "Annetaan muodossa: Lipponen Mari Elisabeth" %>
+
+    <%= f.input :ssn,
+                :label => "Hetu / syntymäaika (SSN)",
+                :hint  => "123456 tai 123456-789A" %>
+
+    <%= f.input :student_number,
+                :hint => "123456789" %>
+
+    <%= f.input :faculty_id,
+                :as => :select,
+                :collection => Faculty.all,
+                :label => "Laitos" %>
+
+    <%= f.action :submit,
+                 :as    => :button,
+                 :label => "Luo äänioikeutettu ja merkitse hänet äänestäneeksi" %>
+
+<% end %>
