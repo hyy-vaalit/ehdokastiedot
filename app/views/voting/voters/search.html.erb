@@ -1,35 +1,49 @@
-<h1>Hakutulokset</h1>
+&laquo; <%= link_to "Palaa etusivulle", voting_voters_path %>
 
-<table class="listing">
-    <thead>
-    <th>Äänioikeus käytetty?</th>
-    <th>Nimi</th>
-    <th>Henkilöturvatunnus</th>
-    <th>Opiskelijanumero</th>
-    <th>Laitos</th>
-    </thead>
+<h1>Äänioikeuden tarkistaminen</h1>
 
-    <tbody>
+<%= semantic_form_for :voter, :method => :get, :url => search_voting_voters_path do |f| %>
 
-    <% @voters.each do |v| %>
+    <%= render :partial => "search_form", :locals => { :f => f } %>
 
-        <tr class="<%= cycle('odd', 'even') %>">
-            <td>
-                <% if v.can_vote? %>
-                    <%= link_to "Saa äänestää", edit_voting_voter_path(v) %>
-                <% else %>
-                    <%= friendly_datetime(v.voted_at) %>
-                    <%= link_to "Saa äänestää", edit_voting_voter_path(v) %>
+<% end %>
 
-            <% end %>
-            </td>
-            <td><%= v.name %></td>
-            <td><%= v.ssn %></td>
-            <td><%= v.student_number %></td>
-            <td><%= v.faculty.name %></td>
-        </tr>
 
-    <% end %>
+<h1 style="clear: both; margin-top: 2em;">Hakutulokset (<%= @voters.count %>)</h1>
 
-    </tbody>
-</table>
+<% if @voters %>
+
+    <table class="listing">
+        <thead>
+        <th>Äänioikeus käytetty?</th>
+        <th>Nimi</th>
+        <th>Henkilöturvatunnus</th>
+        <th>Opiskelijanumero</th>
+        <th>Laitos</th>
+        </thead>
+
+        <tbody>
+
+        <% @voters.each do |v| %>
+
+            <tr class="<%= cycle('odd', 'even') %>">
+                <td>
+                    <% if v.can_vote? %>
+                        <%= link_to "Saa äänestää", edit_voting_voter_path(v) %>
+                    <% else %>
+                        <%= friendly_datetime(v.voted_at) %>
+                        <%= link_to "Saa äänestää", edit_voting_voter_path(v) %>
+
+                <% end %>
+                </td>
+                <td><%= v.name %></td>
+                <td><%= v.ssn %></td>
+                <td><%= v.student_number %></td>
+                <td><%= v.faculty.name %></td>
+            </tr>
+
+        <% end %>
+
+        </tbody>
+    </table>
+<% end %>
