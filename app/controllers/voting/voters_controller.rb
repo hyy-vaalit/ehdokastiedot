@@ -1,5 +1,6 @@
 class Voting::VotersController < VotingController
   def index
+    @voter_search = VoterSearch.new
   end
 
   def edit
@@ -7,7 +8,13 @@ class Voting::VotersController < VotingController
   end
 
   def search
-    @voters = Voter.matching_name params[:name]
+    @voter_search = VoterSearch.new(params[:voter_search])
+    @voters = []
+
+    if @voter_search.valid?
+      @voters = Voter.matching_name(@voter_search.name).matching_ssn(@voter_search.ssn).matching_student_number(@voter_search.student_number)
+    end
+
   end
 
   def mark_voted

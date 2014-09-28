@@ -1,9 +1,29 @@
-<%= f.input :lastname %>
+<%# Inline-virheet jostain syystä räjähtää. :/
+  # "f.semantic_errors :name" sanoo
+  # undefined method `errors' for nil:NilClass
+  # enkä keksi miksi.
+%>
 
-<%= f.input :birthdate %>
+<% if @voter_search.errors.any? %>
+    <div class="alert error">
+        <h2>Täsmennä hakuehtoja:</h2>
+        <ul>
+            <% @voter_search.errors.full_messages.each do |msg| %>
+                <li><%= msg %></li>
+            <% end %>
+        </ul>
+    </div>
+<% end %>
 
-<%= f.input :ssn, :label => "Hetu" %>
+<%= f.input :name,
+            :label => "Nimi",
+            :hint => "Tiedot muodossa 'Lipponen Mari Elisabeth" %>
+
+<%= f.input :ssn,
+            :label => "Hetu / syntymäaika (SSN)" %>
 
 <%= f.input :student_number %>
 
-<%= f.action :submit, :as => :button, :label => "Suorita haku" %>
+<%= f.action :submit,
+             :as => :button,
+             :label => "Suorita haku" %>

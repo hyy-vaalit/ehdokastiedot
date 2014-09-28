@@ -11,17 +11,25 @@ class Voter < ActiveRecord::Base
     arel_table[col].matches("%#{query}%")
   end
 
-  # Voter.matching(:name, "first", "last") => first OR last
-  # Voter.matching(:name, "first", "last", :operator => :and ) => first AND last
+  # Voter.matching(:name, "first", "last") => first AND last
+  # Voter.matching(:name, "first", "last", :operator => :or ) => first OR last
   scope :matching, lambda {|*args|
     col, opts = args.shift, args.extract_options!
-    op = opts[:operator] || :or
+    op = opts[:operator] || :and
     where args.flatten.map {|query| match_scope_condition(col, query) }.inject(&op)
   }
 
-  # Voter.matching_name("first", "last") => first OR last
+  # Voter.matching_name("first", "last") => first AND last
   scope :matching_name, lambda {|*query|
     matching(:name, *query)
+  }
+
+  scope :matching_ssn, lambda {|*query|
+    matching(:ssn, *query)
+  }
+
+  scope :matching_student_number, lambda {|*query|
+    matching(:student_number, *query)
   }
 
   def can_vote?
