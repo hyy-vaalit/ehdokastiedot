@@ -15,13 +15,9 @@
     <% if !@voter.can_vote? %>
         <p class="alert error">
         Äänioikeus on käytetty <%= friendly_datetime @voter.voted_at %>
-            äänestysalueella <%= @voter.voting_area.code %> <%= @voter.voting_area.name %>
+            äänestysalueella <%= @voter.voting_area.name %> (<%= @voter.voting_area.code %>).
         </p>
     <% else %>
         <%= button_to "Merkitse äänioikeus käytetyksi", voting_voter_mark_voted_path(@voter), :method => :put %>
 <% end %>
 </dl>
-
-#TODO: Poista tämä
-<%= button_to "Merkitse äänioikeus käytetyksi", voting_voter_mark_voted_path(@voter), :method => :put %>
-

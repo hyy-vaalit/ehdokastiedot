@@ -17,8 +17,8 @@ class Voting::VotersController < VotingController
       flash[:notice] = "Henkilö '#{@voter.name}' merkitty äänestäneeksi."
       redirect_to voting_voters_path
     else
-      flash[:alert] = "Kirjaus epäonnistui! Henkilö on merkitty äänestäneeksi alueella #{@voter.voting_area.code} #{@voter.voted_at.localtime}"
-      render :edit
+      flash[:alert] = "Kirjaus epäonnistui! Henkilö äänestänyt alueella #{@voter.voting_area.name} klo #{@voter.voted_at.localtime}"
+      redirect_to edit_voting_voter_path(@voter)
     end
   end
 end

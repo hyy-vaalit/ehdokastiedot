@@ -1,8 +1,8 @@
+<h1>Hakutulokset</h1>
 
-
-<table class="wide-listing">
+<table class="listing">
     <thead>
-    <th>Äänioikeus</th>
+    <th>Äänioikeus käytetty?</th>
     <th>Nimi</th>
     <th>Henkilöturvatunnus</th>
     <th>Opiskelijanumero</th>
@@ -18,7 +18,7 @@
                 <% if v.can_vote? %>
                     <%= link_to "Saa äänestää", edit_voting_voter_path(v) %>
                 <% else %>
-                    ÄÄNESTÄNYT
+                    <%= friendly_datetime(v.voted_at) %>
                     <%= link_to "Saa äänestää", edit_voting_voter_path(v) %>
 
             <% end %>

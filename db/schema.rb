@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140927152443) do
+ActiveRecord::Schema.define(:version => 20140928074839) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -274,6 +274,7 @@ ActiveRecord::Schema.define(:version => 20140927152443) do
     t.datetime "updated_at",     :null => false
   end
 
+  add_index "voters", ["name"], :name => "index_voters_on_name"
   add_index "voters", ["ssn"], :name => "index_voters_on_ssn", :unique => true
   add_index "voters", ["student_number"], :name => "index_voters_on_student_number", :unique => true
 
