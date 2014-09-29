@@ -90,7 +90,7 @@ ActiveAdmin.register Candidate do
   # --> Deliver electoral_alliance_id in hidden hack_alliance_id.
   form do |f|
     alliance_id = f.object.new_record? ? params[:electoral_alliance_id] : f.object.electoral_alliance_id
-    alliance = ElectoralAlliance.find_by_id(alliance_id)
+    alliance = ElectoralAlliance.find(alliance_id)
 
     if params[:action] == "new" && alliance.nil?
       panel "Harmin paikka!" do
@@ -115,7 +115,7 @@ ActiveAdmin.register Candidate do
         f.input :faculty
         f.input :notes, :hint => 'Erota tiedot pilkuilla. Rivinvaihdot korvataan automaattisesti pilkuiksi.'
       end
-      f.input :active_admin_hack_alliance_id, :as => :hidden, :value => alliance.id
+      f.input :active_admin_hack_alliance_id, :as => :hidden, :input_html => {:value => alliance.id}
       f.buttons
     end
   end
