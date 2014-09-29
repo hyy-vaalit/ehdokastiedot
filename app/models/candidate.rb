@@ -55,7 +55,7 @@ class Candidate < ActiveRecord::Base
   end
 
   def self.candidate_numbers_given?
-    first && first.candidate_number && first.candidate_number > 0
+    first && where(:candidate_number => nil).empty?
   end
 
   # Calculates all votes from all 'ready' (calculable) voting areas for each candidate.
