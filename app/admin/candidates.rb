@@ -120,9 +120,11 @@ ActiveAdmin.register Candidate do
     end
   end
 
-  action_item :only => :show do
-    candidate = Candidate.find_by_id(params[:id])
-    link_to 'Cancel Candidacy', cancel_admin_candidate_path, :confirm => 'Peruutetaanko henkilön ehdokkuus?' unless candidate.cancelled
+  action_item :only => [ :show, :edit ] do
+    candidate = Candidate.find(params[:id])
+    if !candidate.cancelled
+      link_to 'Peruuta ehdokkuus', cancel_admin_candidate_path, :confirm => 'Peruutetaanko henkilön ehdokkuus?'
+    end
   end
 
   action_item :only => :index do
@@ -130,7 +132,7 @@ ActiveAdmin.register Candidate do
   end
 
   member_action :cancel, :method => :get do
-    candidate = Candidate.find_by_id(params[:id])
+    candidate = Candidate.find(params[:id])
     candidate.cancel!
     redirect_to :action => :show
   end
