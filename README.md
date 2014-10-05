@@ -239,8 +239,13 @@ Pekka's Tips
   * Jos Gemeissä ongelmia, päivitä `gem update --system`
   * Jos Gemfile.lock pitää luoda uudelleen ja jää "Resolving dependencies" -luuppiin, kommentoi pois kaikki muut gemit paitsi rails ja lisää ne takaisin ryhmä kerrallaan.
   * Debugging: luo breakpoint laittamalla koodiin `byebug` -- toimii vaan vähän huonosti foreman/unicornin kanssa. 
-  * Aja vain yksi testi ja nollaa tietokanta välissä (ei nollaa ilman rakea):
+  * Aja vain yksi testi:
+    * lisää `:focus` testiin, esim. it 'something', :focus do .. end, jonka jälkeen `rake spec`
+    * (huom, ei nollaa tietokantaa ilman rakea):
     `rake spec SPEC=spec/lib/result_decorator_spec.rb` 
+    * `guard` (voi käyttää `:focus` tai ilman, jos ilman niin ajaa ensin kaikki testit
+      ja jää sen jälkeen kuuntelemaan muutoksia)
+
 
 Testirundi
 ==========
