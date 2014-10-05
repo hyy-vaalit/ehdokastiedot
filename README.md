@@ -239,7 +239,8 @@ Pekka's Tips
   * Jos CSS ei generoidu, tarkista `config/initializers/sass.rb`
   * Jos Gemeissä ongelmia, päivitä `gem update --system`
   * Jos Gemfile.lock pitää luoda uudelleen ja jää "Resolving dependencies" -luuppiin, kommentoi pois kaikki muut gemit paitsi rails ja lisää ne takaisin ryhmä kerrallaan.
-
+  * Aja vain yksi testi ja nollaa tietokanta välissä (ei nollaa ilman rakea):
+    `rake spec SPEC=spec/lib/result_decorator_spec.rb` 
 
 Testirundi
 ==========

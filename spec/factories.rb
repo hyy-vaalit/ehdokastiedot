@@ -12,6 +12,7 @@ FactoryGirl.define do
   factory :faculty do
     sequence(:name) {|n| "Faculty #{n}"}
     sequence(:code) {|n| "F#{n}"}
+    sequence(:numeric_code) {|n| n}
   end
 
   factory :electoral_coalition do

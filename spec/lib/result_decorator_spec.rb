@@ -19,6 +19,7 @@ describe 'votable behaviour' do
     cprop = 123.45678
     aprop = 432.12345
     candidate_draw = "ax"
+    alliance_draw = "ay"
     coalition_draw = " a"
     candidate.stub!(:electoral_alliance_shorten).and_return(alliance)
     candidate.stub!(:candidate_name).and_return(candidate_name)
@@ -26,14 +27,16 @@ describe 'votable behaviour' do
     candidate.stub!(:vote_sum).and_return(votes)
     candidate.stub!(:elected?).and_return(true)
     candidate.stub!(:candidate_draw_identifier).and_return(candidate_draw)
+    candidate.stub!(:alliance_draw_identifier).and_return(alliance_draw)
     candidate.stub!(:coalition_draw_identifier).and_return(coalition_draw)
     candidate.stub!(:alliance_proportional).and_return(aprop)
     candidate.stub!(:coalition_proportional).and_return(cprop)
     candidate.stub!(:candidate_draw_affects_elected?).and_return(false)
+    candidate.stub!(:alliance_draw_affects_elected?).and_return(false)
     candidate.stub!(:coalition_draw_affects_elected?).and_return(false)
 
     # "124* Testinen, Martti 'Sakke'...... 789 Tumpit   42ax  432.12345    123.45678 a"
-    expected = "#{idx+1}* #{candidate_name}...... #{cno} #{alliance}   #{votes}#{candidate_draw}  #{aprop}    #{cprop}#{coalition_draw}"
+    expected = "#{idx+1}* #{candidate_name}...... #{cno} #{alliance}   #{votes}#{candidate_draw}  #{aprop}#{alliance_draw}  #{cprop}#{coalition_draw}"
     @decorator.candidate_result_line(candidate, idx).should == expected
   end
 
@@ -181,15 +184,21 @@ describe 'votable behaviour' do
     not_effective = not_elected = false
     effective = elected = true
 
-    @decorator.formatted_status_char(elected, not_effective, not_effective).should  == "*"
-    @decorator.formatted_status_char(elected, not_effective, effective).should  == "="
-    @decorator.formatted_status_char(elected, effective, not_effective).should == "?"
-    @decorator.formatted_status_char(elected, effective, effective).should == "="
+    @decorator.formatted_status_char(elected, not_effective, not_effective, not_effective).should  == "*"
 
-    @decorator.formatted_status_char(not_elected, not_effective, not_effective).should  == "."
-    @decorator.formatted_status_char(not_elected, not_effective, effective).should  == "="
-    @decorator.formatted_status_char(not_elected, effective, not_effective).should  == "?"
-    @decorator.formatted_status_char(not_elected, effective, effective).should  == "="
+    @decorator.formatted_status_char(elected, not_effective, not_effective, effective).should  == "="
+    @decorator.formatted_status_char(elected, effective, effective, not_effective).should == "~"
+    @decorator.formatted_status_char(elected, effective, not_effective, not_effective).should == "?"
+
+    @decorator.formatted_status_char(elected, effective, effective, effective).should == "="
+
+    @decorator.formatted_status_char(not_elected, not_effective, not_effective, not_effective).should  == "."
+
+    @decorator.formatted_status_char(not_elected, not_effective, not_effective, effective).should  == "="
+    @decorator.formatted_status_char(not_elected, effective, effective, not_effective).should  == "~"
+    @decorator.formatted_status_char(not_elected, effective, not_effective, not_effective).should  == "?"
+
+    @decorator.formatted_status_char(not_elected, effective, effective, effective).should  == "="
   end
 
   def how_many_dots(name, max_count)
