@@ -53,6 +53,10 @@ class Voter < ActiveRecord::Base
     voted_at.nil?
   end
 
+  def has_voted?
+    !can_vote?
+  end
+
   def mark_voted!(voting_area)
     if can_vote?
       self.voted_at = Time.now

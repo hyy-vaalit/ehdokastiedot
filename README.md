@@ -21,7 +21,7 @@ Seuraaviin vaaleihin
 * Varmista opiskelijarekisterin datadumpin muoto:
   - Vuoden 2014 datassa ei huomioitu 2000-luvulla syntyneitä, eli hetun erotinmerkki puuttui datasta.
     Parseriin on kovakoodattu väliviiva, tarkista pitääkö oletus edelleen paikkansa.
-
+  - Merkistökoodauksena ISO-8859-1
 
 Kustannukset
 ============
@@ -61,6 +61,12 @@ Pelkän tietokannan alustaminen
 $ rake db:create
 $ rake db:schema:load
 $ rake -T seed
+~~~
+
+Äänioikeutettujen import
+
+~~~
+rake voters:import filename=test-export.txt
 ~~~
 
 

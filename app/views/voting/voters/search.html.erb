@@ -40,7 +40,11 @@
                 <td><%= v.ssn %></td>
                 <td><%= v.student_number %></td>
                 <td><%= v.faculty.name %></td>
-                <td><%= v.voting_area.name %> (<%= v.voting_area.code %>)</td>
+                <td>
+                    <% if v.has_voted? %>
+                        <%= v.voting_area.name %> (<%= v.voting_area.code %>)
+                    <% end %>
+                </td>
             </tr>
 
         <% end %>
