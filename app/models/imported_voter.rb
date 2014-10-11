@@ -17,11 +17,8 @@
 # Ks. myös testit.
 #
 class ImportedVoter
-  # Required dependency for ActiveModel::Errors
-  # http://api.rubyonrails.org/classes/ActiveModel/Errors.html
-  extend ActiveModel::Naming
-  extend ActiveModel::Translation
-  include ActiveModel::Validations
+
+  include ExtendedPoroBehaviour
 
   attr_accessor :ssn, :student_number, :name, :start_year, :extent, :faculty
 

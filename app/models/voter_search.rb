@@ -1,9 +1,6 @@
 class VoterSearch
-  # Required dependency for ActiveModel::Errors
-  # http://api.rubyonrails.org/classes/ActiveModel/Errors.html
-  extend ActiveModel::Naming
-  extend ActiveModel::Translation
-  include ActiveModel::Validations
+
+  include ExtendedPoroBehaviour
 
   attr_accessor :name, :ssn, :student_number
 
@@ -19,15 +16,6 @@ class VoterSearch
   validates_length_of :student_number, :minimum => 6, :allow_blank => true
 
   validate :at_least_one_search_term
-
-  def initialize(args={})
-    @errors = ActiveModel::Errors.new(self)
-
-    self.name           = args[:name]
-    self.ssn            = args[:ssn]
-    self.student_number = args[:student_number]
-  end
-
 
   protected
 
