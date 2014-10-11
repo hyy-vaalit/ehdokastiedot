@@ -107,6 +107,9 @@ ActiveAdmin.register ElectoralAlliance do
   # Rails 3.2
   # DEPRECATION WARNING: You're trying to create an attribute `electoral_alliance_id'.
   # Writing arbitrary attributes on a model is deprecated. Please just use `attr_writer` etc.
+  #
+  # This is about the current "selected" electoral alliance of an admin.
+  # Should probably create "attr_accessor :current_electoral_alliance_id" or such and use that one instead.
   member_action :done do
     if ElectoralAlliance.find_by_id(params[:id]).freeze!
       current_admin_user.update_attribute :electoral_alliance, nil
