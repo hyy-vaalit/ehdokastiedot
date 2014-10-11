@@ -1,8 +1,6 @@
-&laquo; <%= link_to "Palaa takaisin", voting_voters_path %>
-
 <h1><%= @voter.name %></h1>
 
-<dl>
+<dl class="voting-right voter-details">
     <dt>Hetu / syntymäaika:</dt>
         <dd><%= @voter.ssn %></dd>
 
@@ -11,13 +9,18 @@
 
     <dt>Laitos:</dt>
         <dd><%= @voter.faculty.name %></dd>
+</dl>
 
     <% if !@voter.can_vote? %>
         <p class="alert error">
         Äänioikeus on käytetty <%= friendly_datetime @voter.voted_at %>
             äänestysalueella <%= @voter.voting_area.name %> (<%= @voter.voting_area.code %>).
         </p>
+
     <% else %>
-        <%= button_to "Merkitse äänioikeus käytetyksi", voting_voter_mark_voted_path(@voter), :method => :put %>
+        <%= button_to "Merkitse äänioikeus käytetyksi",
+                      voting_voter_mark_voted_path(@voter),
+                      :method => :put,
+                      :class => "btn btn-danger"
+        %>
 <% end %>
-</dl>

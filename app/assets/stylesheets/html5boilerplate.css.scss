@@ -257,6 +257,13 @@ p.notice {
   cursor: move;
 }
 
+.has-voted {
+  color: #777777;
+}
+
+.voting-right.voter-details dt {
+  font-weight: bold;
+}
 
 /* =============================================================================
    Media Queries

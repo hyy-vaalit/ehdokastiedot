@@ -16,11 +16,11 @@
 
     <table class="listing">
         <thead>
-        <th>Äänioikeus käytetty?</th>
         <th>Nimi</th>
         <th>Henkilöturvatunnus</th>
         <th>Opiskelijanumero</th>
         <th>Laitos</th>
+        <th>Äänioikeus käytetty?</th>
         <th>Äänestänyt alueella</th>
         </thead>
 
@@ -28,7 +28,21 @@
 
         <% @voters.each do |v| %>
 
-            <tr class="<%= cycle('odd', 'even') %>">
+            <tr class="<%= cycle('odd', 'even') %> <%= voting_right_class(v.can_vote?) %>">
+                <td>
+                    <% if v.can_vote? %>
+                        <%= link_to v.name, edit_voting_voter_path(v) %>
+                    <% else %>
+                        <%= v.name %>
+                    <% end %>
+                </td>
+
+                <td><%= v.ssn %></td>
+
+                <td><%= v.student_number %></td>
+
+                <td><%= v.faculty.name %></td>
+
                 <td>
                     <% if v.can_vote? %>
                         <%= link_to "Saa äänestää", edit_voting_voter_path(v) %>
@@ -36,10 +50,6 @@
                         <%= friendly_datetime(v.voted_at) %>
                     <% end %>
                 </td>
-                <td><%= v.name %></td>
-                <td><%= v.ssn %></td>
-                <td><%= v.student_number %></td>
-                <td><%= v.faculty.name %></td>
                 <td>
                     <% if v.has_voted? %>
                         <%= v.voting_area.name %> (<%= v.voting_area.code %>)
@@ -65,14 +75,15 @@
         </ul>
     </p>
 
-    <p>
-        Jos henkilöllä on esittää luotettava todistus jäsenmaksun maksamisesta, voit lisätä uuden henkilön
-        järjestelmään.
-
-    </p>
-
-    <p>
-        &raquo; <%= link_to "Luo uusi äänioikeutettu", new_voting_voter_path %>
-    </p>
-
 <% end %>
+
+<h2>Äänioikeutettua ei löydy?</h2>
+
+<p>
+    Jos henkilöllä on esittää luotettava todistus jäsenmaksun maksamisesta, voit lisätä uuden henkilön
+    järjestelmään.
+</p>
+
+<p>
+    &raquo; <%= link_to "Luo uusi äänioikeutettu", new_voting_voter_path %>
+</p>

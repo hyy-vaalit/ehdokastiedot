@@ -9,4 +9,12 @@ module ApplicationHelper
 
     "#{base_url}/#{chart_type}.html?json=#{result.filename('.json', name)}"
   end
+
+  def voting_right_class(can_vote)
+    if can_vote
+      "can-vote"
+    else
+      "has-voted"
+    end
+  end
 end

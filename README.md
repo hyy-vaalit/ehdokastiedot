@@ -260,7 +260,8 @@ Pekka's Tips
     * `guard` (voi käyttää `:focus` tai ilman, jos ilman niin ajaa ensin kaikki testit
       ja jää sen jälkeen kuuntelemaan muutoksia)
     * Muista ajaa `rake db:test:prepare` migraatioiden jälkeen.
-
+  * Jos Formtasticin virheet ei tule näkyviin, varmista että on
+    `<%= semantic_form_for @voter ..%>` EIKÄ `:voter` .. näistä jälkimmäinen antaa oudon virheen.
 
 Testirundi
 ==========

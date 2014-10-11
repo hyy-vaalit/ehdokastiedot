@@ -17,13 +17,7 @@ class Voting::VotersController < VotingController
     if @voter.save && @voter.mark_voted!(current_user.voting_area)
       flash[:notice] = "Luotiin uusi äänioikeutettu #{@voter.name} ja merkittiin hänet äänestäneeksi."
 
-      # Search for one more time and display results only by SSN so that IF there was a typo,
-      # there's now a last chance to see it before allowing the ballot.
-      redirect_to search_voting_voters_path(
-                      :voter_search => {
-                          :ssn => @voter.ssn
-                      }
-                  )
+      redirect_and_show_voter(@voter)
     else
       flash[:alert] = "Äänioikeutetun luominen epäonnistui."
       render :new
@@ -45,10 +39,22 @@ class Voting::VotersController < VotingController
 
     if @voter.mark_voted!(current_user.voting_area)
       flash[:notice] = "Henkilö '#{@voter.name}' merkitty äänestäneeksi."
-      redirect_to voting_voters_path
+      redirect_and_show_voter(@voter)
     else
       flash[:alert] = "Kirjaus epäonnistui! Henkilö äänestänyt alueella #{@voter.voting_area.name} klo #{@voter.voted_at.localtime}"
       redirect_to edit_voting_voter_path(@voter)
     end
+  end
+
+  protected
+
+  # Search for one more time and display results only by SSN so that IF there was a typo,
+  # there's now a last chance to see it before allowing the ballot.
+  def redirect_and_show_voter(voter)
+    redirect_to search_voting_voters_path(
+                    :voter_search => {
+                        :ssn => voter.ssn
+                    }
+                )
   end
 end

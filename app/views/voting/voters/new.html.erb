@@ -11,26 +11,33 @@
     </div>
 <% end %>
 
-<%= semantic_form_for :voter, :url => voting_voters_path do |f| %>
+<%= semantic_form_for @voter, :url => voting_voters_path do |f| %>
 
-    <%= f.input :name,
-                :label => "Nimi",
-                :hint  => "Annetaan muodossa: Lipponen Mari Elisabeth" %>
+    <%= f.inputs do %>
+        <%= f.input :name,
+                    :label => "Nimi",
+                    :hint  => "Annetaan muodossa: Lipponen Mari Elisabeth" %>
 
-    <%= f.input :ssn,
-                :label => "Hetu / syntymäaika (SSN)",
-                :hint  => "123456 tai 123456-789A" %>
+        <%= f.input :ssn,
+                    :label => "Hetu / syntymäaika (SSN)",
+                    :hint  => "123456 tai 123456-789A" %>
 
-    <%= f.input :student_number,
-                :hint => "123456789" %>
+        <%= f.input :student_number,
+                    :label => "Opiskelijanumero",
+                    :hint => "123456789" %>
 
-    <%= f.input :faculty_id,
-                :as => :select,
-                :collection => Faculty.all,
-                :label => "Laitos" %>
+        <%= f.input :faculty_id,
+                    :as => :select,
+                    :collection => Faculty.all,
+                    :label => "Laitos" %>
 
-    <%= f.action :submit,
-                 :as    => :button,
-                 :label => "Luo äänioikeutettu ja merkitse hänet äänestäneeksi" %>
+    <% end %>
 
+    <%= f.actions do %>
+        <%= f.action :submit,
+                     :as    => :button,
+                     :button_html => { :class => "btn btn-primary" },
+                     :label => "Luo äänioikeutettu ja merkitse hänet äänestäneeksi" %>
+
+    <% end %>
 <% end %>
