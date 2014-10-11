@@ -17,6 +17,8 @@ class VoterSearch
 
   validate :at_least_one_search_term
 
+  validate :trim_whitespace
+
   protected
 
   def at_least_one_search_term
@@ -26,6 +28,14 @@ class VoterSearch
     end
 
     true
+  end
+
+  def trim_whitespace
+    [:name, :ssn, :student_number].each do |attr|
+      if send(attr).respond_to?(:strip)
+        send "#{attr}=", send(attr).strip
+      end
+    end
   end
 
 end
