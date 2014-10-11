@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20140928074839) do
+ActiveRecord::Schema.define(:version => 20141011122137) do
 
   create_table "active_admin_comments", :force => true do |t|
     t.integer  "resource_id",   :null => false
@@ -263,15 +263,16 @@ ActiveRecord::Schema.define(:version => 20140928074839) do
   end
 
   create_table "voters", :force => true do |t|
-    t.string   "name",           :null => false
-    t.string   "student_number", :null => false
-    t.string   "ssn",            :null => false
+    t.string   "name",              :null => false
+    t.string   "student_number",    :null => false
+    t.string   "ssn",               :null => false
     t.integer  "start_year"
     t.datetime "voted_at"
     t.integer  "voting_area_id"
-    t.integer  "faculty_id",     :null => false
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.integer  "faculty_id",        :null => false
+    t.datetime "created_at",        :null => false
+    t.datetime "updated_at",        :null => false
+    t.integer  "extent_of_studies"
   end
 
   add_index "voters", ["name"], :name => "index_voters_on_name"

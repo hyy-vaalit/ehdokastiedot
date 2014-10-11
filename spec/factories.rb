@@ -9,6 +9,15 @@ FactoryGirl.define do
     email 'user@example.com'
   end
 
+  factory :imported_voter do
+    name 'Armas Aappa'
+    ssn '020486-1234'
+    student_number '012617061'
+    extent_of_studies 1
+    faculty 55
+    start_year 2014
+  end
+
   factory :faculty do
     sequence(:name) {|n| "Faculty #{n}"}
     sequence(:code) {|n| "F#{n}"}

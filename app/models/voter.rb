@@ -1,5 +1,5 @@
 class Voter < ActiveRecord::Base
-  attr_accessible :name, :ssn, :start_year, :student_number, :faculty, :faculty_id
+  attr_accessible :name, :ssn, :start_year, :student_number, :faculty, :faculty_id, :extent_of_studies
 
   belongs_to :faculty
 
@@ -37,6 +37,18 @@ class Voter < ActiveRecord::Base
   scope :matching_student_number, lambda {|*query|
     matching(:student_number, *query)
   }
+
+  def self.create_from(imported_voter)
+    new(
+        :ssn               => imported_voter.ssn,
+        :student_number    => imported_voter.student_number,
+        :name              => imported_voter.name,
+        :start_year        => imported_voter.start_year,
+        :extent_of_studies => imported_voter.extent_of_studies,
+        :faculty           => Faculty.find_by_numeric_code(imported_voter.faculty)
+    )
+
+  end
 
   def can_vote?
     voted_at.nil?

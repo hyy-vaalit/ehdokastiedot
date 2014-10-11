@@ -5,7 +5,7 @@ describe 'Imported Voter', :focus do
   describe "Poro Aaltio" do
     before(:each) do
       data = "200583080H012617061Aaltio Poro J J               20101     H55"
-      @imported = ImportedVoter.new :data => data
+      @imported = ImportedVoter.build_from data
     end
 
     it 'parses name' do
@@ -25,8 +25,8 @@ describe 'Imported Voter', :focus do
       @imported.start_year.should == "2010"
     end
 
-    it 'parses extent' do
-      @imported.extent.should == "1"
+    it 'parses extent_of_studies' do
+      @imported.extent_of_studies.should == "1"
     end
 
     it 'parses faculty' do
@@ -38,7 +38,7 @@ describe 'Imported Voter', :focus do
     before(:each) do
       data = "010288123A013074751Repo Reino E                  20052     H50"
 
-      @imported = ImportedVoter.new :data => data
+      @imported = ImportedVoter.build_from data
     end
 
     it 'parses name' do
@@ -58,8 +58,8 @@ describe 'Imported Voter', :focus do
       @imported.start_year.should == "2005"
     end
 
-    it 'parses extent' do
-      @imported.extent.should == "2"
+    it 'parses extent_of_studies' do
+      @imported.extent_of_studies.should == "2"
     end
 
     it 'parses faculty' do

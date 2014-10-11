@@ -253,6 +253,7 @@ Pekka's Tips
     `rake spec SPEC=spec/lib/result_decorator_spec.rb` 
     * `guard` (voi käyttää `:focus` tai ilman, jos ilman niin ajaa ensin kaikki testit
       ja jää sen jälkeen kuuntelemaan muutoksia)
+    * Muista ajaa `rake db:test:prepare` migraatioiden jälkeen.
 
 
 Testirundi

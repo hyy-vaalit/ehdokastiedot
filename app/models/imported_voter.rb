@@ -20,24 +20,25 @@ class ImportedVoter
 
   include ExtendedPoroBehaviour
 
-  attr_accessor :ssn, :student_number, :name, :start_year, :extent, :faculty
+  attr_accessor :ssn, :student_number, :name, :start_year, :extent_of_studies, :faculty
 
-  def initialize(args={})
-    @errors = ActiveModel::Errors.new(self)
+  def self.build_from(data)
+    voter = new()
+    voter.set_data_from(data)
 
-    set_data_from(args[:data])
+    return voter
   end
-
-  private
 
   def set_data_from(exported_line)
     self.name = parse_name(exported_line)
     self.ssn = parse_ssn(exported_line)
     self.student_number = parse_student_number(exported_line)
     self.start_year = parse_start_year(exported_line)
-    self.extent = parse_extent(exported_line)
+    self.extent_of_studies = parse_extent_of_studies(exported_line)
     self.faculty = parse_faculty(exported_line)
   end
+
+  private
 
   def parse_name(data)
     data[19..48].strip()
@@ -70,7 +71,7 @@ class ImportedVoter
     data[60..61].strip()
   end
 
-  def parse_extent(data)
+  def parse_extent_of_studies(data)
     data[53..54].strip()
   end
 
