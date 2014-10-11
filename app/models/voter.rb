@@ -38,8 +38,8 @@ class Voter < ActiveRecord::Base
     matching(:student_number, *query)
   }
 
-  def self.create_from(imported_voter)
-    new(
+  def self.create_from!(imported_voter)
+    create!(
         :ssn               => imported_voter.ssn,
         :student_number    => imported_voter.student_number,
         :name              => imported_voter.name,
@@ -47,7 +47,6 @@ class Voter < ActiveRecord::Base
         :extent_of_studies => imported_voter.extent_of_studies,
         :faculty           => Faculty.find_by_numeric_code(imported_voter.faculty)
     )
-
   end
 
   def can_vote?

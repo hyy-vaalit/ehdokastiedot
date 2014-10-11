@@ -21,7 +21,7 @@ describe 'Voter', :focus do
     end
 
     it 'creates a voter' do
-      voter = Voter.create_from @imported
+      voter = Voter.create_from! @imported
       voter.name.should == "Purhonen Pekka J P"
       voter.ssn.should == "010283-1234"
       voter.student_number.should == "0123456789"
