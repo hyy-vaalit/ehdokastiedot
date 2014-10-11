@@ -16,13 +16,21 @@ Vaalien vaiheet
 * Lopullisen vaalituloksen julkaisu.
 
 
+Seuraaviin vaaleihin
+====================
+* Varmista opiskelijarekisterin datadumpin muoto:
+  - Vuoden 2014 datassa ei huomioitu 2000-luvulla syntyneitä, eli hetun erotinmerkki puuttui datasta.
+    Parseriin on kovakoodattu väliviiva, tarkista pitääkö oletus edelleen paikkansa.
+
+
 Kustannukset
 ============
 
 * SSL Endpoint ($20 / kk)
 * Sertifikaatti ($49 / vuosi)
-* Postgres
+* Postgres ($9 / kk)
 * Sendgrid ($20 yhdeltä kuukaudelta)
+* Rollbar
 * Worker
   - kun ehdokasilmoittautumisen sähköposti
   - vaalivalvojaiset
