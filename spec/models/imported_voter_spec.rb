@@ -66,4 +66,13 @@ describe 'Imported Voter', :focus do
       @imported.faculty.should == "50"
     end
   end
+
+  describe "Empty voter" do
+
+    it 'fails with empty data' do
+      lambda {
+        ImportedVoter.build_from("")
+      }.should raise_error(ArgumentError, "Cannot build from empty data.")
+    end
+  end
 end

@@ -23,19 +23,23 @@ class ImportedVoter
   attr_accessor :ssn, :student_number, :name, :start_year, :extent_of_studies, :faculty
 
   def self.build_from(data)
+    if data.blank?
+      raise ArgumentError.new("Cannot build from empty data.")
+    end
+
     voter = new()
     voter.set_data_from(data)
 
     return voter
   end
 
-  def set_data_from(exported_line)
-    self.name = parse_name(exported_line)
-    self.ssn = parse_ssn(exported_line)
-    self.student_number = parse_student_number(exported_line)
-    self.start_year = parse_start_year(exported_line)
-    self.extent_of_studies = parse_extent_of_studies(exported_line)
-    self.faculty = parse_faculty(exported_line)
+  def set_data_from(exported_data)
+    self.name = parse_name(exported_data)
+    self.ssn = parse_ssn(exported_data)
+    self.student_number = parse_student_number(exported_data)
+    self.start_year = parse_start_year(exported_data)
+    self.extent_of_studies = parse_extent_of_studies(exported_data)
+    self.faculty = parse_faculty(exported_data)
   end
 
   private
