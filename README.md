@@ -44,9 +44,22 @@ Järjestelmä käyntiin
 Tsekkaa `Procfile` ja komenna:
 
 ~~~
-$ foreman start
+foreman start
 ~~~
 
+Jos ActiveAdminin tyylit ei näy, esikäännä assetit:
+
+~~~
+rake assets:precompile
+~~~
+
+Tämä luo tiedostot hakemistoon `public/assets`.
+Tätä EI PITÄISI tarvita development-modessa, mutta en keksinyt
+miksei ActiveAdminin tyylit näy ilman precompilea (muut tyylit löytyy
+paitsi active_admin.css).
+
+HUOM! Refreshaa selain forcella, cmd-shift-r -- muutoin saattaa tulla cachesta
+väärää dataa (tyylit ei näy, mutta forcella näkyy).
 
 Ympäristön pystyttäminen
 ========================
