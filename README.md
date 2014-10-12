@@ -41,6 +41,8 @@ Kustannukset
 Järjestelmä käyntiin
 ====================
 
+Kopioi `.env.example` -> `.env` ja aseta sinne sopivat defaultit.
+
 Tsekkaa `Procfile` ja komenna:
 
 ~~~
