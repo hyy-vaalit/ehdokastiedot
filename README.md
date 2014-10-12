@@ -30,7 +30,7 @@ Kustannukset
 * Sertifikaatti ($49 / vuosi)
 * Postgres ($9 / kk)
 * Sendgrid ($20 yhdeltä kuukaudelta)
-* Rollbar
+* Rollbar (Free: 3000 occurrences per month, 30 days retention)
 * Worker
   - kun ehdokasilmoittautumisen sähköposti
   - vaalivalvojaiset
