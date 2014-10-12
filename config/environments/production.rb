@@ -30,7 +30,7 @@ Vaalit::Application.configure do
   # Use a different cache store in production
   # config.cache_store = :mem_cache_store
 
-  # Disable Rails's static asset server
+  # Enable Rails's static asset server
   # In production, Apache or nginx will already do this
   # Heroku injects 12factor gem which will turn this option on,
   # therefore have it on by default.

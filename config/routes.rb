@@ -21,7 +21,9 @@ Vaalit::Application.routes.draw do
     end
   end
 
-  namespace :voting do
+  namespace :voting  do
+    get "/", :to => "voters#index"
+
     resources :voters do
       collection do
         get :search
