@@ -38,6 +38,10 @@ class Voter < ActiveRecord::Base
     matching(:student_number, *query)
   }
 
+  def self.by_name
+    reorder(:name)
+  end
+
   def self.create_from!(imported_voter)
     create!(
         :ssn               => imported_voter.ssn,

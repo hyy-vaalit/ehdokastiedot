@@ -29,7 +29,11 @@ class Voting::VotersController < VotingController
     @voters = []
 
     if @voter_search.valid?
-      @voters = Voter.matching_name(@voter_search.name).matching_ssn(@voter_search.ssn).matching_student_number(@voter_search.student_number)
+      @voters = Voter
+        .matching_name(@voter_search.name)
+        .matching_ssn(@voter_search.ssn)
+        .matching_student_number(@voter_search.student_number)
+        .by_name
     end
 
   end
