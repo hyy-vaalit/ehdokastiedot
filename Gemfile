@@ -16,7 +16,7 @@ gem 'unicorn'
 gem 'jquery-rails'
 gem "aws-s3", :require => "aws/s3"
 gem 'pg'
-gem 'rollbar', '~> 1.0.0' # Airbrake competitor
+gem 'rollbar', '~> 1.0.1' # Airbrake competitor
 gem 'sendgrid' # required because Mailers use sendgrid gem's methods
 gem 'foreigner'
 
