@@ -32,6 +32,13 @@ Vaalit::Application.routes.draw do
       put :mark_voted
 
     end
+
+    resource :vote_amounts, :only => [:show, :create] do
+      member do
+        post :mark_submitted
+      end
+    end
+
   end
 
   namespace :manage do
@@ -80,15 +87,6 @@ Vaalit::Application.routes.draw do
       get :showdown
       post :showdown, :action => 'showdown_post'
       get :lulz
-    end
-  end
-
-  resource :voting_area, :only => [:show, :create] do
-    member do
-      get :login
-      post :login, :action => :login_post
-      get :logout
-      post :mark_submitted
     end
   end
 

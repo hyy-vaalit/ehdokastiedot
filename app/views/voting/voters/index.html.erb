@@ -1,3 +1,17 @@
+
+<% if can? :manage, :vote_amounts %>
+  <div class="alert alert-info">
+      <h2>
+          Äänestysaika on päättynyt
+      </h2>
+
+      <p>
+          &raquo; <%= link_to "Kirjaa lasketut äänet", voting_vote_amounts_path %>
+      </p>
+  </div>
+  <hr>
+<% end %>
+
 <h1>Äänioikeuden tarkistaminen</h1>
 
 <%= semantic_form_for :voter_search, :method => :get, :url => search_voting_voters_path do |f| %>

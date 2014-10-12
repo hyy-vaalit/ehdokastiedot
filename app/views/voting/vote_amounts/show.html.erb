@@ -1,12 +1,15 @@
-<p><%= link_to 'Kirjaudu ulos', login_voting_area_path %></p>
+&laquo; <%= link_to "Palaa pääsivulle", voting_path %>
 
-<% if @voting_area.submitted -%>
-  <p>Äänestysalue on merkitty syötetyksi eikä sen tietoja voi enää muuttaa ennen tarkastuslaskentaa.</p>
+<% if @voting_area.submitted? -%>
+  <p class="alert alert-info">
+      Äänestysalue on merkitty syötetyksi eikä sen tietoja voi enää muuttaa ennen tarkastuslaskentaa.
+  </p>
 <% else -%>
   <p>
-     <%= link_to "Merkitse äänestysalue syötetyksi.",
-                  mark_submitted_voting_area_path,
+     <%= link_to "Merkitse äänestysalue syötetyksi",
+                  mark_submitted_voting_vote_amounts_path,
                   :method => :post,
+                  :class => "btn btn-danger",
                   :confirm => 'Onko kaikki äänet varmasti syötetty?' %>
   </p>
 <% end -%>
@@ -51,7 +54,7 @@
 </table>
 <% end -%>
 
-<% unless @voting_area.submitted -%>
+<% unless @voting_area.submitted? -%>
 
   <% if flash[:invalid_candidate_numbers] and flash[:invalid_candidate_numbers].any? %>
     <div class="error">
@@ -62,7 +65,7 @@
     </div>
   <% end %>
 
-  <%= form_tag voting_area_path, :method => :post do -%>
+  <%= form_tag voting_vote_amounts_path, :method => :post do -%>
 
     <table id="submit-votes">
       <tr>
@@ -80,7 +83,7 @@
       </tr>
     <% end -%>
     </table>
-    <p><input type="submit" value="Tallenna äänet" /></p>
+    <p><input type="submit" value="Tallenna äänet" class="btn btn-primary" /></p>
   <% end -%>
 
 <% end -%>

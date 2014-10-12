@@ -11,6 +11,13 @@ module Vaalit
   module Voting
     PROPORTIONAL_PRECISION = 5   # Decimals used in proportional numbers (eg. 87.12345 is 5 decimals)
     ELECTED_CANDIDATE_COUNT = 60 # How many candidates are elected
+
+    if (ENV['VOTING_CALCULATION_BEGINS_AT'])
+      CALCULATION_BEGINS_AT = Time.parse(ENV['VOTING_CALCULATION_BEGINS_AT'])
+    else
+      raise "Set ENV['VOTING_CALCULATION_BEGINS_AT'] in .env"
+    end
+
   end
 
   module Results

@@ -34,9 +34,12 @@ class Ability
   end
 
   def voting_area(user)
-    can :access, [:voters, :voting, :voting_area]
+    can :access, [:voters, :voting]
 
-    # can [:create, :read, :update], [Voter]
+    if Time.now > Vaalit::Voting::CALCULATION_BEGINS_AT
+      can :manage, [:vote_amounts]
+    end
+
   end
 
   private
