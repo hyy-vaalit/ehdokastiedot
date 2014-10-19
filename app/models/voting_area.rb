@@ -18,13 +18,7 @@ class VotingArea < ActiveRecord::Base
 
   has_one :voting_area_user
 
-  attr_accessor :password
-
-  validates_presence_of :password
-
   validates_uniqueness_of :code
-
-  before_create :encrypt_password
 
   scope :countable, where('ready = ?', true)
   scope :markable_as_ready, where('submitted = ?', true)
@@ -32,12 +26,6 @@ class VotingArea < ActiveRecord::Base
 
   def self.for_showdown
     order('ready desc, submitted desc, id asc')
-  end
-
-  def self.authenticate code, password
-    area = self.find_by_code code
-    return nil if area.nil?
-    return area if area.has_password? password
   end
 
   def vote_count
@@ -64,26 +52,12 @@ class VotingArea < ActiveRecord::Base
     end
   end
 
-  def has_password? password
-    self.encrypted_password == encrypt(password)
-  end
-
   def ready!
     update_attribute :ready, true
   end
 
   def submitted!
     update_attribute :submitted, true
-  end
-
-  private
-
-  def encrypt_password
-    self.encrypted_password = encrypt password
-  end
-
-  def encrypt(string)
-    Digest::SHA2.hexdigest string
   end
 
 end
