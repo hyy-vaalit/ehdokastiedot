@@ -22,6 +22,20 @@ namespace :seed do
       candidate.save!
     end
 
+    def create_voting_area(opts)
+      code = opts[:code]
+      name = opts[:name]
+      password = opts[:password]
+
+      area =  VotingArea.create! :code => code,
+                                 :name => name
+
+      VotingAreaUser.create! :email => "#{code}@hyy.fi",
+                             :voting_area => area,
+                             :password => password
+
+    end
+
     desc 'Default project settings'
     task :configuration => :environment do
       conf = GlobalConfiguration.new(
@@ -58,31 +72,32 @@ namespace :seed do
 
     desc 'Create Voting Areas'
     task :voting_areas => :environment do
-      VotingArea.create! :code => 'I',   :name => 'Unicafe Ylioppilasaukio',    :password => 'pass123'
-      VotingArea.create! :code => 'II',   :name => 'Yliopiston päärakennus',     :password => 'pass123'
-      VotingArea.create! :code => 'III',   :name => 'Yliopiston päärakennus',     :password => 'pass123'
-      VotingArea.create! :code => 'IV',   :name => 'Porthania',                  :password => 'pass123'
-      VotingArea.create! :code => 'V',   :name => 'Porthania',                  :password => 'pass123'
-      VotingArea.create! :code => 'VI',   :name => 'Oppimiskeskus Aleksandria',  :password => 'pass123'
-      VotingArea.create! :code => 'VII',   :name => 'Topelia',                    :password => 'pass123'
-      VotingArea.create! :code => 'VIII',   :name => 'Metsätalo',                  :password => 'pass123'
-      VotingArea.create! :code => 'IX',   :name => 'Valtiotieteellisen tdk:n',   :password => 'pass123'
-      VotingArea.create! :code => 'X',  :name => 'Oppimiskeskus Minerva',      :password => 'pass123'
-      VotingArea.create! :code => 'XI',  :name => 'Terveystieteiden keskus',    :password => 'pass123'
-      VotingArea.create! :code => 'XII',  :name => 'Hammaslääketieteen',         :password => 'pass123'
-      VotingArea.create! :code => 'XIII',  :name => 'Physicum',                   :password => 'pass123'
-      VotingArea.create! :code => 'XIV',  :name => 'Chemicum',                   :password => 'pass123'
-      VotingArea.create! :code => 'XV',  :name => 'Exactum',                    :password => 'pass123'
-      VotingArea.create! :code => 'XVI',  :name => 'Viikin Infokeskus',          :password => 'pass123'
-      VotingArea.create! :code => 'XVII',  :name => 'Viikin Biokeskus 3',         :password => 'pass123'
-      VotingArea.create! :code => 'XVIII',  :name => 'Viikin EE-talo',             :password => 'pass123'
-      VotingArea.create! :code => 'XIX',  :name => 'Ympäristöekologian',         :password => 'pass123'
-      VotingArea.create! :code => 'XX',  :name => 'Vaasan yliopisto',           :password => 'pass123'
-      VotingArea.create! :code => 'EI',  :name => 'Porthania',                  :password => 'pass123'
-      VotingArea.create! :code => 'EII',  :name => 'Viikin Infokeskus',          :password => 'pass123'
-      VotingArea.create! :code => 'EIII',  :name => 'Physicum',                   :password => 'pass123'
-      VotingArea.create! :code => 'EIV',  :name => 'Terveystieteiden keskus',    :password => 'pass123'
-      VotingArea.create! :code => 'EV',  :name => 'Unicafe',                    :password => 'pass123'
+      create_voting_area :code => 'I',   :name => 'Unicafe Ylioppilasaukio',    :password => 'pass123'
+
+      create_voting_area :code => 'II',   :name => 'Yliopiston päärakennus',     :password => 'pass123'
+      create_voting_area :code => 'III',   :name => 'Yliopiston päärakennus',     :password => 'pass123'
+      create_voting_area :code => 'IV',   :name => 'Porthania',                  :password => 'pass123'
+      create_voting_area :code => 'V',   :name => 'Porthania',                  :password => 'pass123'
+      create_voting_area :code => 'VI',   :name => 'Oppimiskeskus Aleksandria',  :password => 'pass123'
+      create_voting_area :code => 'VII',   :name => 'Topelia',                    :password => 'pass123'
+      create_voting_area :code => 'VIII',   :name => 'Metsätalo',                  :password => 'pass123'
+      create_voting_area :code => 'IX',   :name => 'Valtiotieteellisen tdk:n',   :password => 'pass123'
+      create_voting_area :code => 'X',  :name => 'Oppimiskeskus Minerva',      :password => 'pass123'
+      create_voting_area :code => 'XI',  :name => 'Terveystieteiden keskus',    :password => 'pass123'
+      create_voting_area :code => 'XII',  :name => 'Hammaslääketieteen',         :password => 'pass123'
+      create_voting_area :code => 'XIII',  :name => 'Physicum',                   :password => 'pass123'
+      create_voting_area :code => 'XIV',  :name => 'Chemicum',                   :password => 'pass123'
+      create_voting_area :code => 'XV',  :name => 'Exactum',                    :password => 'pass123'
+      create_voting_area :code => 'XVI',  :name => 'Viikin Infokeskus',          :password => 'pass123'
+      create_voting_area :code => 'XVII',  :name => 'Viikin Biokeskus 3',         :password => 'pass123'
+      create_voting_area :code => 'XVIII',  :name => 'Viikin EE-talo',             :password => 'pass123'
+      create_voting_area :code => 'XIX',  :name => 'Ympäristöekologian',         :password => 'pass123'
+      create_voting_area :code => 'XX',  :name => 'Vaasan yliopisto',           :password => 'pass123'
+      create_voting_area :code => 'EI',  :name => 'Porthania',                  :password => 'pass123'
+      create_voting_area :code => 'EII',  :name => 'Viikin Infokeskus',          :password => 'pass123'
+      create_voting_area :code => 'EIII',  :name => 'Physicum',                   :password => 'pass123'
+      create_voting_area :code => 'EIV',  :name => 'Terveystieteiden keskus',    :password => 'pass123'
+      create_voting_area :code => 'EV',  :name => 'Unicafe',                    :password => 'pass123'
     end
 
     desc 'Create electoral coalitions and alliances'

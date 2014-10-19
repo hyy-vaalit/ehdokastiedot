@@ -3,6 +3,21 @@
 namespace :seed do
 
   namespace :production do
+
+    def create_voting_area(opts)
+      code = opts[:code]
+      name = opts[:name]
+      password = opts[:password]
+
+      area =  VotingArea.create! :code => code,
+                                 :name => name
+
+      VotingAreaUser.create! :email => "#{code}@hyy.fi",
+                             :voting_area => area,
+                             :password => password
+
+    end
+
     desc 'Seed data for faculties'
     task :faculties => :environment do
       puts 'Seeding faculties ...'
@@ -26,26 +41,26 @@ namespace :seed do
 
       # 2014 Voting Areas
       #raise 'Add passwords and remove this line (production_seed.rake). PS. Plz commit them to github too, ok!'
-      VotingArea.create! :code => 'I', :name => 'Unicafe Ylioppilasaukio', :password => 'salainensana'
-      VotingArea.create! :code => 'II', :name => 'Yliopiston päärakennus', :password => 'salainensana'
-      VotingArea.create! :code => 'III', :name => 'Porthania', :password => 'salainensana'
-      VotingArea.create! :code => 'IV', :name => 'Metsätalo', :password => 'salainensana'
-      VotingArea.create! :code => 'V', :name => 'Kaisa-talo', :password => 'salainensana'
-      VotingArea.create! :code => 'VI', :name => 'Oppimiskeskus Minerva', :password => 'salainensana'
-      VotingArea.create! :code => 'VII', :name => 'Terveystieteiden keskuskirjasto', :password => 'salainensana'
-      VotingArea.create! :code => 'VIII', :name => 'Hammaslääketieteen laitos', :password => 'salainensana'
-      VotingArea.create! :code => 'IX', :name => 'Physicum', :password => 'salainensana'
-      VotingArea.create! :code => 'X', :name => 'Exactum', :password => 'salainensana'
-      VotingArea.create! :code => 'XI', :name => 'Infokeskus', :password => 'salainensana'
-      VotingArea.create! :code => 'XII', :name => 'EE-talo', :password => 'salainensana'
-      VotingArea.create! :code => 'XIII', :name => 'Ympäristöekologian laitos', :password => 'salainensana'
-      VotingArea.create! :code => 'XIV', :name => 'Vaasan yliopisto', :password => 'salainensana'
+      create_voting_area :code => 'I', :name => 'Unicafe Ylioppilasaukio', :password => 'salainensana'
+      create_voting_area :code => 'II', :name => 'Yliopiston päärakennus', :password => 'salainensana'
+      create_voting_area :code => 'III', :name => 'Porthania', :password => 'salainensana'
+      create_voting_area :code => 'IV', :name => 'Metsätalo', :password => 'salainensana'
+      create_voting_area :code => 'V', :name => 'Kaisa-talo', :password => 'salainensana'
+      create_voting_area :code => 'VI', :name => 'Oppimiskeskus Minerva', :password => 'salainensana'
+      create_voting_area :code => 'VII', :name => 'Terveystieteiden keskuskirjasto', :password => 'salainensana'
+      create_voting_area :code => 'VIII', :name => 'Hammaslääketieteen laitos', :password => 'salainensana'
+      create_voting_area :code => 'IX', :name => 'Physicum', :password => 'salainensana'
+      create_voting_area :code => 'X', :name => 'Exactum', :password => 'salainensana'
+      create_voting_area :code => 'XI', :name => 'Infokeskus', :password => 'salainensana'
+      create_voting_area :code => 'XII', :name => 'EE-talo', :password => 'salainensana'
+      create_voting_area :code => 'XIII', :name => 'Ympäristöekologian laitos', :password => 'salainensana'
+      create_voting_area :code => 'XIV', :name => 'Vaasan yliopisto', :password => 'salainensana'
 
-      VotingArea.create! :code => 'EI', :name => 'Keskustakampus, Porthania', :password => 'salainensana'
-      VotingArea.create! :code => 'EII', :name => 'Viikin kampus, Infokeskus', :password => 'salainensana'
-      VotingArea.create! :code => 'EIII', :name => 'Kumpulan kampus, Physicum', :password => 'salainensana'
-      VotingArea.create! :code => 'EIV', :name => 'Meilahden kampus, Terveystieteiden keskuskirjasto', :password => 'salainensana'
-      VotingArea.create! :code => 'EV', :name => 'Kaisa-talo', :password => 'salainensana'
+      create_voting_area :code => 'EI', :name => 'Keskustakampus, Porthania', :password => 'salainensana'
+      create_voting_area :code => 'EII', :name => 'Viikin kampus, Infokeskus', :password => 'salainensana'
+      create_voting_area :code => 'EIII', :name => 'Kumpulan kampus, Physicum', :password => 'salainensana'
+      create_voting_area :code => 'EIV', :name => 'Meilahden kampus, Terveystieteiden keskuskirjasto', :password => 'salainensana'
+      create_voting_area :code => 'EV', :name => 'Kaisa-talo', :password => 'salainensana'
     end
 
     desc 'Setup production configuration defaults'
