@@ -19,6 +19,23 @@ class VoterSearch
 
   validate :trim_whitespace
 
+  def to_human
+    text = ""
+    catenate_with = " AND "
+
+    [ssn, name, student_number].each do |value|
+      next if value.blank?
+
+      if text.blank?
+        text = "'#{value}'"
+      else
+        text = text + catenate_with + "'#{value}'"
+      end
+    end
+
+    text
+  end
+
   protected
 
   def at_least_one_search_term

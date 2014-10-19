@@ -261,6 +261,33 @@ p.notice {
   color: #777777;
 }
 
+form.formtastic.voter_search .alert {
+  float: left;
+}
+
+form.formtastic.voter_search li {
+  float: left;
+}
+
+form.formtastic.voter_search .input {
+  width: 25em;
+  margin-right: 1em;
+  padding: 0.5em;
+  background: #ebeae6;
+  border: 1px #d7d6d2 solid;
+}
+
+form.formtastic.voter_search label {
+  float: left;
+}
+form.formtastic.voter_search input {
+  clear: left;
+}
+
+form.formtastic.voter_search .button_action {
+  clear: left;
+}
+
 .voting-right.voter-details dt {
   font-weight: bold;
 }

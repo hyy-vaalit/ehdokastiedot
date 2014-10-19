@@ -12,7 +12,7 @@
 
 <% if @voters.any? %>
 
-    <h1>Hakutulokset (<%= @voters.count %>)</h1>
+  <h1>Hakutulokset (<%= @voters.count %> kpl, <%= @voter_search.to_human %>)</h1>
 
     <table class="listing">
         <thead>
@@ -65,16 +65,10 @@
 <% elsif @voter_search.valid? %>
     <h1>Hakuehdoilla ei löytynyt ketään</h1>
 
-    <p>
-        Tarkista vielä seuraavat:
-        <ul>
-            <li>Opiskelijakortin voimassaolotarra.</li>
-            <li>Hakuehdoissa ei ole kirjoitusvirhettä.</li>
-            <li>Jos nimessä on esim. aksenttimerkki tai jos käytit montaa hakutermiä,
-                yritä hakea pelkällä hetulla tai opiskelijanumerolla.</li>
-        </ul>
-    </p>
-
+  <p>
+      Hakuehdot:
+      <%= @voter_search.to_human %>
+  </p>
 <% end %>
 
 <h2>Äänioikeutettua ei löydy?</h2>
@@ -82,6 +76,16 @@
 <p>
     Jos henkilöllä on esittää luotettava todistus jäsenmaksun maksamisesta, voit lisätä uuden henkilön
     järjestelmään.
+</p>
+
+<p>
+  Tarkista ensin seuraavat:
+  <ul>
+    <li>Opiskelijakortin voimassaolotarra.</li>
+    <li>Hakuehdoissa ei ole kirjoitusvirhettä.</li>
+    <li>Jos nimessä on esim. aksenttimerkki tai jos käytit montaa hakutermiä,
+        yritä hakea pelkällä hetulla tai opiskelijanumerolla.</li>
+  </ul>
 </p>
 
 <p>
