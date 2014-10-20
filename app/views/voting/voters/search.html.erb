@@ -44,9 +44,7 @@
                 <td><%= v.faculty.name %></td>
 
                 <td>
-                    <% if v.can_vote? %>
-                        <%= link_to "Saa äänestää", edit_voting_voter_path(v) %>
-                    <% else %>
+                    <% if v.has_voted? %>
                         <%= friendly_datetime(v.voted_at) %>
                     <% end %>
                 </td>
