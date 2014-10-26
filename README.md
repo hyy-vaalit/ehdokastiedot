@@ -85,6 +85,20 @@ rake voters:import filename=test-export.txt
 ~~~
 
 
+Tuotantokannan lataaminen omalle koneelle
+
+1) Backupista dumppifileksi
+https://devcenter.heroku.com/articles/heroku-postgres-import-export
+
+2) Suoraan ilman dumppitiedostoa
+~~~
+rake db:drop
+rake db:create
+heroku pg:info
+
+heroku pg:pull HEROKU_POSTGRESQL_IVORY_URL hyyvaalit -a hyy-vaalit
+~~~
+
 Heroku-ympäristön pystyttäminen
 ===============================
 
