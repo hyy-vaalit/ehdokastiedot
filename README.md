@@ -267,16 +267,19 @@ Pekka's Tips
 
   * Jos Gemeissä ongelmia, päivitä `gem update --system`
   * Jos Gemfile.lock pitää luoda uudelleen ja jää "Resolving dependencies" -luuppiin, kommentoi pois kaikki muut gemit paitsi rails ja lisää ne takaisin ryhmä kerrallaan.
-  * Debugging: luo breakpoint laittamalla koodiin `byebug` -- toimii vaan vähän huonosti foreman/unicornin kanssa. 
+  * Debugging: luo breakpoint laittamalla koodiin `byebug` -- toimii vaan vähän huonosti foreman/unicornin kanssa.
   * Aja vain yksi testi:
     * lisää `:focus` testiin, esim. it 'something', :focus do .. end, jonka jälkeen `rake spec`
     * (huom, ei nollaa tietokantaa ilman rakea):
-    `rake spec SPEC=spec/lib/result_decorator_spec.rb` 
+    `rake spec SPEC=spec/lib/result_decorator_spec.rb`
     * `guard` (voi käyttää `:focus` tai ilman, jos ilman niin ajaa ensin kaikki testit
       ja jää sen jälkeen kuuntelemaan muutoksia)
     * Muista ajaa `rake db:test:prepare` migraatioiden jälkeen.
   * Jos Formtasticin virheet ei tule näkyviin, varmista että on
     `<%= semantic_form_for @voter ..%>` EIKÄ `:voter` .. näistä jälkimmäinen antaa oudon virheen.
+  * Opiskelijarekisterin data tulee `.7z`-tiedostona.
+    - `brew install p7zip`
+    - `7z x tiedosto.7z`
 
 Testirundi
 ==========
