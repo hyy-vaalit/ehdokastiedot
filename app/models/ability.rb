@@ -9,6 +9,10 @@ class Ability
   def admin(user)
     can :access, :admin
     can :manage, :all
+
+    # Being signed-in as an AdminUser and VotingAreaUser at the same time
+    # does not work with marking votes. (Dependency on current_user.voting_area).
+    cannot :access, :voting
   end
 
   def secretary(user)
