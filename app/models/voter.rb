@@ -1,4 +1,6 @@
 class Voter < ActiveRecord::Base
+  include ExportableToExcel
+
   attr_accessible :name, :ssn, :start_year, :student_number, :faculty, :faculty_id, :extent_of_studies
 
   belongs_to :faculty
@@ -42,6 +44,10 @@ class Voter < ActiveRecord::Base
     reorder(:name)
   end
 
+  def self.for_export
+    by_name
+  end
+
   def self.create_from!(imported_voter)
     create!(
         :ssn               => imported_voter.ssn,
@@ -71,4 +77,18 @@ class Voter < ActiveRecord::Base
       return false
     end
   end
+
+  def csv_attributes
+    [
+        "Äänestänyt"        => voted_at,
+        "Äänestyspaikka"    => voting_area_id,
+        "Nimi"              => name,
+        "Opiskelijanumero"  => student_number,
+        "Hetu"              => ssn,
+        "Aloitusvuosi"      => start_year,
+        "Opintojen laajuus" => extent_of_studies,
+        "Tiedekunta"        => faculty_id
+    ]
+  end
+
 end

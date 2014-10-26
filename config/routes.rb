@@ -50,6 +50,8 @@ Vaalit::Application.routes.draw do
 
     resources :candidates, :only => [:index]
 
+    resources :voters, :only => [:index]
+
     resource :danger_zone, :only => [:show]
 
     resources :candidate_attribute_changes

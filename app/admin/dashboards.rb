@@ -36,11 +36,14 @@ ActiveAdmin::Dashboards.build do
       end
     end
 
+    # Please note that in order to have control over the CSV export, you must use a custom controller.
+    # See eg. manage/candidates_controller for Candidate CSV export.
     section "Tiedot Exceliin (CSV Export)" do
       ul do
-        li link_to "Kaikki ehdokkaat (csv)", manage_candidates_path(:format=>:csv)
-        li link_to "Kaikki vaaliliitot (csv)", admin_electoral_alliances_path(:format=>:csv)
-        li link_to "Kaikki vaalirenkaat (csv)", admin_electoral_coalitions_path(:format=>:csv)
+        li link_to "Ehdokkaat (csv)", manage_candidates_path(:format=>:csv)
+        li link_to "Vaaliliitot (csv)", admin_electoral_alliances_path(:format=>:csv)
+        li link_to "Vaalirenkaat (csv)", admin_electoral_coalitions_path(:format=>:csv)
+        li link_to "Äänioikeutetut (csv)", manage_voters_path(:format=>:csv)
       end
       section "Ohjeet CSV-tiedoston tuomiseksi Exceliin" do
         ol do

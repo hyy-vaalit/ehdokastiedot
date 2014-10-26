@@ -1,4 +1,5 @@
-<% if @candidates -%>
+<%# Do not indent this file: it will mess up the CSV format. -%>
+<% if @candidates.any? -%>
 <%= CandidateDecorator.to_csv(@candidates).html_safe -%>
 <% else %>
 Vaalijärjestelmään ei ole vielä syötetty yhtään ehdokasta.

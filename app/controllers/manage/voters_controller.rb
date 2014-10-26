@@ -1,9 +1,9 @@
-class Manage::CandidatesController < ManageController
+class Manage::VotersController < ManageController
 
-  # List Candidates for CSV Export.
+  # List Voters for CSV Export.
   # Please note: Formatting is done in the view.
   def index
-    @candidates = Candidate.for_listing
+    @voters = Voter.for_export
 
     respond_to do |format|
       format.html { }
@@ -14,6 +14,6 @@ class Manage::CandidatesController < ManageController
   protected
 
   def authorize_this!
-    authorize! :candidates, @current_admin_user
+    authorize! :manage, :voters
   end
 end
