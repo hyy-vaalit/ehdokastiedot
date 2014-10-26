@@ -300,3 +300,11 @@ Testirundi
 
   * Merkitse vaaliliitot valmiiksi:
     - `ElectoralAlliance.all.each { |a| a.freeze! }`
+
+
+Muistiinpanoja
+--------------
+  * Draper on tosi hidas ison collectionin koristelussa.
+    CandidateDecorator toimii n. 1000 alkiolla, mutta
+    sama pattern 28000 äänestäjällä jumahti täysin.
+    Jos Draperista pitää refaktoroida, tsekkaa http://thepugautomatic.com/2014/03/draper/
