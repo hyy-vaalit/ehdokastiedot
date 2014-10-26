@@ -49,7 +49,7 @@ class Voter < ActiveRecord::Base
         :name              => imported_voter.name,
         :start_year        => imported_voter.start_year,
         :extent_of_studies => imported_voter.extent_of_studies,
-        :faculty           => Faculty.find_by_numeric_code(imported_voter.faculty)
+        :faculty           => Faculty.find_by_numeric_code!(imported_voter.faculty)
     )
   end
 
