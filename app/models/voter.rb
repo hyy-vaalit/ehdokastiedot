@@ -40,6 +40,16 @@ class Voter < ActiveRecord::Base
     matching(:student_number, *query)
   }
 
+  def self.voted
+    where("voted_at IS NOT NULL")
+  end
+
+  def self.count_by_area
+    voted
+      .group('voting_area_id')
+      .count('id')
+  end
+
   def self.by_name
     reorder(:name)
   end
