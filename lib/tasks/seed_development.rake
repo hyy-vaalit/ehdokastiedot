@@ -3,6 +3,21 @@ require 'csv'
 
 namespace :seed do
   namespace :development do
+
+    def create_voting_area(opts)
+      code = opts[:code]
+      name = opts[:name]
+      password = opts[:password]
+
+      area =  VotingArea.create! :code => code,
+                                 :name => name
+
+      VotingAreaUser.create! :email => "#{code}@hyy.fi",
+                             :voting_area => area,
+                             :password => password
+
+    end
+
     def random_advocate_user(number)
       (number % 2 == 0) ? AdvocateUser.first : AdvocateUser.last
     end
@@ -20,20 +35,6 @@ namespace :seed do
       candidate.candidate_number = candidate_number
 
       candidate.save!
-    end
-
-    def create_voting_area(opts)
-      code = opts[:code]
-      name = opts[:name]
-      password = opts[:password]
-
-      area =  VotingArea.create! :code => code,
-                                 :name => name
-
-      VotingAreaUser.create! :email => "#{code}@hyy.fi",
-                             :voting_area => area,
-                             :password => password
-
     end
 
     desc 'Default project settings'
@@ -215,13 +216,13 @@ namespace :seed do
     desc 'Create early voting data'
     task :early_voting => :environment do
       puts '... Creating early voting areas ...'
-      (1..5).to_a.each do |i|
-        voting_area = VotingArea.find_by_code "E#{i}"
+      [:EI, :EII, :EIII, :EIV, :EV].each do |area_code|
+        voting_area = VotingArea.find_by_code! "#{area_code}"
         puts "... #{voting_area.name}"
-        csv_contents = CSV.read("doc/votes/E#{i}", encoding: "ISO8859-1")
+        csv_contents = CSV.read("doc/votes/#{area_code}", encoding: "ISO8859-1")
         csv_contents.shift
         csv_contents.each do |row|
-          Candidate.find_by_candidate_number(row[0]).votes.create! :voting_area => voting_area, :amount => row[3]
+          Candidate.find_by_candidate_number!(row[0]).votes.create! :voting_area => voting_area, :amount => row[3]
         end
       end
     end
@@ -229,13 +230,14 @@ namespace :seed do
     desc 'Create main voting data'
     task :main_voting => :environment do
       puts '... Creating voting areas ...'
-      (1..20).to_a.each do |i|
-        voting_area = VotingArea.find_by_code "#{i}"
+      [:I, :II, :III, :IV, :V, :VI, :VII, :VIII, :IX, :X,
+       :XI, :XII, :XIII, :XIV, :XV, :XVI, :XVII, :XVIII, :XIX, :XX].each do |area_code|
+        voting_area = VotingArea.find_by_code! "#{area_code}"
         puts "... #{voting_area.name}"
-        csv_contents = CSV.read("doc/votes/#{i}", encoding: "ISO8859-1")
+        csv_contents = CSV.read("doc/votes/#{area_code}", encoding: "ISO8859-1")
         csv_contents.shift
         csv_contents.each do |row|
-          Candidate.find_by_candidate_number(row[0]).votes.create! :voting_area => voting_area, :amount => row[3]
+          Candidate.find_by_candidate_number!(row[0]).votes.create! :voting_area => voting_area, :amount => row[3]
         end
       end
     end
