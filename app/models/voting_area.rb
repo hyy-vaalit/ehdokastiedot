@@ -1,10 +1,10 @@
 # Äänestysalueen tilat:
 #
-#  - "submitted":
+#  - "submitted": Näkyy adminille
 #        Äänestysalueen kaikki äänet on laskettu
 #        ja äänestysalueen pj on merkinnyt alueen syötetyksi.
 #        Admin voi valita äänestysalueen äänet mukaan seuraavaan tulokseen.
-#  - "ready":
+#  - "ready": Näkyy workerille
 #        Admin on merkinnyt äänestysalueen otettavaksi mukaan, kun seuraava
 #        (väliaika)tulos lasketaan.
 #

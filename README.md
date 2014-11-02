@@ -300,7 +300,18 @@ Testirundi
 
   * Merkitse vaaliliitot valmiiksi:
     - `ElectoralAlliance.all.each { |a| a.freeze! }`
-
+  * Äänestysalueet laskentaan:
+    - `VotingArea.all.each { |a| a.submitted! }`
+  * Listaa taustalle laitetut työt:
+    - `Delayed::Job.all`
+  * Jos taustatyö feilaa, sen uudelleenyritys skeduloidaan eksponentiaalisesti, eli viimeinen yritys
+   on joskus 2 viikon kuluttua ... Rollbar ei nappaa virhettä jos työ ei ole failannut vaan on
+   pelkässä retry-jonossa (esim. AWS permission denied).
+  * Työn käynnistäminen manuaalisesti:
+    - `Delayed::Job.find(XX).invoke_job`
+  * Esimerkkidatassa seed:development on 2009 vaalitulos. 
+    - Tsekkaa vaalisija 60/61 jonka äänet menevät tasan ja lopputulos rengasvertailuluvn arvontaan.
+    
 
 Muistiinpanoja
 --------------
