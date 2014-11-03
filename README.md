@@ -93,7 +93,6 @@ https://devcenter.heroku.com/articles/heroku-postgres-import-export
 2) Suoraan ilman dumppitiedostoa
 ~~~
 rake db:drop
-rake db:create
 heroku pg:info
 
 heroku pg:pull HEROKU_POSTGRESQL_IVORY_URL hyyvaalit -a hyy-vaalit
@@ -309,9 +308,9 @@ Testirundi
    pelkässä retry-jonossa (esim. AWS permission denied).
   * Työn käynnistäminen manuaalisesti:
     - `Delayed::Job.find(XX).invoke_job`
-  * Esimerkkidatassa seed:development on 2009 vaalitulos. 
+  * Esimerkkidatassa seed:development on 2009 vaalitulos.
     - Tsekkaa vaalisija 60/61 jonka äänet menevät tasan ja lopputulos rengasvertailuluvn arvontaan.
-    
+
 
 Muistiinpanoja
 --------------

@@ -44,6 +44,9 @@ class Voter < ActiveRecord::Base
     where("voted_at IS NOT NULL")
   end
 
+  # If you change the result of this, please ensure that the voting area related statistics
+  # for vaalitulos.hyy.fi still work. This is tightly coupled to the JSON format which is tightly
+  # coupled to vaalitulos.hyy.fi.
   def self.count_by_area
     voted
       .group('voting_area_id')
