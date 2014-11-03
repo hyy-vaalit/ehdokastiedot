@@ -90,6 +90,13 @@ Tuotantokannan lataaminen omalle koneelle
 1) Backupista dumppifileksi
 https://devcenter.heroku.com/articles/heroku-postgres-import-export
 
+~~~
+heroku pgbackups:url -a hyy-vaalit
+--> SEKRIT_URL
+
+heroku pgbackups:restore DATABASE SEKRIT_URL -a hyy-vaalit
+~~~
+
 2) Suoraan ilman dumppitiedostoa
 ~~~
 rake db:drop
