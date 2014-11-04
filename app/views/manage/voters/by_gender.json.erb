@@ -1,0 +1,18 @@
+<%= raw(JSONBuilder::Compiler.generate do
+  name "Äänestysalueen mukaan"
+  year Time.now.year
+  created_at Time.now.localtime
+
+  children do
+    voted do
+      men    Voter.voted.men.count
+      women  Voter.voted.women.count
+    end
+
+    total do
+      men    Voter.men.count
+      women  Voter.women.count
+    end
+  end
+
+end) %>

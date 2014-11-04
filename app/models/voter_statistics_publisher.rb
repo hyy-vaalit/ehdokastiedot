@@ -1,7 +1,11 @@
 class VoterStatisticsPublisher
 
   def self.publish!
+    Rails.logger.info "Publishing voters by voting area"
     store_s3_object("#{directory}/voters_by_voting_area.json", VoterStatistics.by_voting_area)
+
+    Rails.logger.info "Publishing voters by gender"
+    store_s3_object("#{directory}/voters_by_gender.json", VoterStatistics.by_gender)
   end
 
   def self.directory
