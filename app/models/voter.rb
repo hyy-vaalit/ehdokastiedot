@@ -54,6 +54,14 @@ class Voter < ActiveRecord::Base
     select("ssn").where("substring(ssn from '\\d{6}[-A]([0-9]{3})\\w$')::int % 2 = 1")
   end
 
+  def self.unknown_gender_count
+    Voter.count - Voter.men.count - Voter.women.count
+  end
+
+  def self.unknown_gender_voted_count
+    Voter.voted.count - Voter.voted.men.count - Voter.voted.women.count
+  end
+
   # If you change the result of this, please ensure that the voting area related statistics
   # for vaalitulos.hyy.fi still work. This is tightly coupled to the JSON format which is tightly
   # coupled to vaalitulos.hyy.fi.

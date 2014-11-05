@@ -5,14 +5,17 @@
 
   children do
     voted do
-      men    Voter.voted.men.count
-      women  Voter.voted.women.count
+      men     Voter.voted.men.count
+      women   Voter.voted.women.count
+      unknown Voter.unknown_gender_voted_count
     end
 
     total do
-      men    Voter.men.count
-      women  Voter.women.count
+      men     Voter.men.count
+      women   Voter.women.count
+      unknown Voter.unknown_gender_count
     end
+
   end
 
 end) %>
