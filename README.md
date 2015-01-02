@@ -91,11 +91,19 @@ Tuotantokannan lataaminen omalle koneelle
 https://devcenter.heroku.com/articles/heroku-postgres-import-export
 
 ~~~
+heroku pgbackups:capture -a hyy-vaalit
+--> tee tuore backup
+
 heroku pgbackups:url -a hyy-vaalit
 --> SEKRIT_URL
 
 heroku pgbackups:restore DATABASE SEKRIT_URL -a hyy-vaalit
+--> Siirtää paikalliseen postgresiin
+
+curl -o latest.dump "SEKRIT_URL"
+--> Download sql dump file
 ~~~
+
 
 2) Suoraan ilman dumppitiedostoa
 ~~~
