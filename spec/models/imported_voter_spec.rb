@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Imported Voter', :focus do
+describe 'Imported Voter' do
 
   describe "Poro Aaltio" do
     before(:each) do

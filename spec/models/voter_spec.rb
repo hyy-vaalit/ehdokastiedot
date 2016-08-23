@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe 'Voter', :focus do
+describe 'Voter' do
 
   describe "from an Imported Voter" do
 
