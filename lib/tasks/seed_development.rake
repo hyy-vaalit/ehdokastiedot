@@ -128,7 +128,7 @@ namespace :seed do
 
       create_alliance! help, :name => 'Pykälä',      :shorten => 'Pykälä', :expected_candidate_count => '44'
       create_alliance! hyal, :name => 'Kumpula',     :shorten => 'Kumpul', :expected_candidate_count => '17'
-      create_alliance! help, :name => 'LKS/HLKS',                                                    :shorten => 'LKSHLK',  :expected_candidate_count => '15'
+      create_alliance! help, :name => 'LKS / HLKS',                                                    :shorten => 'LKSHLK',  :expected_candidate_count => '15'
       create_alliance! hyal, :name => 'Käyttis',                                                     :shorten => 'Käytti',  :expected_candidate_count => '12'
       create_alliance! osak, :name => 'ESO',                                                         :shorten => 'ESO',     :expected_candidate_count => '60'
       create_alliance! pelast, :name => 'Kokoomusopiskelijat 1',                                     :shorten => 'Kok1',    :expected_candidate_count => '49'
@@ -138,7 +138,7 @@ namespace :seed do
       create_alliance! osak, :name => 'HO-Natura',                                                   :shorten => 'HO-Nat',  :expected_candidate_count => '39'
       create_alliance! osak, :name => 'EPO',                                                         :shorten => 'EPO',     :expected_candidate_count => '57'
       create_alliance! pelast, :name => 'Kokoomusopiskelijat 2',                                     :shorten => 'Kok2',    :expected_candidate_count => '49'
-      create_alliance! osak, :name => 'Domus Gaudiumin Osakunnat',                                   :shorten => 'DG',      :expected_candidate_count => '44'
+      create_alliance! osak, :name => 'Domus Gaudiumin osakunnat',                                   :shorten => 'DG',      :expected_candidate_count => '44'
       create_alliance! osak, :name => 'PPO',                                                         :shorten => 'PPO',     :expected_candidate_count => '42'
       create_alliance! pelast, :name => 'Keskeiset',                                                 :shorten => 'Kesk',    :expected_candidate_count => '18'
       create_alliance! osak, :name => 'SavO',                                                        :shorten => 'SavO',    :expected_candidate_count => '42'
@@ -149,11 +149,11 @@ namespace :seed do
       create_alliance! snaf, :name => 'Nationerna',                                                  :shorten => 'Nation',  :expected_candidate_count => '18'
       create_alliance! tsemppi, :name => 'Tsemppi Group',                                            :shorten => 'Tsempp',  :expected_candidate_count => '15'
       create_alliance! snaf, :name => 'Codex-Thorax',                                                :shorten => 'CodTho',  :expected_candidate_count => '8'
-      create_alliance! pelast, :name => 'KD Helsingin Opiskelijat',                                  :shorten => 'KD',      :expected_candidate_count => '14'
+      create_alliance! pelast, :name => 'KD Helsingin opiskelijat',                                  :shorten => 'KD',      :expected_candidate_count => '14'
       create_alliance! piraatit, :name => 'Akateemiset piraatit',                                    :shorten => 'Pirate',  :expected_candidate_count => '4'
       create_alliance! persut, :name => 'Perussuomalainen vaaliliitto',                              :shorten => 'Peruss',  :expected_candidate_count => '3'
       create_alliance! snaf, :name => 'Ämnesföreningarna',                                          :shorten => 'Ämnesf',  :expected_candidate_count => '4'
-      create_alliance! libera, :name => 'Liberaalinen vaaliliitto - Yksilönvapauden puolesta',         :shorten => 'Libera',  :expected_candidate_count => '3'
+      create_alliance! libera, :name => 'Liberaalinen vaaliliitto - yksilönvapauden puolesta',         :shorten => 'Libera',  :expected_candidate_count => '3'
       create_alliance! ite1, :name => 'Itsenäinen ehdokas 1',         :shorten => 'ITE1',  :expected_candidate_count => '1'
     end
 
@@ -178,7 +178,7 @@ namespace :seed do
           unless electoral_alliance
             electoral_coalition = ElectoralCoalition.find_or_create_by_name row[9] if row[9]
             electoral_coalition = ElectoralCoalition.create! :name => alliance_name unless electoral_coalition
-            electoral_alliance = create_alliance(electoral_coalition, :name => alliance_name, :expected_candidate_count => 0)
+            electoral_alliance = create_alliance!(electoral_coalition, :name => alliance_name, :expected_candidate_count => 0)
           end
           electoral_alliance.update_attribute :numbering_order_position, row[10]
 
