@@ -47,6 +47,7 @@ group :development, :test do
   gem 'taps'
   gem 'byebug'
   gem 'dotenv-rails'   # Load .env for rake tasks (foreman loads it automatically)
+  gem 'foreman'
 end
 
 group :test do
