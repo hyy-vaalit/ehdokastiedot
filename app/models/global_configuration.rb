@@ -1,3 +1,6 @@
+#
+# TODO: Read configuration from environment vars
+#
 class GlobalConfiguration < ActiveRecord::Base
 
   attr_accessible :votes_given, :votes_accepted, :potential_voters_count

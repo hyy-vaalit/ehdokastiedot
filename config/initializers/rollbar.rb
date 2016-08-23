@@ -3,7 +3,7 @@ Rollbar.configure do |config|
   # Without configuration, Rollbar is enabled in all environments.
   # To disable in specific environments, set config.enabled=false.
 
-  config.access_token = ENV['ROLLBAR_ACCESS_TOKEN'] || "d4d7e14e51cc4f9494b6309a2d29f28a"
+  config.access_token = ENV.fetch('ROLLBAR_ACCESS_TOKEN')
 
   config.delayed_job_enabled = true
 

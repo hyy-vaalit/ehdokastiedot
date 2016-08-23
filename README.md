@@ -1,12 +1,45 @@
-Vaalien vaiheet
-===============
+HYYn edustajistovaalien tietojärjestelmä
+========================================
+
+Monoliitti, joka suuren osan edustajistovaalien uurnavaaliin liittyvästä hallinnosta.
+
+Järjestelmässä on eri tasoisia käyttäjiä:
+
+* Pääkäyttäjä (role:admin) ja rajoitettu pääkäyttäjä (role:secretary):
+  * /admin
+  * admin@example.com / pass123
+  * Kaikki HYYn henkilökunnan tarvitsemat toiminnot.
+
+* Vaaliliiton asiamies:
+  * /advocates
+  * asiamies1@example.com / pass123
+  * Vaaliliiton asiamies syöttää ehdokastiedot
+
+* Uurnavaalin äänestysalueen henkilöstö:
+  * /voting
+  * 1@hyy.fi / 1
+  * Äänestysalue tarkistaa äänestäjän äänioikeuden
+  * Äänestyksen päätyttyä äänestysalue syöttää äänestyslipuista lasketut äänet
+    äänestysalueen tuloslaskentapöytäkirjaan.
+
+* Tarkastuslaskentalautakunnan puheenjohtaja:
+  * /checking_minutes
+  * tlkpj / pass123
+  * Tuottaa äänestysalueiden tarkastuslaskentapöytäkirjat, joita vasten
+    tarkastuslaskenta suoritetaan.
+  * Tarkastuslaskennan korjatut äänimäärät syötetään tänne.
+
+
+# Yleiskuva järjestelmän toiminnoista
 
 * Ehdokastietojen syöttö
 * Ehdokasasettelun päättyminen: Alustava ehdokaslista KVL:lle
 * Ehdokastietojen korjausvaihe: Uusia ehdokkaita/liittoja ei voi luoda. Korjauksista jää merkintä logiin.
 * Ehdokaslistan vahvistaminen: ehdokastietoihin ei voi enää syöttää korjauksia.
+* Ylläpitonäkymä vaalirenkaiden, vaaliliittojen ja ehdokkaiden hallintaan.
 * Ehdokasnumerointi.
-* Äänten syöttäminen: äänestysalue laskee paperilaput ja syöttää tulospöytäkirjan tiedot järjestelmään.
+* Uurnavaalin äänioikeuden hallinta äänestysalueille.
+* Uurnavaalin äänten syöttäminen: äänestysalue laskee paperilaput ja syöttää tulospöytäkirjan tiedot järjestelmään.
 * Äänestysalueiden ottaminen mukaan vaalitulokseen: alustava tulos vaalivalvojaisissa ja S3:ssa
 * Alustava vaalitulos on laskettu ja julkaistu.
 * Tarkistuslaskenta: tlk-pj syöttää tarkastuspöytäkirjasta korjatut äänimäärät järjestelmään.
@@ -16,15 +49,14 @@ Vaalien vaiheet
 * Lopullisen vaalituloksen julkaisu.
 
 
-Seuraaviin vaaleihin
-====================
+## Seuraaviin vaaleihin
+
 * Varmista opiskelijarekisterin datadumpin muoto:
   - Vuoden 2014 datassa ei huomioitu 2000-luvulla syntyneitä, eli hetun erotinmerkki puuttui datasta.
     Parseriin on kovakoodattu väliviiva, tarkista pitääkö oletus edelleen paikkansa.
   - Merkistökoodauksena ISO-8859-1
 
-Kustannukset
-============
+## Kustannukset
 
 * SSL Endpoint ($20 / kk)
 * Sertifikaatti ($49 / vuosi)
@@ -35,13 +67,30 @@ Kustannukset
   - kun ehdokasilmoittautumisen sähköposti
   - vaalivalvojaiset
   - arvonnat ja vaalituloksen vahvistaminen
-* Tarvitseeko toisen dynon?
+* Herokun kaksi web dynoa
 
 
-Järjestelmä käyntiin
-====================
+# Ympäristö pystyyn
+
+Esivaatimukset:
+* Asenna [RVM](https://rvm.io/)
+* RVM:n asentamisen jälkeen lue `.ruby-gemset` ja `.ruby-version: `cd .. && popd`
+* Asenna gemit: `bundle install`
 
 Kopioi `.env.example` -> `.env` ja aseta sinne sopivat defaultit.
+
+
+a) Alusta tietokanta ja syötä seed-data:
+```bash
+rake runts
+```
+
+b) Alusta tietokanta manuaalisesti:
+```bash
+rake db:create
+rake db:schema:load
+rake -T seed
+```
 
 Tsekkaa `Procfile` ja komenna:
 
@@ -63,79 +112,19 @@ paitsi active_admin.css).
 HUOM! Refreshaa selain forcella, cmd-shift-r -- muutoin saattaa tulla cachesta
 väärää dataa (tyylit ei näy, mutta forcella näkyy).
 
-Ympäristön pystyttäminen
-========================
-
-Kehitysympäristön reset, tietokannan alustus ja seedidatan syöttö:
-~~~
-$ rake runts
-~~~
-
-Pelkän tietokannan alustaminen
-~~~
-$ rake db:create
-$ rake db:schema:load
-$ rake -T seed
-~~~
-
-Äänioikeutettujen import
-
-~~~
-rake voters:import filename=test-export.txt
-~~~
 
 
-Tuotantokannan lataaminen omalle koneelle
+## Heroku-ympäristön pystyttäminen
 
-1) Backupista dumppifileksi
-https://devcenter.heroku.com/articles/heroku-postgres-import-export
+Hanki uusi Rollbar access key: rollbar.com
 
-~~~
-heroku pgbackups:capture -a hyy-vaalit
---> tee tuore backup
+Aseta ympäristömuuttujat: `heroku config:add key=value`.
+Tiedostossa `.env.example` on lista vaadituista ympäristömuuttujista.
 
-heroku pgbackups:url -a hyy-vaalit
---> SEKRIT_URL
-
-heroku pgbackups:restore DATABASE SEKRIT_URL -a hyy-vaalit
---> Siirtää paikalliseen postgresiin
-
-curl -o latest.dump "SEKRIT_URL"
---> Download sql dump file
-~~~
-
-
-2) Suoraan ilman dumppitiedostoa
-~~~
-rake db:drop
-heroku pg:info
-
-heroku pg:pull HEROKU_POSTGRESQL_IVORY_URL hyyvaalit -a hyy-vaalit
-~~~
-
-Heroku-ympäristön pystyttäminen
-===============================
-
-Konfiguroi Airbraken access key ja asenna Gem.
-
-Heroku-ympäristö vaatii seuraavat ympäristömuuttujat (heroku config:add):
-  - S3_ACCESS_KEY_ID
-  - S3_ACCESS_KEY_SECRET
-  - S3_BUCKET_NAME
-  - RESULT_ADDRESS (http://vaalitulos.hyy.fi; huom! muista http:// alkuun)
-  - TZ=Europe/Helsinki (Railsin oma timezone-määritys ei riitä)
-  - ROLLBAR_ACCESS_TOKEN (exceptions, http://rollbar.com, valitse vaihtoehdoista "post_server_item")
-    Huom! Default-token on määritetty `config/initializers/rollbar.rb`
-
-~~~
-$ heroku config:add S3_ACCESS_KEY_ID=... S3_ACCESS_KEY_SECRET=... S3_BASE_URL=s3.amazonaws.com --app hyy-vaalit
-~~~
-
-Tuotanto-seed vaatii äänestysalueiden salasanojen syötön ennen `rake production_seed` komennon ajamista.
-Ympäristö, jossa peruskonffit muttei vanhaa vaalidataa:
-~~~
-$ rake seed:production
-~~~
+Syötä seed-data, jossa peruskonffit muttei vanhaa vaalidataa:
+```bash
+rake seed:production
+```
 
 Lisää add-onssit:
 
@@ -151,75 +140,95 @@ Lisää add-onssit:
     https://devcenter.heroku.com/articles/migrating-from-a-dev-to-a-basic-database
 
 Worker:
+```bash
+heroku ps:scale worker=1 -a APP_NAME
+```
+
+### Äänioikeutettujen import
+
 ~~~
-$ heroku ps:scale worker=1 -a APP_NAME
+rake voters:import filename=test-export.txt
 ~~~
 
-Muuta ennen vaaleja `config/initializers/secret_token.rb`.
+
+### Tuotantokannan lataaminen omalle koneelle
+
+1) Backupista dumppifileksi
+https://devcenter.heroku.com/articles/heroku-postgres-import-export
+
+```bash
+# tee tuore backup
+heroku pgbackups:capture -a hyy-vaalit
+
+# SEKRIT_URL
+heroku pgbackups:url -a hyy-vaalit
+
+# Siirrä SEKRIT_URLista paikalliseen postgresiin
+heroku pgbackups:restore DATABASE SEKRIT_URL -a hyy-vaalit
+
+# Download SQL dump file
+curl -o latest.dump "SEKRIT_URL"
+```
 
 
-AWS-konfiguraatio
------------------
+2) Suoraan ilman dumppitiedostoa
+```bash
+rake db:drop
+heroku pg:info
 
-Nämä on tehtävä jokaiseen bucketiin jota käytetään (tuotanto, staging, koe):
+heroku pg:pull HEROKU_POSTGRESQL_IVORY_URL hyyvaalit -a hyy-vaalit
+```
 
-Luo vuosiluvulle uusi hakemisto.
+## AWS-konfiguraatio
 
 AWS IAM sisältää konfiguraation tuotanto, staging ja koe -käyttäjätunnuksille.
 
-Lisää kullekin AWS-käyttäjälle IAM-hallintapaneelista kirjoitusoikeus bucketin vuosilukuhakemistoon (Vaalit::Results::DIRECTORY on esim "2012").
+Nämä on tehtävä jokaiseen bucketiin jota käytetään (tuotanto, staging, koe):
 
-Poista jokaiselta AWS-käyttäjältä kirjoitusoikeus edellisten vaalien hakemistoon.
+* Luo vuosiluvulle uusi hakemisto.
+
+* Lisää kullekin AWS-käyttäjälle IAM-hallintapaneelista kirjoitusoikeus bucketin vuosilukuhakemistoon (Vaalit::Results::DIRECTORY on esim "2012").
+
+* Poista jokaiselta AWS-käyttäjältä kirjoitusoikeus edellisten vaalien hakemistoon.
 Näin vanhat tulokset ovat turvassa.
 
-Testaa AWS-kirjoitusoikeus tuotannossa:
+* Testaa AWS-kirjoitusoikeus tuotannossa:
+```ruby
 > AWS::S3::S3Object.store("#{Vaalit::Results::DIRECTORY}/lulz.txt", "Lulz: #{Time.now}", Vaalit::Results::S3_BUCKET_NAME, :content_type => 'text/html; charset=utf-8')
+```
 
 
-
-Kehitysympäristön pystyttäminen
-===============================
+## Kehitysympäristön pystyttäminen
 
 Vuoden 2009 vaalien data:
-~~~
-$ rake seed:development
-~~~
+```bash
+rake seed:development
+```
 
-Staging-ympäristön runts
-========================
-~~~
-$ heroku pg:reset DATABASE --app APP_NAME
-$ git push [-f] staging [staging:master]  # paikallinen staging-branch herokun master-branchiin.
-$ heroku run rake db:schema:load --app APP_NAME
-$ heroku run rake seed:[production|development] --app APP_NAME
-$ heroku restart --app APP_NAME
-~~~
+## Staging-ympäristön alustus
+```bash
+heroku pg:reset DATABASE --app APP_NAME
+# paikallinen staging-branch herokun master-branchiin.
+git push [-f] staging [staging:master]  
+heroku run rake db:schema:load --app APP_NAME
+heroku run rake seed:[production|development] --app APP_NAME
+heroku restart --app APP_NAME
+```
 
-AWS
-===
+### AWS in Staging
 
-~~~
-$ heroku config:set KEY=VALUE --app APP_NAME
-~~~
+```bash
+heroku config:set KEY=VALUE --app APP_NAME
+```
   * S3_BUCKET_NAME       (hyy-vaalitulos-staging)
   * S3_BASE_URL          (s3.amazonaws.com)
   * S3_ACCESS_KEY_ID     (IAM User)
   * S3_ACCESS_KEY_SECRET (IAM User)
 
-NOTE: The AWS::S3 does not work properly with any other region than US.
-Should try e.g. https://github.com/qoobaa/s3 for better S3 integration
-
-Heroku
-------
-
-  * AWS-ympäristömuuttujat
-    - Ks. yllä
-  * Sendgrid (tuotantoon tarvii maksullisen)
-    - ENV["SENDGRID_DOMAIN"]=hyy.fi
+NOTE (09/2011): The AWS::S3 does not work properly with any other region than US.
 
 
-Vaalien konfigurointi
-=====================
+# Vaalien konfigurointi
 
 Tarkista `config/initializers/000_vaalit.rb`
 
@@ -237,23 +246,19 @@ Toimita salasanat HYY:lle
   * Sendgrid (heroku config)
 
 
-Esimerkkikäyttäjätunnukset (testi-seed)
-=======================================
+## Esimerkkikäyttäjätunnukset (testi-seed)
 
 * Kehitysympäristön salasanat: pass123
 * Tuotantoseedin esimerkkisalasanat: salainensana
 
 
-ATK-vastaava
-------------
+### Pääkäyttäjät
 
-* http://localhost:3000/admin
+http://localhost:3000/admin
 * admin@example.com / pass123
 * Ks. kohta "Salasanat".
 
-
-Äänestysalueet
---------------
+### Äänestysalueet
 
 http://localhost:3000/voting_area/
 
@@ -268,8 +273,7 @@ Käyttäjätunnus kehitysdatassa:
 Ks. kohta "Salasanat".
 
 
-Tarkastuslaskenta
------------------
+### Tarkastuslaskenta
 
 http://localhost:3000/checking_minutes
 
@@ -278,8 +282,7 @@ Käyttäjätunnus: tlkpj
 Ks. kohta "Salasanat".
 
 
-Asiamiesten korjaukset
-----------------------
+### Asiamiesten korjaukset ehdokastietoihin
 
 http://localhost:3000/advocates
 
@@ -290,8 +293,7 @@ Käyttäjätunnukset (kehitysympäristössä):
 Ks. kohta "Salasanat".
 
 
-Pekka's Tips
-------------
+# Pekka's Tips
 
   * Jos Gemeissä ongelmia, päivitä `gem update --system`
   * Jos Gemfile.lock pitää luoda uudelleen ja jää "Resolving dependencies" -luuppiin, kommentoi pois kaikki muut gemit paitsi rails ja lisää ne takaisin ryhmä kerrallaan.
@@ -309,8 +311,7 @@ Pekka's Tips
     - `brew install p7zip`
     - `7z x tiedosto.7z`
 
-Testirundi
-==========
+## Testirundi
 
   * Merkitse vaaliliitot valmiiksi:
     - `ElectoralAlliance.all.each { |a| a.freeze! }`
@@ -327,8 +328,8 @@ Testirundi
     - Tsekkaa vaalisija 60/61 jonka äänet menevät tasan ja lopputulos rengasvertailuluvn arvontaan.
 
 
-Muistiinpanoja
---------------
+## Muistiinpanoja
+
   * Draper on tosi hidas ison collectionin koristelussa.
     CandidateDecorator toimii n. 1000 alkiolla, mutta
     sama pattern 28000 äänestäjällä jumahti täysin.
