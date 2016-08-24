@@ -1,5 +1,3 @@
-# coding: utf-8
-
 class Advocates::CandidatesController < AdvocatesController
   respond_to :html, :json, :only => :update
 
@@ -26,7 +24,7 @@ class Advocates::CandidatesController < AdvocatesController
   def update
     @candidate = @alliance.candidates.find(params[:id])
 
-    if @candidate.log_and_update_attributes(params[:candidate])
+    if @candidate.log_and_update_attributes(candidate_params)
       flash[:notice] = "Muutokset tallennettu."
     else
       flash[:alert] = "Muutosten tallentaminen epäonnistui!"
@@ -39,7 +37,7 @@ class Advocates::CandidatesController < AdvocatesController
   end
 
   def create
-    @candidate = @alliance.candidates.build(params[:candidate])
+    @candidate = @alliance.candidates.build(candidate_params)
 
     if @candidate.save
       flash[:notice] = "Ehdokas luotu!"
@@ -64,8 +62,30 @@ class Advocates::CandidatesController < AdvocatesController
 
   protected
 
+  # Ensure current user has access to the target alliance by finding it through
+  # the relation (not directly from `ElectoralAlliance`).
   def find_alliance
-    @alliance = current_advocate_user.electoral_alliances.find(params[:alliance_id])
+    @alliance = current_advocate_user
+      .electoral_alliances
+      .find(params[:alliance_id])
+  end
+
+  def candidate_params
+    params
+      .require(:candidate)
+      .permit(
+        :lastname,
+        :firstname,
+        :social_security_number,
+        :faculty_id,
+        :address,
+        :postal_information,
+        :phone_number,
+        :email,
+        :candidate_name,
+        :notes,
+        :numbering_order_position
+      )
   end
 
 end

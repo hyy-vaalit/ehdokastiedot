@@ -4,9 +4,11 @@ class Result < ActiveRecord::Base
 
   has_many :candidate_results, :dependent => :destroy
   has_many :candidates,
-           :through => :candidate_results,
-           :select => "candidates.id, candidates.candidate_name, candidates.candidate_number,
-                       candidates.electoral_alliance_id"
+            -> { select "candidates.id,
+                        candidates.candidate_name,
+                        candidates.candidate_number,
+                        candidates.electoral_alliance_id" },
+           through: :candidate_results
 
   has_many :alliance_results, :dependent => :destroy
   has_many :electoral_alliances,
@@ -14,8 +16,10 @@ class Result < ActiveRecord::Base
 
   has_many :coalition_results, :dependent => :destroy
   has_many :electoral_coalitions,
-           :through => :coalition_results,
-           :select => "electoral_coalitions.id, electoral_coalitions.name, electoral_coalitions.shorten"
+            -> { select "electoral_coalitions.id,
+                         electoral_coalitions.name,
+                         electoral_coalitions.shorten" },
+            through: :coalition_results
 
   has_many :candidate_draws, :dependent => :destroy
   has_many :alliance_draws, :dependent => :destroy
@@ -153,7 +157,6 @@ class Result < ActiveRecord::Base
 
   def alliance_results_of(coalition_result)
     alliance_results.for_alliances(coalition_result.electoral_coalition.electoral_alliance_ids)
-    # TODO: order by ?
   end
 
   def candidate_results_of(alliance_result)

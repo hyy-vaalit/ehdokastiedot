@@ -11,7 +11,7 @@ class Manage::ResultsController < ManageController
   # Rendering the result view is *slow* and may result to request timeout. For any other production purposes,
   # use the file which is stored in S3.
   def show
-    @result = ResultDecorator.find(params[:id])
+    @result = ResultDecorator.decorate Result.find(params[:id])
 
     respond_to do |format|
       format.json { render :locals => {:result => @result} }
@@ -20,7 +20,7 @@ class Manage::ResultsController < ManageController
   end
 
   def json
-    @result = ResultDecorator.find(params[:result_id])
+    @result = ResultDecorator.decorate Result.find(params[:result_id])
 
     respond_to do |format|
       format.json { render params[:target], :locals => {:result => @result} }
@@ -28,7 +28,7 @@ class Manage::ResultsController < ManageController
   end
 
   def publish
-    result_publisher = ResultPublisher.find(params[:result_id])
+    result_publisher = ResultPublisher.new(Result.find(params[:result_id]))
 
     if result_publisher.publish!
       flash[:notice] = "Vaalitulos jonossa julkaistavaksi."

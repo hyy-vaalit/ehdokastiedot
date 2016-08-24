@@ -14,7 +14,7 @@ describe Candidate do
       FactoryGirl.create(:candidate)
     end
 
-    Candidate.give_numbers!.should be_true
+    Candidate.give_numbers!.should be true
 
     all_candidates = Candidate.all
 

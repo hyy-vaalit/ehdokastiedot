@@ -35,7 +35,7 @@
     <h2>Liiton sisällä saman äänimäärän saaneet ehdokkaat (<%= @result.candidate_draws.count %> kpl)</h2>
     <%= button_to "Merkitse äänimäärien arvonta valmiiksi!", candidate_draws_ready_path,
                                                              :method => :post,
-                                                             :confirm => "Seuraavaksi siirrytään arpomaan liittovertailulukuja. Ok?" %>
+                                                             :data => {:confirm => "Seuraavaksi siirrytään arpomaan liittovertailulukuja. Ok?"} %>
     <br />
     <% if @result.candidate_draws.any? %>
       <%= render :partial => "listing", :locals => {:draws => @result.candidate_draws.for_drawings, :order_method => :candidate_draw_order} %>
@@ -50,7 +50,7 @@
     <h2>Renkaan sisällä saman liittovertailuluvun saaneet ehdokkaat (<%= @result.alliance_draws.count %> kpl)</h2>
     <%= button_to "Merkitse liittovertailukuarvonta valmiiksi!", alliance_draws_ready_path,
                                                              :method => :post,
-                                                             :confirm => "Seuraavaksi siirrytään arpomaan rengasvertailulukuja. Ok?" %>
+                                                             :data => {:confirm => "Seuraavaksi siirrytään arpomaan rengasvertailulukuja. Ok?"} %>
 
     <br />
     <% if @result.alliance_draws.any? %>
@@ -66,7 +66,7 @@
     <h2>Saman rengasvertailuluvun saaneet ehdokkaat (<%= @result.coalition_draws.count %> kpl)</h2>
     <%= button_to "Merkitse rengasvertailukuarvonta valmiiksi!", coalition_draws_ready_path,
                                                              :method => :post,
-                                                             :confirm => "Seuraavaksi lasketaan lopullinen vaalitulos. Ok?" %>
+                                                             :data => {:confirm => "Seuraavaksi lasketaan lopullinen vaalitulos. Ok?"} %>
 
     <br />
     <% if @result.coalition_draws.any? %>

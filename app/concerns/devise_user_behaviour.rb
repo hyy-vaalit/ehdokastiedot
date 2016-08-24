@@ -11,7 +11,7 @@ module DeviseUserBehaviour
     protected
 
     def generate_password
-      self.password = Devise.friendly_token.first(6)
+      self.password = Devise.friendly_token.first(8)
     end
 
     def send_password

@@ -1,7 +1,6 @@
 class Email < ActiveRecord::Base
 
   validates_presence_of :subject, :content
-  attr_accessible :subject, :content
 
   def enqueue!
     Delayed::Job::enqueue(EnqueueCandidateEmails.new(self))

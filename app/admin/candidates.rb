@@ -1,8 +1,19 @@
-# coding: UTF-8
 ActiveAdmin.register Candidate do
-  config.clear_action_items! # Don't show default actions, especially "New candidate"
+  # Hide "delete": Candidate should be cancelled and never deleted.
+  actions :all, :except => [:destroy]
 
-  before_filter :authorize_this
+  permit_params :lastname,
+                :firstname,
+                :candidate_name,
+                :social_security_number,
+                :address,
+                :postal_information,
+                :phone_number,
+                :email,
+                :faculty_id,
+                :notes,
+                :electoral_alliance_id,
+                :numbering_order_position
 
   menu :label => " Muut ehdokkaat", :priority => 4
 
@@ -11,14 +22,12 @@ ActiveAdmin.register Candidate do
 
   controller do
 
-    load_and_authorize_resource :except => [:index]
-
     # Override default method because we need to set electoral_alliance_id despite
     # mass-assignment protection (which is needed for advocate users).
     def update
       @candidate = Candidate.find(params[:id])
 
-      if @candidate.update_attributes(params[:candidate])
+      if @candidate.update_attributes(permitted_params[:candidate])
         flash[:notice] = "Muutokset tallennettu."
 
         respond_with(@alliance) do |format|
@@ -29,11 +38,9 @@ ActiveAdmin.register Candidate do
       end
     end
 
-    # Hack: See comments in form
     def create
-      @candidate = Candidate.new(params[:candidate])
-      alliance_id = params[:candidate][:active_admin_hack_alliance_id]
-      @candidate.electoral_alliance_id = alliance_id
+      @candidate = Candidate.new(permitted_params[:candidate])
+      alliance_id = params[:candidate][:electoral_alliance_id]
 
       if @candidate.save
         flash[:notice] = "Ehdokas luotu!"
@@ -42,10 +49,6 @@ ActiveAdmin.register Candidate do
         params["electoral_alliance_id"] = alliance_id
         super
       end
-    end
-
-    def authorize_this
-      authorize! :read, Candidate
     end
 
   end
@@ -61,7 +64,7 @@ ActiveAdmin.register Candidate do
     column :electoral_alliance, :sortable => false
     column :notes
 
-    default_actions
+    actions
   end
 
   show :title => :candidate_name do
@@ -82,24 +85,23 @@ ActiveAdmin.register Candidate do
   filter :cancelled, :as => :select
   filter :marked_invalid, :as => :select
 
-  # Major hack... there seems to be no way to write into the ActiveAdmin form
-  # without losing the form itself... :o
-  # And gets better: Mass-assignment protection will raise error before
-  # Admin::CandidatesController#create gets called.
-  # Therefore create will prematurely fail if electoral_alliance_id is included in params.
-  # --> Deliver electoral_alliance_id in hidden hack_alliance_id.
   form do |f|
     alliance_id = f.object.new_record? ? params[:electoral_alliance_id] : f.object.electoral_alliance_id
-    alliance = ElectoralAlliance.find(alliance_id)
 
-    if params[:action] == "new" && alliance.nil?
-      panel "Harmin paikka!" do
-         "Eksyit uuden ehdokkaan luontisivulle ilman vaaliliittoa. Näin ei olisi pitänyt käydä, dzori!
-         <br />
-         Mene takaisin vaaliliiton sivulle ja klikkaa sieltä 'Uusi ehdokas'.".html_safe
+    if params[:action] == "new" && alliance_id.nil?
+      panel "Ehdokkaan luominen edellyttää vaaliliittoa" do
+        para "Eksyit uuden ehdokkaan luontisivulle ilman vaaliliittoa."
+
+        para "Mene takaisin vaaliliiton sivulle ja klikkaa sieltä 'Uusi ehdokas'."
       end
     else
-      f.inputs "Ehdokkaan vaaliliitto: #{alliance.name}" do
+      # Candidate#electoral_alliance_id can be nil if candidate was in an
+      # alliance, but alliance was deleted.
+      alliance = ElectoralAlliance.find_by_id(alliance_id)
+
+      alliance_name = alliance.present? ? alliance.name : "Vaaliliitto puuttuu"
+
+      f.inputs "Ehdokkaan vaaliliitto: #{alliance_name}" do
         f.input :lastname
         f.input :firstname
         f.input :candidate_name
@@ -115,15 +117,29 @@ ActiveAdmin.register Candidate do
         f.input :faculty
         f.input :notes, :hint => 'Erota tiedot pilkuilla. Rivinvaihdot korvataan automaattisesti pilkuiksi.'
       end
-      f.input :active_admin_hack_alliance_id, :as => :hidden, :input_html => {:value => alliance.id}
-      f.buttons
+
+      # Prevent potential errors by not allowing to change the alliance.
+      # Allow to set alliance only for previously saved candidates who do not
+      # have an alliance (ie. alliance was deleted after candidate was created).
+      # => Do not display alliance dropdown on NEW or EDIT actions.
+      if alliance.present? || f.object.new_record?
+        f.input :electoral_alliance_id,
+                :as => :hidden,
+                :input_html => {:value => alliance.id}
+      else
+        f.inputs 'Vaaliliitto' do
+          f.input :electoral_alliance
+        end
+      end
+
+      f.actions
     end
   end
 
   action_item :only => [ :show, :edit ] do
     candidate = Candidate.find(params[:id])
     if !candidate.cancelled
-      link_to 'Peruuta ehdokkuus', cancel_admin_candidate_path, :confirm => 'Peruutetaanko henkilön ehdokkuus?'
+      link_to 'Peruuta ehdokkuus', cancel_admin_candidate_path, :data => {:confirm => 'Peruutetaanko henkilön ehdokkuus?'}
     end
   end
 

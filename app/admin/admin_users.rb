@@ -1,33 +1,25 @@
-# coding: UTF-8
 ActiveAdmin.register AdminUser do
+  permit_params :email, :role
 
   menu :label => "Admin-tunnukset", :if => proc { can? :manage, AdminUser }, :priority => 11
 
-  before_filter :authorize_this
-
-  controller do
-
-    def authorize_this
-      authorize! :manage, AdminUser
-    end
-
-  end
-
   index do
+    selectable_column
+    id_column
     column :email
     column :role
-    default_actions
+    actions
   end
 
   filter :email
   filter :role
 
   form do |f|
-    f.inputs do
+    f.inputs "Admin Details" do
       f.input :email
       f.input :role, :as => :select, :collection => AdminUser::ROLES
     end
-    f.buttons
+    f.actions
   end
 
 end

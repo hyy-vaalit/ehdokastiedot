@@ -1,4 +1,3 @@
-# coding: UTF-8
 class ListingsController < ApplicationController
 
   before_filter :authorize_listings

@@ -1,4 +1,4 @@
-class CandidateNotifier < HyyMailer
+class CandidateNotifier < SendgridMailer
 
   def welcome_as_candidate(recipient_address, email)
     @email = email

@@ -1,18 +1,14 @@
-Vaalit::Application.routes.draw do
+Ehdokastiedot::Application.routes.draw do
 
+  # Devise routes must be on top to get highest priority
+  devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :advocate_users
-
   devise_for :voting_area_users
 
   ActiveAdmin.routes(self)
 
-  devise_for :admin_users, ActiveAdmin::Devise.config
-
   root :to => "public#index"
   get "/advocates", :to => "public#index", :as => :advocate_index
-
-  # Redirect vaalit.hyy.fi/2012 --> vaalitulos.hyy.fi/2012
-  match "/#{Time.now.year}" => redirect("#{Vaalit::Results::RESULT_ADDRESS}/#{Time.now.year}"), :as => :external_public_result
 
   namespace :advocates do
     get :index, :as => :advocates
@@ -58,8 +54,6 @@ Vaalit::Application.routes.draw do
 
     resources :results, :only => [:index, :show] do
       put :publish
-      match 'json/:target' => 'results#json', :as => :result_json
-      match 'charts/:type' => 'charts#show',  :as => :charts
     end
   end
 

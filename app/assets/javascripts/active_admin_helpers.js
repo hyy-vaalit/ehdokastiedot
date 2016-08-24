@@ -22,7 +22,7 @@ $(function(){
 
 
 /**************************************************************************************************************
- * SS Legacy (Do not add new changes below, refactor instead)
+ * Legacy (Do not add new changes below, refactor instead)
  **************************************************************************************************************/
 
 $(document).ready(function() {

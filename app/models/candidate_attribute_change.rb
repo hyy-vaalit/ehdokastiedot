@@ -2,7 +2,7 @@ class CandidateAttributeChange < ActiveRecord::Base
 
   belongs_to :candidate
 
-  scope :by_creation, order("created_at DESC")
+  scope :by_creation, -> { order("created_at DESC") }
 
   def self.create_from!(candidate_id, changed_attributes)
     changed_attributes.each do |key, values|

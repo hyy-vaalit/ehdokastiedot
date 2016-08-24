@@ -1,18 +1,32 @@
 require 'spec_helper'
 
 describe CandidateResult do
+
+  before(:each) do
+    stub_result_class!
+  end
+
+  def stub_result_class!
+    allow(Result).to receive(:calculate_votes!)
+    allow(Result).to receive(:alliance_proportionals!)
+    allow(Result).to receive(:coalition_proportionals!)
+  end
+
   it 'finds duplicate vote sums in the same alliance' do
-    VotableSupport::stub_result_class!
     draw_candidates = []
     nodraw_candidates = []
     alliance = FactoryGirl.create(:electoral_alliance_with_candidates)
-    result   = FactoryGirl.create(:result)
+
+    #TODO: Fix result factory so that it doesn't create CandidateResults
+    result = FactoryGirl.create(:result)
+    CandidateResult.destroy_all
+
     draw_votes = 100
 
     VotableSupport::create_candidate_draws(alliance, result, draw_votes)
 
     draws = CandidateResult.find_duplicate_vote_sums(result)
-    draws.first.vote_sum_cache.should == draw_votes
-    draws.first.should == draws.last # size == 1 hack since count/size will create pgsql syntax error
+    expect(draws.first.vote_sum_cache).to eq draw_votes
+    expect(draws.length).to eq 1
   end
 end

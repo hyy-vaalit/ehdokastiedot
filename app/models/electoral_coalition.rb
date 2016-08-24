@@ -8,7 +8,7 @@ class ElectoralCoalition < ActiveRecord::Base
 
   validates_presence_of :name, :shorten
 
-  scope :by_numbering_order, order("#{table_name}.numbering_order")
+  scope :by_numbering_order, -> { order("#{table_name}.numbering_order") }
 
   def order_alliances alliance_data
     original_array = alliance_data.to_a

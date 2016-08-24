@@ -3,8 +3,6 @@
 #
 class GlobalConfiguration < ActiveRecord::Base
 
-  attr_accessible :votes_given, :votes_accepted, :potential_voters_count
-
   def self.candidate_nomination_period_effective?
     first.candidate_nomination_period_effective?
   end

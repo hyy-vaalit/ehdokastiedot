@@ -3,6 +3,7 @@ require 'csv'
 class CandidateDecorator < ApplicationDecorator
   decorates :candidate
 
+  delegate_all
 
   # Exports to Excel readable CSV (converts UTF-8 to ISO-8859-1).
   # Please note: decorate(candidates) is dead slow for large collection.
@@ -13,7 +14,7 @@ class CandidateDecorator < ApplicationDecorator
   # CandidateDecorator#to_csv could be refactored to use the same
   # pattern to keep it DRY.
   def self.to_csv(candidates)
-    decorated_candidates = decorate(candidates)
+    decorated_candidates = decorate_collection(candidates)
 
     CSV.generate do |csv|
       csv << decorated_candidates.first.csv_header

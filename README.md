@@ -17,7 +17,7 @@ Järjestelmässä on eri tasoisia käyttäjiä:
 
 * Uurnavaalin äänestysalueen henkilöstö:
   * /voting
-  * 1@hyy.fi / 1
+  * II@hyy.fi / pass123 (äänestysalueen tunnus: EI..EV ja I..XX)
   * Äänestysalue tarkistaa äänestäjän äänioikeuden
   * Äänestyksen päätyttyä äänestysalue syöttää äänestyslipuista lasketut äänet
     äänestysalueen tuloslaskentapöytäkirjaan.
@@ -28,6 +28,17 @@ Järjestelmässä on eri tasoisia käyttäjiä:
   * Tuottaa äänestysalueiden tarkastuslaskentapöytäkirjat, joita vasten
     tarkastuslaskenta suoritetaan.
   * Tarkastuslaskennan korjatut äänimäärät syötetään tänne.
+
+Käyttöoikeudet on määritety tiedostossa `app/models/ability.rb`.
+* ActiveAdmin kysyy automaattiessti jokaiselle resurssille `can? action, resource`,
+  esim `can? :read, Candidate`.
+* Devisen login/logout controllereissa authorization ohitetaan, koska käyttäjänä
+  on silloin unauthenticated guest.
+* Koska ActiveAdmin toteuttaa auktorisoinnin omalla tavallaan, `ApplicationController`
+  sivuuttaa `check_authorization` defaultin ActiveAdminin alla.
+  Tämä on hämmentävältä tuntuva ominaisuus, joka
+  [on raportoitu issueksi](https://github.com/activeadmin/activeadmin/issues/4599).
+
 
 
 # Yleiskuva järjestelmän toiminnoista
@@ -262,13 +273,9 @@ http://localhost:3000/admin
 
 http://localhost:3000/voting_area/
 
-Käyttäjätunnus tuotannossa: äänestysalueen tunnus, esimerkiksi:
+Käyttäjätunnus: äänestysalueen tunnus, esimerkiksi:
   * EI, EII, .., EIV
   * I, II, III, .., XV
-
-Käyttäjätunnus kehitysdatassa:
-  * E1, E2, .., E5
-  * 1, 2, 3, ..., 20
 
 Ks. kohta "Salasanat".
 
@@ -296,36 +303,99 @@ Ks. kohta "Salasanat".
 # Pekka's Tips
 
   * Jos Gemeissä ongelmia, päivitä `gem update --system`
-  * Jos Gemfile.lock pitää luoda uudelleen ja jää "Resolving dependencies" -luuppiin, kommentoi pois kaikki muut gemit paitsi rails ja lisää ne takaisin ryhmä kerrallaan.
-  * Debugging: luo breakpoint laittamalla koodiin `byebug` -- toimii vaan vähän huonosti foreman/unicornin kanssa.
-  * Aja vain yksi testi:
-    * lisää `:focus` testiin, esim. it 'something', :focus do .. end, jonka jälkeen `rake spec`
-    * (huom, ei nollaa tietokantaa ilman rakea):
-    `rake spec SPEC=spec/lib/result_decorator_spec.rb`
-    * `guard` (voi käyttää `:focus` tai ilman, jos ilman niin ajaa ensin kaikki testit
-      ja jää sen jälkeen kuuntelemaan muutoksia)
-    * Muista ajaa `rake db:test:prepare` migraatioiden jälkeen.
+
+  * Jos Gemfile.lock pitää luoda uudelleen ja jää
+    "Resolving dependencies" -luuppiin, kommentoi pois kaikki muut gemit
+    paitsi `rails` ja lisää ne takaisin ryhmä kerrallaan.
+
+  * Debugging: luo breakpoint laittamalla koodiin `debugger` tai `byebug`.
+
   * Jos Formtasticin virheet ei tule näkyviin, varmista että on
-    `<%= semantic_form_for @voter ..%>` EIKÄ `:voter` .. näistä jälkimmäinen antaa oudon virheen.
+    - `<%= semantic_form_for @voter ..%>` EIKÄ `:voter`
+    - .. näistä jälkimmäinen antaa oudon virheen.
+
   * Opiskelijarekisterin data tulee `.7z`-tiedostona.
     - `brew install p7zip`
     - `7z x tiedosto.7z`
 
-## Testirundi
+## Testit
 
+* Aja vain yksi testi:
+  - lisää `:focus` testiin, myös alias "f", esim "fit", "fdescribe", "fcontext"
+  - komentoriviltä (huom, tämä ei nollaa tietokantaa ilman rakea):
+    `rake spec SPEC=spec/lib/result_decorator_spec.rb`
+
+* Seuraa muutoksia testeihin: `guard`
+  - Aja `rake db:test:prepare` migraatioiden jälkeen.
+
+
+## End-to-End Testikierros
+
+  * Nollaa ja alusta tietokanta seed-datalla: `rake runts`
+  * Avaa `rails console`
   * Merkitse vaaliliitot valmiiksi:
     - `ElectoralAlliance.all.each { |a| a.freeze! }`
-  * Äänestysalueet laskentaan:
+  * (Tässä vaiheessa voit halutessasi jakaa ehdokasnumerot uudelleen)
+  * Merkitse äänestysalueet valmiiksi ääntenlaskentaa varten:
     - `VotingArea.all.each { |a| a.submitted! }`
-  * Listaa taustalle laitetut työt:
+    - Tai: Äänestysalueen kirjautuminen > merkitse valmiiksi
+  * Ota äänestysalueet mukaan ääntenlaskentaan
+    - `VotingArea.all.each { |a| a.ready! }`
+    - Tai: Admin > Äänestysalueet ääntenlaskentaan
+  * Mene ActiveAdmin -> Vaalivalvojaiset -> Äänestysalueet ääntenlaskentaan
+    - `Delayed::Job.enqueue(CreateResultJob.new)`
+    - Tai: valitse halutut äänestysalueet ja paina "ota äänestysalueet laskentaan"
+  * Jonossa on nyt taustatyö `CreateResultJob`. Listaa taustalle laitetut työt:
     - `Delayed::Job.all`
-  * Jos taustatyö feilaa, sen uudelleenyritys skeduloidaan eksponentiaalisesti, eli viimeinen yritys
-   on joskus 2 viikon kuluttua ... Rollbar ei nappaa virhettä jos työ ei ole failannut vaan on
-   pelkässä retry-jonossa (esim. AWS permission denied).
+  * Jono purkautuu vasta, kun Worker on käynnistetty.
+    - `rake jobs:work`
+    - tai `Procfile`:n mukaan web+worker: `foreman start`
+  * Alustava vaalitulos näkyy tulossivulla.
+  * Alustavan vaalituloksen jälkeen suoritetaan tarkastuslaskenta, jossa
+    tarkastuslaskentalautakunnan puheenjohtaja syöttää korjatut äänimäärät:
+    - Admin > tarkastuslaskenta
+  * Tarkastuslaskenta merkitään valmiiksi:
+    - Admin > Danger Zone > Merkitse tarkastuslaskenta valmiiksi
+  * Tarkistuslaskennan jälkeen suoritetaan arvonnat:
+    - Admin > Arvonnat
+  * Alustavassa tuloksessa on kolmentasoisia tasatilanteita:
+    - äänimäärät tasan vaaliliiton sisällä
+    - liittovertailuluku tasan vaalirenkaan liittojen kesken
+    - rengasvertailuluku tasan vaalirenkaiden kesken
+  * Kun suoritat arvontoja seed-datalla, tarkkaile paikkaa 60/61, jossa
+    rengasvertailuluku menee tasan kahden eri renkaan kesken.
+  * Arvonnat suoritetaan yksitellen joko käsin tai automaattisesti.
+    HYY on perinteisesti suorittanut käsin varsinaisiin ja
+    varaedustajapaikkoihin kohdistuvat arvonnat.
+  * Arvontojen jälkeen lopullinen vaalitulos on valmis:
+    - Admin > Lopullinen vaalitulos
+  * Tuloksen esitysmuoto (html/json) generoidaan kehitysympäristössä aina
+    uusiksi. Tuotannossa esitysmuoto generoidaan kerran ja talletetaan S3:een.
+    - S3:een talletettu vaalitulos esitetään vaalitulos.hyy.fi -palvelusta.
+    - Julkaisematon S3:n vaalitulos esitetään antamalla "salainen" tiedostonimi:
+      http://vaalitulos.hyy.fi/2014/result-alustava-20160825193119.html
+
+Kun olet generoinut vaalituloksen alusta loppuun vuoden 2009 seed-datalla,
+vaalituloksen vertailulukujen, äänimäärien ja paikkojen pitää vastata [vuoden
+2009 vaalitulosta](http://vaalitulos.hyy.fi/2009/). Tarkista erityisesti
+edustajistopaikka 60/61, jossa rengasvertailuluku menee tasan HYAL:n ja
+Kokoomusopiskelijoiden kesken. Paikka määräytyy arvonnan lopputuloksen
+perusteella.
+
+Vuoden 2009 vaalitulos on
+laskettu aiemmalla vaalijärjestelmällä `vaalit.exe`, jonka toiminta on
+täysin riippumatonta Rails-järjestelmästä.
+
+
+
+### Vinkkejä testaamiseen:
+
+  * Jos taustatyö feilaa, sen uudelleenyritys skeduloidaan eksponentiaalisesti,
+  eli viimeinen yritys on joskus 2 viikon kuluttua. Rollbar ei nappaa virhettä
+  jos työ ei ole failannut vaan on pelkässä retry-jonossa
+  (esim. AWS permission denied).
   * Työn käynnistäminen manuaalisesti:
     - `Delayed::Job.find(XX).invoke_job`
-  * Esimerkkidatassa seed:development on 2009 vaalitulos.
-    - Tsekkaa vaalisija 60/61 jonka äänet menevät tasan ja lopputulos rengasvertailuluvn arvontaan.
 
 
 ## Muistiinpanoja

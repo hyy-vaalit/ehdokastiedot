@@ -2,7 +2,7 @@ class CoalitionResult < ActiveRecord::Base
   belongs_to :result
   belongs_to :electoral_coalition
 
-  scope :by_vote_sum, order("vote_sum_cache desc")
+  scope :by_vote_sum, -> { order("vote_sum_cache desc") }
 
   # Params:
   #  :result => result,

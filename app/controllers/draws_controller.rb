@@ -1,4 +1,3 @@
-# coding: UTF-8
 class DrawsController < ApplicationController
 
   before_filter :authenticate_admin_user!

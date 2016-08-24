@@ -8,14 +8,9 @@ class AdminUser < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :role, :password, :password_confirmation, :remember_me
-
-  scope :secretaries, where(:role => "secretary")
+  scope :secretaries, -> { where(:role => "secretary") }
 
   validates_presence_of :role
-
-  belongs_to :electoral_alliance
 
   def is_secretary?
     role == 'secretary'

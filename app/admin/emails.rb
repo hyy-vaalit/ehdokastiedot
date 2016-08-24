@@ -1,21 +1,16 @@
-# coding: UTF-8
 ActiveAdmin.register Email do
+
+  permit_params :subject,
+                :content
 
   menu :label => "Sähköpostit ehdokkaille", :priority => 10, :if => proc { can? :manage, AdminUser }
 
   before_filter :add_notice
-  before_filter :authorize_this
 
   controller do
 
-    load_and_authorize_resource :except => :index
-
     def add_notice
       flash[:notice] = params[:notice] if params[:notice]
-    end
-
-    def authorize_this
-      authorize! :manage, Email
     end
 
   end
@@ -23,7 +18,7 @@ ActiveAdmin.register Email do
   index do
     column :subject
     column :enqueued_at
-    default_actions
+    actions
   end
 
   show :title => :subject do
@@ -38,7 +33,7 @@ ActiveAdmin.register Email do
     f.inputs "Ehdokkaille lähetettävä sähköposti" do
       f.input :subject, :label => "Otsikko"
       f.input :content, :label => "Viestin sisältö", :hint => "Jos copypastetat tekstinkäsittelyohjelmasta, varmista etteivät kappaleenvaihdot tule kahteen kertaan ja ettet käytä manuaalisia rivinvaihtoja. Viesti näyttää silloin rumalta.<br/>HUOM! Viesti lähetetään vasta seuraavalta sivulta, voit turvallisesti tallentaa kirjoittamasi viestin ennen sen lähettämistä.".html_safe
-      f.buttons
+      f.actions
     end
   end
 

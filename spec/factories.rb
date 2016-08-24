@@ -1,8 +1,3 @@
-# coding: UTF-8
-
-# DEPRECATION WARNING: Calling after_create is deprecated; use the syntax after(:create)
-
-
 FactoryGirl.define do
 
   factory :admin_user do
@@ -39,10 +34,10 @@ FactoryGirl.define do
   end
 
   factory :candidate do
-    sequence(:email) {|n| "foo#{n}@example.com"}
-    lastname 'Meikalainen'
-    firstname 'Matti Sakari'
-    candidate_name 'Meikalainen, Matti Sakari'
+    sequence(:email) {|n| "matti.meikalainen.#{n}@example.com"}
+    sequence(:lastname) {|n| "Meikalainen #{n}"}
+    sequence(:firstname) {|n| "Matti #{n} Sakari"}
+    sequence(:candidate_name) {|n| "Meikalainen, Matti Sakari"}
     social_security_number 'sec id'
     faculty
     electoral_alliance
@@ -53,7 +48,6 @@ FactoryGirl.define do
     sequence(:name) {|n| "Voting area #{n}"}
     ready true
     submitted true
-    password 'foobar123'
   end
 
   factory :vote do
@@ -90,9 +84,9 @@ FactoryGirl.define do
   end
 
   factory :candidate_result_with_proportionals, :parent => :candidate_result do |candidate_result|
-    candidate_result.after_create do |cr|
-      Factory(:ordered_coalition_proportional, :result => cr.result, :candidate => cr.candidate)
-      Factory(:ordered_alliance_proportional, :result => cr.result, :candidate => cr.candidate)
+    candidate_result.after(:create) do |cr|
+      create(:ordered_coalition_proportional, :result => cr.result, :candidate => cr.candidate)
+      create(:ordered_alliance_proportional, :result => cr.result, :candidate => cr.candidate)
     end
   end
 
@@ -125,7 +119,7 @@ FactoryGirl.define do
   end
 
   factory :ready_voting_area_with_votes_for, :parent => :ready_voting_area do |area|
-    area.after_create { |a| Factory(:vote, :candidate => candidate, :amount => amount)}
+    area.after(:create) { |a| create(:vote, :candidate => candidate, :amount => amount)}
   end
 
   factory :unready_voting_area, :parent => :voting_area do |area|
@@ -133,22 +127,22 @@ FactoryGirl.define do
   end
 
   factory :voted_candidate, :parent => :candidate do |candidate|
-    candidate.after_create { |c| Factory(:vote, :candidate => c, :amount => 1234) }
+    candidate.after(:create) { |c| create(:vote, :candidate => c, :amount => 1234) }
   end
 
   factory :result_with_alliance_proportionals_and_candidates, :parent => :result do |result|
-    result.after_create { |r| 10.times { Factory(:ordered_alliance_proportional, :result => r) } }
+    result.after(:create) { |r| 10.times { create(:ordered_alliance_proportional, :result => r) } }
   end
 
   factory :result_with_coalition_proportionals_and_candidates, :parent => :result do |result|
-    result.after_create { |r| 10.times { Factory(:candidate_result_with_proportionals, :result => r) } }
+    result.after(:create) { |r| 10.times { create(:candidate_result_with_proportionals, :result => r) } }
   end
 
   factory :electoral_alliance_with_candidates, :parent => :electoral_alliance do |alliance|
-    alliance.after_create { |a| 10.times { a.candidates << Factory(:candidate, :electoral_alliance => a) } }
+    alliance.after(:create) { |a| 10.times { a.candidates << create(:candidate, :electoral_alliance => a) } }
   end
 
   factory :electoral_coalition_with_alliances_and_candidates, :parent => :electoral_coalition do |coalition|
-    coalition.after_create { |c| 10.times { c.electoral_alliances << Factory(:electoral_alliance_with_candidates, :electoral_coalition => c) } }
+    coalition.after(:create) { |c| 10.times { c.electoral_alliances << create(:electoral_alliance_with_candidates, :electoral_coalition => c) } }
   end
 end

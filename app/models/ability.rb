@@ -4,6 +4,11 @@ class Ability
   def initialize(user)
     user ||= AdvocateUser.new # guest user (not logged in)
     initialize_roles(user)
+
+    # Controllers which are not provided by ActiveAdmin do not get authorized.
+    # ActiveAdmin controller always authorizes, therefore access to login must
+    # explicitly be granted.
+    can :login, :admin
   end
 
   def admin(user)
@@ -17,9 +22,14 @@ class Ability
 
   def secretary(user)
     can :access, :admin
+    can :read, ActiveAdmin::Page, :name => "Dashboard"
 
-    can [:read, :new, :create, :update, :create], Candidate
-    can [:read, :new, :create, :update, :done], ElectoralAlliance
+    can [:read, :new, :create, :update], Candidate
+
+    can [:read, :new, :create, :done], ElectoralAlliance
+    can :update, ElectoralAlliance do |alliance|
+      not alliance.secretarial_freeze?
+    end
   end
 
   def advocate(user)
