@@ -1,16 +1,42 @@
-# coding: UTF-8
 ActiveAdmin.register ElectoralCoalition do
 
-  before_filter :authorize_this
+  permit_params :name,
+                :shorten,
+                :electoral_alliance_ids
 
   menu :label => " Vaalirenkaat", :priority => 3
 
   controller do
 
-    def authorize_this
-      authorize! :manage, ElectoralCoalition
+    # Override default method because :electoral_alliance_ids is just not
+    # available through permitted_params.
+    def update
+      @electoral_coalition = ElectoralCoalition.find(params[:id])
+
+      if @electoral_coalition.update_attributes(permitted_params[:electoral_coalition])
+        @electoral_coalition.update! electoral_alliance_ids: params[:electoral_coalition][:electoral_alliance_ids]
+
+        flash[:notice] = "Muutokset tallennettu."
+        redirect_to admin_electoral_coalition_path(@electoral_coalition)
+      else
+        super
+      end
     end
 
+    # Override default method because :electoral_alliance_ids is just not
+    # available through permitted_params.
+    def create
+      @electoral_coalition = ElectoralCoalition.new(permitted_params[:electoral_coalition])
+
+      if @electoral_coalition.save
+        @electoral_coalition.update! electoral_alliance_ids: params[:electoral_coalition][:electoral_alliance_ids]
+
+        flash[:notice] = "Vaalirengas luotu!"
+        redirect_to admin_electoral_coalition_path(@electoral_coalition)
+      else
+        super
+      end
+    end
   end
 
   index do
@@ -20,7 +46,7 @@ ActiveAdmin.register ElectoralCoalition do
       coalition.electoral_alliances.by_numbering_order.map(&:name).join(', ')
     end
 
-    default_actions
+    actions
   end
 
   show :title => :name do
@@ -31,11 +57,11 @@ ActiveAdmin.register ElectoralCoalition do
     alliances = electoral_coalition.electoral_alliances.by_numbering_order
     panel "Vaaliliitot  (#{alliances.count} kpl)" do
       table_for(alliances) do |t|
-        t.column("Valmis") { |alliance| icon(:check) if alliance.secretarial_freeze? }
+        t.column("Valmis") { |alliance| status_tag('Valmis', :ok) if alliance.secretarial_freeze? }
         t.column("Vaaliliitto") { |alliance| link_to alliance.name, admin_electoral_alliance_path(alliance) }
         t.column("Ehdokkaita syötetty") {|alliance| alliance.candidates.count}
         t.column("Ehdokkaita ilmoitettu") {|alliance| alliance.expected_candidate_count}
-        t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? icon(:check) : ""}
+        t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? status_tag('ok', :ok) : status_tag("Kesken", :in_progress) }
         t.column("Asiamies") {|alliance| link_to alliance.advocate_user.friendly_name, admin_advocate_user_path(alliance.advocate_user) if alliance.advocate_user}
       end
     end
@@ -50,10 +76,10 @@ ActiveAdmin.register ElectoralCoalition do
       f.input :shorten
     end
     f.inputs 'Vaalirenkaan liitot' do
-      f.input :electoral_alliances, :as => :check_boxes, :collection => ElectoralAlliance.without_coalition.concat(f.object.electoral_alliances),
+      f.input :electoral_alliances, :as => :check_boxes, :collection => (ElectoralAlliance.without_coalition + f.object.electoral_alliances),
                                     :hint => "Tässä ovat näkyvissä ainoastaan renkaisiin kuulumattomat liitot. Luo vaaliliitto ennen vaalirenkaan luomista."
     end
-    f.buttons
+    f.actions
   end
 
   sidebar :order_alliances, :only => :show do

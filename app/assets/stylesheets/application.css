@@ -1,5 +1,11 @@
 /*
-*= require ../../../vendor/assets/stylesheets/bootstrap.min.css
-*= require formtastic
-*= require html5boilerplate
-*/
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
+ * or any plugin's vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ *= require bootstrap.min.css
+ *= require formtastic
+ *= require html5boilerplate
+ *
+ * Do not "require_tree ." or active_admin.css will override styles
+ * also for scope OUTSIDE of ActiveAdmin
+ */

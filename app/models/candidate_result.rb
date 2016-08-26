@@ -5,27 +5,35 @@ class CandidateResult < ActiveRecord::Base
   belongs_to :coalition_draw, :dependent => :destroy
 
   has_one :alliance_proportional,
-          :through => :candidate,
-          :source => :alliance_proportionals,
-          :conditions => ['alliance_proportionals.result_id = result_id']
+            -> { where('alliance_proportionals.result_id = result_id') },
+            source: :alliance_proportionals,
+            through: :candidate
 
   validates_presence_of :result_id, :candidate_id
 
-  scope :by_candidate_draw_order, order("candidate_draw_order asc")
-  scope :by_coalition_draw_order, order("coalition_draw_order asc")
-  scope :by_vote_sum, order("vote_sum_cache desc")
+  scope :by_candidate_draw_order, -> { order("candidate_draw_order asc") }
+  scope :by_coalition_draw_order, -> { order("coalition_draw_order asc") }
+  scope :by_vote_sum, -> {order("vote_sum_cache desc") }
 
   def self.most_voted(number = 10)
     by_vote_sum.limit(number)
   end
 
   def self.for_candidates(candidate_ids)
-    find(:all, :conditions => ["candidate_id IN (?)", candidate_ids])
+    where(["candidate_id IN (?)", candidate_ids])
   end
 
+
   def self.elect!(candidate_ids, result_id)
-    update_all ["elected = ?", false], ["result_id = ?", result_id]
-    update_all ["elected = ?", true], ["result_id = ? AND candidate_id IN (?)", result_id, candidate_ids]
+    #  UPDATE "candidate_results" SET elected = 'f' WHERE (result_id = 1)
+    where(
+      "result_id = ?", result_id
+    ).update_all( ["elected = ?", false] )
+
+    # UPDATE "candidate_results" SET elected = 't' WHERE (result_id = 1 AND candidate_id IN (1,2))
+    where(
+      "result_id = ? AND candidate_id IN (?)", result_id, candidate_ids
+    ).update_all( ["elected = ?", true] )
   end
 
   def self.find_duplicate_vote_sums(result_id)

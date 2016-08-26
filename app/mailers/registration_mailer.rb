@@ -1,6 +1,4 @@
-# coding: UTF-8
-
-class RegistrationMailer < HyyMailer
+class RegistrationMailer < SendgridMailer
 
   def welcome_advocate(email, password)
     @email = email

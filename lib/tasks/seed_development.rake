@@ -171,29 +171,29 @@ namespace :seed do
         csv_contents.shift
         csv_contents.each do |row|
 
-          faculty = Faculty.find_or_create_by_code row[4]
+          faculty = Faculty.find_or_create_by code: row[4]
 
           alliance_name = (row[11] || row[8])
           electoral_alliance = ElectoralAlliance.find_by_name alliance_name
           unless electoral_alliance
-            electoral_coalition = ElectoralCoalition.find_or_create_by_name row[9] if row[9]
+            electoral_coalition = ElectoralCoalition.find_or_create_by(name: row[9]) if row[9]
             electoral_coalition = ElectoralCoalition.create! :name => alliance_name unless electoral_coalition
             electoral_alliance = create_alliance!(electoral_coalition, :name => alliance_name, :expected_candidate_count => 0)
           end
           electoral_alliance.update_attribute :numbering_order_position, row[10]
 
           def generate_ssn
-            @@order = (@@order ||= 0) + 1
-            @@days   ||= (1..31).to_a
-            @@months ||= (1..12).to_a
-            @@years  ||= (50..90).to_a
-            @@check  ||= '0123456789ABCDEFHJKLMNPRSTUVWXY'
+            seed   = rand(100)
+            days   = (1..31).to_a
+            months = (1..12).to_a
+            years  = (50..90).to_a
+            checks = '0123456789ABCDEFHJKLMNPRSTUVWXY'
 
-            day   = sprintf "%02d", @@days[rand(@@days.length)]
-            month = sprintf "%02d", @@months[rand(@@months.length)]
-            year  = sprintf "%02d", @@years[rand(@@years.length)]
-            order = sprintf "%03d", @@order
-            check = @@check[("#{day}#{month}#{year}#{order}".to_i) % 31]
+            day   = sprintf "%02d", days[rand(days.length)]
+            month = sprintf "%02d", months[rand(months.length)]
+            year  = sprintf "%02d", years[rand(years.length)]
+            order = sprintf "%03d", seed
+            check = checks[("#{day}#{month}#{year}#{order}".to_i) % 31]
 
             "#{day}#{month}#{year}-#{order}#{check}"
 

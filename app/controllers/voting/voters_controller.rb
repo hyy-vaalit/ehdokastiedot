@@ -12,7 +12,7 @@ class Voting::VotersController < VotingController
   end
 
   def create
-    @voter = Voter.new params[:voter]
+    @voter = Voter.new voter_parmas
 
     if @voter.save && @voter.mark_voted!(current_user.voting_area)
       flash[:notice] = "Luotiin uusi äänioikeutettu #{@voter.name} ja merkittiin hänet äänestäneeksi."
@@ -51,6 +51,17 @@ class Voting::VotersController < VotingController
   end
 
   protected
+
+  def voter_parmas
+    params
+      .require(:voter)
+      .permit(
+        :name,
+        :ssn,
+        :student_number,
+        :faculty_id
+      )
+  end
 
   # Search for one more time and display results only by SSN so that IF there was a typo,
   # there's now a last chance to see it before allowing the ballot.

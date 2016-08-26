@@ -1,5 +1,3 @@
-/* Loaded from config/initializers/active_admin.rb */
-
 .sortable tr:hover {
   cursor: move;
 }
@@ -13,3 +11,7 @@ form.ordering div {
       float: left;
       margin-right: 0.5em;
   }
+
+.create-new-candidate-action {
+  padding-bottom: 1.5em;
+}

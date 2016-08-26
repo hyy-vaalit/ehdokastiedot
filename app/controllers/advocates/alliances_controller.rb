@@ -1,5 +1,3 @@
-# coding: utf-8
-
 class Advocates::AlliancesController < AdvocatesController
 
   before_filter :find_alliance, :only => [:show, :edit, :update]
@@ -26,7 +24,7 @@ class Advocates::AlliancesController < AdvocatesController
   end
 
   def update
-    if @alliance.update_attributes(params[:electoral_alliance])
+    if @alliance.update_attributes(alliance_params)
       flash[:notice] = "Muutokset tallennettu."
     else
       flash[:alert] = "Muutosten tallentaminen epäonnistui!"
@@ -37,7 +35,7 @@ class Advocates::AlliancesController < AdvocatesController
   end
 
   def create
-    @alliance = current_advocate_user.electoral_alliances.build(params[:electoral_alliance])
+    @alliance = current_advocate_user.electoral_alliances.build(alliance_params)
 
     if @alliance.save
       flash[:notice] = "Vaaliliitto luotu!"
@@ -59,4 +57,12 @@ class Advocates::AlliancesController < AdvocatesController
     @_nav_paths = [{"Kaikki vaaliliitot" => advocates_alliances_path}]
   end
 
+  def alliance_params
+    params
+      .require(:electoral_alliance)
+      .permit(
+        :name,
+        :shorten,
+        :expected_candidate_count)
+  end
 end

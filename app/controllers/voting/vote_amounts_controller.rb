@@ -1,4 +1,3 @@
-# coding: UTF-8
 class Voting::VoteAmountsController < VotingController
 
   before_filter :assign_voting_area

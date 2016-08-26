@@ -1,11 +1,9 @@
-# coding: utf-8
-
 class Manage::ConfigurationsController < ManageController
 
   before_filter :find_configuration
 
   def update
-    if @configuration.update_attributes(params[:global_configuration])
+    if @configuration.update_attributes(permitted_params)
       flash[:notice] = "Muutokset tallennettu."
       redirect_to :action => :edit
     else
@@ -29,6 +27,16 @@ class Manage::ConfigurationsController < ManageController
   end
 
   protected
+
+  def permitted_params
+    params
+      .require(:global_configuration)
+      .permit(
+        :votes_given,
+        :votes_accepted,
+        :potential_voters_count
+      )
+  end
 
   def authorize_this!
     authorize! :configurations, @current_admin_user

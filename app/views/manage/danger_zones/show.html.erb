@@ -40,17 +40,6 @@ allowfullscreen></iframe>
 <h2>Ehdokasasettelu</h2>
 
 <ul>
-  <!-- # FIXME 6/2012
-  <li>
-    <#%= link_to 'Luo asiamiehille tunnukset', create_advocates_admin_electoral_alliances_path, :confirm => "Luodaanko asiamiesten tunnukset tietojen korjaamiseksi?\nSalasana välitetään jokaiselle asiamiehelle sähköpostitse." %>
-    <ul>
-      <li>Salasana välitetään jokaiselle sähköpostitse.</li>
-      <li>Tunnus luodaan jokaisen liiton ensisijaiselle asiamiehelle.</li>
-      <li>Liiton asiamies kohdistetaan käyttäjätunnukseen hetun perusteella.</li>
-      <li>Jokaista hetua kohden luodaan vain yksi käyttäjätunnus.</li>
-    </ul>
-  </li> -->
-
   <li>
     <%= link_to 'Kirjoita ehdokkaille lähetettävä sähköposti', new_admin_email_path %>
     <ul>
@@ -76,7 +65,7 @@ allowfullscreen></iframe>
   <li>
     <%= link_to 'Anna ehdokkaille numerot', give_numbers_admin_candidates_path,
                                             :class=>"btn btn-danger",
-                                            :confirm => "Jaetaanko ehdokasnumerot?" %>
+                                            :data => {:confirm => "Jaetaanko ehdokasnumerot?"} %>
     <ul>
       <li>Ks. ohjeet renkaiden järjestämisestä.</li>
       <li>Kun renkaiden keskinäinen järjestys on määritetty, ehdokasnumerot voidaan jakaa.</li>
@@ -91,7 +80,7 @@ allowfullscreen></iframe>
   <li>
     <%= link_to 'Merkitse tarkastuslaskenta valmiiksi!', ready_checking_minutes_path,
                                                         :method => :post,
-                                                        :class=>"btn btn-danger",
-                                                        :confirm => 'Onko jokaisen äänestysalueen tarkastuslaskenta valmis? Ääniä ei voi tämän jälkeen enää muokata.' %>
+                                                        :class => "btn btn-danger",
+                                                        :data => {:confirm => 'Onko jokaisen äänestysalueen tarkastuslaskenta valmis? Ääniä ei voi tämän jälkeen enää muokata.'} %>
   </li>
 </ul>

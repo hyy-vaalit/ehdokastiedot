@@ -17,7 +17,7 @@ describe 'Voter' do
 
       faculty = FactoryGirl.build(:faculty, :numeric_code => faculty_numeric_code)
 
-      Faculty.stub!(:find_by_numeric_code).and_return faculty
+      allow(Faculty).to receive(:find_by_numeric_code!).with(faculty_numeric_code).and_return faculty
     end
 
     it 'creates a voter' do

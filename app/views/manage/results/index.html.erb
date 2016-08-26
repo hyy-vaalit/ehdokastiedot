@@ -54,7 +54,7 @@ Julkinen vaalitulos: <%= link_to Vaalit::Results::PUBLIC_RESULT_URL, Vaalit::Res
         <%= button_to "Julkaise", manage_result_publish_path(result),
                       :method   => :put,
                       :class    => "btn btn-danger",
-                      :confirm  => "Julkaistaanko vaalitulos? Tämä korvaa aiemman julkaisun välituloksen." %>
+                      :data => {:confirm  => "Julkaistaanko vaalitulos? Tämä korvaa aiemman julkaisun välituloksen."} %>
       <% end %>
     </td>
 

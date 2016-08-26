@@ -1,7 +1,5 @@
-# Load the rails application
-require File.expand_path('../application', __FILE__)
+# Load the Rails application.
+require_relative 'application'
 
-# Initialize the rails application
-Vaalit::Application.initialize!
-
-Time.zone = "Helsinki"
+# Initialize the Rails application.
+Rails.application.initialize!

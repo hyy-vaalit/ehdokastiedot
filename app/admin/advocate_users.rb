@@ -1,16 +1,48 @@
-# coding: UTF-8
 ActiveAdmin.register AdvocateUser do
+
+  permit_params :email,
+                :ssn,
+                :firstname,
+                :lastname,
+                :postal_address,
+                :postal_code,
+                :postal_city,
+                :phone_number,
+                :electoral_alliance_ids
 
   menu :label => "Asiamiestunnukset", :if => proc { can? :manage, AdvocateUser }, :priority => 12
 
-  before_filter :authorize_this
-
   controller do
 
-    def authorize_this
-      authorize! :manage, AdvocateUser
+    # Override default method because :electoral_alliance_ids is just not
+    # available through permitted_params.
+    def update
+      @advocate_user = AdvocateUser.find(params[:id])
+
+      if @advocate_user.update_attributes(permitted_params[:advocate_user])
+        @advocate_user.update! electoral_alliance_ids: params[:advocate_user][:electoral_alliance_ids]
+
+        flash[:notice] = "Muutokset tallennettu."
+        redirect_to admin_advocate_user_path(@advocate_user)
+      else
+        super
+      end
     end
 
+    # Override default method because :electoral_alliance_ids is just not
+    # available through permitted_params.
+    def create
+      @advocate_user = AdvocateUser.new(permitted_params[:advocate_user])
+
+      if @advocate_user.save
+        @advocate_user.update! electoral_alliance_ids: params[:advocate_user][:electoral_alliance_ids]
+
+        flash[:notice] = "Asiamies luotu!"
+        redirect_to admin_advocate_user_path(@advocate_user)
+      else
+        super
+      end
+    end
   end
 
   index do
@@ -21,14 +53,14 @@ ActiveAdmin.register AdvocateUser do
     column("Vaaliliittoja") { |user| user.electoral_alliances.count }
     column :phone_number
 
-    default_actions
+    actions
   end
 
   show :title => "User details" do | user |
       panel "Profile Info" do
 
         attributes_table_for user do
-          row("Name") { |user| user.friendly_name }
+          row("Name") { |u| u.friendly_name }
           row :email
           row :postal_address
           row :postal_code
@@ -40,11 +72,11 @@ ActiveAdmin.register AdvocateUser do
      panel "Vaaliliitot (#{user.electoral_alliances.count} kpl)" do
 
        table_for(user.electoral_alliances) do |t|
-         t.column("Valmis") { |alliance| icon(:check) if alliance.secretarial_freeze? }
+         t.column("Valmis") { |alliance| status_tag('Valmis', :ok) if alliance.secretarial_freeze? }
          t.column("Vaaliliitto") { |alliance| link_to alliance.name, admin_electoral_alliance_path(alliance) }
          t.column("Ehdokkaita syötetty") {|alliance| alliance.candidates.count}
          t.column("Ehdokkaita ilmoitettu") {|alliance| alliance.expected_candidate_count}
-         t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? icon(:check) : ""}
+         t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? status_tag('ok', :ok) : status_tag("Kesken", :in_progress) }
        end
      end
    end
@@ -80,10 +112,10 @@ ActiveAdmin.register AdvocateUser do
     f.inputs 'Vaaliliitot' do
       f.input :electoral_alliances,
               :as => :check_boxes,
-              :collection => ElectoralAlliance.without_advocate_user.concat(f.object.electoral_alliances)
+              :collection => ( ElectoralAlliance.without_advocate_user + f.object.electoral_alliances )
     end
 
-    f.buttons
+    f.actions
   end
 
 end

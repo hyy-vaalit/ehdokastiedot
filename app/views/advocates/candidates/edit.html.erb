@@ -20,7 +20,7 @@
       <%= link_to "Poista ehdokas", advocates_alliance_candidate_path(@alliance, @candidate),
                                       :method => :delete,
                                       :class => "btn btn-danger",
-                                      :confirm => "Poistetaanko ehdokas #{@candidate.candidate_name}? Toimintoa ei voi perua." %>
+                                      :data => {:confirm => "Poistetaanko ehdokas #{@candidate.candidate_name}? Toimintoa ei voi perua."} %>
     <% end %>
   <% end %>
 

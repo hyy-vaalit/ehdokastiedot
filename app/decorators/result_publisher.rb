@@ -6,13 +6,17 @@
 #   - uploads Result#to_html to s3
 #   - uploads Result#to_json to s3
 #   - sets published=true if result is made "public" (ie. index.html or index.json), otherwise uses unique filename
-class ResultPublisher < ApplicationDecorator
-  decorates :result
+class ResultPublisher
+
+  def initialize(result)
+    @result = result
+  end
 
   def self.create_and_store!
     Result.transaction do
-      result = Result.create!
-      self.find(result).store_to_s3!
+      instance = self.new(Result.create!)
+
+      instance.store_to_s3!
     end
   end
 
@@ -21,37 +25,38 @@ class ResultPublisher < ApplicationDecorator
       result = Result.freezed.first
       result.finalize!
 
-      self.find(result).store_to_s3!
+      instance = self.new(result)
+      instance.store_to_s3!
     end
   end
 
   def publish!
     Result.transaction do
-      self.published_pending!
-      Delayed::Job::enqueue(PublishResultJob.new(self.id))
+      @result.published_pending!
+      Delayed::Job::enqueue(PublishResultJob.new(@result.id))
     end
   end
 
   def store_and_make_public!
     Result.transaction do
-      self.published!
+      @result.published!
       store_to_s3!
     end
   end
 
   def store_to_s3!
     Rails.logger.info "Rendering result output"
-    result = ResultDecorator.new(self)
+    decorated_result = ResultDecorator.decorate(@result)
 
-    store_s3_object("#{directory}/#{better_filename('.html')}", result.to_html)
-    store_s3_object("#{directory}/#{better_filename('.json')}", result.to_json)
-    store_s3_object("#{directory}/#{better_filename('.json', 'candidates')}", result.to_json_candidates)
+    store_s3_object("#{directory}/#{better_filename('.html')}", decorated_result.to_html)
+    store_s3_object("#{directory}/#{better_filename('.json')}", decorated_result.to_json)
+    store_s3_object("#{directory}/#{better_filename('.json', 'candidates')}", decorated_result.to_json_candidates)
   end
 
   private
 
   def better_filename(suffix, name = "result")
-    self.published? ? public_filename(suffix, name) : unique_filename(suffix, name)
+    @result.published? ? public_filename(suffix, name) : unique_filename(suffix, name)
   end
 
   def directory
@@ -67,7 +72,7 @@ class ResultPublisher < ApplicationDecorator
   end
 
   def unique_filename(suffix, name)
-    self.filename(suffix, name)
+    @result.filename(suffix, name)
   end
 
   # AWS connection is established only in production mode

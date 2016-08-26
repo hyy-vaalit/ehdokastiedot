@@ -6,14 +6,11 @@ class Vote < ActiveRecord::Base
   validates_presence_of :voting_area, :candidate, :amount
   validate :must_have_positive_amount
 
-  scope :countable, joins(:voting_area).where('voting_areas.ready = ?', true)
+  scope :countable, -> { joins(:voting_area).where('voting_areas.ready = ?', true) }
 
-  # FIXME: Remove dead code
-  scope :fixed, from("(SELECT COALESCE(v.fix_count, v.vote_count) as vote_count, v.id, v.candidate_id, v.voting_area_id, v.created_at, v.updated_at, v.fix_count FROM votes v) votes")
+  scope :with_fixes, -> { where('fixed_amount is not null') }
 
-  scope :with_fixes, where('fixed_amount is not null')
-
-  default_scope :include => :candidate, :order => 'candidates.candidate_number'
+  default_scope { includes(:candidate).order('candidates.candidate_number') }
 
   def self.countable_sum
     countable.sum('COALESCE(votes.fixed_amount, votes.amount)')

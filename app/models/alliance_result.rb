@@ -2,10 +2,10 @@ class AllianceResult < ActiveRecord::Base
   belongs_to :result
   belongs_to :electoral_alliance
 
-  scope :by_vote_sum, order("vote_sum_cache desc")
+  scope :by_vote_sum, -> { order("vote_sum_cache desc") }
 
   def self.for_alliances(alliance_ids)
-    find(:all, :conditions => ["electoral_alliance_id IN (?)", alliance_ids])
+    where(["electoral_alliance_id IN (?)", alliance_ids])
   end
 
   # Params:

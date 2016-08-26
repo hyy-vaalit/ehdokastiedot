@@ -1,16 +1,12 @@
-require 'rollbar/rails'
 Rollbar.configure do |config|
   # Without configuration, Rollbar is enabled in all environments.
   # To disable in specific environments, set config.enabled=false.
 
-  config.access_token = ENV.fetch('ROLLBAR_ACCESS_TOKEN')
-
-  config.delayed_job_enabled = true
-
   if Rails.env.test? or Rails.env.development?
     config.enabled = false
+  else
+    config.access_token = ENV.fetch 'ROLLBAR_ACCESS_TOKEN'
   end
-
 
   # By default, Rollbar will try to call the `current_user` controller method
   # to fetch the logged-in user object, and then call that object's `id`,
@@ -40,7 +36,7 @@ Rollbar.configure do |config|
   # config.use_async = true
   # Supply your own async handler:
   # config.async_handler = Proc.new { |payload|
-  #  Thread.new { Rollbar.process_payload(payload) }
+  #  Thread.new { Rollbar.process_from_async_handler(payload) }
   # }
 
   # Enable asynchronous reporting (using sucker_punch)
@@ -49,5 +45,12 @@ Rollbar.configure do |config|
   # Enable delayed reporting (using Sidekiq)
   # config.use_sidekiq
   # You can supply custom Sidekiq options:
-  # config.use_sidekiq 'queue' => 'my_queue'
+  # config.use_sidekiq 'queue' => 'default'
+
+  # If you run your staging application instance in production environment then
+  # you'll want to override the environment reported by `Rails.env` with an
+  # environment variable like this: `ROLLBAR_ENV=staging`. This is a recommended
+  # setup for Heroku. See:
+  # https://devcenter.heroku.com/articles/deploying-to-a-custom-rails-environment
+  config.environment = ENV['ROLLBAR_ENV'] || Rails.env
 end

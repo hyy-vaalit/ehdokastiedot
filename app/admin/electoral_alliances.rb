@@ -1,25 +1,14 @@
-# coding: UTF-8
 ActiveAdmin.register ElectoralAlliance do
+
+  permit_params :name,
+                :shorten,
+                :expected_candidate_count
 
   scope :all, :default => true
   scope :without_coalition
   scope :without_advocate_user
 
   menu :label => " Vaaliliitot", :priority => 2
-
-  controller do
-
-    load_and_authorize_resource :except => [:index]
-
-    def create
-      if current_admin_user.role == 'secretary'
-        current_admin_user.electoral_alliance = @electoral_alliance
-        current_admin_user.save!
-      end
-      super
-    end
-
-  end
 
   index do
     column :name
@@ -29,7 +18,7 @@ ActiveAdmin.register ElectoralAlliance do
     column :expected_candidate_count
     column :secretarial_freeze
 
-    default_actions
+    actions
   end
 
   show :title => :name do
@@ -42,8 +31,12 @@ ActiveAdmin.register ElectoralAlliance do
 
     candidates = electoral_alliance.candidates
     panel "Ehdokkaat (#{candidates.count} kpl)" do
-      div do
-        link_to "Luo uusi ehdokas vaaliliittoon", new_admin_candidate_path(:electoral_alliance_id => electoral_alliance.id)
+      div class:"create-new-candidate-action" do
+        if electoral_alliance.secretarial_freeze?
+          para "Vaaliliitto on merkitty valmiiksi, eikä siihen pidä tehdä enää muutoksia."
+        else
+          link_to "Luo uusi ehdokas vaaliliittoon", new_admin_candidate_path(:electoral_alliance_id => electoral_alliance.id)
+        end
       end
 
       div do
@@ -91,8 +84,7 @@ ActiveAdmin.register ElectoralAlliance do
       f.input :expected_candidate_count, :label => "Kuinka monta ehdokasta", :hint => "Luvun on täsmättävä paperilomakkeiden määrän kanssa."
     end
 
-    # DEPRECATION WARNING: f.commit_button is deprecated in favour of f.action(:submit) and will be removed from Formtastic after 2.1. Please see ActionsHelper and InputAction or ButtonAction for more information.
-    f.buttons
+    f.actions
   end
 
   action_item :only => :index do
@@ -104,15 +96,8 @@ ActiveAdmin.register ElectoralAlliance do
     link_to 'Merkitse vaaliliitto valmiiksi!', done_admin_electoral_alliance_path if can? :update, electoral_alliance and !ea.secretarial_freeze
   end
 
-  # Rails 3.2
-  # DEPRECATION WARNING: You're trying to create an attribute `electoral_alliance_id'.
-  # Writing arbitrary attributes on a model is deprecated. Please just use `attr_writer` etc.
-  #
-  # This is about the current "selected" electoral alliance of an admin.
-  # Should probably create "attr_accessor :current_electoral_alliance_id" or such and use that one instead.
   member_action :done do
     if ElectoralAlliance.find_by_id(params[:id]).freeze!
-      current_admin_user.update_attribute :electoral_alliance, nil
       redirect_to admin_electoral_alliances_path, :notice => "Vaaliliitto on merkitty valmiiksi!"
     else
       redirect_to admin_electoral_alliance_path, :alert => "Vaaliliiton ehdokkaiden määrä ei täsmää perustamisilmoituksessa kerrottuun määrään. Tarkista, että olet syöttänyt täsmälleen yhtä monta ehdokasta kuin vaaliliiton perustamisilmoituksessa on kerrottu."

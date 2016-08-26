@@ -6,7 +6,15 @@ module DrawBehaviour
 
     belongs_to :result
 
-    scope :for_drawings, includes(:candidate_results => [:candidate => [:electoral_alliance]]).order("created_at asc")
+    scope :for_drawings, -> {
+      includes(
+        candidate_results: [
+          candidate: [
+            :electoral_alliance
+          ]
+        ]
+      ).order("created_at asc")
+    }
 
     validates_presence_of :result_id
 

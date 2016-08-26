@@ -7,11 +7,6 @@ class AdvocateUser < ActiveRecord::Base
   devise :database_authenticatable,
          :recoverable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :firstname, :lastname, :ssn, :email, :password, :password_confirmation, :remember_me,
-                  :postal_address, :postal_code, :postal_city, :phone_number,
-                  :electoral_alliance_ids # AdvocateUser can only be created by Admin
-
   has_many :electoral_alliances, :foreign_key => :primary_advocate_id
 
   validates_presence_of :ssn, :email, :firstname, :lastname

@@ -1,16 +1,14 @@
-# coding: UTF-8
-
 require 'spec_helper'
 
 describe 'votable behaviour' do
 
   before(:all) do
     @result = FactoryGirl.create(:result_with_coalition_proportionals_and_candidates)
-    @decorator = ResultDecorator.find(@result)
+    @decorator = ResultDecorator.decorate(@result)
   end
 
   it 'formats the whole candidate line' do
-    candidate = Factory.build(:candidate)
+    candidate = CandidateResult.new
     alliance = "Tumpit"
     candidate_name = "Testinen, Martti 'Sakke'"
     idx = 123
@@ -21,19 +19,19 @@ describe 'votable behaviour' do
     candidate_draw = "ax"
     alliance_draw = "ay"
     coalition_draw = " a"
-    candidate.stub!(:electoral_alliance_shorten).and_return(alliance)
-    candidate.stub!(:candidate_name).and_return(candidate_name)
-    candidate.stub!(:candidate_number).and_return(cno)
-    candidate.stub!(:vote_sum).and_return(votes)
-    candidate.stub!(:elected?).and_return(true)
-    candidate.stub!(:candidate_draw_identifier).and_return(candidate_draw)
-    candidate.stub!(:alliance_draw_identifier).and_return(alliance_draw)
-    candidate.stub!(:coalition_draw_identifier).and_return(coalition_draw)
-    candidate.stub!(:alliance_proportional).and_return(aprop)
-    candidate.stub!(:coalition_proportional).and_return(cprop)
-    candidate.stub!(:candidate_draw_affects_elected?).and_return(false)
-    candidate.stub!(:alliance_draw_affects_elected?).and_return(false)
-    candidate.stub!(:coalition_draw_affects_elected?).and_return(false)
+    allow(candidate).to receive(:electoral_alliance_shorten).and_return(alliance)
+    allow(candidate).to receive(:candidate_name).and_return(candidate_name)
+    allow(candidate).to receive(:candidate_number).and_return(cno)
+    allow(candidate).to receive(:vote_sum).and_return(votes)
+    allow(candidate).to receive(:elected?).and_return(true)
+    allow(candidate).to receive(:candidate_draw_identifier).and_return(candidate_draw)
+    allow(candidate).to receive(:alliance_draw_identifier).and_return(alliance_draw)
+    allow(candidate).to receive(:coalition_draw_identifier).and_return(coalition_draw)
+    allow(candidate).to receive(:alliance_proportional).and_return(aprop)
+    allow(candidate).to receive(:coalition_proportional).and_return(cprop)
+    allow(candidate).to receive(:candidate_draw_affects_elected?).and_return(false)
+    allow(candidate).to receive(:alliance_draw_affects_elected?).and_return(false)
+    allow(candidate).to receive(:coalition_draw_affects_elected?).and_return(false)
 
     # "124* Testinen, Martti 'Sakke'...... 789 Tumpit   42ax  432.12345    123.45678 a"
     expected = "#{idx+1}* #{candidate_name}...... #{cno} #{alliance}   #{votes}#{candidate_draw}  #{aprop}#{alliance_draw}  #{cprop}#{coalition_draw}"
@@ -75,9 +73,9 @@ describe 'votable behaviour' do
     alliance_name           = "Sitoutumaton vasemmisto - Obunden vänster - Independent Left"
     truncated_alliance_name = "Sitoutumaton vasemmisto - Obunden vänster - Independ"
     alliance = alliance_result.electoral_alliance
-    alliance.stub!(:name).and_return(alliance_name)
-    alliance.stub!(:shorten).and_return(alliance_shorten)
-    alliance.electoral_coalition.stub!(:shorten).and_return(coalition)
+    allow(alliance).to receive(:name).and_return(alliance_name)
+    allow(alliance).to receive(:shorten).and_return(alliance_shorten)
+    allow(alliance.electoral_coalition).to receive(:shorten).and_return(coalition)
     places   = 0
     idx      = 1
     dot_count = 1

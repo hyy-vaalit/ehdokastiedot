@@ -1,8 +1,6 @@
 class Voter < ActiveRecord::Base
   include ExportableToExcel
 
-  attr_accessible :name, :ssn, :start_year, :student_number, :faculty, :faculty_id, :extent_of_studies
-
   belongs_to :faculty
 
   belongs_to :voting_area

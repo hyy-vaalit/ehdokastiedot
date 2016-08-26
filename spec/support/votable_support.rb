@@ -1,10 +1,6 @@
-module VotableSupport
+require 'spec_helper'
 
-  def self.stub_result_class!
-    Result.stub!(:calculate_votes!)
-    Result.stub!(:alliance_proportionals!)
-    Result.stub!(:coalition_proportionals!)
-  end
+module VotableSupport
 
   def self.create_candidate_draws(alliance, result, draw_votes)
     alliance.candidates.each_with_index do |candidate, index|
