@@ -329,7 +329,7 @@ Ks. kohta "Salasanat".
   - Aja `rake db:test:prepare` migraatioiden jälkeen.
 
 
-## End-to-End Testikierros
+# End-to-End Testikierros
 
   * Nollaa ja alusta tietokanta seed-datalla: `rake runts`
   * Avaa `rails console`
@@ -351,6 +351,7 @@ Ks. kohta "Salasanat".
     - `rake jobs:work`
     - tai `Procfile`:n mukaan web+worker: `foreman start`
   * Alustava vaalitulos näkyy tulossivulla.
+    - konsolista: `puts ResultDecorator.decorate(Result.last).to_html`
   * Alustavan vaalituloksen jälkeen suoritetaan tarkastuslaskenta, jossa
     tarkastuslaskentalautakunnan puheenjohtaja syöttää korjatut äänimäärät:
     - Admin > tarkastuslaskenta
