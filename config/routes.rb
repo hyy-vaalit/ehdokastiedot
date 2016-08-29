@@ -45,6 +45,8 @@ Ehdokastiedot::Application.routes.draw do
     end
 
     resources :candidates, :only => [:index]
+    resources :electoral_coalitions, :only => [:index]
+    resources :electoral_alliances, :only => [:index]
 
     resources :voters, :only => [:index]
 

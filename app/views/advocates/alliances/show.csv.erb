@@ -1,5 +1,5 @@
 <% if @alliance.candidates.any? -%>
-<%= @alliance.to_csv.html_safe -%>
+<%= @alliance.to_csv(@encoding).html_safe -%>
 <% else %>
 Vaaliliitossa ei ole ehdokkaita.
 <% end %>

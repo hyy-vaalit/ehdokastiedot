@@ -15,7 +15,8 @@
       <th>Ehdokkaita syötetty</th>
       <th>Ehdokkaita yhteensä</th>
       <th>Valmis?</th>
-      <th><i class="icon-share"></i> Export</th>
+      <th><i class="icon-share"></i> ISO-Latin</th>
+      <th><i class="icon-share"></i> UTF-8</th>
     </thead>
 
     <tbody>
@@ -31,7 +32,8 @@
               Tarkista ehdokasmäärä.
             <% end %>
           </td>
-          <td><%= link_to "CSV", advocates_alliance_path(a, :format => :csv) %></td>
+          <td><%= link_to "MS Excel", advocates_alliance_path(a, :format => :csv, :isolatin => true) %></td>
+          <td><%= link_to "Google Docs", advocates_alliance_path(a, :format => :csv) %></td>
         </tr>
       <% end %>
     </tbody>
@@ -61,6 +63,13 @@
     <li>Valitse: Tiedot > Teksti sarakkeisiin</li>
     <li>Valitse: Tiedostolaji: Erotettu > Seuraava.</li>
     <li>Valitse: Erottimet: Pilkku > Valmis.</li>
+  </ol>
+
+<h3>CSV-tiedoston tuominen Google Docsiin:</h3>
+  <ol>
+    <li>Avaa CSV-tiedosto Google Docsissa.</li>
+    <li>Valitse kenttä A1.</li>
+    <li>Valitse: Data > Split text to columns</li>
   </ol>
 
 <h3>Ehdokasnumeroinnista:</h3>

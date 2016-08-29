@@ -1,56 +1,64 @@
 # Exports given data to CSV and converts to ISO-8859-1.
 # Excel cannot display UTF-8 properly as of 2014.
 #
-# There is duplicate code in CandidateDecorator#to_csv.
-# See comments there.
+# See example usage in ElectoralAllianceExport.
 module ExportableToExcel
   extend ActiveSupport::Concern
 
   included do
 
-    def self.to_csv(collection)
+    def initialize(collection)
+      @collection = collection
+    end
+
+    def to_csv(encoding:)
 
       CSV.generate do |csv|
-        csv << csv_header(collection.first.csv_attributes)
+        csv << csv_header(self.csv_attributes, encoding)
 
-        collection.each do |member|
-          csv << csv_attributes_isolatin(member.csv_attributes)
+        @collection.each do |member|
+          csv << csv_attributes_encoded(member, self.csv_attributes, encoding)
         end
       end
     end
 
     private
 
-    def self.csv_header(exportable_attributes)
-      isolatin_header = []
+    def csv_header(exportable_attributes, encoding)
+      encoded_header = []
 
       keys_of(exportable_attributes).each do |attr|
-        isolatin_header << to_isolatin(attr)
+        encoded_header << to_encoding(attr, encoding)
       end
 
-      isolatin_header
+      encoded_header
     end
 
-    def self.csv_attributes_isolatin(exportable_attributes)
-      isolatin_attributes = []
+    def csv_attributes_encoded(member, exportable_attributes, encoding)
+      encoded_attributes = []
 
       values_of(exportable_attributes).each do |attr|
-        isolatin_attributes << to_isolatin(attr)
+        # Retrieve attribute value from collection's member
+        if attr.is_a? String
+          encoded_attributes << to_encoding(member.send(attr), encoding)
+        else # Retrieve value froma a local method, given member as a parameter
+          encoded_attributes << to_encoding(self.send(attr, member), encoding)
+        end
       end
 
-      isolatin_attributes
+      encoded_attributes
     end
 
-    def self.values_of(hash)
+    def values_of(hash)
       hash.map(&:values).flatten
     end
 
-    def self.keys_of(hash)
+    def keys_of(hash)
       hash.map(&:keys).flatten
     end
 
-    def self.to_isolatin(value)
-      value.to_s.encode('ISO-8859-1',
+    def to_encoding(value, encoding)
+      value.to_s.encode(encoding,
                         :invalid => :replace,
                         :undef   => :replace,
                         :replace => "?")

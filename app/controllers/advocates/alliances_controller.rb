@@ -14,6 +14,12 @@ class Advocates::AlliancesController < AdvocatesController
   end
 
   def show
+    if params[:isolatin]
+      @encoding = "ISO-8859-1"
+    else
+      @encoding = "UTF-8"
+    end
+
     respond_to do |format|
       format.html { }
       format.csv  { render :layout => false }

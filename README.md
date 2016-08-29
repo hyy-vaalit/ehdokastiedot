@@ -401,7 +401,6 @@ täysin riippumatonta Rails-järjestelmästä.
 
 ## Muistiinpanoja
 
-  * Draper on tosi hidas ison collectionin koristelussa.
-    CandidateDecorator toimii n. 1000 alkiolla, mutta
-    sama pattern 28000 äänestäjällä jumahti täysin.
-    Jos Draperista pitää refaktoroida, tsekkaa http://thepugautomatic.com/2014/03/draper/
+  * Draper on hidas ison collectionin koristelussa.
+    Uudet decoratorit kannattaa tehdä ilman Draperia.
+    Ks. esim CandidateExport ja http://thepugautomatic.com/2014/03/draper/

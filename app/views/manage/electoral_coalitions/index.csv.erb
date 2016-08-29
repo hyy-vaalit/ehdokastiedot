@@ -1,0 +1,6 @@
+<%# Do not indent this file: it will mess up the CSV format. -%>
+<% if @coalitions.any? -%>
+<%= ElectoralCoalitionExport.new(@coalitions).to_csv(encoding: @encoding).html_safe -%>
+<% else %>
+Vaalijärjestelmään ei ole vielä syötetty yhtään vaalirengasta.
+<% end %>

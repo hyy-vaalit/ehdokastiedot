@@ -5,7 +5,7 @@ class ElectoralAllianceDecorator < ApplicationDecorator
 
   delegate_all
 
-  def to_csv
-    CandidateDecorator.to_csv(candidates)
+  def to_csv(encoding)
+    CandidateExport.new(candidates).to_csv(encoding: encoding)
   end
 end

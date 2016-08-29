@@ -163,6 +163,12 @@ namespace :seed do
       AdvocateUser.create! :firstname => "Laura", :lastname => "Lanttunen", :ssn => '123456-9876', :email => 'asiamies2@example.com', :password => 'pass123', :password_confirmation => 'pass123'
     end
 
+    desc 'Create voters'
+    task :create_voters => :environment do
+      Voter.create! name: "Hessu Kettunen", student_number: 11229988, ssn: "012345-1230", start_year: 2000, faculty: Faculty.first, extent_of_studies: 1
+      Voter.create! name: "Mesi Marja", student_number: 22334455, ssn: "012345-9999", start_year: 2001, faculty: Faculty.last, extent_of_studies: 2
+    end
+
     desc 'Create candidate data from seed.csv'
     task :candidates => :environment do
       Candidate.transaction do
@@ -254,6 +260,7 @@ namespace :seed do
     Rake::Task['seed:development:voting_areas'].invoke
     Rake::Task['seed:development:early_voting'].invoke
     Rake::Task['seed:development:main_voting'].invoke
+    Rake::Task['seed:development:create_voters'].invoke
   end
 
 end

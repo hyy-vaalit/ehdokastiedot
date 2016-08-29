@@ -22,10 +22,14 @@ ActiveAdmin.register_page "Dashboard" do
           # See eg. manage/candidates_controller for Candidate CSV export.
           section "Tiedot Exceliin (CSV Export)" do
             ul do
-              li link_to "Ehdokkaat (csv)", manage_candidates_path(:format=>:csv)
-              li link_to "Vaaliliitot (csv)", admin_electoral_alliances_path(:format=>:csv)
-              li link_to "Vaalirenkaat (csv)", admin_electoral_coalitions_path(:format=>:csv)
-              li link_to "Äänioikeutetut (csv)", manage_voters_path(:format=>:csv)
+              li link_to "Ehdokkaat (UTF-8)", manage_candidates_path(:format=>:csv)
+              li link_to "Ehdokkaat (ISO-Latin)", manage_candidates_path(:format=>:csv, :isolatin=>true)
+              li link_to "Vaaliliitot (UTF-8)", manage_electoral_alliances_path(:format=>:csv)
+              li link_to "Vaaliliitot (ISO-Latin)", manage_electoral_alliances_path(:format=>:csv, :isolatin=>true)
+              li link_to "Vaalirenkaat (UTF-8)", manage_electoral_coalitions_path(:format=>:csv)
+              li link_to "Vaalirenkaat (ISO-Latin)", manage_electoral_coalitions_path(:format=>:csv, :isolatin=>true)
+              li link_to "Äänioikeutetut (UTF-8)", manage_voters_path(:format=>:csv)
+              li link_to "Äänioikeutetut (ISO-Latin)", manage_voters_path(:format=>:csv, :isolatin=>true)
             end
             section "Ohjeet CSV-tiedoston tuomiseksi Exceliin" do
               ol do
@@ -34,6 +38,7 @@ ActiveAdmin.register_page "Dashboard" do
                 li "Valitse: Tiedot > Teksti sarakkeisiin"
                 li "Valitse: Tiedostolaji: Erotettu > Seuraava."
                 li "Valitse: Erottimet: Pilkku > Valmis."
+                li "HUOM! Google Docsille UTF-8, MS Excelille ISO-Latin."
               end
             end
           end

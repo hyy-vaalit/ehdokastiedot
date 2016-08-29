@@ -6,7 +6,6 @@ class Manage::CandidatesController < ManageController
     @candidates = Candidate.for_listing
 
     respond_to do |format|
-      format.html { }
       format.csv  { render :layout => false }
     end
   end

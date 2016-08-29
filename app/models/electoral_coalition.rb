@@ -1,5 +1,4 @@
 class ElectoralCoalition < ActiveRecord::Base
-
   has_many :coalition_results
   has_many :results, :through => :coalition_results
 
