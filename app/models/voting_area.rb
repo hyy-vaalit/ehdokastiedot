@@ -32,6 +32,7 @@ class VotingArea < ActiveRecord::Base
     votes.sum(:amount)
   end
 
+  # Create vote sums from a batch of tuples (candidate_number, vote_amount).
   def create_votes_from(vote_submissions, opts = {})
     use_fixed_amount = opts[:use_fixed_amount]
 
