@@ -2,17 +2,20 @@
 # TODO: Read configuration from environment vars
 #
 class GlobalConfiguration < ActiveRecord::Base
-
   def self.candidate_nomination_period_effective?
-    first.candidate_nomination_period_effective?
+    Time.now < Vaalit::Config::CANDIDATE_NOMINATION_ENDS_AT
   end
 
   def self.candidate_nomination_ends_at
-    first.candidate_nomination_ends_at
+    Vaalit::Config::CANDIDATE_NOMINATION_ENDS_AT
   end
 
   def self.candidate_data_is_freezed_at
-    first.candidate_data_is_freezed_at
+    Vaalit::Config::CANDIDATE_DATA_IS_FREEZED_AT
+  end
+
+  def self.candidate_data_frozen?
+    Time.now > candidate_data_is_freezed_at
   end
 
   def self.mail_from_address
@@ -43,20 +46,12 @@ class GlobalConfiguration < ActiveRecord::Base
     return first.advocate_login_enabled?
   end
 
-  def self.candidate_data_frozen?
-    Time.now > candidate_data_is_freezed_at
-  end
-
   def self.checking_minutes_username
     return first.checking_minutes_username
   end
 
   def self.checking_minutes_password
     return first.checking_minutes_password
-  end
-
-  def candidate_nomination_period_effective?
-    Time.now < candidate_nomination_ends_at
   end
 
   def elected_candidate_count

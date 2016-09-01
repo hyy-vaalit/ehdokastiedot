@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20141019191340) do
+ActiveRecord::Schema.define(version: 20160901100247) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -229,16 +229,14 @@ ActiveRecord::Schema.define(version: 20141019191340) do
   end
 
   create_table "global_configurations", force: :cascade do |t|
-    t.datetime "candidate_nomination_ends_at",                 null: false
-    t.datetime "candidate_data_is_freezed_at",                 null: false
-    t.integer  "votes_given",                  default: 0
-    t.integer  "votes_accepted",               default: 0
-    t.integer  "potential_voters_count",       default: 0
+    t.integer  "votes_given",               default: 0
+    t.integer  "votes_accepted",            default: 0
+    t.integer  "potential_voters_count",    default: 0
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean  "advocate_login_enabled",       default: false
-    t.string   "checking_minutes_username",                    null: false
-    t.string   "checking_minutes_password",                    null: false
+    t.boolean  "advocate_login_enabled",    default: false
+    t.string   "checking_minutes_username",                 null: false
+    t.string   "checking_minutes_password",                 null: false
   end
 
   create_table "results", force: :cascade do |t|

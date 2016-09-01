@@ -8,6 +8,11 @@ module Vaalit
     EMAIL_FROM_NAME     = "Silva Loikkanen"
   end
 
+  module Config
+    CANDIDATE_NOMINATION_ENDS_AT = Time.parse ENV.fetch('CANDIDATE_NOMINATION_ENDS_AT')
+    CANDIDATE_DATA_IS_FREEZED_AT = Time.parse ENV.fetch('CANDIDATE_DATA_IS_FREEZED_AT')
+  end
+
   module Voting
     PROPORTIONAL_PRECISION = 5   # Decimals used in proportional numbers (eg. 87.12345 is 5 decimals)
     ELECTED_CANDIDATE_COUNT = 60 # How many candidates are elected
