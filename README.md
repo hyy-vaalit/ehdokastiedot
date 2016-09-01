@@ -93,14 +93,15 @@ Kopioi `.env.example` -> `.env` ja aseta sinne sopivat defaultit.
 
 a) Alusta tietokanta ja syötä seed-data:
 ```bash
-rake runts
+rake db:runts
+rake db:seed:dev
 ```
 
 b) Alusta tietokanta manuaalisesti:
 ```bash
 rake db:create
 rake db:schema:load
-rake -T seed
+rake -T db:seed
 ```
 
 Tsekkaa `Procfile` ja komenna:
@@ -331,7 +332,8 @@ Ks. kohta "Salasanat".
 
 # End-to-End Testikierros
 
-  * Nollaa ja alusta tietokanta seed-datalla: `rake runts`
+  * Nollaa tietokanta: `rake db:runts`
+  * Syötä seed-data: `rake db:seed:dev`
   * Avaa `rails console`
   * Merkitse vaaliliitot valmiiksi:
     - `ElectoralAlliance.all.each { |a| a.freeze! }`
