@@ -69,7 +69,7 @@ namespace :db do
 
       desc 'Create faculties'
       task :faculties => :environment do
-        puts 'Creating Faculties'
+        puts 'Creating Faculties (acually departments)'
 
         Faculty.create! :code => 'B', :numeric_code => 57, :name => 'Biotieteellinen'
         Faculty.create! :code => 'E', :numeric_code => 90, :name => 'Eläinlääketieteellinen'

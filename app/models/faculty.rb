@@ -1,3 +1,4 @@
+# FIXME: This model represents a department, not a faculty.
 class Faculty < ActiveRecord::Base
 
   has_many :candidates
