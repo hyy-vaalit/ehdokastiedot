@@ -9,9 +9,9 @@ namespace :db do
       Rake::Task['db:seed:development:faculties'].invoke
       Rake::Task['db:seed:development:electoral'].invoke
       Rake::Task['db:seed:development:candidates'].invoke
-      Rake::Task['db:seed:development:voting_areas'].invoke
-      Rake::Task['db:seed:development:early_voting'].invoke
-      Rake::Task['db:seed:development:main_voting'].invoke
+      # Rake::Task['db:seed:development:voting_areas'].invoke
+      # Rake::Task['db:seed:development:early_voting'].invoke
+      # Rake::Task['db:seed:development:main_voting'].invoke
       Rake::Task['db:seed:development:create_voters'].invoke
     end
 
