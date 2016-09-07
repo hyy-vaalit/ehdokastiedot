@@ -5,6 +5,7 @@ namespace :db do
       Rake::Task['db:seed:production:faculties'].invoke
       Rake::Task['db:seed:production:voting_areas'].invoke
       Rake::Task['db:seed:production:configuration'].invoke
+      Rake::Task['db:seed:admin_users'].invoke
     end
 
     namespace :production do
@@ -77,9 +78,6 @@ namespace :db do
         conf.checking_minutes_username    = 'tlkpj'
         conf.checking_minutes_password    = Devise.friendly_token.first(8)
         conf.save!
-
-        # Sends password by mail
-        AdminUser.create!(:email => 'petrus.repo+vaalit@enemy.fi', :password => 'salainensana', :password_confirmation => 'salainensana', :role => 'admin')
       end
     end
   end
