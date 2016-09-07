@@ -51,6 +51,8 @@ namespace :db do
 
       desc 'Default project settings'
       task :configuration => :environment do
+        puts 'Creating GlobalConfiguration'
+
         conf = GlobalConfiguration.new(
           :votes_given                  => 10417,
           :votes_accepted               => 10367,
@@ -67,6 +69,8 @@ namespace :db do
 
       desc 'Create faculties'
       task :faculties => :environment do
+        puts 'Creating Faculties'
+
         Faculty.create! :code => 'B', :numeric_code => 57, :name => 'Biotieteellinen'
         Faculty.create! :code => 'E', :numeric_code => 90, :name => 'Eläinlääketieteellinen'
         Faculty.create! :code => 'F', :numeric_code => 55, :name => 'Farmasia'
@@ -83,6 +87,7 @@ namespace :db do
 
       desc 'Create Voting Areas'
       task :voting_areas => :environment do
+        puts 'Creating Voting Areas'
         create_voting_area :code => 'I',   :name => 'Unicafe Ylioppilasaukio',    :password => 'pass123'
 
         create_voting_area :code => 'II',   :name => 'Yliopiston päärakennus',     :password => 'pass123'
@@ -114,6 +119,8 @@ namespace :db do
       desc 'Create electoral coalitions and alliances'
       task :electoral => :environment do
         # Electoral Coalition
+        puts 'Creating Coalitions'
+
         hyal = ElectoralCoalition.create! :name => 'Ainejärjestöjen vaalirengas',                  :shorten => 'HYAL', :numbering_order => "10"
         osak = ElectoralCoalition.create! :name => 'Osakuntien suuri vaalirengas',                 :shorten => 'Osak', :numbering_order => "9"
         mp = ElectoralCoalition.create! :name => 'Maailmanpyörä',                                  :shorten => 'MP', :numbering_order => "8"
@@ -130,6 +137,8 @@ namespace :db do
         ite1 = ElectoralCoalition.create! :name => 'Itsenäinen ehdokas 1',  :shorten => 'ITE1', :numbering_order => "11"
 
         # Electoral Alliances
+        puts 'Creating Alliances'
+
         create_alliance! mp, :name => 'HYYn Vihreät - De Gröna vid HUS',                              :shorten => 'HyVi',   :expected_candidate_count => '60'
         create_alliance! mp, :name => 'Sitoutumaton vasemmisto - Obunden vänster - Independent left', :shorten => 'SitVas', :expected_candidate_count => '60'
 
@@ -169,12 +178,16 @@ namespace :db do
 
       desc 'Create advocate users'
       task :create_advocates => :environment do
+        puts 'Creating AdvocateUsers'
+
         AdvocateUser.create! :firstname => "Rami", :lastname => "Raavas", :ssn => '123456-123K', :email => 'asiamies1@example.com', :password => 'pass123', :password_confirmation => 'pass123'
         AdvocateUser.create! :firstname => "Laura", :lastname => "Lanttunen", :ssn => '123456-9876', :email => 'asiamies2@example.com', :password => 'pass123', :password_confirmation => 'pass123'
       end
 
       desc 'Create voters'
       task :create_voters => :environment do
+        puts 'Creating Voters'
+
         Voter.create! name: "Hessu Kettunen", student_number: 11229988, ssn: "012345-1230", start_year: 2000, faculty: Faculty.first, extent_of_studies: 1
         Voter.create! name: "Mesi Marja", student_number: 22334455, ssn: "012345-9999", start_year: 2001, faculty: Faculty.last, extent_of_studies: 2
       end
@@ -182,7 +195,7 @@ namespace :db do
       desc 'Create candidate data from seed.csv'
       task :candidates => :environment do
         Candidate.transaction do
-          puts '... Creating candidates ...'
+          puts 'Creating candidates'
           csv_contents = CSV.read('doc/vaalit_2009_ehdokkaat.csv', encoding: "UTF-8")
           csv_contents.shift
           csv_contents.each do |row|
@@ -231,7 +244,7 @@ namespace :db do
 
       desc 'Create early voting data'
       task :early_voting => :environment do
-        puts '... Creating early voting areas ...'
+        puts 'Creating early voting areas ...'
         [:EI, :EII, :EIII, :EIV, :EV].each do |area_code|
           voting_area = VotingArea.find_by_code! "#{area_code}"
           puts "... #{voting_area.name}"
@@ -245,7 +258,7 @@ namespace :db do
 
       desc 'Create main voting data'
       task :main_voting => :environment do
-        puts '... Creating voting areas ...'
+        puts 'Creating voting areas ...'
         [:I, :II, :III, :IV, :V, :VI, :VII, :VIII, :IX, :X,
          :XI, :XII, :XIII, :XIV, :XV, :XVI, :XVII, :XVIII, :XIX, :XX].each do |area_code|
           voting_area = VotingArea.find_by_code! "#{area_code}"
