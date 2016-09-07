@@ -15,8 +15,8 @@
       <th>Ehdokkaita syötetty</th>
       <th>Ehdokkaita yhteensä</th>
       <th>Valmis?</th>
-      <th><i class="icon-share"></i> ISO-Latin</th>
-      <th><i class="icon-share"></i> UTF-8</th>
+      <th><i class="icon-share"></i> CSV</th>
+      <th><i class="icon-share"></i> CSV</th>
     </thead>
 
     <tbody>
@@ -32,8 +32,8 @@
               Tarkista ehdokasmäärä.
             <% end %>
           </td>
-          <td><%= link_to "MS Excel", advocates_alliance_path(a, :format => :csv, :isolatin => true) %></td>
-          <td><%= link_to "Google Docs", advocates_alliance_path(a, :format => :csv) %></td>
+          <td><%= link_to "ISO-Latin", advocates_alliance_path(a, :format => :csv, :isolatin => true) %></td>
+          <td><%= link_to "UTF-8", advocates_alliance_path(a, :format => :csv) %></td>
         </tr>
       <% end %>
     </tbody>
@@ -56,7 +56,7 @@
   </ul>
 </p>
 
-<h3>CSV-tiedoston tuominen Exceliin:</h3>
+<h3>CSV-tiedoston tuominen Exceliin (ISO-Latin):</h3>
   <ol>
     <li>Avaa CSV-tiedosto Exceliin.</li>
     <li>Valitse ja mustaa koko sarake 'A'.</li>
@@ -65,12 +65,10 @@
     <li>Valitse: Erottimet: Pilkku > Valmis.</li>
   </ol>
 
-<h3>CSV-tiedoston tuominen Google Docsiin:</h3>
-  <ol>
-    <li>Avaa CSV-tiedosto Google Docsissa.</li>
-    <li>Valitse kenttä A1.</li>
-    <li>Valitse: Data > Split text to columns</li>
-  </ol>
+<p>
+  Jos ääkköset näkyvät väärin ISO-Latin-merkistökoodauksella,
+  kokeile UTF-8-versiota.
+</p>
 
 <h3>Ehdokasnumeroinnista:</h3>
   <ul>
