@@ -20,6 +20,7 @@ namespace :db do
         count = count + 1
         admin = AdminUser.create!(email: email, role: 'admin')
         puts "Created #{admin.email} (id: #{admin.id})"
+        puts 'Give next email, end with ^D'
       end
 
       Rails.logger.info "Created #{count} Admin users"
