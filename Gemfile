@@ -33,6 +33,8 @@ gem "aws-s3", require: "aws/s3", github: 'pre/aws-s3'
 gem 'rollbar'
 gem 'sendgrid' # sendgrid specific methods are used by mailers
 
+gem 'pry-rails' # friendlier rails console
+
 # gems that cannot be updated without changes to the code
 # gem 'activeadmin', '0.5.1'  # dashboard is removed in 0.6.0
 gem 'activeadmin', '~> 1.0.0.pre4'
