@@ -39,7 +39,8 @@ class Candidate < ActiveRecord::Base
 
   validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
 
-  before_save :clear_linebreaks_from_notes!
+  before_save :clear_linebreaks_from_notes,
+              :strip_whitespace_from_name_fields
 
   # If candidate numbers have been given, order by candidate numbers.
   # Otherwise order by alliance id and numbering order.
@@ -139,10 +140,6 @@ class Candidate < ActiveRecord::Base
     return true
   end
 
-  def clear_linebreaks_from_notes!
-    self.notes = self.notes.gsub(/(\r\n|\n|\r)/, ', ') if self.notes
-  end
-
   def log_and_update_attributes(attrs)
     Candidate.transaction do
       self.attributes = attrs
@@ -150,4 +147,17 @@ class Candidate < ActiveRecord::Base
       self.save
     end
   end
+
+  protected
+
+  def clear_linebreaks_from_notes
+    self.notes = self.notes.gsub(/(\r\n|\n|\r)/, ', ') if self.notes
+  end
+
+  def strip_whitespace_from_name_fields
+    self.candidate_name.strip!
+    self.firstname.strip!
+    self.lastname.strip!
+  end
+
 end

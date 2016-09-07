@@ -67,8 +67,8 @@
     }
 
     function suggest_candidate_name(candidate_name_element, firstname_element, lastname_element) {
-      var lastname = lastname_element.val();
-      var firstname = first_of_firstnames(firstname_element.val());
+      var lastname = lastname_element.val().trim();
+      var firstname = first_of_firstnames(firstname_element.val().trim());
 
       if (!candidate_name_element.val()) {
         candidate_name_element.val(lastname + ', ' + firstname);
@@ -77,8 +77,8 @@
 
     function suggest_email_address(email_element, firstname_element, lastname_element) {
       var suggested_domain = "@helsinki.fi";
-      var lastname         = lastname_element.val().toLowerCase();
-      var firstname        = first_of_firstnames(firstname_element.val().toLowerCase());
+      var lastname         = lastname_element.val().toLowerCase().trim();
+      var firstname        = first_of_firstnames(firstname_element.val().toLowerCase().trim());
 
       if (!email_element.val()) {
         email_element.val(firstname + '.' + lastname + suggested_domain);
@@ -136,5 +136,3 @@
 
 <%= f.input :notes, :label => "Huomioita HYYn vaalivirkailijalle",
                     :input_html => { :class => 'autogrow', :rows => 3 } %>
-
-

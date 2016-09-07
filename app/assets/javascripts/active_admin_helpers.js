@@ -30,8 +30,8 @@ $(document).ready(function() {
     // Some hardcore candidate action!
 
     $('#candidate_candidate_name').bind('focusin', function(event) {
-      var lastname = $('#candidate_lastname').val();
-      var firstname = format_firstname($('#candidate_firstname').val());
+      var lastname = $('#candidate_lastname').val().trim();
+      var firstname = format_firstname($('#candidate_firstname').val()).trim();
       var candidate_name_input = $(this);
       if (!candidate_name_input.val()) {
         candidate_name_input.val(lastname + ', ' + firstname);
@@ -39,8 +39,8 @@ $(document).ready(function() {
     });
 
     $('#candidate_email').bind('focusin', function(event) {
-      var lastname = $('#candidate_lastname').val().toLowerCase();
-      var firstname = format_firstname($('#candidate_firstname').val().toLowerCase());
+      var lastname = $('#candidate_lastname').val().toLowerCase().trim();
+      var firstname = format_firstname($('#candidate_firstname').val().toLowerCase()).trim();
       var candidate_email_input = $(this);
       if (!candidate_email_input.val()) {
         candidate_email_input.val(firstname + '.' + lastname + '@helsinki.fi');

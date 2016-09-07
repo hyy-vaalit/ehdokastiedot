@@ -9,6 +9,8 @@ class ElectoralCoalition < ActiveRecord::Base
 
   scope :by_numbering_order, -> { order("#{table_name}.numbering_order") }
 
+  before_save :strip_whitespace_from_name_fields
+
   def order_alliances alliance_data
     original_array = alliance_data.to_a
     sorted_array = original_array.sort {|x,y| x.last <=> y.last}
@@ -35,6 +37,13 @@ class ElectoralCoalition < ActiveRecord::Base
     coalition_data.to_a.each do |array|
       self.find(array.first).update_attribute :numbering_order, array.last
     end
+  end
+
+  protected
+
+  def strip_whitespace_from_name_fields
+    self.name.strip!
+    self.shorten.strip!
   end
 
 end

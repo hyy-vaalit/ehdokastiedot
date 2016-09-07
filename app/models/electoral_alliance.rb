@@ -37,6 +37,7 @@ class ElectoralAlliance < ActiveRecord::Base
   validates_length_of :shorten, :in => 2..6
   validates_presence_of :expected_candidate_count, :allow_nil => true
 
+  before_save :strip_whitespace_from_name_fields
 
   def vote_sum_caches
     candidate_results.select(
@@ -58,6 +59,13 @@ class ElectoralAlliance < ActiveRecord::Base
 
   def self.are_all_ready?
     self.count == self.ready.count
+  end
+
+  protected
+
+  def strip_whitespace_from_name_fields
+    self.name.strip!
+    self.shorten.strip!
   end
 
 end
