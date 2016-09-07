@@ -11,6 +11,7 @@ module Vaalit
   module Config
     CANDIDATE_NOMINATION_ENDS_AT = Time.parse ENV.fetch('CANDIDATE_NOMINATION_ENDS_AT')
     CANDIDATE_DATA_IS_FREEZED_AT = Time.parse ENV.fetch('CANDIDATE_DATA_IS_FREEZED_AT')
+    CHECKING_MINUTES_ENABLED     = !!(ENV.fetch('CHECKING_MINUTES_ENABLED') =~ /true/)
   end
 
   module Voting
