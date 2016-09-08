@@ -6,28 +6,38 @@ Monoliitti, joka suuren osan edustajistovaalien uurnavaaliin liittyvästä halli
 Järjestelmässä on eri tasoisia käyttäjiä:
 
 * Pääkäyttäjä (role:admin) ja rajoitettu pääkäyttäjä (role:secretary):
+  * `app/models/AdminUser.rb`
   * /admin
   * admin@example.com / pass123
   * Kaikki HYYn henkilökunnan tarvitsemat toiminnot.
+  * Voi kirjautua sisään, kun tauluun `admin_users` on luotu käyttäjä,
+    jolla on salasana.
 
 * Vaaliliiton asiamies:
+  * `app/models/AdvocateUser.rb`
   * /advocates
   * asiamies1@example.com / pass123
-  * Vaaliliiton asiamies syöttää ehdokastiedot
+  * Vaaliliiton asiamies syöttää ehdokastiedot ja luo vaaliliiton.
+  * Voi kirjautua sisään kun `GlobalConfiguration.advocate_login_enabled?`
 
 * Uurnavaalin äänestysalueen henkilöstö:
+  * `app/models/VotingAreaUser.rb`
   * /voting
   * II@hyy.fi / pass123 (äänestysalueen tunnus: EI..EV ja I..XX)
   * Äänestysalue tarkistaa äänestäjän äänioikeuden
   * Äänestyksen päätyttyä äänestysalue syöttää äänestyslipuista lasketut äänet
     äänestysalueen tuloslaskentapöytäkirjaan.
+  * Voi kirjautua sisään, jos tauluun `voting_area_users` on luotu äänestysalue,
+    jolla on salasana.
 
 * Tarkastuslaskentalautakunnan puheenjohtaja:
+  * `app/models/checking_minutes_user.rb`
   * /checking_minutes
   * tlkpj / pass123
   * Tuottaa äänestysalueiden tarkastuslaskentapöytäkirjat, joita vasten
     tarkastuslaskenta suoritetaan.
   * Tarkastuslaskennan korjatut äänimäärät syötetään tänne.
+  * Voi kirjautua sisään, kun `Vaalit::Config::CHECKING_MINUTES_ENABLED`
 
 Käyttöoikeudet on määritety tiedostossa `app/models/ability.rb`.
 * ActiveAdmin kysyy automaattiessti jokaiselle resurssille `can? action, resource`,
