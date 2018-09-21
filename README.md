@@ -145,7 +145,8 @@ Tiedostossa `.env.example` on lista vaadituista ympäristömuuttujista.
 
 Syötä seed-data, jossa peruskonffit muttei vanhaa vaalidataa:
 ```bash
-rake seed:production
+heroku run rake db:schema:load
+heroku run rake db:seed:production
 ```
 
 Lisää add-onssit:
@@ -224,7 +225,7 @@ Näin vanhat tulokset ovat turvassa.
 
 Vuoden 2009 vaalien data:
 ```bash
-rake seed:development
+rake db:seed:dev
 ```
 
 ## Staging-ympäristön alustus
@@ -233,7 +234,7 @@ heroku pg:reset DATABASE --app APP_NAME
 # paikallinen staging-branch herokun master-branchiin.
 git push [-f] staging [staging:master]  
 heroku run rake db:schema:load --app APP_NAME
-heroku run rake seed:[production|development] --app APP_NAME
+heroku run rake db:seed:[production|dev] --app APP_NAME
 heroku restart --app APP_NAME
 ```
 
