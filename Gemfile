@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 ruby '2.3.1' # For Heroku, see also file .ruby-version
 
-gem 'rails', '~> 5.0.0', '>= 5.0.0.1'
+gem 'rails', '~> 5.0.7'
 gem 'pg', '~> 0.18'
 gem 'puma', '~> 3.0'
 gem 'sass-rails', '~> 5.0'
