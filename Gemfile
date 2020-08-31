@@ -45,7 +45,7 @@ gem 'inherited_resources', github: 'activeadmin/inherited_resources', branch: 'v
 # versions frozen before complete update for Rails 3.1.x
 gem 'ranked-model'
 gem 'cancancan'
-gem 'devise', '4.6.2'
+gem 'devise', '4.7.1'
 gem 'draper', '3.0.0.pre1'
 
 # gems that were updated when project was updated to Rails 3.2
