@@ -79,8 +79,7 @@ Käyttöoikeudet on määritety tiedostossa `app/models/ability.rb`.
 
 ## Kustannukset
 
-* SSL Endpoint ($20 / kk)
-* Sertifikaatti ($49 / vuosi)
+* SSL Let's Encrypt ($0)
 * Postgres ($9 / kk)
 * Sendgrid ($20 yhdeltä kuukaudelta)
 * Rollbar (Free: 3000 occurrences per month, 30 days retention)
@@ -153,10 +152,19 @@ Hanki uusi Rollbar access key: rollbar.com
 Aseta ympäristömuuttujat: `heroku config:add key=value`.
 Tiedostossa `.env.example` on lista vaadituista ympäristömuuttujista.
 
+Säädä Herokun qa & production ympäristöt `heroku`-komennolle git-remoteiksi:
+```bash
+heroku git:remote -a hyy-ehdokastiedot
+# vaihda tiedostosta .git/config branch "heroku" => "prod"
+heroku git:remote  -a hyy-ehdokastiedot-qa
+# vaihda .git/config branch "heroku" => "qa"
+# => Nyt heroku-komennot toimivat molempiin ympäristöihin `-r qa` ja `-r prod`
+```
+
 Syötä seed-data, jossa peruskonffit muttei vanhaa vaalidataa:
 ```bash
-heroku run rake db:schema:load
-heroku run rake db:seed:production
+heroku run rake db:schema:load [-r qa|prod]
+heroku run rake db:seed:production [-r qa|prod]
 ```
 
 Lisää add-onssit:
