@@ -100,6 +100,11 @@ Esivaatimukset:
 
 Kopioi `.env.example` -> `.env` ja aseta sinne sopivat defaultit.
 
+Aja testit:
+```bash
+rake db:runts
+rspec
+```
 
 a) Alusta tietokanta ja syötä seed-data:
 ```bash
@@ -118,7 +123,12 @@ Tsekkaa `Procfile` ja komenna:
 
 ~~~
 foreman start
-~~~
+~~~ 
+
+Avaa Admin UI
+* http://localhost:5000/admin
+* admin@example.com / pass123
+* Seed data, ks. "rake db:seed:dev"
 
 Jos ActiveAdminin tyylit ei näy, esikäännä assetit:
 
@@ -232,7 +242,7 @@ rake db:seed:dev
 ```bash
 heroku pg:reset DATABASE --app APP_NAME
 # paikallinen staging-branch herokun master-branchiin.
-git push [-f] staging [staging:master]  
+git push [-f] staging [staging:master]
 heroku run rake db:schema:load --app APP_NAME
 heroku run rake db:seed:[production|dev] --app APP_NAME
 heroku restart --app APP_NAME

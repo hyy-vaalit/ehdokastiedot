@@ -1,15 +1,16 @@
 GIT
-  remote: git://github.com/activeadmin/inherited_resources.git
-  revision: ba9467db4817944591df35dfe340f4c05a948033
+  remote: https://github.com/activeadmin/inherited_resources
+  revision: 85b62eb076779046088b2a59d711fbefb2d41e27
+  branch: v1.7.0
   specs:
-    inherited_resources (1.6.0)
+    inherited_resources (1.7.0)
       actionpack (>= 3.2, < 5.1)
       has_scope (~> 0.6)
       railties (>= 3.2, < 5.1)
       responders
 
 GIT
-  remote: git://github.com/pre/aws-s3.git
+  remote: https://github.com/pre/aws-s3
   revision: 6d8525e5f69d4d46ff51a30ca8976c7584b68f36
   specs:
     aws-s3 (0.6.3)
@@ -79,11 +80,11 @@ GEM
     arbre (1.1.1)
       activesupport (>= 3.0.0)
     arel (7.1.4)
-    bcrypt (3.1.11)
+    bcrypt (3.1.15)
     bourbon (4.2.7)
       sass (~> 3.4)
       thor (~> 0.19)
-    builder (3.2.3)
+    builder (3.2.4)
     byebug (9.0.5)
     cancancan (1.15.0)
     coderay (1.1.1)
@@ -94,19 +95,19 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
-    concurrent-ruby (1.0.5)
-    crass (1.0.4)
+    concurrent-ruby (1.1.7)
+    crass (1.0.6)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
-    delayed_job (4.1.2)
-      activesupport (>= 3.0, < 5.1)
-    delayed_job_active_record (4.1.1)
-      activerecord (>= 3.0, < 5.1)
+    delayed_job (4.1.8)
+      activesupport (>= 3.0, < 6.1)
+    delayed_job_active_record (4.1.4)
+      activerecord (>= 3.0, < 6.1)
       delayed_job (>= 3.0, < 5)
-    devise (4.2.0)
+    devise (4.6.2)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
-      railties (>= 4.1.0, < 5.1)
+      railties (>= 4.1.0, < 6.0)
       responders
       warden (~> 1.2.3)
     diff-lcs (1.2.5)
@@ -150,10 +151,10 @@ GEM
       guard (~> 2.1)
       guard-compat (~> 1.1)
       rspec (>= 2.99.0, < 4.0)
-    has_scope (0.7.0)
-      actionpack (>= 4.1, < 5.1)
-      activesupport (>= 4.1, < 5.1)
-    i18n (1.1.0)
+    has_scope (0.7.2)
+      actionpack (>= 4.1)
+      activesupport (>= 4.1)
+    i18n (1.8.5)
       concurrent-ruby (~> 1.0)
     jquery-rails (4.2.1)
       rails-dom-testing (>= 1, < 3)
@@ -171,24 +172,24 @@ GEM
     listen (3.0.8)
       rb-fsevent (~> 0.9, >= 0.9.4)
       rb-inotify (~> 0.9, >= 0.9.7)
-    loofah (2.2.2)
+    loofah (2.7.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
     lumberjack (1.0.10)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
     method_source (0.8.2)
-    mime-types (3.2.2)
+    mime-types (3.3.1)
       mime-types-data (~> 3.2015)
-    mime-types-data (3.2018.0812)
+    mime-types-data (3.2020.0512)
     mini_mime (1.0.1)
-    mini_portile2 (2.3.0)
-    minitest (5.11.3)
+    mini_portile2 (2.4.0)
+    minitest (5.14.1)
     multi_json (1.12.1)
     nenv (0.3.0)
     nio4r (2.3.1)
-    nokogiri (1.8.4)
-      mini_portile2 (~> 2.3.0)
+    nokogiri (1.10.10)
+      mini_portile2 (~> 2.4.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
       shellany (~> 0.0)
@@ -202,8 +203,8 @@ GEM
       slop (~> 3.4)
     pry-rails (0.3.4)
       pry (>= 0.9.10)
-    puma (3.6.0)
-    rack (2.0.5)
+    puma (3.12.6)
+    rack (2.2.3)
     rack-test (0.6.3)
       rack (>= 1.0)
     rails (5.0.7)
@@ -221,15 +222,15 @@ GEM
     rails-dom-testing (2.0.3)
       activesupport (>= 4.2.0)
       nokogiri (>= 1.6)
-    rails-html-sanitizer (1.0.4)
-      loofah (~> 2.2, >= 2.2.2)
+    rails-html-sanitizer (1.3.0)
+      loofah (~> 2.3)
     railties (5.0.7)
       actionpack (= 5.0.7)
       activesupport (= 5.0.7)
       method_source
       rake (>= 0.8.7)
       thor (>= 0.18.1, < 2.0)
-    rake (12.3.1)
+    rake (13.0.1)
     ranked-model (0.4.0)
       activerecord (>= 3.1.12)
     ransack (1.8.2)
@@ -242,8 +243,9 @@ GEM
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
     request_store (1.3.1)
-    responders (2.3.0)
-      railties (>= 4.2.0, < 5.1)
+    responders (3.0.1)
+      actionpack (>= 5.0)
+      railties (>= 5.0)
     rollbar (2.12.0)
       multi_json
     rspec (3.5.0)
@@ -292,12 +294,12 @@ GEM
     thor (0.19.4)
     thread_safe (0.3.6)
     tilt (2.0.5)
-    tzinfo (1.2.5)
+    tzinfo (1.2.7)
       thread_safe (~> 0.1)
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
-    warden (1.2.6)
-      rack (>= 1.0)
+    warden (1.2.8)
+      rack (>= 2.0.6)
     web-console (3.3.1)
       actionview (>= 5.0)
       activemodel (>= 5.0)
@@ -318,9 +320,9 @@ DEPENDENCIES
   cancancan
   coffee-rails (~> 4.2)
   database_cleaner
-  delayed_job
+  delayed_job (~> 4.1)
   delayed_job_active_record
-  devise
+  devise (= 4.6.2)
   dotenv-rails
   draper (= 3.0.0.pre1)
   factory_girl_rails
@@ -334,7 +336,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   pg (~> 0.18)
   pry-rails
-  puma (~> 3.0)
+  puma (~> 3.12)
   rails (~> 5.0.7)
   ranked-model
   rollbar
@@ -349,7 +351,7 @@ DEPENDENCIES
   web-console
 
 RUBY VERSION
-   ruby 2.3.1p112
+   ruby 2.6.6p146
 
 BUNDLED WITH
-   1.16.5
+   1.17.3

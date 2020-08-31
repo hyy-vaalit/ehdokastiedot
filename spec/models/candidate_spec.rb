@@ -24,7 +24,4 @@ describe Candidate do
     end
 
   end
-
-  it 'gives candidate numbers in correct order (lulz)'
-
 end
