@@ -17,35 +17,6 @@ describe 'votable behaviour' do
   end
 
   describe 'votable candidates' do
-
-    it 'gives a list of all candidates ordered by their alliance proportional' do
-      allow(AllianceProportional).to receive(:calculate!)
-      allow(CoalitionProportional).to receive(:calculate!)
-      result = FactoryGirl.create(:result_with_alliance_proportionals_and_candidates)
-
-      ordered_candidates = Candidate.with_alliance_proportionals_for(result)
-
-      ordered_candidates.should_not be_empty
-      ordered_candidates.each_with_index do |candidate, index|
-        next_candidate = ordered_candidates[index+1]
-        candidate.alliance_proportionals.last.number.should > next_candidate.alliance_proportionals.last.number if next_candidate
-      end
-    end
-
-    it 'gives a list of all candidates ordered by their coalition proportional' do
-      result = FactoryGirl.create(:result_with_coalition_proportionals_and_candidates)
-
-      ordered_candidates = result.candidate_results_in_election_order
-      ordered_candidates.should_not be_empty
-
-      ordered_candidates.each_with_index do |candidate, index|
-        next_candidate = ordered_candidates[index+1]
-        candidate.coalition_proportional.to_f.should > next_candidate.coalition_proportional.to_f if next_candidate
-      end
-
-
-    end
-
     it 'allows chaining with_votes_sum with other scopes' do
       alliance = FactoryGirl.create(:electoral_alliance_with_candidates)
       other_alliance = FactoryGirl.create(:electoral_alliance_with_candidates)
@@ -63,24 +34,6 @@ describe 'votable behaviour' do
 
       alliance.candidates.with_alliance_proportionals_for(result).map(&:id).should == alliance.candidates.map(&:id)
     end
-
-    it 'gives a list of all candidates ordered by their vote sum' do
-      candidates = []
-      10.times { candidates << FactoryGirl.create(:candidate) }
-      VotableSupport::create_votes_for(candidates, @ready_voting_areas, :ascending => true)
-
-      Candidate.with_vote_sums.map(&:id).should == candidates.reverse.map(&:id)
-    end
-
-    it 'gives a list of all candidates ordered by their vote sum and excludes unready voting areas' do
-      candidates = []
-      10.times { candidates << FactoryGirl.create(:candidate) }
-      VotableSupport::create_votes_for(candidates, @ready_voting_areas, :ascending => true)
-      VotableSupport::create_votes_for(candidates, @unready_voting_areas, :ascending => false, :base_vote_count => 10000)
-
-      Candidate.with_vote_sums.map(&:id).should == candidates.reverse.map(&:id)
-    end
-
 
     describe 'preliminary votes' do
 
