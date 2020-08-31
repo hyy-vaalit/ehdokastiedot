@@ -123,7 +123,12 @@ Tsekkaa `Procfile` ja komenna:
 
 ~~~
 foreman start
-~~~
+~~~ 
+
+Avaa Admin UI
+* http://localhost:5000/admin
+* admin@example.com / pass123
+* Seed data, ks. "rake db:seed:dev"
 
 Jos ActiveAdminin tyylit ei näy, esikäännä assetit:
 
