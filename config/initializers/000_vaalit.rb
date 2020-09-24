@@ -21,9 +21,6 @@ module Vaalit
   end
 
   module Results
-    S3_BUCKET_NAME  = ENV.fetch 'S3_BUCKET_NAME'
-    S3_BASE_URL     = ENV.fetch 'S3_BASE_URL'
-
     RESULT_ADDRESS  = ENV.fetch 'RESULT_ADDRESS'
     DIRECTORY       = Time.now.year
     PUBLIC_RESULT_URL = "#{RESULT_ADDRESS}/#{DIRECTORY}"
@@ -39,13 +36,5 @@ module Vaalit
     def self.connect?
       Rails.env.production?
     end
-
-    if connect?
-      ::AWS::S3::Base.establish_connection!(
-        :access_key_id     => ENV.fetch('S3_ACCESS_KEY_ID'),
-        :secret_access_key => ENV.fetch('S3_ACCESS_KEY_SECRET')
-      )
-    end
   end
-
 end

@@ -63,10 +63,6 @@ class ResultPublisher
     Vaalit::Results::DIRECTORY
   end
 
-  def bucket_name
-    Vaalit::Results::S3_BUCKET_NAME
-  end
-
   def public_filename(suffix, name)
     "#{name}#{suffix}"
   end
@@ -78,8 +74,7 @@ class ResultPublisher
   # AWS connection is established only in production mode
   def store_s3_object(filepath, contents)
     if Vaalit::Aws.connect?
-      Rails.logger.info "Storing result contents to S3, bucket: '#{bucket_name}', filepath: '#{filepath}'"
-      AWS::S3::S3Object.store(filepath, contents, bucket_name, :content_type => 'text/html; charset=utf-8')
+      raise "S3 removed"
     else
       Rails.logger.info "Not storing result ('#{filepath}') to S3 because were are in development environment."
     end

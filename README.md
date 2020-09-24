@@ -261,13 +261,8 @@ heroku restart --app APP_NAME
 ```bash
 heroku config:set KEY=VALUE --app APP_NAME
 ```
-  * S3_BUCKET_NAME       (hyy-vaalitulos-staging)
-  * S3_BASE_URL          (s3.amazonaws.com)
-  * S3_ACCESS_KEY_ID     (IAM User)
-  * S3_ACCESS_KEY_SECRET (IAM User)
 
-NOTE (09/2011): The AWS::S3 does not work properly with any other region than US.
-
+See keys from .env.example
 
 # Vaalien konfigurointi
 
