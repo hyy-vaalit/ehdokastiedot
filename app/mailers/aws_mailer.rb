@@ -1,0 +1,2 @@
+class AwsMailer < ApplicationMailer
+end

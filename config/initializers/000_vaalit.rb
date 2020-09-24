@@ -29,7 +29,13 @@ module Vaalit
     PUBLIC_RESULT_URL = "#{RESULT_ADDRESS}/#{DIRECTORY}"
   end
 
-  module AWS
+  module Aws
+    module Ses
+      REGION = ENV.fetch('AWS_SES_REGION', "eu-central-1")
+      ACCESS_KEY_ID = ENV.fetch('AWS_SES_ACCESS_KEY_ID')
+      SECRET_ACCESS_KEY = ENV.fetch('AWS_SES_SECRET_ACCESS_KEY')
+    end
+
     def self.connect?
       Rails.env.production?
     end

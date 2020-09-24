@@ -81,7 +81,7 @@ Käyttöoikeudet on määritety tiedostossa `app/models/ability.rb`.
 
 * SSL Let's Encrypt ($0)
 * Postgres ($9 / kk)
-* Sendgrid ($20 yhdeltä kuukaudelta)
+* AWS SES ($0 kun alle <10000 viestiä )
 * Rollbar (Free: 3000 occurrences per month, 30 days retention)
 * Worker
   - kun ehdokasilmoittautumisen sähköposti
@@ -171,7 +171,7 @@ Lisää add-onssit:
 
   * Postgres
   * Loggly (Logien vastaanottamiseen, `heroku addons:open loggly`)
-  * Sendgrid Pro (kaikille ehdokkaille lähetetään sähköposti ehdokasasettelun päättymisen jälkeen)
+  * Lisää Access Key: AWS SES (kaikille ehdokkaille lähetetään sähköposti ehdokasasettelun päättymisen jälkeen)
   * Worker sähköpostin lähettäjäksi (disabloi sen jälkeen kun ehdokasasettelun meilit lähetetty)
   * Worker vaalituloksen laskemiseen (enabloi ennen vaalivalojaisia, disabloi seuraavana päivänä)
   * Worker tarkastuslaskentaan (enabloi ennen viimeistä KVL-kokousta, disabloi kun lopullinen tulos julki)
@@ -284,7 +284,7 @@ Aseta päivämäärät
 Toimita salasanat HYY:lle
   * äänestysalueet (editoi seed:production)
   * admin (luo Active Administa, salasana tulee meilitse)
-  * Sendgrid (heroku config)
+  * AWS SES Lähetystiedot (heroku config)
 
 
 ## Esimerkkikäyttäjätunnukset (testi-seed)

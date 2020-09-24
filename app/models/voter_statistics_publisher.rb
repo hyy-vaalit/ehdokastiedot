@@ -19,7 +19,7 @@ class VoterStatisticsPublisher
   # AWS connection is established only in production mode
   # N.B. This is copypasta from ResultPublisher
   def self.store_s3_object(filepath, contents)
-    if Vaalit::AWS.connect?
+    if Vaalit::Aws.connect?
       Rails.logger.info "Storing result contents to S3, bucket: '#{bucket_name}', filepath: '#{filepath}'"
       AWS::S3::S3Object.store(filepath, contents, bucket_name, :content_type => 'text/html; charset=utf-8')
     else
@@ -29,5 +29,4 @@ class VoterStatisticsPublisher
       puts message
     end
   end
-
 end

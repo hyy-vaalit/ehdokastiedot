@@ -29,11 +29,12 @@ gem 'json_builder' #TODO:Voiko käyttää jbuilder
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
-#TODO: Migrate to Amazon official gem which now includes S3
-gem "aws-s3", require: "aws/s3", github: 'pre/aws-s3'
+# Provides aws-sdk-ses
+# NB. S3 is not actually used anymore as S3 publishing is by Vaalitulostin.
+# Newer version >=3.x requires Rails >=5.2
+gem "aws-sdk-rails", '~> 2.1.0'
 
 gem 'rollbar'
-gem 'sendgrid' # sendgrid specific methods are used by mailers
 
 gem 'pry-rails' # friendlier rails console
 

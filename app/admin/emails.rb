@@ -41,7 +41,7 @@ ActiveAdmin.register Email do
     message = Email.find(params[:id])
     message.enqueue!
 
-    redirect_to admin_emails_path, :notice => 'Sähköpostin lähetys ehdokkaille on nyt ajastettu. Järjestelmä lähettää viestejä itsekseen taustalla. Lähetystietoja voi tarkkailla Sendgrid-palvelussa (linkki etusivulla).'
+    redirect_to admin_emails_path, :notice => 'Sähköpostin lähetys ehdokkaille on nyt ajastettu. Järjestelmä lähettää viestejä itsekseen taustalla. Etusivulla on linkki sähköpostien lähetystietoihin.'
   end
 
 end

@@ -1,4 +1,4 @@
-class RegistrationMailer < SendgridMailer
+class RegistrationMailer < AwsMailer
 
   def welcome_advocate(email, password)
     @email = email
