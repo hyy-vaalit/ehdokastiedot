@@ -1,5 +1,3 @@
-require 'csv'
-
 namespace :db do
   namespace :seed do
     desc 'Seed a complete development data set.'

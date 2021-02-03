@@ -1,5 +1,3 @@
-require 'csv'
-
 class ElectoralAllianceDecorator < ApplicationDecorator
   decorates :electoral_alliance
 
