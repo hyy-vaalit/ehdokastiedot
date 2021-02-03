@@ -4,9 +4,9 @@ describe AdminUser do
 
   it "should have generated password after creation" do
     user = AdminUser.new
-    user.encrypted_password.should == ""
+    expect(user.encrypted_password).to eq ""
     user.save :validation => false
-    user.encrypted_password.should_not == ""
+    expect(user.encrypted_password).not_to eq ""
   end
 
 end

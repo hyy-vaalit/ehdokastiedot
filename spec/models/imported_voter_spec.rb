@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe 'Imported Voter' do
-
   describe "Poro Aaltio" do
     before(:each) do
       data = "200583080H012617061Aaltio Poro J J               20101     H55"
@@ -9,28 +8,28 @@ describe 'Imported Voter' do
     end
 
     it 'parses name' do
-      @imported.name.should == "Aaltio Poro J J"
+      expect(@imported.name).to eq "Aaltio Poro J J"
     end
 
     # Dump data doesn't include separator
     it 'parses ssn' do
-      @imported.ssn.should == "200583-080H"
+      expect(@imported.ssn).to eq "200583-080H"
     end
 
     it 'parses student number' do
-      @imported.student_number.should == "012617061"
+      expect(@imported.student_number).to eq "012617061"
     end
 
     it 'parses start year' do
-      @imported.start_year.should == "2010"
+      expect(@imported.start_year).to eq "2010"
     end
 
     it 'parses extent_of_studies' do
-      @imported.extent_of_studies.should == "1"
+      expect(@imported.extent_of_studies).to eq "1"
     end
 
     it 'parses faculty' do
-      @imported.faculty.should == "55"
+      expect(@imported.faculty).to eq "55"
     end
   end
 
@@ -42,37 +41,36 @@ describe 'Imported Voter' do
     end
 
     it 'parses name' do
-      @imported.name.should == "Repo Reino E"
+      expect(@imported.name).to eq "Repo Reino E"
     end
 
     # Dump data doesn't include separator
     it 'parses ssn' do
-      @imported.ssn.should == "010288-123A"
+      expect(@imported.ssn).to eq "010288-123A"
     end
 
     it 'parses student number' do
-      @imported.student_number.should == "013074751"
+      expect(@imported.student_number).to eq "013074751"
     end
 
     it 'parses start year' do
-      @imported.start_year.should == "2005"
+      expect(@imported.start_year).to eq "2005"
     end
 
     it 'parses extent_of_studies' do
-      @imported.extent_of_studies.should == "2"
+      expect(@imported.extent_of_studies).to eq "2"
     end
 
     it 'parses faculty' do
-      @imported.faculty.should == "50"
+      expect(@imported.faculty).to eq "50"
     end
   end
 
   describe "Empty voter" do
-
     it 'fails with empty data' do
-      lambda {
+      expect do
         ImportedVoter.build_from("")
-      }.should raise_error(ArgumentError, "Cannot build from empty data.")
+      end.to raise_error(ArgumentError, "Cannot build from empty data.")
     end
   end
 end

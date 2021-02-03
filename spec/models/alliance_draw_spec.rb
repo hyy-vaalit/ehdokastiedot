@@ -6,15 +6,15 @@ describe AllianceDraw do
     ad = AllianceDraw.new
 
     ad.identifier_number = 0
-    ad.identifier.should == 'a'
+    expect(ad.identifier).to eq 'a'
 
     ad.identifier_number = 1
-    ad.identifier.should == 'b'
+    expect(ad.identifier).to eq 'b'
 
     ad.identifier_number = 26
-    ad.identifier.should == 'aa'
+    expect(ad.identifier).to eq 'aa'
 
     ad.identifier_number = 18277
-    ad.identifier.should == 'zzz'
+    expect(ad.identifier).to eq 'zzz'
   end
 end

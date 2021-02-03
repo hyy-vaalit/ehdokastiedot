@@ -14,14 +14,17 @@ describe Candidate do
       FactoryGirl.create(:candidate)
     end
 
-    Candidate.give_numbers!.should be true
+    expect(Candidate.give_numbers!).to eq true
 
     all_candidates = Candidate.all
 
-    all_candidates.first.candidate_number.should == 2
-    all_candidates.each_with_index do |candidate, i|
-      (1 + all_candidates[i].candidate_number).should == all_candidates[i+1].candidate_number if not all_candidates[i] == all_candidates.last
-    end
+    expect(all_candidates.first.candidate_number).to eq 2
 
+    all_candidates.each_with_index do |candidate, i|
+      if not all_candidates[i] == all_candidates.last
+        # FIXME: flaky test fails sometimes
+        expect(1 + all_candidates[i].candidate_number).to eq(all_candidates[i+1].candidate_number)
+      end
+    end
   end
 end

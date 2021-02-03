@@ -22,11 +22,11 @@ describe 'Voter' do
 
     it 'creates a voter' do
       voter = Voter.create_from! @imported
-      voter.name.should == "Purhonen Pekka J P"
-      voter.ssn.should == "010283-1234"
-      voter.student_number.should == "0123456789"
-      voter.extent_of_studies.should == 2
-      voter.faculty.numeric_code.should == 55
+      expect(voter.name).to eq "Purhonen Pekka J P"
+      expect(voter.ssn).to eq "010283-1234"
+      expect(voter.student_number).to eq "0123456789"
+      expect(voter.extent_of_studies).to eq 2
+      expect(voter.faculty.numeric_code).to eq 55
     end
 
   end

@@ -23,16 +23,17 @@ describe 'votable behaviour' do
       VotableSupport::create_votes_for(alliance.candidates, @ready_voting_areas, :ascending => true)
       VotableSupport::create_votes_for(other_alliance.candidates, @ready_voting_areas, :ascending => true)
 
-      Candidate.count.should > alliance.candidates.count
-      alliance.candidates.with_vote_sums.map(&:id).should == alliance.candidates.reverse.map(&:id)
+      expect(Candidate.count).to be > alliance.candidates.count
+      expect(alliance.candidates.with_vote_sums.map(&:id)).to eq alliance.candidates.reverse.map(&:id)
     end
 
     it 'allows chaining with_alliance_proportionals_for with other scopes' do
       result = FactoryGirl.create(:result_with_alliance_proportionals_and_candidates)
       alliance = result.alliance_proportionals.first.candidate.electoral_alliance
-      Candidate.count.should > alliance.candidates.count
+      expect(Candidate.count).to be > alliance.candidates.count
 
-      alliance.candidates.with_alliance_proportionals_for(result).map(&:id).should == alliance.candidates.map(&:id)
+      # FIXME: flaky test when not running all tests at once (running tests on this file only)
+      expect(alliance.candidates.with_alliance_proportionals_for(result).map(&:id)).to eq alliance.candidates.map(&:id)
     end
 
     describe 'preliminary votes' do
@@ -47,7 +48,7 @@ describe 'votable behaviour' do
                                                                     :voting_area => area,
                                                                     :amount => amount) }
 
-        @candidate.votes.preliminary_sum.should == amount * @ready_voting_areas.count
+        expect(@candidate.votes.preliminary_sum).to eq(amount * @ready_voting_areas.count)
       end
 
       it 'does not add votes from unfinished voting areas to preliminary votes' do
@@ -58,7 +59,7 @@ describe 'votable behaviour' do
                                                              :amount => amount) }
         end
 
-        @candidate.votes.preliminary_sum.should == amount * @ready_voting_areas.count
+        expect(@candidate.votes.preliminary_sum).to eq(amount * @ready_voting_areas.count)
       end
 
     end
@@ -74,7 +75,7 @@ describe 'votable behaviour' do
         amount = 10
         @alliance.candidates.each { |c| VotableSupport::create_votes_for_candidate(c, amount, @ready_voting_areas) }
 
-        @alliance.votes.preliminary_sum.should == amount * @ready_voting_areas.count * @alliance.candidates.count
+        expect(@alliance.votes.preliminary_sum).to eq(amount * @ready_voting_areas.count * @alliance.candidates.count)
       end
 
       it 'does not count votes from unfinished voting areas to preliminary votes' do
@@ -84,7 +85,7 @@ describe 'votable behaviour' do
           VotableSupport::create_votes_for_candidate(candidate, amount, @unready_voting_areas)
         end
 
-        @alliance.votes.preliminary_sum.should == amount * @ready_voting_areas.count * @alliance.candidates.count
+        expect(@alliance.votes.preliminary_sum).to eq(amount * @ready_voting_areas.count * @alliance.candidates.count)
       end
     end
 
@@ -100,7 +101,7 @@ describe 'votable behaviour' do
         amount = 10
         @coalition.electoral_alliances.each { |alliance| VotableSupport::create_votes_for_alliance(alliance, amount, @ready_voting_areas) }
 
-        @coalition.preliminary_vote_sum.should == amount * @ready_voting_areas.count * @coalition.candidates.count
+        expect(@coalition.preliminary_vote_sum).to eq(amount * @ready_voting_areas.count * @coalition.candidates.count)
       end
 
       it 'does not count votes from unfinished voting areas to preliminary votes' do
@@ -110,7 +111,7 @@ describe 'votable behaviour' do
           VotableSupport::create_votes_for_alliance(alliance, amount, @unready_voting_areas)
         end
 
-        @coalition.preliminary_vote_sum.should == amount * @ready_voting_areas.count * @coalition.candidates.count
+        expect(@coalition.preliminary_vote_sum).to eq(amount * @ready_voting_areas.count * @coalition.candidates.count)
       end
     end
 
