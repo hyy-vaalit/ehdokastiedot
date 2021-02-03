@@ -92,7 +92,7 @@ ActiveAdmin.register ElectoralCoalition do
            :locals  => { :electoral_coalitions => ElectoralCoalition.by_numbering_order }
   end
 
-  action_item :only => :index do
+  action_item :toggle_filter, :only => :index do
     link_to 'Näytä/piilota hakutoiminnot', '#toggle_filter'
   end
 

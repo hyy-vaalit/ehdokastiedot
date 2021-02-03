@@ -87,11 +87,11 @@ ActiveAdmin.register ElectoralAlliance do
     f.actions
   end
 
-  action_item :only => :index do
+  action_item :toggle_filter, :only => :index do
     link_to 'Näytä/piilota hakutoiminnot', '#toggle_filter'
   end
 
-  action_item :only => :show do
+  action_item :mark_alliance_frozen, :only => :show do
     ea = ElectoralAlliance.find_by_id(params[:id])
     link_to 'Merkitse vaaliliitto valmiiksi!', done_admin_electoral_alliance_path if can? :update, electoral_alliance and !ea.secretarial_freeze
   end
