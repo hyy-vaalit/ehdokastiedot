@@ -7,7 +7,7 @@ ActiveAdmin.setup do |config|
   config.default_namespace = :admin
   config.authentication_method = :authenticate_admin_user!
   config.current_user_method = :current_admin_user
-  config.before_filter :authorize_admin_access
+  config.before_action :authorize_admin_access
   config.batch_actions = false
   config.root_to = 'dashboard#index'
   config.comments = false

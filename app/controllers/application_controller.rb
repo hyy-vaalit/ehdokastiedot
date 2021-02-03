@@ -30,7 +30,7 @@ class ApplicationController < ActionController::Base
     @current_ability ||= ::Ability.new(current_user)
   end
 
-  # ActiveAdmin calls this method as a before_filter
+  # ActiveAdmin calls this method as a before_action
   # (defined in config/initializers/active_admin.rb).
   def authorize_admin_access
     # There's a problem with Active Admin 1.0.0pre4 which makes ActiveAdmin
