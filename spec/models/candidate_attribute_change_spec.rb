@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CandidateAttributeChange do
 
   it 'creates a new row from attribute' do
-    candidate = FactoryGirl.build(:candidate)
+    candidate = FactoryBot.build(:candidate)
 
     CandidateAttributeChange.create_from!(candidate.id, {"address"=>["Old address", "New address"], "email"=>["old@example.com", "new@example.com"]})
 

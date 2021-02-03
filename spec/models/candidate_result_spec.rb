@@ -15,10 +15,10 @@ describe CandidateResult do
   it 'finds duplicate vote sums in the same alliance' do
     draw_candidates = []
     nodraw_candidates = []
-    alliance = FactoryGirl.create(:electoral_alliance_with_candidates)
+    alliance = FactoryBot.create(:electoral_alliance_with_candidates)
 
     #TODO: Fix result factory so that it doesn't create CandidateResults
-    result = FactoryGirl.create(:result)
+    result = FactoryBot.create(:result)
     CandidateResult.destroy_all
 
     draw_votes = 100

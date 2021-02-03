@@ -4,7 +4,7 @@ describe AllianceProportional do
 
   it 'gives /n of the votes of an alliance to the candidate with nth most votes as an alliance proportional' do
     allow(CoalitionProportional).to receive(:calculate!)
-    coalition = FactoryGirl.create(:electoral_coalition_with_alliances_and_candidates)
+    coalition = FactoryBot.create(:electoral_coalition_with_alliances_and_candidates)
     alliance = coalition.electoral_alliances.first
     total_vote_sum = 1235
 
@@ -13,7 +13,7 @@ describe AllianceProportional do
     allow(alliance.candidates).to receive(:with_vote_sums_for).and_return(alliance.candidates)
     allow(alliance.votes).to receive(:countable_sum).and_return(total_vote_sum)
 
-    FactoryGirl.create(:result)
+    FactoryBot.create(:result)
 
     # Reversed array order: Last candidate has the biggest proportional number
     alliance.candidates.reverse.each_with_index do |candidate, index|

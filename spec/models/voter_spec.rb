@@ -15,7 +15,7 @@ describe 'Voter' do
           :faculty           => faculty_numeric_code
       )
 
-      faculty = FactoryGirl.build(:faculty, :numeric_code => faculty_numeric_code)
+      faculty = FactoryBot.build(:faculty, :numeric_code => faculty_numeric_code)
 
       allow(Faculty).to receive(:find_by_numeric_code!).with(faculty_numeric_code).and_return faculty
     end

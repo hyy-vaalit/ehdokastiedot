@@ -4,14 +4,14 @@ describe Candidate do
 
   it 'can give candidate numbers' do
     2.times do |i|
-      coalition = FactoryGirl.create(:electoral_coalition)
+      coalition = FactoryBot.create(:electoral_coalition)
       3.times do
-        FactoryGirl.create_list(:candidate, 20, :electoral_alliance => FactoryGirl.create(:electoral_alliance, :electoral_coalition => coalition))
+        FactoryBot.create_list(:candidate, 20, :electoral_alliance => FactoryBot.create(:electoral_alliance, :electoral_coalition => coalition))
       end
     end
 
     10.times do
-      FactoryGirl.create(:candidate)
+      FactoryBot.create(:candidate)
     end
 
     expect(Candidate.give_numbers!).to eq true

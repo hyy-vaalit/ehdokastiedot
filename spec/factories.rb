@@ -1,16 +1,16 @@
-FactoryGirl.define do
+FactoryBot.define do
 
   factory :admin_user do
-    email 'user@example.com'
+    email { 'user@example.com' }
   end
 
   factory :imported_voter do
-    name 'Armas Aappa'
-    ssn '020486-1234'
-    student_number '012617061'
-    extent_of_studies 1
-    faculty 55
-    start_year 2014
+    name { 'Armas Aappa' }
+    ssn { '020486-1234' }
+    student_number { '012617061' }
+    extent_of_studies { 1 }
+    faculty { 55 }
+    start_year { 2014 }
   end
 
   factory :faculty do
@@ -28,8 +28,8 @@ FactoryGirl.define do
   factory :electoral_alliance do
     sequence(:name) {|n| "Alliance #{n}"}
     sequence(:shorten) {|n| "a #{n}"}
-    expected_candidate_count 2
-    secretarial_freeze true
+    expected_candidate_count { 2 }
+    secretarial_freeze { true }
     electoral_coalition
   end
 
@@ -38,7 +38,7 @@ FactoryGirl.define do
     sequence(:lastname) {|n| "Meikalainen #{n}"}
     sequence(:firstname) {|n| "Matti #{n} Sakari"}
     sequence(:candidate_name) {|n| "Meikalainen, Matti Sakari"}
-    social_security_number 'sec id'
+    social_security_number { 'sec id' }
     faculty
     electoral_alliance
   end
@@ -46,8 +46,8 @@ FactoryGirl.define do
   factory :voting_area do
     sequence(:code) {|n| "VA#{n}"}
     sequence(:name) {|n| "Voting area #{n}"}
-    ready true
-    submitted true
+    ready { true }
+    submitted { true }
   end
 
   factory :vote do
@@ -79,8 +79,8 @@ FactoryGirl.define do
   end
 
   factory :draw_candidate_result, :class => CandidateResult do
-    electoral_alliance_id '1'
-    vote_sum_cache '10'
+    electoral_alliance_id { '1' }
+    vote_sum_cache { '10' }
   end
 
   factory :candidate_result_with_proportionals, :parent => :candidate_result do |candidate_result|

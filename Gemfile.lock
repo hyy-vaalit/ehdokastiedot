@@ -132,11 +132,11 @@ GEM
       request_store (>= 1.0)
     erubi (1.10.0)
     execjs (2.7.0)
-    factory_girl (4.9.0)
-      activesupport (>= 3.0.0)
-    factory_girl_rails (4.9.0)
-      factory_girl (~> 4.9.0)
-      railties (>= 3.0.0)
+    factory_bot (6.1.0)
+      activesupport (>= 5.0.0)
+    factory_bot_rails (6.1.0)
+      factory_bot (~> 6.1.0)
+      railties (>= 5.0.0)
     ffi (1.14.2)
     foreman (0.87.2)
     formatador (0.2.5)
@@ -340,7 +340,7 @@ DEPENDENCIES
   devise
   dotenv-rails
   draper
-  factory_girl_rails
+  factory_bot_rails
   foreman
   formtastic
   guard-rspec

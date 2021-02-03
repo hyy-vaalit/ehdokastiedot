@@ -3,7 +3,7 @@ require 'spec_helper'
 describe 'votable behaviour' do
 
   before(:all) do
-    @result = FactoryGirl.create(:result_with_coalition_proportionals_and_candidates)
+    @result = FactoryBot.create(:result_with_coalition_proportionals_and_candidates)
     @decorator = ResultDecorator.decorate(@result)
   end
 
@@ -40,7 +40,7 @@ describe 'votable behaviour' do
 
   it 'formats the coalition result line' do
     vote_sum = 1234
-    coalition_result = FactoryGirl.build(:coalition_result, :vote_sum_cache => vote_sum)
+    coalition_result = FactoryBot.build(:coalition_result, :vote_sum_cache => vote_sum)
     coalition = coalition_result.electoral_coalition
     places    = 0
     idx       = 1
@@ -53,7 +53,7 @@ describe 'votable behaviour' do
 
   it 'formats the alliance result line' do
     vote_sum = 1234
-    alliance_result = FactoryGirl.build(:alliance_result, :vote_sum_cache => vote_sum)
+    alliance_result = FactoryBot.build(:alliance_result, :vote_sum_cache => vote_sum)
     alliance = alliance_result.electoral_alliance
     places   = 0
     idx      = 1
@@ -67,7 +67,7 @@ describe 'votable behaviour' do
 
   it 'formats a long alliance result line' do
     vote_sum = 1234
-    alliance_result = FactoryGirl.build(:alliance_result, :vote_sum_cache => vote_sum)
+    alliance_result = FactoryBot.build(:alliance_result, :vote_sum_cache => vote_sum)
     coalition = "MP"
     alliance_shorten = "SitVas"
     alliance_name           = "Sitoutumaton vasemmisto - Obunden vänster - Independent Left"

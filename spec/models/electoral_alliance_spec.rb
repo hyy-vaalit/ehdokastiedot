@@ -13,13 +13,13 @@ describe ElectoralAlliance do
 
   it 'calculates the cached candidate vote sum' do
     votes = 10
-    alliance = FactoryGirl.create(:electoral_alliance)
-    result   = FactoryGirl.create(:result)
-    candidate = FactoryGirl.create(:candidate, :electoral_alliance => alliance)
-    another_candidate = FactoryGirl.create(:candidate, :electoral_alliance => alliance)
-    FactoryGirl.create(:candidate_result, :vote_sum_cache => votes,
+    alliance = FactoryBot.create(:electoral_alliance)
+    result   = FactoryBot.create(:result)
+    candidate = FactoryBot.create(:candidate, :electoral_alliance => alliance)
+    another_candidate = FactoryBot.create(:candidate, :electoral_alliance => alliance)
+    FactoryBot.create(:candidate_result, :vote_sum_cache => votes,
                                           :candidate => candidate, :result => result)
-    FactoryGirl.create(:candidate_result, :vote_sum_cache => votes,
+    FactoryBot.create(:candidate_result, :vote_sum_cache => votes,
                                           :candidate => another_candidate, :result => result)
 
     expect(
@@ -32,13 +32,13 @@ describe ElectoralAlliance do
 
   it 'calculates votes only from one result' do
     votes = 10
-    alliance = FactoryGirl.create(:electoral_alliance)
-    result   = FactoryGirl.create(:result)
-    another_result   = FactoryGirl.create(:result)
-    candidate = FactoryGirl.create(:candidate, :electoral_alliance => alliance)
-    FactoryGirl.create(:candidate_result, :vote_sum_cache => votes,
+    alliance = FactoryBot.create(:electoral_alliance)
+    result   = FactoryBot.create(:result)
+    another_result   = FactoryBot.create(:result)
+    candidate = FactoryBot.create(:candidate, :electoral_alliance => alliance)
+    FactoryBot.create(:candidate_result, :vote_sum_cache => votes,
                                           :candidate => candidate, :result => result)
-    FactoryGirl.create(:candidate_result, :vote_sum_cache => votes,
+    FactoryBot.create(:candidate_result, :vote_sum_cache => votes,
                                           :candidate => candidate, :result => another_result)
 
     expect(
