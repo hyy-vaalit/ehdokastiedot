@@ -70,32 +70,13 @@ Käyttöoikeudet on määritety tiedostossa `app/models/ability.rb`.
 * Lopullisen vaalituloksen julkaisu.
 
 
-## Seuraaviin vaaleihin
-
-* Varmista opiskelijarekisterin datadumpin muoto:
-  - Vuoden 2014 datassa ei huomioitu 2000-luvulla syntyneitä, eli hetun erotinmerkki puuttui datasta.
-    Parseriin on kovakoodattu väliviiva, tarkista pitääkö oletus edelleen paikkansa.
-  - Merkistökoodauksena ISO-8859-1
-
-## Kustannukset
-
-* SSL Let's Encrypt ($0)
-* Postgres ($9 / kk)
-* AWS SES ($0 kun alle <10000 viestiä )
-* Rollbar (Free: 3000 occurrences per month, 30 days retention)
-* Worker
-  - kun ehdokasilmoittautumisen sähköposti
-  - vaalivalvojaiset
-  - arvonnat ja vaalituloksen vahvistaminen
-* Herokun kaksi web dynoa
-
-
 # Ympäristö pystyyn
 
 Esivaatimukset:
 * Asenna [RVM](https://rvm.io/)
 * RVM:n asentamisen jälkeen lue `.ruby-gemset` ja `.ruby-version: `cd .. && popd`
-* Asenna gemit: `bundle install`
+* `brew install v8`
+* `bundle install`
 
 Kopioi `.env.example` -> `.env` ja aseta sinne sopivat defaultit.
 
