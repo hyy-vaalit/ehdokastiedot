@@ -5,7 +5,7 @@ ActiveAdmin.register Email do
 
   menu :label => "Sähköpostit ehdokkaille", :priority => 10, :if => proc { can? :manage, AdminUser }
 
-  before_filter :add_notice
+  before_action :add_notice
 
   controller do
 

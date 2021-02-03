@@ -7,8 +7,8 @@ class CheckingMinutesController < ApplicationController
 
   skip_authorization_check :except => :summary # accessible by tlk-pj
 
-  before_filter :authenticate, :except => [:summary, :ready] # accessible by admin user
-  before_filter :check_if_ready, :except => [:fixes, :summary, :ready]
+  before_action :authenticate, :except => [:summary, :ready] # accessible by admin user
+  before_action :check_if_ready, :except => [:fixes, :summary, :ready]
 
   def index
     @voting_areas = VotingArea.by_code

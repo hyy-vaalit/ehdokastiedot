@@ -1,6 +1,6 @@
 class Manage::ConfigurationsController < ManageController
 
-  before_filter :find_configuration
+  before_action :find_configuration
 
   def update
     if @configuration.update_attributes(permitted_params)

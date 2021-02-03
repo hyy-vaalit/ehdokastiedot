@@ -1,7 +1,7 @@
 class AdvocatesController < ApplicationController
 
-  before_filter :authenticate_advocate_user!
-  before_filter :authorize_this!
+  before_action :authenticate_advocate_user!
+  before_action :authorize_this!
 
   def index
   end

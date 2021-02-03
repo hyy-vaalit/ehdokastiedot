@@ -1,6 +1,6 @@
 class ListingsController < ApplicationController
 
-  before_filter :authorize_listings
+  before_action :authorize_listings
 
   def same_ssn
     @ssn_and_candidates = Candidate.all.group_by{|g| g.social_security_number}.to_a.select{|x| x.last.count > 1}

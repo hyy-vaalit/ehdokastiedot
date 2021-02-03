@@ -1,8 +1,8 @@
 class VotingController < ApplicationController
 
-  before_filter :authenticate_voting_area_user!
+  before_action :authenticate_voting_area_user!
 
-  before_filter :authorize_this
+  before_action :authorize_this
 
   protected
 

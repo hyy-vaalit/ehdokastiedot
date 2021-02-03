@@ -1,7 +1,7 @@
 class DrawsController < ApplicationController
 
-  before_filter :authenticate_admin_user!
-  before_filter :authorize
+  before_action :authenticate_admin_user!
+  before_action :authorize
 
   def index
     @result = Result.freezed.first

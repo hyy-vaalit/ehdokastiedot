@@ -1,8 +1,8 @@
 class Voting::VoteAmountsController < VotingController
 
-  before_filter :assign_voting_area
+  before_action :assign_voting_area
 
-  before_filter :authorize_this
+  before_action :authorize_this
 
   def show
   end

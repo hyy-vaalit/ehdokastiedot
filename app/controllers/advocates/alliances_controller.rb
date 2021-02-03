@@ -1,7 +1,7 @@
 class Advocates::AlliancesController < AdvocatesController
 
-  before_filter :find_alliance, :only => [:show, :edit, :update]
-  before_filter :nav_paths, :only => [:index, :show]
+  before_action :find_alliance, :only => [:show, :edit, :update]
+  before_action :nav_paths, :only => [:index, :show]
 
   authorize_resource :electoral_alliance, :parent => false # Conf needed because ElectoralAlliance != Alliance. Without ":parent => false" authorization is not effective.
 

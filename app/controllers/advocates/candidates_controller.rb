@@ -1,7 +1,7 @@
 class Advocates::CandidatesController < AdvocatesController
   respond_to :html, :json, :only => :update
 
-  before_filter :find_alliance
+  before_action :find_alliance
   authorize_resource # After resource has been loaded
 
   def new
