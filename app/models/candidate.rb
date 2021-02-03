@@ -76,13 +76,13 @@ class Candidate < ActiveRecord::Base
   end
 
   def self.with_alliance_proportionals_for(result)
-    select('"candidates".id, "alliance_proportionals".number, "alliance_proportionals".number as alliance_proportional').from(
-      '"candidates"').joins(
+    select('candidates.id, alliance_proportionals.number, alliance_proportionals.number as alliance_proportional').from(
+      'candidates').joins(
       'INNER JOIN alliance_proportionals ON candidates.id = alliance_proportionals.candidate_id').joins(
       'INNER JOIN candidate_results      ON candidate_results.candidate_id = candidates.id').joins(
       'INNER JOIN results                ON results.id = alliance_proportionals.result_id').where([
       'results.id = ? AND candidate_results.result_id = ?', result.id, result.id]).order(
-      '"alliance_proportionals".number desc, candidate_results.alliance_draw_order asc')
+      'alliance_proportionals.number desc, candidate_results.alliance_draw_order asc')
   end
 
   def self.by_cached_vote_sum
