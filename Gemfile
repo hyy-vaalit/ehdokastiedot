@@ -40,8 +40,8 @@ gem 'pry-rails' # friendlier rails console
 
 # gems that cannot be updated without changes to the code
 # gem 'activeadmin', '0.5.1'  # dashboard is removed in 0.6.0
-gem 'activeadmin', '~> 1.0.0.pre4'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources', branch: 'v1.7.0'
+gem 'activeadmin', '2.4.0'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources', branch: 'v1.9.0'
 
 # versions frozen before complete update for Rails 3.1.x
 gem 'ranked-model'

@@ -15,3 +15,44 @@
 // For example, to change the default status-tag color:
 //
 //   .status_tag { background: #6090DB; }
+
+.status_tag {
+  &.ok,
+  &.published,
+  &.complete,
+  &.completed,
+  &.green {
+    background: #8daa92;
+  }
+
+  &.warn,
+  &.warning,
+  &.orange {
+    background: #e29b20;
+  }
+
+  &.error,
+  &.errored,
+  &.red {
+    background: #d45f53;
+  }
+}
+
+.sortable tr:hover {
+  cursor: move;
+}
+
+form.ordering div {
+  clear: both;
+  padding-top: 1em;
+}
+
+form.ordering input[type="text"] {
+  width: 1.5em;
+  float: left;
+  margin-right: 0.5em;
+}
+
+.create-new-candidate-action {
+  padding-bottom: 1.5em;
+}

@@ -72,11 +72,11 @@ ActiveAdmin.register AdvocateUser do
      panel "Vaaliliitot (#{user.electoral_alliances.count} kpl)" do
 
        table_for(user.electoral_alliances) do |t|
-         t.column("Valmis") { |alliance| status_tag('Valmis', :ok) if alliance.secretarial_freeze? }
+         t.column("Valmis") { |alliance| status_tag('Valmis', class: 'ok') if alliance.secretarial_freeze? }
          t.column("Vaaliliitto") { |alliance| link_to alliance.name, admin_electoral_alliance_path(alliance) }
          t.column("Ehdokkaita syötetty") {|alliance| alliance.candidates.count}
          t.column("Ehdokkaita ilmoitettu") {|alliance| alliance.expected_candidate_count}
-         t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? status_tag('ok', :ok) : status_tag("Kesken", :in_progress) }
+         t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? status_tag('ok', class: 'ok') : status_tag("Kesken", class: 'in_progress') }
        end
      end
    end

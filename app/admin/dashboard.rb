@@ -100,11 +100,11 @@ ActiveAdmin.register_page "Dashboard" do
           end
 
           table_for(ElectoralAlliance.for_dashboard) do |t|
-            t.column("Valmis") { |alliance| status_tag('Valmis', :ok) if alliance.secretarial_freeze? }
+            t.column("Valmis") { |alliance| status_tag('Valmis', class: 'ok') if alliance.secretarial_freeze? }
             t.column("Vaaliliitto") { |alliance| link_to alliance.name, admin_electoral_alliance_path(alliance) }
             t.column("Ehdokkaita syötetty") {|alliance| alliance.candidates.count}
             t.column("Ehdokkaita ilmoitettu") {|alliance| alliance.expected_candidate_count}
-            t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? status_tag('ok', :ok) : status_tag("Kesken", :in_progress) }
+            t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? status_tag('ok', class: 'ok') : status_tag("Kesken", class: 'in_progress') }
             t.column("Asiamies") {|alliance| link_to alliance.advocate_user.friendly_name, admin_advocate_user_path(alliance.advocate_user) if alliance.advocate_user}
           end
         end
