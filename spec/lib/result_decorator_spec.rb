@@ -146,8 +146,6 @@ describe 'votable behaviour' do
     @decorator.formatted_vote_sum(10000).should == "10000"
   end
 
-  it 'formats character which shows whether the candidate has been elected'
-
   it 'formats the elected candidates count' do
     @decorator.formatted_elected_candidates_count(nil).should == " 0"
     @decorator.formatted_elected_candidates_count(0).should   == " 0"
