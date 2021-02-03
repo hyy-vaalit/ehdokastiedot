@@ -1,6 +1,8 @@
 class ElectoralAlliance < ActiveRecord::Base
   include RankedModel
 
+  has_many :candidates, :dependent => :nullify
+
   has_many :votes, :through => :candidates do
     def preliminary_sum
       countable.sum("amount")
@@ -10,8 +12,6 @@ class ElectoralAlliance < ActiveRecord::Base
       countable.sum("COALESCE(votes.fixed_amount, votes.amount)").to_i  # result is a string otherwise
     end
   end
-
-  has_many :candidates, :dependent => :nullify
 
   has_many :candidate_results,
     -> { select "candidate_results.result_id" },

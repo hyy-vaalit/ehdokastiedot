@@ -4,12 +4,12 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 ruby '2.6.6' # For Heroku, see also file .ruby-version
 
-gem 'rails', '~> 5.0.7'
-gem 'pg', '~> 0.18'
-gem 'puma', '~> 3.12'
-gem 'sass-rails', '~> 5.0'
-gem 'uglifier', '>= 1.3.0'
-gem 'coffee-rails', '~> 4.2'
+gem 'rails', '~> 5.1.7'
+gem 'pg'
+gem 'puma'
+gem 'sass-rails'
+gem 'uglifier'
+gem 'coffee-rails'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -46,8 +46,8 @@ gem 'inherited_resources', github: 'activeadmin/inherited_resources', branch: 'v
 # versions frozen before complete update for Rails 3.1.x
 gem 'ranked-model'
 gem 'cancancan'
-gem 'devise', '4.6.2'
-gem 'draper', '3.0.0.pre1'
+gem 'devise'
+gem 'draper'
 
 # gems that were updated when project was updated to Rails 3.2
 gem 'delayed_job', '~> 4.1'
@@ -67,5 +67,5 @@ end
 
 group :development do
   gem 'spring' # keep application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'spring-watcher-listen'
 end
