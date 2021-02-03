@@ -28,16 +28,6 @@ class Manage::ConfigurationsController < ManageController
 
   protected
 
-  def permitted_params
-    params
-      .require(:global_configuration)
-      .permit(
-        :votes_given,
-        :votes_accepted,
-        :potential_voters_count
-      )
-  end
-
   def authorize_this!
     authorize! :configurations, @current_admin_user
   end

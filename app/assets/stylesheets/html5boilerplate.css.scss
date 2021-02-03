@@ -195,18 +195,6 @@ table {
   white-space: nowrap;
 }
 
-.showdown {
-  .unfinished {
-    background-color: #FCC;
-  }
-  .submitted {
-    background-color: #FFC;
-  }
-  .ready {
-    background-color: #CCF;
-  }
-}
-
 thead {
   text-align: left;
   background-color: #D3D3D3;
@@ -226,15 +214,6 @@ td.alliance {
   }
 }
 
-#voting-area {
-  border-collapse: collapse;
-  th {
-  }
-  td {
-    text-align: center;
-  }
-}
-
 p.notice {
   color: green;
   font: {
@@ -243,54 +222,10 @@ p.notice {
   }
 }
 
-.draw {
-  border: thin solid black;
-  padding: 1em;
-  margin: 1em;
-  ul {
-    list-style-type: none;
-    padding: 0;
-  }
-}
-
 .sortable tr:hover {
   cursor: move;
 }
 
-.has-voted {
-  color: #777777;
-}
-
-form.formtastic.voter_search .alert {
-  float: left;
-}
-
-form.formtastic.voter_search li {
-  float: left;
-}
-
-form.formtastic.voter_search .input {
-  width: 20em;
-  margin-right: 1em;
-  padding: 0.5em;
-  background: #ebeae6;
-  border: 1px #d7d6d2 solid;
-}
-
-form.formtastic.voter_search label {
-  float: left;
-}
-form.formtastic.voter_search input {
-  clear: left;
-}
-
-form.formtastic.voter_search .button_action {
-  clear: left;
-}
-
-.voting-right.voter-details dt {
-  font-weight: bold;
-}
 
 /* =============================================================================
    Media Queries

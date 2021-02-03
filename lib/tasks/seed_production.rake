@@ -28,12 +28,8 @@ namespace :db do
       desc 'Setup production configuration defaults'
       task :configuration => :environment do
         conf = GlobalConfiguration.new
-        conf.advocate_login_enabled       = false
+        conf.advocate_login_enabled = false
 
-        # Käytetään vain uurnavaalissa, jossa suoritetaan tarkastuslaskenta.
-        # Disable in .env using CHECKING_MINUTES_ENABLED
-        conf.checking_minutes_username    = 'tlkpj'
-        conf.checking_minutes_password    = Devise.friendly_token.first(8)
         conf.save!
       end
     end

@@ -44,15 +44,6 @@
           </li>
           <li>&raquo; <%= link_to "Kirjaudu ulos", destroy_advocate_user_session_path %></li>
         <% end %>
-
-        <% if current_voting_area_user %>
-          <li>
-            <%= current_voting_area_user.voting_area.name %>
-          </li>
-          <li>
-            &raquo; <%= link_to "Kirjaudu ulos", destroy_voting_area_user_session_path %>
-          </li>
-        <% end %>
       </ul>
     </nav>
 

@@ -11,7 +11,7 @@ class GlobalConfiguration < ActiveRecord::Base
   end
 
   def self.candidate_data_is_freezed_at
-    Vaalit::Config::CANDIDATE_DATA_IS_FREEZED_AT
+    Vaalit::Config::CANDIDATES_FROZEN_AT
   end
 
   def self.candidate_data_frozen?
@@ -26,36 +26,12 @@ class GlobalConfiguration < ActiveRecord::Base
     Vaalit::Public::EMAIL_FROM_NAME
   end
 
-  def self.votes_given
-    first.votes_given
-  end
-
-  def self.votes_accepted
-    first.votes_accepted
-  end
-
-  def self.potential_voters_count
-    first.potential_voters_count
-  end
-
   def self.log_candidate_attribute_changes?
     not candidate_nomination_period_effective?
   end
 
   def self.advocate_login_enabled?
     return first.advocate_login_enabled?
-  end
-
-  def self.checking_minutes_username
-    return first.checking_minutes_username
-  end
-
-  def self.checking_minutes_password
-    return first.checking_minutes_password
-  end
-
-  def elected_candidate_count
-    Vaalit::Voting::ELECTED_CANDIDATE_COUNT
   end
 
   def enable_advocate_login!

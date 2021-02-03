@@ -1,6 +1,0 @@
-<%# Do not indent this file: it will mess up the CSV format. -%>
-<% if @voters.any? -%>
-<%= VoterExport.new(@voters).to_csv(encoding: @encoding).html_safe -%>
-<% else %>
-Vaalijärjestelmään ei ole vielä syötetty yhtään äänioikeutettua.
-<% end %>

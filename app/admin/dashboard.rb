@@ -2,7 +2,6 @@
 # https://github.com/activeadmin/activeadmin/blob/master/lib/generators/active_admin/install/templates/dashboard.rb
 #
 ActiveAdmin.register_page "Dashboard" do
-
   menu priority: 1, label: proc{ I18n.t("active_admin.dashboard") }
 
   content title: proc{ I18n.t("active_admin.dashboard") } do
@@ -28,8 +27,6 @@ ActiveAdmin.register_page "Dashboard" do
               li link_to "Vaaliliitot (ISO-Latin)", manage_electoral_alliances_path(:format=>:csv, :isolatin=>true)
               li link_to "Vaalirenkaat (UTF-8)", manage_electoral_coalitions_path(:format=>:csv)
               li link_to "Vaalirenkaat (ISO-Latin)", manage_electoral_coalitions_path(:format=>:csv, :isolatin=>true)
-              li link_to "Äänioikeutetut (UTF-8)", manage_voters_path(:format=>:csv)
-              li link_to "Äänioikeutetut (ISO-Latin)", manage_voters_path(:format=>:csv, :isolatin=>true)
             end
             section "Ohjeet CSV-tiedoston tuomiseksi Exceliin" do
               ol do
@@ -43,28 +40,7 @@ ActiveAdmin.register_page "Dashboard" do
             end
           end
 
-          section 'Vaalivalvojaiset' do
-            ul do
-              li link_to 'Äänestysalueet ääntenlaskentaan', showdown_listings_path
-              li link_to 'Vaalitulokset', manage_results_path
-            end
-          end
-
-          section 'Tarkastuslaskenta' do
-            ul do
-              li link_to 'Korjauspöytäkirjat', checking_minutes_path
-              li link_to 'Yhteenveto', summary_checking_minutes_path
-            end
-          end
-
-          section 'Vaalituloksen vahvistaminen' do
-            ul do
-              li link_to 'Arvonnat', draws_path
-              li link_to 'Lopullinen vaalitulos', manage_results_path
-            end
-          end
-
-          section 'X-files', :priority => 999 do
+           section 'X-files', :priority => 999 do
             ul do
               li link_to 'Vaaralliset toiminnot', manage_danger_zone_path
               li link_to 'Sähköpostien lähetystiedot', "#TODO"
@@ -74,13 +50,9 @@ ActiveAdmin.register_page "Dashboard" do
           section 'Muiden sidosryhmien sisäänkirjautuminen' do
             ul do
               li link_to 'Asiamies (liiton 1. asiamies)', advocate_index_path
-              li link_to 'Äänestysalue (äänestysalueen pj)', voting_path
-              li link_to 'Tarkastuslaskenta (tllk:n pj)', checking_minutes_path
             end
           end
-
         end
-
       end # column toiminnot
 
       column span: 2 do
@@ -108,11 +80,7 @@ ActiveAdmin.register_page "Dashboard" do
             t.column("Asiamies") {|alliance| link_to alliance.advocate_user.friendly_name, admin_advocate_user_path(alliance.advocate_user) if alliance.advocate_user}
           end
         end
-
-
       end # column vaaliliitot
     end # columns
-
-
   end # content
 end

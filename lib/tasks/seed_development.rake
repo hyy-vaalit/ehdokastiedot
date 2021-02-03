@@ -7,27 +7,9 @@ namespace :db do
       Rake::Task['db:seed:development:faculties'].invoke
       Rake::Task['db:seed:development:electoral'].invoke
       Rake::Task['db:seed:development:candidates'].invoke
-      # Rake::Task['db:seed:development:voting_areas'].invoke
-      # Rake::Task['db:seed:development:early_voting'].invoke
-      # Rake::Task['db:seed:development:main_voting'].invoke
-      Rake::Task['db:seed:development:create_voters'].invoke
     end
 
     namespace :development do
-      def create_voting_area(opts)
-        code = opts[:code]
-        name = opts[:name]
-        password = opts[:password]
-
-        area =  VotingArea.create! :code => code,
-                                   :name => name
-
-        VotingAreaUser.create! :email => "#{code}@hyy.fi",
-                               :voting_area => area,
-                               :password => password
-
-      end
-
       def random_advocate_user(number)
         (number % 2 == 0) ? AdvocateUser.first : AdvocateUser.last
       end
@@ -51,15 +33,9 @@ namespace :db do
       task :configuration => :environment do
         puts 'Creating GlobalConfiguration'
 
-        conf = GlobalConfiguration.new(
-          :votes_given                  => 10417,
-          :votes_accepted               => 10367,
-          :potential_voters_count       => 29563
+        GlobalConfiguration.create!(
+          advocate_login_enabled: true
         )
-        conf.checking_minutes_username    = 'tlkpj'
-        conf.checking_minutes_password    = 'pass123'
-        conf.advocate_login_enabled       = true
-        conf.save!
 
         AdminUser.create!(:email => 'admin@example.com', :password => 'pass123', :password_confirmation => 'pass123', :role => 'admin')
         AdminUser.create!(:email => 'sihteeri@example.com', :password => 'pass123', :password_confirmation => 'pass123', :role => 'secretary')
@@ -81,37 +57,6 @@ namespace :db do
         Faculty.create! code: 'S', numeric_code: 74, name: 'Svenska social- och kommunalhögskolan'
         Faculty.create! code: 'MM',numeric_code: 80, name: 'Maatalous- ja metsätieteellinen'
         Faculty.create! code: 'E', numeric_code: 90, name: 'Eläinlääketieteellinen'
-      end
-
-      desc 'Create Voting Areas'
-      task :voting_areas => :environment do
-        puts 'Creating Voting Areas'
-        create_voting_area :code => 'I',   :name => 'Unicafe Ylioppilasaukio',    :password => 'pass123'
-
-        create_voting_area :code => 'II',   :name => 'Yliopiston päärakennus',     :password => 'pass123'
-        create_voting_area :code => 'III',   :name => 'Yliopiston päärakennus',     :password => 'pass123'
-        create_voting_area :code => 'IV',   :name => 'Porthania',                  :password => 'pass123'
-        create_voting_area :code => 'V',   :name => 'Porthania',                  :password => 'pass123'
-        create_voting_area :code => 'VI',   :name => 'Oppimiskeskus Aleksandria',  :password => 'pass123'
-        create_voting_area :code => 'VII',   :name => 'Topelia',                    :password => 'pass123'
-        create_voting_area :code => 'VIII',   :name => 'Metsätalo',                  :password => 'pass123'
-        create_voting_area :code => 'IX',   :name => 'Valtiotieteellisen tdk:n',   :password => 'pass123'
-        create_voting_area :code => 'X',  :name => 'Oppimiskeskus Minerva',      :password => 'pass123'
-        create_voting_area :code => 'XI',  :name => 'Terveystieteiden keskus',    :password => 'pass123'
-        create_voting_area :code => 'XII',  :name => 'Hammaslääketieteen',         :password => 'pass123'
-        create_voting_area :code => 'XIII',  :name => 'Physicum',                   :password => 'pass123'
-        create_voting_area :code => 'XIV',  :name => 'Chemicum',                   :password => 'pass123'
-        create_voting_area :code => 'XV',  :name => 'Exactum',                    :password => 'pass123'
-        create_voting_area :code => 'XVI',  :name => 'Viikin Infokeskus',          :password => 'pass123'
-        create_voting_area :code => 'XVII',  :name => 'Viikin Biokeskus 3',         :password => 'pass123'
-        create_voting_area :code => 'XVIII',  :name => 'Viikin EE-talo',             :password => 'pass123'
-        create_voting_area :code => 'XIX',  :name => 'Ympäristöekologian',         :password => 'pass123'
-        create_voting_area :code => 'XX',  :name => 'Vaasan yliopisto',           :password => 'pass123'
-        create_voting_area :code => 'EI',  :name => 'Porthania',                  :password => 'pass123'
-        create_voting_area :code => 'EII',  :name => 'Viikin Infokeskus',          :password => 'pass123'
-        create_voting_area :code => 'EIII',  :name => 'Physicum',                   :password => 'pass123'
-        create_voting_area :code => 'EIV',  :name => 'Terveystieteiden keskus',    :password => 'pass123'
-        create_voting_area :code => 'EV',  :name => 'Unicafe',                    :password => 'pass123'
       end
 
       desc 'Create electoral coalitions and alliances'
@@ -182,14 +127,6 @@ namespace :db do
         AdvocateUser.create! :firstname => "Laura", :lastname => "Lanttunen", :ssn => '123456-9876', :email => 'asiamies2@example.com', :password => 'pass123', :password_confirmation => 'pass123'
       end
 
-      desc 'Create voters'
-      task :create_voters => :environment do
-        puts 'Creating Voters'
-
-        Voter.create! name: "Hessu Kettunen", student_number: 11229988, ssn: "012345-1230", start_year: 2000, faculty: Faculty.first, extent_of_studies: 1
-        Voter.create! name: "Mesi Marja", student_number: 22334455, ssn: "012345-9999", start_year: 2001, faculty: Faculty.last, extent_of_studies: 2
-      end
-
       desc 'Create candidate data from seed.csv'
       task :candidates => :environment do
         Candidate.transaction do
@@ -239,36 +176,6 @@ namespace :db do
           end
         end
       end
-
-      desc 'Create early voting data'
-      task :early_voting => :environment do
-        puts 'Creating early voting areas ...'
-        [:EI, :EII, :EIII, :EIV, :EV].each do |area_code|
-          voting_area = VotingArea.find_by_code! "#{area_code}"
-          puts "... #{voting_area.name}"
-          csv_contents = CSV.read("doc/votes/#{area_code}", encoding: "ISO8859-1")
-          csv_contents.shift
-          csv_contents.each do |row|
-            Candidate.find_by_candidate_number!(row[0]).votes.create! :voting_area => voting_area, :amount => row[3]
-          end
-        end
-      end
-
-      desc 'Create main voting data'
-      task :main_voting => :environment do
-        puts 'Creating voting areas ...'
-        [:I, :II, :III, :IV, :V, :VI, :VII, :VIII, :IX, :X,
-         :XI, :XII, :XIII, :XIV, :XV, :XVI, :XVII, :XVIII, :XIX, :XX].each do |area_code|
-          voting_area = VotingArea.find_by_code! "#{area_code}"
-          puts "... #{voting_area.name}"
-          csv_contents = CSV.read("doc/votes/#{area_code}", encoding: "ISO8859-1")
-          csv_contents.shift
-          csv_contents.each do |row|
-            Candidate.find_by_candidate_number!(row[0]).votes.create! :voting_area => voting_area, :amount => row[3]
-          end
-        end
-      end
-
     end
   end
 end

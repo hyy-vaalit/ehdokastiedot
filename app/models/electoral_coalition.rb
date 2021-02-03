@@ -1,7 +1,4 @@
 class ElectoralCoalition < ActiveRecord::Base
-  has_many :coalition_results
-  has_many :results, :through => :coalition_results
-
   has_many :electoral_alliances, :dependent => :nullify
   has_many :candidates, :through => :electoral_alliances
 
@@ -21,14 +18,6 @@ class ElectoralCoalition < ActiveRecord::Base
     end
   end
 
-  def preliminary_vote_sum
-    electoral_alliances.map(&:votes).map(&:preliminary_sum).sum # did not work with sql the same way as in alliances
-  end
-
-  def countable_vote_sum
-    electoral_alliances.map(&:votes).map(&:countable_sum).sum # sql trololooo
-  end
-
   def self.are_all_ordered?
     self.where(:numbering_order => nil).count == 0
   end
@@ -45,5 +34,4 @@ class ElectoralCoalition < ActiveRecord::Base
     self.name.strip!
     self.shorten.strip!
   end
-
 end

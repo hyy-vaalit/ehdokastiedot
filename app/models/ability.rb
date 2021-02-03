@@ -14,10 +14,6 @@ class Ability
   def admin(user)
     can :access, :admin
     can :manage, :all
-
-    # Being signed-in as an AdminUser and VotingAreaUser at the same time
-    # does not work with marking votes. (Dependency on current_user.voting_area).
-    cannot :access, :voting
   end
 
   def secretary(user)
@@ -47,23 +43,12 @@ class Ability
     end
   end
 
-  def voting_area(user)
-    can :access, [:voters, :voting]
-
-    if Time.now > Vaalit::Voting::CALCULATION_BEGINS_AT
-      can :manage, [:vote_amounts]
-    end
-
-  end
-
   private
 
   def initialize_roles(user)
     case user.class.to_s
       when "AdminUser"
         initialize_admin(user)
-      when "VotingAreaUser"
-        initialize_voting_area(user)
       when "AdvocateUser"
         initialize_advocate(user)
       else
@@ -78,9 +63,5 @@ class Ability
 
   def initialize_advocate(user)
     send :advocate, user
-  end
-
-  def initialize_voting_area(user)
-    send :voting_area, user
   end
 end
