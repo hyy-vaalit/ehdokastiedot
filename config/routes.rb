@@ -1,4 +1,4 @@
-Ehdokastiedot::Application.routes.draw do
+Rails.application.routes.draw do
   # Devise routes must be on top to get highest priority
   devise_for :admin_users, ActiveAdmin::Devise.config
   devise_for :advocate_users
