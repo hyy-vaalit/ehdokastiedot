@@ -19,7 +19,7 @@ ActiveAdmin.register AdvocateUser do
     def update
       @advocate_user = AdvocateUser.find(params[:id])
 
-      if @advocate_user.update_attributes(permitted_params[:advocate_user])
+      if @advocate_user.update(permitted_params[:advocate_user])
         @advocate_user.update! electoral_alliance_ids: params[:advocate_user][:electoral_alliance_ids]
 
         flash[:notice] = "Muutokset tallennettu."

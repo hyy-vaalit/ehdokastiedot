@@ -13,7 +13,7 @@ ActiveAdmin.register ElectoralCoalition do
     def update
       @electoral_coalition = ElectoralCoalition.find(params[:id])
 
-      if @electoral_coalition.update_attributes(permitted_params[:electoral_coalition])
+      if @electoral_coalition.update(permitted_params[:electoral_coalition])
         @electoral_coalition.update! electoral_alliance_ids: params[:electoral_coalition][:electoral_alliance_ids]
 
         flash[:notice] = "Muutokset tallennettu."

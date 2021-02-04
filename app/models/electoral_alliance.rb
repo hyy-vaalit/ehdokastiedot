@@ -31,6 +31,10 @@ class ElectoralAlliance < ActiveRecord::Base
     candidates.count == expected_candidate_count
   end
 
+  def to_csv(encoding)
+    CandidateExport.new(candidates).to_csv(encoding: encoding)
+  end
+
   def self.are_all_ready?
     self.count == self.ready.count
   end

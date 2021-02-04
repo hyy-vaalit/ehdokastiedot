@@ -4,7 +4,7 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 ruby '2.6.6' # For Heroku, see also file .ruby-version
 
-gem 'rails', '~> 6.0.3.4'
+gem 'rails', '~> 6.1.1'
 gem 'bootsnap'
 gem 'pg'
 gem 'puma'
@@ -44,7 +44,6 @@ gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 gem 'ranked-model'
 gem 'cancancan'
 gem 'devise'
-gem 'draper'
 
 gem 'delayed_job'
 gem 'delayed_job_active_record'

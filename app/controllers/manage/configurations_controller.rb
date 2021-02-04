@@ -1,20 +1,5 @@
 class Manage::ConfigurationsController < ManageController
-
   before_action :find_configuration
-
-  def update
-    if @configuration.update_attributes(permitted_params)
-      flash[:notice] = "Muutokset tallennettu."
-      redirect_to :action => :edit
-    else
-      flash[:alert] = "Muutosten tallentaminen epäonnistui!"
-      render :action => :edit and return
-    end
-
-  end
-
-  def edit
-  end
 
   def enable_advocate_login
     GlobalConfiguration.first.enable_advocate_login!

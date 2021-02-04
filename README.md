@@ -206,7 +206,3 @@ Salasana "pass123"
 
 * Työn käynnistäminen manuaalisesti:
     - `Delayed::Job.find(XX).invoke_job`
-
-* Draper on hidas ison collectionin koristelussa.
-    Uudet decoratorit kannattaa tehdä ilman Draperia.
-    Ks. esim CandidateExport ja http://thepugautomatic.com/2014/03/draper/

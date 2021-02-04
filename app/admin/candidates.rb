@@ -27,7 +27,7 @@ ActiveAdmin.register Candidate do
     def update
       @candidate = Candidate.find(params[:id])
 
-      if @candidate.update_attributes(permitted_params[:candidate])
+      if @candidate.update(permitted_params[:candidate])
         flash[:notice] = "Muutokset tallennettu."
 
         respond_with(@alliance) do |format|

@@ -30,7 +30,7 @@ class Advocates::AlliancesController < AdvocatesController
   end
 
   def update
-    if @alliance.update_attributes(alliance_params)
+    if @alliance.update!(alliance_params)
       flash[:notice] = "Muutokset tallennettu."
     else
       flash[:alert] = "Muutosten tallentaminen epäonnistui!"
@@ -56,7 +56,7 @@ class Advocates::AlliancesController < AdvocatesController
   protected
 
   def find_alliance
-    @alliance = ElectoralAllianceDecorator.new(current_advocate_user.electoral_alliances.find(params[:id]))
+    @alliance = current_advocate_user.electoral_alliances.find(params[:id])
   end
 
   def nav_paths
