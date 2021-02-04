@@ -4,12 +4,12 @@ git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
 ruby '2.6.6' # For Heroku, see also file .ruby-version
 
-gem 'rails', '~> 5.2.4.4'
+gem 'rails', '~> 6.0.3.4'
 gem 'bootsnap'
 gem 'pg'
 gem 'puma'
+# gem 'webpacker'
 gem 'sass-rails'
-gem 'uglifier'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
@@ -38,19 +38,15 @@ gem 'rollbar'
 
 gem 'pry-rails' # friendlier rails console
 
-# gems that cannot be updated without changes to the code
-# gem 'activeadmin', '0.5.1'  # dashboard is removed in 0.6.0
-gem 'activeadmin', '2.4.0'
-gem 'inherited_resources', github: 'activeadmin/inherited_resources', branch: 'v1.9.0'
+gem 'activeadmin', '~> 2.9.0'
+gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
-# versions frozen before complete update for Rails 3.1.x
 gem 'ranked-model'
 gem 'cancancan'
 gem 'devise'
 gem 'draper'
 
-# gems that were updated when project was updated to Rails 3.2
-gem 'delayed_job', '~> 4.1'
+gem 'delayed_job'
 gem 'delayed_job_active_record'
 gem 'formtastic'
 
