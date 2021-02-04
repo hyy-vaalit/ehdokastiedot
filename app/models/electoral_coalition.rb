@@ -8,23 +8,23 @@ class ElectoralCoalition < ActiveRecord::Base
 
   before_save :strip_whitespace_from_name_fields
 
-  def order_alliances alliance_data
-    original_array = alliance_data.to_a
-    sorted_array = original_array.sort {|x,y| x.last <=> y.last}
-    ordered_hashes = sorted_array.map {|array| {:id => array.first, :position => array.last}}
-
-    ordered_hashes.each do |hash|
-      self.electoral_alliances.find(hash[:id]).update_attribute :numbering_order_position, hash[:position]
-    end
-  end
-
   def self.are_all_ordered?
     self.where(:numbering_order => nil).count == 0
   end
 
-  def self.give_orders coalition_data
-    coalition_data.to_a.each do |array|
-      self.find(array.first).update_attribute :numbering_order, array.last
+  # params := alliance_id => numbering_order
+  #   <ActionController::Parameters {"9"=>"1", ..}
+  def update_alliance_numbering_order!(params)
+    params.each do |alliance_id, numbering_order|
+      self.electoral_alliances.find(alliance_id).update!(numbering_order: numbering_order)
+    end
+  end
+
+  # params := coalition_id => numbering_order
+  #   <ActionController::Parameters {"9"=>"1", ..}
+  def self.update_coalition_numbering_order!(params)
+    params.each do |coalition_id, numbering_order|
+      self.find(coalition_id).update!(numbering_order: numbering_order)
     end
   end
 

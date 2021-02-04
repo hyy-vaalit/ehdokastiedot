@@ -1,12 +1,11 @@
 class Candidate < ActiveRecord::Base
   include RankedModel
+  ranks :numbering_order, :with_same => :electoral_alliance_id
 
   has_many :candidate_attribute_changes
 
   belongs_to :electoral_alliance
   has_one :electoral_coalition, :through => :electoral_alliance
-
-  ranks :numbering_order, :with_same => :electoral_alliance_id
 
   belongs_to :faculty
 

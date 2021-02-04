@@ -1,9 +1,13 @@
 <%= form_tag order_alliances_admin_electoral_coalition_path, :method => :post, :class => "ordering" do -%>
-  <% electoral_coalition.electoral_alliances.rank(:numbering_order).each_with_index do |alliance, i| -%>
+  <% electoral_coalition.electoral_alliances.by_numbering_order.each do |alliance| -%>
     <div>
-      <input type="text" name="alliances[<%= alliance.id %>]" id="alliance_<%= alliance.id %>" value="<%= i+1 %>" />
+      <input
+        type="text"
+        name="alliances[<%= alliance.id %>]"
+        id="alliance_<%= alliance.id %>"
+        value="<%= alliance.numbering_order %>" />
       <label for="alliance_<%= alliance.id %>"><%= alliance.name %></label>
     </div>
   <% end -%>
-  <div><input type="submit" value="Change order" /></div>
+  <div><input type="submit" value="Update order" /></div>
 <% end -%>

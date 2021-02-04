@@ -1,12 +1,8 @@
 class ElectoralAlliance < ActiveRecord::Base
-  include RankedModel
-
   has_many :candidates, :dependent => :nullify
 
   belongs_to :advocate_user, :foreign_key => :primary_advocate_id
-
   belongs_to :electoral_coalition
-  ranks :numbering_order, :with_same => :electoral_coalition_id
 
   scope :without_advocate_user, -> { where(:primary_advocate_id => nil) }
   scope :without_coalition, -> { where(:electoral_coalition_id => nil) }
