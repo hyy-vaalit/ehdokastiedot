@@ -9,7 +9,7 @@ gem 'bootsnap'
 gem 'pg'
 gem 'puma'
 # gem 'webpacker'
-gem 'sass-rails'
+gem 'sassc-rails'
 
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
