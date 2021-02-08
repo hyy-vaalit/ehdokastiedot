@@ -10,7 +10,7 @@ ActiveAdmin.register AdvocateUser do
                 :phone_number,
                 :electoral_alliance_ids
 
-  menu :label => "Asiamiestunnukset", :if => proc { can? :manage, AdvocateUser }, :priority => 12
+  menu :label => "Edustajatunnukset", :if => proc { can? :manage, AdvocateUser }, :priority => 12
 
   controller do
 
@@ -37,7 +37,7 @@ ActiveAdmin.register AdvocateUser do
       if @advocate_user.save
         @advocate_user.update! electoral_alliance_ids: params[:advocate_user][:electoral_alliance_ids]
 
-        flash[:notice] = "Asiamies luotu!"
+        flash[:notice] = "Edustaja luotu!"
         redirect_to admin_advocate_user_path(@advocate_user)
       else
         super
@@ -88,10 +88,10 @@ ActiveAdmin.register AdvocateUser do
 
   sidebar "Ohjeet", :only => :new do
     ul do
-      li "Tunnuksen luomisen jälkeen asiamiehelle lähetetään salasana sähköpostitse."
-      li "Vaaliliiton ensisijainen asiamies syöttää vaaliliiton ehdokkaat."
-      li "Ehdokasasettelun päättymisen jälkeen asiamies ei voi enää lisätä ehdokkaita, mutta voi esittää korjauksia tietoihin."
-      li "HYYn vaalityöntekijä (admin) hyväkstyy tai hylkää asiamiehen esittämät korjaukset."
+      li "Tunnuksen luomisen jälkeen edustajalle lähetetään salasana sähköpostitse."
+      li "Vaaliliiton ensisijainen edustaja syöttää vaaliliiton ehdokkaat."
+      li "Ehdokasasettelun päättymisen jälkeen edustaja ei voi enää lisätä ehdokkaita, mutta voi esittää korjauksia tietoihin."
+      li "HYYn vaalityöntekijä (admin) hyväkstyy tai hylkää edustajan esittämät korjaukset."
     end
   end
 

@@ -10,11 +10,11 @@ Järjestelmässä on eri tasoisia käyttäjiä:
   * Voi kirjautua sisään, kun tauluun `admin_users` on luotu käyttäjä,
     jolla on salasana.
 
-* Vaaliliiton asiamies:
+* Vaaliliiton edustaja:
   * `app/models/AdvocateUser.rb`
   * /advocates
-  * asiamies1@example.com / pass123
-  * Vaaliliiton asiamies syöttää ehdokastiedot ja luo vaaliliiton.
+  * edustaja1@example.com / pass123
+  * Vaaliliiton edustaja syöttää ehdokastiedot ja luo vaaliliiton.
   * Voi kirjautua sisään kun `GlobalConfiguration.advocate_login_enabled?`
 
 Käyttöoikeudet on määritety tiedostossa `app/models/ability.rb`.
@@ -176,13 +176,13 @@ http://localhost:3000/admin
 * admin@example.com / pass123
 
 
-### Asiamiesten korjaukset ehdokastietoihin
+### Vaaliliiton edustajien korjaukset ehdokastietoihin
 
 http://localhost:3000/advocates
 
 Käyttäjätunnukset (kehitysympäristössä):
-  * asiamies1@example.com (123456-123K)
-  * asiamies2@example.com (123456-9876)
+  * edustaja1@example.com (123456-123K)
+  * edustaja2@example.com (123456-9876)
 
 Salasana "pass123"
 

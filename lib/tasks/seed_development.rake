@@ -123,8 +123,8 @@ namespace :db do
       task :create_advocates => :environment do
         puts 'Creating AdvocateUsers'
 
-        AdvocateUser.create! :firstname => "Rami", :lastname => "Raavas", :ssn => '123456-123K', :email => 'asiamies1@example.com', :password => 'pass123', :password_confirmation => 'pass123'
-        AdvocateUser.create! :firstname => "Laura", :lastname => "Lanttunen", :ssn => '123456-9876', :email => 'asiamies2@example.com', :password => 'pass123', :password_confirmation => 'pass123'
+        AdvocateUser.create! :firstname => "Rami", :lastname => "Raavas", :ssn => '123456-123K', :email => 'edustaja1@example.com', :password => 'pass123', :password_confirmation => 'pass123'
+        AdvocateUser.create! :firstname => "Laura", :lastname => "Lanttunen", :ssn => '123456-9876', :email => 'edustaja2@example.com', :password => 'pass123', :password_confirmation => 'pass123'
       end
 
       desc 'Create candidate data from seed.csv'

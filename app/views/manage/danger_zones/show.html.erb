@@ -8,28 +8,28 @@
 src="https://www.youtube.com/embed/ZzQ3eBerHfM" frameborder="0"
 allowfullscreen></iframe>
 
-<h2>Asiamiehet</h2>
+<h2>Edustajat</h2>
 
 <ul>
   <li>
-    Asiamiesten sisäänkirjautuminen on tällä hetkellä
+    Edustajien sisäänkirjautuminen on tällä hetkellä
     <strong><u><%= GlobalConfiguration.advocate_login_enabled? ? "sallittu" : "kielletty" %></u></strong>.
   </li>
   <li>Sisäänkirjautuminen kannattaa kieltää ennen Keskusvaalilautakunnan kokouksia, jotta
     <br>tiedot eivät muutu kesken kokouksen ja ehdokasnumerot eivät vuoda julkisiksi etukäteen.
   </li>
   <li>
-    Sisäänkirjautumisen estäminen potkaisee samalla ulos kaikki sisäänkirjautuneet asiamiehet,
-    <br>joten siinä vaiheessa asiamiehen tallentamattomat tiedot katoavat. Käytä toimintoa harkiten. :)
+    Sisäänkirjautumisen estäminen potkaisee samalla ulos kaikki sisäänkirjautuneet edustajat,
+    <br>joten siinä vaiheessa edustajan tallentamattomat tiedot katoavat. Käytä toimintoa harkiten. :)
   </li>
   <li>
     <% if GlobalConfiguration.advocate_login_enabled? %>
-      <%= button_to "Kiellä asiamiesten sisäänkirjautuminen",
+      <%= button_to "Kiellä vaaliliiton edustajien sisäänkirjautuminen",
                     disable_advocate_login_manage_configuration_path,
                     :class => "btn btn-danger",
                     :method => :put %>
     <% else %>
-      <%= button_to "Salli asiamiesten sisäänkirjautuminen",
+      <%= button_to "Salli vaaliliiton edustajien sisäänkirjautuminen",
                      enable_advocate_login_manage_configuration_path,
                      :class => "btn btn-danger",
                      :method => :put %>
@@ -56,7 +56,7 @@ allowfullscreen></iframe>
   <li>
     <%= link_to 'Aseta vaalirenkaiden keskinäinen järjestys', admin_electoral_coalitions_path %> (Sivun oikeasta reunasta)
     <ul>
-      <li>Kytke pois asiamiesten sisäänkirjautuminen ennen numerointia, jotta numerot eivät vuoda julkisiksi ennen KVL:n kokouksen päättymistä.</li>
+      <li>Kytke pois vaaliliiton edustajien sisäänkirjautuminen ennen numerointia, jotta numerot eivät vuoda julkisiksi ennen KVL:n kokouksen päättymistä.</li>
       <li>Liitä jokainen vaaliliitto vaalirenkaaseen.</li>
       <li>Luo myös jokaiselle itsenäiselle liitolle (ja ehdokkaalle) oma vaalirengas, jolla on sama nimi kuin liitolla.</li>
       <li>Määritä järjestys (peruste ehdokasnumeroille) sen jälkeen, kun KVL on arponut renkaiden ja itsenäisten liittojen keskinäisen järjestyksen.</li>

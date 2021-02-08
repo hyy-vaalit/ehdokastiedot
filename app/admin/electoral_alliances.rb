@@ -49,14 +49,14 @@ ActiveAdmin.register ElectoralAlliance do
   filter :electoral_coalition
   filter :secretarial_freeze, :as => :select
 
-  sidebar "Asiamies", :only => :show do
+  sidebar "Edustaja", :only => :show do
     if electoral_alliance.advocate_user
       attributes_table_for electoral_alliance do
         row("Nimi") { link_to electoral_alliance.advocate_user.friendly_name, admin_advocate_user_path(electoral_alliance.advocate_user) }
         row("Viimeksi kirjautunut") { electoral_alliance.advocate_user.current_sign_in_at }
       end
     else
-      "Vaalirenkaalle ei ole vielä määritetty asiamiestä."
+      "Vaalirenkaalle ei ole vielä määritetty edustajaa."
     end
   end
 
@@ -73,7 +73,7 @@ ActiveAdmin.register ElectoralAlliance do
     ul do
       li "Tästä näkymästä luodaan vaaliliitto, jonka tiedot on toimitettu ainoastaan paperilla."
       li "Vaaliliiton luonnin jälkeen HYYn sihteeri syöttää vaaliliiton ehdokkaat."
-      li "Kun vaaliliiton ehdokkaat on luotu, HYYn vaalityöntekjiä luo vaaliliiton asiamiestunnuksen, jolla asiamies voi syöttää korjauksia ehdokastietoihin."
+      li "Kun vaaliliiton ehdokkaat on luotu, HYYn vaalityöntekjiä luo vaaliliiton edustajatunnuksen, jolla edustaja voi syöttää korjauksia ehdokastietoihin."
     end
   end
 

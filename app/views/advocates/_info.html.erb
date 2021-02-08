@@ -2,8 +2,8 @@ Ehdokastietoja käsitellään seuraavasti:
 
 <h2>Ennen ehdokasasettelun päättymistä (<%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %>)</h2>
 <ul>
-  <li>Vaaliliiton ensisijaiselle asiamiehelle luodaan HYYn toimesta käyttäjätunnus.</li>
-  <li>Asiamiehen on syötettävä ehdokkaat ehdokasasettelun päättymispäivään mennessä.</li>
+  <li>Vaaliliiton ensisijaiselle edustajalle luodaan HYYn toimesta käyttäjätunnus.</li>
+  <li>Edustajan on syötettävä ehdokkaat ehdokasasettelun päättymispäivään mennessä.</li>
   <li>Ehdokasasettelun päättymisen jälkeen uusia tietoja ei voi enää lisätä.</li>
   <li>Ehdokastiedot on toimitettava paperilla HYYn keskustoimistoon määräaikaan <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %> mennessä.</li>
 </ul>
@@ -19,7 +19,7 @@ Ehdokastietoja käsitellään seuraavasti:
 <ul>
   <li>Ehdokasasettelun päättymisen jälkeen tietoihin on mahdollista tehdä korjauksia
     <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %> saakka.</li>
-  <li>Korjauksia voi tehdä vaaliliiton ensisijainen asiamies.</li>
+  <li>Korjauksia voi tehdä vaaliliiton ensisijainen edustaja.</li>
   <li>Ehdokkuuden voi perua ainaostaan ehdokas itse ilmoittamalla siitä kirjallisesti HYYn keskustoimistoon.</li>
 </ul>
 

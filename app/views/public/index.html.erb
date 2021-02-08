@@ -4,10 +4,10 @@
 <% if GlobalConfiguration.candidate_data_frozen? %>
   <h2>Ehdokastiedot</h2>
   <p>
-    Ehdokastiedot on jäädytetty eikä niihin voi enää tehdä muutoksia. Jos olet vaaliliiton asiamies, voit kuitenkin tarkistaa ehdokastietosi alla olevasta linkistä.
+    Ehdokastiedot on jäädytetty eikä niihin voi enää tehdä muutoksia. Jos olet vaaliliiton edustaja, voit kuitenkin tarkistaa ehdokastietosi alla olevasta linkistä.
   </p>
   <p>
-      &raquo; <%= link_to "Asiamiesten sisäänkirjautuminen", advocates_alliances_path %>
+      &raquo; <%= link_to "Edustajien sisäänkirjautuminen", advocates_alliances_path %>
   </p>
 <% else %>
   <%= render :partial => "advocates/info" %>

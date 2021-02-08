@@ -62,7 +62,7 @@ ActiveAdmin.register ElectoralCoalition do
         t.column("Ehdokkaita syötetty") {|alliance| alliance.candidates.count}
         t.column("Ehdokkaita ilmoitettu") {|alliance| alliance.expected_candidate_count}
         t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? status_tag('ok', class: 'ok') : status_tag("Kesken", class: 'in_progress') }
-        t.column("Asiamies") {|alliance| link_to alliance.advocate_user.friendly_name, admin_advocate_user_path(alliance.advocate_user) if alliance.advocate_user}
+        t.column("Edustaja") {|alliance| link_to alliance.advocate_user.friendly_name, admin_advocate_user_path(alliance.advocate_user) if alliance.advocate_user}
       end
     end
 
