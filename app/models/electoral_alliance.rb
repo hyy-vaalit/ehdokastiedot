@@ -1,8 +1,8 @@
 class ElectoralAlliance < ActiveRecord::Base
   has_many :candidates, :dependent => :nullify
 
-  belongs_to :advocate_user, :foreign_key => :primary_advocate_id
-  belongs_to :electoral_coalition
+  belongs_to :advocate_user, :foreign_key => :primary_advocate_id, optional: true
+  belongs_to :electoral_coalition, optional: true
 
   scope :without_advocate_user, -> { where(:primary_advocate_id => nil) }
   scope :without_coalition, -> { where(:electoral_coalition_id => nil) }

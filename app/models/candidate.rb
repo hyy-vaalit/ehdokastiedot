@@ -7,7 +7,7 @@ class Candidate < ActiveRecord::Base
   belongs_to :electoral_alliance
   has_one :electoral_coalition, :through => :electoral_alliance
 
-  belongs_to :faculty
+  belongs_to :faculty, optional: true
 
   scope :cancelled, -> { where(:cancelled => true) }
   scope :without_alliance, -> { where(:electoral_alliance_id => nil) }
