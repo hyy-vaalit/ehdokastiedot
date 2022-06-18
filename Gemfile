@@ -58,6 +58,7 @@ group :development, :test do
   gem 'guard-rspec'
   gem 'dotenv-rails'
   gem 'foreman'
+  gem 'letter_opener'
 end
 
 group :development do
