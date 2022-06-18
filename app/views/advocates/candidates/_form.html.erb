@@ -4,7 +4,6 @@
     var firstname_element      = $('#candidate_firstname');
     var lastname_element       = $('#candidate_lastname');
     var candidate_name_element = $('#candidate_candidate_name');
-    var candidate_ssn_element  = $('#candidate_social_security_number');
     var candidate_notes_element = $('#candidate_notes');
     var errorCssClass           = "inline-errors";
 
@@ -25,15 +24,6 @@
 
     candidate_name_element.bind('focusout', function(event) {
       replace_quotes(candidate_name_element);
-    });
-
-    candidate_ssn_element.bind('focusout', function(event) {
-      if (!isValidSSN(candidate_ssn_element)) {
-        addError(candidate_ssn_element, errorCssClass, "Virheellinen hetu (voit tallettaa ehdokkaan tästä huolimatta, mutta jätä siitä merkintä 'Huomioita'-kenttään).");
-        addNote(candidate_notes_element, "Virheellinen hetu");
-      } else {
-        removeError(candidate_ssn_element, errorCssClass);
-      }
     });
 
     function addError(element, errorCssClass, message) {
@@ -88,40 +78,13 @@
     function first_of_firstnames(firstnames) {
       return firstnames.split(' ')[0];
     }
-
-    function calculateCheckChar(birthday, identifier) {
-      var index = (parseInt(birthday+identifier, 10) % 31);
-      var checksums = "0123456789ABCDEFHJKLMNPRSTUVWXY";
-      return checksums[index];
-    }
-
-    function isValidSSN(ssnElement) {
-      var ssn              = ssnElement.val();
-      var birthday         = ssn.substring(0, 6);
-      var separator        = ssn[6];
-      var checkNum         = ssn.substring(7,10);
-      var checkChar        = (ssn[10] != undefined) ? ssn[10].toUpperCase() : "";
-
-      if (ssn.length < 11 || ssn.length > 11)
-        return false;
-
-      if (!birthday.match(/^[0-9]+$/) || !separator.match(/^[+-A]$/) || !checkNum.match(/^[0-9]+$/))
-        return false;
-
-      if (calculateCheckChar(birthday, checkNum) != checkChar)
-        return false;
-
-      return true
-    }
   });
 </script>
 
 <%= f.input :lastname, :label => "Sukunimi" %>    <%= f.input :firstname, :label => "Kaikki etunimet" %>
 
-<%= f.input :social_security_number, :label => "Henkilötunnus" %>
-  <%= f.input :faculty, :label => "Tiedekunta" %>
-
-<%#= f.input Laitoksen nimi virallisessa muodossa (mikäli tiedekunnassa on laitoksia) %>
+<%= f.input :student_number, :label => "Opiskelijanumero" %>
+<%= f.input :faculty, :label => "Tiedekunta" %>
 
 <%= f.input :address, :label => "Lähiosoite" %>
   <%= f.input :postal_information, :label => "Postinumero ja postitoimipaikka" %>

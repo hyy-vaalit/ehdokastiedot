@@ -11,7 +11,7 @@
   <tr>
     <th>Ehdokasnumero</th>
     <th>Ehdokasnimi</th>
-    <th>Henkilötunnus</th>
+    <th>Opiskelijanumero</th>
     <th>Vaaliliitto</th>
     <th>Vaalirengas</th>
     <th>Huomiot</th>
@@ -20,7 +20,7 @@
   <tr>
     <td><%= candidate.candidate_number %></td>
     <td><%= link_to candidate.candidate_name, admin_candidate_path(candidate.id) %></td>
-    <td><%= candidate.social_security_number %></td>
+    <td><%= candidate.student_number %></td>
     <td><%= candidate.electoral_alliance.shorten if candidate.electoral_alliance and candidate.electoral_alliance.shorten %></td>
     <td><%= candidate.electoral_alliance.electoral_coalition.shorten if candidate.electoral_alliance and candidate.electoral_alliance.electoral_coalition and candidate.electoral_alliance.electoral_coalition.shorten %></td>
     <td><%= candidate.notes %></td>

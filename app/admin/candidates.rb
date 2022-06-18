@@ -5,7 +5,7 @@ ActiveAdmin.register Candidate do
   permit_params :lastname,
                 :firstname,
                 :candidate_name,
-                :social_security_number,
+                :student_number,
                 :address,
                 :postal_information,
                 :phone_number,
@@ -68,14 +68,14 @@ ActiveAdmin.register Candidate do
   end
 
   show :title => :candidate_name do
-    attributes_table :lastname, :firstname, :candidate_name, :social_security_number, :address, :postal_information, :email, :faculty, :electoral_alliance, :cancelled, :notes
+    attributes_table :lastname, :firstname, :candidate_name, :student_number, :address, :postal_information, :email, :faculty, :electoral_alliance, :cancelled, :notes
   end
 
   filter :candidate_number
   filter :lastname
   filter :firstname
   filter :candidate_name
-  filter :social_security_number
+  filter :student_number
   filter :address
   filter :postal_information
   filter :faculty
@@ -105,7 +105,7 @@ ActiveAdmin.register Candidate do
         f.input :lastname
         f.input :firstname
         f.input :candidate_name
-        f.input :social_security_number
+        f.input :student_number
       end
       f.inputs 'Contact' do
         f.input :address

@@ -1,12 +1,9 @@
 ActiveAdmin.register AdvocateUser do
 
   permit_params :email,
-                :ssn,
+                :student_number,
                 :firstname,
                 :lastname,
-                :postal_address,
-                :postal_code,
-                :postal_city,
                 :phone_number,
                 :electoral_alliance_ids
 
@@ -62,10 +59,6 @@ ActiveAdmin.register AdvocateUser do
         attributes_table_for user do
           row("Name") { |u| u.friendly_name }
           row :email
-          row :postal_address
-          row :postal_code
-          row :postal_city
-          row :phone_number
        end
      end
 
@@ -82,7 +75,7 @@ ActiveAdmin.register AdvocateUser do
    end
 
   filter :email
-  filter :ssn
+  filter :student_number
   filter :lastname
   filter :firstname
 
@@ -97,16 +90,11 @@ ActiveAdmin.register AdvocateUser do
 
   form do |f|
     f.inputs do
-
       f.input :email
-      f.input :ssn
+      f.input :student_number
       f.input :firstname
       f.input :lastname
-      f.input :postal_address
-      f.input :postal_code
-      f.input :postal_city
       f.input :phone_number
-
     end
 
     f.inputs 'Vaaliliitot' do

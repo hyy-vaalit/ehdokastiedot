@@ -8,7 +8,7 @@ en:
 
         primary_advocate_lastname: "Lastname"
         primary_advocate_firstname: "Firstname"
-        primary_advocate_social_security_number: "Social security number"
+        primary_advocate_student_number: "Student number"
         primary_advocate_address: "Address"
         primary_advocate_postal_information: "Postal code and post office"
         primary_advocate_phone: "Phone"
@@ -16,7 +16,7 @@ en:
 
         secondary_advocate_lastname: "Lastname"
         secondary_advocate_firstname: "Firstname"
-        secondary_advocate_social_security_number: "Social security number"
+        secondary_advocate_student_number: "Student number"
         secondary_advocate_address: "Address"
         secondary_advocate_postal_information: "Postal code and post office"
         secondary_advocate_phone: "Phone"
