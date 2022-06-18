@@ -1,6 +1,9 @@
 class ElectoralAlliance < ActiveRecord::Base
   attribute :invite_code, :string, default: -> { default_invite_code }
   validates_length_of :invite_code, minimum: 4
+  validates_format_of :invite_code,
+    with: /\A[A-Za-z0-9]+\z/,
+    message: "only English alphanumeric characters allowed"
 
   has_many :candidates, :dependent => :nullify
 
@@ -20,6 +23,7 @@ class ElectoralAlliance < ActiveRecord::Base
   validates_presence_of :expected_candidate_count, :allow_nil => true
 
   before_save :strip_whitespace_from_name_fields
+  before_save :upcase_invite_code!
 
   def freeze!
     if expected_candidate_count && candidates.count == expected_candidate_count
@@ -47,6 +51,10 @@ class ElectoralAlliance < ActiveRecord::Base
   def strip_whitespace_from_name_fields
     self.name.strip!
     self.shorten.strip!
+  end
+
+  def upcase_invite_code!
+    self.invite_code.upcase!
   end
 
   def self.default_invite_code
