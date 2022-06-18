@@ -57,8 +57,7 @@ class ApplicationController < ActionController::Base
   end
 
   rescue_from CanCan::AccessDenied do |exception|
-    Rails.logger.debug "[ApplicationController] Rescued CanCan::AccessDenied and redirecting to safety"
-    redirect_to current_user_login_path, :alert => exception.message
+    Rails.logger.debug "[ApplicationController] Access denied on action: '#{exception.action}' subject: '#{exception.subject.inspect}'"
+    redirect_to unauthorized_path, :alert => exception.message
   end
-
 end

@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   root :to => "public#index"
+  get "/unauthorized", :to => "public#unauthorized", :as => :unauthorized
+
   get "/advocates", :to => "public#index", :as => :advocate_index
 
   namespace :advocates do
