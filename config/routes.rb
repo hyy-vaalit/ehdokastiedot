@@ -17,6 +17,11 @@ Rails.application.routes.draw do
     end
   end
 
+  namespace :registrations do
+    resource :alliance
+    resource :candidate
+  end
+
   namespace :manage do
     get "configuration", :to => "configurations#index"
     resource :configuration, :only => [:index, :update, :edit] do

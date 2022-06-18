@@ -74,5 +74,9 @@ class Ability
 
 
   def guest_user(user)
+    # TODO: if not GlobalConfiguration.candidate_nomination_period_effective?
+    can [:new], Candidate
+
+    can [:show], Candidate
   end
 end
