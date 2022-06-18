@@ -1,7 +1,10 @@
 class AdminUser < ActiveRecord::Base
   include DeviseUserBehaviour
 
-  ROLES = %w[admin secretary]
+  enum role: {
+    "admin" => "admin",
+    "secretary" => "secretary"
+  }
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
