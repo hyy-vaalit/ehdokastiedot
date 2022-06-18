@@ -10,7 +10,6 @@ en:
         primary_advocate_firstname: "Firstname"
         primary_advocate_student_number: "Student number"
         primary_advocate_address: "Address"
-        primary_advocate_postal_information: "Postal code and post office"
         primary_advocate_phone: "Phone"
         primary_advocate_email: "Email"
 
@@ -18,7 +17,6 @@ en:
         secondary_advocate_firstname: "Firstname"
         secondary_advocate_student_number: "Student number"
         secondary_advocate_address: "Address"
-        secondary_advocate_postal_information: "Postal code and post office"
         secondary_advocate_phone: "Phone"
         secondary_advocate_email: "Email"
 
@@ -28,4 +26,3 @@ en:
   active_admin:
     blank_slate:
       content: "Current scope for %{resource_name} does not have any entries."
-      link: "" # Disable link
