@@ -30,7 +30,7 @@ class Advocates::AlliancesController < AdvocatesController
   end
 
   def update
-    if @alliance.update!(alliance_params)
+    if @alliance.update(alliance_params)
       flash[:notice] = "Muutokset tallennettu."
     else
       flash[:alert] = "Muutosten tallentaminen epäonnistui!"

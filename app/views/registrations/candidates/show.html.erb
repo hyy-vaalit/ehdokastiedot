@@ -1,5 +1,22 @@
-<h1>Show view</h1>
+<h1>Rekisteröity ehdokasilmoittautuminen</h1>
 
-<p>
-  Hello from #show
-</p>
+<ul>
+  <li>Mikäli haluat muuttaa tietojasi tai ota yhteys vaaliliiton edustajaan.</li>
+  <li>Jos haluat perua ehdokkuutesi, ota yhteys HYYn vaalityöntekijään vaalit@hyy.fi.</li>
+</ul>
+
+<% if @candidate %>
+  <h2>Vaaliliiton tiedot</h2>
+  <%= render partial: "one_alliance", locals: { alliance: @candidate.electoral_alliance } %>
+
+  <h2>Ehdokastiedot</h2>
+  <%= semantic_form_for @candidate, :url => registrations_candidates_path(invite_code: @invite_code_upcase) do |f| %>
+    <%= render partial: "common/candidates/form",
+      locals: {
+        candidate: @candidate,
+        f: f,
+        read_only: true
+      }
+    %>
+  <% end %>
+<% end %>

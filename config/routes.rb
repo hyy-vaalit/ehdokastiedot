@@ -18,8 +18,8 @@ Rails.application.routes.draw do
   end
 
   namespace :registrations do
-    resource :alliance
-    resource :candidate
+    resource :alliances
+    resources :candidates, param: :student_number
   end
 
   namespace :manage do

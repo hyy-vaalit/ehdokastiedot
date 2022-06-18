@@ -40,6 +40,19 @@ ul, ol { margin: 1em 0; padding: 0 0 0 40px; }
 dd { margin: 0 0 0 40px; }
 nav ul, nav ol { list-style: none; list-style-image: none; margin: 0; padding: 0; }
 
+dl {
+  display: grid;
+  grid-template-columns: max-content auto;
+}
+
+dt {
+  grid-column-start: 1;
+}
+
+dd {
+  grid-column-start: 2;
+}
+
 img { border: 0; -ms-interpolation-mode: bicubic; vertical-align: middle; }
 
 svg:not(:root) { overflow: hidden; }
@@ -72,11 +85,32 @@ td { vertical-align: top; }
 /* ===== Primary Styles ========================================================
    ========================================================================== */
 
+
+html {
+  position: relative; /* Allow sticky bottom footer */
+  min-height: 100%;
+}
+
 body {
+  margin-bottom: 3em; /* Match "margin-bottom" with by footer's "height" */
   font-size: 16px;
   background: #f2f1ed;
   padding-top: 7.5em;
   font-family:  Georgia, serif;
+}
+
+/* Sticky bottom footer */
+footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  height: 3em; /* Match "height" with body's "margin-bottom" */
+}
+
+footer address {
+  border-top: 1px #999 solid;
+  padding-top: 0.5em;
+  text-align: center;
 }
 
 header.title {
@@ -125,14 +159,6 @@ nav {
   margin: 0.75em;
   margin-left: 1.25em;
   margin-right: 1.25em;
-}
-
-footer address {
-  border-top: 1px #999   solid;
-  text-align: center;
-  padding-top: 0.5em;
-  padding-bottom: 0.5em;
-  margin-top: 3em;
 }
 
 .seat-listing ul {
@@ -226,6 +252,12 @@ p.notice {
   cursor: move;
 }
 
+.registrations-alliance-listing {
+  th,td {
+    max-width: 30em;
+    text-align: left;
+  }
+}
 
 /* =============================================================================
    Media Queries

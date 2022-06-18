@@ -7,7 +7,6 @@
   <%= render :partial => "form", :locals => { :alliance => @alliance, :f => f } %>
 
   <%= f.actions do %>
-    <%#= f.action :cancel, :as => :link, :label => "Palaa tallentamatta" %>
     <%= f.action :submit, :as => :button, :label => "Tallenna" %>
   <% end %>
 <% end %>
