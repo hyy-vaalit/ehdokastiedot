@@ -30,5 +30,4 @@ class AdminUser < ActiveRecord::Base
   def send_password
     RegistrationMailer.welcome_secretary(email, password).deliver
   end
-
 end

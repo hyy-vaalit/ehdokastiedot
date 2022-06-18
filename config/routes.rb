@@ -39,7 +39,6 @@ Rails.application.routes.draw do
   resources :listings, :only => [] do
     collection do
       get :simple
-      get :same_ssn
       get :lulz
     end
   end

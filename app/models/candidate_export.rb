@@ -9,7 +9,7 @@ class CandidateExport
       "Sukunimi" => "lastname",
       "Etunimi" => "firstname",
       "Ehdokasnimi" => "candidate_name",
-      "Hetu" => "social_security_number",
+      "Opiskelijanumero" => "student_number",
       "Puhelin" => "phone_number",
       "Email" => "email",
       "Postiosoite" => "address",

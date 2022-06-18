@@ -123,8 +123,8 @@ namespace :db do
       task :create_advocates => :environment do
         puts 'Creating AdvocateUsers'
 
-        AdvocateUser.create! :firstname => "Rami", :lastname => "Raavas", :ssn => '123456-123K', :email => 'edustaja1@example.com', :password => 'pass123', :password_confirmation => 'pass123'
-        AdvocateUser.create! :firstname => "Laura", :lastname => "Lanttunen", :ssn => '123456-9876', :email => 'edustaja2@example.com', :password => 'pass123', :password_confirmation => 'pass123'
+        AdvocateUser.create! :firstname => "Rami", :lastname => "Raavas", :student_number => '0123456', :email => 'edustaja1@example.com', :password => 'pass123', :password_confirmation => 'pass123'
+        AdvocateUser.create! :firstname => "Laura", :lastname => "Lanttunen", :student_number => '098765', :email => 'edustaja2@example.com', :password => 'pass123', :password_confirmation => 'pass123'
       end
 
       desc 'Create candidate data from seed.csv'
@@ -146,27 +146,22 @@ namespace :db do
             end
             electoral_alliance.update_attribute :numbering_order_position, row[10]
 
-            def generate_ssn
-              seed   = rand(100)
+            def generate_student_number
               days   = (1..31).to_a
               months = (1..12).to_a
               years  = (50..90).to_a
-              checks = '0123456789ABCDEFHJKLMNPRSTUVWXY'
 
               day   = sprintf "%02d", days[rand(days.length)]
               month = sprintf "%02d", months[rand(months.length)]
               year  = sprintf "%02d", years[rand(years.length)]
-              order = sprintf "%03d", seed
-              check = checks[("#{day}#{month}#{year}#{order}".to_i) % 31]
 
-              "#{day}#{month}#{year}-#{order}#{check}"
-
+              "#{day}#{month}#{year}"
             end
 
             create_candidate!(electoral_alliance, faculty, row[0],
                                           :lastname               => row[1],
                                           :firstname              => row[2],
-                                          :social_security_number => (row[3] || generate_ssn),
+                                          :student_number         => (row[3] || generate_student_number),
                                           :address                => row[5],
                                           :postal_information     => row[6],
                                           :email                  => "#{row[7].split('@')[0]}@example.com",

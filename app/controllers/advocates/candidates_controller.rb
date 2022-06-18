@@ -76,7 +76,7 @@ class Advocates::CandidatesController < AdvocatesController
       .permit(
         :lastname,
         :firstname,
-        :social_security_number,
+        :student_number,
         :faculty_id,
         :address,
         :postal_information,

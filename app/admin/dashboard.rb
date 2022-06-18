@@ -12,7 +12,6 @@ ActiveAdmin.register_page "Dashboard" do
           section 'Ehdokastiedot' do
             ul do
               li link_to 'Yksinkertaistettu lista ehdokastiedoista', simple_listings_path
-              li link_to 'Ehdokkaat, joilla sama henkilöturvatunnus', same_ssn_listings_path
               li link_to 'Edustajien muutokset ehdokasasettelun päättymisen jälkeen', manage_candidate_attribute_changes_path
             end
           end
