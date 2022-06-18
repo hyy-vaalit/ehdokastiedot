@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_04_095127) do
+ActiveRecord::Schema.define(version: 2021_02_08_153840) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -154,6 +154,8 @@ ActiveRecord::Schema.define(version: 2021_02_04_095127) do
     t.string "shorten"
     t.integer "primary_advocate_id"
     t.integer "secondary_advocate_id"
+    t.string "invite_code", null: false
+    t.index ["invite_code"], name: "index_electoral_alliances_on_invite_code", unique: true
   end
 
   create_table "electoral_coalitions", id: :serial, force: :cascade do |t|

@@ -4,14 +4,25 @@
 <h1>[<%= @alliance.shorten %>] <%= @alliance.name %></h1>
 
 <ul>
-  <li>Ehdokkaita: <%= @alliance.candidates.count %> / <%= @alliance.expected_candidate_count %></li>
+  <li>
+    Ehdokkaita:
+    <%= @alliance.candidates.count %>
+    /
+    <%= @alliance.expected_candidate_count ? @alliance.expected_candidate_count : '-' %>
+  </li>
   <% if can? :create, Candidate %>
     <li><%= link_to "Muokkaa vaaliliiton tietoja", edit_advocates_alliance_path(@alliance) %></li>
     <li><%= link_to "Luo ehdokas", new_advocates_alliance_candidate_path(@alliance) %></li>
   <% else %>
     <li>Ehdokasasettelu on päättynyt eikä uusia ehdokkaita voi enää luoda.</li>
   <% end %>
-  <li>Voit käyttää selaimen zoom-toimintoa (ctrl+ tai cmd+), jos teksti on liian pientä.</li>
+
+
+</ul>
+
+<h2>Ohjeita</h2>
+<ul>
+  <li>Hyödynnä selaimen zoom-toimintoa (ctrl+ tai cmd+), jos teksti on liian pientä.</li>
   <li>Ehdokasnumerot jaetaan nousevassa järjestyksessä:<br/> listan ensimmäinen ehdokas saa pienimmän ehdokasnumeron ja listan viimeinen ehdokas suurimman.</li>
 </ul>
 

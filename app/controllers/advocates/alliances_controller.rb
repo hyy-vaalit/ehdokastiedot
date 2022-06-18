@@ -69,6 +69,8 @@ class Advocates::AlliancesController < AdvocatesController
       .permit(
         :name,
         :shorten,
-        :expected_candidate_count)
+        :expected_candidate_count,
+        :invite_code
+      )
   end
 end
