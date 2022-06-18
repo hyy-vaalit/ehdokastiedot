@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_08_153840) do
+ActiveRecord::Schema.define(version: 2022_06_18_134244) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -112,7 +112,6 @@ ActiveRecord::Schema.define(version: 2021_02_08_153840) do
     t.string "firstname"
     t.string "lastname"
     t.string "candidate_name"
-    t.string "social_security_number"
     t.integer "faculty_id"
     t.string "address"
     t.string "postal_information"
@@ -126,6 +125,7 @@ ActiveRecord::Schema.define(version: 2021_02_08_153840) do
     t.boolean "cancelled", default: false
     t.boolean "marked_invalid", default: false
     t.string "phone_number"
+    t.string "student_number", null: false
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
