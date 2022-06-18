@@ -1,4 +1,7 @@
 class ElectoralAlliance < ActiveRecord::Base
+  attribute :invite_code, :string, default: -> { default_invite_code }
+  validates_length_of :invite_code, minimum: 4
+
   has_many :candidates, :dependent => :nullify
 
   belongs_to :advocate_user, :foreign_key => :primary_advocate_id, optional: true
@@ -10,8 +13,8 @@ class ElectoralAlliance < ActiveRecord::Base
   scope :for_dashboard, -> { order("primary_advocate_id ASC") }
   scope :by_numbering_order, -> { order("#{table_name}.numbering_order") }
 
-  validates_presence_of :name, :shorten
-  validates_uniqueness_of :shorten, :name
+  validates_presence_of :name, :shorten, :invite_code
+  validates_uniqueness_of :shorten, :name, :invite_code
 
   validates_length_of :shorten, :in => 2..6
   validates_presence_of :expected_candidate_count, :allow_nil => true
@@ -44,5 +47,9 @@ class ElectoralAlliance < ActiveRecord::Base
   def strip_whitespace_from_name_fields
     self.name.strip!
     self.shorten.strip!
+  end
+
+  def self.default_invite_code
+    Devise.friendly_token[0,4].upcase
   end
 end

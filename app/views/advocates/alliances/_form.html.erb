@@ -6,4 +6,21 @@
 <%= f.input :name,    :label => "Vaaliliiton nimi" %>
 <%= f.input :shorten, :label => "Vaaliliiton lyhenne (2-6 merkkiä)", :hint => "Lyhennettä käytetään vaalituloksen esittämisessä: esimerkiksi TaVi, ParasS, WTF. HYY varaa itselleen oikeuden muuttaa lyhennettä tarvittaessa." %>
 
-<%= f.input :expected_candidate_count, :label => "Kuinka monta ehdokasta liittoon tulee" %>
+<%= f.input :expected_candidate_count,
+  label: "Ehdokkaiden odotettu lukumäärä",
+  hint:
+    "Jätä kenttä tyhjäksi, jos ehdokkaiden odotettu lukumäärä ei ole vielä tiedossa.
+    Ehdokkaiden odotettu lukumäärä on syötettävä ennen ehdokasasettelun päättymistä.
+    Tietoa käytetään varmistamaan, että kaikki ehdokastiedot on ilmoitettu." %>
+
+<%= f.input :invite_code,
+      label: "Kutsukoodi vaaliliittoon ilmoittautumiseksi",
+      hint:
+        "Kutsukoodi suojaa vaaliliittoa tuntemattomilta ehdokkailta.
+        Vaaliliiton ehdokkaaksi tarjoutuvan henkilön on tunnettava kutsukoodi
+        voidakseen ilmoittautua vaaliliiton ehdokkaaksi.
+        Vaaliliiton edustaja saa asettaa kutsukoodin vapaasti.
+        Kutsukoodin tulee olla voimassa sillä hetkellä, kun ehdokasilmoittautuminen rekisteröidään.
+        Kutsukoodin vaihtaminen ei vaikuta aiemmin vastaanotettuihin ilmoittautumisiin.
+        Kun kutsukoodi vaihdetaan uuteen, edellisellä kutsukoodilla ei voi luoda uutta ilmoittautumista."
+ %>
