@@ -19,6 +19,9 @@ FactoryBot.define do
   factory :electoral_alliance do
     sequence(:name) {|n| "Alliance #{n}"}
     sequence(:shorten) {|n| "a #{n}"}
+    sequence(:invite_code) { |n| "ALLIANCE-#{n}" }
+    sequence(:numbering_order) { |n| n+1 }
+
     expected_candidate_count { 2 }
     secretarial_freeze { true }
     electoral_coalition
@@ -30,6 +33,7 @@ FactoryBot.define do
     sequence(:firstname) {|n| "Matti #{n} Sakari"}
     sequence(:candidate_name) {|n| "Meikalainen, Matti Sakari"}
     sequence(:student_number) { |n| '01234#{n}' }
+
     faculty
     electoral_alliance
   end

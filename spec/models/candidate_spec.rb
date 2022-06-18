@@ -1,7 +1,6 @@
 require 'spec_helper'
 
 describe Candidate do
-
   it 'can give candidate numbers' do
     2.times do |i|
       coalition = FactoryBot.create(:electoral_coalition)
@@ -16,15 +15,13 @@ describe Candidate do
 
     expect(Candidate.give_numbers!).to eq true
 
-    all_candidates = Candidate.all
+    all_candidates = Candidate.by_candidate_number
 
     expect(all_candidates.first.candidate_number).to eq 2
+    expect(all_candidates.last.candidate_number).to eq(Candidate.count + 1)
 
-    all_candidates.each_with_index do |candidate, i|
-      if not all_candidates[i] == all_candidates.last
-        # FIXME: flaky test fails sometimes
-        expect(1 + all_candidates[i].candidate_number).to eq(all_candidates[i+1].candidate_number)
-      end
+    all_candidates.each.with_index(2) do |c, i|
+      expect(c.candidate_number).to eq i
     end
   end
 end

@@ -1,0 +1,17 @@
+<dl>
+  <dt>Vaaliliiton nimi</dt>
+  <dd><%= alliance.name %></dd>
+
+  <% if alliance.advocate_user %>
+    <dt>Vaaliliiton edustaja</dt>
+    <dd><%= alliance.advocate_user&.friendly_name %></dd>
+
+    <dt>Sähköpostiosoite</dt>
+    <dd><%= alliance.advocate_user&.email %></dd>
+
+    <% if alliance.advocate_user&.phone_number&.present? %>
+      <dt>Puhelinnumero</dt>
+      <dd><%= alliance.advocate_user.phone_number %></dd>
+    <% end %>
+  <% end %>
+</dl>

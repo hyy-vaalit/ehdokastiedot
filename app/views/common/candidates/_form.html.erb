@@ -1,0 +1,130 @@
+<script>
+  $(function() {
+    var email_element          = $('#candidate_email');
+    var firstname_element      = $('#candidate_firstname');
+    var lastname_element       = $('#candidate_lastname');
+    var candidate_name_element = $('#candidate_candidate_name');
+    var candidate_notes_element = $('#candidate_notes');
+
+    email_element.bind('focusin', function(event) {
+      suggest_email_address(email_element, firstname_element, lastname_element);
+    });
+
+    firstname_element.bind('focusout', function(event) {
+      if (lastname_element.val() && firstname_element.val() ) {
+        suggest_candidate_name(candidate_name_element, firstname_element, lastname_element);
+        suggest_email_address(email_element, firstname_element, lastname_element);
+      }
+    });
+
+    candidate_name_element.bind('focusin', function(event) {
+      suggest_candidate_name(candidate_name_element, firstname_element, lastname_element);
+    });
+
+    candidate_name_element.bind('focusout', function(event) {
+      replace_quotes(candidate_name_element);
+      validate_candidate_name(candidate_name_element, firstname_element, lastname_element);
+    });
+
+    function addNote(element, message) {
+      var matchMessage = new RegExp(message, "gi");
+      var oldValue = element.val();
+
+      if (oldValue.match(matchMessage)) {
+        return;
+      }
+      else if (oldValue != "") {
+        message = ", " + message;
+      }
+
+      element.val(oldValue + message);
+    }
+
+    // Attempt to use single quotes only to ease out human moderation of nicknames.
+    // https://op.europa.eu/en/web/eu-vocabularies/formex/physical-specifications/character-encoding/quotation-marks
+    function replace_quotes(element) {
+      element.val(function(index, value) {
+        return value.replace(/["”“‟‘’‛‚„«»]/g, "'");
+      });
+    }
+
+    function validate_candidate_name(candidate_name_element, firstname_element, lastname_element) {
+      const candidate_name = candidate_name_element.val();
+      const lastname = lastname_element.val().trim();
+
+      const starts_with_lastname = new RegExp(`^${lastname}, `);
+      if (!candidate_name.match(starts_with_lastname)) {
+        addNote(candidate_notes_element, "Tarkista ehdokasnimi: sukunimi ensimmäiseksi")
+      }
+
+      if (candidate_name.match(/'/)) {
+        const ends_with_nickname = new RegExp(`'$`);
+        if (!candidate_name.match(ends_with_nickname)) {
+          addNote(candidate_notes_element, "Tarkista ehdokasnimi: puhuttelunimi viimeiseksi")
+        }
+
+        if (candidate_name.match(/'/g).length != 2) {
+          addNote(candidate_notes_element, "Tarkista ehdokasnimi: heittomerkkien lukumäärä")
+        }
+      }
+    }
+
+    function suggest_candidate_name(candidate_name_element, firstname_element, lastname_element) {
+      var lastname = lastname_element.val().trim();
+      var firstname = first_of_firstnames(firstname_element.val().trim());
+
+      if (!candidate_name_element.val() && lastname && firstname) {
+        candidate_name_element.val(lastname + ', ' + firstname);
+      }
+    }
+
+    function suggest_email_address(email_element, firstname_element, lastname_element) {
+      var suggested_domain = "@helsinki.fi";
+      var lastname         = lastname_element.val().toLowerCase().trim();
+      var firstname        = first_of_firstnames(firstname_element.val().toLowerCase().trim());
+
+      if (!email_element.val() && firstname && lastname) {
+        email_element.val(firstname + '.' + lastname + suggested_domain);
+      }
+    }
+
+    function first_of_firstnames(firstnames) {
+      return firstnames.split(' ')[0];
+    }
+  });
+</script>
+
+<%= f.input :lastname, :label => "Sukunimi", input_html: { disabled: read_only } %>
+<%= f.input :firstname, :label => "Kaikki etunimet", input_html: { disabled: read_only } %>
+<%= f.input :student_number, :label => "Opiskelijanumero", input_html: { disabled: read_only } %>
+<%= f.input :faculty, :label => "Tiedekunta", input_html: { disabled: read_only } %>
+<%= f.input :address, :label => "Katuosoite", input_html: { disabled: read_only } %>
+<%= f.input :postal_code, :label => "Postinumero", input_html: { disabled: read_only } %>
+<%= f.input :postal_city, :label => "Kaupunki", input_html: { disabled: read_only } %>
+<%= f.input :phone_number, :label => "Puhelinnumero", input_html: { disabled: read_only } %>
+
+<%= f.input :email,
+  input_html: { disabled: read_only },
+  label: "Sähköpostiosoite",
+  hint: "Ehdokasilmoituksen vahvistusilmoitus lähetetään sähköpostitse tähän osoitteeseen."
+%>
+
+<%= f.input :candidate_name,
+  input_html: { disabled: read_only },
+  label: "Ehdokasnimi (Sukunimi, Etunimi)",
+  hint: "Ehdokkaan nimi siinä muodossa, kuin se halutaan merkittäväksi ehdokaslistojen yhdistelmään.
+    <br>
+    Etunimen rinnalla tai sen sijasta voidaan käyttää yleisesti tunnettua puhuttelunimeä tai etunimeä lyhennettynä:
+    <br>Sukunimi, Etunimi
+    <br>Sukunimi, Puhuttelunimi
+    <br>Sukunimi, Etunimi 'Puhuttelunimi'".html_safe
+%>
+
+<%= f.input :notes,
+  label: "Huomioita vaaliliiton edustajalle tai HYYn vaalityöntekijälle",
+  input_html: {
+    class: 'autogrow',
+    rows: 3,
+    disabled: read_only
+  }
+%>

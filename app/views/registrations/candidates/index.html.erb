@@ -1,0 +1,46 @@
+<h1>Rekisteröidy ehdokkaaksi vaaliliittoon</h1>
+
+<p>
+  Voit rekisteröityä edustajistovaalien ehdokkaaksi, kun olet saanut kutsukoodin vaaliliiton
+  edustajalta.
+</p>
+
+<p>
+  Mikäli haluat rekisteröityä itsenäisenä ehdokkaana ilman vaaliliittoa, ota yhteys
+  <a href="https://hyy.fi/vaalit">HYYn vaalityöntekijään</a>.
+</p>
+
+<p>
+  <%= form_tag new_registrations_candidate_path, method: :get do -%>
+    <label for="invite_code">Vaaliliiton kutsukoodi</label>
+    <input type="text" name="invite_code">
+
+    <input type="submit" value="Jatka">
+  <% end -%>
+</p>
+
+<h2>Rekisteröityneet vaaliliitot</h2>
+
+<table class="registrations-alliance-listing">
+  <th>Vaaliliitto</th>
+  <th>Edustajan nimi</th>
+  <th>Edustajan yhteystiedot</th>
+
+  <% ElectoralAlliance.all.each do |a| %>
+    <tr>
+      <td><%= a.name %></td>
+
+      <% if a.advocate_user %>
+        <td><%= a.advocate_user.friendly_name %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+
+      <% if a.advocate_user %>
+        <td><%= a.advocate_user.email %></td>
+      <% else %>
+        <td></td>
+      <% end %>
+    <% end %>
+  </tr>
+</table>

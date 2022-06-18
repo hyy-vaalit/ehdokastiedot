@@ -40,7 +40,18 @@ Kopioi `.env.example` -> `.env` ja aseta sinne sopivat defaultit.
 a) Putsaa tietokanta ja aja seed:
 ```bash
 rake db:runts
+
+# Listaa vaihtoehdot db:seed
+rake -T db:seed
+
+# Minimiasetukset
+rake db:seed:development:configuration
+rake db:seed:development:faculties
+
+# Tai vaihtoehtoisesti kaikki ehdokkaat sisään, ks. lib/tasks/seed_development.rake
 rake db:seed:dev
+
+# Tarkista että testit ei feilaa
 rspec
 ```
 

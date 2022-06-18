@@ -2,8 +2,8 @@ class ElectoralAlliance < ActiveRecord::Base
   attribute :invite_code, :string, default: -> { default_invite_code }
   validates_length_of :invite_code, minimum: 4
   validates_format_of :invite_code,
-    with: /\A[A-Za-z0-9]+\z/,
-    message: "only English alphanumeric characters allowed"
+    with: /\A[A-Za-z0-9-]+\z/,
+    message: "allows only English alphanumeric and - characters"
 
   has_many :candidates, :dependent => :nullify
 

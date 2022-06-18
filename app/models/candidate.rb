@@ -14,19 +14,24 @@ class Candidate < ActiveRecord::Base
   scope :valid, -> { where(:cancelled => false, :marked_invalid => false) }
   scope :votable, -> {  where(:cancelled => false, :marked_invalid => false) }
   scope :by_numbering_order, -> {  order("#{table_name}.numbering_order") }
+  scope :by_candidate_number, -> { order("#{table_name}.candidate_number") }
 
-  # Advocate must be able to fill candidate information which lacks of information.
-  # The information may not be available even in the paper form, but it can be
-  # submitted later. Validation must not be too strict!
-  validates_presence_of :lastname, :electoral_alliance
+  # The validation was intentionally loose with the paper form. However, the validation can now be
+  # reasonably stricter since the candidacy form is nowdays filled electronically by the candidate.
+  validates_presence_of :lastname,
+    :firstname,
+    :candidate_name,
+    :email,
+    :student_number,
+    :electoral_alliance
 
   validates_format_of :candidate_name, :with => /\A(.+), (.+)\Z/, # Lastname, Firstname Whatever Here 'this' or "this"
                                        :message => "Ehdokasnimen on oltava muotoa Sukunimi, Etunimi, ks. ohje."
 
   validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
 
-  before_save :clear_linebreaks_from_notes,
-              :strip_whitespace_from_name_fields
+  before_save :clear_linebreaks_from_notes!
+  before_save :strip_whitespace!
 
   # If candidate numbers have been given, order by candidate numbers.
   # Otherwise order by alliance id and numbering order.
@@ -58,10 +63,17 @@ class Candidate < ActiveRecord::Base
 
     Candidate.transaction do
       Candidate.update_all :candidate_number => 0
-      candidates_in_order = Candidate.select('candidates.*').joins(:electoral_alliance).joins(:electoral_alliance => :electoral_coalition).reorder(
-        "electoral_coalitions.numbering_order, electoral_alliances.numbering_order, candidates.numbering_order").valid.all
-      candidates_in_order.each_with_index do |candidate, i|
-        candidate.update_attribute :candidate_number, i+2
+
+      candidates_in_order = Candidate
+        .select('candidates.*')
+        .joins(:electoral_alliance)
+        .joins(:electoral_alliance => :electoral_coalition)
+        .reorder("electoral_coalitions.numbering_order, electoral_alliances.numbering_order, candidates.numbering_order")
+        .valid
+        .all
+
+      candidates_in_order.each.with_index(2) do |candidate, i|
+        candidate.update_attribute :candidate_number, i
       end
     end
 
@@ -78,14 +90,20 @@ class Candidate < ActiveRecord::Base
 
   protected
 
-  def clear_linebreaks_from_notes
+  def clear_linebreaks_from_notes!
     self.notes = self.notes.gsub(/(\r\n|\n|\r)/, ', ') if self.notes
   end
 
-  def strip_whitespace_from_name_fields
+  def strip_whitespace!
+    self.email.strip!
     self.candidate_name.strip!
     self.firstname.strip!
     self.lastname.strip!
+    self.student_number.strip!
+    self&.address&.strip!
+    self&.postal_code&.strip!
+    self&.postal_city&.strip!
+    self&.phone_number&.strip!
   end
 
 end

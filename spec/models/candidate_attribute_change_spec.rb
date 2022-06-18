@@ -3,7 +3,7 @@ require 'spec_helper'
 describe CandidateAttributeChange do
 
   it 'creates a new row from attribute' do
-    candidate = FactoryBot.build(:candidate)
+    candidate = FactoryBot.create(:candidate)
 
     CandidateAttributeChange.create_from!(candidate.id, {"address"=>["Old address", "New address"], "email"=>["old@example.com", "new@example.com"]})
 
@@ -21,5 +21,4 @@ describe CandidateAttributeChange do
     expect(c2.new_value).to eq "new@example.com"
     expect(c2.candidate_id).to eq candidate.id
   end
-
 end

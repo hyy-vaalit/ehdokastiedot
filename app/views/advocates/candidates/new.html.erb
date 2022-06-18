@@ -4,9 +4,14 @@
 
 <h1>Uusi ehdokas</h1>
 
-<%= semantic_form_for @candidate, :url => advocates_alliance_candidates_path(@alliance) do |f| %>
-
-  <%= render :partial => "form", :locals => { :candidate => @candidate, :f => f } %>
+<%= semantic_form_for @candidate, url: advocates_alliance_candidates_path(@alliance) do |f| %>
+  <%= render partial: "common/candidates/form",
+    locals: {
+      candidate: @candidate,
+      read_only: false,
+      f: f
+    }
+  %>
 
   <%= f.actions do %>
     <%= f.action :submit, :as => :button, :label => "Tallenna" %>
