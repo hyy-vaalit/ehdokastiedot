@@ -7,7 +7,8 @@ ActiveAdmin.register Candidate do
                 :candidate_name,
                 :student_number,
                 :address,
-                :postal_information,
+                :postal_code,
+                :postal_city,
                 :phone_number,
                 :email,
                 :faculty_id,
@@ -68,7 +69,7 @@ ActiveAdmin.register Candidate do
   end
 
   show :title => :candidate_name do
-    attributes_table :lastname, :firstname, :candidate_name, :student_number, :address, :postal_information, :email, :faculty, :electoral_alliance, :cancelled, :notes
+    attributes_table :lastname, :firstname, :candidate_name, :student_number, :address, :postal_code, :postal_city, :email, :faculty, :electoral_alliance, :cancelled, :notes
   end
 
   filter :candidate_number
@@ -77,7 +78,8 @@ ActiveAdmin.register Candidate do
   filter :candidate_name
   filter :student_number
   filter :address
-  filter :postal_information
+  filter :postal_code
+  filter :postal_city
   filter :faculty
   filter :electoral_alliance
   filter :email
@@ -109,7 +111,8 @@ ActiveAdmin.register Candidate do
       end
       f.inputs 'Contact' do
         f.input :address
-        f.input :postal_information
+        f.input :postal_code
+        f.input :postal_city
         f.input :phone_number
         f.input :email
       end
