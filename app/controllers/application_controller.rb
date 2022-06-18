@@ -53,7 +53,7 @@ class ApplicationController < ActionController::Base
     return current_admin_user if current_admin_user
     return current_advocate_user if current_advocate_user
 
-    raise "Unknown current_user: #{current_user}"
+    return nil # guest
   end
 
   rescue_from CanCan::AccessDenied do |exception|
