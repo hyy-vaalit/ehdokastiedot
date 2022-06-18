@@ -13,7 +13,9 @@ class AdminUser < ActiveRecord::Base
 
   scope :secretaries, -> { where(:role => "secretary") }
 
-  validates_presence_of :role
+  validates :role,
+    presence: true,
+    inclusion: { in: self.roles.keys }
 
   def is_secretary?
     role == 'secretary'

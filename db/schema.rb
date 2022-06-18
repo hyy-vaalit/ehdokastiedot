@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_18_134244) do
+ActiveRecord::Schema.define(version: 2022_06_18_134907) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -76,7 +76,6 @@ ActiveRecord::Schema.define(version: 2022_06_18_134244) do
   end
 
   create_table "advocate_users", id: :serial, force: :cascade do |t|
-    t.string "ssn"
     t.datetime "created_at"
     t.datetime "updated_at"
     t.string "email", default: "", null: false
@@ -91,10 +90,8 @@ ActiveRecord::Schema.define(version: 2022_06_18_134244) do
     t.string "last_sign_in_ip"
     t.string "firstname"
     t.string "lastname"
-    t.string "postal_address"
-    t.string "postal_code"
-    t.string "postal_city"
     t.string "phone_number"
+    t.string "student_number", default: "bogus", null: false
     t.index ["email"], name: "index_advocate_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_advocate_users_on_reset_password_token", unique: true
   end
