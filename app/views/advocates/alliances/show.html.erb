@@ -7,32 +7,40 @@
   <li>
     Kutsukoodi: <strong><%= @alliance.invite_code %></strong>
   </li>
+
   <li>
     Ehdokkaita:
     <%= @alliance.candidates.count %>
     /
     <%= @alliance.expected_candidate_count ? @alliance.expected_candidate_count : '-' %>
   </li>
-  <% if can? :create, Candidate %>
+
+  <% if can? :update, ElectoralAlliance %>
     <li><%= link_to "Muokkaa vaaliliiton tietoja", edit_advocates_alliance_path(@alliance) %></li>
-    <li><%= link_to "Luo ehdokas", new_advocates_alliance_candidate_path(@alliance) %></li>
   <% else %>
-    <li>Ehdokasasettelu on päättynyt eikä uusia ehdokkaita voi enää luoda.</li>
+    <li>Ehdokasasettelu on päättynyt eikä vaaliliittoa voi muokata.</li>
   <% end %>
-
-
 </ul>
 
 <h2>Ohjeita</h2>
 <ul>
   <li>Hyödynnä selaimen zoom-toimintoa (ctrl+ tai cmd+), jos teksti on liian pientä.</li>
-  <li>Ehdokasnumerot jaetaan nousevassa järjestyksessä:<br/> listan ensimmäinen ehdokas saa pienimmän ehdokasnumeron ja listan viimeinen ehdokas suurimman.</li>
+  <li>
+    Ehdokasnumerot jaetaan nousevassa järjestyksessä:
+    <br/>
+    listan ensimmäinen ehdokas saa pienimmän ehdokasnumeron ja listan viimeinen ehdokas suurimman.
+  </li>
 </ul>
 
 <% if @alliance.candidates.any? %>
-  <%= render :partial => "advocates/candidates/list", :locals => { :candidates => @alliance.candidates, :scope => "advocates" } %>
+  <%= render partial: "advocates/candidates/list",
+    locals: {
+      candidates: @alliance.candidates,
+      scope: "advocates"
+    }
+  %>
 <% else %>
   <p>
-    Vaaliliitossa ei vielä ole yhtään ehdokasta.
+    Vaaliliitossa ei ole yhtään ehdokasta.
   </p>
 <% end %>
