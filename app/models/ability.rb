@@ -5,6 +5,9 @@ class GuestUser; end
 #    create: [:new, :create]
 #    update: [:edit, :update]
 #    destroy: [:destroy]
+#    manage == full permissions
+#
+# https://github.com/CanCanCommunity/cancancan/blob/develop/docs/README.md
 class Ability
   include CanCan::Ability
 
@@ -71,7 +74,6 @@ class Ability
       cannot [:create, :new, :update, :destroy, :edit], [ElectoralAlliance, Candidate]
     end
   end
-
 
   def guest_user(user)
     # TODO: if not GlobalConfiguration.candidate_nomination_period_effective?
