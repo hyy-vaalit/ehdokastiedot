@@ -27,7 +27,11 @@ class Registrations::CandidatesController < RegistrationsController
     @advocate_user = @alliance.advocate_user if @alliance
 
     if @alliance.nil?
-      flash[:alert] = "Kutsukoodi \"#{@invite_code_upcase}\" ei ole voimassa."
+      if @invite_code_upcase.blank?
+        flash[:alert] = "Pyydä vaaliliiton edustajalta kutsukoodi, jotta voit rekisteröityä vaaliliiton ehdokkaaksi."
+      else
+        flash[:alert] = "Kutsukoodi \"#{@invite_code_upcase}\" ei ole voimassa."
+      end
       redirect_to registrations_candidates_path
     end
   end
