@@ -88,5 +88,4 @@ class Advocates::CandidatesController < AdvocatesController
         :numbering_order_position
       )
   end
-
 end
