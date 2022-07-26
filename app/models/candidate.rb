@@ -35,7 +35,7 @@ class Candidate < ActiveRecord::Base
   end
 
   def self.candidate_numbers_given?
-    first && where(:candidate_number => nil).empty?
+    first && valid.where(:candidate_number => nil).empty?
   end
 
   def invalid!
