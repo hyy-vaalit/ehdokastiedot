@@ -52,9 +52,9 @@ class Ability
     can :access, :admin
     can :read, ActiveAdmin::Page, :name => "Dashboard"
 
-    can [:read, :new, :create, :update], Candidate
+    can [:read, :create, :update], Candidate
 
-    can [:read, :new, :create, :done], ElectoralAlliance
+    can [:read, :create, :done], ElectoralAlliance
     can :update, ElectoralAlliance do |alliance|
       not alliance.secretarial_freeze?
     end
@@ -63,18 +63,20 @@ class Ability
   def advocate_user(user)
     can :access, :advocate if GlobalConfiguration.advocate_login_enabled?
 
-    can [:manage, :index, :new, :show, :edit, :update, :create, :destroy], [ElectoralAlliance, Candidate]
+    can [:read], ElectoralAlliance
+    can [:read], Candidate
 
-    if not GlobalConfiguration.candidate_nomination_period_effective?
-      cannot [:create, :new, :update, :destroy], ElectoralAlliance
-      cannot [:create, :new, :destroy], Candidate
+    if GlobalConfiguration.candidate_nomination_period_effective?
+      can [:create, :update, :destroy], ElectoralAlliance
+      can [:create, :update, :destroy], Candidate
     end
 
     if GlobalConfiguration.candidate_data_frozen?
-      cannot [:create, :new, :update, :destroy, :edit], [ElectoralAlliance, Candidate]
+      cannot [:create, :update, :destroy], [ElectoralAlliance, Candidate]
     end
   end
 
+  # TODO: As CandidateUser
   def guest_user(user)
     # TODO: if not GlobalConfiguration.candidate_nomination_period_effective?
     can [:index, :new, :show, :create], Candidate
