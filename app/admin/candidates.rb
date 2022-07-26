@@ -85,7 +85,6 @@ ActiveAdmin.register Candidate do
   filter :email
   filter :notes
   filter :cancelled, :as => :select
-  filter :marked_invalid, :as => :select
 
   form do |f|
     alliance_id = f.object.new_record? ? params[:electoral_alliance_id] : f.object.electoral_alliance_id

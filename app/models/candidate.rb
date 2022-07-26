@@ -10,9 +10,8 @@ class Candidate < ActiveRecord::Base
   belongs_to :faculty, optional: true
 
   scope :cancelled, -> { where(:cancelled => true) }
+  scope :valid, -> { where(:cancelled => false) }
   scope :without_alliance, -> { where(:electoral_alliance_id => nil) }
-  scope :valid, -> { where(:cancelled => false, :marked_invalid => false) }
-  scope :votable, -> {  where(:cancelled => false, :marked_invalid => false) }
   scope :by_numbering_order, -> {  order("#{table_name}.numbering_order") }
   scope :by_candidate_number, -> { order("#{table_name}.candidate_number") }
 
@@ -41,10 +40,6 @@ class Candidate < ActiveRecord::Base
 
   def self.candidate_numbers_given?
     first && valid.where(:candidate_number => nil).empty?
-  end
-
-  def invalid!
-    self.update_attribute :marked_invalid, true
   end
 
   def cancel!
