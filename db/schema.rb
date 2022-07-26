@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_06_18_141959) do
+ActiveRecord::Schema.define(version: 2022_07_26_101433) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -119,7 +119,6 @@ ActiveRecord::Schema.define(version: 2022_06_18_141959) do
     t.datetime "created_at"
     t.datetime "updated_at"
     t.boolean "cancelled", default: false
-    t.boolean "marked_invalid", default: false
     t.string "phone_number"
     t.string "student_number", null: false
     t.string "postal_code"
