@@ -63,13 +63,17 @@ allowfullscreen></iframe>
     </ul>
   </li>
   <li>
-    <%= link_to 'Anna ehdokkaille numerot', give_numbers_admin_candidates_path,
-                                            :class=>"btn btn-danger",
-                                            :data => {:confirm => "Jaetaanko ehdokasnumerot?"} %>
+    <%= link_to 'Anna ehdokkaille numerot',
+      give_candidate_numbers_manage_danger_zone_path,
+        method: :post,
+        class: "btn btn-danger",
+        data: { :confirm => "Jaetaanko ehdokasnumerot?" }
+    %>
     <ul>
-      <li>Ks. ohjeet renkaiden järjestämisestä.</li>
+      <li>Lue yllä olevat ohjeet renkaiden järjestämisestä.</li>
       <li>Kun renkaiden keskinäinen järjestys on määritetty, ehdokasnumerot voidaan jakaa.</li>
       <li>Ehdokasnumerot jaetaan samassa järjestyksessä kuin missä ehdokkaat näkyvät "Ehdokkaat"-sivulla.</li>
+      <li>Ehdokkuutensa peruneet henkilöt eivät saa ehdokasnumeroa, vaikka näkyvät omassa listauksessaan.</li>
     </ul>
   </li>
 </ul>
