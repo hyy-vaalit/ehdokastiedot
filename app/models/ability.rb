@@ -23,6 +23,7 @@ class Ability
 
   private
 
+  # TODO: CandidateUser can edit only their own info
   def initialize_roles(user)
     case user.class.to_s
       when "AdminUser"
@@ -76,9 +77,9 @@ class Ability
     end
   end
 
-  # TODO: As CandidateUser
+  # TODO: Move these to CandidateUser
   def guest_user(user)
     # TODO: if not GlobalConfiguration.candidate_nomination_period_effective?
-    can [:index, :new, :show, :create], Candidate
+    can [:read, :create, :update, :cancel], Candidate
   end
 end

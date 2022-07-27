@@ -96,7 +96,10 @@
 
 <%= f.input :lastname, :label => "Sukunimi", input_html: { disabled: read_only } %>
 <%= f.input :firstname, :label => "Kaikki etunimet", input_html: { disabled: read_only } %>
-<%= f.input :student_number, :label => "Opiskelijanumero", input_html: { disabled: read_only } %>
+
+<%# student_number is read from authentication info and cannot be edited %>
+<%= f.input :student_number, :label => "Opiskelijanumero", input_html: { disabled: true } %>
+
 <%= f.input :faculty, :label => "Tiedekunta", input_html: { disabled: read_only } %>
 <%= f.input :address, :label => "Katuosoite", input_html: { disabled: read_only } %>
 <%= f.input :postal_code, :label => "Postinumero", input_html: { disabled: read_only } %>

@@ -1,7 +1,7 @@
 <h1>Rekisteröidy ehdokkaaksi vaaliliittoon</h1>
 
 <h2>Vaaliliiton tiedot</h2>
-<%= render partial: "one_alliance", locals: { alliance: @alliance } %>
+<%= render partial: "one_alliance", locals: { alliance: @candidate.electoral_alliance } %>
 
 <h2>Ehdokastiedot</h2>
 <%= semantic_form_for @candidate, :url => registrations_candidate_path(invite_code: @invite_code_upcase) do |f| %>
@@ -14,6 +14,17 @@
   %>
 
   <%= f.actions do %>
-    <%= f.action :submit, :as => :button, :label => "Tallenna" %>
+    <%= f.action :submit, as: :button, label: "Tallenna" %>
   <% end %>
 <% end %>
+
+<hr>
+
+<div class="align-with-formtastic-btn">
+  <%= button_to "Peruuta ehdokkuus",
+    cancel_registrations_candidate_path,
+    class: "btn btn-danger",
+    method: :post,
+    data: { confirm: 'Peruutetaanko ehdokkuus?' }
+  %>
+</div>

@@ -19,8 +19,9 @@ Rails.application.routes.draw do
   end
 
   namespace :registrations do
-    resource :alliances
-    resources :candidates, param: :student_number
+    resource :candidate do
+      post :cancel, to: "candidates#cancel"
+    end
   end
 
   namespace :manage do

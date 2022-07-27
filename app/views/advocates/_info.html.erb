@@ -1,14 +1,31 @@
-Ehdokastietoja käsitellään seuraavasti:
+<%= render partial: "common/registrations/candidate_sign_in_with_invite_code" %>
 
-<h2>Ilmoittaudu ehdokkaaksi edustajistovaaleihin</h2>
+<hr>
+
+<h2>Rekisteröidy vaaliliiton edustajaksi</h2>
 
 <p>
-#TODO: Kerro tässä Vaaliliiton kutsukoodista.
+  Jokaisen ehdokkaaksi ilmoittautuvan henkilön tulee kuulua yhteen vaaliliittoon.
+  Jokaisella vaaliliitolla on edustaja, joka vastaa vaaliliiton ehdokastiedoista.
+  Vaaliliitot voivat muodostaa keskenään vaalirenkaan, jolloin yksi tai useampi vaaliliitto
+  hyötyy toistensa äänimäärästä.
 </p>
 
 <p>
-  &raquo; <%= link_to "Ilmoittaudu tästä", registrations_candidates_path %>
+  Ehdokkaaksi voi ilmoittautua myös ilman vaaliliittoa, jolloin ehdokasta käsitellään teknisesti
+  kuin hän kuuluisi yhden henkilön vaaliliittoon.
 </p>
+
+<p>
+  Jos haluat muodostaa vaaliliiton, ota yhteys vaalit@hyy.fi saadaksesi vaaliliiton edustajan
+  käyttäjätunnuksen.
+</p>
+
+&raquo; <%= link_to "Vaaliliiton edustajan sisäänkirjautuminen", advocates_alliances_path %>
+
+<hr>
+
+<h1>#TODO: Prosessikirjoita ehdokasilmoittautumisen kulku</h1>
 
 <h2>Ennen ehdokasasettelun päättymistä (<%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %>)</h2>
 <ul>
@@ -20,8 +37,8 @@ Ehdokastietoja käsitellään seuraavasti:
 
 <h2>Ehdokasasettelun päättymisen jälkeen</h2>
 <ul>
-  <li>HYYn vaaliorganisaatio liittää vaaliliitot vaalirenkaisiin paperilomakkeiden perusteella.</li>
-  <li>HYYn sihteeristö vertaa paperilomakkeiden tietoja järjestelmän tietoihin. Jos tiedoissa on eroavaisuuksia, paperilomakkeen tiedot ovat ensisijaiset.</li>
+  <%# <li>HYYn vaaliorganisaatio liittää vaaliliitot vaalirenkaisiin paperilomakkeiden perusteella.</li> %>
+  <%# <li>HYYn sihteeristö vertaa paperilomakkeiden tietoja järjestelmän tietoihin. Jos tiedoissa on eroavaisuuksia, paperilomakkeen tiedot ovat ensisijaiset.</li> %>
   <li>Ehdokkaille lähetetään sähköpostiviesti ehdokasilmoituksen vastaanottamisesta.</li>
 </ul>
 
@@ -36,5 +53,3 @@ Ehdokastietoja käsitellään seuraavasti:
 <p>
   PS. Voit milloin tahansa kopioida tiedot järjestelmästä itsellesi Exceliin CSV-tiedostomuodossa.
 </p>
-
-<%= button_to "Asia selvä!", advocates_alliances_path, :class => "btn", :method => "get" %>
