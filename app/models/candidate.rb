@@ -9,11 +9,20 @@ class Candidate < ActiveRecord::Base
 
   belongs_to :faculty, optional: true
 
-  scope :cancelled, -> { where(:cancelled => true) }
+  scope :cancelled, -> { where(:cancelled => true).order("cancelled_at desc") }
   scope :valid, -> { where(:cancelled => false) }
   scope :without_alliance, -> { where(:electoral_alliance_id => nil) }
-  scope :by_numbering_order, -> {  order("#{table_name}.numbering_order") }
-  scope :by_candidate_number, -> { order("#{table_name}.candidate_number") }
+
+  # by_numbering_order is the order in which candidate numbers will be assigned.
+  # Cancelled candidates are not included in the result.
+  scope :by_numbering_order, -> { valid.reorder("#{table_name}.numbering_order") }
+
+  # by_candidate_number can be used after candidate numbers have been assigned.
+  # Until that point candidate numbers are blank and by_numbering_order should be used instead.
+  #
+  # by_candidate_number does not contain cancelled candidates because they won't have a candidate
+  # number.
+  scope :by_candidate_number, -> { reorder("#{table_name}.candidate_number") }
 
   # Before 2022, the validation was intentionally loose with the paper registration form.
   # However, the validation can now be reasonably stricter since the candidacy form is nowdays
@@ -23,14 +32,14 @@ class Candidate < ActiveRecord::Base
     :candidate_name,
     :email,
     :student_number,
-    :electoral_alliance,
-    :cancelled,
-    :numbering_order
+    :electoral_alliance
 
   validates_format_of :candidate_name, :with => /\A(.+), (.+)\Z/, # Lastname, Firstname Whatever Here 'this' or "this"
                                        :message => "Ehdokasnimen on oltava muotoa Sukunimi, Etunimi, ks. ohje."
 
   validates_format_of :email, :with => /\A[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]+\z/
+
+  validate :unique_non_cancelled_student_number
 
   before_save :clear_linebreaks_from_notes!
   before_save :strip_whitespace!
@@ -46,7 +55,10 @@ class Candidate < ActiveRecord::Base
   end
 
   def cancel!
-    self.update_attribute :cancelled, true
+    self.cancelled = true
+    self.cancelled_at = Time.now.getutc
+
+    self.save!
   end
 
   def self.can_give_numbers?
@@ -87,6 +99,20 @@ class Candidate < ActiveRecord::Base
   end
 
   protected
+
+  def unique_non_cancelled_student_number
+    if !cancelled
+      another = Candidate
+        .valid
+        .where.not(id: id)
+        .where(student_number: student_number)
+        .present?
+
+      if another
+        errors.add :cancelled, "a non-cancelled candidate for student number #{student_number} already exists."
+      end
+    end
+  end
 
   def clear_linebreaks_from_notes!
     self.notes = self.notes.gsub(/(\r\n|\n|\r)/, ', ') if self.notes

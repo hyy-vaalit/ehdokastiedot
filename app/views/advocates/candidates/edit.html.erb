@@ -22,6 +22,7 @@
   <%= f.actions do %>
     <%= f.action :submit, :as => :button, :label => "Tallenna" %>
 
+    <%# TODO: peruutus %>
     <% if can? :destroy, Candidate %>
       <%= link_to "Poista ehdokas", advocates_alliance_candidate_path(@alliance, @candidate),
         method: :delete,

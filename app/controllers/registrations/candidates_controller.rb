@@ -1,28 +1,52 @@
 class Registrations::CandidatesController < RegistrationsController
+  before_action :require_student_number
   before_action :set_invite_code
-  before_action :find_alliance, except: [:index]
+  before_action :set_candidate
 
-  def index
-  end
+  def edit; end
 
-  def edit
-  end
-
-  # TODO: authorize only own student number
   def show
-    @candidate = Candidate.find_by(student_number: params[:student_number])
+    @cancelled_candidates = Candidate.cancelled.where(student_number: session[:student_number])
+  end
+
+  def update
+    if @candidate.update(candidate_params)
+      flash.notice = "Tiedot päivitettiin onnistuneesti!"
+      redirect_to registrations_candidate_path
+    else
+      flash.alert = "Tietojen päivittämisessä meni jotain vikaan."
+      render :edit
+    end
+  end
+
+  def cancel
+    if @candidate.cancel!
+      flash.notice = "Ehdokkuutesi edustajistovaaleissa on peruttu."
+    else
+      flash.error = "Ehdokkuuden peruminen ei onnistunut. Ota yhteys HYYn vaalityöntekijään."
+    end
+
+    redirect_to registrations_candidate_path
   end
 
   def new
+    session[:student_number] = "0123456" # TODO: Change after auth
+
+    if @candidate.present?
+      flash[:notice] = "Opiskelijanumerollasi on voimassa oleva ehdokasilmoittautuminen."
+      redirect_to registrations_candidate_path and return
+    end
+
+    @alliance = find_alliance
+
     # todo: prefill candidate info from session
-    # todo: onko tiedekunta pakollinen
     @candidate = Candidate.new(
       electoral_alliance: @alliance,
       lastname: "Sukuniminen",
       firstname: "Esi Täytetty",
       candidate_name: "Sukunimi, Esi",
       email: "esi.taytetty@helsinki.fi",
-      student_number: "0123456" # TODO
+      student_number: session[:student_number]
     )
     @advocate_user = @alliance.advocate_user if @alliance
 
@@ -32,7 +56,7 @@ class Registrations::CandidatesController < RegistrationsController
       else
         flash[:alert] = "Kutsukoodi \"#{@invite_code_upcase}\" ei ole voimassa."
       end
-      redirect_to registrations_candidates_path
+      redirect_to root_path and return
     end
   end
 
@@ -40,32 +64,54 @@ class Registrations::CandidatesController < RegistrationsController
   # - read student_number from the session so that one can only use student number of their own
   # - find alliance by invite_code so one can only apply to an alliance they have been invited to
   def create
-    @candidate = Candidate.new(
-      student_number: "0123456", # sensitive - don't read from params
-      electoral_alliance: @alliance, # sensitive - don't read from params
-      candidate_name: params["candidate"]["candidate_name"],
-      email: params["candidate"]["email"],
-      lastname: params["candidate"]["lastname"],
-      firstname: params["candidate"]["firstname"],
-    )
-
-    if @candidate.save
-      flash[:notice] = "Ehdokasilmoittautuminen vastaanotettu!"
-      redirect_to registrations_candidate_path(@candidate.student_number)
-    else
-      flash[:error] = "Ehdokasilmoittautuminen ei onnistunut, koska lomakkeen tiedoissa oli virheitä."
-      render :new
+    @alliance = find_alliance
+    @candidate = Candidate.new(candidate_params).tap do |t|
+      t.student_number = session[:student_number] # sensitive
+      t.electoral_alliance = @alliance # sensitive
     end
 
+    if @candidate.save
+      flash.notice = "Ehdokasilmoittautuminen vastaanotettu!"
+      redirect_to registrations_candidate_path(@candidate.student_number)
+    else
+      flash.alert = "Ehdokasilmoittautuminen ei onnistunut, koska lomakkeen tiedoissa oli virheitä."
+      render :new
+    end
   end
 
   protected
+
+  def require_student_number
+    # TODO: change once auth is implemented
+    if session[:student_number].blank?
+      render plain: "TOOD: require student nubmer", status: 401
+    end
+  end
 
   def set_invite_code
     @invite_code_upcase = params[:invite_code]&.upcase&.strip
   end
 
+  def set_candidate
+    @candidate = Candidate.valid.find_by(student_number: session[:student_number])
+  end
+
   def find_alliance
-    @alliance = ElectoralAlliance.find_by(invite_code: @invite_code_upcase)
+    ElectoralAlliance.find_by(invite_code: @invite_code_upcase)
+  end
+
+  def candidate_params
+    params.require(:candidate).permit(
+      :lastname,
+      :firstname,
+      :candidate_name,
+      :faculty_id,
+      :address,
+      :postal_code,
+      :postal_city,
+      :phone_number,
+      :email,
+      :notes
+    )
   end
 end

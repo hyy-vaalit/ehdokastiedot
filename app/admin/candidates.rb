@@ -128,7 +128,9 @@ ActiveAdmin.register Candidate do
         f.input :email
       end
       f.inputs 'Other' do
-        f.input :cancelled
+        f.input :cancelled,
+          label: "Peruttu ehdokkuus",
+          hint: "Vain HYYn vaalityöntekijä voi palauttaa peruutetun ehdokkuuden."
         f.input :faculty
         f.input :notes, :hint => 'Erota tiedot pilkuilla. Rivinvaihdot korvataan automaattisesti pilkuiksi.'
       end
@@ -166,8 +168,12 @@ ActiveAdmin.register Candidate do
   end
 
   member_action :cancel, :method => :post do
-    candidate = Candidate.find(params[:id])
-    candidate.cancel!
+    if Candidate.find(params[:id]).cancel!
+      flash[:notice] = "Ehdokkuuden peruminen onnistui."
+    else
+      flash[:alert] = "Ehdokkuuden peruminen ei onnistunut!"
+    end
+
     redirect_to :action => :show
   end
 end

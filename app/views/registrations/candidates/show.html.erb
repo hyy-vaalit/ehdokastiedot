@@ -1,8 +1,8 @@
-<h1>Rekisteröity ehdokasilmoittautuminen</h1>
+<h1>Rekisteröidy ehdokkaaksi</h1>
 
 <ul>
-  <li>Mikäli haluat muuttaa tietojasi tai ota yhteys vaaliliiton edustajaan.</li>
-  <li>Jos haluat perua ehdokkuutesi, ota yhteys HYYn vaalityöntekijään vaalit@hyy.fi.</li>
+  <li>Ehdokastietoihin liittyvissä kysymyksissä ole ensisijaisesti yhteydessä vaaliliittosi edustajaan.</li>
+  <li>Tarvittaessa myös vaalit@hyy.fi vastaa kysymyksiin.</li>
 </ul>
 
 <% if @candidate %>
@@ -10,7 +10,7 @@
   <%= render partial: "one_alliance", locals: { alliance: @candidate.electoral_alliance } %>
 
   <h2>Ehdokastiedot</h2>
-  <%= semantic_form_for @candidate, :url => registrations_candidates_path(invite_code: @invite_code_upcase) do |f| %>
+  <%= semantic_form_for @candidate, url: registrations_candidate_path(invite_code: @invite_code_upcase) do |f| %>
     <%= render partial: "common/candidates/form",
       locals: {
         candidate: @candidate,
@@ -19,4 +19,33 @@
       }
     %>
   <% end %>
+
+  <div class="align-with-formtastic-btn">
+    <%= button_to "Muokkaa",
+      edit_registrations_candidate_path,
+      class: "non-formtastic-btn btn btn-primary",
+      method: :get
+    %>
+  </div>
+<% else %>
+  <p>
+    Luodaksesi uuden ehdokasilmoittautumisen,
+    <%= link_to "palaa etusivulle", root_path %>
+    ja syötä vaaliliiton kutsukoodi.
+  </p>
+<% end %>
+
+<% if @cancelled_candidates %>
+  <h2>Perutut ehdokkuudet</h2>
+
+  <p>
+    Opiskelijanumerollasi on aiemmin tehty ehdokasilmoittautuminen, joka on sittemmin peruttu.
+  </p>
+
+  <dl>
+    <% @cancelled_candidates.each do |cancelled| %>
+      <dt><%= friendly_datetime(cancelled.cancelled_at) %></dt>
+        <dd><%= cancelled.electoral_alliance.name %></dd>
+    <% end %>
+  </dl>
 <% end %>
