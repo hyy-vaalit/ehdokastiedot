@@ -1,0 +1,21 @@
+<h2>Rekisteröityneet vaaliliitot</h2>
+
+<table class="registrations-alliance-listing">
+  <thead>
+    <th>Vaaliliitto</th>
+    <th>Vaalirengas</th>
+    <th>Edustajan nimi</th>
+    <th>Edustajan yhteystiedot</th>
+  </thead>
+
+  <tbody>
+    <% ElectoralAlliance.by_coalition_id.by_numbering_order.each do |a| %>
+      <tr>
+        <td><%= a.name %></td>
+        <td><%= a&.electoral_coalition&.name %></td>
+        <td><%= a&.advocate_user&.friendly_name %></td>
+        <td><%= a&.advocate_user&.email %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

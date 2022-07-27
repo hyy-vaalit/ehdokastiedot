@@ -14,6 +14,7 @@ class ElectoralAlliance < ActiveRecord::Base
   scope :without_coalition, -> { where(:electoral_coalition_id => nil) }
   scope :ready, -> { where(:secretarial_freeze => true) }
   scope :for_dashboard, -> { order("primary_advocate_id ASC") }
+  scope :by_coalition_id, -> { order("electoral_coalition_id") }
   scope :by_numbering_order, -> { order("#{table_name}.numbering_order") }
 
   validates_presence_of :name, :shorten, :invite_code
