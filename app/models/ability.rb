@@ -68,12 +68,12 @@ class Ability
     can [:read], Candidate
 
     if GlobalConfiguration.candidate_nomination_period_effective?
-      can [:create, :update, :destroy], ElectoralAlliance
-      can [:create, :update, :destroy], Candidate
+      can [:create, :update], ElectoralAlliance
+      can [:create, :update], Candidate
     end
 
     if GlobalConfiguration.candidate_data_frozen?
-      cannot [:create, :update, :destroy], [ElectoralAlliance, Candidate]
+      cannot [:create, :update], [ElectoralAlliance, Candidate]
     end
   end
 
