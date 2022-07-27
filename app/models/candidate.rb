@@ -15,14 +15,17 @@ class Candidate < ActiveRecord::Base
   scope :by_numbering_order, -> {  order("#{table_name}.numbering_order") }
   scope :by_candidate_number, -> { order("#{table_name}.candidate_number") }
 
-  # The validation was intentionally loose with the paper form. However, the validation can now be
-  # reasonably stricter since the candidacy form is nowdays filled electronically by the candidate.
+  # Before 2022, the validation was intentionally loose with the paper registration form.
+  # However, the validation can now be reasonably stricter since the candidacy form is nowdays
+  # filled electronically by the candidate.
   validates_presence_of :lastname,
     :firstname,
     :candidate_name,
     :email,
     :student_number,
-    :electoral_alliance
+    :electoral_alliance,
+    :cancelled,
+    :numbering_order
 
   validates_format_of :candidate_name, :with => /\A(.+), (.+)\Z/, # Lastname, Firstname Whatever Here 'this' or "this"
                                        :message => "Ehdokasnimen on oltava muotoa Sukunimi, Etunimi, ks. ohje."
