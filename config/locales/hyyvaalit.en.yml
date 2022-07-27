@@ -23,6 +23,11 @@ en:
       candidate:
         firstname: "Firstnames"
 en:
+  # https://github.com/activeadmin/activeadmin/blob/master/config/locales/en.yml
   active_admin:
     blank_slate:
       content: "Current scope for %{resource_name} does not have any entries."
+    cancel: "Return without saving"
+    # resources:
+    #   candidate:
+    #     edit_model: "Hello World edit"

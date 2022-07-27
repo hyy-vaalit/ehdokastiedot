@@ -12,6 +12,7 @@ ActiveAdmin.register Candidate do
                 :phone_number,
                 :email,
                 :faculty_id,
+                :cancelled,
                 :notes,
                 :electoral_alliance_id,
                 :numbering_order_position
@@ -69,7 +70,18 @@ ActiveAdmin.register Candidate do
   end
 
   show :title => :candidate_name do
-    attributes_table :lastname, :firstname, :candidate_name, :student_number, :address, :postal_code, :postal_city, :email, :faculty, :electoral_alliance, :cancelled, :notes
+    attributes_table :lastname,
+      :firstname,
+      :candidate_name,
+      :student_number,
+      :address,
+      :postal_code,
+      :postal_city,
+      :email,
+      :faculty,
+      :electoral_alliance,
+      :cancelled,
+      :notes
   end
 
   filter :candidate_number
@@ -116,6 +128,7 @@ ActiveAdmin.register Candidate do
         f.input :email
       end
       f.inputs 'Other' do
+        f.input :cancelled
         f.input :faculty
         f.input :notes, :hint => 'Erota tiedot pilkuilla. Rivinvaihdot korvataan automaattisesti pilkuiksi.'
       end
@@ -141,7 +154,10 @@ ActiveAdmin.register Candidate do
   action_item :cancel_candidacy, :only => [ :show, :edit ] do
     candidate = Candidate.find(params[:id])
     if !candidate.cancelled
-      link_to 'Peruuta ehdokkuus', cancel_admin_candidate_path, :data => {:confirm => 'Peruutetaanko henkilön ehdokkuus?'}
+      link_to 'Peruuta ehdokkuus',
+        cancel_admin_candidate_path,
+        method: :post,
+        data: { confirm: 'Peruutetaanko henkilön ehdokkuus?' }
     end
   end
 
@@ -149,7 +165,7 @@ ActiveAdmin.register Candidate do
     link_to 'Näytä/piilota hakutoiminnot', '#toggle_filter'
   end
 
-  member_action :cancel, :method => :get do
+  member_action :cancel, :method => :post do
     candidate = Candidate.find(params[:id])
     candidate.cancel!
     redirect_to :action => :show
