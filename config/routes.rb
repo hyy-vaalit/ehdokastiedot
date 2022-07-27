@@ -6,6 +6,7 @@ Rails.application.routes.draw do
   ActiveAdmin.routes(self)
 
   root :to => "public#index"
+
   get "/unauthorized", :to => "public#unauthorized", :as => :unauthorized
 
   get "/advocates", :to => "public#index", :as => :advocate_index
@@ -32,7 +33,9 @@ Rails.application.routes.draw do
     resources :candidates, :only => [:index]
     resources :electoral_coalitions, :only => [:index]
     resources :electoral_alliances, :only => [:index]
-    resource :danger_zone, :only => [:show]
+    resource :danger_zone, :only => [:show] do
+      post :give_candidate_numbers, to: "give_candidate_numbers"
+    end
     resources :candidate_attribute_changes
   end
 
@@ -42,5 +45,4 @@ Rails.application.routes.draw do
       get :lulz
     end
   end
-
 end
