@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_26_101433) do
+ActiveRecord::Schema.define(version: 2022_07_27_164310) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -106,23 +106,25 @@ ActiveRecord::Schema.define(version: 2022_07_26_101433) do
   end
 
   create_table "candidates", id: :serial, force: :cascade do |t|
-    t.string "firstname"
-    t.string "lastname"
-    t.string "candidate_name"
+    t.string "firstname", null: false
+    t.string "lastname", null: false
+    t.string "candidate_name", null: false
     t.integer "faculty_id"
     t.string "address"
-    t.string "email"
-    t.integer "electoral_alliance_id"
+    t.string "email", null: false
+    t.integer "electoral_alliance_id", null: false
     t.integer "candidate_number"
     t.text "notes"
-    t.integer "numbering_order"
+    t.integer "numbering_order", null: false
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.boolean "cancelled", default: false
+    t.boolean "cancelled", default: false, null: false
     t.string "phone_number"
     t.string "student_number", null: false
     t.string "postal_code"
     t.string "postal_city"
+    t.datetime "cancelled_at"
+    t.index ["student_number"], name: "allow_single_non_cancelled_candidate_per_student_number", unique: true, where: "(cancelled IS NOT TRUE)"
   end
 
   create_table "delayed_jobs", id: :serial, force: :cascade do |t|
