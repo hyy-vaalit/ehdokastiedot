@@ -23,29 +23,3 @@
     <input type="submit" value="Jatka">
   <% end -%>
 </p>
-
-<h2>Rekisteröityneet vaaliliitot</h2>
-
-<table class="registrations-alliance-listing">
-  <th>Vaaliliitto</th>
-  <th>Edustajan nimi</th>
-  <th>Edustajan yhteystiedot</th>
-
-  <% ElectoralAlliance.all.each do |a| %>
-    <tr>
-      <td><%= a.name %></td>
-
-      <% if a.advocate_user %>
-        <td><%= a.advocate_user.friendly_name %></td>
-      <% else %>
-        <td></td>
-      <% end %>
-
-      <% if a.advocate_user %>
-        <td><%= a.advocate_user.email %></td>
-      <% else %>
-        <td></td>
-      <% end %>
-    <% end %>
-  </tr>
-</table>
