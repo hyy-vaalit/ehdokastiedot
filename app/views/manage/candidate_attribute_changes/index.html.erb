@@ -14,26 +14,26 @@
 
   <thead>
     <tr>
+      <th>Muutettu</th>
       <th>Edustaja</th>
       <th>Vaaliliitto</th>
       <th>Ehdokas</th>
       <th>Kenttä</th>
       <th>Edellinen arvo</th>
       <th>Uusi arvo</th>
-      <th>Muutettu</th>
     </tr>
   </thead>
 
   <tbody>
     <% @changes.each do |change| %>
       <tr>
+        <td><%= change.created_at.to_s(:short) %></td>
         <td><%= change.candidate.electoral_alliance.advocate_user.friendly_name %></td>
         <td><%= link_to change.candidate.electoral_alliance.shorten, admin_electoral_alliance_path(change.candidate.electoral_alliance) %></td>
         <td><%= link_to change.candidate.candidate_name, admin_candidate_path(change.candidate) %></td>
         <td><%= change.attribute_name %></td>
         <td><%= change.previous_value %></td>
         <td><%= change.new_value %></td>
-        <td><%= change.created_at.to_s(:long) %></td>
       </tr>
     <% end %>
   </tbody>
