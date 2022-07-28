@@ -47,8 +47,9 @@ ActiveAdmin.register AdvocateUser do
     column :firstname
     column :email
     column :student_number
-    column("Last sign in") { |user| user.current_sign_in_at.localtime if user.current_sign_in_at }
-    column("Vaaliliittoja") { |user| user.electoral_alliances.count }
+    column("Current sign in") { |u| u.current_sign_in_at.localtime if u.current_sign_in_at }
+    column("Last sign in") { |u| u.last_sign_in_at.localtime if u.last_sign_in_at }
+    column("Vaaliliittoja") { |u| u.electoral_alliances.count }
     column :phone_number
 
     actions
@@ -56,10 +57,13 @@ ActiveAdmin.register AdvocateUser do
 
   show :title => "User details" do | user |
       panel "Profile Info" do
-
         attributes_table_for user do
           row("Name") { |u| u.friendly_name }
           row :email
+          row :phone_number
+          row :student_number
+          row(:current_sign_in_at) { |u| u.current_sign_in_at.localtime if u.current_sign_in_at }
+          row(:last_sign_in_at) { |u| u.last_sign_in_at.localtime if u.last_sign_in_at }
        end
      end
 
