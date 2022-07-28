@@ -14,7 +14,7 @@ class Registrations::CandidatesController < RegistrationsController
   end
 
   def update
-    if @candidate.update(candidate_params)
+    if @candidate.log_and_update_attributes(candidate_params)
       flash.notice = "Tiedot päivitettiin onnistuneesti!"
       redirect_to registrations_candidate_path
     else
@@ -24,7 +24,7 @@ class Registrations::CandidatesController < RegistrationsController
   end
 
   def cancel
-    if @candidate.cancel!
+    if @candidate.cancel
       flash.notice = "Ehdokkuutesi edustajistovaaleissa on peruttu."
     else
       flash.error = "Ehdokkuuden peruminen ei onnistunut. Ota yhteys HYYn vaalityöntekijään."

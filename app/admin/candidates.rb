@@ -81,6 +81,7 @@ ActiveAdmin.register Candidate do
       :faculty,
       :electoral_alliance,
       :cancelled,
+      :cancelled_at,
       :notes
   end
 
@@ -131,6 +132,12 @@ ActiveAdmin.register Candidate do
         f.input :cancelled,
           label: "Peruttu ehdokkuus",
           hint: "Vain HYYn vaalityöntekijä voi palauttaa peruutetun ehdokkuuden."
+        if f.object.cancelled?
+          f.input :cancelled_at,
+            as: :string,
+            label: "Ehdokkuuden perumisaika",
+            input_html: { readonly: true }
+        end
         f.input :faculty
         f.input :notes, :hint => 'Erota tiedot pilkuilla. Rivinvaihdot korvataan automaattisesti pilkuiksi.'
       end
@@ -168,7 +175,7 @@ ActiveAdmin.register Candidate do
   end
 
   member_action :cancel, :method => :post do
-    if Candidate.find(params[:id]).cancel!
+    if Candidate.find(params[:id]).cancel
       flash[:notice] = "Ehdokkuuden peruminen onnistui."
     else
       flash[:alert] = "Ehdokkuuden peruminen ei onnistunut!"

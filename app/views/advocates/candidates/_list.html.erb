@@ -67,52 +67,54 @@
   </tbody>
 </table>
 
-<h2>Vaaliliitossa olleet ehdokkuutensa peruneet ehdokkaat</h2>
+<% if candidates.cancelled.present? %>
+  <h2>Vaaliliitossa olleet ehdokkuutensa peruneet ehdokkaat</h2>
 
-<table id="cancelled-candidates" class="wide-listing">
-  <thead>
-    <th></th>
-    <th>Ehdokasnimi</th>
-    <th>Sukunimi</th>
-    <th>Etunimet</th>
-    <th>Opiskelijanumero</th>
-    <th>Katuosoite</th>
-    <th>Postinumero</th>
-    <th>Kaupunki</th>
-    <th>Puhelin</th>
-    <th>Sähköposti</th>
-    <th>Tdk</th>
-    <th>Huomioita</th>
-  </thead>
+  <table id="cancelled-candidates" class="wide-listing">
+    <thead>
+      <th></th>
+      <th>Ehdokasnimi</th>
+      <th>Sukunimi</th>
+      <th>Etunimet</th>
+      <th>Opiskelijanumero</th>
+      <th>Katuosoite</th>
+      <th>Postinumero</th>
+      <th>Kaupunki</th>
+      <th>Puhelin</th>
+      <th>Sähköposti</th>
+      <th>Tdk</th>
+      <th>Huomioita</th>
+    </thead>
 
-  <tbody>
-    <% candidates.cancelled.each do |c| %>
-      <tr>
-        <td>&#x274c<!-- red crossmark --></td>
-        <td>
-          <% if can? :edit, Candidate %>
-            <%= link_to c.candidate_name, link_to_edit_candidate(scope, c) %>
-          <% else %>
-            <%= c.candidate_name %>
-          <% end %>
-        </td>
-        <td><%= c.lastname %></td>
-        <td><%= c.firstname %></td>
-        <td><%= c.student_number %></td>
-        <td><%= c.address %></td>
-        <td><%= c.postal_code %></td>
-        <td><%= c.postal_city %></td>
-        <td><%= c.phone_number %></td>
-        <td><%= c.email %></td>
-        <td>
-          <% if c.faculty %>
-            <abbr title="<%= c.faculty.name -%>">
-              <%= c.faculty.code %>
-            </abbr>
-          <% end %>
-        </td>
-        <td><%= c.notes %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+    <tbody>
+      <% candidates.cancelled.each do |c| %>
+        <tr>
+          <td>&#x274c<!-- red crossmark --></td>
+          <td>
+            <% if can? :edit, Candidate %>
+              <%= link_to c.candidate_name, link_to_edit_candidate(scope, c) %>
+            <% else %>
+              <%= c.candidate_name %>
+            <% end %>
+          </td>
+          <td><%= c.lastname %></td>
+          <td><%= c.firstname %></td>
+          <td><%= c.student_number %></td>
+          <td><%= c.address %></td>
+          <td><%= c.postal_code %></td>
+          <td><%= c.postal_city %></td>
+          <td><%= c.phone_number %></td>
+          <td><%= c.email %></td>
+          <td>
+            <% if c.faculty %>
+              <abbr title="<%= c.faculty.name -%>">
+                <%= c.faculty.code %>
+              </abbr>
+            <% end %>
+          </td>
+          <td><%= c.notes %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
