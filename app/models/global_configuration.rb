@@ -3,7 +3,19 @@
 #
 class GlobalConfiguration < ActiveRecord::Base
   def self.candidate_nomination_period_effective?
-    Time.now < Vaalit::Config::CANDIDATE_NOMINATION_ENDS_AT
+    candidate_nomination_period_started? && Time.now < Vaalit::Config::CANDIDATE_NOMINATION_ENDS_AT
+  end
+
+  def self.candidate_nomination_period_started?
+    Time.now > Vaalit::Config::CANDIDATE_NOMINATION_STARTS_AT
+  end
+
+  def self.candidate_data_correction_period?
+    candidate_nomination_period_started? && !candidate_nomination_period_effective? && !candidate_data_frozen?
+  end
+
+  def self.candidate_nomination_begins_at
+    Vaalit::Config::CANDIDATE_NOMINATION_ENDS_AT
   end
 
   def self.candidate_nomination_ends_at
@@ -41,5 +53,4 @@ class GlobalConfiguration < ActiveRecord::Base
   def disable_advocate_login!
     self.update_attribute(:advocate_login_enabled, false)
   end
-
 end

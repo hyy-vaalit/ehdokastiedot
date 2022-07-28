@@ -67,8 +67,20 @@ class Ability
   def haka_user(user)
     advocate_user(user) if user.advocate_user
 
-    # TODO: if not GlobalConfiguration.candidate_nomination_period_effective?
-    can [:read, :create, :update, :cancel], Candidate
+    can [:read], Candidate, student_number: user.student_number
+
+    if GlobalConfiguration.candidate_nomination_period_effective?
+      can [:create, :update, :cancel], Candidate, student_number: user.student_number
+    end
+
+    if GlobalConfiguration.candidate_data_correction_period?
+      can [:cancel, :update], Candidate, student_number: user.student_number
+      cannot [:create], Candidate
+    end
+
+    if GlobalConfiguration.candidate_data_frozen?
+      cannot [:create, :update, :cancel], Candidate
+    end
   end
 
   def advocate_user(user)
@@ -79,12 +91,16 @@ class Ability
 
     if GlobalConfiguration.candidate_nomination_period_effective?
       can [:create, :update], ElectoralAlliance
-      can [:create, :update], Candidate
+      can [:update], Candidate
+    end
+
+    if GlobalConfiguration.candidate_data_correction_period?
+      can [:update], Candidate
+      cannot [:create], ElectoralAlliance
     end
 
     if GlobalConfiguration.candidate_data_frozen?
       cannot [:create, :update], [ElectoralAlliance, Candidate]
     end
   end
-
 end

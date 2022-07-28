@@ -1,5 +1,12 @@
 <h2>Edustajistovaaliehdokkaaksi ilmoittautuminen</h2>
 
+<dl>
+  <dt>Ehdokasilmoittautumisen päättyminen:</dt>
+    <dd><%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %></dd>
+  <dt>Ehdokastietojen korjausten ja peruutusten määräaika:</dt>
+    <dd><%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %></dd>
+</dl>
+
 <% if @candidate.present? %>
   <p>
     Opiskelijanumerollasi on
@@ -22,12 +29,16 @@
   </p>
 
   <p>
-    <%= form_tag new_registrations_candidate_path, method: :get do -%>
-      <label for="invite_code">Vaaliliiton kutsukoodi</label>
-      <input type="text" name="invite_code">
+    <% if can? :create, :candidate %>
+      <%= form_tag new_registrations_candidate_path, method: :get do -%>
+        <label for="invite_code">Vaaliliiton kutsukoodi</label>
+        <input type="text" name="invite_code">
 
-      <input type="submit" value="Jatka">
-    <% end -%>
+        <input type="submit" value="Jatka">
+      <% end -%>
+    <% else %>
+      <strong>Uusia ehdokkuuksia ei tällä hetkellä oteta vastaan.</strong>
+    <% end %>
   </p>
 <% end %>
 

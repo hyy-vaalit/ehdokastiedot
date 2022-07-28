@@ -43,6 +43,7 @@ class Candidate < ActiveRecord::Base
 
   before_save :clear_linebreaks_from_notes!
   before_save :strip_whitespace!
+  before_save :clear_cancelled_at, if: !cancelled
 
   # If candidate numbers have been given, order by candidate numbers.
   # Otherwise order by alliance id and numbering order.
@@ -54,11 +55,11 @@ class Candidate < ActiveRecord::Base
     first && valid.where(:candidate_number => nil).empty?
   end
 
-  def cancel!
-    self.cancelled = true
-    self.cancelled_at = Time.now.getutc
-
-    self.save!
+  def cancel
+    log_and_update_attributes(
+      cancelled: true,
+      cancelled_at: Time.now.getutc
+    )
   end
 
   def self.can_give_numbers?
@@ -130,4 +131,7 @@ class Candidate < ActiveRecord::Base
     self&.phone_number&.strip!
   end
 
+  def clear_cancelled_at
+    self.cancelled_at = nil
+  end
 end

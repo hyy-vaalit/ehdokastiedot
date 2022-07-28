@@ -96,6 +96,6 @@ class ApplicationController < ActionController::Base
   rescue_from CanCan::AccessDenied do |exception|
     Rails.logger.debug "[ApplicationController] Access denied on action: '#{exception.action}' subject: '#{exception.subject.inspect}'"
     flash.now.alert = exception.message
-    render "common/unauthorized"
+    render "common/unauthorized", status: 403
   end
 end

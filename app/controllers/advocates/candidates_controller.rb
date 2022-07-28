@@ -2,11 +2,14 @@ class Advocates::CandidatesController < AdvocatesController
   respond_to :html, :json, :only => :update
 
   before_action :find_alliance
-  authorize_resource # After resource has been loaded
+
+  authorize_resource :electoral_alliance
 
   def new
     @candidate = Candidate.new
     @candidate.electoral_alliance = @alliance
+
+    authorize! :create, @candidate
   end
 
   def index
@@ -15,6 +18,8 @@ class Advocates::CandidatesController < AdvocatesController
 
   def edit
     @candidate = @alliance.candidates.find(params[:id])
+
+    authorize! :edit, @candidate
   end
 
   def show
@@ -23,6 +28,8 @@ class Advocates::CandidatesController < AdvocatesController
 
   def update
     @candidate = @alliance.candidates.find(params[:id])
+
+    authorize! :update, @candidate
 
     if @candidate.log_and_update_attributes(candidate_params)
       flash[:notice] = "Muutokset tallennettu."
@@ -38,6 +45,8 @@ class Advocates::CandidatesController < AdvocatesController
 
   def create
     @candidate = @alliance.candidates.build(candidate_params)
+
+    authorize! :create, @candidate
 
     if @candidate.save
       flash[:notice] = "Ehdokas luotu!"

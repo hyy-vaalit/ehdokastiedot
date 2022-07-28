@@ -10,6 +10,7 @@ module Vaalit
 
   module Config
     CANDIDATE_NOMINATION_ENDS_AT = Time.parse ENV.fetch('CANDIDATE_NOMINATION_ENDS_AT')
+    CANDIDATE_NOMINATION_STARTS_AT = Time.parse ENV.fetch('CANDIDATE_NOMINATION_STARTS_AT')
     CANDIDATES_FROZEN_AT = Time.parse ENV.fetch('CANDIDATES_FROZEN_AT')
 
     def self.fake_auth_enabled?
