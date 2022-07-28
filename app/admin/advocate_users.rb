@@ -46,6 +46,7 @@ ActiveAdmin.register AdvocateUser do
     column :lastname
     column :firstname
     column :email
+    column :student_number
     column("Last sign in") { |user| user.current_sign_in_at.localtime if user.current_sign_in_at }
     column("Vaaliliittoja") { |user| user.electoral_alliances.count }
     column :phone_number
@@ -97,9 +98,11 @@ ActiveAdmin.register AdvocateUser do
       f.input :phone_number
     end
 
-    f.inputs 'Vaaliliitot' do
+    f.inputs 'Vaaliliitot &mdash; Edustajan omat vaaliliitot ja vaaliliitot ilman edustajaa' do
       f.input :electoral_alliances,
               :as => :check_boxes,
+              :hint => "Vaihtaaksesi liiton edustajaa, poista liitto ensin nykyiseltä edustajaltaan.",
+              :label => "hello there",
               :collection => ( ElectoralAlliance.without_advocate_user + f.object.electoral_alliances )
     end
 
