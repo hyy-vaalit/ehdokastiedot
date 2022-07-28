@@ -1,8 +1,6 @@
 class RegistrationMailer < AwsMailer
-
-  def welcome_advocate(email, password)
+  def welcome_advocate(email)
     @email = email
-    @password = password
     @site_address = Vaalit::Public::ADVOCATE_LOGIN_URL
 
     mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
@@ -14,5 +12,4 @@ class RegistrationMailer < AwsMailer
     @site_address = Vaalit::Public::SECRETARY_LOGIN_URL
     mail(:to => @email, :subject => 'Käyttäjätunnuksesi HYYn vaalijärjestelmään')
   end
-
 end
