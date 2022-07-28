@@ -1,4 +1,6 @@
 class Registrations::CandidatesController < RegistrationsController
+  authorize_resource :candidate
+
   before_action :require_student_number
   before_action :set_invite_code
   before_action :set_candidate
@@ -6,7 +8,9 @@ class Registrations::CandidatesController < RegistrationsController
   def edit; end
 
   def show
-    @cancelled_candidates = Candidate.cancelled.where(student_number: session[:student_number])
+    @cancelled_candidates = Candidate
+      .cancelled
+      .where(student_number: current_haka_user.student_number)
   end
 
   def update
@@ -30,8 +34,6 @@ class Registrations::CandidatesController < RegistrationsController
   end
 
   def new
-    session[:student_number] = "0123456" # TODO: Change after auth
-
     if @candidate.present?
       flash[:notice] = "Opiskelijanumerollasi on voimassa oleva ehdokasilmoittautuminen."
       redirect_to registrations_candidate_path and return
@@ -39,15 +41,18 @@ class Registrations::CandidatesController < RegistrationsController
 
     @alliance = find_alliance
 
-    # todo: prefill candidate info from session
     @candidate = Candidate.new(
       electoral_alliance: @alliance,
-      lastname: "Sukuniminen",
-      firstname: "Esi Täytetty",
-      candidate_name: "Sukunimi, Esi",
-      email: "esi.taytetty@helsinki.fi",
-      student_number: session[:student_number]
-    )
+      lastname: current_haka_user.lastname,
+      firstname: current_haka_user.firstname,
+      email: current_haka_user.email,
+      student_number: current_haka_user.student_number
+    ).tap do |c|
+      if current_haka_user.lastname && current_haka_user.firstname
+        c.candidate_name = "#{current_haka_user.lastname}, #{current_haka_user.firstname}"
+      end
+    end
+
     @advocate_user = @alliance.advocate_user if @alliance
 
     if @alliance.nil?
@@ -56,7 +61,7 @@ class Registrations::CandidatesController < RegistrationsController
       else
         flash[:alert] = "Kutsukoodi \"#{@invite_code_upcase}\" ei ole voimassa."
       end
-      redirect_to root_path and return
+      redirect_to registrations_root_path and return
     end
   end
 
@@ -66,7 +71,7 @@ class Registrations::CandidatesController < RegistrationsController
   def create
     @alliance = find_alliance
     @candidate = Candidate.new(candidate_params).tap do |t|
-      t.student_number = session[:student_number] # sensitive
+      t.student_number = current_haka_user.student_number # sensitive
       t.electoral_alliance = @alliance # sensitive
     end
 
@@ -82,9 +87,10 @@ class Registrations::CandidatesController < RegistrationsController
   protected
 
   def require_student_number
-    # TODO: change once auth is implemented
-    if session[:student_number].blank?
-      render plain: "TOOD: require student nubmer", status: 401
+    if current_haka_user.student_number.blank?
+      flash.alert = "Yliopiston käyttäjätunnukseltasi puuttuu opiskelijanumero. Ota yhteys vaalit@hyy.fi."
+      render "common/unauthorized", status: 401
+      return false
     end
   end
 
@@ -93,7 +99,7 @@ class Registrations::CandidatesController < RegistrationsController
   end
 
   def set_candidate
-    @candidate = Candidate.valid.find_by(student_number: session[:student_number])
+    @candidate = Candidate.valid.find_by(student_number: current_haka_user.student_number)
   end
 
   def find_alliance

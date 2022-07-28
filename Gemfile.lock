@@ -270,6 +270,7 @@ GEM
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
+    rexml (3.2.5)
     rollbar (3.1.1)
     rspec (3.10.0)
       rspec-core (~> 3.10.0)
@@ -292,6 +293,9 @@ GEM
       rspec-mocks (~> 3.10)
       rspec-support (~> 3.10)
     rspec-support (3.10.2)
+    ruby-saml (1.14.0)
+      nokogiri (>= 1.10.5)
+      rexml
     ruby2_keywords (0.0.4)
     sassc (2.4.0)
       ffi (~> 1.9)
@@ -355,6 +359,7 @@ DEPENDENCIES
   rollbar
   rspec
   rspec-rails
+  ruby-saml
   sassc-rails
   spring
   spring-watcher-listen

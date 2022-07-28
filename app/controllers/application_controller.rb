@@ -6,6 +6,10 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  before_action :set_current_haka_user
+
+  # CanCan::ControllerAdditions::ClassMethods
+  # https://www.rubydoc.info/github/CanCanCommunity/cancancan/CanCan/ControllerAdditions/ClassMethods
   check_authorization :unless => :devise_or_active_admin?
 
   protected
@@ -46,14 +50,47 @@ class ApplicationController < ActionController::Base
   end
 
   def current_user_login_path
-    current_admin_user ? admin_dashboard_path : new_advocate_user_session_path
+    current_admin_user ? admin_dashboard_path : haka_auth_new_path
   end
 
   def current_user
     return current_admin_user if current_admin_user
-    return current_advocate_user if current_advocate_user
+    return current_haka_user if current_haka_user
 
     return nil # guest
+  end
+
+  # Exposed to View in ApplicationHelper#current_advocate_user
+  def current_advocate_user
+    @current_haka_user&.advocate_user
+  end
+
+  # Exposed to View in ApplicationHelper#current_haka_user
+  def current_haka_user
+    @current_haka_user
+  end
+
+  def set_current_haka_user
+    track_session_expiry
+
+    @current_haka_user ||= HakaUser.new(attrs: session[:haka_attrs]) if session[:haka_attrs]
+  end
+
+  def track_session_expiry
+    if session_timeout_at && Time.now.getutc > session_timeout_at
+      reset_session
+      flash.alert = "Istunto on vanhenunt ja selaimesi kirjattiin ulos."
+
+      redirect_to root_path
+    end
+
+    session[:timeout_at] = 60.minutes.from_now.getutc.to_i
+  end
+
+  def session_timeout_at
+    return nil unless session[:timeout_at]
+
+    Time.at(session[:timeout_at])
   end
 
   rescue_from CanCan::AccessDenied do |exception|

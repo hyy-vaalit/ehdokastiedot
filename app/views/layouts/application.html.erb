@@ -32,15 +32,20 @@
       </div>
 
       <ul class="main">
-        <% if current_advocate_user %>
+        <% if current_haka_user %>
           <li>
-            <%= current_advocate_user.email %>
+            <%= link_to "Alkusivu", registrations_root_path %>
+          </li>
+
+          <li>
+            <%= link_to "Ehdokasilmoittautuminen", registrations_candidate_path %>
+
             <% if current_admin_user %>
               <br>
               <u>ADMIN</u>: <%= current_admin_user.email %>
             <% end %>
           </li>
-          <li>&raquo; <%= link_to "Kirjaudu ulos", destroy_advocate_user_session_path %></li>
+          <li>&raquo; <%= link_to "Kirjaudu ulos", haka_auth_sign_out_path %></li>
         <% end %>
       </ul>
     </nav>

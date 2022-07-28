@@ -1,4 +1,4 @@
-<h1>Rekisteröidy ehdokkaaksi vaaliliittoon</h1>
+<h1>Ilmoittaudu edustajistovaaliehdokkaaksi vaaliliittoon</h1>
 
 <h2>Vaaliliiton tiedot</h2>
 <%= render partial: "one_alliance", locals: { alliance: @alliance } %>
@@ -12,6 +12,16 @@
       read_only: false
     }
   %>
+
+  <li class="input required" id="candidate_electoral_alliance_id">
+    <label
+      for="candidate_electoral_alliance_id"
+      class="label">Vaaliliitto<abbr title="required">*</abbr>
+    </label>
+    <span>
+      <%= @alliance.name %>
+    </span>
+  </li>
 
   <%= f.actions do %>
     <%= f.action :submit, :as => :button, :label => "Tallenna" %>

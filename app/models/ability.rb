@@ -28,8 +28,8 @@ class Ability
     case user.class.to_s
       when "AdminUser"
         admin_user_with_role(user)
-      when "AdvocateUser"
-        advocate_user(user)
+      when "HakaUser"
+        haka_user(user)
       when "GuestUser"
         guest_user(user)
       else
@@ -61,6 +61,16 @@ class Ability
     end
   end
 
+  def guest_user(user)
+  end
+
+  def haka_user(user)
+    advocate_user(user) if user.advocate_user
+
+    # TODO: if not GlobalConfiguration.candidate_nomination_period_effective?
+    can [:read, :create, :update, :cancel], Candidate
+  end
+
   def advocate_user(user)
     can :access, :advocate if GlobalConfiguration.advocate_login_enabled?
 
@@ -77,9 +87,4 @@ class Ability
     end
   end
 
-  # TODO: Move these to CandidateUser
-  def guest_user(user)
-    # TODO: if not GlobalConfiguration.candidate_nomination_period_effective?
-    can [:read, :create, :update, :cancel], Candidate
-  end
 end
