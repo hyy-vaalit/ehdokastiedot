@@ -23,8 +23,8 @@ class ElectoralAlliance < ActiveRecord::Base
   validates_length_of :shorten, :in => 2..6
   validates_presence_of :expected_candidate_count, :allow_nil => true
 
-  before_save :strip_whitespace_from_name_fields
-  before_save :upcase_invite_code!
+  before_validation :strip_whitespace_from_name_fields!
+  before_validation :upcase_invite_code!
 
   def freeze!
     if expected_candidate_count && candidates.count == expected_candidate_count
@@ -49,7 +49,7 @@ class ElectoralAlliance < ActiveRecord::Base
 
   protected
 
-  def strip_whitespace_from_name_fields
+  def strip_whitespace_from_name_fields!
     self.name.strip!
     self.shorten.strip!
   end

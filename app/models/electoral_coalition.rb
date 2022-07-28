@@ -6,7 +6,7 @@ class ElectoralCoalition < ActiveRecord::Base
 
   scope :by_numbering_order, -> { order("#{table_name}.numbering_order") }
 
-  before_save :strip_whitespace_from_name_fields
+  before_validation :strip_whitespace_from_name_fields!
 
   def self.are_all_ordered?
     self.where(:numbering_order => nil).count == 0
@@ -30,7 +30,7 @@ class ElectoralCoalition < ActiveRecord::Base
 
   protected
 
-  def strip_whitespace_from_name_fields
+  def strip_whitespace_from_name_fields!
     self.name.strip!
     self.shorten.strip!
   end
