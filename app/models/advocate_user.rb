@@ -1,11 +1,9 @@
 class AdvocateUser < ActiveRecord::Base
   include DeviseUserBehaviour
 
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable,
-  # :registerable,
-  devise :database_authenticatable,
-         :recoverable, :trackable, :validatable
+  # Devise modules
+  # https://www.rubydoc.info/github/plataformatec/devise/Devise/Models
+  devise :database_authenticatable, :timeoutable, :recoverable, :trackable, :validatable
 
   has_many :electoral_alliances, :foreign_key => :primary_advocate_id
 

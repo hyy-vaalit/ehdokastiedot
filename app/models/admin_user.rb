@@ -6,10 +6,10 @@ class AdminUser < ActiveRecord::Base
     "secretary" => "secretary"
   }
 
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :confirmable, :lockable, :timeoutable and :omniauthable
-  devise :database_authenticatable,
-         :recoverable, :rememberable, :trackable, :validatable
+  # Devise modules
+  # https://www.rubydoc.info/github/plataformatec/devise/Devise/Models
+  devise :database_authenticatable, :timeoutable, :recoverable, :rememberable,
+    :trackable, :validatable
 
   scope :secretaries, -> { where(:role => "secretary") }
 
