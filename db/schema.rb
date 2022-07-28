@@ -91,7 +91,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_164310) do
     t.string "firstname"
     t.string "lastname"
     t.string "phone_number"
-    t.string "student_number", default: "bogus", null: false
+    t.string "student_number", null: false
     t.index ["email"], name: "index_advocate_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_advocate_users_on_reset_password_token", unique: true
   end
