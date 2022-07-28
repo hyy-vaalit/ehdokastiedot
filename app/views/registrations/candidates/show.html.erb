@@ -1,11 +1,16 @@
-<h1>Rekisteröidy ehdokkaaksi</h1>
+<h1>Edustajistovaaliehdokkaaksi ilmoittautuminen</h1>
 
 <ul>
   <li>Ehdokkuuteesi liittyvissä kysymyksissä ole ensisijaisesti yhteydessä vaaliliittosi edustajaan.</li>
   <li>Tarvittaessa myös vaalit@hyy.fi vastaa kysymyksiin.</li>
+  <li>Opiskelijanumerosi on <%= current_haka_user.student_number %>
 </ul>
 
 <% if @candidate %>
+  <p>
+    Sinulla on voimassa oleva ehdokasilmoittautuminen.
+  </p>
+
   <h2>Vaaliliiton tiedot</h2>
   <%= render partial: "one_alliance", locals: { alliance: @candidate.electoral_alliance } %>
 
@@ -30,12 +35,12 @@
 <% else %>
   <p>
     Luodaksesi uuden ehdokasilmoittautumisen,
-    <%= link_to "palaa etusivulle", root_path %>
+    <%= link_to "palaa alkusivulle", registrations_root_path %>
     ja syötä vaaliliiton kutsukoodi.
   </p>
 <% end %>
 
-<% if @cancelled_candidates %>
+<% if @cancelled_candidates.present? %>
   <h2>Perutut ehdokkuudet</h2>
 
   <p>
@@ -43,6 +48,9 @@
   </p>
 
   <dl>
+    <dt>Perumisen ajankohta</dt>
+      <dd>Vaaliliitto</dd>
+
     <% @cancelled_candidates.each do |cancelled| %>
       <dt><%= friendly_datetime(cancelled.cancelled_at) %></dt>
         <dd><%= cancelled.electoral_alliance.name %></dd>

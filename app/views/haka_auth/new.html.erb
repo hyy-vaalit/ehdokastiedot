@@ -1,0 +1,12 @@
+<h1>Kirjaudu sisään</h1>
+
+<%= link_to "Kirjaudu Helsingin yliopiston käyttäjätunnuksella", haka_auth_new_path %>
+<hr>
+
+<%# TODO: Allow only in local development %>
+<%= form_for("wat", as: "what_name", url: haka_auth_fake_authentication) do |f| %>
+  <%= f.label "Opiskelijanumero" %>
+  <%= f.text_field :student_number %>
+
+  <%= f.submit "Feikkaa sisäänkirjautuminen", class: "btn btn-primary" %>
+<% end %>

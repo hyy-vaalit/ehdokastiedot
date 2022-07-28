@@ -3,7 +3,4 @@ class PublicController < ApplicationController
 
   def index
   end
-
-  def unauthorized
-  end
 end
