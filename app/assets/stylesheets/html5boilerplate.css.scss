@@ -259,15 +259,22 @@ p.notice {
   width: 390px;
 }
 
+.alert {
+  margin-top: 2em;
+}
+
 /* =============================================================================
    Media Queries
    ========================================================================== */
 
 @media only screen and (max-width: 768px) {
   body {
-    padding-top: 12em;
+    padding-top: 10em;
   }
 
+  .alert {
+    margin-top: 0.25em;
+  }
   dl {
     width: 80%;
     grid-template-columns: max-content auto;
