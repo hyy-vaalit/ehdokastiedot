@@ -14,31 +14,33 @@
   allowfullscreen>
 </iframe>
 
-<h2>Edustajat</h2>
+<h2>Vaaliliiton edustajat</h2>
 
 <ul>
   <li>
-    Edustajien sisäänkirjautuminen on tällä hetkellä
+    Edustajien pääsy katsomaan vaaliliittonsa tietoja on tällä hetkellä
     <strong><u><%= GlobalConfiguration.advocate_login_enabled? ? "sallittu" : "kielletty" %></u></strong>.
   </li>
-  <li>Sisäänkirjautuminen kannattaa kieltää ennen Keskusvaalilautakunnan kokouksia, jotta
-    <br>tiedot eivät muutu kesken kokouksen ja ehdokasnumerot eivät vuoda julkisiksi etukäteen.
+  <li>Pääsy kannattaa kieltää ennen ehdokasnumerointia, jotta ehdokasnumerot eivät vuoda julkisiksi
+  <br>liian aikaisin ennen numeroinnin virallista vahvmistamista.
   </li>
   <li>
-    Sisäänkirjautumisen estäminen potkaisee samalla ulos kaikki sisäänkirjautuneet edustajat,
-    <br>joten siinä vaiheessa edustajan tallentamattomat tiedot katoavat. Käytä toimintoa harkiten. :)
+    Pääsyn voi jälleen sallia ehdokasnumeroinnin jälkeen, jotta edustajat voivat ladata numeroidut
+    <br>ehdokastiedot CSV:nä.
   </li>
   <li>
     <% if GlobalConfiguration.advocate_login_enabled? %>
-      <%= button_to "Kiellä vaaliliiton edustajien sisäänkirjautuminen",
-                    disable_advocate_login_manage_configuration_path,
-                    :class => "btn btn-danger",
-                    :method => :put %>
+      <%= button_to "Estä pääsy vaaliliiton edustajan sivustolle",
+        disable_advocate_login_manage_configuration_path,
+        :class => "btn btn-danger",
+        :method => :put
+      %>
     <% else %>
-      <%= button_to "Salli vaaliliiton edustajien sisäänkirjautuminen",
-                     enable_advocate_login_manage_configuration_path,
-                     :class => "btn btn-danger",
-                     :method => :put %>
+      <%= button_to "Salli pääsy vaaliliiton edustajan sivustolle",
+        enable_advocate_login_manage_configuration_path,
+        :class => "btn btn-primary",
+        :method => :put
+      %>
     <% end %>
   </li>
 </ul>

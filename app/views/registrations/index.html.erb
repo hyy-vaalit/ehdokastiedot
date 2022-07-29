@@ -60,14 +60,21 @@
 </p>
 
 <% if current_haka_user.advocate_user.present? %>
-  <p>
-    Sinulla on vaaliliiton edustajan käyttäjätunnus, joten voit jatkaa alla
-    olevasta linkistä.
-  </p>
+  <% if can? :access, :advocate %>
+    <p>
+      Sinulla on vaaliliiton edustajan käyttäjätunnus, joten voit jatkaa alla
+      olevasta linkistä.
+    </p>
 
-  <p>
-    &raquo; <%= link_to "Vaaliliiton edustajan sivustolle", advocates_alliances_path %>
-  </p>
+    <p>
+      &raquo; <%= link_to "Vaaliliiton edustajan sivustolle", advocates_alliances_path %>
+    </p>
+  <% else %>
+    <strong>Vaaliliiton ehdokastietojen katselu on väliaikaisesti estetty.</strong>
+    <br>
+    Syynä voi olla Keskusvaalilautakunnan kesken oleva kokous.
+    Jos pääsy ei ole palautunut, ota yhteys HYYn vaaliorganisaatioon.
+  <% end %>
 <% else %>
   <p>
     Jos haluat muodostaa vaaliliiton, ota yhteys vaalit@hyy.fi saadaksesi vaaliliiton edustajan
