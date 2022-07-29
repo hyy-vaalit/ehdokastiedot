@@ -26,6 +26,7 @@ class Advocates::CandidatesController < AdvocatesController
     raise "Not implemented"
   end
 
+  # Updates Candidate attributes (html form) and Candidate numbering order (xhr/json)
   def update
     @candidate = @alliance.candidates.find(params[:id])
 

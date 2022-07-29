@@ -1,6 +1,12 @@
 class Candidate < ActiveRecord::Base
   include RankedModel
-  ranks :numbering_order, :with_same => :electoral_alliance_id
+
+  # Rank valid Candidates in the same ElectoralAlliance.
+  # The scope MUST match with the scope defined in `scope :by_numbering_order` in order to
+  # present correct position numbers in the UI.
+  ranks :numbering_order,
+    with_same: :electoral_alliance_id,
+    scope: :valid
 
   has_many :candidate_attribute_changes
 
@@ -15,6 +21,7 @@ class Candidate < ActiveRecord::Base
 
   # by_numbering_order is the order in which candidate numbers will be assigned.
   # Cancelled candidates are not included in the result.
+  # This scope MUST match with the scope defined in `ranks :numbering_order`.
   scope :by_numbering_order, -> { valid.reorder("#{table_name}.numbering_order") }
 
   # by_candidate_number can be used after candidate numbers have been assigned.
