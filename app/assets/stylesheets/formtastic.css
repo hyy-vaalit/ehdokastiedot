@@ -289,3 +289,50 @@ This stylesheet forms part of the Formtastic Rails Plugin
   margin:0;
   padding:0;
 }
+
+/* Customized
+--------------------------------------------------------------------------------------------------*/
+.formtastic li {
+  width: 40em;
+  list-style-type: none;
+}
+
+@media only screen and (max-width: 768px) {
+  body {
+    background: red;
+  }
+
+  .formtastic li {
+    width: 30em;
+  }
+
+  .formtastic .stringish input {
+    width: 72%;
+  }
+
+  .formtastic .input .label {
+    display: block;
+    width: 80%;
+    float: none;
+    padding-top: .2em;
+  }
+
+  .formtastic .text textarea {
+    width: 80%;
+    display: block;
+  }
+
+  .formtastic .input .inline-hints {
+    color: #666;
+    display: block;
+    margin: 0.5em 0 0 0;
+    width: 25em;
+  }
+
+  .formtastic .buttons, .formtastic .actions {
+    margin-left: 0;
+  }
+  .align-with-formtastic-btn {
+    margin-left: 0;
+  }
+}

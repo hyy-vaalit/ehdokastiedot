@@ -27,9 +27,7 @@
   <header class="title">
 
     <nav>
-      <div id="logo-main">
-        <a href="/"><img src="/images/hyy/logo.png" height="72" width="390"></a>
-      </div>
+      <a href="/"><img id="logo-main" src="/images/hyy/logo.png"></a>
 
       <ul class="main">
         <% if current_haka_user %>
@@ -45,7 +43,7 @@
               <u>ADMIN</u>: <%= current_admin_user.email %>
             <% end %>
           </li>
-          <li>&raquo; <%= link_to "Kirjaudu ulos", haka_auth_sign_out_path %></li>
+          <li><%= link_to "Kirjaudu ulos", haka_auth_sign_out_path %></li>
         <% end %>
       </ul>
     </nav>

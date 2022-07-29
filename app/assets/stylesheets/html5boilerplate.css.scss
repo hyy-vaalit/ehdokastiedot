@@ -190,11 +190,6 @@ a.btn {
   color: yellow;
 }
 
-form.formtastic li {
-  width: 40em;
-  list-style-type: none;
-}
-
 table {
   background: white;
 }
@@ -259,12 +254,46 @@ p.notice {
   }
 }
 
+#logo-main {
+  height: 72px;
+  width: 390px;
+}
+
 /* =============================================================================
    Media Queries
    ========================================================================== */
 
-@media only screen and (min-width: 35em) {
-	/* Style adjustments for viewports that meet the condition */
+@media only screen and (max-width: 768px) {
+  body {
+    padding-top: 12em;
+  }
+
+  dl {
+    width: 80%;
+    grid-template-columns: max-content auto;
+  }
+  dt {
+    font-weight: bold;
+    grid-column-start: 1;
+  }
+  dd {
+    grid-column-start: 1;
+    width: 85%;
+  }
+
+  .registrations-alliance-listing {
+    font-size: 50%;
+  }
+
+  #logo-main {
+    width: 290px;
+    height: auto;
+  }
+
+  nav ul li {
+    margin: 0.25em;
+    font-size: 95%;
+  }
 }
 
 /* =============================================================================

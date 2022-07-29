@@ -1,4 +1,4 @@
-<h1>Edustajistovaaliehdokkaaksi ilmoittautuminen</h1>
+<h1>Ehdokasilmoittautuminen</h1>
 
 <ul>
   <li>Ehdokkuuteesi liittyvissä kysymyksissä ole ensisijaisesti yhteydessä vaaliliittosi edustajaan.</li>
@@ -53,9 +53,6 @@
   </p>
 
   <dl>
-    <dt>Perumisen ajankohta</dt>
-      <dd>Vaaliliitto</dd>
-
     <% @cancelled_candidates.each do |cancelled| %>
       <dt><%= friendly_datetime(cancelled.cancelled_at) %></dt>
         <dd><%= cancelled.electoral_alliance.name %></dd>
