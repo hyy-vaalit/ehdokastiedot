@@ -28,7 +28,7 @@ namespace :db do
       desc 'Setup production configuration defaults'
       task :configuration => :environment do
         conf = GlobalConfiguration.new
-        conf.advocate_login_enabled = false
+        conf.advocate_login_enabled = true
 
         conf.save!
       end
