@@ -63,6 +63,7 @@ ActiveAdmin.register Candidate do
     column :firstname
     column :candidate_name
     column :email
+    column :student_number
     column :electoral_alliance, :sortable => false
     column :notes
 

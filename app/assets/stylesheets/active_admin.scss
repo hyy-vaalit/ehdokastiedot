@@ -56,3 +56,11 @@ form.ordering input[type="text"] {
 .create-new-candidate-action {
   padding-bottom: 1.5em;
 }
+
+.inline-hints {
+  clear: both;
+}
+
+#candidate_electoral_alliance_id_input {
+  list-style-type: none;
+}
