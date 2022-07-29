@@ -13,6 +13,7 @@ ActiveAdmin.register ElectoralAlliance do
   index do
     column :name
     column :shorten
+    column :invite_code
     column :electoral_coalition, :sortable => false
     column :advocate_user, :sortable => false
     column :expected_candidate_count
@@ -23,6 +24,7 @@ ActiveAdmin.register ElectoralAlliance do
 
   show :title => :name do
     attributes_table :name, :shorten do
+      row :invite_code
       row :created_at
       row :updated_at
       row("candidates") { "#{electoral_alliance.candidates.count} / #{electoral_alliance.expected_candidate_count}" }
