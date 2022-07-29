@@ -32,7 +32,7 @@ FactoryBot.define do
     sequence(:lastname) {|n| "Meikalainen #{n}"}
     sequence(:firstname) {|n| "Matti #{n} Sakari"}
     sequence(:candidate_name) {|n| "Meikalainen, Matti Sakari"}
-    sequence(:student_number) { |n| '01234#{n}' }
+    sequence(:student_number) { |n| "01234#{n}" }
 
     faculty
     electoral_alliance
