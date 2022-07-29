@@ -101,7 +101,7 @@ This stylesheet forms part of the Formtastic Rails Plugin
 }
 
 .formtastic .button_action button {
-  padding:3px 8px;
+  padding: 8px 8px;
 }
 
 .formtastic .link_action a {
