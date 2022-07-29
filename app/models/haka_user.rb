@@ -2,12 +2,14 @@ class HakaUser
   attr_accessor :student_number, :email, :fullname, :firstname, :lastname, :homeorg
 
   def initialize(attrs:)
-    @student_number = parse_student_number(attrs["student_number"])
-    @email = attrs["email"]
-    @fullname = attrs["fullname"]
-    @firstname = attrs["firstname"]
-    @lastname = attrs["lastname"]
-    @homeorg = attrs["homeorg"]
+    attrs = attrs.symbolize_keys
+
+    @student_number = parse_student_number(attrs[:student_number])
+    @email = attrs[:email]
+    @fullname = attrs[:fullname]
+    @firstname = attrs[:firstname]
+    @lastname = attrs[:lastname]
+    @homeorg = attrs[:homeorg]
   end
 
   def candidates
