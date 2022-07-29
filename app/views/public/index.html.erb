@@ -1,31 +1,28 @@
 
 <h1>Tervetuloa HYYn edustjistovaaleihin!</h1>
 
-<h2>#TODO: Prosessikirjoita - Ennen ehdokasasettelun päättymistä (<%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %>)</h2>
-<ul>
-  <li>Vaaliliiton ensisijaiselle edustajalle luodaan HYYn toimesta käyttäjätunnus.</li>
-  <li>Edustajan on huolehdittava, että vaaliliiton kaikki ehdokkaat ovat järjestelmässä ehdokasasettelun päättymiseen mennessä.</li>
-  <li>Ehdokasasettelun päättymisen jälkeen uusia ehdokkaita ei vastaanoteta.</li>
-  <li>Ehdokasasettelu päättyy <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %>.</li>
-  <li>Ehdokasilmoittautuminen on mahdollista perua ennen ehdokaslistojen yhdistelmän vahvistamista.</li>
-  <li>Kaikki muutokset ehdokastietoihin on tehtävä  <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %> mennessä.</li>
-</ul>
+<p>
+  Ehdokkaaksi voi asettua läsnäolevaksi ilmoittaunut vaalikelpoinen Helsingin yliopiston opiskelija.
+  <ul>
+    <li>
+      Ehdokasasettelu alkaa
+      <%= friendly_datetime(GlobalConfiguration.candidate_nomination_begins_at) %>
+    </li>
 
-<h2>#TODO: Prosessikirjoita - Ehdokasasettelun päättymisen jälkeen</h2>
-<ul>
-  <li>HYYn vaaliorganisaatio luo vaalirenkaat ja liittää vaaliliitot vaalirenkaisiin vaalirenkaan edustajan antamien tietojen perusteella.</li>
-  <li>Ehdokkaille lähetetään sähköpostiviesti ehdokasilmoituksen vastaanottamisesta.</li>
-</ul>
+    <li>
+      Ehdokasasettelu päättyy
+      <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %>
+    </li>
 
-<h2>#TODO: Prosessikirjoita - Ennen ehdokasnumeroiden arpomista</h2>
-<ul>
-  <li>
-    Ehdokasasettelun päättymisen jälkeen tietoihin on mahdollista tehdä korjauksia
-    <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %> saakka.
-  </li>
-  <li>Korjauksia voi tehdä vaaliliiton ensisijainen edustaja.</li>
-  <li>Ehdokkuuden voi perua ainoastaan ehdokas itse kirjautumalla järjestelmään tai ilmoittamalla perumisesta kirjallisesti HYYn keskustoimistoon.</li>
-</ul>
+    <li>Vaalit järjestetään 26.10.–28.10. ja 31.10.–2.11.</li>
+  </ul>
+</p>
+
+<p>
+  Ehdokasasettelun päättymisen jälkeen tietoihin on mahdollista tehdä korjauksia
+  ja ehdokkuus on mahdollista perua
+  <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %> mennessä.
+</p>
 
 <% if GlobalConfiguration.candidate_data_frozen? %>
   <h2>Ehdokastiedot</h2>
