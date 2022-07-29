@@ -50,7 +50,7 @@ This stylesheet forms part of the Formtastic Rails Plugin
 .formtastic input,
 .formtastic button,
 .formtastic textarea {
-  font-family:sans-serif;
+  font-family: Georgia, serif;
   font-size:inherit;
   font-weight:inherit;
 }
