@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2022_07_27_164310) do
-
+ActiveRecord::Schema[7.0].define(version: 2022_07_29_142532) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,8 +20,8 @@ ActiveRecord::Schema.define(version: 2022_07_27_164310) do
     t.integer "author_id"
     t.string "author_type"
     t.text "body"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "namespace"
     t.index ["author_type", "author_id"], name: "index_active_admin_comments_on_author_type_and_author_id"
     t.index ["namespace"], name: "index_active_admin_comments_on_namespace"
@@ -34,7 +33,7 @@ ActiveRecord::Schema.define(version: 2022_07_27_164310) do
     t.string "record_type", null: false
     t.bigint "record_id", null: false
     t.bigint "blob_id", null: false
-    t.datetime "created_at", null: false
+    t.datetime "created_at", precision: nil, null: false
     t.index ["blob_id"], name: "index_active_storage_attachments_on_blob_id"
     t.index ["record_type", "record_id", "name", "blob_id"], name: "index_active_storage_attachments_uniqueness", unique: true
   end
@@ -46,8 +45,8 @@ ActiveRecord::Schema.define(version: 2022_07_27_164310) do
     t.text "metadata"
     t.string "service_name", null: false
     t.bigint "byte_size", null: false
-    t.string "checksum", null: false
-    t.datetime "created_at", null: false
+    t.string "checksum"
+    t.datetime "created_at", precision: nil, null: false
     t.index ["key"], name: "index_active_storage_blobs_on_key", unique: true
   end
 
@@ -61,31 +60,31 @@ ActiveRecord::Schema.define(version: 2022_07_27_164310) do
     t.string "email", default: "", null: false
     t.string "encrypted_password", limit: 128, default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.integer "sign_in_count", default: 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "role", null: false
     t.index ["email"], name: "index_admin_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
   create_table "advocate_users", id: :serial, force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "email", default: "", null: false
     t.string "encrypted_password", limit: 128, default: "", null: false
     t.string "reset_password_token"
-    t.datetime "reset_password_sent_at"
-    t.datetime "remember_created_at"
+    t.datetime "reset_password_sent_at", precision: nil
+    t.datetime "remember_created_at", precision: nil
     t.integer "sign_in_count", default: 0
-    t.datetime "current_sign_in_at"
-    t.datetime "last_sign_in_at"
+    t.datetime "current_sign_in_at", precision: nil
+    t.datetime "last_sign_in_at", precision: nil
     t.string "current_sign_in_ip"
     t.string "last_sign_in_ip"
     t.string "firstname"
@@ -101,8 +100,8 @@ ActiveRecord::Schema.define(version: 2022_07_27_164310) do
     t.string "previous_value"
     t.string "new_value"
     t.integer "candidate_id"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
   end
 
   create_table "candidates", id: :serial, force: :cascade do |t|
@@ -116,14 +115,14 @@ ActiveRecord::Schema.define(version: 2022_07_27_164310) do
     t.integer "candidate_number"
     t.text "notes"
     t.integer "numbering_order", null: false
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.boolean "cancelled", default: false, null: false
     t.string "phone_number"
     t.string "student_number", null: false
     t.string "postal_code"
     t.string "postal_city"
-    t.datetime "cancelled_at"
+    t.datetime "cancelled_at", precision: nil
     t.index ["student_number"], name: "allow_single_non_cancelled_candidate_per_student_number", unique: true, where: "(cancelled IS NOT TRUE)"
   end
 
@@ -132,12 +131,12 @@ ActiveRecord::Schema.define(version: 2022_07_27_164310) do
     t.integer "attempts", default: 0
     t.text "handler"
     t.text "last_error"
-    t.datetime "run_at"
-    t.datetime "locked_at"
-    t.datetime "failed_at"
+    t.datetime "run_at", precision: nil
+    t.datetime "locked_at", precision: nil
+    t.datetime "failed_at", precision: nil
     t.string "locked_by"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "queue"
     t.index ["priority", "run_at"], name: "delayed_jobs_priority"
   end
@@ -148,8 +147,8 @@ ActiveRecord::Schema.define(version: 2022_07_27_164310) do
     t.boolean "secretarial_freeze", default: false
     t.integer "electoral_coalition_id"
     t.integer "numbering_order"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.string "shorten"
     t.integer "primary_advocate_id"
     t.integer "secondary_advocate_id"
@@ -159,8 +158,8 @@ ActiveRecord::Schema.define(version: 2022_07_27_164310) do
 
   create_table "electoral_coalitions", id: :serial, force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.integer "numbering_order"
     t.string "shorten"
   end
@@ -168,22 +167,22 @@ ActiveRecord::Schema.define(version: 2022_07_27_164310) do
   create_table "emails", id: :serial, force: :cascade do |t|
     t.string "subject"
     t.text "content"
-    t.datetime "created_at"
-    t.datetime "updated_at"
-    t.datetime "enqueued_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
+    t.datetime "enqueued_at", precision: nil
   end
 
   create_table "faculties", id: :serial, force: :cascade do |t|
     t.string "name"
     t.string "code"
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.integer "numeric_code", null: false
   end
 
   create_table "global_configurations", id: :serial, force: :cascade do |t|
-    t.datetime "created_at"
-    t.datetime "updated_at"
+    t.datetime "created_at", precision: nil
+    t.datetime "updated_at", precision: nil
     t.boolean "advocate_login_enabled", default: false
   end
 
