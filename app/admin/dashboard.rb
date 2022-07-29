@@ -11,7 +11,7 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Ylläpidon toiminnot" do
           section 'Ehdokastiedot' do
             ul do
-              li link_to 'Yksinkertaistettu lista ehdokastiedoista', simple_listings_path
+              li link_to 'Yksinkertaistettu lista ehdokastiedoista', manage_candidates_path
               li link_to 'Muutokset ehdokasasettelun jälkeen', manage_candidate_attribute_changes_path
               li link_to 'Vaaralliset toiminnot', manage_danger_zone_path
             end
