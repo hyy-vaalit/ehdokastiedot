@@ -14,8 +14,8 @@ class GlobalConfiguration < ActiveRecord::Base
     candidate_nomination_period_started? && !candidate_nomination_period_effective? && !candidate_data_frozen?
   end
 
-  def self.candidate_nomination_begins_at
-    Vaalit::Config::CANDIDATE_NOMINATION_ENDS_AT
+  def self.candidate_nomination_starts_at
+    Vaalit::Config::CANDIDATE_NOMINATION_STARTS_AT
   end
 
   def self.candidate_nomination_ends_at

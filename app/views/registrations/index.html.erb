@@ -1,6 +1,8 @@
 <h2>Edustajistovaaliehdokkaaksi ilmoittautuminen</h2>
 
 <dl>
+  <dt>Ehdokasasettelu alkaa:</dt>
+    <dd><%= friendly_datetime(GlobalConfiguration.candidate_nomination_starts_at) %></dd>
   <dt>Ehdokasasettelu päättyy:</dt>
     <dd><%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %></dd>
   <dt>Ehdokastietojen korjausten ja peruutusten määräaika:</dt>
