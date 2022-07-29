@@ -106,7 +106,6 @@ ActiveAdmin.register AdvocateUser do
       f.input :electoral_alliances,
               :as => :check_boxes,
               :hint => "Vaihtaaksesi liiton edustajaa, poista liitto ensin nykyiseltä edustajaltaan.",
-              :label => "hello there",
               :collection => ( ElectoralAlliance.without_advocate_user + f.object.electoral_alliances )
     end
 
