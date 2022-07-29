@@ -8,7 +8,7 @@
 
 <% if @candidate %>
   <p>
-    Sinulla on voimassa oleva ehdokasilmoittautuminen.
+    Ehdokasilmoittautumisesi on voimassa.
   </p>
 
   <h2>Vaaliliiton tiedot</h2>
@@ -26,6 +26,10 @@
   <% end %>
 
   <div class="align-with-formtastic-btn">
+    <p>
+      Ehdokasilmoittautumisesi on voimassa.
+    </p>
+
     <% if can? :update, @candidate %>
       <%= link_to "Muokkaa",
         edit_registrations_candidate_path,

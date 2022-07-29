@@ -40,21 +40,59 @@
   </table>
 <% end %>
 
-<p>
-  Ehdokastiedot on syötettävä ehdokasasettelun päättymiseen
-  <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %>
-  mennessä.
-</p>
-
-
-<h3>Tietojen syöttämisestä:</h3>
+<h3>Ehdokasasettelu päättyy <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %></h3>
   <ul>
-    <li>Paperilomakkeiden tiedot ovat ensisijaiset.</li>
-    <li>Jos järjestelmään syötetyt tiedot eroavat paperilomakkeen tiedoista, käytetään paperilomakkeen tietoja.</li>
-    <li>Uusia ehdokkaita voi syöttää ehdokasasettelun päättymiseen saakka.</li>
-    <li>Ehdokasasettelun päättymisen jälkeen tietoihin voi tehdä korjauksia ehdokasilmoituksen perumisen määräaikaan saakka.</li>
+    <li>
+      Ehdokasasettelun päättymisen jälkeen tietoihin voi tehdä korjauksia ehdokasilmoituksen
+      perumisen määräaikaan saakka.
+    </li>
+    <li>
+      Ehdokastietojen korjausten, järjestyksen ja peruutusten määräaika:
+      <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %>
+    </li>
   </ul>
 </p>
+
+<h3>Ehdokasnumeroinnista:</h3>
+  <ul>
+    <li>
+      Ehdokasnumerot määräytyvät vaaliliiton sisällä ehdokkaiden järjestyksen mukaan.
+    </li>
+
+    <li>
+      Ehdokkaiden järjestys on <strong>aina</strong> vaaliliiton edustajan vastuulla.
+      <br>
+      Uudet ehdokasilmoittautumiset eivät asetu valmiiksi esimerkiksi aakkosjärjestykseen,
+      <br>
+      koska ei ole takeita, onko aakkosjärjestys vaaliliiton ehdokkaiden toivottu järjestys.
+    </li>
+
+
+    <li>
+      Tarkista ehdokkaiden järjestys ehdokasasettelun päättymisen jälkeen ennen
+      korjausten määräaikaa
+      <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %>.
+    </li>
+
+    <li>
+      Perutut ehdokasilmoittautumiset eivät vaikuta ehdokasnumerointiin.
+    </li>
+  </ul>
+
+<h3>Vaalirenkaista:</h3>
+  <ul>
+    <li>
+      Vaaliliitot asettuvat vaalirenkaasssa vaalirenkaan edustajan määrittämään järjestykseen.
+    </li>
+
+    <li>
+      Ehdokasnumerot määräytyvät vaalirenkaan sisällä vaaliliittojen järjestyksen mukaan.
+    </li>
+
+    <li>
+      Keskusvaalilautakunta arpoo vaalirenkaiden keskinäisen järjestyksen ehdokasnumerointia varten.
+    </li>
+  </ul>
 
 <h3>CSV-tiedoston tuominen Exceliin (ISO-Latin):</h3>
   <ol>
@@ -66,22 +104,6 @@
   </ol>
 
 <p>
-  Jos ääkköset näkyvät väärin ISO-Latin-merkistökoodauksella,
+  Jos CSV-tiedoston ääkköset näkyvät väärin ISO-Latin-merkistökoodauksella,
   kokeile UTF-8-versiota.
 </p>
-
-<h3>Ehdokasnumeroinnista:</h3>
-  <ul>
-    <li>Ehdokasnumerot määräytyvät vaaliliiton sisällä ehdokkaiden järjestyksen mukaan.</li>
-    <li>Ehdokasnumerot määräytyvät vaalirenkaan sisällä vaaliliittojen järjestyksen mukaan.</li>
-    <li>Voit muuttaa ehdokkaiden järjestystä syöttämisen jälkeen.</li>
-    <li>Järjestä ehdokkaat samaan järjestykseen kuin paperilomakkeet.</li>
-  </ul>
-
-<h3>Vaalirenkaista:</h3>
-  <ul>
-    <li>HYYn vaalityöntekijä luo vaalirenkaan ja liittää vaaliliitot vaalirenkaaseen paperilomakkeiden tietojen perusteella.</li>
-    <li>Vaaliliitot asettuvat vaalirenkaasssa vaalirenkaan perustamisilmoituksen (paperilla) määrittämään järjestykseen.</li>
-    <li>Ehdokasnumerot jaetaan vaaliliittojen mukaisessa järjestyksessä.</li>
-    <li>Keskusvaalilautakunta arpoo vaalirenkaiden keskinäisen järjestyksen ehdokasnumerointia varten.</li>
-  </ul>
