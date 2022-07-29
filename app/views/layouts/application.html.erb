@@ -36,14 +36,12 @@
           </li>
 
           <li>
-            <%= link_to "Ehdokasilmoittautuminen", registrations_candidate_path %>
-
-            <% if current_admin_user %>
-              <br>
-              <u>ADMIN</u>: <%= current_admin_user.email %>
-            <% end %>
+            <%= link_to "Omat tiedot", registrations_candidate_path %>
           </li>
-          <li><%= link_to "Kirjaudu ulos", haka_auth_sign_out_path %></li>
+
+          <li>
+            <%= link_to "Kirjaudu ulos", haka_auth_sign_out_path %>
+          </li>
         <% end %>
       </ul>
     </nav>
