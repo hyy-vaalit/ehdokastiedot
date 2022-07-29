@@ -27,15 +27,12 @@
   <li>Ehdokkuuden voi perua ainoastaan ehdokas itse kirjautumalla järjestelmään tai ilmoittamalla perumisesta kirjallisesti HYYn keskustoimistoon.</li>
 </ul>
 
-<%= link_to "Kirjaudu sisään", haka_auth_new_path, class: "btn btn-primary" %>
-
-<%# TODO %>
 <% if GlobalConfiguration.candidate_data_frozen? %>
   <h2>Ehdokastiedot</h2>
   <p>
-    Ehdokastiedot on jäädytetty eikä niihin voi enää tehdä muutoksia. Jos olet vaaliliiton edustaja, voit kuitenkin tarkistaa ehdokastietosi alla olevasta linkistä.
-  </p>
-  <p>
-      &raquo; <%= link_to "Edustajien sisäänkirjautuminen", advocates_alliances_path %>
+    Ehdokastiedot on jäädytetty eikä niihin voi enää tehdä muutoksia.
+    Jos olet vaaliliiton edustaja, voit tarkistaa ehdokastietosi kirjaudumalla sisään.
   </p>
 <% end %>
+
+<%= link_to "Kirjaudu sisään", haka_auth_new_path, class: "btn btn-primary" %>
