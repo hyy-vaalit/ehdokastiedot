@@ -12,7 +12,8 @@ ActiveAdmin.register_page "Dashboard" do
           section 'Ehdokastiedot' do
             ul do
               li link_to 'Yksinkertaistettu lista ehdokastiedoista', simple_listings_path
-              li link_to 'Edustajien muutokset ehdokasasettelun päättymisen jälkeen', manage_candidate_attribute_changes_path
+              li link_to 'Muutokset ehdokasasettelun jälkeen', manage_candidate_attribute_changes_path
+              li link_to 'Vaaralliset toiminnot', manage_danger_zone_path
             end
           end
 
@@ -39,13 +40,6 @@ ActiveAdmin.register_page "Dashboard" do
             end
           end
 
-           section 'X-files', :priority => 999 do
-            ul do
-              li link_to 'Vaaralliset toiminnot', manage_danger_zone_path
-              li link_to 'Sähköpostien lähetystiedot', "#TODO"
-            end
-          end
-
           section 'Muiden sidosryhmien sisäänkirjautuminen' do
             ul do
               li link_to 'Edustaja (liiton 1. edustaja)', advocate_index_path
@@ -58,15 +52,15 @@ ActiveAdmin.register_page "Dashboard" do
         panel "Vaaliliitot" do
           ul do
             if GlobalConfiguration.advocate_login_enabled?
-              li "Edustajat voivat kirjautua sisään: Kytke kirjautuminen pois aina ennen Keskusvaalilautakunnan kokousta, jotta ehdokastiedot tai -numerot eivät vuoda julkisiksi liian aikaisin."
+              li "Edustajat näkevät vaaliliitot: Laita esto päälle ennen Keskusvaalilautakunnan kokousta, jossa jaetaan ehdokasnumerot."
             else
-              li "Edustajat EIVÄT VOI kirjautua sisään: Kytke kirjautuminen päälle, kun haluat että edustajat saavat ehdokastietonsa ja -numeronsa."
+              li "Edustajat EIVÄT NÄE vaaliliittoja: Ota esto pois, kun haluat että edustajat saavat ehdokastietonsa ja -numeronsa."
             end
             li "Edustajat voivat luoda uusia ehdokkaita ja vaaliliittoja ehdokasasettelun päättymiseen saakka
                (#{friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at)})."
             li "Edustajat voivat tehdä ehdokastietoihin korjauksia tietojen jäädyttämiseen saakka
                (#{friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at)})."
-            li "Edustajat voivat lukea ja ladata oman vaaliliittonsa ehdokastiedot vielä jäädyttämisenkin jälkeen."
+            li "Edustajat voivat lukea ja ladata oman vaaliliittonsa ehdokastiedot vielä jäädyttämisenkin jälkeen (ks ylin kohta)."
             li "Vaaliliiton edustajien sisäänkirjautuminen kannattaa varmuussyistä estää viimeistään vaalipäivänä ennen ääntenlaskun alkamista (vaarallisten toimintojen sivulta)."
           end
 
