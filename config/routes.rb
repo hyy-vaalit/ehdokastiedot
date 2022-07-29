@@ -2,7 +2,9 @@ Rails.application.routes.draw do
   # Devise routes must be on top to get highest priority
   devise_for :admin_users, ActiveAdmin::Devise.config
 
-  ActiveAdmin.routes(self)
+  # When database is recreated, `rake db:schema:load` raises `ActiveAdmin::DatabaseHitDuringLoad`
+  # https://github.com/activeadmin/activeadmin/issues/783#issuecomment-1199098069
+  ActiveAdmin.routes(self) rescue ActiveAdmin::DatabaseHitDuringLoad
 
   namespace :haka do
     get "auth/sign_out", to: "/haka_auth#destroy"

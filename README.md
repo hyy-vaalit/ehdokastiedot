@@ -108,15 +108,6 @@ heroku run rake db:schema:load [-r qa|prod]
 heroku run rake db:seed:production [-r qa|prod]
 ```
 
-Jos `rake` feilaa `ActiveAdmin::DatabaseHitDuringLoad`, workaround on kommentoida pois
-config/routes.rb tiedostosta ActiveAdminin routet. Pushaa väliaikainen commit Herokuun,
-aja `rake db:schema:load`, jonka jälkeen poista väliaikainen commit.
-```
-  # devise_for :admin_users, ActiveAdmin::Devise.config
-  # ActiveAdmin.routes(self)
-```
-Lisätietoa: https://github.com/activeadmin/activeadmin/issues/783#issuecomment-1199098069
-
 Lisää add-onssit:
 
 * Postgres
