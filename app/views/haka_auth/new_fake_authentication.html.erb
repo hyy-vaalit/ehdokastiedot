@@ -1,0 +1,19 @@
+<h1>Haka-sisäänkirjautuminen</h1>
+
+<p>
+  l/p: teppo/testaaja
+</p>
+
+<%= link_to "Haka", haka_auth_new_path %>
+
+<hr>
+
+<h1>Local development sign in</h1>
+
+<%# Route exists iff Vaalit::Config.fake_auth_enabled? %>
+<%= form_for("fake_authentication", as: "what_name", url: haka_auth_fake_authentication_path) do |f| %>
+  <%= f.label "Opiskelijanumero" %>
+  <%= f.text_field :student_number %>
+
+  <%= f.submit "Fake sign in", class: "btn btn-primary" %>
+<% end %>

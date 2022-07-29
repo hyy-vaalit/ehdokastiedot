@@ -6,11 +6,15 @@ class HakaAuthController < ApplicationController
   # its own to protect against CSRF.
   protect_from_forgery except: [:consume], with: :exception
 
+  # /haka/auth/fake_authentication
+  def new_fake_authentication; end
+
   def create_fake_authentication
     raise NotImplementedError, "Fake authentication is not enabled" unless Vaalit::Config.fake_auth_enabled?
 
-    student_number = params[:wat][:student_number]
-    session[:haka_attrs]["student_number"] = student_number
+    session[:haka_attrs] = {
+      "student_number" => params[:fake_authentication][:student_number]
+    }
 
     redirect_to registrations_root_path
   end

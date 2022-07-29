@@ -14,6 +14,7 @@ Rails.application.routes.draw do
 
     if Vaalit::Config.fake_auth_enabled?
       post "auth/fake_authentication", to: "/haka_auth#create_fake_authentication"
+      get "auth/fake_authentication", to: "/haka_auth#new_fake_authentication"
     end
   end
 
