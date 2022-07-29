@@ -50,7 +50,7 @@ class Candidate < ActiveRecord::Base
 
   before_save :clear_linebreaks_from_notes!
   before_save :strip_whitespace!
-  before_save :clear_cancelled_at, if: !cancelled
+  before_save :clear_cancelled_at, if: ->{ !cancelled }
 
   # If candidate numbers have been given, order by candidate numbers.
   # Otherwise order by alliance id and numbering order.
@@ -100,7 +100,7 @@ class Candidate < ActiveRecord::Base
 
   def log_and_update_attributes(attrs)
     Candidate.transaction do
-      self.attributes = attrs
+      self.assign_attributes(attrs)
       CandidateAttributeChange.create_from!(self.id, self.changes) if self.changed? and GlobalConfiguration.log_candidate_attribute_changes?
       self.save
     end
