@@ -38,7 +38,7 @@ class HakaAuthController < ApplicationController
       Rails.logger.error "Invalid SAML response: #{response.errors}"
       Rollbar.error "Invalid SAML response", errors: response.errors
 
-      flash.alert = "Sisäänkirjautumisessa tapahtui tuntematon virhe. Yritä uudelleen."
+      flash.alert = "Sisäänkirjautumisessa tapahtui odottamaton virhe. Yritä uudelleen."
       redirect_to root_path and return
     end
 
