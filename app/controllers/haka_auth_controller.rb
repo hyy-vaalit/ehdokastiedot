@@ -32,6 +32,12 @@ class HakaAuthController < ApplicationController
 
   # Receives the SAML assertion after Haka sign in
   def consume
+    # params[:SAMLResponse] can be blank if GET route is accessed directly without actual authn.
+    if params[:SAMLResponse].blank?
+      flash.alert = "Sisäänkirjautumisessa tapahtui odottamaton virhe. Yritä uudelleen."
+      redirect_to root_path and return
+    end
+
     response = OneLogin::RubySaml::Response.new(
       params[:SAMLResponse],
       settings: saml_settings,
