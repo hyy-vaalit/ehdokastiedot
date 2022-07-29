@@ -25,7 +25,7 @@ ActiveAdmin.register Email do
     attributes_table :subject do
       row("content") { raw "<pre>#{email.content}</pre>" }
       row("Lähetetty") { friendly_datetime(email.enqueued_at) }
-      row("Lähetys") { button_to 'Lähetä sähköposti ehdokkaille', send_mail_admin_email_path }
+      row("Lähetys") { button_to 'Lähetä sähköposti ehdokkaille', send_mail_admin_email_path, method: :post }
     end
   end
 

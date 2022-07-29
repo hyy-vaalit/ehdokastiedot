@@ -27,10 +27,9 @@
 
   <div class="align-with-formtastic-btn">
     <% if can? :update, @candidate %>
-      <%= button_to "Muokkaa",
+      <%= link_to "Muokkaa",
         edit_registrations_candidate_path,
-        class: "non-formtastic-btn btn btn-primary",
-        method: :get
+        class: "non-formtastic-btn btn btn-primary"
       %>
     <% end %>
   </div>
