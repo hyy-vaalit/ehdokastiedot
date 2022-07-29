@@ -5,7 +5,12 @@ class Registrations::CandidatesController < RegistrationsController
   before_action :set_invite_code
   before_action :set_candidate
 
-  def edit; end
+  def edit
+    if @candidate.nil?
+      flash.alert = "Ehdokasilmoittautuminen ei ole voimassa."
+      redirect_to registrations_candidate_path and return
+    end
+  end
 
   def show
     @cancelled_candidates = Candidate
@@ -27,7 +32,7 @@ class Registrations::CandidatesController < RegistrationsController
     if @candidate.cancel
       flash.notice = "Ehdokkuutesi edustajistovaaleissa on peruttu."
     else
-      flash.error = "Ehdokkuuden peruminen ei onnistunut. Ota yhteys HYYn vaalityöntekijään."
+      flash.alert = "Ehdokkuuden peruminen ei onnistunut. Ota yhteys HYYn vaalityöntekijään."
     end
 
     redirect_to registrations_candidate_path
