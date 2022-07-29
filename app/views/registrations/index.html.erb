@@ -29,7 +29,7 @@
   </p>
 
   <p>
-    <% if can? :create, :candidate %>
+    <% if can? :create, Candidate, student_number: current_haka_user.student_number %>
       <%= form_tag new_registrations_candidate_path, method: :get do -%>
         <label for="invite_code">Vaaliliiton kutsukoodi</label>
         <input type="text" name="invite_code">
