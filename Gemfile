@@ -62,8 +62,3 @@ group :development, :test do
   gem 'foreman'
   gem 'letter_opener'
 end
-
-group :development do
-  gem 'spring' # keep application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring-watcher-listen'
-end
