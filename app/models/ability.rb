@@ -86,11 +86,14 @@ class Ability
   def advocate_user(user)
     can :access, :advocate if GlobalConfiguration.advocate_login_enabled?
 
+    can [:read], ElectoralCoalition
     can [:read], ElectoralAlliance
     can [:read], Candidate
 
     if GlobalConfiguration.candidate_nomination_period_effective?
       can [:create, :update], ElectoralAlliance
+      can [:create, :update], ElectoralCoalition
+
       can [:update], Candidate
     end
 

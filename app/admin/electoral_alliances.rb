@@ -11,13 +11,13 @@ ActiveAdmin.register ElectoralAlliance do
   menu :label => " Vaaliliitot", :priority => 3
 
   index do
-    column :name
-    column :shorten
-    column :invite_code
-    column :electoral_coalition, :sortable => false
-    column :advocate_user, :sortable => false
-    column :expected_candidate_count
-    column :secretarial_freeze
+    column "Vaaliliiton nimi", :name
+    column "Lyhenne", :shorten
+    column "Kutsukoodi", :invite_code
+    column "Vaalirengas", :electoral_coalition, sortable: false
+    column "Vaaliliiton edustaja", :advocate_user, sortable: false
+    column "Ehdokkaita odotetaan", :expected_candidate_count
+    column "Valmis", :secretarial_freeze
 
     actions
   end
@@ -25,6 +25,10 @@ ActiveAdmin.register ElectoralAlliance do
   show :title => :name do
     attributes_table :name, :shorten do
       row :invite_code
+      row("Edustaja") do |a|
+        link_to a.advocate_user.friendly_name, admin_advocate_user_path(a.advocate_user)
+      end
+
       row :created_at
       row :updated_at
       row("candidates") { "#{electoral_alliance.candidates.count} / #{electoral_alliance.expected_candidate_count}" }

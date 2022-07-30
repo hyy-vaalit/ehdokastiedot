@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_29_142532) do
+ActiveRecord::Schema[7.0].define(version: 2022_07_30_095051) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -74,6 +74,14 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_29_142532) do
     t.index ["reset_password_token"], name: "index_admin_users_on_reset_password_token", unique: true
   end
 
+  create_table "advocate_teams", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "primary_advocate_user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["primary_advocate_user_id"], name: "index_advocate_teams_on_primary_advocate_user_id", unique: true
+  end
+
   create_table "advocate_users", id: :serial, force: :cascade do |t|
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
@@ -91,6 +99,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_29_142532) do
     t.string "lastname"
     t.string "phone_number"
     t.string "student_number", null: false
+    t.integer "advocate_team_id"
     t.index ["email"], name: "index_advocate_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_advocate_users_on_reset_password_token", unique: true
   end
@@ -162,6 +171,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_29_142532) do
     t.datetime "updated_at", precision: nil
     t.integer "numbering_order"
     t.string "shorten"
+    t.integer "advocate_team_id"
   end
 
   create_table "emails", id: :serial, force: :cascade do |t|
@@ -188,9 +198,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_29_142532) do
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
+  add_foreign_key "advocate_teams", "advocate_users", column: "primary_advocate_user_id"
+  add_foreign_key "advocate_users", "advocate_teams"
   add_foreign_key "candidate_attribute_changes", "candidates", name: "candidate_attribute_changes_candidate_id_fk"
   add_foreign_key "candidates", "electoral_alliances", name: "candidates_electoral_alliance_id_fk"
   add_foreign_key "electoral_alliances", "advocate_users", column: "primary_advocate_id", name: "electoral_alliances_primary_advocate_id_fk"
   add_foreign_key "electoral_alliances", "advocate_users", column: "secondary_advocate_id", name: "electoral_alliances_secondary_advocate_id_fk"
   add_foreign_key "electoral_alliances", "electoral_coalitions", name: "electoral_alliances_electoral_coalition_id_fk"
+  add_foreign_key "electoral_coalitions", "advocate_teams"
 end

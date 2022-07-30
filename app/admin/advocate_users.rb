@@ -47,6 +47,11 @@ ActiveAdmin.register AdvocateUser do
     column :firstname
     column :email
     column :student_number
+    column("Edustajatiimi") do |u|
+      if u.advocate_team.present?
+        link_to u.advocate_team.name, admin_advocate_team_path(u.advocate_team)
+      end
+    end
     column("Current sign in") { |u| u.current_sign_in_at.localtime if u.current_sign_in_at }
     column("Last sign in") { |u| u.last_sign_in_at.localtime if u.last_sign_in_at }
     column("Vaaliliittoja") { |u| u.electoral_alliances.count }
@@ -68,7 +73,6 @@ ActiveAdmin.register AdvocateUser do
      end
 
      panel "Vaaliliitot (#{user.electoral_alliances.count} kpl)" do
-
        table_for(user.electoral_alliances) do |t|
          t.column("Valmis") { |alliance| status_tag('Valmis', class: 'ok') if alliance.secretarial_freeze? }
          t.column("Vaaliliitto") { |alliance| link_to alliance.name, admin_electoral_alliance_path(alliance) }
@@ -111,5 +115,4 @@ ActiveAdmin.register AdvocateUser do
 
     f.actions
   end
-
 end

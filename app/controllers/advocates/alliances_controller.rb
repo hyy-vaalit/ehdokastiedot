@@ -6,7 +6,9 @@ class Advocates::AlliancesController < AdvocatesController
   authorize_resource :electoral_alliance, :parent => false # Conf needed because ElectoralAlliance != Alliance. Without ":parent => false" authorization is not effective.
 
   def index
-    @alliances = current_advocate_user.electoral_alliances.by_numbering_order
+    @advocate_team = current_advocate_user&.advocate_team
+    @team_alliances = @advocate_team&.electoral_coalition&.electoral_alliances&.by_numbering_order || []
+    @alliances_without_coalition = current_advocate_user.electoral_alliances.by_numbering_order - @team_alliances
   end
 
   def new
@@ -55,8 +57,18 @@ class Advocates::AlliancesController < AdvocatesController
 
   protected
 
+  # Return either
+  # - alliance of mine (which is not linked to coalition yet)
+  # - or alliance through AdvocateTeam (user A is viewing alliance of user B of the same team)
   def find_alliance
-    @alliance = current_advocate_user.electoral_alliances.find(params[:id])
+    @alliance = current_advocate_user.electoral_alliances.find_by(id: params[:id])
+
+    if @alliance.nil? && current_advocate_user.advocate_team.present?
+      @alliance = current_advocate_user.advocate_team.electoral_alliances.find(params[:id])
+    end
+  rescue ActiveRecord::RecordNotFound
+    flash.alert = "Pyydettyä vaaliliittoa ei löytynyt tai sinulla ei ole oikeuksia siihen."
+    redirect_to advocates_alliances_path
   end
 
   def nav_paths
