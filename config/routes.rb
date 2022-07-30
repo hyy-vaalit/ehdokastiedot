@@ -27,6 +27,8 @@ Rails.application.routes.draw do
     resources :alliances do
       resources :candidates
     end
+
+    resource :coalition, only: [:update]
   end
 
   namespace :registrations do

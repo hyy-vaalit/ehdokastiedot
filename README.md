@@ -199,6 +199,15 @@ Salasana "pass123"
 
 # Pekka's Tips
 
+* ActiveAdmin käyttää Formtasticia formien luomiseen. Dokumentaatio form-elementtien muokkaamiseksi
+  pitää etsiä Formtasticin dokumentaatiosta:
+  * https://github.com/formtastic/formtastic/wiki/4.1-Options-Cheat-Sheet
+  * https://github.com/formtastic/formtastic/wiki/3-Formtastic-Inputs
+  * https://activeadmin.info/5-forms.html
+
+* Formtastic hakee relaation resurssilta methodia "name". Jos sitä ei löydy, esim dropdownin
+  arvoksi tulee olion sisäinen id. Tämän voi vaihtaa "member_label: :metodi", ks edellinen kohta.
+
 * Jos Formtasticin virheet ei tule näkyviin, varmista että on
   - `<%= semantic_form_for @example ..%>` EIKÄ `:example`
   - .. näistä jälkimmäinen antaa oudon virheen.

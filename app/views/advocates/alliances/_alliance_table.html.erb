@@ -1,0 +1,60 @@
+  <table>
+    <thead>
+      <th>Vaaliliitto</th>
+      <th>Edustaja</th>
+      <th>Vaalirengas</th>
+      <th>Ehdokkaita</th>
+      <th>Tavoite</th>
+      <th>Valmis?</th>
+      <th><i class="icon-share"></i> CSV</th>
+      <th><i class="icon-share"></i> CSV</th>
+    </thead>
+
+    <tbody>
+      <% alliances.each do |a| %>
+        <tr>
+          <td><%= link_to a.shorten, advocates_alliance_path(a) %></td>
+          <td>
+            <% if a&.advocate_user == current_advocate_user %>
+              &#x26a1; <%# lightning bolt %>
+            <% end %>
+            <%= a&.advocate_user&.friendly_name %>
+          </td>
+          <td>
+            <% if a.electoral_coalition.present? %>
+              <%= link_to a.electoral_coalition.shorten, advocates_coalition_path %>
+            <% elsif current_advocate_user&.advocate_team&.electoral_coalition.present? %>
+              <%= button_to "Liitä renkaaseen",
+                advocates_coalition_path(electoral_alliance_id: a.id),
+                method: :put,
+                class: "btn btn-info",
+                data: {
+                  confirm: <<-MSG.squish
+                    Liitetäänkö vaaliliitto "#{a.shorten}"
+                    renkaaseen "#{current_advocate_user.advocate_team.electoral_coalition.shorten}"?
+                  MSG
+                }
+              %>
+            <% end %>
+          </td>
+          <td><%= a.candidates.count %></td>
+          <td><%= a.expected_candidate_count %></td>
+          <td>
+            <% if alliance_ready?(a) %>
+              <span class='alliance-ready'>OK</span>
+            <% else %>
+              <% if a.candidates.count != a.expected_candidate_count %>
+                Tarkista ehdokasmäärä.
+              <% end %>
+
+              <% if a.electoral_coalition.nil? %>
+                Ei vaalirengasta.
+              <% end %>
+            <% end %>
+          </td>
+          <td><%= link_to "ISO-Latin", advocates_alliance_path(a, :format => :csv, :isolatin => true) %></td>
+          <td><%= link_to "UTF-8", advocates_alliance_path(a, :format => :csv) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>

@@ -2,6 +2,9 @@ class ElectoralCoalition < ActiveRecord::Base
   has_many :electoral_alliances, :dependent => :nullify
   has_many :candidates, :through => :electoral_alliances
 
+  belongs_to :advocate_team, optional: true
+  has_many :advocate_users, through: :advocate_team
+
   validates_presence_of :name, :shorten
 
   scope :by_numbering_order, -> { order("#{table_name}.numbering_order") }

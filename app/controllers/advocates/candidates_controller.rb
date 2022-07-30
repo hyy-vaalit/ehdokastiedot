@@ -60,12 +60,17 @@ class Advocates::CandidatesController < AdvocatesController
 
   protected
 
-  # Ensure current user has access to the target alliance by finding it through
-  # the relation (not directly from `ElectoralAlliance`).
+  # Advocate can only edit Candidates which belong to Alliance they manage.
+  # AdvocateTeam membership does not grant access to modify the Alliance or its Candidates.
+  # Advocate can, however, view Candidates of belonging to any of the AdvocateTeam Alliances
+  # in AlliancesController#show.
   def find_alliance
     @alliance = current_advocate_user
       .electoral_alliances
       .find(params[:alliance_id])
+  rescue ActiveRecord::RecordNotFound
+    flash.alert = "Pyydettyä kohdetta ei löytynyt tai sinulla ei ole oikeuksia pyydettyyn toimintoon."
+    redirect_to advocates_alliance_path(params[:alliance_id]) and return
   end
 
   def candidate_params

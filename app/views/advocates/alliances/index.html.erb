@@ -1,43 +1,66 @@
-<h1>Vaaliliitot</h1>
+<h1>Vaalirengas</h1>
 
 <p>
-  <% if can? :create, ElectoralAlliance %>
-    &raquo; <%= link_to "Luo uusi vaaliliitto", new_advocates_alliance_path %>
-  <% else %>
-    Ehdokasasettelu on päättynyt eikä uusia vaaliliittoja voi enää luoda eikä nykyisten tietoja muuttaa.
-  <% end %>
+  Edustajatiimi jakaa näkyvyyden vaalirenkaan vaaliliittojen ehdokkaisiin.
 </p>
 
-<% if @alliances.any? %>
-  <table>
-    <thead>
-      <th>Vaaliliitto</th>
-      <th>Ehdokkaita syötetty</th>
-      <th>Ehdokkaita yhteensä</th>
-      <th>Valmis?</th>
-      <th><i class="icon-share"></i> CSV</th>
-      <th><i class="icon-share"></i> CSV</th>
-    </thead>
+<% if @advocate_team.present? %>
+  <dl>
+    <dt>Edustajatiimi</dt>
+    <dd><%= @advocate_team.name %></dd>
 
-    <tbody>
-      <% @alliances.each do |a| %>
-        <tr>
-          <td><%= link_to a.name, advocates_alliance_path(a) %></td>
-          <td><%= a.candidates.count %></td>
-          <td><%= a.expected_candidate_count %></td>
-          <td>
-            <% if alliance_ready?(a) %>
-              <span class='alliance-ready'>OK</span>
-            <% else %>
-              Tarkista ehdokasmäärä.
-            <% end %>
-          </td>
-          <td><%= link_to "ISO-Latin", advocates_alliance_path(a, :format => :csv, :isolatin => true) %></td>
-          <td><%= link_to "UTF-8", advocates_alliance_path(a, :format => :csv) %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
+    <dt>Tiimin jäsenet</dt>
+    <dd>
+      <%= @advocate_team.advocate_users.map(&:friendly_name).join(", ") %>
+    </dd>
+  </dl>
+
+  <% if @advocate_team.electoral_coalition.present? %>
+    <h2><%= @advocate_team.electoral_coalition.name %></h2>
+  <% else %>
+    <p>
+      &raquo; Muodosta edustajatiimille vaalirengas kirjoittamalla sähköpostiviesti vaalit@hyy.fi.
+    </p>
+  <% end %>
+<% else %>
+  <p>
+    Edustajatiimin muodostamiseksi ilmoita sähköpostitse HYYn vaaliorganisaatiolle seuraavat tiedot:
+    <ul>
+      <li>
+        Edustajatiimin nimi (voi olla eri kuin vaalirenkaan nimi)
+      </li>
+      <li>
+        Edustajatiimin jäsenten nimi, sähköpostiosoite ja opiskelijanumero.
+        Jos vaaliliiton edustajalla on jo edustajatunnus, riittää ilmoittaa pelkkä nimi.
+      </li>
+    </ul>
+  </p>
+
+  <p>
+    <ul>
+      <li>Jokainen edustajatiimin jäsen näkee kaikkien tiimin vaaliliittojen ehdokkaat.</li>
+      <li>Ehdokastietoja voi muokata vain vaaliliiton ensisijainen edustaja.</li>
+      <li>Tiimi voi edustaa vain yhtä vaalirengasta kerrallaan.</li>
+    </ul>
+  </p>
+<% end %>
+
+<% if @team_alliances.any? %>
+  <%= render partial: "alliance_table", locals: { alliances: @team_alliances } %>
+<% end %>
+
+
+
+<% if @alliances_without_coalition.any? %>
+  <h1>Vaaliliitot ilman vaalirengasta</h1>
+
+  <%= render partial: "alliance_table", locals: { alliances: @alliances_without_coalition } %>
+<% end %>
+
+<% if can? :create, ElectoralAlliance %>
+  <p>
+    &raquo; <%= link_to "Luo uusi vaaliliitto", new_advocates_alliance_path %>
+  </p>
 <% end %>
 
 <h3>Ehdokasasettelu päättyy <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %></h3>
@@ -56,6 +79,8 @@
     </li>
   </ul>
 </p>
+
+<hr>
 
 <h3>Ehdokasnumeroinnista:</h3>
   <ul>
@@ -86,7 +111,8 @@
 <h3>Vaalirenkaista:</h3>
   <ul>
     <li>
-      Vaaliliitot asettuvat vaalirenkaasssa vaalirenkaan edustajan määrittämään järjestykseen.
+      Vaalirenkaan edustajan on ilmoitettava vaaliliittojen haluttu järjestys
+      sähköpostilla vaalit@hyy.fi.
     </li>
 
     <li>
@@ -94,7 +120,7 @@
     </li>
 
     <li>
-      Keskusvaalilautakunta arpoo vaalirenkaiden keskinäisen järjestyksen ehdokasnumerointia varten.
+      Keskusvaalilautakunta arpoo vaalirenkaiden keskinäisen järjestyksen, kun ehdokasnumeot jaetaan.
     </li>
   </ul>
 
