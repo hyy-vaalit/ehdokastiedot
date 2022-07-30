@@ -2,6 +2,7 @@
 
 <p>
   Edustajatiimi jakaa näkyvyyden vaalirenkaan vaaliliittojen ehdokkaisiin.
+  Vain vaaliliiton oma edustaja voi muokata ehdokastietoja.
 </p>
 
 <% if @advocate_team.present? %>
@@ -27,7 +28,7 @@
     Edustajatiimin muodostamiseksi ilmoita sähköpostitse HYYn vaaliorganisaatiolle seuraavat tiedot:
     <ul>
       <li>
-        Edustajatiimin nimi (voi olla eri kuin vaalirenkaan nimi)
+        Edustajatiimin nimi (voi olla sama kuin vaalirenkaan nimi)
       </li>
       <li>
         Edustajatiimin jäsenten nimi, sähköpostiosoite ja opiskelijanumero.
@@ -35,21 +36,11 @@
       </li>
     </ul>
   </p>
-
-  <p>
-    <ul>
-      <li>Jokainen edustajatiimin jäsen näkee kaikkien tiimin vaaliliittojen ehdokkaat.</li>
-      <li>Ehdokastietoja voi muokata vain vaaliliiton ensisijainen edustaja.</li>
-      <li>Tiimi voi edustaa vain yhtä vaalirengasta kerrallaan.</li>
-    </ul>
-  </p>
 <% end %>
 
 <% if @team_alliances.any? %>
   <%= render partial: "alliance_table", locals: { alliances: @team_alliances } %>
 <% end %>
-
-
 
 <% if @alliances_without_coalition.any? %>
   <h1>Vaaliliitot ilman vaalirengasta</h1>
