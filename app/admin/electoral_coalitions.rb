@@ -4,7 +4,7 @@ ActiveAdmin.register ElectoralCoalition do
                 :shorten,
                 :electoral_alliance_ids
 
-  menu :label => " Vaalirenkaat", :priority => 3
+  menu :label => " Vaalirenkaat", :priority => 2
 
   controller do
     # Override default method because :electoral_alliance_ids is not available in permitted_params.

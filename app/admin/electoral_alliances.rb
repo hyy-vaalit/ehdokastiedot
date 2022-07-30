@@ -8,7 +8,7 @@ ActiveAdmin.register ElectoralAlliance do
   scope :without_coalition
   scope :without_advocate_user
 
-  menu :label => " Vaaliliitot", :priority => 2
+  menu :label => " Vaaliliitot", :priority => 3
 
   index do
     column :name
