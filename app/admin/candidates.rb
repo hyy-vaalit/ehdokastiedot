@@ -17,15 +17,13 @@ ActiveAdmin.register Candidate do
                 :electoral_alliance_id,
                 :numbering_order_position
 
-  menu :label => " Muut ehdokkaat", :priority => 4
+  menu :label => " Ehdokkaat", :priority => 4
 
-  scope :without_alliance, :default => true
-  scope :cancelled, :default => true
+  scope "Peruneet", :cancelled, :default => true
+  scope "Voimassa", :valid
 
   controller do
-
-    # Override default method because we need to set electoral_alliance_id despite
-    # mass-assignment protection (which is needed for advocate users).
+    # Override default method because :electoral_alliance_ids is not available in permitted_params.
     def update
       @candidate = Candidate.find(params[:id])
 
@@ -41,6 +39,7 @@ ActiveAdmin.register Candidate do
     end
 
     def create
+      # Override default method because :electoral_alliance_ids is not available in permitted_params.
       @candidate = Candidate.new(permitted_params[:candidate])
       alliance_id = params[:candidate][:electoral_alliance_id]
 
@@ -52,12 +51,9 @@ ActiveAdmin.register Candidate do
         super
       end
     end
-
   end
 
   index do
-    text_node "Voit luoda uuden ehdokkaan vaaliliiton sivulta."
-
     column :candidate_number
     column :lastname
     column :firstname
@@ -105,9 +101,7 @@ ActiveAdmin.register Candidate do
 
     if params[:action] == "new" && alliance_id.nil?
       panel "Ehdokkaan luominen edellyttää vaaliliittoa" do
-        para "Eksyit uuden ehdokkaan luontisivulle ilman vaaliliittoa."
-
-        para "Mene takaisin vaaliliiton sivulle ja klikkaa sieltä 'Uusi ehdokas'."
+        para "Luo ehdokas menemällä vaaliliiton sivulle ja klikkaa sieltä 'Uusi ehdokas'."
       end
     else
       # Candidate#electoral_alliance_id can be nil if candidate was in an

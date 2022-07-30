@@ -7,9 +7,7 @@ ActiveAdmin.register ElectoralCoalition do
   menu :label => " Vaalirenkaat", :priority => 3
 
   controller do
-
-    # Override default method because :electoral_alliance_ids is just not
-    # available through permitted_params.
+    # Override default method because :electoral_alliance_ids is not available in permitted_params.
     def update
       @electoral_coalition = ElectoralCoalition.find(params[:id])
 
@@ -23,8 +21,7 @@ ActiveAdmin.register ElectoralCoalition do
       end
     end
 
-    # Override default method because :electoral_alliance_ids is just not
-    # available through permitted_params.
+    # Override default method because :electoral_alliance_ids is not available in permitted_params.
     def create
       @electoral_coalition = ElectoralCoalition.new(permitted_params[:electoral_coalition])
 
