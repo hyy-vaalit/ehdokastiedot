@@ -43,7 +43,7 @@
 <% end %>
 
 <% if @alliances_without_coalition.any? %>
-  <h1>Vaaliliitot ilman vaalirengasta</h1>
+  <h2>Vaaliliitot ilman vaalirengasta</h2>
 
   <%= render partial: "alliance_table", locals: { alliances: @alliances_without_coalition } %>
 <% end %>
