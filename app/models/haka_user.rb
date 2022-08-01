@@ -28,12 +28,37 @@ class HakaUser
   # Returns the number value of the last URN attribute:
   #   raw "urn:schac:personalUniqueCode:fi:yliopisto.fi:x8734"
   #   will return: "x8734"
+  #
+  # Student number may be a multivalue array such as
+  #   "urn:oid:1.3.6.1.4.1.25178.1.2.14"=>
+  #     ["urn:schac:personalUniqueCode:int:esi:FI:1.2.246.562.24.987654321",
+  #     "urn:schac:personalUniqueCode:int:studentID:helsinki.fi:01234567"]
+  #   }
+  # in which case the value of Vaalit::Haka::HAKA_STUDENT_NUMBER_KEY is used.
   def parse_student_number(raw)
-    raise ArgumentError, "Student number missing" if raw.blank?
-    if !raw.is_a?(String)
-      raise ArgumentError, "Student number must be given as String to preserve the leading zero."
+    value = nil
+
+    if raw.is_a?(Array)
+      raw.each do |v|
+        value = v if v.starts_with?(Vaalit::Haka::HAKA_STUDENT_NUMBER_KEY)
+      end
+    elsif raw.is_a?(String)
+      if raw.starts_with?(Vaalit::Haka::HAKA_STUDENT_NUMBER_KEY)
+        value = raw
+      else
+        Rails.logger.info <<-MSG.squish
+          Login failed because student number not found with key
+          #{Vaalit::Haka::HAKA_STUDENT_NUMBER_KEY}
+        MSG
+        Rails.logger.debug "Failed student number value: #{v}"
+        value = nil
+      end
+    else
+      raise ArgumentError, "Student number must be given either as String or String[] to preserve the leading zero."
     end
 
-    raw.split(":").last
+    raise ArgumentError, "Student number missing" if value.blank?
+
+    value.split(":").last
   end
 end
