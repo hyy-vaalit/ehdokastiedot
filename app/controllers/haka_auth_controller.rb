@@ -54,12 +54,12 @@ class HakaAuthController < ApplicationController
 
     Rails.logger.debug "Reponse attributes: #{response.attributes.inspect}"
     session[:haka_attrs] = {
-      "student_number" => response.attributes[Vaalit::Haka::HAKA_STUDENT_NUMBER_FIELD],
-      "email" => response.attributes[Vaalit::Haka::HAKA_EMAIL_FIELD],
-      "fullname" => response.attributes[Vaalit::Haka::HAKA_CN_FIELD],
-      "firstname" => response.attributes[Vaalit::Haka::HAKA_GIVENNAME_FIELD],
-      "lastname" => response.attributes[Vaalit::Haka::HAKA_SN_FIELD],
-      "homeorg" => response.attributes[Vaalit::Haka::HAKA_HOMEORG_FIELD]
+      "student_number" => response.attributes.multi(Vaalit::Haka::HAKA_STUDENT_NUMBER_FIELD),
+      "email" => response.attributes.single(Vaalit::Haka::HAKA_EMAIL_FIELD),
+      "fullname" => response.attributes.single(Vaalit::Haka::HAKA_CN_FIELD),
+      "firstname" => response.attributes.single(Vaalit::Haka::HAKA_GIVENNAME_FIELD),
+      "lastname" => response.attributes.single(Vaalit::Haka::HAKA_SN_FIELD),
+      "homeorg" => response.attributes.multi(Vaalit::Haka::HAKA_HOMEORG_FIELD)
     }
 
     haka_user = HakaUser.new(attrs: session[:haka_attrs])
