@@ -31,6 +31,7 @@ class HakaAuthController < ApplicationController
   end
 
   # Receives the SAML assertion after Haka sign in
+  # https://github.com/onelogin/ruby-saml#retrieving-attributes
   def consume
     # params[:SAMLResponse] can be blank if GET route is accessed directly without actual authn.
     if params[:SAMLResponse].blank?
