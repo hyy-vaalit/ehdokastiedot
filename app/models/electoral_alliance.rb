@@ -22,6 +22,7 @@ class ElectoralAlliance < ActiveRecord::Base
 
   validates_length_of :shorten, :in => 2..6
   validates_presence_of :expected_candidate_count, :allow_nil => true
+  validates :expected_candidate_count, numericality: { only_integer: true, in: 1..60 }
 
   before_validation :strip_whitespace_from_name_fields!
   before_validation :upcase_invite_code!
