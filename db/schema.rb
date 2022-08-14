@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_07_30_095051) do
+ActiveRecord::Schema[7.0].define(version: 2022_08_14_080633) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -132,6 +132,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_07_30_095051) do
     t.string "postal_code"
     t.string "postal_city"
     t.datetime "cancelled_at", precision: nil
+    t.boolean "alliance_accepted", default: false, null: false
     t.index ["student_number"], name: "allow_single_non_cancelled_candidate_per_student_number", unique: true, where: "(cancelled IS NOT TRUE)"
   end
 
