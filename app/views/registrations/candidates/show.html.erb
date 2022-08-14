@@ -8,7 +8,13 @@
 
 <% if @candidate %>
   <p>
-    Ehdokasilmoittautumisesi on voimassa.
+    Ehdokasilmoittautumisesi on vastaanotettu.
+
+    <% if @candidate.alliance_accepted? %>
+      Vaaliliiton edustaja on hyväksynyt ehdokkuutesi vaaliliittoon.
+    <% else %>
+      Vaaliliiton edustajan tulee vielä hyväksyä ehdokkuutesi vaaliliittoon.
+    <% end %>
   </p>
 
   <h2>Vaaliliiton tiedot</h2>
@@ -27,7 +33,14 @@
 
   <div class="align-with-formtastic-btn">
     <p>
-      Ehdokasilmoittautumisesi on voimassa.
+      Ehdokasilmoittautumisesi on vastaanotettu.
+      <br>
+
+      <% if @candidate.alliance_accepted? %>
+        Vaaliliiton edustaja on hyväksynyt ehdokkuutesi vaaliliittoon.
+      <% else %>
+        Vaaliliiton edustajan tulee vielä hyväksyä ehdokkuutesi vaaliliittoon.
+      <% end %>
     </p>
 
     <% if can? :update, @candidate %>

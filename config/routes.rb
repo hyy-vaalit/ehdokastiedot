@@ -25,7 +25,9 @@ Rails.application.routes.draw do
   namespace :advocates do
     get :index, :as => :advocates
     resources :alliances do
-      resources :candidates
+      resources :candidates do
+        put :confirm_alliance, to: "candidates#confirm_alliance"
+      end
     end
 
     resource :coalition, only: [:update]

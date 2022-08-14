@@ -19,7 +19,13 @@
 
 <table id="candidates" class="wide-listing">
   <thead>
-    <th>Nro</th>
+    <th>
+      <% if GlobalConfiguration.candidate_data_frozen? %>
+        Nro
+      <% else %>
+        Tila
+      <% end %>
+    </th>
     <th>Ehdokasnimi</th>
     <th>Sukunimi</th>
     <th>Etunimet</th>
@@ -37,7 +43,20 @@
     <% candidates.by_numbering_order.each do |c| %>
 
     <tr data-scope="<%= scope %>" data-alliance-id="<%= c.electoral_alliance.id -%>" data-candidate-id="<%= c.id -%>" class="<%= cycle('odd', 'even') %>">
-      <td><%= c.candidate_number %></td>
+      <td>
+        <% if GlobalConfiguration.candidate_data_frozen? %>
+          <%= c.candidate_number %>
+        <% else %>
+          <% if c.alliance_accepted? %>
+            &#x2705; OK <%# green tick symbol %>
+          <% else %>
+            <%= button_to "Hyväksy",
+              advocates_alliance_candidate_confirm_alliance_path(@alliance, c),
+              method: :put
+            %>
+          <% end %>
+        <% end %>
+      </td>
       <td>
         <% if can? :edit, Candidate %>
           <%= link_to c.candidate_name, link_to_edit_candidate(scope, c) %>
@@ -72,7 +91,7 @@
 
   <table id="cancelled-candidates" class="wide-listing">
     <thead>
-      <th></th>
+      <th>Tila</th>
       <th>Ehdokasnimi</th>
       <th>Sukunimi</th>
       <th>Etunimet</th>
@@ -89,7 +108,7 @@
     <tbody>
       <% candidates.cancelled.each do |c| %>
         <tr>
-          <td>&#x274c<!-- red crossmark --></td>
+          <td>&#x274c;<%# red crossmark %> Peruttu</td>
           <td>
             <% if can? :edit, Candidate %>
               <%= link_to c.candidate_name, link_to_edit_candidate(scope, c) %>

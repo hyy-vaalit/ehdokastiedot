@@ -9,10 +9,14 @@
   </li>
 
   <li>
-    Ehdokkaita:
-    <%= @alliance.candidates.count %>
+    Ehdokkaita hyväksytty:
+    <%= @alliance.accepted_candidates.count %>
     /
     <%= @alliance.expected_candidate_count ? @alliance.expected_candidate_count : '-' %>
+  </li>
+
+  <li>
+    Ehdokkaita hyväksyttävänä: <%= @alliance.incoming_candidates.count %>
   </li>
 
   <% if can? :update, ElectoralAlliance %>

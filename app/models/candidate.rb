@@ -69,6 +69,10 @@ class Candidate < ActiveRecord::Base
     )
   end
 
+  def confirm_alliance!
+    log_and_update_attributes(alliance_accepted: true)
+  end
+
   def self.can_give_numbers?
     ElectoralAlliance.are_all_ready? &&
       ElectoralCoalition.are_all_ordered? &&

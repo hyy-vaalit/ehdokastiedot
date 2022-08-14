@@ -58,6 +58,18 @@ class Advocates::CandidatesController < AdvocatesController
     end
   end
 
+  def confirm_alliance
+    candidate = @alliance.candidates.find(params[:candidate_id])
+
+    if candidate.confirm_alliance!
+      flash.notice = "Vaaliliitto vahvistettu!"
+    else
+      flash.error = "Vaaliliittoon vahvistaminen epäonnistui: #{candidate.errors.full_messages}"
+    end
+
+    redirect_to advocates_alliance_path(@alliance)
+  end
+
   protected
 
   # Advocate can only edit Candidates which belong to Alliance they manage.

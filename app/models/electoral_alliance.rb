@@ -7,6 +7,15 @@ class ElectoralAlliance < ActiveRecord::Base
 
   has_many :candidates, :dependent => :nullify
 
+  # Each Candidate needs to be accepted to the Alliance by its AdvocateUser.
+  has_many :accepted_candidates, -> {
+    where(alliance_accepted: true, cancelled: false)
+  }, class_name: "Candidate"
+
+  has_many :incoming_candidates, -> {
+    where(alliance_accepted: false, cancelled: false)
+  }, class_name: "Candidate"
+
   belongs_to :advocate_user, :foreign_key => :primary_advocate_id, optional: true
   belongs_to :electoral_coalition, optional: true
 
@@ -28,16 +37,16 @@ class ElectoralAlliance < ActiveRecord::Base
   before_validation :upcase_invite_code!
 
   def freeze!
-    if expected_candidate_count && candidates.count == expected_candidate_count
+    if has_all_candidates?
       return self.update! secretarial_freeze: true
     else
-      errors.add :expected_candidate_count, "does not match to actual candidate count"
+      errors.add :expected_candidate_count, "does not match to accepted candidate count"
       return false
     end
   end
 
   def has_all_candidates?
-    candidates.count == expected_candidate_count
+    expected_candidate_count > 0 && accepted_candidates.count == expected_candidate_count
   end
 
   def to_csv(encoding)

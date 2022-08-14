@@ -4,8 +4,9 @@
       <th>Edustaja</th>
       <th>Vaalirengas</th>
       <th>Ehdokkaita</th>
+      <th>Uusia</th>
       <th>Tavoite</th>
-      <th>Valmis?</th>
+      <th>Huomioita</th>
       <th><i class="icon-share"></i> CSV</th>
       <th><i class="icon-share"></i> CSV</th>
     </thead>
@@ -37,13 +38,14 @@
               %>
             <% end %>
           </td>
-          <td><%= a.candidates.count %></td>
+          <td><%= a.accepted_candidates.count %></td>
+          <td><%= a.incoming_candidates.count %></td>
           <td><%= a.expected_candidate_count %></td>
           <td>
             <% if alliance_ready?(a) %>
               <span class='alliance-ready'>OK</span>
             <% else %>
-              <% if a.candidates.count != a.expected_candidate_count %>
+              <% if a.accepted_candidates.count != a.expected_candidate_count %>
                 Tarkista ehdokasmäärä.
               <% end %>
 
