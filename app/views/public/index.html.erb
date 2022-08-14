@@ -2,7 +2,9 @@
 <h1>Tervetuloa HYYn edustajistovaaleihin!</h1>
 
 <p>
-  Ehdokkaaksi voi asettua läsnäolevaksi ilmoittaunut vaalikelpoinen Helsingin yliopiston opiskelija.
+  Edustajiston jäseneksi on vaalikelpoinen jokainen yliopistoon viimeistään 28.9.2022 läsnäolevaksi
+  kirjoittautunut ylioppilaskunnan jäsen, lukuun ottamatta HYY:n sääntöjen 6 §:ssä mainittuja poikkeuksia.
+
   <ul>
     <li>
       Ehdokasasettelu alkaa
@@ -24,6 +26,18 @@
   <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %> mennessä.
 </p>
 
+<p>
+  Vaaliasiakirjat vastaanottaa keskusvaalilautakunnan valtuuttamana ylioppilaskunnan
+  pääsihteeri Mikko Kymäläinen, joka myös tarvittaessa neuvoo ehdokasasetteluun liittyvissä
+  asioissa puh. 0400 816 426 tai paasihteeri@hyy.fi.
+</p>
+
+<p>
+  Lisätietoa vaaleista saa HYYn verkkosivuilta
+  <a href="https://hyy.fi/vaalit">hyy.fi/vaalit</a> tai
+  vaalikoordinaattori Roosa Katviolta, roosa.katvio@hyy.fi, 050 432 4939.
+</p>
+
 <% if GlobalConfiguration.candidate_data_frozen? %>
   <h2>Ehdokastiedot</h2>
   <p>
@@ -33,3 +47,78 @@
 <% end %>
 
 <%= link_to "Kirjaudu sisään", haka_auth_new_path, class: "btn btn-primary" %>
+
+<hr>
+
+<h1>Welcome to HYY´s representative council elections!</h1>
+
+<p>
+  All members of the Student Union who have registered for attendance at the University by
+  28 September 2022 are eligible to become members of the Representative Council, barring the
+  exceptions mentioned in HYY’s Constitution, Section 6.
+</p>
+
+<p>
+  <ul>
+    <li>Nomination of candidates starts at <%= friendly_datetime(GlobalConfiguration.candidate_nomination_starts_at) %></li>
+    <li>Nomination of candidates ends at <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %></li>
+    <li>Elections will be conducted on 26–28 October and 31 October–2 November.</li>
+  </ul>
+</p>
+
+<p>
+  After the nomination of candidates ends, it is possible to make corrections and cancel one’s
+  candidacy up until <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %>
+</p>
+
+<p>
+  The Student Union’s secretary general Mikko Kymäläinen, authorised by the Central Election
+  Committee, will receive the election documents. If needed, the secretary general will also provide
+  guidance on issues related to the nomination of candidates tel. 0400 816 426 or paasihteeri@hyy.fi.
+</p>
+
+<p>
+  For further information on the elections, please visit HYY’s website
+  <a href="https://hyy.fi/vaalit">hyy.fi/vaalit</a>
+  or contact Election Coordinator Roosa Katvio at roosa.katvio@hyy.fi or tel. 050 432 4939.
+</p>
+
+<%= link_to "Sign in", haka_auth_new_path, class: "btn btn-primary" %>
+
+<hr>
+
+<h1>Välkommen till HUSs delegationsvalet!</h1>
+
+<p>
+  Valbara till studentkårens delegation är alla studentkårsmedlemmar som senast
+  28.9.2022 gjort närvaroanmälan till universitetet, förutom i de undantagsfall som
+  avses i 6 § i HUS stadgar.
+</p>
+
+<p>
+  <ul>
+    <li>Kandidatuppställningen börjar <%= friendly_datetime(GlobalConfiguration.candidate_nomination_starts_at) %></li>
+    <li>Kandidatuppställningen avslutas <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %></li>
+    <li>Delegationsvalet förrättas 26.10.–28.10. ja 31.10.–2.11.</li>
+  </ul>
+</p>
+
+<p>
+  Efter att kandidatnomineringen har avslutat är det möjligt att göra korrigeringar i uppställning
+  och kandidaturen kan återkallas senast
+  <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %>.
+</p>
+
+<p>
+  Studentkårens generalsekreterare Mikko Kymäläinen har av centralvalnämnden befullmäktigats att ta
+  emot valhandlingarna. Generalsekreteraren ger också vid behov råd i frågor som rör
+  kandidatuppställningen tfn 0400 816 426 eller paasihteeri@hyy.fi.
+</p>
+
+<p>
+  Mera information om valet finns på HUS webbsida
+  <a href="https://hyy.fi/vaalit">hyy.fi/vaalit</a> eller ges av valkoordinator
+  Roosa Katvio, roosa.katvio@hyy.fi, 050 432 4939.
+</p>
+
+<%= link_to "Logga in", haka_auth_new_path, class: "btn btn-primary" %>
