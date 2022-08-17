@@ -79,7 +79,7 @@ class ApplicationController < ActionController::Base
   def track_session_expiry
     if session_timeout_at && Time.now.getutc > session_timeout_at
       reset_session
-      flash.alert = "Istunto on vanhenunt ja selaimesi kirjattiin ulos."
+      flash.alert = "Istunto on vanhentunut, joten selaimesi kirjattiin ulos."
 
       redirect_to root_path
     end
