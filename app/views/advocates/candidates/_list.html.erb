@@ -50,10 +50,15 @@
           <% if c.alliance_accepted? %>
             &#x2705; OK <%# green tick symbol %>
           <% else %>
-            <%= button_to "Hyväksy",
-              advocates_alliance_candidate_confirm_alliance_path(alliance, c),
-              method: :put
-            %>
+            <% if can? :edit, Candidate %>
+              <%= button_to "Hyväksy",
+                link_to_accept_candidate_to_alliance(scope, c),
+                method: :put,
+                data: { confirm: "Hyväksytäänkö vaaliliittoon ehdokas #{c.candidate_name}?"}
+              %>
+            <% else %>
+              "?" <%# Cannot be edited but needs to be accepted - contact admin %>
+            <% end %>
           <% end %>
         <% end %>
       </td>

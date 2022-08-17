@@ -15,6 +15,7 @@ ActiveAdmin.register Candidate do
                 :cancelled,
                 :notes,
                 :electoral_alliance_id,
+                :alliance_accepted,
                 :numbering_order_position
 
   menu :label => " Ehdokkaat", :priority => 4
@@ -77,6 +78,7 @@ ActiveAdmin.register Candidate do
       :email,
       :faculty,
       :electoral_alliance,
+      :alliance_accepted,
       :cancelled,
       :cancelled_at,
       :notes

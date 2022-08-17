@@ -1,5 +1,6 @@
-# N.B. You need to restart Rails Server before changes are applied!
-
+#
+# N.B. Restart Rails Server to apply changes in ActiveAdmin
+#
 module ActiveAdmin::ViewsHelper
   # Candidate view is shared with ActiveAdmin and Advocates.
   #
@@ -10,6 +11,17 @@ module ActiveAdmin::ViewsHelper
       edit_admin_candidate_path(candidate)
     else
       edit_advocates_alliance_candidate_path(candidate.electoral_alliance, candidate)
+    end
+  end
+
+  def link_to_accept_candidate_to_alliance(scope, candidate)
+    if scope == "admin"
+      admin_candidate_path(candidate, candidate: { alliance_accepted: true })
+    else
+      advocates_alliance_candidate_confirm_alliance_path(
+        candidate.electoral_alliance,
+        candidate
+      )
     end
   end
 
