@@ -68,8 +68,8 @@ ActiveAdmin.register_page "Dashboard" do
             t.column("Valmis") { |alliance| status_tag('Valmis', class: 'ok') if alliance.secretarial_freeze? }
             t.column("Vaaliliitto") { |alliance| link_to alliance.name, admin_electoral_alliance_path(alliance) }
             t.column("Ehdokkaita") {|alliance| alliance.candidates.count}
-            t.column("joista hyväksytty") {|alliance| alliance.accepted_candidates.count}
-            t.column("Ehdokkaita odotetaan") {|alliance| alliance.expected_candidate_count}
+            t.column("hyväksytty") {|alliance| alliance.accepted_candidates.count}
+            t.column("odotetaan") {|alliance| alliance.expected_candidate_count}
             t.column("Kaikki syötetty") {|alliance| alliance.has_all_candidates? ? status_tag('ok', class: 'ok') : status_tag("Kesken", class: 'in_progress') }
             t.column("Edustaja") {|alliance| link_to alliance.advocate_user.friendly_name, admin_advocate_user_path(alliance.advocate_user) if alliance.advocate_user}
           end

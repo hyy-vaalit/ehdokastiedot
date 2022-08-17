@@ -16,7 +16,9 @@ ActiveAdmin.register ElectoralAlliance do
     column "Kutsukoodi", :invite_code
     column "Vaalirengas", :electoral_coalition, sortable: false
     column "Vaaliliiton edustaja", :advocate_user, sortable: false
-    column "Ehdokkaita odotetaan", :expected_candidate_count
+    column "Ehdokkaita" do |a| a.candidates.count end
+    column "Hyväksytty" do |a| a.accepted_candidates.count end
+    column "Odotetaan", :expected_candidate_count
     column "Valmis", :secretarial_freeze
 
     actions
