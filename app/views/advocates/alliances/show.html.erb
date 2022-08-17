@@ -39,7 +39,7 @@
 <% if @alliance.candidates.any? %>
   <%= render partial: "advocates/candidates/list",
     locals: {
-      candidates: @alliance.candidates,
+      alliance: @alliance,
       scope: "advocates"
     }
   %>

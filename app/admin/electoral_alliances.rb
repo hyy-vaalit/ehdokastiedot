@@ -50,7 +50,11 @@ ActiveAdmin.register ElectoralAlliance do
       end
 
       div do
-        render :partial => "advocates/candidates/list", :locals => { :candidates => electoral_alliance.candidates, :scope => "admin" }
+        render partial: "advocates/candidates/list",
+          locals: {
+            alliance: electoral_alliance,
+            scope: "admin"
+          }
       end
     end
   end

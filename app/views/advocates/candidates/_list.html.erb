@@ -40,9 +40,9 @@
   </thead>
 
   <tbody>
-    <% candidates.by_numbering_order.each do |c| %>
+    <% alliance.candidates.by_numbering_order.each do |c| %>
 
-    <tr data-scope="<%= scope %>" data-alliance-id="<%= c.electoral_alliance.id -%>" data-candidate-id="<%= c.id -%>" class="<%= cycle('odd', 'even') %>">
+    <tr data-scope="<%= scope %>" data-alliance-id="<%= alliance.id -%>" data-candidate-id="<%= c.id -%>" class="<%= cycle('odd', 'even') %>">
       <td>
         <% if GlobalConfiguration.candidate_data_frozen? %>
           <%= c.candidate_number %>
@@ -51,7 +51,7 @@
             &#x2705; OK <%# green tick symbol %>
           <% else %>
             <%= button_to "Hyväksy",
-              advocates_alliance_candidate_confirm_alliance_path(@alliance, c),
+              advocates_alliance_candidate_confirm_alliance_path(alliance, c),
               method: :put
             %>
           <% end %>
@@ -86,7 +86,7 @@
   </tbody>
 </table>
 
-<% if candidates.cancelled.present? %>
+<% if alliance.candidates.cancelled.present? %>
   <h2>Vaaliliitossa olleet ehdokkuutensa peruneet ehdokkaat</h2>
 
   <table id="cancelled-candidates" class="wide-listing">
@@ -106,7 +106,7 @@
     </thead>
 
     <tbody>
-      <% candidates.cancelled.each do |c| %>
+      <% alliance.candidates.cancelled.each do |c| %>
         <tr>
           <td>&#x274c;<%# red crossmark %> Peruttu</td>
           <td>
