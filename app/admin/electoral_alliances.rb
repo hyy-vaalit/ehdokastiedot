@@ -26,7 +26,9 @@ ActiveAdmin.register ElectoralAlliance do
     attributes_table :name, :shorten do
       row :invite_code
       row("Edustaja") do |a|
-        link_to a.advocate_user.friendly_name, admin_advocate_user_path(a.advocate_user)
+        if a.advocate_user.present?
+          link_to a.advocate_user.friendly_name, admin_advocate_user_path(a.advocate_user)
+        end
       end
 
       row :created_at
