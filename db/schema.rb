@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_08_14_080633) do
+ActiveRecord::Schema[7.0].define(version: 2022_09_23_100310) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -123,7 +123,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_08_14_080633) do
     t.integer "electoral_alliance_id", null: false
     t.integer "candidate_number"
     t.text "notes"
-    t.integer "numbering_order", null: false
+    t.integer "numbering_order"
     t.datetime "created_at", precision: nil
     t.datetime "updated_at", precision: nil
     t.boolean "cancelled", default: false, null: false
