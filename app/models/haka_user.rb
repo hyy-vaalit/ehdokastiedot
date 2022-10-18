@@ -50,7 +50,7 @@ class HakaUser
           Login failed because student number not found with key
           #{Vaalit::Haka::HAKA_STUDENT_NUMBER_KEY}
         MSG
-        Rails.logger.debug "Failed student number value: #{v}"
+        Rails.logger.debug "Failed student number value: #{value}"
         value = nil
       end
     else
