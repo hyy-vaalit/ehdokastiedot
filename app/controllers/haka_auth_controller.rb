@@ -12,8 +12,14 @@ class HakaAuthController < ApplicationController
   def create_fake_authentication
     raise NotImplementedError, "Fake authentication is not enabled" unless Vaalit::Config.fake_auth_enabled?
 
+    student_number_multiattr = ["#{Vaalit::Haka::HAKA_STUDENT_NUMBER_KEY}:#{params[:fake_authentication][:student_number]}"]
     session[:haka_attrs] = {
-      "student_number" => params[:fake_authentication][:student_number]
+      "student_number": student_number_multiattr,
+      "email": "fake.auth@example.com",
+      "fullname": "Feikki Käyttäjä",
+      "firstname": "Feikki",
+      "lastname": "Käyttäjä",
+      "homeorg": ["yliopisto.fi"]
     }
 
     redirect_to registrations_root_path
@@ -107,7 +113,7 @@ class HakaAuthController < ApplicationController
     # When SAML assertions are encrypted, an actual cert is required and
     # fingerprint can be left blank.
     if Vaalit::Haka::SAML_IDP_CERT_FINGERPRINT.present?
-      settings.idp_cert_fingerprint         = Vaalit::Haka::SAML_IDP_CERT_FINGERPRINT
+      settings.idp_cert_fingerprint = Vaalit::Haka::SAML_IDP_CERT_FINGERPRINT
     end
 
     settings

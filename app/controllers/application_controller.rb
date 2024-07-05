@@ -74,6 +74,8 @@ class ApplicationController < ActionController::Base
     track_session_expiry
 
     @current_haka_user ||= HakaUser.new(attrs: session[:haka_attrs]) if session[:haka_attrs]
+  rescue HakaAuthError
+    reset_session
   end
 
   def track_session_expiry

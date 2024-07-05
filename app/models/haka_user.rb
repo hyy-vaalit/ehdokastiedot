@@ -1,3 +1,5 @@
+class HakaAuthError < StandardError; end
+
 class HakaUser
   attr_accessor :student_number, :email, :fullname, :firstname, :lastname, :homeorg
 
@@ -54,10 +56,10 @@ class HakaUser
         value = nil
       end
     else
-      raise ArgumentError, "Student number must be given either as String or String[] to preserve the leading zero."
+      raise HakaAuthError, "Student number must be given either as String or String[] to preserve the leading zero."
     end
 
-    raise ArgumentError, "Student number missing" if value.blank?
+    raise HakaAuthError, "Student number missing" if value.blank?
 
     value.split(":").last
   end
