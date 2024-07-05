@@ -52,7 +52,7 @@ Rails.application.routes.draw do
     resources :electoral_coalitions, :only => [:index]
     resources :electoral_alliances, :only => [:index]
     resource :danger_zone, :only => [:show] do
-      post :give_candidate_numbers, to: "give_candidate_numbers"
+      post :give_candidate_numbers, to: "danger_zones#give_candidate_numbers"
     end
     resources :candidate_attribute_changes
   end

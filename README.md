@@ -196,6 +196,9 @@ Käyttäjätunnukset (kehitysympäristössä):
 
 Salasana "pass123"
 
+### HAKA Test (haka-test)
+
+Ohjeet: voting-api/README.md > "Haka-test"
 
 # Pekka's Tips
 
