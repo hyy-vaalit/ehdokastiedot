@@ -1,5 +1,4 @@
 module Vaalit
-
   module Public
     SITE_ADDRESS        = ENV.fetch 'SITE_ADDRESS'
     ADVOCATE_LOGIN_URL  = "#{SITE_ADDRESS}"
@@ -12,6 +11,13 @@ module Vaalit
     CANDIDATE_NOMINATION_ENDS_AT = Time.parse ENV.fetch('CANDIDATE_NOMINATION_ENDS_AT')
     CANDIDATE_NOMINATION_STARTS_AT = Time.parse ENV.fetch('CANDIDATE_NOMINATION_STARTS_AT')
     CANDIDATES_FROZEN_AT = Time.parse ENV.fetch('CANDIDATES_FROZEN_AT')
+
+    HTTP_BASIC_AUTH_USERNAME = ENV.fetch('HTTP_BASIC_AUTH_USERNAME', nil)
+    HTTP_BASIC_AUTH_PASSWORD = ENV.fetch('HTTP_BASIC_AUTH_PASSWORD', nil)
+
+    def self.http_basic_auth?
+      !Vaalit::Config::HTTP_BASIC_AUTH_USERNAME.blank?
+    end
 
     def self.fake_auth_enabled?
       Rails.env.development? && (ENV.fetch("FAKE_AUTH_ENABLED", "no") == "yes")
