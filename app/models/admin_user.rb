@@ -17,6 +17,23 @@ class AdminUser < ActiveRecord::Base
     presence: true,
     inclusion: { in: self.roles.keys }
 
+  # Attributes searchable in ActiveAdmin (exclude sensitive fields)
+  def self.ransackable_attributes(auth_object = nil)
+    %w[
+      created_at
+      current_sign_in_at
+      current_sign_in_ip
+      email
+      id
+      id_value
+      last_sign_in_at
+      last_sign_in_ip
+      role
+      sign_in_count
+      updated_at
+    ]
+  end
+
   def is_secretary?
     role == 'secretary'
   end

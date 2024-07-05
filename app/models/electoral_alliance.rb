@@ -36,6 +36,18 @@ class ElectoralAlliance < ActiveRecord::Base
   before_validation :strip_whitespace_from_name_fields!
   before_validation :upcase_invite_code!
 
+  # Attributes searchable in ActiveAdmin
+  def self.ransackable_attributes(_auth_object = nil)
+    # allow all
+    authorizable_ransackable_attributes
+  end
+
+  # Associations searchable in ActiveAdmin
+  def self.ransackable_associations(_auth_object = nil)
+    # allow all
+    authorizable_ransackable_associations
+  end
+
   def freeze!
     if has_all_candidates?
       return self.update! secretarial_freeze: true

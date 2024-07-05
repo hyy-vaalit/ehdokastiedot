@@ -11,6 +11,18 @@ class ElectoralCoalition < ActiveRecord::Base
 
   before_validation :strip_whitespace_from_name_fields!
 
+  # Attributes searchable in ActiveAdmin
+  def self.ransackable_attributes(auth_object = nil)
+    # allow all
+    authorizable_ransackable_attributes
+  end
+
+  # Associations searchable in ActiveAdmin
+  def self.ransackable_associations(auth_object = nil)
+    # allow all
+    authorizable_ransackable_associations
+  end
+
   def self.are_all_ordered?
     self.where(:numbering_order => nil).count == 0
   end

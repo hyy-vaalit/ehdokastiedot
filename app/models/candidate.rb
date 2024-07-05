@@ -52,6 +52,18 @@ class Candidate < ActiveRecord::Base
   before_save :strip_whitespace!
   before_save :clear_cancelled_at, if: ->{ !cancelled }
 
+  # Attributes searchable in ActiveAdmin
+  def self.ransackable_attributes(_auth_object = nil)
+    # allow all
+    authorizable_ransackable_attributes
+  end
+
+  # Associations searchable in ActiveAdmin
+  def self.ransackable_associations(_auth_object = nil)
+    # allow all
+    authorizable_ransackable_associations
+  end
+
   # If candidate numbers have been given, order by candidate numbers.
   # Otherwise order by alliance id and numbering order.
   def self.for_listing
