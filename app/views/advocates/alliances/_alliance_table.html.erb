@@ -17,7 +17,8 @@
           <td><%= link_to a.shorten, advocates_alliance_path(a) %></td>
           <td>
             <% if a&.advocate_user == current_advocate_user %>
-              &#x26a1; <%# lightning bolt %>
+              <%# &#x1F464; silhouette of person %>
+              <span title="Minä itse!">&#x1F464;</span>
             <% end %>
             <%= a&.advocate_user&.friendly_name %>
           </td>
