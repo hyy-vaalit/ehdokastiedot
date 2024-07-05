@@ -186,13 +186,13 @@ http://localhost:3000/admin
 * admin@example.com / pass123
 
 
-### Vaaliliiton edustajien korjaukset ehdokastietoihin
+### Vaaliliiton edustajat
 
 http://localhost:3000/advocates
 
-Käyttäjätunnukset (kehitysympäristössä):
-  * edustaja1@example.com (123456-123K)
-  * edustaja2@example.com (123456-9876)
+Kehitysympäristössä aseta FAKE_AUTH_ENABLED="yes" testataksesi vaaliliiton edustajan
+näkymän.
+* http://localhost:3000/haka/auth/fake_authentication
 
 Salasana "pass123"
 
