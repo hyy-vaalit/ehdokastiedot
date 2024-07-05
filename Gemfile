@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-ruby '3.1.2' # For Heroku, see also file .ruby-version
+ruby '3.1.6' # For Heroku, see also file .ruby-version
 
 gem 'rails', '~> 7.0.3.1'
 gem 'bootsnap'
