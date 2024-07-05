@@ -40,7 +40,7 @@ gem 'rollbar'
 
 gem 'pry-rails' # friendlier rails console
 
-gem 'activeadmin', '~> 2.13.1'
+gem 'activeadmin', '~> 3.2.2'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
 gem 'ranked-model'
