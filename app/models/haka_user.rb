@@ -55,6 +55,9 @@ class HakaUser
         Rails.logger.debug "Failed student number value: #{value}"
         value = nil
       end
+    elsif value.blank?
+      # TODO: Fail with a friendly error instead of "something went wrong" without student number
+      raise HakaAuthError, "Student number missing"
     else
       raise HakaAuthError, "Student number must be given either as String or String[] to preserve the leading zero."
     end
