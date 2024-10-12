@@ -18,6 +18,6 @@ class ElectoralAllianceExport
   end
 
   def coalition_name(member)
-    member.electoral_coalition.name
+    member.electoral_coalition&.name
   end
 end
