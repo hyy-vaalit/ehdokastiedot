@@ -38,8 +38,6 @@ gem "aws-sdk-rails", '~> 2.1.0'
 
 gem 'rollbar'
 
-gem 'pry-rails' # friendlier rails console
-
 gem 'activeadmin', '~> 3.2.2'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
