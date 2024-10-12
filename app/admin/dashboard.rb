@@ -21,12 +21,36 @@ ActiveAdmin.register_page "Dashboard" do
           # See eg. manage/candidates_controller for Candidate CSV export.
           section "Tiedot Exceliin (CSV Export)" do
             ul do
-              li link_to "Ehdokkaat (UTF-8)", manage_candidates_path(:format=>:csv)
-              li link_to "Ehdokkaat (ISO-Latin)", manage_candidates_path(:format=>:csv, :isolatin=>true)
-              li link_to "Vaaliliitot (UTF-8)", manage_electoral_alliances_path(:format=>:csv)
-              li link_to "Vaaliliitot (ISO-Latin)", manage_electoral_alliances_path(:format=>:csv, :isolatin=>true)
-              li link_to "Vaalirenkaat (UTF-8)", manage_electoral_coalitions_path(:format=>:csv)
-              li link_to "Vaalirenkaat (ISO-Latin)", manage_electoral_coalitions_path(:format=>:csv, :isolatin=>true)
+              li link_to(
+                "Ehdokkaat (UTF-8)",
+                manage_candidates_path(format: :csv),
+                download: "candidates.csv"
+              )
+              li link_to(
+                "Ehdokkaat (ISO-Latin)",
+                manage_candidates_path(format: :csv, isolatin: true),
+                download: "candidates.isolatin.csv"
+              )
+              li link_to(
+                "Vaaliliitot (UTF-8)",
+                manage_electoral_alliances_path(format: :csv),
+                download: "alliances.csv"
+              )
+              li link_to(
+                "Vaaliliitot (ISO-Latin)",
+                manage_electoral_alliances_path(format: :csv, isolatin: true),
+                download: "alliances.isolatin.csv"
+              )
+              li link_to(
+                "Vaalirenkaat (UTF-8)",
+                manage_electoral_coalitions_path(format: :csv),
+                download: "coalitions.csv"
+              )
+              li link_to(
+                "Vaalirenkaat (ISO-Latin)",
+                manage_electoral_coalitions_path(format: :csv, isolatin: true),
+                download: "coalitions.isolatin.csv"
+              )
             end
             section "Ohjeet CSV-tiedoston tuomiseksi Exceliin" do
               ol do
