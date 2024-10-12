@@ -37,6 +37,8 @@ end
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 RSpec.configure do |config|
+  # Help Rails upgrades by raising on deprecationg warnings
+  config.raise_errors_for_deprecations!
 
   # Capybara tests need records be actually persisted in db
   config.use_transactional_fixtures = false
