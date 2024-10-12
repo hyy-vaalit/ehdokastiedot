@@ -6,6 +6,7 @@ class ElectoralCoalition < ActiveRecord::Base
   has_many :advocate_users, through: :advocate_team
 
   validates_presence_of :name, :shorten
+  validates_length_of :shorten, :in => 2..6
 
   scope :by_numbering_order, -> { order("#{table_name}.numbering_order") }
 

@@ -87,7 +87,7 @@ ActiveAdmin.register ElectoralCoalition do
   form do |f|
     f.inputs 'Vaalirenkaan tiedot' do
       f.input :name, label: "Vaalirenkaan nimi"
-      f.input :shorten, label: "Lyhenne"
+      f.input :shorten, label: "Lyhenne (2-6 merkkiä)", hint: "Käytä samaa lyhennettä kuin edellisissä vaaleissa."
       f.input :advocate_team,
         label: "Edustajatiimi",
         as: :select,
