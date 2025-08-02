@@ -21,7 +21,7 @@ gem "aws-sdk-rails", "~> 3.0"
 
 gem 'rollbar'
 
-gem 'activeadmin', '~> 3.2.2'
+gem 'activeadmin', '~> 3.3.0'
 gem 'inherited_resources', github: 'activeadmin/inherited_resources'
 
 gem 'ranked-model'
