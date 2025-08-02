@@ -24,7 +24,7 @@
           </td>
           <td>
             <% if a.electoral_coalition.present? %>
-              <%= link_to a.electoral_coalition.shorten, advocates_coalition_path %>
+              <%= a.electoral_coalition.shorten %>
             <% elsif current_advocate_user&.advocate_team&.electoral_coalition.present? %>
               <%= button_to "Liitä renkaaseen",
                 advocates_coalition_path(electoral_alliance_id: a.id),
