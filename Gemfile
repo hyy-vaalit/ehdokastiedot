@@ -17,10 +17,7 @@ gem 'ruby-saml' # Haka authentication
 
 gem 'json_builder' #TODO:Voiko käyttää jbuilder
 
-# Provides aws-sdk-ses
-# NB. S3 is not actually used anymore as S3 publishing is by Vaalitulostin.
-# Newer version >=3.x requires Rails >=5.2
-gem "aws-sdk-rails", '~> 2.1.0'
+gem "aws-sdk-rails", "~> 3.0"
 
 gem 'rollbar'
 
