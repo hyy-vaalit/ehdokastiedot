@@ -1,10 +1,7 @@
 class AdminUser < ActiveRecord::Base
   include DeviseUserBehaviour
 
-  enum role: {
-    "admin" => "admin",
-    "secretary" => "secretary"
-  }
+  enum(role: { "admin" => "admin", "secretary" => "secretary" })
 
   # Devise modules
   # https://www.rubydoc.info/github/plataformatec/devise/Devise/Models
