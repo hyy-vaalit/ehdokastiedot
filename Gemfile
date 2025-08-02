@@ -8,28 +8,14 @@ gem 'rails', '~> 7.1.3.4'
 gem 'bootsnap'
 gem 'pg'
 gem 'puma'
-# gem 'webpacker'
 gem 'sassc-rails'
-
-# See https://github.com/rails/execjs#readme for more supported runtimes
-# gem 'therubyracer', platforms: :ruby
 
 gem 'jquery-rails'
 gem 'jquery-ui-rails'
 
 gem 'ruby-saml' # Haka authentication
 
-# Turbolinks makes navigating your web application faster. Read more: https://github.com/turbolinks/turbolinks
-# gem 'turbolinks', '~> 5'
-
-# Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
-##TODO: gem 'jbuilder', '~> 2.5'
 gem 'json_builder' #TODO:Voiko käyttää jbuilder
-
-# Use Redis adapter to run Action Cable in production
-# gem 'redis', '~> 3.0'
-# Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
 
 # Provides aws-sdk-ses
 # NB. S3 is not actually used anymore as S3 publishing is by Vaalitulostin.
