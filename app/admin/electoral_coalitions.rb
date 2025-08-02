@@ -91,8 +91,7 @@ ActiveAdmin.register ElectoralCoalition do
       f.input :advocate_team,
         label: "Edustajatiimi",
         as: :select,
-        collection: AdvocateTeam.all,
-        member_label: :name
+        collection: AdvocateTeam.pluck(:name, :id)
     end
     f.inputs 'Vaalirenkaan liitot' do
       f.input :electoral_alliances,
