@@ -81,7 +81,7 @@ class Advocates::CandidatesController < AdvocatesController
       .electoral_alliances
       .find(params[:alliance_id])
   rescue ActiveRecord::RecordNotFound
-    flash.alert = "Pyydettyä kohdetta ei löytynyt tai sinulla ei ole oikeuksia pyydettyyn toimintoon."
+    flash.alert = "Pyydettyä kohdetta ei löytynyt tai sinulla ei ole oikeuksia pyydettyyn toimintoon. Vaaliliiton edustaja voi muokata vain oman vaaliliittonsa ehdokastietoja."
     redirect_to advocates_alliance_path(params[:alliance_id]) and return
   end
 
