@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   namespace :manage do
     get "configuration", :to => "configurations#index"
-    resource :configuration, :only => [:index, :update, :edit] do
+    resources :configuration, :only => [:index, :update, :edit] do
       put :disable_advocate_login, :to => "configurations#disable_advocate_login"
       put :enable_advocate_login,  :to => "configurations#enable_advocate_login"
     end
