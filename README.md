@@ -18,6 +18,7 @@ Järjestelmässä on eri tasoisia käyttäjiä:
   * Voi kirjautua sisään kun `GlobalConfiguration.advocate_login_enabled?`
 
 Käyttöoikeudet on määritety tiedostossa `app/models/ability.rb`.
+
 * ActiveAdmin kysyy automaattiessti jokaiselle resurssille `can? action, resource`,
   esim `can? :read, Candidate`.
 * Devisen login/logout controllereissa authorization ohitetaan, koska käyttäjänä
@@ -30,6 +31,7 @@ Käyttöoikeudet on määritety tiedostossa `app/models/ability.rb`.
 ## Ympäristö pystyyn
 
 Esivaatimukset:
+
 * Asenna [RVM](https://rvm.io/)
 * RVM:n asentamisen jälkeen lue `.ruby-gemset` ja `.ruby-version: `cd .. && popd`
 * `brew install v8`
@@ -38,6 +40,7 @@ Esivaatimukset:
 Kopioi `.env.example` -> `.env` ja aseta sinne sopivat defaultit.
 
 a) Putsaa tietokanta ja aja seed:
+
 ```bash
 rake db:runts
 
@@ -56,6 +59,7 @@ rspec
 ```
 
 b) Alusta tietokanta manuaalisesti:
+
 ```bash
 rake db:create
 rake db:schema:load
@@ -64,10 +68,10 @@ rake -T db:seed
 
 Tsekkaa `Procfile` ja komenna:
 
-~~~
+```bash
 foreman run web
 foreman run worker
-~~~ 
+``` 
 
 Avaa Admin UI
 * http://localhost:5000/admin
@@ -76,15 +80,12 @@ Avaa Admin UI
 
 Jos ActiveAdminin tyylit ei näy, kokeile:
 
-~~~
+```bash
 rake assets:precompile
-~~~
-
+```
 
 HUOM! Refreshaa selain forcella, cmd-shift-r -- muutoin saattaa tulla cachesta
 väärää dataa (tyylit ei näy, mutta forcella näkyy).
-
-
 
 ## Heroku-ympäristön pystyttäminen
 
@@ -94,6 +95,7 @@ Aseta ympäristömuuttujat: `heroku config:add key=value`.
 Tiedostossa `.env.example` on lista vaadituista ympäristömuuttujista.
 
 Säädä Herokun qa & production ympäristöt `heroku`-komennolle git-remoteiksi:
+
 ```bash
 heroku git:remote -a hyy-ehdokastiedot
 # vaihda tiedostosta .git/config branch "heroku" => "prod"
@@ -103,6 +105,7 @@ heroku git:remote  -a hyy-ehdokastiedot-qa
 ```
 
 Syötä seed-data, jossa peruskonffit muttei vanhaa vaalidataa:
+
 ```bash
 heroku run rake db:schema:load [-r qa|prod]
 heroku run rake db:seed:production [-r qa|prod]
@@ -115,11 +118,12 @@ Lisää add-onssit:
 * Käynnistä Worker sähköpostin lähettäjäksi (disabloi sen jälkeen kun ehdokasasettelun meilit lähetetty)
 
 Worker:
+
 ```bash
 heroku ps:scale worker=1 -a APP_NAME
 ```
 
-### Tuotantokannan lataaminen omalle koneelle
+### Heroku-tietokannan lataaminen paikalliseen ympäristöön
 
 1) Backupista dumppifileksi
 https://devcenter.heroku.com/articles/heroku-postgres-import-export
@@ -138,8 +142,8 @@ heroku pgbackups:restore DATABASE SEKRIT_URL -a hyy-vaalit
 curl -o latest.dump "SEKRIT_URL"
 ```
 
-
 2) Suoraan ilman dumppitiedostoa
+
 ```bash
 rake db:drop
 heroku pg:info
@@ -147,8 +151,8 @@ heroku pg:info
 heroku pg:pull HEROKU_POSTGRESQL_IVORY_URL hyyvaalit -a hyy-vaalit
 ```
 
-
 ## Staging-ympäristön alustus
+
 ```bash
 heroku pg:reset DATABASE --app APP_NAME
 # paikallinen staging-branch herokun master-branchiin.
@@ -166,41 +170,40 @@ heroku config:set KEY=VALUE --app APP_NAME
 
 See keys from .env.example
 
-# Vaalien konfigurointi
+## Vaalien konfigurointi
 
 Tarkista `config/initializers/000_vaalit.rb`
 
-Greppaa edellisen vaalityöntekijän nimeä ja muuta se tarvittaessa uudempaan.
+Hae edellisen vaalityöntekijän ja pääsihteeriä nimeä ja vaihda esiintymät.
 
-Aseta päivämäärät
+Hae edellisten vaalien vuosilukua ja muuta esiintymät.
 
-Toimita salasanat HYY:lle
-  * äänestysalueet (editoi seed:production)
-  * admin (luo Active Administa, salasana tulee meilitse)
-  * AWS SES Lähetystiedot (heroku config)
-
+Toimita admin-käyttäjätunnukset HYY:lle (salasana lähtee automaattisesti sähköpostilla)
 
 ### Pääkäyttäjät
 
 http://localhost:3000/admin
-* admin@example.com / pass123
 
+* admin@example.com / pass123
 
 ### Vaaliliiton edustajat
 
 http://localhost:3000/advocates
 
+## Sisäänkirjautuminen ilman SAML-autentikaatiota
+
 Kehitysympäristössä aseta FAKE_AUTH_ENABLED="yes" testataksesi vaaliliiton edustajan
 näkymän.
+
 * http://localhost:3000/haka/auth/fake_authentication
 
 Salasana "pass123"
 
-### HAKA Test (haka-test)
+## Sisäänkirjautuminen SAML-autentikaatiolla HAKA Test (haka-test) -ympäristöön
 
 Ohjeet: voting-api/README.md > "Haka-test"
 
-# Pekka's Tips
+## Pekka's Tips
 
 * ActiveAdmin käyttää Formtasticia formien luomiseen. Dokumentaatio form-elementtien muokkaamiseksi
   pitää etsiä Formtasticin dokumentaatiosta:
@@ -212,14 +215,14 @@ Ohjeet: voting-api/README.md > "Haka-test"
   tulee olion sisäinen id. Arvon voi vaihtaa esim. `collection: AdvocateTeam.pluck(:name, :id)`
 
 * Jos Formtasticin virheet ei tule näkyviin, varmista että on
-  - `<%= semantic_form_for @example ..%>` EIKÄ `:example`
-  - .. näistä jälkimmäinen antaa oudon virheen.
+  * `<%= semantic_form_for @example ..%>` EIKÄ `:example`
+  * .. näistä jälkimmäinen antaa oudon virheen.
 
 * Aja vain yksi testi:
-  - lisää `:focus` testiin, myös alias "f", esim "fit", "fdescribe", "fcontext"
+  * lisää `:focus` testiin, myös alias "f", esim "fit", "fdescribe", "fcontext"
 
 * Seuraa muutoksia testeihin: `guard`
-  - Aja `rake db:test:prepare` migraatioiden jälkeen.
+  * Aja `rake db:test:prepare` migraatioiden jälkeen.
 
 * Jos taustatyö feilaa, sen uudelleenyritys skeduloidaan eksponentiaalisesti,
   eli viimeinen yritys on joskus 2 viikon kuluttua. Rollbar ei nappaa virhettä
@@ -227,4 +230,4 @@ Ohjeet: voting-api/README.md > "Haka-test"
   (esim. AWS permission denied).
 
 * Työn käynnistäminen manuaalisesti:
-    - `Delayed::Job.find(XX).invoke_job`
+  * `Delayed::Job.find(XX).invoke_job`
