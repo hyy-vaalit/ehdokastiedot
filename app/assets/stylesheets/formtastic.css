@@ -307,7 +307,7 @@ This stylesheet forms part of the Formtastic Rails Plugin
   }
 
   .formtastic .stringish input {
-    width: 72%;
+    width: 90%;
   }
 
   .formtastic .input .label {
