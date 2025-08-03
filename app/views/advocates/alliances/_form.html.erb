@@ -9,7 +9,9 @@
 
 <%= f.input :shorten,
   :label => "Vaaliliiton lyhenne (2-6 merkkiä)",
-  :hint => "Lyhennettä käytetään vaalituloksen esittämisessä: esimerkiksi TaVi, ParasS, WTF. HYY varaa itselleen oikeuden muuttaa lyhennettä tarvittaessa."
+  :hint => "Suosituksena on valita sama lyhenne kuin aiemmissa vaaleissa.
+    Lyhennettä käytetään vaalituloksen esittämisessä: esimerkiksi TaVi, ParasS, WTF.
+    HYY pidättää oikeuden muuttaa lyhennettä tarvittaessa."
 %>
 
 <%= f.input :expected_candidate_count,
@@ -23,12 +25,13 @@
 <%= f.input :invite_code,
   label: "Kutsukoodi vaaliliittoon ilmoittautumiseksi",
   hint: "Kutsukoodi suojaa vaaliliittoa tuntemattomilta ehdokkailta.
-    <br><br>
     Ehdokkaaksi ilmoittautuvan henkilön on tunnettava kutsukoodi
     voidakseen ilmoittautua vaaliliiton ehdokkaaksi.
-    Vaaliliiton edustaja saa asettaa kutsukoodin vapaasti.
-    Kutsukoodin tulee olla voimassa sillä hetkellä, kun ehdokasilmoittautuminen rekisteröidään.
     <br><br>
+    Kutsukoodin voi vaihtaa milloin tahansa.
+    Kutsukoodin tulee olla voimassa sillä hetkellä, kun ehdokas saapuu ilmoittautumaan.
     Kutsukoodin vaihtaminen ei vaikuta aiemmin vastaanotettuihin ilmoittautumisiin.
-    Kun kutsukoodi vaihdetaan uuteen, edellisellä kutsukoodilla ei voi luoda uutta ilmoittautumista.".html_safe
+    <br><br>
+    Voit käyttää järjestelmän arpomaa satunnaiskoodia tai valita oman helpommin muistettavan
+    merkkijonon. Kirjaimet, numerot ja tavuviiva ovat sallittuja.".html_safe
  %>
