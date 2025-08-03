@@ -87,4 +87,13 @@ Rails.application.configure do
   #
   # Skip DNS rebinding protection for the default health check endpoint.
   # config.host_authorization = { exclude: ->(request) { request.path == "/up" } }
+
+  # When you have compile on, this is what happens: Every request for a file in /assets is passed
+  # to Sprockets. On the first request for each and every asset it is compiled and cached in
+  # whatever Rails is using for cache (usually the filesystem). On subsequent requests Sprockets
+  # receives the request and has to look up the fingerprinted filename, check that the file (image)
+  # or files(css and js) that make up the asset were not modified, and then if there is a cached
+  # version serve that.
+  # https://stackoverflow.com/a/8827757/147390
+  config.assets.compile = false
 end
