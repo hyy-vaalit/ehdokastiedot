@@ -32,7 +32,7 @@ ActiveAdmin.register Candidate do
         flash[:notice] = "Muutokset tallennettu."
 
         respond_with(@alliance) do |format|
-          format.html { redirect_to admin_candidate_path(@candidate) }
+          format.html { redirect_to admin_electoral_alliance_path(@candidate.electoral_alliance) }
         end
       else
         super
