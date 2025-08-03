@@ -48,7 +48,7 @@
           <%= c.candidate_number %>
         <% else %>
           <% if c.alliance_accepted? %>
-            &#x2705; OK <%# green tick symbol %>
+            &#x2705;&nbsp;OK <%# green tick symbol %>
           <% else %>
             <% if can? :edit, Candidate %>
               <%= button_to "Hyväksy",
@@ -113,7 +113,7 @@
     <tbody>
       <% alliance.candidates.cancelled.each do |c| %>
         <tr>
-          <td>&#x274c;<%# red crossmark %> Peruttu</td>
+          <td>&#x274c;&nbsp;Peruttu<%# red crossmark %></td>
           <td>
             <% if can? :edit, Candidate %>
               <%= link_to c.candidate_name, link_to_edit_candidate(scope, c) %>
