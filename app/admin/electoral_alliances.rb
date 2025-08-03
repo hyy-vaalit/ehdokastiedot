@@ -1,8 +1,8 @@
 ActiveAdmin.register ElectoralAlliance do
-
   permit_params :name,
                 :shorten,
-                :expected_candidate_count
+                :expected_candidate_count,
+                :primary_advocate_id
 
   scope :all, :default => true
   scope :without_coalition
@@ -93,9 +93,10 @@ ActiveAdmin.register ElectoralAlliance do
 
   form do |f|
     f.inputs 'Vaaliliiton tiedot' do
-      f.input :name, :label => "Virallinen nimi"
-      f.input :shorten, :label => "Lyhenne (2-6 merkkiä)", :hint => "Käytä samaa lyhennettä kuin edellisissä vaaleissa."
-      f.input :expected_candidate_count, :label => "Kuinka monta ehdokasta", :hint => "Luvun on täsmättävä paperilomakkeiden määrän kanssa."
+      f.input :name, label: "Virallinen nimi"
+      f.input :shorten, label: "Lyhenne (2-6 merkkiä)", hint: "Käytä samaa lyhennettä kuin edellisissä vaaleissa."
+      f.input :expected_candidate_count, label: "Kuinka monta ehdokasta", hint: "Luvun on täsmättävä paperilomakkeiden määrän kanssa."
+      f.input :primary_advocate_id, label: "Vaaliliiton edustaja", as: :select, collection: AdvocateUser.pluck("email", "id")
     end
 
     f.actions
