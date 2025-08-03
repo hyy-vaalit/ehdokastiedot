@@ -1,5 +1,5 @@
 class ElectoralAlliance < ActiveRecord::Base
-  attribute :invite_code, :string, default: -> { default_invite_code }
+  attribute :invite_code, :string, default: -> { random_invite_code }
   validates_length_of :invite_code, minimum: 4
   validates_format_of :invite_code,
     with: /\A[A-Za-z0-9-]+\z/,
@@ -69,6 +69,16 @@ class ElectoralAlliance < ActiveRecord::Base
     self.count == self.ready.count
   end
 
+  # Generate a random upcased 4-character code without visually ambiguous characters.
+  # Match with validates_format_of :invite_code
+  def self.random_invite_code
+    SecureRandom
+      .base64(15)
+      .tr('+/=lIO0', 'pqrsxyz')
+      .gsub(/[^A-Za-z0-9-]/, '')[0, 4]
+      .upcase
+  end
+
   protected
 
   def strip_whitespace_from_name_fields!
@@ -78,9 +88,5 @@ class ElectoralAlliance < ActiveRecord::Base
 
   def upcase_invite_code!
     self.invite_code.upcase!
-  end
-
-  def self.default_invite_code
-    Devise.friendly_token[0,4].upcase
   end
 end
