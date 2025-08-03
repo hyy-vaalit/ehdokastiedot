@@ -20,7 +20,7 @@ module Vaalit
     end
 
     def self.fake_auth_enabled?
-      Rails.env.development? && (ENV.fetch("FAKE_AUTH_ENABLED", "no") == "yes")
+      %w[qa development].include?(ENV.fetch("STAGE", nil)) && (ENV.fetch("FAKE_AUTH_ENABLED", "no") == "yes")
     end
   end
 

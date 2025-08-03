@@ -197,8 +197,6 @@ näkymän.
 
 * http://localhost:3000/haka/auth/fake_authentication
 
-Salasana "pass123"
-
 ## Sisäänkirjautuminen SAML-autentikaatiolla HAKA Test (haka-test) -ympäristöön
 
 Ohjeet: voting-api/README.md > "Haka-test"
