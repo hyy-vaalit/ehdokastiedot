@@ -303,7 +303,7 @@ This stylesheet forms part of the Formtastic Rails Plugin
   }
 
   .formtastic li {
-    width: 30em;
+    width: 100%;
   }
 
   .formtastic .stringish input {
@@ -312,13 +312,13 @@ This stylesheet forms part of the Formtastic Rails Plugin
 
   .formtastic .input .label {
     display: block;
-    width: 80%;
+    width: 90%;
     float: none;
     padding-top: .2em;
   }
 
   .formtastic .text textarea {
-    width: 80%;
+    width: 90%;
     display: block;
   }
 
@@ -330,7 +330,7 @@ This stylesheet forms part of the Formtastic Rails Plugin
   .formtastic .input .inline-hints {
     display: block;
     margin: 0.5em 0 0 0;
-    width: 25em;
+    width: 90%;
   }
 
   .formtastic .buttons, .formtastic .actions {
