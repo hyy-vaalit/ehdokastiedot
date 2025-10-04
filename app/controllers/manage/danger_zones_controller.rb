@@ -5,7 +5,7 @@ class Manage::DangerZonesController < ManageController
 
   def give_candidate_numbers
     if Candidate.give_numbers!
-      redirect_to simple_listings_path, notice: 'Ehdokkaat on numeroitu!'
+      redirect_to manage_candidates_path, notice: 'Ehdokkaat on numeroitu!'
     else
       redirect_to manage_danger_zone_path, alert: <<-MSG.squish
         Kaikki liitot eivät ole valmiina,

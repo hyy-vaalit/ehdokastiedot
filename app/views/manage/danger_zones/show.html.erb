@@ -28,13 +28,13 @@
   <li>
     <% if GlobalConfiguration.advocate_login_enabled? %>
       <%= button_to "Estä pääsy vaaliliiton edustajan sivustolle",
-        disable_advocate_login_manage_configuration_path,
+        manage_configuration_disable_advocate_login_path(GlobalConfiguration.first),
         :class => "btn btn-danger",
         :method => :put
       %>
     <% else %>
       <%= button_to "Salli pääsy vaaliliiton edustajan sivustolle",
-        enable_advocate_login_manage_configuration_path,
+        manage_configuration_enable_advocate_login_path(GlobalConfiguration.first),
         :class => "btn btn-primary",
         :method => :put
       %>
