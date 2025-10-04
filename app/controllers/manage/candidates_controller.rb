@@ -8,6 +8,14 @@ class Manage::CandidatesController < ManageController
     end
   end
 
+  def reduced
+    @candidates = Candidate.for_listing
+
+    respond_to do |format|
+      format.csv  { render :layout => false }
+    end
+  end
+
   protected
 
   def authorize_this!

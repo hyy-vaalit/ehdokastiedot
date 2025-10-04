@@ -48,7 +48,10 @@ Rails.application.routes.draw do
       put :enable_advocate_login,  :to => "configurations#enable_advocate_login"
     end
 
-    resources :candidates, :only => [:index]
+    resources :candidates, :only => [:index] do
+      get :reduced, to: "candidates#reduced", on: :collection
+    end
+
     resources :electoral_coalitions, :only => [:index]
     resources :electoral_alliances, :only => [:index]
     resource :danger_zone, :only => [:show] do
