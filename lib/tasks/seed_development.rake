@@ -29,6 +29,10 @@ namespace :db do
         candidate.save!
       end
 
+      def generate_student_number(index)
+        "12345#{index}"
+      end
+
       desc 'Default project settings'
       task :configuration => :environment do
         puts 'Creating GlobalConfiguration'
@@ -123,8 +127,8 @@ namespace :db do
       task :create_advocates => :environment do
         puts 'Creating AdvocateUsers'
 
-        AdvocateUser.create! :firstname => "Rami", :lastname => "Raavas", :student_number => '0123456', :email => 'edustaja1@example.com', :password => 'pass123', :password_confirmation => 'pass123'
-        AdvocateUser.create! :firstname => "Laura", :lastname => "Lanttunen", :student_number => '098765', :email => 'edustaja2@example.com', :password => 'pass123', :password_confirmation => 'pass123'
+        AdvocateUser.create! :firstname => "Rami", :lastname => "Raavas", :student_number => '0123456', :email => 'edustaja1@example.com'
+        AdvocateUser.create! :firstname => "Laura", :lastname => "Lanttunen", :student_number => '098765', :email => 'edustaja2@example.com'
       end
 
       desc 'Create candidate data from seed.csv'
@@ -133,7 +137,7 @@ namespace :db do
           puts 'Creating candidates'
           csv_contents = CSV.read('doc/vaalit_2009_ehdokkaat.csv', encoding: "UTF-8")
           csv_contents.shift
-          csv_contents.each do |row|
+          csv_contents.each_with_index do |row, i|
 
             faculty = Faculty.find_or_create_by code: row[4]
 
@@ -141,34 +145,28 @@ namespace :db do
             electoral_alliance = ElectoralAlliance.find_by_name alliance_name
             unless electoral_alliance
               electoral_coalition = ElectoralCoalition.find_or_create_by(name: row[9]) if row[9]
-              electoral_coalition = ElectoralCoalition.create! :name => alliance_name unless electoral_coalition
+              electoral_coalition ||= ElectoralCoalition.create! :name => alliance_name
               electoral_alliance = create_alliance!(electoral_coalition, :name => alliance_name, :expected_candidate_count => 0)
             end
-            electoral_alliance.update_attribute :numbering_order_position, row[10]
+            electoral_alliance.update_attribute :numbering_order, row[10]
 
-            def generate_student_number
-              days   = (1..31).to_a
-              months = (1..12).to_a
-              years  = (50..90).to_a
-
-              day   = sprintf "%02d", days[rand(days.length)]
-              month = sprintf "%02d", months[rand(months.length)]
-              year  = sprintf "%02d", years[rand(years.length)]
-
-              "#{day}#{month}#{year}"
-            end
-
-            create_candidate!(electoral_alliance, faculty, row[0],
-                                          :lastname               => row[1],
-                                          :firstname              => row[2],
-                                          :student_number         => (row[3] || generate_student_number),
-                                          :address                => row[5],
-                                          :postal_code            => "01234",
-                                          :postal_city            => "Helsinki",
-                                          :email                  => "#{row[7].split('@')[0]}@example.com",
-                                          :candidate_name         => row[8],
-                                          :numbering_order_position => row[12],
-                                          :notes                  => row[13])
+            create_candidate!(
+              electoral_alliance,
+              faculty,
+              row[0],
+              {
+                lastname: row[1],
+                firstname: row[2],
+                student_number: generate_student_number(i),
+                address: row[5],
+                postal_code: "01234",
+                postal_city: "Helsinki",
+                email: "#{row[7].split('@')[0]}@example.com",
+                candidate_name: row[8],
+                numbering_order: row[12],
+                notes: row[13]
+              }
+            )
           end
         end
       end
