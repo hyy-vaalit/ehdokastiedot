@@ -32,6 +32,11 @@ ActiveAdmin.register_page "Dashboard" do
                 download: "candidates.isolatin.csv"
               )
               li link_to(
+                "Ehdokkaat (ei osoitetietoja, UTF-8)",
+                reduced_manage_candidates_path(format: :csv),
+                download: "candidates-reduced.csv"
+              )
+              li link_to(
                 "Vaaliliitot (UTF-8)",
                 manage_electoral_alliances_path(format: :csv),
                 download: "alliances.csv"
