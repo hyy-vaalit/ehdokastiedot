@@ -59,11 +59,4 @@ Rails.application.routes.draw do
     end
     resources :candidate_attribute_changes
   end
-
-  resources :listings, :only => [] do
-    collection do
-      get :simple
-      get :lulz
-    end
-  end
 end
