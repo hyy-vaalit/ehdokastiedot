@@ -17,7 +17,8 @@ gem 'ruby-saml' # Haka authentication
 
 gem 'json_builder' #TODO:Voiko käyttää jbuilder
 
-gem "aws-sdk-rails", "~> 3.0"
+gem 'aws-sdk-rails', '~> 5'
+gem 'aws-actionmailer-ses', '~> 1'
 
 gem 'rollbar'
 
