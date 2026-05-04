@@ -135,7 +135,7 @@ GEM
       activerecord (>= 5.a)
       database_cleaner-core (~> 2.0)
     database_cleaner-core (2.0.1)
-    date (3.4.1)
+    date (3.5.1)
     delayed_job (4.1.13)
       activesupport (>= 3.0, < 9.0)
     delayed_job_active_record (4.1.11)
@@ -252,7 +252,7 @@ GEM
     minitest (5.25.5)
     msgpack (1.8.0)
     nenv (0.3.0)
-    net-imap (0.5.11)
+    net-imap (0.5.14)
       date
       net-protocol
     net-pop (0.1.2)
@@ -417,7 +417,7 @@ GEM
     stringio (3.1.7)
     thor (1.4.0)
     tilt (2.6.1)
-    timeout (0.4.3)
+    timeout (0.6.1)
     tsort (0.2.0)
     tzinfo (2.0.6)
       concurrent-ruby (~> 1.0)
