@@ -47,7 +47,7 @@ class ElectoralCoalition < ActiveRecord::Base
   protected
 
   def strip_whitespace_from_name_fields!
-    self.name.strip!
-    self.shorten.strip!
+    self.name&.strip!
+    self.shorten&.strip!
   end
 end

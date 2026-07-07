@@ -43,7 +43,7 @@ class GlobalConfiguration < ActiveRecord::Base
   end
 
   def self.advocate_login_enabled?
-    return first.advocate_login_enabled?
+    !!first&.advocate_login_enabled?
   end
 
   def enable_advocate_login!
