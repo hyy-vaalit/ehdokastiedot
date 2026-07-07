@@ -32,6 +32,6 @@ class AdvocateUser < ActiveRecord::Base
   protected
 
   def send_welcome_email
-    RegistrationMailer.welcome_advocate(email).deliver
+    RegistrationMailer.welcome_advocate(email).deliver_now
   end
 end
