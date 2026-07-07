@@ -59,16 +59,20 @@ class Advocates::AlliancesController < AdvocatesController
 
   # Return either
   # - alliance of mine (which is not linked to coalition yet)
-  # - or alliance through AdvocateTeam (user A is viewing alliance of user B of the same team)
+  # - or, for read-only :show, alliance through AdvocateTeam (user A is
+  #   viewing alliance of user B of the same team). Team membership grants
+  #   read access only: edit/update resolve strictly through my own alliances.
   def find_alliance
     @alliance = current_advocate_user.electoral_alliances.find_by(id: params[:id])
 
-    if @alliance.nil? && current_advocate_user.advocate_team.present?
-      @alliance = current_advocate_user.advocate_team.electoral_alliances.find(params[:id])
+    if @alliance.nil? && action_name == "show" && current_advocate_user.advocate_team.present?
+      @alliance = current_advocate_user.advocate_team.electoral_alliances.find_by(id: params[:id])
     end
-  rescue ActiveRecord::RecordNotFound
-    flash.alert = "Pyydettyä vaaliliittoa ei löytynyt tai sinulla ei ole oikeuksia siihen."
-    redirect_to advocates_alliances_path
+
+    if @alliance.nil?
+      flash.alert = "Pyydettyä vaaliliittoa ei löytynyt tai sinulla ei ole oikeuksia siihen."
+      redirect_to advocates_alliances_path
+    end
   end
 
   def nav_paths
