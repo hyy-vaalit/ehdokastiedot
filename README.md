@@ -2,8 +2,8 @@
 
 Järjestelmässä on eri tasoisia käyttäjiä:
 
-* Pääkäyttäjä (role:admin) ja rajoitettu pääkäyttäjä (role:secretary):
-  * `app/models/AdminUser.rb`
+* Pääkäyttäjä (role:admin):
+  * `app/models/admin_user.rb`
   * /admin
   * admin@example.com / pass123
   * Kaikki HYYn henkilökunnan tarvitsemat toiminnot.
