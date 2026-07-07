@@ -119,7 +119,7 @@ ActiveAdmin.register ElectoralCoalition do
 
   member_action :order_alliances, :method => :post do
     coalition = ElectoralCoalition.find_by_id(params[:id])
-    coalition.update_alliance_numbering_order!(params[:alliances])
+    coalition.update_alliance_numbering_order!(params[:alliances]) if params[:alliances].present?
     redirect_to admin_electoral_coalition_path(coalition.id)
   end
 
@@ -127,7 +127,7 @@ ActiveAdmin.register ElectoralCoalition do
     if ElectoralAlliance.without_coalition.count > 0
       redirect_to admin_electoral_coalitions_path, :alert => 'Vaalirenkaita ei voi järjestää ennen kuin kaikilla vaaliliitoilla on rengas. Luo itsenäisille vaaliliitoille rengas, jonka nimenä on vaaliliiton nimi.'
     else
-      ElectoralCoalition.update_coalition_numbering_order!(params[:coalitions])
+      ElectoralCoalition.update_coalition_numbering_order!(params[:coalitions]) if params[:coalitions].present?
       redirect_to admin_electoral_coalitions_path
     end
   end
