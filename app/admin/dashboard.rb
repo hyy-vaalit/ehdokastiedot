@@ -8,70 +8,72 @@ ActiveAdmin.register_page "Dashboard" do
 
     columns do
       column max_width: "300px" do
-        panel "Ylläpidon toiminnot" do
-          section 'Ehdokastiedot' do
-            ul do
-              li link_to 'Yksinkertaistettu lista ehdokastiedoista', manage_candidates_path
-              li link_to 'Muutokset ehdokasasettelun jälkeen', manage_candidate_attribute_changes_path
-              li link_to 'Vaaralliset toiminnot', manage_danger_zone_path
-            end
-          end
-
-          # Please note that in order to have control over the CSV export, you must use a custom controller.
-          # See eg. manage/candidates_controller for Candidate CSV export.
-          section "Tiedot Exceliin (CSV Export)" do
-            ul do
-              li link_to(
-                "Ehdokkaat (UTF-8)",
-                manage_candidates_path(format: :csv),
-                download: "candidates.csv"
-              )
-              li link_to(
-                "Ehdokkaat (ISO-Latin)",
-                manage_candidates_path(format: :csv, isolatin: true),
-                download: "candidates.isolatin.csv"
-              )
-              li link_to(
-                "Ehdokkaat (ei osoitetietoja, UTF-8)",
-                reduced_manage_candidates_path(format: :csv),
-                download: "candidates-reduced.csv"
-              )
-              li link_to(
-                "Vaaliliitot (UTF-8)",
-                manage_electoral_alliances_path(format: :csv),
-                download: "alliances.csv"
-              )
-              li link_to(
-                "Vaaliliitot (ISO-Latin)",
-                manage_electoral_alliances_path(format: :csv, isolatin: true),
-                download: "alliances.isolatin.csv"
-              )
-              li link_to(
-                "Vaalirenkaat (UTF-8)",
-                manage_electoral_coalitions_path(format: :csv),
-                download: "coalitions.csv"
-              )
-              li link_to(
-                "Vaalirenkaat (ISO-Latin)",
-                manage_electoral_coalitions_path(format: :csv, isolatin: true),
-                download: "coalitions.isolatin.csv"
-              )
-            end
-            section "Ohjeet CSV-tiedoston tuomiseksi Exceliin" do
-              ol do
-                li "Avaa CSV-tiedosto Exceliin."
-                li "Valitse ja mustaa koko sarake 'A'."
-                li "Valitse: Tiedot > Teksti sarakkeisiin"
-                li "Valitse: Tiedostolaji: Erotettu > Seuraava."
-                li "Valitse: Erottimet: Pilkku > Valmis."
-                li "HUOM! Google Docsille UTF-8, MS Excelille ISO-Latin."
+        if can? :access, :manage_pages
+          panel "Ylläpidon toiminnot" do
+            section 'Ehdokastiedot' do
+              ul do
+                li link_to 'Yksinkertaistettu lista ehdokastiedoista', manage_candidates_path
+                li link_to 'Muutokset ehdokasasettelun jälkeen', manage_candidate_attribute_changes_path
+                li link_to 'Vaaralliset toiminnot', manage_danger_zone_path
               end
             end
-          end
 
-          section 'Muiden sidosryhmien sisäänkirjautuminen' do
-            ul do
-              li link_to 'Edustaja (liiton 1. edustaja)', advocate_index_path
+            # Please note that in order to have control over the CSV export, you must use a custom controller.
+            # See eg. manage/candidates_controller for Candidate CSV export.
+            section "Tiedot Exceliin (CSV Export)" do
+              ul do
+                li link_to(
+                  "Ehdokkaat (UTF-8)",
+                  manage_candidates_path(format: :csv),
+                  download: "candidates.csv"
+                )
+                li link_to(
+                  "Ehdokkaat (ISO-Latin)",
+                  manage_candidates_path(format: :csv, isolatin: true),
+                  download: "candidates.isolatin.csv"
+                )
+                li link_to(
+                  "Ehdokkaat (ei osoitetietoja, UTF-8)",
+                  reduced_manage_candidates_path(format: :csv),
+                  download: "candidates-reduced.csv"
+                )
+                li link_to(
+                  "Vaaliliitot (UTF-8)",
+                  manage_electoral_alliances_path(format: :csv),
+                  download: "alliances.csv"
+                )
+                li link_to(
+                  "Vaaliliitot (ISO-Latin)",
+                  manage_electoral_alliances_path(format: :csv, isolatin: true),
+                  download: "alliances.isolatin.csv"
+                )
+                li link_to(
+                  "Vaalirenkaat (UTF-8)",
+                  manage_electoral_coalitions_path(format: :csv),
+                  download: "coalitions.csv"
+                )
+                li link_to(
+                  "Vaalirenkaat (ISO-Latin)",
+                  manage_electoral_coalitions_path(format: :csv, isolatin: true),
+                  download: "coalitions.isolatin.csv"
+                )
+              end
+              section "Ohjeet CSV-tiedoston tuomiseksi Exceliin" do
+                ol do
+                  li "Avaa CSV-tiedosto Exceliin."
+                  li "Valitse ja mustaa koko sarake 'A'."
+                  li "Valitse: Tiedot > Teksti sarakkeisiin"
+                  li "Valitse: Tiedostolaji: Erotettu > Seuraava."
+                  li "Valitse: Erottimet: Pilkku > Valmis."
+                  li "HUOM! Google Docsille UTF-8, MS Excelille ISO-Latin."
+                end
+              end
+            end
+
+            section 'Muiden sidosryhmien sisäänkirjautuminen' do
+              ul do
+                li link_to 'Edustaja (liiton 1. edustaja)', advocate_index_path
+              end
             end
           end
         end

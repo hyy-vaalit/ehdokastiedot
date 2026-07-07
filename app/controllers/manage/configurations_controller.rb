@@ -13,10 +13,6 @@ class Manage::ConfigurationsController < ManageController
 
   protected
 
-  def authorize_this!
-    authorize! :configurations, @current_admin_user
-  end
-
   def find_configuration
     @configuration = GlobalConfiguration.first
   end

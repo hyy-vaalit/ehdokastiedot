@@ -6,7 +6,7 @@ class ManageController < ApplicationController
   protected
 
   def authorize_this!
-    raise "Not implemented"
+    authorize! :access, :manage_pages
   end
 
   def decide_encoding
