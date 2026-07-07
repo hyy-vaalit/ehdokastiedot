@@ -94,11 +94,11 @@ class Ability
       can [:create, :update], ElectoralAlliance
       can [:create, :update], ElectoralCoalition
 
-      can [:update], Candidate
+      can [:update], Candidate, electoral_alliance: { primary_advocate_id: user.advocate_user.id }
     end
 
     if GlobalConfiguration.candidate_data_correction_period?
-      can [:update], Candidate
+      can [:update], Candidate, electoral_alliance: { primary_advocate_id: user.advocate_user.id }
       cannot [:create], ElectoralAlliance
     end
 
