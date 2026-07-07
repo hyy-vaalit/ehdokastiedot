@@ -117,8 +117,17 @@ class Candidate < ActiveRecord::Base
   def log_and_update_attributes(attrs)
     Candidate.transaction do
       self.assign_attributes(attrs)
-      CandidateAttributeChange.create_from!(self.id, self.changes) if self.changed? and GlobalConfiguration.log_candidate_attribute_changes?
-      self.save
+      changed_keys = self.changed
+
+      # Log only after a successful save: a failed save must not leave
+      # phantom rows in the legally relevant change log.
+      next false unless self.save
+
+      if changed_keys.any? and GlobalConfiguration.log_candidate_attribute_changes?
+        CandidateAttributeChange.create_from!(self.id, self.previous_changes.slice(*changed_keys))
+      end
+
+      true
     end
   end
 
