@@ -96,7 +96,9 @@ class Candidate < ActiveRecord::Base
     return false unless can_give_numbers?
 
     Candidate.transaction do
-      Candidate.update_all :candidate_number => 0
+      # Cancelled candidates must not have a number; NULL also satisfies the
+      # unique index on candidate_number.
+      Candidate.update_all :candidate_number => nil
 
       candidates_in_order = Candidate
         .select('candidates.*')

@@ -24,4 +24,16 @@ describe Candidate do
       expect(c.candidate_number).to eq i
     end
   end
+
+  it 'leaves cancelled candidates without a candidate number' do
+    alliance = FactoryBot.create(:electoral_alliance)
+    FactoryBot.create_list(:candidate, 3, :electoral_alliance => alliance)
+    cancelled = FactoryBot.create(:candidate, :electoral_alliance => alliance)
+    cancelled.cancel
+
+    expect(Candidate.give_numbers!).to eq true
+
+    expect(cancelled.reload.candidate_number).to be_nil
+    expect(Candidate.valid.where(:candidate_number => nil)).to be_empty
+  end
 end
