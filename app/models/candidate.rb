@@ -17,7 +17,6 @@ class Candidate < ActiveRecord::Base
 
   scope :cancelled, -> { where(:cancelled => true).order("cancelled_at desc") }
   scope :valid, -> { where(:cancelled => false) }
-  scope :without_alliance, -> { where(:electoral_alliance_id => nil) }
 
   # by_numbering_order is the order in which candidate numbers will be assigned.
   # Cancelled candidates are not included in the result.
@@ -88,7 +87,6 @@ class Candidate < ActiveRecord::Base
   def self.can_give_numbers?
     ElectoralAlliance.are_all_ready? &&
       ElectoralCoalition.are_all_ordered? &&
-      Candidate.without_alliance.empty? &&
       ElectoralAlliance.without_coalition.empty?
   end
 

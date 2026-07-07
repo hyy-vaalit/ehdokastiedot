@@ -10,7 +10,7 @@ class Manage::DangerZonesController < ManageController
       redirect_to manage_danger_zone_path, alert: <<-MSG.squish
         Kaikki liitot eivät ole valmiina,
         renkailta puuttuu järjestys
-        tai kaikilla ehdokkailla ei ole liittoa.
+        tai kaikilla liitoilla ei ole rengasta.
       MSG
     end
   end
