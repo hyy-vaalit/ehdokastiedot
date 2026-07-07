@@ -108,10 +108,10 @@ ActiveAdmin.register ElectoralAlliance do
 
   action_item :mark_alliance_frozen, :only => :show do
     ea = ElectoralAlliance.find_by_id(params[:id])
-    link_to 'Merkitse vaaliliitto valmiiksi!', done_admin_electoral_alliance_path if can? :update, electoral_alliance and !ea.secretarial_freeze
+    link_to 'Merkitse vaaliliitto valmiiksi!', done_admin_electoral_alliance_path, method: :post if can? :update, electoral_alliance and !ea.secretarial_freeze
   end
 
-  member_action :done do
+  member_action :done, :method => :post do
     if ElectoralAlliance.find_by_id(params[:id]).freeze!
       redirect_to admin_electoral_alliances_path, :notice => "Vaaliliitto on merkitty valmiiksi!"
     else
