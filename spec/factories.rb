@@ -1,7 +1,19 @@
 FactoryBot.define do
 
   factory :admin_user do
-    email { 'user@example.com' }
+    sequence(:email) {|n| "user#{n}@example.com"}
+    role { 'admin' }
+  end
+
+  factory :advocate_user do
+    sequence(:email) {|n| "advocate#{n}@example.com"}
+    sequence(:student_number) {|n| "9876#{n}"}
+    firstname { 'Aino' }
+    lastname { 'Edustaja' }
+  end
+
+  factory :global_configuration do
+    advocate_login_enabled { true }
   end
 
   factory :faculty do
