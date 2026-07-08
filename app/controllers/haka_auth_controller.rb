@@ -13,6 +13,9 @@ class HakaAuthController < ApplicationController
     raise NotImplementedError, "Fake authentication is not enabled" unless Vaalit::Config.fake_auth_enabled?
 
     student_number_multiattr = ["#{Vaalit::Haka::HAKA_STUDENT_NUMBER_KEY}:#{params[:fake_authentication][:student_number]}"]
+
+    # Discard the pre-login session to prevent session fixation.
+    reset_session
     session[:haka_attrs] = {
       "student_number": student_number_multiattr,
       "email": "fake.auth@example.com",
@@ -60,6 +63,9 @@ class HakaAuthController < ApplicationController
     end
 
     Rails.logger.debug "Reponse attributes: #{response.attributes.inspect}"
+
+    # Discard the pre-login session to prevent session fixation.
+    reset_session
     session[:haka_attrs] = {
       "student_number" => response.attributes.multi(Vaalit::Haka::HAKA_STUDENT_NUMBER_FIELD),
       "email" => response.attributes.single(Vaalit::Haka::HAKA_EMAIL_FIELD),
