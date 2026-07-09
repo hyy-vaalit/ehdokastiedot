@@ -23,9 +23,17 @@ ActiveAdmin.register Email do
 
   show :title => :subject do
     attributes_table :subject do
-      row("content") { raw "<pre>#{email.content}</pre>" }
+      row("content") { pre email.content }
       row("Lähetetty") { friendly_datetime(email.enqueued_at) }
-      row("Lähetys") { button_to 'Lähetä sähköposti ehdokkaille', send_mail_admin_email_path, method: :post }
+      row("Lähetys") do
+        if email.enqueued_at?
+          "Sähköposti on jo lähetetty."
+        else
+          button_to 'Lähetä sähköposti ehdokkaille', send_mail_admin_email_path,
+            method: :post,
+            data: { confirm: "Lähetetäänkö sähköposti kaikille ehdokkaille?" }
+        end
+      end
     end
   end
 
@@ -39,9 +47,12 @@ ActiveAdmin.register Email do
 
   member_action :send_mail, :method => :post do
     message = Email.find(params[:id])
-    message.enqueue!
 
-    redirect_to admin_emails_path, :notice => 'Sähköpostin lähetys ehdokkaille on nyt ajastettu. Järjestelmä lähettää viestejä itsekseen taustalla. Etusivulla on linkki sähköpostien lähetystietoihin.'
+    if message.enqueue!
+      redirect_to admin_emails_path, :notice => 'Sähköpostin lähetys ehdokkaille on nyt ajastettu. Järjestelmä lähettää viestejä itsekseen taustalla. Etusivulla on linkki sähköpostien lähetystietoihin.'
+    else
+      redirect_to admin_email_path(message), :alert => 'Sähköposti on jo lähetetty, eikä sitä lähetetä uudelleen.'
+    end
   end
 
 end

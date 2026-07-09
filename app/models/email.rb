@@ -14,7 +14,11 @@ class Email < ActiveRecord::Base
     authorizable_ransackable_associations
   end
 
+  # Enqueues a send-to-all-candidates job once. Returns false if the email
+  # has already been sent.
   def enqueue!
+    return false if enqueued_at?
+
     Delayed::Job::enqueue(EnqueueCandidateEmails.new(self))
     mark_enqueued!
   end
