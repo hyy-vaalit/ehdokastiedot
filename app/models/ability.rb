@@ -45,6 +45,7 @@ class Ability
   # user.role == "admin"
   def admin(user)
     can :access, :admin
+    can :access, :manage_pages
     can :manage, :all
   end
 

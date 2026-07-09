@@ -9,9 +9,4 @@ class Manage::ElectoralCoalitionsController < ManageController
     end
   end
 
-  protected
-
-  def authorize_this!
-    authorize! :coalitions, @current_admin_user
-  end
 end
