@@ -1,6 +1,6 @@
 class Manage::DangerZonesController < ManageController
   def show
-    @configuration = GlobalConfiguration.first
+    @configuration = GlobalConfiguration.instance
   end
 
   def give_candidate_numbers

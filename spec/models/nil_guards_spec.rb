@@ -35,9 +35,13 @@ describe "Nil guards" do
   end
 
   describe GlobalConfiguration do
-    it "advocate_login_enabled? is false when the table is empty" do
+    it "instance creates the row and advocate_login_enabled? is false on an empty table" do
       expect(GlobalConfiguration.count).to eq 0
+
       expect(GlobalConfiguration.advocate_login_enabled?).to eq false
+
+      expect(GlobalConfiguration.count).to eq 1
+      expect(GlobalConfiguration.instance).to eq GlobalConfiguration.first
     end
   end
 end
