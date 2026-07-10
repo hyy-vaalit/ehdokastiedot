@@ -1,45 +1,42 @@
-<h2>Ehdokkaaksi ilmoittautuminen</h2>
+<h2><%= t(".heading") %></h2>
 
 <dl>
-  <dt>Ehdokasasettelu alkaa:</dt>
+  <dt><%= t(".nomination_starts") %></dt>
     <dd><%= friendly_datetime(GlobalConfiguration.candidate_nomination_starts_at) %></dd>
-  <dt>Ehdokasasettelu päättyy:</dt>
+  <dt><%= t(".nomination_ends") %></dt>
     <dd><%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %></dd>
-  <dt>Ehdokastietojen korjausten määräaika:</dt>
+  <dt><%= t(".correction_deadline") %></dt>
     <dd><%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %></dd>
 </dl>
 
 <% if @candidate.present? %>
   <p>
-    Opiskelijanumerollasi on
-    <%= link_to "voimassa oleva ehdokasilmoittautuminen", registrations_candidate_path %>.
+    <%= t(".has_registration_html",
+      link: link_to(t(".has_registration_link"), registrations_candidate_path)) %>
   </p>
 <% else %>
   <p>
-    Voit rekisteröityä edustajistovaalien ehdokkaaksi, kun olet saanut kutsukoodin jonkin vaaliliiton
-    edustajalta. Jos sinulla ei ole kutsukoodia, ota yhteys vaaliliittosi edustajaan.
+    <%= t(".invite_intro") %>
   </p>
 
   <p>
-    Ehdokkaaksi voi ilmoittautua myös itsenäisesti ilman vaaliliittoa. Itsenäistä ehdokasta
-    käsitellään teknisesti kuin hän olisi muodostanut yhden henkilön vaaliliiton.
+    <%= t(".independent_intro") %>
   </p>
 
   <p>
-    Mikäli haluat muodostaa uuden vaaliliiton tai rekisteröityä itsenäisenä ehdokkaana, ota yhteys
-    vaalit@hyy.fi saadaksesi vaaliliiton edustajan käyttäjätunnuksen.
+    <%= t(".new_alliance_intro") %>
   </p>
 
   <p>
     <% if can? :create, Candidate, student_number: current_haka_user.student_number %>
       <%= form_tag new_registrations_candidate_path, method: :get do -%>
-        <label for="invite_code">Vaaliliiton kutsukoodi</label>
+        <label for="invite_code"><%= t(".invite_code_label") %></label>
         <input type="text" name="invite_code">
 
-        <input type="submit" value="Jatka">
+        <input type="submit" value="<%= t(".continue") %>">
       <% end -%>
     <% else %>
-      <strong>Uusia ehdokkuuksia ei tällä hetkellä oteta vastaan.</strong>
+      <strong><%= t(".registrations_closed") %></strong>
     <% end %>
   </p>
 <% end %>
@@ -48,39 +45,32 @@
 
 <hr>
 
-<h2>Rekisteröidy vaaliliiton edustajaksi</h2>
+<h2><%= t(".advocate_heading") %></h2>
 
 <p>
-  Jokaisen ehdokkaaksi ilmoittautuvan henkilön tulee kuulua yhteen vaaliliittoon.
-  Jokaisella vaaliliitolla on edustaja, joka vastaa vaaliliiton ehdokastiedoista.
+  <%= t(".alliance_rule_1") %>
   <br>
-  Vaaliliitot voivat muodostaa keskenään vaalirenkaan, jolloin yksi tai useampi vaaliliitto
-  hyötyy toistensa äänimäärästä.
+  <%= t(".alliance_rule_2") %>
   <br>
-  Ehdokkaaksi voi ilmoittautua myös ilman vaaliliittoa, jolloin ehdokasta käsitellään teknisesti
-  kuin hän kuuluisi yhden henkilön vaaliliittoon.
+  <%= t(".alliance_rule_3") %>
 </p>
 
 <% if current_haka_user.advocate_user.present? %>
   <% if can? :access, :advocate %>
     <p>
-      Sinulla on vaaliliiton edustajan käyttäjätunnus. Voit käsitellä ehdokastietoja alla
-      olevasta linkistä.
+      <%= t(".has_advocate_account") %>
     </p>
 
     <p>
-      &raquo; <%= link_to "Vaaliliiton edustajan sivustolle", advocates_alliances_path %>
+      &raquo; <%= link_to t(".advocate_site_link"), advocates_alliances_path %>
     </p>
   <% else %>
-    <strong>Vaaliliiton ehdokastietojen katselu on väliaikaisesti estetty.</strong>
+    <strong><%= t(".advocate_access_blocked") %></strong>
     <br>
-    Syynä voi olla Keskusvaalilautakunnan kesken oleva kokous.
-    Jos pääsy ei palaudu kohtuullisessa ajassa, ota yhteys HYYn vaaliorganisaatioon.
+    <%= t(".advocate_access_blocked_reason") %>
   <% end %>
 <% else %>
   <p>
-    Jos haluat muodostaa vaaliliiton, ota yhteys vaalit@hyy.fi saadaksesi vaaliliiton edustajan
-    käyttäjätunnuksen. Kerro viestissä nimesi, opiskelijanumerosi, puhelinnumerosi ja
-    sähköpostiosoitteesi.
+    <%= t(".become_advocate") %>
   </p>
 <% end %>

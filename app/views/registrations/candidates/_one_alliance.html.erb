@@ -1,16 +1,16 @@
 <dl>
-  <dt>Vaaliliiton nimi</dt>
+  <dt><%= t(".name") %></dt>
   <dd><%= alliance.name %></dd>
 
   <% if alliance.advocate_user %>
-    <dt>Vaaliliiton edustaja</dt>
+    <dt><%= t(".advocate") %></dt>
     <dd><%= alliance.advocate_user&.friendly_name %></dd>
 
-    <dt>Sähköpostiosoite</dt>
+    <dt><%= t(".email") %></dt>
     <dd><%= alliance.advocate_user&.email %></dd>
 
     <% if alliance.advocate_user&.phone_number&.present? %>
-      <dt>Puhelinnumero</dt>
+      <dt><%= t(".phone") %></dt>
       <dd><%= alliance.advocate_user.phone_number %></dd>
     <% end %>
   <% end %>
