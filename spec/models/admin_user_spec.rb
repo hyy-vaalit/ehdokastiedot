@@ -9,4 +9,9 @@ describe AdminUser do
     expect(user.encrypted_password).not_to eq ""
   end
 
+  it "generates a 20 character initial password" do
+    user = create(:admin_user)
+    expect(user.password.length).to eq 20
+  end
+
 end

@@ -12,7 +12,7 @@ module DeviseUserBehaviour
     # Generate a password only if it was not set manually (when password_confirmation is present)
     def generate_password
       if password_confirmation.nil?
-        self.password = Devise.friendly_token.first(8)
+        self.password = Devise.friendly_token.first(20)
       end
     end
 
