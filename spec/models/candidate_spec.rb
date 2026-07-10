@@ -1,6 +1,34 @@
 require 'spec_helper'
 
 describe Candidate do
+  describe "#log_and_update_attributes" do
+    before do
+      allow(GlobalConfiguration).to receive(:log_candidate_attribute_changes?).and_return(true)
+    end
+
+    it "writes no audit rows when the save fails" do
+      candidate = FactoryBot.create(:candidate)
+
+      result = candidate.log_and_update_attributes(email: "")
+
+      expect(result).to eq false
+      expect(CandidateAttributeChange.count).to eq 0
+    end
+
+    it "writes audit rows for the changed attributes on success" do
+      candidate = FactoryBot.create(:candidate)
+
+      result = candidate.log_and_update_attributes(phone_number: "040 555 6677")
+
+      expect(result).to eq true
+
+      changes = CandidateAttributeChange.where(candidate_id: candidate.id)
+      expect(changes.count).to eq 1
+      expect(changes.first.attribute_name).to eq "phone_number"
+      expect(changes.first.new_value).to eq "040 555 6677"
+    end
+  end
+
   it 'can give candidate numbers' do
     2.times do |i|
       coalition = FactoryBot.create(:electoral_coalition)
