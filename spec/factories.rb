@@ -16,6 +16,11 @@ FactoryBot.define do
     advocate_login_enabled { true }
   end
 
+  factory :advocate_team do
+    sequence(:name) {|n| "Team #{n}"}
+    association :primary_advocate_user, factory: :advocate_user
+  end
+
   factory :faculty do
     sequence(:name) {|n| "Faculty #{n}"}
     sequence(:code) {|n| "F#{n}"}
