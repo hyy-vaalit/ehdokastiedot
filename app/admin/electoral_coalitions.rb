@@ -2,41 +2,9 @@ ActiveAdmin.register ElectoralCoalition do
   permit_params :name,
                 :shorten,
                 :advocate_team_id,
-                :electoral_alliance_ids
+                :electoral_alliance_ids => []
 
   menu :label => " Vaalirenkaat", :priority => 2
-
-  controller do
-    # Override default method because :electoral_alliance_ids is not available in permitted_params.
-    def update
-      @electoral_coalition = ElectoralCoalition.find(params[:id])
-
-      if @electoral_coalition.update(permitted_params[:electoral_coalition])
-        @electoral_coalition.update! electoral_alliance_ids: params[:electoral_coalition][:electoral_alliance_ids]
-
-        flash.notice = "Muutokset tallennettu."
-        redirect_to admin_electoral_coalition_path(@electoral_coalition)
-      else
-        flash.alert = "Tallennus epäonnistui: #{@electoral_coalition.errors.full_messages}"
-        super
-      end
-    end
-
-    # Override default method because :electoral_alliance_ids is not available in permitted_params.
-    def create
-      @electoral_coalition = ElectoralCoalition.new(permitted_params[:electoral_coalition])
-
-      if @electoral_coalition.save
-        @electoral_coalition.update! electoral_alliance_ids: params[:electoral_coalition][:electoral_alliance_ids]
-
-        flash.notice = "Vaalirengas luotu!"
-        redirect_to admin_electoral_coalition_path(@electoral_coalition)
-      else
-        flash.alert = "Tallennus epäonnistui: #{@electoral_coalition.errors.full_messages}"
-        super
-      end
-    end
-  end
 
   index do
     column("Vaalirenkaan nimi") { |c| link_to c.name, admin_electoral_coalition_path(c) }

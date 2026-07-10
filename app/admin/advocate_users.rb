@@ -5,42 +5,9 @@ ActiveAdmin.register AdvocateUser do
                 :firstname,
                 :lastname,
                 :phone_number,
-                :electoral_alliance_ids
+                :electoral_alliance_ids => []
 
   menu :label => "Edustajatunnukset", :if => proc { can? :manage, AdvocateUser }, :priority => 12
-
-  controller do
-
-    # Override default method because :electoral_alliance_ids is just not
-    # available through permitted_params.
-    def update
-      @advocate_user = AdvocateUser.find(params[:id])
-
-      if @advocate_user.update(permitted_params[:advocate_user])
-        @advocate_user.update! electoral_alliance_ids: params[:advocate_user][:electoral_alliance_ids]
-
-        flash[:notice] = "Muutokset tallennettu."
-        redirect_to admin_advocate_user_path(@advocate_user)
-      else
-        super
-      end
-    end
-
-    # Override default method because :electoral_alliance_ids is just not
-    # available through permitted_params.
-    def create
-      @advocate_user = AdvocateUser.new(permitted_params[:advocate_user])
-
-      if @advocate_user.save
-        @advocate_user.update! electoral_alliance_ids: params[:advocate_user][:electoral_alliance_ids]
-
-        flash[:notice] = "Edustaja luotu!"
-        redirect_to admin_advocate_user_path(@advocate_user)
-      else
-        super
-      end
-    end
-  end
 
   index do
     column :lastname
