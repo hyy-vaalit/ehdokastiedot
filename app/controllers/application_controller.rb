@@ -6,6 +6,9 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
 
+  # Declared before other callbacks so they run with the locale already set.
+  around_action :switch_locale
+
   before_action :set_current_haka_user
 
   # CanCan::ControllerAdditions::ClassMethods
@@ -22,6 +25,30 @@ class ApplicationController < ActionController::Base
   end
 
   protected
+
+  # Locale comes from the URL (scoped user-facing routes), falling back to the
+  # session so the choice survives the unscoped Haka SAML login flow.
+  # Admin UI (ActiveAdmin + Devise) keeps its pre-i18n English regardless.
+  def switch_locale(&action)
+    return I18n.with_locale(:en, &action) if devise_or_active_admin?
+
+    session[:locale] = requested_locale.to_s
+    I18n.with_locale(requested_locale, &action)
+  end
+
+  def requested_locale
+    locale = params[:locale].presence || session[:locale]
+    return locale if I18n.available_locales.map(&:to_s).include?(locale.to_s)
+
+    I18n.default_locale
+  end
+
+  def default_url_options
+    return {} if devise_or_active_admin?
+
+    # Finnish URLs stay unprefixed and unchanged; /sv/... and /en/... prefixed.
+    { locale: (I18n.locale == I18n.default_locale ? nil : I18n.locale) }
+  end
 
   # Ignore authorization for
   # - Devise: allow guest access to login

@@ -2,7 +2,7 @@
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="<%= I18n.locale %>"> <!--<![endif]-->
 <head>
   <title>HYYn edustajistovaalit</title>
   <%= csrf_meta_tags %>
@@ -27,7 +27,15 @@
   <header class="title">
 
     <nav>
-      <a href="/"><img id="logo-main" src="/images/hyy/logo.png"></a>
+      <%= link_to image_tag("/images/hyy/logo.png", id: "logo-main"), root_path %>
+
+      <%# Finnish has no URL prefix, so it must be an explicit ?locale=fi query
+          param — a bare link would lose against the sticky session locale. %>
+      <ul class="lang">
+        <li><%= link_to "Suomi", locale_switch_path(:fi) %></li>
+        <li><%= link_to "Svenska", locale_switch_path(:sv) %></li>
+        <li><%= link_to "English", locale_switch_path(:en) %></li>
+      </ul>
 
       <ul class="main">
         <% if current_haka_user %>

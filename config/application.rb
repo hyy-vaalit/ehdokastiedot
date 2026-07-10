@@ -16,6 +16,14 @@ module Ehdokastiedot
     # Common ones are `templates`, `generators`, or `middleware`, for example.
     config.autoload_lib(ignore: %w[assets tasks])
 
+    # User-facing pages are served in Finnish, Swedish and English.
+    # Keys not yet translated to sv/en fall back to Finnish. The final :en
+    # fallback keeps English-only admin translations (devise.en.yml,
+    # activeadmin.en.yml) working now that the default locale is :fi.
+    config.i18n.available_locales = [:fi, :sv, :en]
+    config.i18n.default_locale = :fi
+    config.i18n.fallbacks = [:fi, :en]
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

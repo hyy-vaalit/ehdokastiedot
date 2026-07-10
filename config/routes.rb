@@ -18,26 +18,30 @@ Rails.application.routes.draw do
     end
   end
 
-  root :to => "public#index"
+  # User-facing routes: Finnish URLs stay unprefixed, Swedish and English
+  # get /sv and /en prefixes. Admin, Devise and Haka SAML routes stay unscoped.
+  scope "(:locale)", locale: /sv|en/ do
+    root :to => "public#index"
 
-  get "/advocates", :to => "public#index", :as => :advocate_index
+    get "/advocates", :to => "public#index", :as => :advocate_index
 
-  namespace :advocates do
-    get :index, :as => :advocates
-    resources :alliances do
-      resources :candidates do
-        put :confirm_alliance, to: "candidates#confirm_alliance"
+    namespace :advocates do
+      get :index, :as => :advocates
+      resources :alliances do
+        resources :candidates do
+          put :confirm_alliance, to: "candidates#confirm_alliance"
+        end
       end
+
+      resource :coalition, only: [:update]
     end
 
-    resource :coalition, only: [:update]
-  end
+    namespace :registrations do
+      root to: "/registrations#index"
 
-  namespace :registrations do
-    root to: "/registrations#index"
-
-    resource :candidate do
-      post :cancel, to: "candidates#cancel"
+      resource :candidate do
+        post :cancel, to: "candidates#cancel"
+      end
     end
   end
 

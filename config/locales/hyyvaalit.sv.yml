@@ -1,0 +1,26 @@
+# TODO(HYY): Swedish translations pending — values below are Finnish
+# placeholders so that the key set stays in sync (see i18n_locale_parity_spec).
+sv:
+  activerecord:
+
+    attributes:
+
+      electoral_alliance:
+        name: "Nimi"
+
+        primary_advocate_lastname: "Sukunimi"
+        primary_advocate_firstname: "Etunimi"
+        primary_advocate_student_number: "Opiskelijanumero"
+        primary_advocate_address: "Osoite"
+        primary_advocate_phone: "Puhelin"
+        primary_advocate_email: "Sähköposti"
+
+        secondary_advocate_lastname: "Sukunimi"
+        secondary_advocate_firstname: "Etunimi"
+        secondary_advocate_student_number: "Opiskelijanumero"
+        secondary_advocate_address: "Osoite"
+        secondary_advocate_phone: "Puhelin"
+        secondary_advocate_email: "Sähköposti"
+
+      candidate:
+        firstname: "Etunimet"
