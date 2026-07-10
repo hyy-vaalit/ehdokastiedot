@@ -32,7 +32,6 @@ class ElectoralAlliance < ActiveRecord::Base
   validates_uniqueness_of :shorten, :name, :invite_code
 
   validates_length_of :shorten, :in => 2..6
-  validates_presence_of :expected_candidate_count, :allow_nil => true
   validates :expected_candidate_count, numericality: { only_integer: true, in: 1..60 }
 
   before_validation :strip_whitespace_from_name_fields!
@@ -60,7 +59,7 @@ class ElectoralAlliance < ActiveRecord::Base
   end
 
   def has_all_candidates?
-    expected_candidate_count > 0 && accepted_candidates.count == expected_candidate_count
+    expected_candidate_count.to_i > 0 && accepted_candidates.count == expected_candidate_count
   end
 
   def to_csv(encoding)
@@ -84,11 +83,11 @@ class ElectoralAlliance < ActiveRecord::Base
   protected
 
   def strip_whitespace_from_name_fields!
-    self.name.strip!
-    self.shorten.strip!
+    self.name&.strip!
+    self.shorten&.strip!
   end
 
   def upcase_invite_code!
-    self.invite_code.upcase!
+    self.invite_code&.upcase!
   end
 end
