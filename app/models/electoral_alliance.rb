@@ -5,7 +5,9 @@ class ElectoralAlliance < ActiveRecord::Base
     with: /\A[A-Za-z0-9-]+\z/,
     message: "allows only English alphanumeric and - characters"
 
-  has_many :candidates, :dependent => :nullify
+  # candidates.electoral_alliance_id is NOT NULL with a foreign key:
+  # an alliance that has (ever had) candidates must not be destroyed.
+  has_many :candidates, :dependent => :restrict_with_error
 
   # Each Candidate needs to be accepted to the Alliance by its AdvocateUser.
   has_many :accepted_candidates, -> {
