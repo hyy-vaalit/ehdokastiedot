@@ -1,17 +1,17 @@
 <%# This partial is shared between ActiveAdmin and AdvocateUser Alliance views %>
 
-<h2>Vaaliliiton ehdokkaat</h2>
+<h2><%= t(".heading") %></h2>
 
 <% if can? :edit, Candidate %>
   <div style="margin-bottom: 0.5em">
-    <button id="enable-sorting" class="btn" data-sortable-element="table#candidates tbody">Muuta ehdokkaiden järjestystä</button>
-    <button id="disable-sorting" class="btn" style="display:none;">Lopeta ehdokkaiden järjestäminen</button>
+    <button id="enable-sorting" class="btn" data-sortable-element="table#candidates tbody"><%= t(".enable_sorting") %></button>
+    <button id="disable-sorting" class="btn" style="display:none;"><%= t(".disable_sorting") %></button>
     <div class="alert alert-info sortable-hint" style="display:none;">
       <ul>
-        <li>Muuta ehdokkaiden järjestystä ottamalla hiirellä kiinni rivistä ja vetämällä sitä alas- tai ylöspäin.</li>
-        <li>Muutos tallennetaan jokaisen siirron jälkeen.</li>
-        <li>Kun olet valmis, klikkaa "Lopeta järjestäminen" jolloin sivu latautuu uudelleen.</li>
-        <li>Lopetusnapin painamisen jälkeen tarkista, että ehdokkaat ovat haluamassasi järjestyksessä.</li>
+        <li><%= t(".sorting_hint_1") %></li>
+        <li><%= t(".sorting_hint_2") %></li>
+        <li><%= t(".sorting_hint_3") %></li>
+        <li><%= t(".sorting_hint_4") %></li>
       </ul>
     </div>
   </div>
@@ -21,22 +21,22 @@
   <thead>
     <th>
       <% if GlobalConfiguration.candidate_data_frozen? %>
-        Nro
+        <%= t(".number") %>
       <% else %>
-        Tila
+        <%= t(".status") %>
       <% end %>
     </th>
-    <th>Ehdokasnimi</th>
-    <th>Sukunimi</th>
-    <th>Etunimet</th>
-    <th>Opiskelijanumero</th>
-    <th>Katuosoite</th>
-    <th>Postinumero</th>
-    <th>Kaupunki</th>
-    <th>Puhelin</th>
-    <th>Sähköposti</th>
-    <th>Tdk</th>
-    <th>Huomioita</th>
+    <th><%= t(".candidate_name") %></th>
+    <th><%= t(".lastname") %></th>
+    <th><%= t(".firstname") %></th>
+    <th><%= t(".student_number") %></th>
+    <th><%= t(".address") %></th>
+    <th><%= t(".postal_code") %></th>
+    <th><%= t(".city") %></th>
+    <th><%= t(".phone") %></th>
+    <th><%= t(".email") %></th>
+    <th><%= t(".faculty") %></th>
+    <th><%= t(".notes") %></th>
   </thead>
 
   <tbody>
@@ -51,10 +51,10 @@
             &#x2705;&nbsp;OK <%# green tick symbol %>
           <% else %>
             <% if can? :edit, Candidate %>
-              <%= button_to "Hyväksy",
+              <%= button_to t(".accept"),
                 link_to_accept_candidate_to_alliance(scope, c),
                 method: :put,
-                data: { confirm: "Hyväksytäänkö vaaliliittoon ehdokas #{c.candidate_name}?"}
+                data: { confirm: t(".accept_confirm", name: c.candidate_name) }
               %>
             <% else %>
               "?" <%# Cannot be edited but needs to be accepted - contact admin %>
@@ -92,28 +92,28 @@
 </table>
 
 <% if alliance.candidates.cancelled.present? %>
-  <h2>Vaaliliitossa olleet ehdokkuutensa peruneet ehdokkaat</h2>
+  <h2><%= t(".cancelled_heading") %></h2>
 
   <table id="cancelled-candidates" class="wide-listing">
     <thead>
-      <th>Tila</th>
-      <th>Ehdokasnimi</th>
-      <th>Sukunimi</th>
-      <th>Etunimet</th>
-      <th>Opiskelijanumero</th>
-      <th>Katuosoite</th>
-      <th>Postinumero</th>
-      <th>Kaupunki</th>
-      <th>Puhelin</th>
-      <th>Sähköposti</th>
-      <th>Tdk</th>
-      <th>Huomioita</th>
+      <th><%= t(".status") %></th>
+      <th><%= t(".candidate_name") %></th>
+      <th><%= t(".lastname") %></th>
+      <th><%= t(".firstname") %></th>
+      <th><%= t(".student_number") %></th>
+      <th><%= t(".address") %></th>
+      <th><%= t(".postal_code") %></th>
+      <th><%= t(".city") %></th>
+      <th><%= t(".phone") %></th>
+      <th><%= t(".email") %></th>
+      <th><%= t(".faculty") %></th>
+      <th><%= t(".notes") %></th>
     </thead>
 
     <tbody>
       <% alliance.candidates.cancelled.each do |c| %>
         <tr>
-          <td>&#x274c;&nbsp;Peruttu<%# red crossmark %></td>
+          <td>&#x274c;&nbsp;<%= t(".cancelled") %><%# red crossmark %></td>
           <td>
             <% if can? :edit, Candidate %>
               <%= link_to c.candidate_name, link_to_edit_candidate(scope, c) %>

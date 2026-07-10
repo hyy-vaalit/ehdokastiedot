@@ -94,39 +94,30 @@
   });
 </script>
 
-<%= f.input :firstname, :label => "Kaikki etunimet / <br>Alla förnamn".html_safe, input_html: { disabled: read_only } %>
-<%= f.input :lastname, :label => "Sukunimi / Efternamn", input_html: { disabled: read_only } %>
+<%# Labels come from activerecord.attributes.candidate in the locale files. %>
+<%= f.input :firstname, input_html: { disabled: read_only } %>
+<%= f.input :lastname, input_html: { disabled: read_only } %>
 
 <%# student_number is read from authentication info and cannot be edited %>
-<%= f.input :student_number, :label => "Opiskelijanumero / <br>Studentnummer".html_safe, input_html: { disabled: true } %>
+<%= f.input :student_number, input_html: { disabled: true } %>
 
-<%= f.input :faculty, :label => "Tiedekunta / <br>Fakultet".html_safe, input_html: { disabled: read_only } %>
-<%= f.input :address, :label => "Katuosoite / <br>Gatuadress".html_safe, input_html: { disabled: read_only } %>
-<%= f.input :postal_code, :label => "Postinumero / <br>Postnummer".html_safe, input_html: { disabled: read_only } %>
-<%= f.input :postal_city, :label => "Kaupunki / <br>Postanstalt".html_safe, input_html: { disabled: read_only } %>
-<%= f.input :phone_number, :label => "Puhelinnumero / <br>Telefonnummer".html_safe, input_html: { disabled: read_only } %>
+<%= f.input :faculty, input_html: { disabled: read_only } %>
+<%= f.input :address, input_html: { disabled: read_only } %>
+<%= f.input :postal_code, input_html: { disabled: read_only } %>
+<%= f.input :postal_city, input_html: { disabled: read_only } %>
+<%= f.input :phone_number, input_html: { disabled: read_only } %>
 
 <%= f.input :email,
   input_html: { disabled: read_only },
-  label: "Sähköpostiosoite / Email",
-  hint: "Ehdokasilmoituksen vahvistusilmoitus lähetetään sähköpostitse tähän osoitteeseen."
+  hint: t(".email_hint")
 %>
 
 <%= f.input :candidate_name,
   input_html: { disabled: read_only },
-  label: "Ehdokasnimi / <br>Kandidatens namn <br>(Sukunimi, Etunimi)".html_safe,
-  hint: "Ehdokkaan nimi siinä muodossa, kuin se halutaan merkittäväksi ehdokaslistojen yhdistelmään.
-    Kandidatens namn i den form som du önskar att namnet står på sammanställningen av kandidatlistorna.
-    <br>
-    Etunimen rinnalla tai sen sijasta voidaan käyttää yleisesti tunnettua puhuttelunimeä tai etunimeä lyhennettynä
-    (jämsides med förnamnet kan du använda ett tilltalsnamn som är allmänt känt eller en förkortning av förnamnet):
-    <br>Sukunimi, Etunimi
-    <br>Sukunimi, Puhuttelunimi
-    <br>Sukunimi, Etunimi 'Puhuttelunimi'".html_safe
+  hint: t(".candidate_name_hint_html")
 %>
 
 <%= f.input :notes,
-  label: "Huomioita vaaliliiton edustajalle tai HYYn vaalityöntekijälle / <br>Anteckingar för HUS".html_safe,
   input_html: {
     class: 'autogrow',
     rows: 3,

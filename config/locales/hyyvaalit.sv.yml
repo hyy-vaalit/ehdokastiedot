@@ -23,7 +23,17 @@ sv:
         secondary_advocate_email: "Sähköposti"
 
       candidate:
-        firstname: "Etunimet"
+        firstname: "Alla förnamn"
+        lastname: "Efternamn"
+        student_number: "Studentnummer"
+        faculty: "Fakultet"
+        address: "Gatuadress"
+        postal_code: "Postnummer"
+        postal_city: "Postanstalt"
+        phone_number: "Telefonnummer"
+        email: "Email"
+        candidate_name: "Kandidatens namn (Efternamn, Förnamn)"
+        notes: "Anteckingar för HUS"
 
   # CanCan::AccessDenied message (see ApplicationController rescue_from)
   unauthorized:
@@ -128,10 +138,117 @@ sv:
 
   advocates:
     alliances:
+      breadcrumb: "Kaikki vaaliliitot"
+      index:
+        heading: "Vaalirengas"
+        intro: "Edustajatiimi jakaa näkyvyyden vaalirenkaan vaaliliittojen ehdokkaisiin. Vain vaaliliiton oma edustaja voi muokata ehdokastietoja."
+        team: "Edustajatiimi"
+        team_members: "Tiimin jäsenet"
+        form_coalition: "Muodosta edustajatiimille vaalirengas kirjoittamalla sähköpostiviesti vaalit@hyy.fi."
+        team_instructions_intro: "Edustajatiimin muodostamiseksi ilmoita sähköpostitse HYYn vaaliorganisaatiolle seuraavat tiedot:"
+        team_instructions_name: "Edustajatiimin nimi (voi olla sama kuin vaalirenkaan nimi)"
+        team_instructions_members: "Edustajatiimin jäsenten nimi, sähköpostiosoite ja opiskelijanumero. Jos vaaliliiton edustajalla on jo edustajatunnus, riittää ilmoittaa pelkkä nimi."
+        alliances_without_coalition: "Vaaliliitot ilman vaalirengasta"
+        create_alliance: "Luo uusi vaaliliitto"
+        nomination_ends: "Ehdokasasettelu päättyy %{datetime}"
+        nomination_note_1: "Edustaja vastaa siitä, että vaaliliiton kaikki ehdokkaat ovat järjestelmässä ehdokasasettelun päättymiseen mennessä."
+        nomination_note_2: "Ehdokasasettelun päättymisen jälkeen tietoihin voi tehdä korjauksia ehdokasilmoituksen perumisen määräaikaan saakka."
+        nomination_note_3: "Ehdokastietojen korjausten, järjestyksen ja peruutusten määräaika: %{datetime}"
+        numbering_heading: "Ehdokasnumeroinnista:"
+        numbering_note_1: "Ehdokasnumerot määräytyvät vaaliliiton sisällä ehdokkaiden järjestyksen mukaan."
+        numbering_note_2_html: "Ehdokkaiden järjestys on <strong>aina</strong> vaaliliiton edustajan vastuulla.<br>Uudet ehdokasilmoittautumiset eivät asetu valmiiksi esimerkiksi aakkosjärjestykseen,<br>koska ei ole takeita, onko aakkosjärjestys vaaliliiton ehdokkaiden toivottu järjestys."
+        numbering_note_3: "Tarkista ehdokkaiden järjestys ehdokasasettelun päättymisen jälkeen ennen korjausten määräaikaa %{datetime}."
+        numbering_note_4: "Perutut ehdokasilmoittautumiset eivät vaikuta ehdokasnumerointiin."
+        coalitions_heading: "Vaalirenkaista:"
+        coalition_note_1: "Vaalirenkaan edustajan on ilmoitettava vaaliliittojen haluttu järjestys sähköpostilla vaalit@hyy.fi."
+        coalition_note_2: "Ehdokasnumerot määräytyvät vaalirenkaan sisällä vaaliliittojen järjestyksen mukaan."
+        coalition_note_3: "Keskusvaalilautakunta arpoo vaalirenkaiden keskinäisen järjestyksen, kun ehdokasnumeot jaetaan."
+        csv_heading: "CSV-tiedoston tuominen Exceliin (ISO-Latin):"
+        csv_step_1: "Avaa CSV-tiedosto Exceliin."
+        csv_step_2: "Valitse ja mustaa koko sarake 'A'."
+        csv_step_3: "Valitse: Tiedot > Teksti sarakkeisiin"
+        csv_step_4: "Valitse: Tiedostolaji: Erotettu > Seuraava."
+        csv_step_5: "Valitse: Erottimet: Pilkku > Valmis."
+        csv_encoding_note: "Jos CSV-tiedoston ääkköset näkyvät väärin ISO-Latin-merkistökoodauksella, kokeile UTF-8-versiota."
+      alliance_table:
+        alliance: "Vaaliliitto"
+        advocate: "Edustaja"
+        coalition: "Vaalirengas"
+        candidates: "Ehdokkaita"
+        incoming: "Uusia"
+        expected: "Tavoite"
+        notes: "Huomioita"
+        me: "Minä itse!"
+        link_to_coalition: "Liitä renkaaseen"
+        link_confirm: "Liitetäänkö vaaliliitto \"%{alliance}\" renkaaseen \"%{coalition}\"?"
+        check_candidate_count: "Tarkista ehdokasmäärä."
+        no_coalition: "Ei vaalirengasta."
+      form:
+        primary_advocate_heading: "Vaaliliiton ensisijainen edustaja"
+        alliance_heading: "Vaaliliitto"
+        name_label: "Vaaliliiton nimi"
+        shorten_label: "Vaaliliiton lyhenne (2-6 merkkiä)"
+        shorten_hint: "Suosituksena on valita sama lyhenne kuin aiemmissa vaaleissa. Lyhennettä käytetään vaalituloksen esittämisessä: esimerkiksi TaVi, ParasS, WTF. HYY pidättää oikeuden muuttaa lyhennettä tarvittaessa."
+        expected_count_label: "Ehdokkaiden odotettu lukumäärä"
+        expected_count_hint: "Jätä kenttä tyhjäksi, jos ehdokkaiden odotettu lukumäärä ei ole vielä tiedossa. Ehdokkaiden odotettu lukumäärä on syötettävä ennen ehdokasasettelun päättymistä. Tietoa käytetään varmistamaan, että kaikki ehdokastiedot on ilmoitettu."
+        invite_code_label: "Kutsukoodi vaaliliittoon ilmoittautumiseksi"
+        invite_code_hint_html: "Kutsukoodi suojaa vaaliliittoa tuntemattomilta ehdokkailta. Ehdokkaaksi ilmoittautuvan henkilön on tunnettava kutsukoodi voidakseen ilmoittautua vaaliliiton ehdokkaaksi.<br><br>Kutsukoodin voi vaihtaa milloin tahansa. Kutsukoodin tulee olla voimassa sillä hetkellä, kun ehdokas saapuu ilmoittautumaan. Kutsukoodin vaihtaminen ei vaikuta aiemmin vastaanotettuihin ilmoittautumisiin.<br><br>Voit käyttää järjestelmän arpomaa satunnaiskoodia tai valita oman helpommin muistettavan merkkijonon. Kirjaimet, numerot ja tavuviiva ovat sallittuja."
+      new:
+        back: "Palaa tallentamatta"
+        save: "Tallenna"
+      edit:
+        back: "Palaa tallentamatta"
+        save: "Tallenna"
+      show:
+        invite_code_html: "Kutsukoodi: <strong>%{code}</strong>"
+        accepted_count: "Ehdokkaita hyväksytty:"
+        incoming_count: "Ehdokkaita hyväksyttävänä: %{count}"
+        edit_link: "Muokkaa vaaliliiton tietoja"
+        nomination_ended: "Ehdokasasettelu on päättynyt eikä vaaliliittoa voi muokata."
+        instructions_heading: "Ohjeita"
+        instruction_1: "Vaaliliiton edustajan on hyväksyttävä jokainen ehdokas vaaliliittoon. Tällä estetään epätoivotun ehdokkaan pääsy vaaliliittoon huomaamatta."
+        instruction_2: "Hyödynnä selaimen zoom-toimintoa (ctrl+ tai cmd+), jos teksti on liian pientä."
+        instruction_3_html: "Ehdokasnumerot jaetaan nousevassa järjestyksessä:<br/>listan ensimmäinen ehdokas saa pienimmän ehdokasnumeron ja listan viimeinen ehdokas suurimman."
+        no_candidates: "Vaaliliitossa ei ole yhtään ehdokasta."
       create:
         created: "Vaaliliitto luotu!"
         create_failed: "Vaaliliiton luominen epäonnistui."
     candidates:
+      list:
+        heading: "Vaaliliiton ehdokkaat"
+        enable_sorting: "Muuta ehdokkaiden järjestystä"
+        disable_sorting: "Lopeta ehdokkaiden järjestäminen"
+        sorting_hint_1: "Muuta ehdokkaiden järjestystä ottamalla hiirellä kiinni rivistä ja vetämällä sitä alas- tai ylöspäin."
+        sorting_hint_2: "Muutos tallennetaan jokaisen siirron jälkeen."
+        sorting_hint_3: "Kun olet valmis, klikkaa \"Lopeta järjestäminen\" jolloin sivu latautuu uudelleen."
+        sorting_hint_4: "Lopetusnapin painamisen jälkeen tarkista, että ehdokkaat ovat haluamassasi järjestyksessä."
+        number: "Nro"
+        status: "Tila"
+        candidate_name: "Ehdokasnimi"
+        lastname: "Sukunimi"
+        firstname: "Etunimet"
+        student_number: "Opiskelijanumero"
+        address: "Katuosoite"
+        postal_code: "Postinumero"
+        city: "Kaupunki"
+        phone: "Puhelin"
+        email: "Sähköposti"
+        faculty: "Tdk"
+        notes: "Huomioita"
+        accept: "Hyväksy"
+        accept_confirm: "Hyväksytäänkö vaaliliittoon ehdokas %{name}?"
+        cancelled_heading: "Vaaliliitossa olleet ehdokkuutensa peruneet ehdokkaat"
+        cancelled: "Peruttu"
+      new:
+        back: "Palaa tallentamatta"
+        heading: "Uusi ehdokas"
+        save: "Tallenna"
+      edit:
+        back: "Palaa tallentamatta"
+        heading: "Muokkaa ehdokkaan tietoja"
+        alliance: "Vaaliliitto:"
+        candidate: "Ehdokas:"
+        save: "Tallenna"
       create:
         created: "Ehdokas luotu!"
         create_failed: "Ehdokkaan luominen epäonnistui."
@@ -145,3 +262,21 @@ sv:
         linked: "Vaaliliitto \"%{alliance}\" kytkettiin renkaaseen \"%{coalition}\"."
         link_failed: "Vaaliliiton kytkeminen vaalirenkaaseen epäonnistui"
         not_found: "Odottamaton virhe, pyydettyä tietoa ei löytynyt tai pääsy kielletty."
+
+  common:
+    unauthorized:
+      heading: "Pääsy kielletty"
+      body: "Selaimesi yritti tehdä jotain, johon käyttäjätunnuksellasi ei ollut pääsyoikeutta."
+      retry_html: "Yritä uudelleen aloittaen %{link}. Jos ongelma ei ratkea, ota yhteys <a href=\"https://hyy.fi/vaalit\">HYYn vaalityöntekijään</a>."
+      front_page_link: "etusivulta"
+    candidates:
+      form:
+        email_hint: "Ehdokasilmoituksen vahvistusilmoitus lähetetään sähköpostitse tähän osoitteeseen."
+        candidate_name_hint_html: "Kandidatens namn i den form som du önskar att namnet står på sammanställningen av kandidatlistorna.<br>Jämsides med förnamnet kan du använda ett tilltalsnamn som är allmänt känt eller en förkortning av förnamnet:<br>Efternamn, Förnamn<br>Efternamn, Tilltalsnamn<br>Efternamn, Förnamn 'Tilltalsnamn'"
+
+  layouts:
+    application:
+      title: "HYYn edustajistovaalit"
+      home: "Alkusivu"
+      own_info: "Omat tiedot"
+      sign_out: "Kirjaudu ulos"

@@ -76,7 +76,7 @@ class Advocates::AlliancesController < AdvocatesController
   end
 
   def nav_paths
-    @_nav_paths = [{"Kaikki vaaliliitot" => advocates_alliances_path}]
+    @_nav_paths = [{t("advocates.alliances.breadcrumb") => advocates_alliances_path}]
   end
 
   def alliance_params
