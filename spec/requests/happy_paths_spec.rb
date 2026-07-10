@@ -13,6 +13,18 @@ describe "Happy paths" do
     end
   end
 
+  describe "admin candidate management" do
+    it "renders the candidate edit form" do
+      candidate = create(:candidate)
+      sign_in create(:admin_user)
+
+      get edit_admin_candidate_path(candidate)
+
+      expect(response).to have_http_status(:ok)
+      expect(response.body).to include(candidate.electoral_alliance.name)
+    end
+  end
+
   describe "advocate alliance and candidate management" do
     let(:advocate) { create(:advocate_user) }
 
