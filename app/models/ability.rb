@@ -37,7 +37,7 @@ class Ability
     end
   end
 
-  # user.role is "secretary" or "admin"
+  # user.role == "admin"
   def admin_user_with_role(user)
     send user.role, user
   end
@@ -47,19 +47,6 @@ class Ability
     can :access, :admin
     can :access, :manage_pages
     can :manage, :all
-  end
-
-  # user.role == "secretary"
-  def secretary(user)
-    can :access, :admin
-    can :read, ActiveAdmin::Page, :name => "Dashboard"
-
-    can [:read, :create, :update], Candidate
-
-    can [:read, :create, :done], ElectoralAlliance
-    can :update, ElectoralAlliance do |alliance|
-      not alliance.secretarial_freeze?
-    end
   end
 
   def guest_user(user)

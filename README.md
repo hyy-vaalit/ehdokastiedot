@@ -2,8 +2,8 @@
 
 Järjestelmässä on eri tasoisia käyttäjiä:
 
-* Pääkäyttäjä (role:admin) ja rajoitettu pääkäyttäjä (role:secretary):
-  * `app/models/AdminUser.rb`
+* Pääkäyttäjä (role:admin):
+  * `app/models/admin_user.rb`
   * /admin
   * admin@example.com / pass123
   * Kaikki HYYn henkilökunnan tarvitsemat toiminnot.
@@ -32,9 +32,8 @@ Käyttöoikeudet on määritety tiedostossa `app/models/ability.rb`.
 
 Esivaatimukset:
 
-* Asenna [RVM](https://rvm.io/)
-* RVM:n asentamisen jälkeen lue `.ruby-gemset` ja `.ruby-version: `cd .. && popd`
-* `brew install v8`
+* Asenna Ruby-versio, joka on määritelty tiedostossa `.ruby-version`
+  (esim. rbenv, asdf tai mise)
 * `bundle install`
 
 Kopioi `.env.example` -> `.env` ja aseta sinne sopivat defaultit.
@@ -42,7 +41,7 @@ Kopioi `.env.example` -> `.env` ja aseta sinne sopivat defaultit.
 a) Putsaa tietokanta ja aja seed:
 
 ```bash
-rake db:runts
+rake db:reset
 
 # Listaa vaihtoehdot db:seed
 rake -T db:seed
@@ -74,7 +73,7 @@ foreman run worker
 ``` 
 
 Avaa Admin UI
-* http://localhost:5000/admin
+* http://localhost:3000/admin
 * admin@example.com / pass123
 * Seed data, ks. "rake db:seed:dev"
 
@@ -130,16 +129,16 @@ https://devcenter.heroku.com/articles/heroku-postgres-import-export
 
 ```bash
 # tee tuore backup
-heroku pgbackups:capture -a hyy-vaalit
+heroku pg:backups:capture -a hyy-ehdokastiedot
 
 # SEKRIT_URL
-heroku pgbackups:url -a hyy-vaalit
-
-# Siirrä SEKRIT_URLista paikalliseen postgresiin
-heroku pgbackups:restore DATABASE SEKRIT_URL -a hyy-vaalit
+heroku pg:backups:url -a hyy-ehdokastiedot
 
 # Download SQL dump file
 curl -o latest.dump "SEKRIT_URL"
+
+# Palauta dumppi paikalliseen postgresiin
+pg_restore --clean --no-acl --no-owner -d ehdokastiedot_development latest.dump
 ```
 
 2) Suoraan ilman dumppitiedostoa
@@ -148,7 +147,7 @@ curl -o latest.dump "SEKRIT_URL"
 rake db:drop
 heroku pg:info
 
-heroku pg:pull HEROKU_POSTGRESQL_IVORY_URL hyyvaalit -a hyy-vaalit
+heroku pg:pull DATABASE_URL ehdokastiedot_development -a hyy-ehdokastiedot
 ```
 
 ## Staging-ympäristön alustus

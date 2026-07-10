@@ -7,10 +7,10 @@ class EnqueueCandidateEmails
   end
 
   def perform
-    puts "Sending email to all Candidates"
+    Rails.logger.info "Sending email to all Candidates"
 
     Candidate.valid.each do |c|
-      puts "Enqueuing email with id #{email_message.id} to #{c.email}"
+      Rails.logger.info "Enqueuing email with id #{email_message.id} to #{c.email}"
       CandidateNotifier.delay.welcome_as_candidate(c.email, email_message)
     end
   end

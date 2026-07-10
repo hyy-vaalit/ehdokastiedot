@@ -157,10 +157,10 @@ class Candidate < ActiveRecord::Base
     self.firstname.strip!
     self.lastname.strip!
     self.student_number.strip!
-    self&.address&.strip!
-    self&.postal_code&.strip!
-    self&.postal_city&.strip!
-    self&.phone_number&.strip!
+    self.address&.strip!
+    self.postal_code&.strip!
+    self.postal_city&.strip!
+    self.phone_number&.strip!
   end
 
   def clear_cancelled_at

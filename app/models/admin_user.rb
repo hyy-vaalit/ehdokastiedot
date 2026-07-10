@@ -2,16 +2,13 @@ class AdminUser < ActiveRecord::Base
   include DeviseUserBehaviour
 
   enum :role, {
-    "admin" => "admin",
-    "secretary" => "secretary"
+    "admin" => "admin"
   }
 
   # Devise modules
   # https://www.rubydoc.info/github/plataformatec/devise/Devise/Models
   devise :database_authenticatable, :timeoutable, :recoverable, :rememberable,
     :trackable, :validatable
-
-  scope :secretaries, -> { where(:role => "secretary") }
 
   validates :role,
     presence: true,
@@ -34,16 +31,14 @@ class AdminUser < ActiveRecord::Base
     ]
   end
 
-  def is_secretary?
-    role == 'secretary'
-  end
-
   def is_admin?
     role == 'admin'
   end
 
   private
 
+  # The welcome_secretary name is a historical relic from the removed
+  # secretary role; the mail is sent to every admin user.
   def send_password
     RegistrationMailer.welcome_secretary(email, password).deliver_now
   end

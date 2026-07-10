@@ -15,8 +15,6 @@ gem 'jquery-ui-rails'
 
 gem 'ruby-saml' # Haka authentication
 
-gem 'json_builder' #TODO:Voiko käyttää jbuilder
-
 gem 'aws-sdk-rails', '~> 5'
 gem 'aws-actionmailer-ses', '~> 1'
 

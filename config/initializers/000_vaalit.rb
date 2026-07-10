@@ -45,10 +45,4 @@ module Vaalit
     HAKA_GIVENNAME_FIELD = ENV.fetch("HAKA_GIVENNAME_FIELD")
     HAKA_HOMEORG_FIELD = ENV.fetch("HAKA_HOMEORG_FIELD")
   end
-
-  module Aws
-    def self.connect?
-      Rails.env.production?
-    end
-  end
 end

@@ -52,16 +52,13 @@ class HakaUser
           Login failed because student number not found with key
           #{Vaalit::Haka::HAKA_STUDENT_NUMBER_KEY}
         MSG
-        Rails.logger.debug "Failed student number value: #{value}"
-        value = nil
+        Rails.logger.debug "Failed student number value: #{raw}"
       end
-    elsif value.blank?
-      # TODO: Fail with a friendly error instead of "something went wrong" without student number
-      raise HakaAuthError, "Student number missing"
-    else
+    elsif !raw.nil?
       raise HakaAuthError, "Student number must be given either as String or String[] to preserve the leading zero."
     end
 
+    # TODO: Fail with a friendly error instead of "something went wrong" without student number
     raise HakaAuthError, "Student number missing" if value.blank?
 
     value.split(":").last

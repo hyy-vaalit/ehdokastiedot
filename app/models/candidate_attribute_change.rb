@@ -9,7 +9,7 @@ class CandidateAttributeChange < ActiveRecord::Base
       self.create!(:attribute_name => key,
                    :previous_value => values.first.to_s,
                    :new_value      => values.last.to_s,
-                   :candidate_id   => candidate_id).inspect
+                   :candidate_id   => candidate_id)
     end
 
     true

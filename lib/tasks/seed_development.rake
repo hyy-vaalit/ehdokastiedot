@@ -42,7 +42,6 @@ namespace :db do
         )
 
         AdminUser.create!(:email => 'admin@example.com', :password => 'pass123', :password_confirmation => 'pass123', :role => 'admin')
-        AdminUser.create!(:email => 'sihteeri@example.com', :password => 'pass123', :password_confirmation => 'pass123', :role => 'secretary')
       end
 
       desc 'Create faculties'
