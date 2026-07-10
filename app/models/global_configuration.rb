@@ -42,8 +42,14 @@ class GlobalConfiguration < ActiveRecord::Base
     not candidate_nomination_period_effective?
   end
 
+  # The single configuration row, created on demand. Auto-creating is safe:
+  # the only column, advocate_login_enabled, defaults to false.
+  def self.instance
+    first_or_create!
+  end
+
   def self.advocate_login_enabled?
-    !!first&.advocate_login_enabled?
+    instance.advocate_login_enabled?
   end
 
   def enable_advocate_login!
