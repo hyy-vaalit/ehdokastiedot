@@ -13,10 +13,7 @@ class AdvocatesController < ApplicationController
 
   def require_advocate_user
     unless current_advocate_user.present?
-      flash.alert = <<-MSG.squish
-        Käyttäjätunnuksellasi ei ole vaaliliiton edustajan oikeuksia.
-        Tarvittaessa pyydä oikeudet HYYn vaalityöntekijältä.
-      MSG
+      flash.alert = t("flashes.no_advocate_rights")
 
       redirect_to registrations_root_path and return
     end

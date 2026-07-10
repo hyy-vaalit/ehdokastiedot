@@ -117,7 +117,7 @@ class ApplicationController < ActionController::Base
   def track_session_expiry
     if session_timeout_at && Time.now.getutc > session_timeout_at
       reset_session
-      flash.alert = "Istunto on vanhentunut, joten selaimesi kirjattiin ulos."
+      flash.alert = t("flashes.session_expired")
 
       redirect_to root_path
     end
@@ -133,7 +133,11 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
     Rails.logger.debug "[ApplicationController] Access denied on action: '#{exception.action}' subject: '#{exception.subject.inspect}'"
-    flash.now.alert = exception.message
-    render "common/unauthorized", status: 403
+    # rescue_from runs after the switch_locale around_action has already
+    # unwound, so the request locale must be re-established here.
+    I18n.with_locale(devise_or_active_admin? ? :en : requested_locale) do
+      flash.now.alert = exception.message
+      render "common/unauthorized", status: 403
+    end
   end
 end

@@ -33,9 +33,9 @@ class Advocates::CandidatesController < AdvocatesController
     authorize! :update, @candidate
 
     if @candidate.log_and_update_attributes(candidate_params)
-      flash[:notice] = "Muutokset tallennettu."
+      flash[:notice] = t("flashes.saved")
     else
-      flash[:alert] = "Muutosten tallentaminen epäonnistui!"
+      flash[:alert] = t("flashes.save_failed")
       render :action => :edit and return
     end
 
@@ -50,10 +50,10 @@ class Advocates::CandidatesController < AdvocatesController
     authorize! :create, @candidate
 
     if @candidate.save
-      flash[:notice] = "Ehdokas luotu!"
+      flash[:notice] = t(".created")
       redirect_to advocates_alliance_path(@alliance)
     else
-      flash[:alert] = "Ehdokkaan luominen epäonnistui."
+      flash[:alert] = t(".create_failed")
       render :action => :new
     end
   end
@@ -62,9 +62,10 @@ class Advocates::CandidatesController < AdvocatesController
     candidate = @alliance.candidates.find(params[:candidate_id])
 
     if candidate.confirm_alliance!
-      flash.notice = "Vaaliliitto vahvistettu!"
+      flash.notice = t(".confirmed")
     else
-      flash.error = "Vaaliliittoon vahvistaminen epäonnistui: #{candidate.errors.full_messages}"
+      # flash.alert, not .error: the layout only renders alert/notice/info.
+      flash.alert = t(".confirm_failed", errors: candidate.errors.full_messages.to_sentence)
     end
 
     redirect_to advocates_alliance_path(@alliance)
@@ -81,7 +82,7 @@ class Advocates::CandidatesController < AdvocatesController
       .electoral_alliances
       .find(params[:alliance_id])
   rescue ActiveRecord::RecordNotFound
-    flash.alert = "Pyydettyä kohdetta ei löytynyt tai sinulla ei ole oikeuksia pyydettyyn toimintoon. Vaaliliiton edustaja voi muokata vain oman vaaliliittonsa ehdokastietoja."
+    flash.alert = t("flashes.candidate_access_denied")
     redirect_to advocates_alliance_path(params[:alliance_id]) and return
   end
 

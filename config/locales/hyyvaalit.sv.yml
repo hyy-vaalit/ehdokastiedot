@@ -24,3 +24,64 @@ sv:
 
       candidate:
         firstname: "Etunimet"
+
+  # CanCan::AccessDenied message (see ApplicationController rescue_from)
+  unauthorized:
+    default: "Sinulla ei ole oikeutta pyydettyyn toimintoon."
+
+  # Flash messages shared across controllers/actions; action-specific
+  # flashes live under their controller.action key (lazy lookup).
+  flashes:
+    session_expired: "Istunto on vanhentunut, joten selaimesi kirjattiin ulos."
+    sign_in_first: "Kirjaudu ensin sisään."
+    no_advocate_rights: "Käyttäjätunnuksellasi ei ole vaaliliiton edustajan oikeuksia. Tarvittaessa pyydä oikeudet HYYn vaalityöntekijältä."
+    missing_student_number: "Yliopiston käyttäjätunnukseltasi puuttuu opiskelijanumero. Ota yhteys vaalit@hyy.fi."
+    no_valid_registration: "Ehdokasilmoittautuminen ei ole voimassa."
+    invalid_invite_code: "Kutsukoodi \"%{code}\" ei ole voimassa."
+    saved: "Muutokset tallennettu."
+    save_failed: "Muutosten tallentaminen epäonnistui!"
+    alliance_not_found: "Pyydettyä vaaliliittoa ei löytynyt tai sinulla ei ole oikeuksia siihen."
+    candidate_access_denied: "Pyydettyä kohdetta ei löytynyt tai sinulla ei ole oikeuksia pyydettyyn toimintoon. Vaaliliiton edustaja voi muokata vain oman vaaliliittonsa ehdokastietoja."
+
+  haka_auth:
+    new:
+      already_signed_in: "Olet jo kirjautunut sisään."
+    consume:
+      unexpected_error: "Sisäänkirjautumisessa tapahtui odottamaton virhe. Yritä uudelleen."
+    destroy:
+      signed_out: "Olet kirjautunut ulos."
+
+  registrations:
+    candidates:
+      new:
+        already_registered: "Opiskelijanumerollasi on voimassa oleva ehdokasilmoittautuminen."
+        invite_code_needed: "Pyydä vaaliliiton edustajalta kutsukoodi, jotta voit rekisteröityä vaaliliiton ehdokkaaksi."
+      create:
+        received: "Ehdokasilmoittautuminen vastaanotettu!"
+        form_errors: "Ehdokasilmoittautuminen ei onnistunut, koska lomakkeen tiedoissa oli virheitä."
+      update:
+        updated: "Tiedot päivitettiin onnistuneesti!"
+        update_failed: "Tietojen päivittämisessä meni jotain vikaan."
+      cancel:
+        cancelled: "Ehdokkuutesi edustajistovaaleissa on peruttu."
+        cancel_failed: "Ehdokkuuden peruminen ei onnistunut. Ota yhteys HYYn vaalityöntekijään."
+
+  advocates:
+    alliances:
+      create:
+        created: "Vaaliliitto luotu!"
+        create_failed: "Vaaliliiton luominen epäonnistui."
+    candidates:
+      create:
+        created: "Ehdokas luotu!"
+        create_failed: "Ehdokkaan luominen epäonnistui."
+      confirm_alliance:
+        confirmed: "Vaaliliitto vahvistettu!"
+        confirm_failed: "Vaaliliittoon vahvistaminen epäonnistui: %{errors}"
+    coalitions:
+      update:
+        team_needed: "Tarvitset ensin edustajatiimin voidaksesi liittää vaaliliiton vaalirenkaaseen."
+        coalition_not_found: "Pyydettyä vaalirengasta ei löydy."
+        linked: "Vaaliliitto \"%{alliance}\" kytkettiin renkaaseen \"%{coalition}\"."
+        link_failed: "Vaaliliiton kytkeminen vaalirenkaaseen epäonnistui"
+        not_found: "Odottamaton virhe, pyydettyä tietoa ei löytynyt tai pääsy kielletty."

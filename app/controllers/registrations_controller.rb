@@ -11,7 +11,7 @@ class RegistrationsController < ApplicationController
 
   def require_haka_user
     if current_haka_user.nil?
-      flash.now.alert = "Kirjaudu ensin sisään."
+      flash.now.alert = t("flashes.sign_in_first")
       render "common/unauthorized", status: 401 and return
     end
   end

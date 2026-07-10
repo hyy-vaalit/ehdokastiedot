@@ -17,19 +17,19 @@ class Registrations::CandidatesController < RegistrationsController
 
   def update
     if @candidate.log_and_update_attributes(candidate_params)
-      flash.notice = "Tiedot päivitettiin onnistuneesti!"
+      flash.notice = t(".updated")
       redirect_to registrations_candidate_path
     else
-      flash.alert = "Tietojen päivittämisessä meni jotain vikaan."
+      flash.alert = t(".update_failed")
       render :edit
     end
   end
 
   def cancel
     if @candidate.cancel
-      flash.notice = "Ehdokkuutesi edustajistovaaleissa on peruttu."
+      flash.notice = t(".cancelled")
     else
-      flash.alert = "Ehdokkuuden peruminen ei onnistunut. Ota yhteys HYYn vaalityöntekijään."
+      flash.alert = t(".cancel_failed")
     end
 
     redirect_to registrations_candidate_path
@@ -37,7 +37,7 @@ class Registrations::CandidatesController < RegistrationsController
 
   def new
     if @candidate.present?
-      flash[:notice] = "Opiskelijanumerollasi on voimassa oleva ehdokasilmoittautuminen."
+      flash[:notice] = t(".already_registered")
       redirect_to registrations_candidate_path and return
     end
 
@@ -59,9 +59,9 @@ class Registrations::CandidatesController < RegistrationsController
 
     if @alliance.nil?
       if @invite_code_upcase.blank?
-        flash[:alert] = "Pyydä vaaliliiton edustajalta kutsukoodi, jotta voit rekisteröityä vaaliliiton ehdokkaaksi."
+        flash[:alert] = t(".invite_code_needed")
       else
-        flash[:alert] = "Kutsukoodi \"#{@invite_code_upcase}\" ei ole voimassa."
+        flash[:alert] = t("flashes.invalid_invite_code", code: @invite_code_upcase)
       end
       redirect_to registrations_root_path and return
     end
@@ -74,7 +74,7 @@ class Registrations::CandidatesController < RegistrationsController
     @alliance = find_alliance
 
     if @alliance.nil?
-      flash.alert = "Kutsukoodi \"#{@invite_code_upcase}\" ei ole voimassa."
+      flash.alert = t("flashes.invalid_invite_code", code: @invite_code_upcase)
       redirect_to registrations_root_path and return
     end
 
@@ -84,10 +84,10 @@ class Registrations::CandidatesController < RegistrationsController
     end
 
     if @candidate.save
-      flash.notice = "Ehdokasilmoittautuminen vastaanotettu!"
+      flash.notice = t(".received")
       redirect_to registrations_candidate_path(@candidate.student_number)
     else
-      flash.alert = "Ehdokasilmoittautuminen ei onnistunut, koska lomakkeen tiedoissa oli virheitä."
+      flash.alert = t(".form_errors")
       render :new
     end
   end
@@ -96,7 +96,7 @@ class Registrations::CandidatesController < RegistrationsController
 
   def require_student_number
     if current_haka_user.student_number.blank?
-      flash.alert = "Yliopiston käyttäjätunnukseltasi puuttuu opiskelijanumero. Ota yhteys vaalit@hyy.fi."
+      flash.alert = t("flashes.missing_student_number")
       render "common/unauthorized", status: 401
       return false
     end
@@ -114,7 +114,7 @@ class Registrations::CandidatesController < RegistrationsController
   # edit form after the candidacy has been cancelled.
   def require_candidate
     if @candidate.nil?
-      flash.alert = "Ehdokasilmoittautuminen ei ole voimassa."
+      flash.alert = t("flashes.no_valid_registration")
       redirect_to registrations_candidate_path
     end
   end
