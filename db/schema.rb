@@ -10,9 +10,9 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_07_05_130017) do
+ActiveRecord::Schema[8.0].define(version: 2026_07_07_120003) do
   # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
+  enable_extension "pg_catalog.plpgsql"
 
   create_table "active_admin_comments", id: :serial, force: :cascade do |t|
     t.integer "resource_id", null: false
@@ -94,6 +94,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_05_130017) do
     t.string "student_number", default: "", null: false
     t.integer "advocate_team_id"
     t.index ["email"], name: "index_advocate_users_on_email", unique: true
+    t.index ["student_number"], name: "index_advocate_users_on_student_number", unique: true
   end
 
   create_table "candidate_attribute_changes", id: :serial, force: :cascade do |t|
@@ -125,6 +126,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_05_130017) do
     t.string "postal_city"
     t.datetime "cancelled_at", precision: nil
     t.boolean "alliance_accepted", default: false, null: false
+    t.index ["candidate_number"], name: "index_candidates_on_candidate_number", unique: true
     t.index ["student_number"], name: "allow_single_non_cancelled_candidate_per_student_number", unique: true, where: "(cancelled IS NOT TRUE)"
   end
 
@@ -153,7 +155,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_05_130017) do
     t.datetime "updated_at", precision: nil
     t.string "shorten"
     t.integer "primary_advocate_id"
-    t.integer "secondary_advocate_id"
     t.string "invite_code", null: false
     t.index ["invite_code"], name: "index_electoral_alliances_on_invite_code", unique: true
   end
@@ -196,7 +197,6 @@ ActiveRecord::Schema[7.1].define(version: 2024_07_05_130017) do
   add_foreign_key "candidate_attribute_changes", "candidates", name: "candidate_attribute_changes_candidate_id_fk"
   add_foreign_key "candidates", "electoral_alliances", name: "candidates_electoral_alliance_id_fk"
   add_foreign_key "electoral_alliances", "advocate_users", column: "primary_advocate_id", name: "electoral_alliances_primary_advocate_id_fk"
-  add_foreign_key "electoral_alliances", "advocate_users", column: "secondary_advocate_id", name: "electoral_alliances_secondary_advocate_id_fk"
   add_foreign_key "electoral_alliances", "electoral_coalitions", name: "electoral_alliances_electoral_coalition_id_fk"
   add_foreign_key "electoral_coalitions", "advocate_teams"
 end
