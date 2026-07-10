@@ -36,7 +36,9 @@ class HakaAuthController < ApplicationController
     end
 
     request = OneLogin::RubySaml::Authrequest.new
-    redirect_to(request.create(saml_settings))
+    # The identity provider is an external host, which
+    # raise_on_open_redirects (Rails 7.0 defaults) would otherwise block.
+    redirect_to request.create(saml_settings), allow_other_host: true
   end
 
   # Receives the SAML assertion after Haka sign in
