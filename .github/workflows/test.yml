@@ -11,7 +11,9 @@ jobs:
 
     services:
       postgres:
-        image: postgres:18
+        # Docker Hub mirror on AWS public ECR; avoids Docker Hub outages
+        # and anonymous-pull rate limits on shared GitHub runners.
+        image: public.ecr.aws/docker/library/postgres:18
         env:
           POSTGRES_PASSWORD: postgres
         ports:
