@@ -20,7 +20,7 @@ gem 'aws-actionmailer-ses', '~> 1'
 
 gem 'rollbar'
 
-gem 'activeadmin', '~> 3.3.0'
+gem 'activeadmin', '~> 3.5'
 gem 'inherited_resources'
 
 gem 'ranked-model'
