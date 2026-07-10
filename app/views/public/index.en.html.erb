@@ -1,0 +1,44 @@
+
+<h1>Welcome to HYY's representative council elections!</h1>
+
+<p>
+  All members of the Student Union who have registered for attendance at the University by
+  22 September 2025 are eligible to become members of the Representative Council, barring the
+  exceptions mentioned in HYY’s Constitution, Section 6.
+</p>
+
+<p>
+  <ul>
+    <li>Nomination of candidates starts at <%= friendly_datetime(GlobalConfiguration.candidate_nomination_starts_at) %></li>
+    <li>Nomination of candidates ends at <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %></li>
+    <li>Elections will be conducted on 15-17 October and 20-22 October 2025.</li>
+  </ul>
+</p>
+
+<p>
+  After the nomination of candidates ends, it is possible to make corrections and cancel one’s
+  candidacy up until <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %>
+</p>
+
+<p>
+  The Student Union’s secretary general Paula Karhunen, authorised by the Central Election
+  Committee, will receive the election documents. If needed, the secretary general will also provide
+  guidance on issues related to the nomination of candidates 0400 816 426 or paasihteeri@hyy.fi.
+</p>
+
+<p>
+  For further information on the elections, please visit HYY’s website
+  <a href="https://hyy.fi/vaalit">hyy.fi/vaalit</a>
+  or contact Election Coordinator Eevi Laaksovirta, eevi.laaksovirta@hyy.fi or 050 432 4939.
+</p>
+
+<% if GlobalConfiguration.candidate_data_frozen? %>
+  <%# TODO(HYY): English translation pending — Finnish placeholder. %>
+  <h2>Ehdokastiedot</h2>
+  <p>
+    Ehdokastiedot on jäädytetty eikä niihin voi enää tehdä muutoksia.
+    Jos olet vaaliliiton edustaja, voit tarkistaa ehdokastietosi kirjaudumalla sisään.
+  </p>
+<% end %>
+
+<%= link_to "Sign in", haka_auth_new_path, class: "btn btn-primary" %>

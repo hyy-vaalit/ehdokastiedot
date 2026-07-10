@@ -13,10 +13,12 @@ describe "Locale switching" do
   it "serves Swedish at /sv and remembers the choice on unprefixed URLs" do
     get "/sv"
     expect(response.body).to include('lang="sv"')
+    expect(response.body).to include("Välkommen")
 
     # Session keeps the language through unscoped URLs (e.g. Haka login flow).
     get "/"
     expect(response.body).to include('lang="sv"')
+    expect(response.body).to include("Välkommen")
   end
 
   it "returns to Finnish via the explicit locale param" do
