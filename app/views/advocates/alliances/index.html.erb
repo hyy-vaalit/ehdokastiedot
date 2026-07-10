@@ -1,16 +1,15 @@
-<h1>Vaalirengas</h1>
+<h1><%= t(".heading") %></h1>
 
 <p>
-  Edustajatiimi jakaa näkyvyyden vaalirenkaan vaaliliittojen ehdokkaisiin.
-  Vain vaaliliiton oma edustaja voi muokata ehdokastietoja.
+  <%= t(".intro") %>
 </p>
 
 <% if @advocate_team.present? %>
   <dl>
-    <dt>Edustajatiimi</dt>
+    <dt><%= t(".team") %></dt>
     <dd><%= @advocate_team.name %></dd>
 
-    <dt>Tiimin jäsenet</dt>
+    <dt><%= t(".team_members") %></dt>
     <dd>
       <%= @advocate_team.advocate_users.map(&:friendly_name).join(", ") %>
     </dd>
@@ -20,19 +19,18 @@
     <h2><%= @advocate_team.electoral_coalition.name %></h2>
   <% else %>
     <p>
-      &raquo; Muodosta edustajatiimille vaalirengas kirjoittamalla sähköpostiviesti vaalit@hyy.fi.
+      &raquo; <%= t(".form_coalition") %>
     </p>
   <% end %>
 <% else %>
   <p>
-    Edustajatiimin muodostamiseksi ilmoita sähköpostitse HYYn vaaliorganisaatiolle seuraavat tiedot:
+    <%= t(".team_instructions_intro") %>
     <ul>
       <li>
-        Edustajatiimin nimi (voi olla sama kuin vaalirenkaan nimi)
+        <%= t(".team_instructions_name") %>
       </li>
       <li>
-        Edustajatiimin jäsenten nimi, sähköpostiosoite ja opiskelijanumero.
-        Jos vaaliliiton edustajalla on jo edustajatunnus, riittää ilmoittaa pelkkä nimi.
+        <%= t(".team_instructions_members") %>
       </li>
     </ul>
   </p>
@@ -43,88 +41,75 @@
 <% end %>
 
 <% if @alliances_without_coalition.any? %>
-  <h2>Vaaliliitot ilman vaalirengasta</h2>
+  <h2><%= t(".alliances_without_coalition") %></h2>
 
   <%= render partial: "alliance_table", locals: { alliances: @alliances_without_coalition } %>
 <% end %>
 
 <% if can? :create, ElectoralAlliance %>
   <p>
-    &raquo; <%= link_to "Luo uusi vaaliliitto", new_advocates_alliance_path %>
+    &raquo; <%= link_to t(".create_alliance"), new_advocates_alliance_path %>
   </p>
 <% end %>
 
-<h3>Ehdokasasettelu päättyy <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %></h3>
+<h3><%= t(".nomination_ends", datetime: friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at)) %></h3>
   <ul>
     <li>
-      Edustaja vastaa siitä, että vaaliliiton kaikki ehdokkaat ovat järjestelmässä ehdokasasettelun
-      päättymiseen mennessä.
+      <%= t(".nomination_note_1") %>
     </li>
     <li>
-      Ehdokasasettelun päättymisen jälkeen tietoihin voi tehdä korjauksia ehdokasilmoituksen
-      perumisen määräaikaan saakka.
+      <%= t(".nomination_note_2") %>
     </li>
     <li>
-      Ehdokastietojen korjausten, järjestyksen ja peruutusten määräaika:
-      <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %>
+      <%= t(".nomination_note_3", datetime: friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at)) %>
     </li>
   </ul>
-</p>
 
 <hr>
 
-<h3>Ehdokasnumeroinnista:</h3>
+<h3><%= t(".numbering_heading") %></h3>
   <ul>
     <li>
-      Ehdokasnumerot määräytyvät vaaliliiton sisällä ehdokkaiden järjestyksen mukaan.
+      <%= t(".numbering_note_1") %>
     </li>
 
     <li>
-      Ehdokkaiden järjestys on <strong>aina</strong> vaaliliiton edustajan vastuulla.
-      <br>
-      Uudet ehdokasilmoittautumiset eivät asetu valmiiksi esimerkiksi aakkosjärjestykseen,
-      <br>
-      koska ei ole takeita, onko aakkosjärjestys vaaliliiton ehdokkaiden toivottu järjestys.
-    </li>
-
-
-    <li>
-      Tarkista ehdokkaiden järjestys ehdokasasettelun päättymisen jälkeen ennen
-      korjausten määräaikaa
-      <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %>.
+      <%= t(".numbering_note_2_html") %>
     </li>
 
     <li>
-      Perutut ehdokasilmoittautumiset eivät vaikuta ehdokasnumerointiin.
+      <%= t(".numbering_note_3", datetime: friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at)) %>
+    </li>
+
+    <li>
+      <%= t(".numbering_note_4") %>
     </li>
   </ul>
 
-<h3>Vaalirenkaista:</h3>
+<h3><%= t(".coalitions_heading") %></h3>
   <ul>
     <li>
-      Vaalirenkaan edustajan on ilmoitettava vaaliliittojen haluttu järjestys
-      sähköpostilla vaalit@hyy.fi.
+      <%= t(".coalition_note_1") %>
     </li>
 
     <li>
-      Ehdokasnumerot määräytyvät vaalirenkaan sisällä vaaliliittojen järjestyksen mukaan.
+      <%= t(".coalition_note_2") %>
     </li>
 
     <li>
-      Keskusvaalilautakunta arpoo vaalirenkaiden keskinäisen järjestyksen, kun ehdokasnumeot jaetaan.
+      <%= t(".coalition_note_3") %>
     </li>
   </ul>
 
-<h3>CSV-tiedoston tuominen Exceliin (ISO-Latin):</h3>
+<h3><%= t(".csv_heading") %></h3>
   <ol>
-    <li>Avaa CSV-tiedosto Exceliin.</li>
-    <li>Valitse ja mustaa koko sarake 'A'.</li>
-    <li>Valitse: Tiedot > Teksti sarakkeisiin</li>
-    <li>Valitse: Tiedostolaji: Erotettu > Seuraava.</li>
-    <li>Valitse: Erottimet: Pilkku > Valmis.</li>
+    <li><%= t(".csv_step_1") %></li>
+    <li><%= t(".csv_step_2") %></li>
+    <li><%= t(".csv_step_3") %></li>
+    <li><%= t(".csv_step_4") %></li>
+    <li><%= t(".csv_step_5") %></li>
   </ol>
 
 <p>
-  Jos CSV-tiedoston ääkköset näkyvät väärin ISO-Latin-merkistökoodauksella,
-  kokeile UTF-8-versiota.
+  <%= t(".csv_encoding_note") %>
 </p>

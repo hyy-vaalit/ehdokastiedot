@@ -1,13 +1,13 @@
-<h2>Rekisteröityneet vaaliliitot</h2>
+<h2><%= t(".heading") %></h2>
 
 <% @alliances = ElectoralAlliance.by_coalition_id.by_numbering_order %>
 
 <% if @alliances.present? %>
   <table class="registrations-alliance-listing">
     <thead>
-      <th>Vaaliliitto</th>
-      <th>Vaalirengas</th>
-      <th>Edustaja</th>
+      <th><%= t(".alliance") %></th>
+      <th><%= t(".coalition") %></th>
+      <th><%= t(".advocate") %></th>
       <th></th>
     </thead>
 
@@ -24,6 +24,6 @@
   </table>
 <% else %>
   <p>
-    Yhtään vaaliliittoa ei ole vielä rekisteröity.
+    <%= t(".none_yet") %>
   </p>
 <% end %>

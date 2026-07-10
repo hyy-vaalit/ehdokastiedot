@@ -1,0 +1,45 @@
+
+<h1>Välkommen till HUSs delegationsvalet!</h1>
+
+<p>
+  Valbara till studentkårens delegation är alla studentkårsmedlemmar som senast
+  22.9.2025 gjort närvaroanmälan till universitetet, förutom i de undantagsfall som
+  avses i 6 § i HUS stadgar.
+</p>
+
+<p>
+  <ul>
+    <li>Kandidatuppställningen börjar <%= friendly_datetime(GlobalConfiguration.candidate_nomination_starts_at) %></li>
+    <li>Kandidatuppställningen avslutas <%= friendly_datetime(GlobalConfiguration.candidate_nomination_ends_at) %></li>
+    <li>Delegationsvalet förrättas 15.10.-17.10.2025 och 20.10.-22.10.2025</li>
+  </ul>
+</p>
+
+<p>
+  Efter att kandidatnomineringen har avslutat är det möjligt att göra korrigeringar i uppställning
+  och kandidaturen kan återkallas senast
+  <%= friendly_datetime(GlobalConfiguration.candidate_data_is_freezed_at) %>.
+</p>
+
+<p>
+  Studentkårens generalsekreterare Paula Karhunen har av centralvalnämnden befullmäktigats att ta
+  emot valhandlingarna. Generalsekreteraren ger också vid behov råd i frågor som rör
+  kandidatuppställningen tfn 0400 816 426 eller paasihteeri@hyy.fi.
+</p>
+
+<p>
+  Mera information om valet finns på HUS webbsida
+  <a href="https://hyy.fi/vaalit">hyy.fi/vaalit</a> eller ges av valkoordinator
+  Eevi Laaksovirta, eevi.laaksovirta@hyy.fi, 050 432 4939.
+</p>
+
+<% if GlobalConfiguration.candidate_data_frozen? %>
+  <%# TODO(HYY): Swedish translation pending — Finnish placeholder. %>
+  <h2>Ehdokastiedot</h2>
+  <p>
+    Ehdokastiedot on jäädytetty eikä niihin voi enää tehdä muutoksia.
+    Jos olet vaaliliiton edustaja, voit tarkistaa ehdokastietosi kirjaudumalla sisään.
+  </p>
+<% end %>
+
+<%= link_to "Logga in", haka_auth_new_path, class: "btn btn-primary" %>

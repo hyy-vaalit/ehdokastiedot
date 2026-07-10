@@ -2,15 +2,15 @@
 <!--[if lt IE 7]> <html class="no-js lt-ie9 lt-ie8 lt-ie7" lang="en"> <![endif]-->
 <!--[if IE 7]>    <html class="no-js lt-ie9 lt-ie8" lang="en"> <![endif]-->
 <!--[if IE 8]>    <html class="no-js lt-ie9" lang="en"> <![endif]-->
-<!--[if gt IE 8]><!--> <html class="no-js" lang="en"> <!--<![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="<%= I18n.locale %>"> <!--<![endif]-->
 <head>
-  <title>HYYn edustajistovaalit</title>
+  <title><%= t(".title") %></title>
   <%= csrf_meta_tags %>
 
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 
-  <meta name="description" content="HYYn edustajistovaalit">
+  <meta name="description" content="<%= t(".title") %>">
   <meta name="author" content="PG">
 
   <meta name="viewport" content="width=device-width">
@@ -27,20 +27,28 @@
   <header class="title">
 
     <nav>
-      <a href="/"><img id="logo-main" src="/images/hyy/logo.png"></a>
+      <%= link_to image_tag("/images/hyy/logo.png", id: "logo-main"), root_path %>
+
+      <%# Finnish has no URL prefix, so it must be an explicit ?locale=fi query
+          param — a bare link would lose against the sticky session locale. %>
+      <ul class="lang">
+        <li><%= link_to "Suomi", locale_switch_path(:fi) %></li>
+        <li><%= link_to "Svenska", locale_switch_path(:sv) %></li>
+        <li><%= link_to "English", locale_switch_path(:en) %></li>
+      </ul>
 
       <ul class="main">
         <% if current_haka_user %>
           <li>
-            <%= link_to "Alkusivu", registrations_root_path %>
+            <%= link_to t(".home"), registrations_root_path %>
           </li>
 
           <li>
-            <%= link_to "Omat tiedot", registrations_candidate_path %>
+            <%= link_to t(".own_info"), registrations_candidate_path %>
           </li>
 
           <li>
-            <%= link_to "Kirjaudu ulos", haka_auth_sign_out_path %>
+            <%= link_to t(".sign_out"), haka_auth_sign_out_path %>
           </li>
         <% end %>
       </ul>
@@ -70,7 +78,7 @@
 
     <nav class="path">
       <% if @_nav_paths %>
-        <%= link_to("Alkusivu", registrations_root_path) %>
+        <%= link_to(t(".home"), registrations_root_path) %>
         <% @_nav_paths.each do |nav_path| %>
           <% nav_path.each do |link_text, link_url| %>
             &raquo; <%= link_url ? link_to(link_text, link_url) : link_text %>

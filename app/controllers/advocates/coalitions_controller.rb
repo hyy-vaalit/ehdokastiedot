@@ -5,28 +5,26 @@ class Advocates::CoalitionsController < AdvocatesController
   def update
     authorize! :update, ElectoralCoalition, electoral_coalition_id: @coalition&.id
     if @advocate_team.nil?
-      flash.alert = "Tarvitset ensin edustajatiimin voidaksesi liittää vaaliliiton vaalirenkaaseen."
+      flash.alert = t(".team_needed")
       redirect_to advocates_alliances_path and return
     end
 
     if @coalition.nil?
-      flash.alert = "Pyydettyä vaalirengasta ei löydy."
+      flash.alert = t(".coalition_not_found")
       redirect_to advocates_alliances_path and return
     end
 
     alliance = current_advocate_user.electoral_alliances.find(params[:electoral_alliance_id])
 
     if @coalition.electoral_alliances << alliance
-      flash.notice = <<-MSG
-        Vaaliliitto "#{alliance.shorten}" kytkettiin renkaaseen "#{@coalition.shorten}".
-      MSG
+      flash.notice = t(".linked", alliance: alliance.shorten, coalition: @coalition.shorten)
     else
-      flash.alert = "Vaaliliiton kytkeminen vaalirenkaaseen epäonnistui"
+      flash.alert = t(".link_failed")
     end
 
     redirect_to advocates_alliances_path
   rescue ActiveRecord::RecordNotFound
-    flash.alert = "Odottamaton virhe, pyydettyä tietoa ei löytynyt tai pääsy kielletty."
+    flash.alert = t(".not_found")
     redirect_to advocates_alliances_path
   end
 

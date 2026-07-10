@@ -1,10 +1,9 @@
-<h1>Pääsy kielletty</h1>
+<h1><%= t(".heading") %></h1>
 
 <p>
-  Selaimesi yritti tehdä jotain, johon käyttäjätunnuksellasi ei ollut pääsyoikeutta.
+  <%= t(".body") %>
 </p>
 
 <p>
-  Yritä uudelleen aloittaen <%= link_to "etusivulta", root_path %>.
-  Jos ongelma ei ratkea, ota yhteys <a href="https://hyy.fi/vaalit">HYYn vaalityöntekijään</a>.
+  <%= t(".retry_html", link: link_to(t(".front_page_link"), root_path)) %>
 </p>

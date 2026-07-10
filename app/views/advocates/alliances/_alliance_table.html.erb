@@ -1,12 +1,12 @@
   <table>
     <thead>
-      <th>Vaaliliitto</th>
-      <th>Edustaja</th>
-      <th>Vaalirengas</th>
-      <th>Ehdokkaita</th>
-      <th>Uusia</th>
-      <th>Tavoite</th>
-      <th>Huomioita</th>
+      <th><%= t(".alliance") %></th>
+      <th><%= t(".advocate") %></th>
+      <th><%= t(".coalition") %></th>
+      <th><%= t(".candidates") %></th>
+      <th><%= t(".incoming") %></th>
+      <th><%= t(".expected") %></th>
+      <th><%= t(".notes") %></th>
       <th><i class="icon-share"></i> CSV</th>
       <th><i class="icon-share"></i> CSV</th>
     </thead>
@@ -18,7 +18,7 @@
           <td>
             <% if a&.advocate_user == current_advocate_user %>
               <%# &#x1F464; silhouette of person %>
-              <span title="Minä itse!">&#x1F464;</span>
+              <span title="<%= t(".me") %>">&#x1F464;</span>
             <% end %>
             <%= a&.advocate_user&.friendly_name %>
           </td>
@@ -26,15 +26,14 @@
             <% if a.electoral_coalition.present? %>
               <%= a.electoral_coalition.shorten %>
             <% elsif current_advocate_user&.advocate_team&.electoral_coalition.present? %>
-              <%= button_to "Liitä renkaaseen",
+              <%= button_to t(".link_to_coalition"),
                 advocates_coalition_path(electoral_alliance_id: a.id),
                 method: :put,
                 class: "btn btn-info",
                 data: {
-                  confirm: <<-MSG.squish
-                    Liitetäänkö vaaliliitto "#{a.shorten}"
-                    renkaaseen "#{current_advocate_user.advocate_team.electoral_coalition.shorten}"?
-                  MSG
+                  confirm: t(".link_confirm",
+                    alliance: a.shorten,
+                    coalition: current_advocate_user.advocate_team.electoral_coalition.shorten)
                 }
               %>
             <% end %>
@@ -47,11 +46,11 @@
               <span class='alliance-ready'>OK</span>
             <% else %>
               <% if a.accepted_candidates.count != a.expected_candidate_count %>
-                Tarkista ehdokasmäärä.
+                <%= t(".check_candidate_count") %>
               <% end %>
 
               <% if a.electoral_coalition.nil? %>
-                Ei vaalirengasta.
+                <%= t(".no_coalition") %>
               <% end %>
             <% end %>
           </td>

@@ -1,5 +1,5 @@
 <p>
-  &larr; <%= link_to "Palaa tallentamatta", advocates_alliance_path(@alliance) %>
+  &larr; <%= link_to t(".back"), advocates_alliance_path(@alliance) %>
 </p>
 
 <%= semantic_form_for @alliance, :url => advocates_alliance_path(@alliance) do |f| %>
@@ -7,6 +7,6 @@
   <%= render :partial => "form", :locals => { :alliance => @alliance, :f => f } %>
 
   <%= f.actions do %>
-    <%= f.action :submit, :as => :button, :label => "Tallenna" %>
+    <%= f.action :submit, :as => :button, :label => t(".save") %>
   <% end %>
 <% end %>

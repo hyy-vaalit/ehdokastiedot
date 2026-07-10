@@ -1,12 +1,12 @@
 <p>
-  &larr; <%= link_to "Palaa tallentamatta", advocates_alliance_path(@alliance) %>
+  &larr; <%= link_to t(".back"), advocates_alliance_path(@alliance) %>
 </p>
 
-<h1>Muokkaa ehdokkaan tietoja</h1>
+<h1><%= t(".heading") %></h1>
 
 <ul>
-  <li><strong>Vaaliliitto:</strong></label> <%= @candidate.electoral_alliance.name %>
-  <li><strong>Ehdokas:</strong></label> <%= @candidate.candidate_name %>
+  <li><strong><%= t(".alliance") %></strong> <%= @candidate.electoral_alliance.name %>
+  <li><strong><%= t(".candidate") %></strong> <%= @candidate.candidate_name %>
 </ul>
 
 <%= semantic_form_for @candidate, :url => advocates_alliance_candidate_path(@alliance) do |f| %>
@@ -19,6 +19,6 @@
   %>
 
   <%= f.actions do %>
-    <%= f.action :submit, :as => :button, :label => "Tallenna" %>
+    <%= f.action :submit, :as => :button, :label => t(".save") %>
   <% end %>
 <% end %>

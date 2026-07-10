@@ -1,7 +1,4 @@
-# TODO(HYY): English translations pending for the flashes below — values are
-# Finnish placeholders so that the key set stays in sync (see
-# i18n_locale_parity_spec).
-en:
+fi:
   activerecord:
 
     errors:
@@ -9,35 +6,35 @@ en:
         candidate:
           attributes:
             cancelled:
-              duplicate_student_number: "a non-cancelled candidate for student number %{student_number} already exists."
+              duplicate_student_number: "opiskelijanumerolla %{student_number} on jo voimassa oleva ehdokasilmoittautuminen"
         electoral_alliance:
           attributes:
             invite_code:
-              invalid_characters: "allows only English alphanumeric and - characters"
+              invalid_characters: "voi sisältää vain englannin aakkosia, numeroita ja tavuviivan"
             expected_candidate_count:
-              mismatch: "does not match to accepted candidate count"
+              mismatch: "ei vastaa hyväksyttyjen ehdokkaiden lukumäärää"
 
     attributes:
 
       electoral_alliance:
-        name: "Name"
+        name: "Nimi"
 
-        primary_advocate_lastname: "Lastname"
-        primary_advocate_firstname: "Firstname"
-        primary_advocate_student_number: "Student number"
-        primary_advocate_address: "Address"
-        primary_advocate_phone: "Phone"
-        primary_advocate_email: "Email"
+        primary_advocate_lastname: "Sukunimi"
+        primary_advocate_firstname: "Etunimi"
+        primary_advocate_student_number: "Opiskelijanumero"
+        primary_advocate_address: "Osoite"
+        primary_advocate_phone: "Puhelin"
+        primary_advocate_email: "Sähköposti"
 
-        secondary_advocate_lastname: "Lastname"
-        secondary_advocate_firstname: "Firstname"
-        secondary_advocate_student_number: "Student number"
-        secondary_advocate_address: "Address"
-        secondary_advocate_phone: "Phone"
-        secondary_advocate_email: "Email"
+        secondary_advocate_lastname: "Sukunimi"
+        secondary_advocate_firstname: "Etunimi"
+        secondary_advocate_student_number: "Opiskelijanumero"
+        secondary_advocate_address: "Osoite"
+        secondary_advocate_phone: "Puhelin"
+        secondary_advocate_email: "Sähköposti"
 
       candidate:
-        firstname: "Firstnames"
+        firstname: "Kaikki etunimet"
         lastname: "Sukunimi"
         student_number: "Opiskelijanumero"
         faculty: "Tiedekunta"
@@ -45,13 +42,13 @@ en:
         postal_code: "Postinumero"
         postal_city: "Kaupunki"
         phone_number: "Puhelinnumero"
-        email: "Email"
+        email: "Sähköpostiosoite"
         candidate_name: "Ehdokasnimi (Sukunimi, Etunimi)"
         notes: "Huomioita vaaliliiton edustajalle tai HYYn vaalityöntekijälle"
 
   # CanCan::AccessDenied message (see ApplicationController rescue_from)
   unauthorized:
-    default: "You are not authorized to access this page."
+    default: "Sinulla ei ole oikeutta pyydettyyn toimintoon."
 
   # Flash messages shared across controllers/actions; action-specific
   # flashes live under their controller.action key (lazy lookup).

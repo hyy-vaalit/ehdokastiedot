@@ -145,6 +145,11 @@ nav {
     display: block;
     margin: 1em;
   }
+  nav ul.lang {
+    float: right;
+    font-size: 80%;
+    padding-top: 1.25em;
+  }
   nav li.session {
     font-size: 80%;
     padding-top: 0.5em;

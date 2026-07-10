@@ -33,9 +33,9 @@ class Advocates::AlliancesController < AdvocatesController
 
   def update
     if @alliance.update(alliance_params)
-      flash[:notice] = "Muutokset tallennettu."
+      flash[:notice] = t("flashes.saved")
     else
-      flash[:alert] = "Muutosten tallentaminen epäonnistui!"
+      flash[:alert] = t("flashes.save_failed")
       render :action => :edit and return
     end
 
@@ -46,9 +46,9 @@ class Advocates::AlliancesController < AdvocatesController
     @alliance = current_advocate_user.electoral_alliances.build(alliance_params)
 
     if @alliance.save
-      flash[:notice] = "Vaaliliitto luotu!"
+      flash[:notice] = t(".created")
     else
-      flash[:alert] = "Vaaliliiton luominen epäonnistui."
+      flash[:alert] = t(".create_failed")
       render :action => :new and return
     end
 
@@ -70,13 +70,13 @@ class Advocates::AlliancesController < AdvocatesController
     end
 
     if @alliance.nil?
-      flash.alert = "Pyydettyä vaaliliittoa ei löytynyt tai sinulla ei ole oikeuksia siihen."
+      flash.alert = t("flashes.alliance_not_found")
       redirect_to advocates_alliances_path
     end
   end
 
   def nav_paths
-    @_nav_paths = [{"Kaikki vaaliliitot" => advocates_alliances_path}]
+    @_nav_paths = [{t("advocates.alliances.breadcrumb") => advocates_alliances_path}]
   end
 
   def alliance_params

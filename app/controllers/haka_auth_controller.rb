@@ -31,7 +31,7 @@ class HakaAuthController < ApplicationController
   # Initiates a new SAML sign in request
   def new
     if current_haka_user
-      flash.notice = "Olet jo kirjautunut sisään."
+      flash.notice = t(".already_signed_in")
       redirect_to registrations_root_path and return
     end
 
@@ -46,7 +46,7 @@ class HakaAuthController < ApplicationController
   def consume
     # params[:SAMLResponse] can be blank if GET route is accessed directly without actual authn.
     if params[:SAMLResponse].blank?
-      flash.alert = "Sisäänkirjautumisessa tapahtui odottamaton virhe. Yritä uudelleen."
+      flash.alert = t(".unexpected_error")
       redirect_to root_path and return
     end
 
@@ -60,7 +60,7 @@ class HakaAuthController < ApplicationController
       Rails.logger.error "Invalid SAML response: #{response.errors}"
       Rollbar.error "Invalid SAML response", errors: response.errors
 
-      flash.alert = "Sisäänkirjautumisessa tapahtui odottamaton virhe. Yritä uudelleen."
+      flash.alert = t(".unexpected_error")
       redirect_to root_path and return
     end
 
@@ -93,7 +93,7 @@ class HakaAuthController < ApplicationController
   def destroy
     reset_session
 
-    flash.notice = "Olet kirjautunut ulos."
+    flash.notice = t(".signed_out")
     redirect_to root_path
   end
 

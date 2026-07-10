@@ -5,40 +5,37 @@
 
 <ul>
   <li>
-    Kutsukoodi: <strong><%= @alliance.invite_code %></strong>
+    <%= t(".invite_code_html", code: @alliance.invite_code) %>
   </li>
 
   <li>
-    Ehdokkaita hyväksytty:
+    <%= t(".accepted_count") %>
     <%= @alliance.accepted_candidates.count %>
     /
     <%= @alliance.expected_candidate_count ? @alliance.expected_candidate_count : '-' %>
   </li>
 
   <li>
-    Ehdokkaita hyväksyttävänä: <%= @alliance.incoming_candidates.count %>
+    <%= t(".incoming_count", count: @alliance.incoming_candidates.count) %>
   </li>
 
   <% if can? :update, ElectoralAlliance %>
-    <li><%= link_to "Muokkaa vaaliliiton tietoja", edit_advocates_alliance_path(@alliance) %></li>
+    <li><%= link_to t(".edit_link"), edit_advocates_alliance_path(@alliance) %></li>
   <% else %>
-    <li>Ehdokasasettelu on päättynyt eikä vaaliliittoa voi muokata.</li>
+    <li><%= t(".nomination_ended") %></li>
   <% end %>
 </ul>
 
-<h2>Ohjeita</h2>
+<h2><%= t(".instructions_heading") %></h2>
 <ul>
   <li>
-    Vaaliliiton edustajan on hyväksyttävä jokainen ehdokas vaaliliittoon.
-    Tällä estetään epätoivotun ehdokkaan pääsy vaaliliittoon huomaamatta.
+    <%= t(".instruction_1") %>
   </li>
   <li>
-    Hyödynnä selaimen zoom-toimintoa (ctrl+ tai cmd+), jos teksti on liian pientä.
+    <%= t(".instruction_2") %>
   </li>
   <li>
-    Ehdokasnumerot jaetaan nousevassa järjestyksessä:
-    <br/>
-    listan ensimmäinen ehdokas saa pienimmän ehdokasnumeron ja listan viimeinen ehdokas suurimman.
+    <%= t(".instruction_3_html") %>
   </li>
 </ul>
 
@@ -51,6 +48,6 @@
   %>
 <% else %>
   <p>
-    Vaaliliitossa ei ole yhtään ehdokasta.
+    <%= t(".no_candidates") %>
   </p>
 <% end %>

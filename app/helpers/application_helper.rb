@@ -1,4 +1,9 @@
 module ApplicationHelper
+  # Current page in another language, keeping query params (e.g. invite_code).
+  def locale_switch_path(locale)
+    url_for(request.query_parameters.symbolize_keys.except(:locale).merge(locale: locale))
+  end
+
   def alliance_ready?(alliance)
     alliance.candidates.count == alliance.expected_candidate_count
   end

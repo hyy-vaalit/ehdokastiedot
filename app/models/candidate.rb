@@ -142,7 +142,7 @@ class Candidate < ActiveRecord::Base
         .present?
 
       if another
-        errors.add :cancelled, "a non-cancelled candidate for student number #{student_number} already exists."
+        errors.add :cancelled, :duplicate_student_number, student_number: student_number
       end
     end
   end

@@ -1,37 +1,23 @@
-<h2>Vaaliliiton ensisijainen edustaja</h2>
+<h2><%= t(".primary_advocate_heading") %></h2>
   <%= current_advocate_user.friendly_name %> (<%= current_advocate_user.email %>)
 
-<h2>Vaaliliitto</h2>
+<h2><%= t(".alliance_heading") %></h2>
 
 <%= f.input :name,
-  :label => "Vaaliliiton nimi"
+  :label => t(".name_label")
 %>
 
 <%= f.input :shorten,
-  :label => "Vaaliliiton lyhenne (2-6 merkkiä)",
-  :hint => "Suosituksena on valita sama lyhenne kuin aiemmissa vaaleissa.
-    Lyhennettä käytetään vaalituloksen esittämisessä: esimerkiksi TaVi, ParasS, WTF.
-    HYY pidättää oikeuden muuttaa lyhennettä tarvittaessa."
+  :label => t(".shorten_label"),
+  :hint => t(".shorten_hint")
 %>
 
 <%= f.input :expected_candidate_count,
-  label: "Ehdokkaiden odotettu lukumäärä",
-  hint:
-    "Jätä kenttä tyhjäksi, jos ehdokkaiden odotettu lukumäärä ei ole vielä tiedossa.
-    Ehdokkaiden odotettu lukumäärä on syötettävä ennen ehdokasasettelun päättymistä.
-    Tietoa käytetään varmistamaan, että kaikki ehdokastiedot on ilmoitettu."
+  label: t(".expected_count_label"),
+  hint: t(".expected_count_hint")
 %>
 
 <%= f.input :invite_code,
-  label: "Kutsukoodi vaaliliittoon ilmoittautumiseksi",
-  hint: "Kutsukoodi suojaa vaaliliittoa tuntemattomilta ehdokkailta.
-    Ehdokkaaksi ilmoittautuvan henkilön on tunnettava kutsukoodi
-    voidakseen ilmoittautua vaaliliiton ehdokkaaksi.
-    <br><br>
-    Kutsukoodin voi vaihtaa milloin tahansa.
-    Kutsukoodin tulee olla voimassa sillä hetkellä, kun ehdokas saapuu ilmoittautumaan.
-    Kutsukoodin vaihtaminen ei vaikuta aiemmin vastaanotettuihin ilmoittautumisiin.
-    <br><br>
-    Voit käyttää järjestelmän arpomaa satunnaiskoodia tai valita oman helpommin muistettavan
-    merkkijonon. Kirjaimet, numerot ja tavuviiva ovat sallittuja.".html_safe
+  label: t(".invite_code_label"),
+  hint: t(".invite_code_hint_html")
  %>
