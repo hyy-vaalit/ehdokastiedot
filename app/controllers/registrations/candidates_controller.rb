@@ -4,12 +4,9 @@ class Registrations::CandidatesController < RegistrationsController
   before_action :require_student_number
   before_action :set_invite_code
   before_action :set_candidate
+  before_action :require_candidate, :only => [:edit, :update, :cancel]
 
   def edit
-    if @candidate.nil?
-      flash.alert = "Ehdokasilmoittautuminen ei ole voimassa."
-      redirect_to registrations_candidate_path and return
-    end
   end
 
   def show
@@ -75,6 +72,12 @@ class Registrations::CandidatesController < RegistrationsController
   # - find alliance by invite_code so one can only apply to an alliance they have been invited to
   def create
     @alliance = find_alliance
+
+    if @alliance.nil?
+      flash.alert = "Kutsukoodi \"#{@invite_code_upcase}\" ei ole voimassa."
+      redirect_to registrations_root_path and return
+    end
+
     @candidate = Candidate.new(candidate_params).tap do |t|
       t.student_number = current_haka_user.student_number # sensitive
       t.electoral_alliance = @alliance # sensitive
@@ -105,6 +108,15 @@ class Registrations::CandidatesController < RegistrationsController
 
   def set_candidate
     @candidate = Candidate.valid.find_by(student_number: current_haka_user.student_number)
+  end
+
+  # Guards against a stale browser tab: double-cancel or resubmitting the
+  # edit form after the candidacy has been cancelled.
+  def require_candidate
+    if @candidate.nil?
+      flash.alert = "Ehdokasilmoittautuminen ei ole voimassa."
+      redirect_to registrations_candidate_path
+    end
   end
 
   def find_alliance
