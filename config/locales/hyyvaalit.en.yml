@@ -4,6 +4,19 @@
 en:
   activerecord:
 
+    errors:
+      models:
+        candidate:
+          attributes:
+            cancelled:
+              duplicate_student_number: "a non-cancelled candidate for student number %{student_number} already exists."
+        electoral_alliance:
+          attributes:
+            invite_code:
+              invalid_characters: "allows only English alphanumeric and - characters"
+            expected_candidate_count:
+              mismatch: "does not match to accepted candidate count"
+
     attributes:
 
       electoral_alliance:

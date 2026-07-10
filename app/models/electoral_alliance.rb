@@ -3,7 +3,7 @@ class ElectoralAlliance < ActiveRecord::Base
   validates_length_of :invite_code, minimum: 4
   validates_format_of :invite_code,
     with: /\A[A-Za-z0-9-]+\z/,
-    message: "allows only English alphanumeric and - characters"
+    message: :invalid_characters
 
   # candidates.electoral_alliance_id is NOT NULL with a foreign key:
   # an alliance that has (ever had) candidates must not be destroyed.
@@ -53,7 +53,7 @@ class ElectoralAlliance < ActiveRecord::Base
     if has_all_candidates?
       return self.update! secretarial_freeze: true
     else
-      errors.add :expected_candidate_count, "does not match to accepted candidate count"
+      errors.add :expected_candidate_count, :mismatch
       return false
     end
   end

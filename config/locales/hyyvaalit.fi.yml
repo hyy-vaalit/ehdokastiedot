@@ -1,6 +1,19 @@
 fi:
   activerecord:
 
+    errors:
+      models:
+        candidate:
+          attributes:
+            cancelled:
+              duplicate_student_number: "opiskelijanumerolla %{student_number} on jo voimassa oleva ehdokasilmoittautuminen"
+        electoral_alliance:
+          attributes:
+            invite_code:
+              invalid_characters: "voi sisältää vain englannin aakkosia, numeroita ja tavuviivan"
+            expected_candidate_count:
+              mismatch: "ei vastaa hyväksyttyjen ehdokkaiden lukumäärää"
+
     attributes:
 
       electoral_alliance:
