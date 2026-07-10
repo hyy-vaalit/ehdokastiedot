@@ -1,5 +1,4 @@
-<%# TODO(HYY): add Swedish and English sections below the Finnish one
-    (recipient language is not stored, so one trilingual mail is sent). %>
+<%# Recipient language is not stored, so one trilingual (fi/sv/en) mail is sent. %>
 Hei!
 
 Olet ilmoittautunut HYYn edustajistovaaleissa yhden tai useamman vaaliliiton edustajaksi.
@@ -23,11 +22,62 @@ Vaalirenkaista:
 * Vaaliliitot asetetaan vaalirenkaan sisäiseen järjestykseen.
 * Ehdokasnumerot jaetaan vaaliliittojen mukaisessa järjestyksessä.
 
+***
+
+Hej!
+
+Du har anmält dig som ombud för ett eller flera valförbund i HUS delegationsval.
+
+Mata in ditt valförbunds kandidatuppgifter på adressen:
+  <%= @site_address %>
+
+Kandidatuppgifterna ska matas in innan kandidatuppställningen avslutas <%= GlobalConfiguration.candidate_nomination_ends_at.localtime.strftime('%d.%m.%Y %H:%M') -%>.
+
+Om inmatningen av uppgifter:
+* Nya kandidater kan matas in tills kandidatuppställningen avslutas.
+* Efter att kandidatuppställningen avslutats kan uppgifterna korrigeras fram till tidsfristen för återkallande av kandidatanmälan.
+
+Om kandidatnumreringen:
+* Kandidatnumren bestäms enligt kandidaternas ordningsföljd: valförbundets ombud ansvarar för kandidaternas ordningsföljd.
+* Ordna kandidaterna i önskad ordning, senast när alla kandidater har tagits emot.
+* Kandidaterna sorteras inte automatiskt, så att ordningen alltid är bestämd av valförbundets ombud.
+
+Om valringar:
+* HUS valkoordinator skapar valringarna och ansluter valförbunden till valringen enligt skriftlig anmälan från valringens ombud.
+* Valförbunden placeras i inbördes ordning inom valringen.
+* Kandidatnumren delas ut i valförbundens ordningsföljd.
+
+***
+
+Hello!
+
+You have registered as an advocate for one or more electoral alliances in HYY's Representative Council elections.
+
+Enter your electoral alliance's candidate data at:
+  <%= @site_address %>
+
+The candidate data must be entered before the nomination of candidates ends on <%= GlobalConfiguration.candidate_nomination_ends_at.localtime.strftime('%d.%m.%Y %H:%M') -%>.
+
+About entering the data:
+* New candidates can be entered until the nomination period ends.
+* After the nomination period ends, corrections can be made to the data until the deadline for cancelling a candidate registration.
+
+About candidate numbering:
+* Candidate numbers are assigned according to the order of the candidates: the electoral alliance advocate is responsible for the order of the candidates.
+* Arrange the candidates into the desired order, at the latest once all candidates have been received.
+* Candidates are not sorted automatically, so that the order is always determined by the alliance's advocate.
+
+About electoral coalitions:
+* HYY's Election Coordinator creates the electoral coalitions and links the electoral alliances to a coalition based on written notice from the coalition's advocate.
+* The electoral alliances are placed in order within the coalition.
+* Candidate numbers are assigned in the order of the electoral alliances.
 
 
-Terveisin,
+
+Terveisin / Med vänliga hälsningar / Best regards,
 
 <%= Vaalit::Public::EMAIL_FROM_NAME %>
 
-Vaalikoordinaattori | Helsingin yliopiston ylioppilaskunta
+Vaalikoordinaattori | Valkoordinator | Election Coordinator
+Helsingin yliopiston ylioppilaskunta | Helsingfors universitets studentkår | Student Union of the University of Helsinki
 +358 50 432 4939 | vaalit@hyy.fi | http://hyy.fi/vaalit/
