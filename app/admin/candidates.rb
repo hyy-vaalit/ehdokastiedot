@@ -24,7 +24,8 @@ ActiveAdmin.register Candidate do
   scope "Voimassa", :valid
 
   controller do
-    # Override default method because :electoral_alliance_ids is not available in permitted_params.
+    # Override the default update to redirect to the alliance page instead of
+    # the candidate page.
     def update
       @candidate = Candidate.find(params[:id])
 
@@ -39,8 +40,9 @@ ActiveAdmin.register Candidate do
       end
     end
 
+    # Override the default create to redirect to the alliance page instead of
+    # the candidate page.
     def create
-      # Override default method because :electoral_alliance_ids is not available in permitted_params.
       @candidate = Candidate.new(permitted_params[:candidate])
       alliance_id = params[:candidate][:electoral_alliance_id]
 
@@ -106,13 +108,9 @@ ActiveAdmin.register Candidate do
         para "Luo ehdokas menemällä vaaliliiton sivulle ja klikkaa sieltä 'Uusi ehdokas'."
       end
     else
-      # Candidate#electoral_alliance_id can be nil if candidate was in an
-      # alliance, but alliance was deleted.
-      alliance = ElectoralAlliance.find_by_id(alliance_id)
+      alliance = ElectoralAlliance.find(alliance_id)
 
-      alliance_name = alliance.present? ? alliance.name : "Vaaliliitto puuttuu"
-
-      f.inputs "Ehdokkaan vaaliliitto: #{alliance_name}" do
+      f.inputs "Ehdokkaan vaaliliitto: #{alliance.name}" do
         f.input :lastname
         f.input :firstname
         f.input :candidate_name
@@ -140,18 +138,9 @@ ActiveAdmin.register Candidate do
       end
 
       # Prevent potential errors by not allowing to change the alliance.
-      # Allow to set alliance only for previously saved candidates who do not
-      # have an alliance (ie. alliance was deleted after candidate was created).
-      # => Do not display alliance dropdown on NEW or EDIT actions.
-      if alliance.present? || f.object.new_record?
-        f.input :electoral_alliance_id,
-                :as => :hidden,
-                :input_html => {:value => alliance.id}
-      else
-        f.inputs 'Vaaliliitto' do
-          f.input :electoral_alliance
-        end
-      end
+      f.input :electoral_alliance_id,
+              :as => :hidden,
+              :input_html => {:value => alliance.id}
 
       f.actions
     end
