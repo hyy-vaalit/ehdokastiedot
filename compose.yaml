@@ -1,0 +1,45 @@
+# First run:  cp .env.example .env
+# Dev server: docker compose up        -> http://localhost:3000
+# Tests:      docker compose run --rm -e RAILS_ENV=test web bundle exec rspec
+# Jobs:       docker compose run --rm web bin/rake jobs:work
+
+services:
+  db:
+    image: postgres:18
+    environment:
+      POSTGRES_HOST_AUTH_METHOD: trust
+    ports:
+      # Distinct host port per project: vaalitulostin 54321,
+      # voting-api 54322, ehdokastiedot 54323
+      - "127.0.0.1:54323:5432"
+    volumes:
+      - pgdata:/var/lib/postgresql
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres"]
+      interval: 2s
+      timeout: 5s
+      retries: 15
+
+  web:
+    build:
+      context: .
+      target: development
+    command: sh -c "bin/rails db:prepare && bin/rails server -b 0.0.0.0"
+    ports:
+      - "3000:3000"
+    volumes:
+      - .:/app
+      - bundle:/usr/local/bundle
+    environment:
+      PGHOST: db
+      PGUSER: postgres
+    depends_on:
+      db:
+        condition: service_healthy
+    # for byebug/irb via `docker compose attach web`
+    stdin_open: true
+    tty: true
+
+volumes:
+  pgdata:
+  bundle:

@@ -2,10 +2,10 @@ source 'https://rubygems.org'
 
 git_source(:github) { |repo_name| "https://github.com/#{repo_name}" }
 
-ruby '3.4.6' # For Heroku, see also file .ruby-version
+ruby '4.0.5' # For Heroku, see also file .ruby-version
 
-gem 'rails', '~> 8.0.3'
-gem 'rails-i18n', '~> 8.0' # fi/sv/en translations for Rails defaults (validation errors, dates)
+gem 'rails', '~> 8.1.3'
+gem 'rails-i18n', '~> 8.1.0' # fi/sv/en translations for Rails defaults (validation errors, dates)
 gem 'bootsnap'
 gem 'pg'
 gem 'puma'
